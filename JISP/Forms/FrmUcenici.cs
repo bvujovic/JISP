@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace JISP
+namespace JISP.Forms
 {
-    public partial class Form1 : Form
+    public partial class FrmUcenici : Form
     {
-        public Form1()
+        public FrmUcenici()
         {
             InitializeComponent();
         }
