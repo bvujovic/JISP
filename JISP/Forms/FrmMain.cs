@@ -20,6 +20,7 @@ namespace JISP
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
+            // skolska test promena koda
             var progData = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
                 "OneDrive\\Posao\\ProgData");
