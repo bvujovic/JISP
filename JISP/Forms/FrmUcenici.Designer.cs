@@ -35,6 +35,8 @@
             this.txtFilter = new System.Windows.Forms.TextBox();
             this.bsUcenici = new System.Windows.Forms.BindingSource(this.components);
             this.ds = new JISP.Data.Ds();
+            this.lblRowCount = new System.Windows.Forms.Label();
+            this.txtFileName = new System.Windows.Forms.TextBox();
             this.dgv = new JISP.Controls.UcDGV();
             this.dgvcIdUcenika = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcIme = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,6 +50,8 @@
             // 
             // pnlLeft
             // 
+            this.pnlLeft.Controls.Add(this.txtFileName);
+            this.pnlLeft.Controls.Add(this.lblRowCount);
             this.pnlLeft.Controls.Add(this.btnTextImport);
             this.pnlLeft.Controls.Add(this.btnSaveData);
             this.pnlLeft.Controls.Add(this.txtFilter);
@@ -61,7 +65,7 @@
             // 
             // btnTextImport
             // 
-            this.btnTextImport.Location = new System.Drawing.Point(12, 77);
+            this.btnTextImport.Location = new System.Drawing.Point(12, 100);
             this.btnTextImport.Name = "btnTextImport";
             this.btnTextImport.Size = new System.Drawing.Size(132, 31);
             this.btnTextImport.TabIndex = 2;
@@ -71,7 +75,7 @@
             // 
             // btnSaveData
             // 
-            this.btnSaveData.Location = new System.Drawing.Point(12, 40);
+            this.btnSaveData.Location = new System.Drawing.Point(12, 63);
             this.btnSaveData.Name = "btnSaveData";
             this.btnSaveData.Size = new System.Drawing.Size(132, 31);
             this.btnSaveData.TabIndex = 1;
@@ -81,7 +85,7 @@
             // 
             // txtFilter
             // 
-            this.txtFilter.Location = new System.Drawing.Point(12, 12);
+            this.txtFilter.Location = new System.Drawing.Point(12, 35);
             this.txtFilter.Name = "txtFilter";
             this.txtFilter.Size = new System.Drawing.Size(132, 22);
             this.txtFilter.TabIndex = 0;
@@ -97,8 +101,25 @@
             this.ds.DataSetName = "Ds";
             this.ds.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // lblRowCount
+            // 
+            this.lblRowCount.AutoSize = true;
+            this.lblRowCount.Location = new System.Drawing.Point(13, 13);
+            this.lblRowCount.Name = "lblRowCount";
+            this.lblRowCount.Size = new System.Drawing.Size(57, 16);
+            this.lblRowCount.TabIndex = 3;
+            this.lblRowCount.Text = "Redova";
+            // 
+            // txtFileName
+            // 
+            this.txtFileName.Location = new System.Drawing.Point(12, 137);
+            this.txtFileName.Name = "txtFileName";
+            this.txtFileName.Size = new System.Drawing.Size(132, 22);
+            this.txtFileName.TabIndex = 4;
+            // 
             // dgv
             // 
+            this.dgv.AllowUserToAddRows = false;
             this.dgv.AllowUserToDeleteRows = false;
             this.dgv.AutoGenerateColumns = false;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -130,10 +151,10 @@
             // dgvcIme
             // 
             this.dgvcIme.DataPropertyName = "Ime";
-            this.dgvcIme.HeaderText = "Ime";
+            this.dgvcIme.HeaderText = "Ucenik";
             this.dgvcIme.MinimumWidth = 6;
             this.dgvcIme.Name = "dgvcIme";
-            this.dgvcIme.Width = 125;
+            this.dgvcIme.Width = 250;
             // 
             // dgvcPrezime
             // 
@@ -141,6 +162,7 @@
             this.dgvcPrezime.HeaderText = "Prezime";
             this.dgvcPrezime.MinimumWidth = 6;
             this.dgvcPrezime.Name = "dgvcPrezime";
+            this.dgvcPrezime.Visible = false;
             this.dgvcPrezime.Width = 125;
             // 
             // dgvcJOB
@@ -149,7 +171,7 @@
             this.dgvcJOB.HeaderText = "JOB";
             this.dgvcJOB.MinimumWidth = 6;
             this.dgvcJOB.Name = "dgvcJOB";
-            this.dgvcJOB.Width = 150;
+            this.dgvcJOB.Width = 180;
             // 
             // FrmUcenici
             // 
@@ -185,5 +207,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcIme;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcPrezime;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcJOB;
+        private System.Windows.Forms.Label lblRowCount;
+        private System.Windows.Forms.TextBox txtFileName;
     }
 }

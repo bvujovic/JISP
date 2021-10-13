@@ -16,7 +16,11 @@ namespace JISP
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmMain());
+
+            try { Data.AppData.AppInit(); }
+            catch (Exception ex) { Classes.Utils.ShowMbox(ex, "Inicijalizacija aplikacije"); }
+
+            Application.Run(new Forms.FrmUcenici());
         }
     }
 }

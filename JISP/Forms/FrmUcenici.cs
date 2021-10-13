@@ -25,6 +25,7 @@ namespace JISP.Forms
         private void FrmUcenici_Load(object sender, EventArgs e)
         {
             bsUcenici.DataSource = Data.AppData.Ds;
+            DisplayRowCount();
         }
 
         /// <summary>Show/Hide levog panela sa kontrolama.</summary>
@@ -39,58 +40,72 @@ namespace JISP.Forms
                 bsUcenici.Filter = $"Ime LIKE '%{s}%' OR Prezime LIKE '%{s}%' OR JOB LIKE '%{s}%' ";
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
+            DisplayRowCount();
         }
 
+        private void DisplayRowCount()
+            => lblRowCount.Text = $"Redova: {bsUcenici.Count}";
+
         private void BtnSaveData_Click(object sender, EventArgs e)
+            => Data.AppData.SaveDsData();        
+
+        private static bool IsJobValid(string job)
         {
-            Data.AppData.SaveDsData();
-
-            //try
-            //{
-
-            //}
-            //catch (Exception ex) { MessageBox.Show(ex.Message); }
+            if (job.Length != 16)
+                return false;
+            if (job.Contains(' '))
+                return false;
+            return true;
         }
 
         private void BtnTextImport_Click(object sender, EventArgs e)
         {
+            dgv.SuspendLayout();
             try
             {
-                using (var sr = new System.IO.StreamReader
-                    (System.IO.Path.Combine(Data.AppData.DataFolder, "uc_test.txt")))
+                var fileName = System.IO.Path.Combine(Data.AppData.DataFolder, txtFileName.Text);
+                if (!System.IO.File.Exists(fileName))
+                    throw new Exception($"'{fileName}' ne postoji.");
+
+                using (var sr = new System.IO.StreamReader(fileName))
                 {
-                    string line;
-                    var cntLine = 0;
-                    var cntItems = 7;
-                    DataTable tbl = Data.AppData.Ds.Tables["Ucenici"];
-                    DataRow row = null;
-                    while ((line = sr.ReadLine()) != null)
+                    var tbl = Data.AppData.Ds.Tables["Ucenici"];
+                    var theEnd = false;
+                    var line = "";
+                    var block = new List<string>();
+                    while (!theEnd)
                     {
-                        cntLine++;
-                        line = line.Trim();
-                        if (cntLine % cntItems == 5)
-                        {
-                            row = tbl.NewRow();
-                            row["Ime"] = line;
-                            tbl.Rows.Add(row);
-                        }
-                        //if (cntLine % cntItems == 2 && row != null)
-                        //    row["Prezime"] = line;
-                        if (cntLine % cntItems == 6 && row != null)
-                        {
-                            var duplicates = tbl.Select($"JOB = '{line}'");
-                            if (duplicates.Length > 0)
+                        while ((line = sr.ReadLine()) != null && line != "")
+                            block.Add(line.Trim());
+                        //Console.WriteLine(block);
+                        //Console.WriteLine(cntLine);
+
+                        if (block.Count > 5 && IsJobValid(block[5]))
+                            try
                             {
-                                tbl.Rows.Remove(row);
-                                row = null;
+                                var row = tbl.NewRow();
+                                row["Ime"] = block[4];
+                                row["JOB"] = block[5];
+                                tbl.Rows.Add(row);
                             }
-                            else
-                                row["JOB"] = line;
-                        }
+                            catch (Exception ex)
+                            {
+                                var msg = ex.Message;
+                                if (!msg.Contains("'JOB' is constrained to be unique"))
+                                    if (Classes.Utils.ShowMboxYesNo($"Greska: {msg}" + Environment.NewLine +
+                                        "Da li zelite da nastavite sa uvozom tekst podataka?", "Uvoz txt podataka") == DialogResult.No)
+                                        theEnd = true;
+                            }
+
+                        block.Clear();
+                        if (line == null)
+                            theEnd = true;
                     }
                 }
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
+            dgv.ResumeLayout();
+            DisplayRowCount();
         }
 
         private void Dgv_CellClick(object sender, DataGridViewCellEventArgs e)

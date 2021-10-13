@@ -1,4 +1,4 @@
-﻿namespace JISP
+﻿namespace JISP.Forms
 {
     partial class FrmMain
     {
