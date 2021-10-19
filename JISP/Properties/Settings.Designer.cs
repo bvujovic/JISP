@@ -22,23 +22,5 @@ namespace JISP.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("c:\\Users\\bvnet\\OneDrive\\x\\Posao\\JISP\\prog_data\\")]
-        public string DataFolderHome {
-            get {
-                return ((string)(this["DataFolderHome"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string DataFolderAway {
-            get {
-                return ((string)(this["DataFolderAway"]));
-            }
-        }
     }
 }

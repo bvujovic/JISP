@@ -14,19 +14,26 @@ namespace JISP.Data
         /// <summary>Folder u kojem ce se cuvati podaci: txt, xml...</summary>
         public static string DataFolder { get; set; }
 
+        private static string FolderForAccound(string accName)
+            => $"c:/Users/{accName}/OneDrive/x/Posao/JISP/prog_data/";
+
         public static void AppInit()
         {
-            if (Directory.Exists(Properties.Settings.Default.DataFolderHome))
-                DataFolder = Properties.Settings.Default.DataFolderHome;
-            if (Directory.Exists(Properties.Settings.Default.DataFolderAway))
-                DataFolder = Properties.Settings.Default.DataFolderAway;
+            var accounts = new[] { "bvnet", "sosos" };
+            foreach (var acc in accounts)
+                if (Directory.Exists(FolderForAccound(acc)))
+                    DataFolder = FolderForAccound(acc);
             if (string.IsNullOrEmpty(DataFolder))
                 throw new Exception("AppData.DataFolder nije inicijalizovan.");
 
             LoadDsData();
+        }
 
-            //    Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
-            //    "OneDrive\\Posao\\ProgData");
+        /// <summary>Ucitavanje podataka u DataSet iz fajla.</summary>
+        public static void LoadDsData()
+        {
+            try { Ds.ReadXml(Path.Combine(DataFolder, "ds.xml")); }
+            catch (Exception ex) { Classes.Utils.ShowMbox(ex, "Ucitavanje podataka iz XMLa"); }
         }
 
         /// <summary>Cuvanje podataka iz DataSet-a u fajl.</summary>
@@ -40,11 +47,19 @@ namespace JISP.Data
             catch (Exception ex) { Classes.Utils.ShowMbox(ex, "Cuvanje podataka u XML"); }
         }
 
-        /// <summary>Ucitavanje podataka u DataSet iz fajla.</summary>
-        public static void LoadDsData()
+        public static void BackupData()
         {
-            try { Ds.ReadXml(Path.Combine(DataFolder, "ds.xml")); }
-            catch (Exception ex) { Classes.Utils.ShowMbox(ex, "Ucitavanje podataka iz XMLa"); }
+            try
+            {
+                var origDS = Path.Combine(DataFolder, "ds.xml");
+                Ds.WriteXml(origDS);
+                var backupFolder = Path.Combine(DataFolder, "backup");
+                var date = DateTime.Now.ToString(Classes.Utils.DatumVremeFormatFile);
+                var backupDS = Path.Combine(backupFolder, $"ds_{date}.xml");
+                File.Copy(origDS, backupDS);
+                System.Diagnostics.Process.Start(backupFolder);
+            }
+            catch (Exception ex) { Classes.Utils.ShowMbox(ex, "Backup podataka"); }
         }
     }
 }

@@ -17,6 +17,12 @@ namespace JISP.Forms
         }
 
         private FrmUcenici frmUcenici = null;
+        private FrmZaposleni frmZaposleni = null;
+
+        enum ChildForms
+        {
+            Ucenici, Zaposleni
+        }
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
@@ -24,11 +30,46 @@ namespace JISP.Forms
 
         private void BtnUcenici_Click(object sender, EventArgs e)
         {
-            if (frmUcenici == null || frmUcenici.IsDisposed)
-                frmUcenici = new FrmUcenici();
-            frmUcenici.Show();
-            if (frmUcenici.WindowState == FormWindowState.Minimized)
-                frmUcenici.WindowState = FormWindowState.Normal;
+            ShowForm(frmUcenici, ChildForms.Ucenici);
+        }
+
+        private void ShowForm(Form frm, ChildForms childForms)
+        {
+            if (frm == null || frm.IsDisposed)
+            {
+                if (childForms == ChildForms.Ucenici)
+                    frm = new FrmUcenici();
+                if (childForms == ChildForms.Zaposleni)
+                    frm = new FrmZaposleni();
+            }
+            frm.Show();
+            if (frm.WindowState == FormWindowState.Minimized)
+                frm.WindowState = FormWindowState.Normal;
+        }
+
+        //void NewItUp(Form form)
+        //{
+        //    var t = Type.GetType(form);
+        //}
+
+        //***
+        //void m(Form f)
+        //{
+        //    if (f == null)
+        //        return;
+        //    var rr = typeof(FrmMain);
+        //    var t = f.GetType();
+        //    var frm = Activator.CreateInstance(t);
+        //}
+
+        private void BtnZaposleni_Click(object sender, EventArgs e)
+        {
+            ShowForm(frmZaposleni, ChildForms.Zaposleni);
+        }
+
+        private void BtnBackup_Click(object sender, EventArgs e)
+        {
+            Data.AppData.BackupData();
         }
     }
 }

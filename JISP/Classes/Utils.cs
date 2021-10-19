@@ -43,6 +43,7 @@ namespace JISP.Classes
         public const string VremeSamoSitnoFormat = "mm:ss.fff";
         public const string DatumFormat = "yyyy-MM-dd";
         public const string DatumVremeFormat = "yyyy-MM-dd HH:mm";
+        public const string DatumVremeFormatFile = "yyyy.MM.dd_HH.mm";
         public const string DatumVremeSveFormat = "yyyy-MM-dd HH:mm:ss.ff";
 
         /// <summary>Vraca trenutno vreme u SamoSitno formatu (min:sec.ms).</summary>

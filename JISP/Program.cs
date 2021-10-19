@@ -20,7 +20,7 @@ namespace JISP
             try { Data.AppData.AppInit(); }
             catch (Exception ex) { Classes.Utils.ShowMbox(ex, "Inicijalizacija aplikacije"); }
 
-            Application.Run(new Forms.FrmUcenici());
+            Application.Run(new Forms.FrmMain());
         }
     }
 }
