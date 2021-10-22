@@ -31,14 +31,14 @@ namespace JISP.Forms
         {
             this.components = new System.ComponentModel.Container();
             this.pnlLeft = new System.Windows.Forms.Panel();
+            this.btnLoadData = new System.Windows.Forms.Button();
             this.btnSaveData = new System.Windows.Forms.Button();
             this.dgv = new JISP.Controls.UcDGV();
             this.bsZap = new System.Windows.Forms.BindingSource(this.components);
             this.ds = new JISP.Data.Ds();
-            this.jMBGDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcPrezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcIme = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcIdZap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcPrezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcJMBG = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsZap)).BeginInit();
@@ -47,6 +47,7 @@ namespace JISP.Forms
             // 
             // pnlLeft
             // 
+            this.pnlLeft.Controls.Add(this.btnLoadData);
             this.pnlLeft.Controls.Add(this.btnSaveData);
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlLeft.Location = new System.Drawing.Point(0, 0);
@@ -54,13 +55,23 @@ namespace JISP.Forms
             this.pnlLeft.Size = new System.Drawing.Size(146, 448);
             this.pnlLeft.TabIndex = 0;
             // 
+            // btnLoadData
+            // 
+            this.btnLoadData.Location = new System.Drawing.Point(12, 104);
+            this.btnLoadData.Name = "btnLoadData";
+            this.btnLoadData.Size = new System.Drawing.Size(128, 59);
+            this.btnLoadData.TabIndex = 3;
+            this.btnLoadData.Text = "Učitaj podatke";
+            this.btnLoadData.UseVisualStyleBackColor = true;
+            this.btnLoadData.Click += new System.EventHandler(this.BtnLoadData_Click);
+            // 
             // btnSaveData
             // 
             this.btnSaveData.Location = new System.Drawing.Point(12, 39);
             this.btnSaveData.Name = "btnSaveData";
-            this.btnSaveData.Size = new System.Drawing.Size(128, 31);
+            this.btnSaveData.Size = new System.Drawing.Size(128, 59);
             this.btnSaveData.TabIndex = 2;
-            this.btnSaveData.Text = "Sacuvaj podatke";
+            this.btnSaveData.Text = "Sačuvaj podatke";
             this.btnSaveData.UseVisualStyleBackColor = true;
             this.btnSaveData.Click += new System.EventHandler(this.BtnSaveData_Click);
             // 
@@ -69,10 +80,9 @@ namespace JISP.Forms
             this.dgv.AutoGenerateColumns = false;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dgvcIdZap,
             this.dgvcIme,
             this.dgvcPrezime,
-            this.jMBGDataGridViewTextBoxColumn});
+            this.dgvcJMBG});
             this.dgv.DataSource = this.bsZap;
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv.Location = new System.Drawing.Point(146, 0);
@@ -90,37 +100,33 @@ namespace JISP.Forms
             this.ds.DataSetName = "Ds";
             this.ds.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // jMBGDataGridViewTextBoxColumn
+            // dgvcIme
             // 
-            this.jMBGDataGridViewTextBoxColumn.DataPropertyName = "JMBG";
-            this.jMBGDataGridViewTextBoxColumn.HeaderText = "JMBG";
-            this.jMBGDataGridViewTextBoxColumn.Name = "jMBGDataGridViewTextBoxColumn";
-            this.jMBGDataGridViewTextBoxColumn.Width = 120;
+            this.dgvcIme.DataPropertyName = "Ime";
+            this.dgvcIme.HeaderText = "Ime";
+            this.dgvcIme.MinimumWidth = 6;
+            this.dgvcIme.Name = "dgvcIme";
+            this.dgvcIme.Width = 125;
             // 
             // dgvcPrezime
             // 
             this.dgvcPrezime.DataPropertyName = "Prezime";
             this.dgvcPrezime.HeaderText = "Prezime";
+            this.dgvcPrezime.MinimumWidth = 6;
             this.dgvcPrezime.Name = "dgvcPrezime";
-            this.dgvcPrezime.Width = 200;
+            this.dgvcPrezime.Width = 125;
             // 
-            // dgvcIme
+            // dgvcJMBG
             // 
-            this.dgvcIme.DataPropertyName = "Ime";
-            this.dgvcIme.HeaderText = "Ime";
-            this.dgvcIme.Name = "dgvcIme";
-            this.dgvcIme.Width = 150;
-            // 
-            // dgvcIdZap
-            // 
-            this.dgvcIdZap.DataPropertyName = "IdZaposlenog";
-            this.dgvcIdZap.HeaderText = "IdZaposlenog";
-            this.dgvcIdZap.Name = "dgvcIdZap";
-            this.dgvcIdZap.Visible = false;
+            this.dgvcJMBG.DataPropertyName = "JMBG";
+            this.dgvcJMBG.HeaderText = "JMBG";
+            this.dgvcJMBG.MinimumWidth = 6;
+            this.dgvcJMBG.Name = "dgvcJMBG";
+            this.dgvcJMBG.Width = 125;
             // 
             // FrmZaposleni
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(895, 448);
             this.Controls.Add(this.dgv);
@@ -143,10 +149,10 @@ namespace JISP.Forms
         private Controls.UcDGV dgv;
         private System.Windows.Forms.BindingSource bsZap;
         private System.Windows.Forms.Button btnSaveData;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcIdZap;
+        private Data.Ds ds;
+        private System.Windows.Forms.Button btnLoadData;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcIme;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcPrezime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn jMBGDataGridViewTextBoxColumn;
-        private Data.Ds ds;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcJMBG;
     }
 }
