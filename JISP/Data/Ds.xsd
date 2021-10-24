@@ -12,7 +12,7 @@
   <xs:element name="Ds" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Ds" msprop:Generator_UserDSName="Ds">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Ucenici" msprop:Generator_TableClassName="UceniciDataTable" msprop:Generator_RowEvArgName="UceniciRowChangeEvent" msprop:Generator_TableVarName="tableUcenici" msprop:Generator_TablePropName="Ucenici" msprop:Generator_RowDeletingName="UceniciRowDeleting" msprop:Generator_RowChangingName="UceniciRowChanging" msprop:Generator_RowDeletedName="UceniciRowDeleted" msprop:Generator_RowEvHandlerName="UceniciRowChangeEventHandler" msprop:Generator_UserTableName="Ucenici" msprop:Generator_RowChangedName="UceniciRowChanged" msprop:Generator_RowClassName="UceniciRow">
+        <xs:element name="Ucenici" msprop:Generator_TableClassName="UceniciDataTable" msprop:Generator_RowEvArgName="UceniciRowChangeEvent" msprop:Generator_TableVarName="tableUcenici" msprop:Generator_TablePropName="Ucenici" msprop:Generator_RowDeletingName="UceniciRowDeleting" msprop:Generator_RowChangingName="UceniciRowChanging" msprop:Generator_RowDeletedName="UceniciRowDeleted" msprop:Generator_RowClassName="UceniciRow" msprop:Generator_RowEvHandlerName="UceniciRowChangeEventHandler" msprop:Generator_RowChangedName="UceniciRowChanged" msprop:Generator_UserTableName="Ucenici">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IdUcenika" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnIdUcenika" msprop:Generator_ColumnPropNameInRow="IdUcenika" msprop:Generator_ColumnPropNameInTable="IdUcenikaColumn" msprop:Generator_UserColumnName="IdUcenika" type="xs:int" />
@@ -35,6 +35,8 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="Godine" msprop:Generator_ColumnVarNameInTable="columnGodine" msprop:Generator_ColumnPropNameInRow="Godine" msprop:Generator_ColumnPropNameInTable="GodineColumn" msprop:Generator_UserColumnName="Godine" type="xs:double" minOccurs="0" />
+              <xs:element name="DanaDoRodj" msprop:Generator_ColumnVarNameInTable="columnDanaDoRodj" msprop:Generator_ColumnPropNameInRow="DanaDoRodj" msprop:Generator_ColumnPropNameInTable="DanaDoRodjColumn" msprop:Generator_UserColumnName="DanaDoRodj" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -51,6 +53,10 @@
     <xs:unique name="Zaposleni_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:Zaposleni" />
       <xs:field xpath="mstns:IdZaposlenog" />
+    </xs:unique>
+    <xs:unique name="Zaposleni_Constraint2" msdata:ConstraintName="Constraint2">
+      <xs:selector xpath=".//mstns:Zaposleni" />
+      <xs:field xpath="mstns:JMBG" />
     </xs:unique>
   </xs:element>
 </xs:schema>

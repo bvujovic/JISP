@@ -628,6 +628,10 @@ namespace JISP.Data {
             
             private global::System.Data.DataColumn columnJMBG;
             
+            private global::System.Data.DataColumn columnGodine;
+            
+            private global::System.Data.DataColumn columnDanaDoRodj;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public ZaposleniDataTable() {
@@ -695,6 +699,22 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn GodineColumn {
+                get {
+                    return this.columnGodine;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn DanaDoRodjColumn {
+                get {
+                    return this.columnDanaDoRodj;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -730,13 +750,15 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ZaposleniRow AddZaposleniRow(string Ime, string Prezime, string JMBG) {
+            public ZaposleniRow AddZaposleniRow(string Ime, string Prezime, string JMBG, double Godine, int DanaDoRodj) {
                 ZaposleniRow rowZaposleniRow = ((ZaposleniRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         Ime,
                         Prezime,
-                        JMBG};
+                        JMBG,
+                        Godine,
+                        DanaDoRodj};
                 rowZaposleniRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowZaposleniRow);
                 return rowZaposleniRow;
@@ -770,6 +792,8 @@ namespace JISP.Data {
                 this.columnIme = base.Columns["Ime"];
                 this.columnPrezime = base.Columns["Prezime"];
                 this.columnJMBG = base.Columns["JMBG"];
+                this.columnGodine = base.Columns["Godine"];
+                this.columnDanaDoRodj = base.Columns["DanaDoRodj"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -783,13 +807,20 @@ namespace JISP.Data {
                 base.Columns.Add(this.columnPrezime);
                 this.columnJMBG = new global::System.Data.DataColumn("JMBG", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnJMBG);
+                this.columnGodine = new global::System.Data.DataColumn("Godine", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGodine);
+                this.columnDanaDoRodj = new global::System.Data.DataColumn("DanaDoRodj", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDanaDoRodj);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIdZaposlenog}, true));
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint2", new global::System.Data.DataColumn[] {
+                                this.columnJMBG}, false));
                 this.columnIdZaposlenog.AutoIncrement = true;
                 this.columnIdZaposlenog.AutoIncrementSeed = -1;
                 this.columnIdZaposlenog.AutoIncrementStep = -1;
                 this.columnIdZaposlenog.AllowDBNull = false;
                 this.columnIdZaposlenog.Unique = true;
+                this.columnJMBG.Unique = true;
                 this.columnJMBG.MaxLength = 13;
             }
             
@@ -1102,6 +1133,38 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public double Godine {
+                get {
+                    try {
+                        return ((double)(this[this.tableZaposleni.GodineColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Godine\' in table \'Zaposleni\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableZaposleni.GodineColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int DanaDoRodj {
+                get {
+                    try {
+                        return ((int)(this[this.tableZaposleni.DanaDoRodjColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DanaDoRodj\' in table \'Zaposleni\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableZaposleni.DanaDoRodjColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsImeNull() {
                 return this.IsNull(this.tableZaposleni.ImeColumn);
             }
@@ -1134,6 +1197,30 @@ namespace JISP.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetJMBGNull() {
                 this[this.tableZaposleni.JMBGColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsGodineNull() {
+                return this.IsNull(this.tableZaposleni.GodineColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetGodineNull() {
+                this[this.tableZaposleni.GodineColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsDanaDoRodjNull() {
+                return this.IsNull(this.tableZaposleni.DanaDoRodjColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetDanaDoRodjNull() {
+                this[this.tableZaposleni.DanaDoRodjColumn] = global::System.Convert.DBNull;
             }
         }
         

@@ -49,11 +49,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\JMBG.cs" />
     <Compile Include="Classes\Utils.cs" />
     <Compile Include="Controls\UcDGV.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\AppData.cs" />
+    <Compile Include="Data\Ds.cs">
+      <DependentUpon>Ds.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Data\Ds.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

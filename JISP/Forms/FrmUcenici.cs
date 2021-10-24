@@ -107,11 +107,5 @@ namespace JISP.Forms
             dgv.ResumeLayout();
             DisplayRowCount();
         }
-
-        private void Dgv_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try { Clipboard.SetText(dgv.SelectedCells[0].Value.ToString()); }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
-        }
     }
 }
