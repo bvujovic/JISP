@@ -1,12 +1,7 @@
 ﻿using JISP.Classes;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JISP.Forms
@@ -17,25 +12,39 @@ namespace JISP.Forms
         {
             InitializeComponent();
 
-            bsZap.DataSource = Ds = Data.AppData.Ds;
+            bsZaposleni.DataSource = Ds = Data.AppData.Ds;
+            bsZaposlenja.DataMember = "FK_Zaposleni_Zaposlenja";
+            bsZaposlenja.Sort = "Aktivan DESC";
             DisplayRowCount();
         }
 
-        //! Ne koristiti ds, vec samo Ds. Videti da se ds ukloni ako je moguce.
-        private Data.Ds Ds;
+        private readonly Data.Ds Ds;
 
         private void BtnSaveData_Click(object sender, EventArgs e)
             => Data.AppData.SaveDsData();
 
         private void DisplayRowCount()
-            => lblRowCount.Text = $"Redova: {bsZap.Count}";
+            => lblRowCount.Text = $"Redova: {bsZaposleni.Count}";
 
         private void TxtFilter_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 var s = txtFilter.Text;
-                bsZap.Filter = $"Ime LIKE '%{s}%' OR Prezime LIKE '%{s}%' OR JMBG LIKE '%{s}%' ";
+                bsZaposleni.Filter = $"Ime LIKE '%{s}%' OR Prezime LIKE '%{s}%' OR JMBG LIKE '%{s}%' ";
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            DisplayRowCount();
+        }
+
+        private void ChkAktivniZap_CheckStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkAktivniZap.CheckState == CheckState.Indeterminate)
+                    bsZaposleni.RemoveFilter();
+                else
+                    bsZaposleni.Filter = $"Aktivan = {chkAktivniZap.Checked}";
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
             DisplayRowCount();
@@ -71,7 +80,22 @@ namespace JISP.Forms
                             red.Aktivan = (bool)zap.TrenutnoZaposlen;
                         }
 
-                        //TODO dodavanje zaposlenja
+                        var nja = zap.ZaposleniZaposlenje;
+                        if (nja != null)
+                            foreach (var nje in nja)
+                            {
+                                //B neuspeo pokusaj odbrane od dodavanja duplikata nja - za ovo je potreban idNja
+                                //var redNje = red.GetZaposlenjaRows()
+                                //    .FirstOrDefault(it => it.RadnoMestoNaziv == nje.RadnoMestoNaziv);
+                                //if (redNje == null) // novo zaposlenje
+                                {
+                                    var redNje = Ds.Zaposlenja.NewZaposlenjaRow();
+                                    redNje.IdZaposlenog = red.IdZaposlenog;
+                                    redNje.Aktivan = nje.Aktivan;
+                                    redNje.RadnoMestoNaziv = nje.RadnoMestoNaziv;
+                                    Ds.Zaposlenja.AddZaposlenjaRow(redNje);
+                                }
+                            }
                     }
                     catch (Exception ex)
                     {
@@ -82,6 +106,18 @@ namespace JISP.Forms
             }
             catch (Exception ex) { Utils.ShowMbox(ex, btnLoadData.Text); }
             DisplayRowCount();
+        }
+
+        private void DgvZaposleni_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex != dgvcZapId.Index || e.RowIndex == -1)
+                return;
+            var drv = dgvZaposleni.CurrentRow.DataBoundItem as System.Data.DataRowView;
+            if (drv.Row is Data.Ds.ZaposleniRow zap)
+            {
+                var url = $"https://jisp.mpn.gov.rs/regzaposlenih/sekcije/{zap.JMBG}/{zap.IdZaposlenog}";
+                Utils.GoToLink(url);
+            }
         }
     }
 }

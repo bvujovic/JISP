@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace JISP.Data
 {
+    /// <summary>
+    /// Zaposlenje u zemlji za jednog zaposlenog.
+    /// </summary>
     public class Zaposlenje
     {
         public string BrojUgovoraORadu { get; set; }
@@ -15,6 +18,7 @@ namespace JISP.Data
         public string RadnoMestoNaziv { get; set; }
         //"radnoMestoNaziv": "Наставник практичне наставе у посебним условима",
         public string VrstaAngazovanja { get; set; }
-        public bool? UgovorJeNeaktivan { get; set; }
+        public int? StatusUgovora { get; set; }
+        public bool Aktivan => StatusUgovora.HasValue && StatusUgovora.Value == 19292;
     }
 }
