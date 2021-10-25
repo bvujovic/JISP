@@ -16,7 +16,14 @@ namespace JISP.Controls
         {
             base.OnCellClick(e);
             if (e.ColumnIndex != -1 && e.RowIndex != -1)
-                try { Clipboard.SetText(SelectedCells[0].Value.ToString()); }
+                try
+                {
+                    var val = SelectedCells[0].FormattedValue.ToString();
+                    if (!string.IsNullOrEmpty(val))
+                        Clipboard.SetText(val);
+                    else
+                        Clipboard.Clear();
+                }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
     }

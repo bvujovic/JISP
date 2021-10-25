@@ -34,7 +34,8 @@ namespace JISP.Classes
             var bday = new DateTime(DateTime.Today.Year, bdate.Month, bdate.Day);
             if ((DateTime.Today - bday).Ticks > 0) // ako je rodjos prosao ove godine
                 bday = new DateTime(bday.Year + 1, bdate.Month, bdate.Day);
-            return (bday - DateTime.Today).Days;
+            //B return (bday - DateTime.Today).Days;
+            return (int)Math.Round((bday - DateTime.Today).TotalDays);
         }
 
         /// <summary>Koliko je osoba stara u godinama, sa decimalama.</summary>

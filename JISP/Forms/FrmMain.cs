@@ -38,13 +38,28 @@ namespace JISP.Forms
             if (frm == null || frm.IsDisposed)
             {
                 if (childForms == ChildForms.Ucenici)
-                    frm = new FrmUcenici();
+                {
+                    if (frmUcenici == null || frmUcenici.IsDisposed)
+                        frmUcenici = new FrmUcenici();
+                    frm = frmUcenici;
+                }
                 if (childForms == ChildForms.Zaposleni)
-                    frm = new FrmZaposleni();
+                {
+                    if (frmZaposleni == null || frmZaposleni.IsDisposed)
+                        frmZaposleni = new FrmZaposleni();
+                    frm = frmZaposleni;
+                }
+                frm.FormClosed += Frm_FormClosed;
             }
             frm.Show();
-            if (frm.WindowState == FormWindowState.Minimized)
-                frm.WindowState = FormWindowState.Normal;
+            frm.WindowState = FormWindowState.Minimized;
+            frm.WindowState = FormWindowState.Normal;
+        }
+
+        private void Frm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (JISP.Controls.UcExitApp.ExitSignal)
+                Close();
         }
 
         //void NewItUp(Form form)

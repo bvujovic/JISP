@@ -35,6 +35,7 @@ namespace JISP.Forms
             this.lblRowCount = new System.Windows.Forms.Label();
             this.txtFilter = new System.Windows.Forms.TextBox();
             this.chkLoadWoMsgs = new System.Windows.Forms.CheckBox();
+            this.btnExit = new Controls.UcExitApp();
             this.btnLoadData = new System.Windows.Forms.Button();
             this.btnSaveData = new System.Windows.Forms.Button();
             this.bsZap = new System.Windows.Forms.BindingSource(this.components);
@@ -58,6 +59,7 @@ namespace JISP.Forms
             this.pnlLeft.Controls.Add(this.chkLoadWoMsgs);
             this.pnlLeft.Controls.Add(this.btnLoadData);
             this.pnlLeft.Controls.Add(this.btnSaveData);
+            this.pnlLeft.Controls.Add(this.btnExit);
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlLeft.Location = new System.Drawing.Point(0, 0);
             this.pnlLeft.Name = "pnlLeft";
@@ -110,6 +112,13 @@ namespace JISP.Forms
             this.btnSaveData.Text = "Sačuvaj podatke";
             this.btnSaveData.UseVisualStyleBackColor = true;
             this.btnSaveData.Click += new System.EventHandler(this.BtnSaveData_Click);
+            // 
+            // btnExit
+            // 
+            this.btnExit.Location = new System.Drawing.Point(6, 350);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(100, 28);
+            this.btnExit.TabIndex = 22;
             // 
             // bsZap
             // 
@@ -207,6 +216,7 @@ namespace JISP.Forms
         private System.Windows.Forms.Button btnSaveData;
         private Data.Ds ds;
         private System.Windows.Forms.Button btnLoadData;
+        private Controls.UcExitApp btnExit;
         private System.Windows.Forms.CheckBox chkLoadWoMsgs;
         private System.Windows.Forms.Label lblRowCount;
         private System.Windows.Forms.TextBox txtFilter;

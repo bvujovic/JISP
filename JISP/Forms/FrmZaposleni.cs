@@ -17,9 +17,12 @@ namespace JISP.Forms
         {
             InitializeComponent();
 
-            bsZap.DataSource = Data.AppData.Ds;
+            bsZap.DataSource = Ds = Data.AppData.Ds;
             DisplayRowCount();
         }
+
+        //! Ne koristiti ds, vec samo Ds. Videti da se ds ukloni ako je moguce.
+        private Data.Ds Ds;
 
         private void BtnSaveData_Click(object sender, EventArgs e)
             => Data.AppData.SaveDsData();
@@ -49,11 +52,26 @@ namespace JISP.Forms
                 foreach (var zap in zaps)
                     try
                     {
-                        var red = Data.AppData.Ds.Zaposleni.NewZaposleniRow();
-                        red.Ime = zap.Ime;
-                        red.Prezime = zap.Prezime;
-                        red.JMBG = zap.JMBG;
-                        Data.AppData.Ds.Zaposleni.AddZaposleniRow(red);
+                        var red = Ds.Zaposleni.FindByIdZaposlenog(zap.Id);
+                        if (red == null) // novi zaposleni
+                        {
+                            red = Ds.Zaposleni.NewZaposleniRow();
+                            red.IdZaposlenog = zap.Id;
+                            red.Ime = zap.Ime;
+                            red.Prezime = zap.Prezime;
+                            red.JMBG = zap.JMBG;
+                            red.Aktivan = (bool)zap.TrenutnoZaposlen;
+                            Ds.Zaposleni.AddZaposleniRow(red);
+                        }
+                        else // update zaposlenog
+                        {
+                            red.Ime = zap.Ime;
+                            red.Prezime = zap.Prezime;
+                            red.JMBG = zap.JMBG;
+                            red.Aktivan = (bool)zap.TrenutnoZaposlen;
+                        }
+
+                        //TODO dodavanje zaposlenja
                     }
                     catch (Exception ex)
                     {

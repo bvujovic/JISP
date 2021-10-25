@@ -8,16 +8,31 @@ namespace JISP.Data
 {
     public class Zaposleni
     {
-        public string Id { get; set; }
+        private bool? trenutnoZaposlen;
+
+        //private string prezime;
+        public int Id { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
+        //public string Prezime
+        //{
+        //    get => prezime;
+        //    set
+        //    {
+        //        if (string.IsNullOrEmpty(prezime) || !string.IsNullOrEmpty(value))
+        //            prezime = value;
+        //    }
+        //}
         public string JMBG { get; set; }
+
+        public bool? TrenutnoZaposlen { 
+            get => trenutnoZaposlen ?? false; 
+            set => trenutnoZaposlen = value; 
+        }
 
         public List<Zaposlenje> ZaposleniZaposlenje { get; set; }
 
         public override string ToString()
-        {
-            return $"{Ime} {Prezime}";
-        }
+            => $"{Ime} {Prezime}";
     }
 }

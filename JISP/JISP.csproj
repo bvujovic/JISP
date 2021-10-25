@@ -54,6 +54,12 @@
     <Compile Include="Controls\UcDGV.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\UcExitApp.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\UcExitApp.Designer.cs">
+      <DependentUpon>UcExitApp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data\AppData.cs" />
     <Compile Include="Data\Ds.cs">
       <DependentUpon>Ds.xsd</DependentUpon>
