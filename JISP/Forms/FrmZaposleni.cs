@@ -17,25 +17,44 @@ namespace JISP.Forms
         {
             InitializeComponent();
 
-            bsZap.DataSource = Ds = Data.AppData.Ds;
+            bsZaposleni.DataSource = Ds = Data.AppData.Ds;
+            bsZaposlenja.DataMember = "FK_Zaposleni_Zaposlenja";
             DisplayRowCount();
+
+            //var zap = Ds.Zaposleni.FirstOrDefault();
+            //var nje = Ds.Zaposlenja.NewZaposlenjaRow();
+            //nje.IdZaposlenog = zap.IdZaposlenog;
+            //nje.IdZaposlenja = 123;
+            //Ds.Zaposlenja.AddZaposlenjaRow(nje);
         }
 
-        //! Ne koristiti ds, vec samo Ds. Videti da se ds ukloni ako je moguce.
-        private Data.Ds Ds;
+        private readonly Data.Ds Ds;
 
         private void BtnSaveData_Click(object sender, EventArgs e)
             => Data.AppData.SaveDsData();
 
         private void DisplayRowCount()
-            => lblRowCount.Text = $"Redova: {bsZap.Count}";
+            => lblRowCount.Text = $"Redova: {bsZaposleni.Count}";
 
         private void TxtFilter_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 var s = txtFilter.Text;
-                bsZap.Filter = $"Ime LIKE '%{s}%' OR Prezime LIKE '%{s}%' OR JMBG LIKE '%{s}%' ";
+                bsZaposleni.Filter = $"Ime LIKE '%{s}%' OR Prezime LIKE '%{s}%' OR JMBG LIKE '%{s}%' ";
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            DisplayRowCount();
+        }
+
+        private void ChkAktivniZap_CheckStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkAktivniZap.CheckState == CheckState.Indeterminate)
+                    bsZaposleni.RemoveFilter();
+                else
+                    bsZaposleni.Filter = $"Aktivan = {chkAktivniZap.Checked}";
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
             DisplayRowCount();
@@ -72,6 +91,20 @@ namespace JISP.Forms
                         }
 
                         //TODO dodavanje zaposlenja
+                        var nja = zap.ZaposleniZaposlenje;
+                        if (nja != null)
+                            foreach (var nje in nja)
+                            {
+                                var redNje = red.GetZaposlenjaRows()
+                                    .FirstOrDefault(it => it.RadnoMestoNaziv == nje.RadnoMestoNaziv);
+                                if (redNje == null) // novo zaposlenje
+                                {
+                                    redNje = Ds.Zaposlenja.NewZaposlenjaRow();
+                                    redNje.RadnoMestoNaziv = nje.RadnoMestoNaziv;
+                                    redNje.IdZaposlenog = red.IdZaposlenog;
+                                    Ds.Zaposlenja.AddZaposlenjaRow(redNje);
+                                }
+                            }
                     }
                     catch (Exception ex)
                     {

@@ -1,15 +1,14 @@
-﻿+ jmbg 2510972445008 -> 0 dana do rodja
-+ glavna forma ne sme da otvori 2 iste dete-forme
-+ kako ide ucitavanje null podataka
-+ napraviti da import samo dodaje podatke, ali ne i da ih gazi/brise
-+ koriscenje njihovog id-a umesto mog inkrementalnog
-+ zasto exit app dugme nije crveno
+﻿+ napraviti da import samo dodaje podatke, ali ne i da ih gazi/brise
+-! klik na dgv dugme kod zaposlenog - moze li me odvesti u chrome/edge na stranicu zap u zemlji?
+-! kako bi se uzimali podaci o zap u zemlji? da li bi to moglo da bude automatski?
+- prikaz samo ne/aktivnih/svih. check box aktivni sa 3state -> spojiti ovo sa text filterom
 - Esc na txtFilter -> clear text box-a
 - cuvanje podataka: poruka o dodatim, izmenjenim, obrisanim redovima za sve tabele
 - zaposlenja zaposlenih
     - ucitavanje
     - prikazivanje
     - cuvanje
+.
 
 [
 {
@@ -55,7 +54,7 @@
                 "radnoMesto": null,
                 "vrstaAngazovanja": null,
                 "radnoMestoNaziv": "Наставник предметне наставе са одељењским старешинством у   посебним условима",
-                "ugovorJeNeaktivan": null,
+                "ugovorJeNeaktivan": false,
             }
             ]
 }
