@@ -41,6 +41,12 @@ namespace JISP.Forms
             this.txtFilter = new System.Windows.Forms.TextBox();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.dgvZaposleni = new JISP.Controls.UcDGV();
+            this.dgvcIme = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcPrezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcJMBG = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcGodine = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcDanaDoRodj = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcZapId = new System.Windows.Forms.DataGridViewButtonColumn();
             this.bsZaposleni = new System.Windows.Forms.BindingSource(this.components);
             this.pnlZaposleniBottom = new System.Windows.Forms.Panel();
             this.chkAktivniZap = new System.Windows.Forms.CheckBox();
@@ -48,12 +54,6 @@ namespace JISP.Forms
             this.dgvcNjeAktivan = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvcNjaRMNaziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsZaposlenja = new System.Windows.Forms.BindingSource(this.components);
-            this.dgvcIme = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcPrezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcJMBG = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcGodine = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcDanaDoRodj = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcZapId = new System.Windows.Forms.DataGridViewButtonColumn();
             label1 = new System.Windows.Forms.Label();
             this.pnlLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
@@ -186,75 +186,6 @@ namespace JISP.Forms
             this.dgvZaposleni.TabIndex = 1;
             this.dgvZaposleni.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvZaposleni_CellClick);
             // 
-            // bsZaposleni
-            // 
-            this.bsZaposleni.DataMember = "Zaposleni";
-            // 
-            // pnlZaposleniBottom
-            // 
-            this.pnlZaposleniBottom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlZaposleniBottom.Controls.Add(label1);
-            this.pnlZaposleniBottom.Controls.Add(this.chkAktivniZap);
-            this.pnlZaposleniBottom.Controls.Add(this.txtFilter);
-            this.pnlZaposleniBottom.Controls.Add(this.lblRowCount);
-            this.pnlZaposleniBottom.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlZaposleniBottom.Location = new System.Drawing.Point(0, 0);
-            this.pnlZaposleniBottom.Name = "pnlZaposleniBottom";
-            this.pnlZaposleniBottom.Size = new System.Drawing.Size(749, 30);
-            this.pnlZaposleniBottom.TabIndex = 2;
-            // 
-            // chkAktivniZap
-            // 
-            this.chkAktivniZap.AutoSize = true;
-            this.chkAktivniZap.Checked = true;
-            this.chkAktivniZap.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.chkAktivniZap.Location = new System.Drawing.Point(338, 3);
-            this.chkAktivniZap.Name = "chkAktivniZap";
-            this.chkAktivniZap.Size = new System.Drawing.Size(69, 22);
-            this.chkAktivniZap.TabIndex = 7;
-            this.chkAktivniZap.Text = "Aktivni";
-            this.chkAktivniZap.ThreeState = true;
-            this.chkAktivniZap.UseVisualStyleBackColor = true;
-            this.chkAktivniZap.CheckStateChanged += new System.EventHandler(this.ChkAktivniZap_CheckStateChanged);
-            // 
-            // dgvZaposlenja
-            // 
-            this.dgvZaposlenja.AllowUserToAddRows = false;
-            this.dgvZaposlenja.AllowUserToDeleteRows = false;
-            this.dgvZaposlenja.AutoGenerateColumns = false;
-            this.dgvZaposlenja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvZaposlenja.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dgvcNjeAktivan,
-            this.dgvcNjaRMNaziv});
-            this.dgvZaposlenja.DataSource = this.bsZaposlenja;
-            this.dgvZaposlenja.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvZaposlenja.Location = new System.Drawing.Point(0, 0);
-            this.dgvZaposlenja.Name = "dgvZaposlenja";
-            this.dgvZaposlenja.Size = new System.Drawing.Size(749, 104);
-            this.dgvZaposlenja.TabIndex = 0;
-            // 
-            // dgvcNjeAktivan
-            // 
-            this.dgvcNjeAktivan.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvcNjeAktivan.DataPropertyName = "Aktivan";
-            this.dgvcNjeAktivan.HeaderText = "Aktivan";
-            this.dgvcNjeAktivan.Name = "dgvcNjeAktivan";
-            this.dgvcNjeAktivan.ReadOnly = true;
-            this.dgvcNjeAktivan.Width = 61;
-            // 
-            // dgvcNjaRMNaziv
-            // 
-            this.dgvcNjaRMNaziv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgvcNjaRMNaziv.DataPropertyName = "RadnoMestoNaziv";
-            this.dgvcNjaRMNaziv.HeaderText = "Radno Mesto";
-            this.dgvcNjaRMNaziv.Name = "dgvcNjaRMNaziv";
-            this.dgvcNjaRMNaziv.ReadOnly = true;
-            // 
-            // bsZaposlenja
-            // 
-            this.bsZaposlenja.DataSource = this.bsZaposleni;
-            this.bsZaposlenja.Sort = "";
-            // 
             // dgvcIme
             // 
             this.dgvcIme.DataPropertyName = "Ime";
@@ -307,6 +238,75 @@ namespace JISP.Forms
             this.dgvcZapId.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvcZapId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dgvcZapId.Width = 80;
+            // 
+            // bsZaposleni
+            // 
+            this.bsZaposleni.DataMember = "Zaposleni";
+            // 
+            // pnlZaposleniBottom
+            // 
+            this.pnlZaposleniBottom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlZaposleniBottom.Controls.Add(label1);
+            this.pnlZaposleniBottom.Controls.Add(this.chkAktivniZap);
+            this.pnlZaposleniBottom.Controls.Add(this.txtFilter);
+            this.pnlZaposleniBottom.Controls.Add(this.lblRowCount);
+            this.pnlZaposleniBottom.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlZaposleniBottom.Location = new System.Drawing.Point(0, 0);
+            this.pnlZaposleniBottom.Name = "pnlZaposleniBottom";
+            this.pnlZaposleniBottom.Size = new System.Drawing.Size(749, 30);
+            this.pnlZaposleniBottom.TabIndex = 2;
+            // 
+            // chkAktivniZap
+            // 
+            this.chkAktivniZap.AutoSize = true;
+            this.chkAktivniZap.Checked = true;
+            this.chkAktivniZap.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+            this.chkAktivniZap.Location = new System.Drawing.Point(380, 4);
+            this.chkAktivniZap.Name = "chkAktivniZap";
+            this.chkAktivniZap.Size = new System.Drawing.Size(69, 22);
+            this.chkAktivniZap.TabIndex = 7;
+            this.chkAktivniZap.Text = "Aktivni";
+            this.chkAktivniZap.ThreeState = true;
+            this.chkAktivniZap.UseVisualStyleBackColor = true;
+            this.chkAktivniZap.CheckStateChanged += new System.EventHandler(this.ChkAktivniZap_CheckStateChanged);
+            // 
+            // dgvZaposlenja
+            // 
+            this.dgvZaposlenja.AllowUserToAddRows = false;
+            this.dgvZaposlenja.AllowUserToDeleteRows = false;
+            this.dgvZaposlenja.AutoGenerateColumns = false;
+            this.dgvZaposlenja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvZaposlenja.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvcNjeAktivan,
+            this.dgvcNjaRMNaziv});
+            this.dgvZaposlenja.DataSource = this.bsZaposlenja;
+            this.dgvZaposlenja.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvZaposlenja.Location = new System.Drawing.Point(0, 0);
+            this.dgvZaposlenja.Name = "dgvZaposlenja";
+            this.dgvZaposlenja.Size = new System.Drawing.Size(749, 104);
+            this.dgvZaposlenja.TabIndex = 0;
+            // 
+            // dgvcNjeAktivan
+            // 
+            this.dgvcNjeAktivan.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvcNjeAktivan.DataPropertyName = "Aktivan";
+            this.dgvcNjeAktivan.HeaderText = "Aktivan";
+            this.dgvcNjeAktivan.Name = "dgvcNjeAktivan";
+            this.dgvcNjeAktivan.ReadOnly = true;
+            this.dgvcNjeAktivan.Width = 61;
+            // 
+            // dgvcNjaRMNaziv
+            // 
+            this.dgvcNjaRMNaziv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvcNjaRMNaziv.DataPropertyName = "RadnoMestoNaziv";
+            this.dgvcNjaRMNaziv.HeaderText = "Radno Mesto";
+            this.dgvcNjaRMNaziv.Name = "dgvcNjaRMNaziv";
+            this.dgvcNjaRMNaziv.ReadOnly = true;
+            // 
+            // bsZaposlenja
+            // 
+            this.bsZaposlenja.DataSource = this.bsZaposleni;
+            this.bsZaposlenja.Sort = "";
             // 
             // FrmZaposleni
             // 
