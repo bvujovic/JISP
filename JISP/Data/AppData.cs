@@ -12,27 +12,36 @@ namespace JISP.Data
         public static string AppName { get => "JISP"; }
 
         /// <summary>Folder u kojem ce se cuvati podaci: txt, xml...</summary>
-        public static string DataFolder { get; set; }
+        private static string DataFolder { get; set; }
 
-        private static string FolderForAccound(string accName)
+        private static readonly string dataFileName = "ds.xml";
+
+        public static string FilePath()
+            => FilePath(dataFileName);
+
+        public static string FilePath(string fileName)
+        {
+            if (!string.IsNullOrEmpty(DataFolder))
+                fileName = Path.Combine(DataFolder, fileName);
+            return fileName;
+        }
+
+        private static string FolderForAccount(string accName)
             => $"c:/Users/{accName}/OneDrive/x/Posao/JISP/prog_data/";
 
         public static void AppInit()
         {
             var accounts = new[] { "bvnet", "sosos" };
             foreach (var acc in accounts)
-                if (Directory.Exists(FolderForAccound(acc)))
-                    DataFolder = FolderForAccound(acc);
-            if (string.IsNullOrEmpty(DataFolder))
-                throw new Exception("AppData.DataFolder nije inicijalizovan.");
-
+                if (Directory.Exists(FolderForAccount(acc)))
+                    DataFolder = FolderForAccount(acc);
             LoadDsData();
         }
 
         /// <summary>Ucitavanje podataka u DataSet iz fajla.</summary>
         public static void LoadDsData()
         {
-            try { Ds.ReadXml(Path.Combine(DataFolder, "ds.xml")); }
+            try { Ds.ReadXml(FilePath()); }
             catch (Exception ex) { Classes.Utils.ShowMbox(ex, "Ucitavanje podataka iz XMLa"); }
         }
 
@@ -41,7 +50,7 @@ namespace JISP.Data
         {
             try
             {
-                Ds.WriteXml(Path.Combine(DataFolder, "ds.xml"));
+                Ds.WriteXml(FilePath());
                 Classes.Utils.ShowMbox("Podaci su sacuvani.", "Cuvanje podataka u XML");
             }
             catch (Exception ex) { Classes.Utils.ShowMbox(ex, "Cuvanje podataka u XML"); }
@@ -51,9 +60,11 @@ namespace JISP.Data
         {
             try
             {
-                var origDS = Path.Combine(DataFolder, "ds.xml");
+                var origDS = FilePath();
                 Ds.WriteXml(origDS);
-                var backupFolder = Path.Combine(DataFolder, "backup");
+                var backupFolder = "backup";
+                if (!string.IsNullOrEmpty(DataFolder))
+                    backupFolder = Path.Combine(DataFolder, "backup");
                 var date = DateTime.Now.ToString(Classes.Utils.DatumVremeFormatFile);
                 var backupDS = Path.Combine(backupFolder, $"ds_{date}.xml");
                 File.Copy(origDS, backupDS);

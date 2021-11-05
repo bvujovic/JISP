@@ -26,6 +26,30 @@ namespace JISP.Forms
         {
             bsUcenici.DataSource = Data.AppData.Ds;
             DisplayRowCount();
+            colOriginal = lblStatus.BackColor;
+            dgv.CellTextCopied += Dgv_CellTextCopied;
+            lblStatus.TextChanged += LblStatus_TextChanged;
+            timStatus.Tick += TimStatus_Tick;
+        }
+
+        private void Dgv_CellTextCopied(object sender, EventArgs e)
+        {
+            lblStatus.Text = "Kopiran tekst: " + Clipboard.GetText();
+        }
+
+        private void LblStatus_TextChanged(object sender, EventArgs e)
+        {
+            lblStatus.BackColor = Color.Green;
+            timStatus.Start();
+        }
+
+        private Color colOriginal;
+        private readonly Timer timStatus = new Timer { Interval = 250 };
+
+        private void TimStatus_Tick(object sender, EventArgs e)
+        {
+            timStatus.Stop();
+            lblStatus.BackColor = colOriginal;
         }
 
         /// <summary>Show/Hide levog panela sa kontrolama.</summary>
@@ -47,7 +71,7 @@ namespace JISP.Forms
             => lblRowCount.Text = $"Redova: {bsUcenici.Count}";
 
         private void BtnSaveData_Click(object sender, EventArgs e)
-            => Data.AppData.SaveDsData();        
+            => Data.AppData.SaveDsData();
 
         private static bool IsJobValid(string job)
         {
@@ -63,7 +87,8 @@ namespace JISP.Forms
             dgv.SuspendLayout();
             try
             {
-                var fileName = System.IO.Path.Combine(Data.AppData.DataFolder, txtFileName.Text);
+                //B var fileName = System.IO.Path.Combine(Data.AppData.DataFolder, txtFileName.Text);
+                var fileName = Data.AppData.FilePath(txtFileName.Text);
                 if (!System.IO.File.Exists(fileName))
                     throw new Exception($"'{fileName}' ne postoji.");
 
@@ -106,6 +131,23 @@ namespace JISP.Forms
             catch (Exception ex) { MessageBox.Show(ex.Message); }
             dgv.ResumeLayout();
             DisplayRowCount();
+        }
+
+        private void TxtFilter_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                bsUcenici.MoveNext();
+                e.Handled = true;
+            }
+            if (e.KeyCode == Keys.Up)
+            {
+                bsUcenici.MovePrevious();
+                e.Handled = true;
+            }
+
+            if (e.KeyCode == Keys.Enter)
+                dgv.CopyCellText(dgvcJOB.Index);
         }
     }
 }

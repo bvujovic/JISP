@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Windows.Forms;
 
 namespace JISP.Forms
@@ -85,6 +86,23 @@ namespace JISP.Forms
         private void BtnBackup_Click(object sender, EventArgs e)
         {
             Data.AppData.BackupData();
+        }
+
+        private async void BtnTest_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // https://stackoverflow.com/questions/14627399/setting-authorization-header-of-httpclient
+                using (var client = new System.Net.Http.HttpClient())
+                {
+                    var url = "https://jisp.mpn.gov.rs/webapi/api/zaposleni/VratiOpstePodatkeOZaposlenima/18976";
+                    var token = "";
+                    client.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Bearer", token);
+                    var response = await client.GetStringAsync(url);
+                }
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, btnTest.Text); }
         }
     }
 }
