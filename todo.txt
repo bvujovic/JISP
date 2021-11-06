@@ -1,4 +1,4 @@
-﻿+ napraviti da import samo dodaje podatke, ali ne i da ih gazi/brise
+﻿- uzimanje (dodavanje/menjanje) podataka preko HttpClient-a: primer u FrmMain.BtnTest_Click()
 -! klik na dgv dugme kod zaposlenog - moze li me odvesti u chrome/edge na stranicu zap u zemlji?
 -! kako bi se uzimali podaci o zap u zemlji? da li bi to moglo da bude automatski?
 - prikaz samo ne/aktivnih/svih. check box aktivni sa 3state -> spojiti ovo sa text filterom

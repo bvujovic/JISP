@@ -45,7 +45,6 @@ namespace JISP.Controls
             // 
             // UcLeftPanel
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.pnlRightWing);
             this.Name = "UcLeftPanel";
             this.ResumeLayout(false);

@@ -17,16 +17,18 @@ namespace JISP.Forms
             InitializeComponent();
         }
 
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+            ttApiToken.SetToolTip(lblApiToken, "Klikni za paste web api token-a.");
+            lblApiToken.Text = Data.WebApi.TokenDisplay;
+        }
+
         private FrmUcenici frmUcenici = null;
         private FrmZaposleni frmZaposleni = null;
 
         enum ChildForms
         {
             Ucenici, Zaposleni
-        }
-
-        private void FrmMain_Load(object sender, EventArgs e)
-        {
         }
 
         private void BtnUcenici_Click(object sender, EventArgs e)
@@ -92,17 +94,16 @@ namespace JISP.Forms
         {
             try
             {
-                // https://stackoverflow.com/questions/14627399/setting-authorization-header-of-httpclient
-                using (var client = new System.Net.Http.HttpClient())
-                {
-                    var url = "https://jisp.mpn.gov.rs/webapi/api/zaposleni/VratiOpstePodatkeOZaposlenima/18976";
-                    var token = "";
-                    client.DefaultRequestHeaders.Authorization =
-                        new AuthenticationHeaderValue("Bearer", token);
-                    var response = await client.GetStringAsync(url);
-                }
+                var resp = await Data.WebApi.GetJson(Data.WebApi.ReqEnum.Zap_OpstiPodaciOZaposlenima);
             }
             catch (Exception ex) { Utils.ShowMbox(ex, btnTest.Text); }
+        }
+
+        private void TxtApiToken_Click(object sender, EventArgs e)
+        {
+            Data.WebApi.Token = Clipboard.GetText();
+            lblApiToken.Text = Data.WebApi.TokenDisplay;
+            Data.AppData.SaveDsData();
         }
     }
 }

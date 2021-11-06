@@ -32,7 +32,7 @@ namespace JISP.Forms
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label label1;
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.pnlLeft = new System.Windows.Forms.Panel();
+            this.pnlLeft = new JISP.Controls.UcLeftPanel();
             this.chkLoadWoMsgs = new System.Windows.Forms.CheckBox();
             this.btnLoadData = new System.Windows.Forms.Button();
             this.btnSaveData = new System.Windows.Forms.Button();
@@ -85,13 +85,15 @@ namespace JISP.Forms
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlLeft.Location = new System.Drawing.Point(0, 0);
             this.pnlLeft.Name = "pnlLeft";
+            this.pnlLeft.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
+            this.pnlLeft.RightWingWidth = 6;
             this.pnlLeft.Size = new System.Drawing.Size(146, 448);
             this.pnlLeft.TabIndex = 0;
             // 
             // chkLoadWoMsgs
             // 
             this.chkLoadWoMsgs.AutoSize = true;
-            this.chkLoadWoMsgs.Location = new System.Drawing.Point(16, 153);
+            this.chkLoadWoMsgs.Location = new System.Drawing.Point(12, 153);
             this.chkLoadWoMsgs.Name = "chkLoadWoMsgs";
             this.chkLoadWoMsgs.Size = new System.Drawing.Size(101, 22);
             this.chkLoadWoMsgs.TabIndex = 4;
@@ -100,7 +102,7 @@ namespace JISP.Forms
             // 
             // btnLoadData
             // 
-            this.btnLoadData.Location = new System.Drawing.Point(12, 110);
+            this.btnLoadData.Location = new System.Drawing.Point(8, 110);
             this.btnLoadData.Name = "btnLoadData";
             this.btnLoadData.Size = new System.Drawing.Size(128, 40);
             this.btnLoadData.TabIndex = 3;
@@ -110,7 +112,7 @@ namespace JISP.Forms
             // 
             // btnSaveData
             // 
-            this.btnSaveData.Location = new System.Drawing.Point(12, 64);
+            this.btnSaveData.Location = new System.Drawing.Point(8, 64);
             this.btnSaveData.Name = "btnSaveData";
             this.btnSaveData.Size = new System.Drawing.Size(128, 40);
             this.btnSaveData.TabIndex = 2;
@@ -122,7 +124,7 @@ namespace JISP.Forms
             // 
             this.btnExit.BackColor = System.Drawing.Color.Red;
             this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(12, 12);
+            this.btnExit.Location = new System.Drawing.Point(8, 12);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(128, 28);
             this.btnExit.TabIndex = 22;
@@ -337,7 +339,7 @@ namespace JISP.Forms
 
         #endregion
 
-        private System.Windows.Forms.Panel pnlLeft;
+        private JISP.Controls.UcLeftPanel pnlLeft;
         private Controls.UcDGV dgvZaposleni;
         private System.Windows.Forms.BindingSource bsZaposleni;
         private System.Windows.Forms.Button btnSaveData;

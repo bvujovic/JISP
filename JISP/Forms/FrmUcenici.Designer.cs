@@ -45,6 +45,7 @@
             this.dgvcJOB = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnSrednjoskolci = new System.Windows.Forms.Button();
             this.pnlLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsUcenici)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
@@ -54,6 +55,7 @@
             // 
             // pnlLeft
             // 
+            this.pnlLeft.Controls.Add(this.btnSrednjoskolci);
             this.pnlLeft.Controls.Add(this.ucExitApp1);
             this.pnlLeft.Controls.Add(this.txtFileName);
             this.pnlLeft.Controls.Add(this.lblRowCount);
@@ -68,14 +70,13 @@
             this.pnlLeft.RightWingWidth = 8;
             this.pnlLeft.Size = new System.Drawing.Size(146, 428);
             this.pnlLeft.TabIndex = 0;
-            this.pnlLeft.Click += new System.EventHandler(this.PnlLeft_Click);
             // 
             // ucExitApp1
             // 
             this.ucExitApp1.BackColor = System.Drawing.Color.Red;
             this.ucExitApp1.ForeColor = System.Drawing.Color.White;
             this.ucExitApp1.Location = new System.Drawing.Point(7, 15);
-            this.ucExitApp1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ucExitApp1.Margin = new System.Windows.Forms.Padding(4);
             this.ucExitApp1.Name = "ucExitApp1";
             this.ucExitApp1.Size = new System.Drawing.Size(127, 34);
             this.ucExitApp1.TabIndex = 5;
@@ -85,7 +86,7 @@
             // txtFileName
             // 
             this.txtFileName.Location = new System.Drawing.Point(7, 234);
-            this.txtFileName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFileName.Margin = new System.Windows.Forms.Padding(4);
             this.txtFileName.Name = "txtFileName";
             this.txtFileName.Size = new System.Drawing.Size(127, 22);
             this.txtFileName.TabIndex = 4;
@@ -103,7 +104,7 @@
             // btnTextImport
             // 
             this.btnTextImport.Location = new System.Drawing.Point(7, 188);
-            this.btnTextImport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTextImport.Margin = new System.Windows.Forms.Padding(4);
             this.btnTextImport.Name = "btnTextImport";
             this.btnTextImport.Size = new System.Drawing.Size(127, 38);
             this.btnTextImport.TabIndex = 2;
@@ -114,7 +115,7 @@
             // btnSaveData
             // 
             this.btnSaveData.Location = new System.Drawing.Point(7, 143);
-            this.btnSaveData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSaveData.Margin = new System.Windows.Forms.Padding(4);
             this.btnSaveData.Name = "btnSaveData";
             this.btnSaveData.Size = new System.Drawing.Size(127, 38);
             this.btnSaveData.TabIndex = 1;
@@ -125,7 +126,7 @@
             // txtFilter
             // 
             this.txtFilter.Location = new System.Drawing.Point(7, 108);
-            this.txtFilter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFilter.Margin = new System.Windows.Forms.Padding(4);
             this.txtFilter.Name = "txtFilter";
             this.txtFilter.Size = new System.Drawing.Size(127, 22);
             this.txtFilter.TabIndex = 0;
@@ -213,6 +214,17 @@
             this.lblStatus.Size = new System.Drawing.Size(12, 17);
             this.lblStatus.Text = "/";
             // 
+            // btnSrednjoskolci
+            // 
+            this.btnSrednjoskolci.Location = new System.Drawing.Point(7, 292);
+            this.btnSrednjoskolci.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSrednjoskolci.Name = "btnSrednjoskolci";
+            this.btnSrednjoskolci.Size = new System.Drawing.Size(127, 38);
+            this.btnSrednjoskolci.TabIndex = 6;
+            this.btnSrednjoskolci.Text = "Srednjoškolci";
+            this.btnSrednjoskolci.UseVisualStyleBackColor = true;
+            this.btnSrednjoskolci.Click += new System.EventHandler(this.BtnSrednjoskolci_Click);
+            // 
             // FrmUcenici
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -256,5 +268,6 @@
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel lblStatus;
         private Controls.UcExitApp ucExitApp1;
+        private System.Windows.Forms.Button btnSrednjoskolci;
     }
 }

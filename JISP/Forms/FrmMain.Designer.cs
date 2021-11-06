@@ -28,10 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnUcenici = new System.Windows.Forms.Button();
             this.btnZaposleni = new System.Windows.Forms.Button();
             this.btnBackup = new System.Windows.Forms.Button();
             this.btnTest = new System.Windows.Forms.Button();
+            this.lblApiTokenCaption = new System.Windows.Forms.Label();
+            this.lblApiToken = new System.Windows.Forms.Label();
+            this.ttApiToken = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // btnUcenici
@@ -46,7 +50,7 @@
             // 
             // btnZaposleni
             // 
-            this.btnZaposleni.Location = new System.Drawing.Point(382, 36);
+            this.btnZaposleni.Location = new System.Drawing.Point(41, 90);
             this.btnZaposleni.Name = "btnZaposleni";
             this.btnZaposleni.Size = new System.Drawing.Size(135, 48);
             this.btnZaposleni.TabIndex = 1;
@@ -56,7 +60,7 @@
             // 
             // btnBackup
             // 
-            this.btnBackup.Location = new System.Drawing.Point(382, 205);
+            this.btnBackup.Location = new System.Drawing.Point(382, 36);
             this.btnBackup.Name = "btnBackup";
             this.btnBackup.Size = new System.Drawing.Size(135, 48);
             this.btnBackup.TabIndex = 2;
@@ -66,7 +70,7 @@
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(41, 205);
+            this.btnTest.Location = new System.Drawing.Point(382, 90);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(135, 48);
             this.btnTest.TabIndex = 3;
@@ -74,11 +78,32 @@
             this.btnTest.UseVisualStyleBackColor = true;
             this.btnTest.Click += new System.EventHandler(this.BtnTest_Click);
             // 
+            // lblApiTokenCaption
+            // 
+            this.lblApiTokenCaption.AutoSize = true;
+            this.lblApiTokenCaption.Location = new System.Drawing.Point(38, 196);
+            this.lblApiTokenCaption.Name = "lblApiTokenCaption";
+            this.lblApiTokenCaption.Size = new System.Drawing.Size(80, 18);
+            this.lblApiTokenCaption.TabIndex = 4;
+            this.lblApiTokenCaption.Text = "API Token:";
+            // 
+            // lblApiToken
+            // 
+            this.lblApiToken.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblApiToken.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblApiToken.Location = new System.Drawing.Point(124, 193);
+            this.lblApiToken.Name = "lblApiToken";
+            this.lblApiToken.Size = new System.Drawing.Size(189, 24);
+            this.lblApiToken.TabIndex = 5;
+            this.lblApiToken.Click += new System.EventHandler(this.TxtApiToken_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(617, 279);
+            this.Controls.Add(this.lblApiToken);
+            this.Controls.Add(this.lblApiTokenCaption);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.btnBackup);
             this.Controls.Add(this.btnZaposleni);
@@ -92,6 +117,7 @@
             this.Text = "JISP";
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -101,6 +127,9 @@
         private System.Windows.Forms.Button btnZaposleni;
         private System.Windows.Forms.Button btnBackup;
         private System.Windows.Forms.Button btnTest;
+        private System.Windows.Forms.Label lblApiTokenCaption;
+        private System.Windows.Forms.Label lblApiToken;
+        private System.Windows.Forms.ToolTip ttApiToken;
     }
 }
 

@@ -13,7 +13,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		todo.txt = todo.txt
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ScreenShots", "ScreenShots", "{1B8E951F-99FE-49EA-B870-2BBD0723BA18}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ScreenShots", "ScreenShots", "{2C8CDB9D-1259-459B-9E27-F03BB9DB7C10}"
+	ProjectSection(SolutionItems) = preProject
+		ScreenShots\ucenici.png = ScreenShots\ucenici.png
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,7 +37,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{1B8E951F-99FE-49EA-B870-2BBD0723BA18} = {ED9BD761-BD49-4BE3-9052-1E47312A380E}
+		{2C8CDB9D-1259-459B-9E27-F03BB9DB7C10} = {ED9BD761-BD49-4BE3-9052-1E47312A380E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {416C4AEF-CF5D-466C-A7C7-C18189BB763F}

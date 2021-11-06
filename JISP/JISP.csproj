@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\JMBG.cs" />
+    <Compile Include="Classes\Logger.cs" />
     <Compile Include="Classes\Utils.cs" />
     <Compile Include="Controls\UcDGV.cs">
       <SubType>Component</SubType>
@@ -75,6 +76,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Ds.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Data\Srednjoskolac.cs" />
+    <Compile Include="Data\WebApi.cs" />
     <Compile Include="Data\Zaposleni.cs" />
     <Compile Include="Data\Zaposlenje.cs" />
     <Compile Include="Forms\FrmMain.cs">

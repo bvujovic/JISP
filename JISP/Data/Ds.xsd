@@ -12,7 +12,7 @@
   <xs:element name="Ds" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Ds" msprop:Generator_UserDSName="Ds">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Ucenici" msprop:Generator_TableClassName="UceniciDataTable" msprop:Generator_RowEvArgName="UceniciRowChangeEvent" msprop:Generator_TableVarName="tableUcenici" msprop:Generator_TablePropName="Ucenici" msprop:Generator_RowDeletingName="UceniciRowDeleting" msprop:Generator_RowChangingName="UceniciRowChanging" msprop:Generator_RowDeletedName="UceniciRowDeleted" msprop:Generator_RowEvHandlerName="UceniciRowChangeEventHandler" msprop:Generator_UserTableName="Ucenici" msprop:Generator_RowChangedName="UceniciRowChanged" msprop:Generator_RowClassName="UceniciRow">
+        <xs:element name="Ucenici" msprop:Generator_TableClassName="UceniciDataTable" msprop:Generator_RowEvArgName="UceniciRowChangeEvent" msprop:Generator_TableVarName="tableUcenici" msprop:Generator_TablePropName="Ucenici" msprop:Generator_RowDeletingName="UceniciRowDeleting" msprop:Generator_RowChangingName="UceniciRowChanging" msprop:Generator_RowDeletedName="UceniciRowDeleted" msprop:Generator_RowEvHandlerName="UceniciRowChangeEventHandler" msprop:Generator_RowChangedName="UceniciRowChanged" msprop:Generator_UserTableName="Ucenici" msprop:Generator_RowClassName="UceniciRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IdUcenika" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnIdUcenika" msprop:Generator_ColumnPropNameInRow="IdUcenika" msprop:Generator_ColumnPropNameInTable="IdUcenikaColumn" msprop:Generator_UserColumnName="IdUcenika" type="xs:int" />
@@ -22,7 +22,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Zaposleni" msprop:Generator_TableClassName="ZaposleniDataTable" msprop:Generator_RowEvArgName="ZaposleniRowChangeEvent" msprop:Generator_TableVarName="tableZaposleni" msprop:Generator_TablePropName="Zaposleni" msprop:Generator_RowDeletingName="ZaposleniRowDeleting" msprop:Generator_RowChangingName="ZaposleniRowChanging" msprop:Generator_RowEvHandlerName="ZaposleniRowChangeEventHandler" msprop:Generator_RowDeletedName="ZaposleniRowDeleted" msprop:Generator_UserTableName="Zaposleni" msprop:Generator_RowChangedName="ZaposleniRowChanged" msprop:Generator_RowClassName="ZaposleniRow">
+        <xs:element name="Zaposleni" msprop:Generator_TableClassName="ZaposleniDataTable" msprop:Generator_RowEvArgName="ZaposleniRowChangeEvent" msprop:Generator_TableVarName="tableZaposleni" msprop:Generator_TablePropName="Zaposleni" msprop:Generator_RowDeletingName="ZaposleniRowDeleting" msprop:Generator_RowChangingName="ZaposleniRowChanging" msprop:Generator_RowEvHandlerName="ZaposleniRowChangeEventHandler" msprop:Generator_RowDeletedName="ZaposleniRowDeleted" msprop:Generator_RowChangedName="ZaposleniRowChanged" msprop:Generator_UserTableName="Zaposleni" msprop:Generator_RowClassName="ZaposleniRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IdZaposlenog" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnIdZaposlenog" msprop:Generator_ColumnPropNameInRow="IdZaposlenog" msprop:Generator_ColumnPropNameInTable="IdZaposlenogColumn" msprop:Generator_UserColumnName="IdZaposlenog" type="xs:int" />
@@ -41,7 +41,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Zaposlenja" msprop:Generator_TableClassName="ZaposlenjaDataTable" msprop:Generator_RowEvArgName="ZaposlenjaRowChangeEvent" msprop:Generator_TableVarName="tableZaposlenja" msprop:Generator_TablePropName="Zaposlenja" msprop:Generator_RowDeletingName="ZaposlenjaRowDeleting" msprop:Generator_RowChangingName="ZaposlenjaRowChanging" msprop:Generator_RowDeletedName="ZaposlenjaRowDeleted" msprop:Generator_RowEvHandlerName="ZaposlenjaRowChangeEventHandler" msprop:Generator_UserTableName="Zaposlenja" msprop:Generator_RowChangedName="ZaposlenjaRowChanged" msprop:Generator_RowClassName="ZaposlenjaRow">
+        <xs:element name="Zaposlenja" msprop:Generator_TableClassName="ZaposlenjaDataTable" msprop:Generator_RowEvArgName="ZaposlenjaRowChangeEvent" msprop:Generator_TableVarName="tableZaposlenja" msprop:Generator_TablePropName="Zaposlenja" msprop:Generator_RowDeletingName="ZaposlenjaRowDeleting" msprop:Generator_RowChangingName="ZaposlenjaRowChanging" msprop:Generator_RowDeletedName="ZaposlenjaRowDeleted" msprop:Generator_RowEvHandlerName="ZaposlenjaRowChangeEventHandler" msprop:Generator_RowChangedName="ZaposlenjaRowChanged" msprop:Generator_UserTableName="Zaposlenja" msprop:Generator_RowClassName="ZaposlenjaRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IdZaposlenja" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnIdZaposlenja" msprop:Generator_ColumnPropNameInRow="IdZaposlenja" msprop:Generator_ColumnPropNameInTable="IdZaposlenjaColumn" msprop:Generator_UserColumnName="IdZaposlenja" type="xs:int" />
@@ -55,6 +55,14 @@
               <xs:element name="VrstaAngazovanja" msprop:Generator_ColumnVarNameInTable="columnVrstaAngazovanja" msprop:Generator_ColumnPropNameInRow="VrstaAngazovanja" msprop:Generator_ColumnPropNameInTable="VrstaAngazovanjaColumn" msprop:Generator_UserColumnName="VrstaAngazovanja" type="xs:string" minOccurs="0" />
               <xs:element name="Aktivan" msprop:Generator_ColumnVarNameInTable="columnAktivan" msprop:Generator_ColumnPropNameInRow="Aktivan" msprop:Generator_ColumnPropNameInTable="AktivanColumn" msprop:Generator_UserColumnName="Aktivan" type="xs:boolean" minOccurs="0" />
               <xs:element name="IdZaposlenog" msprop:Generator_ColumnVarNameInTable="columnIdZaposlenog" msprop:Generator_ColumnPropNameInRow="IdZaposlenog" msprop:Generator_ColumnPropNameInTable="IdZaposlenogColumn" msprop:Generator_UserColumnName="IdZaposlenog" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Settings" msprop:Generator_TableClassName="SettingsDataTable" msprop:Generator_TableVarName="tableSettings" msprop:Generator_TablePropName="Settings" msprop:Generator_RowDeletingName="SettingsRowDeleting" msprop:Generator_RowChangingName="SettingsRowChanging" msprop:Generator_RowEvHandlerName="SettingsRowChangeEventHandler" msprop:Generator_RowDeletedName="SettingsRowDeleted" msprop:Generator_UserTableName="Settings" msprop:Generator_RowChangedName="SettingsRowChanged" msprop:Generator_RowEvArgName="SettingsRowChangeEvent" msprop:Generator_RowClassName="SettingsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" />
+              <xs:element name="Value" msprop:Generator_ColumnVarNameInTable="columnValue" msprop:Generator_ColumnPropNameInRow="Value" msprop:Generator_ColumnPropNameInTable="ValueColumn" msprop:Generator_UserColumnName="Value" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -76,7 +84,11 @@
       <xs:selector xpath=".//mstns:Zaposlenja" />
       <xs:field xpath="mstns:IdZaposlenja" />
     </xs:unique>
-    <xs:keyref name="FK_Zaposleni_Zaposlenja" refer="Zaposleni_Constraint1" msprop:rel_Generator_UserChildTable="Zaposlenja" msprop:rel_Generator_ChildPropName="GetZaposlenjaRows" msprop:rel_Generator_UserRelationName="FK_Zaposleni_Zaposlenja" msprop:rel_Generator_RelationVarName="relationFK_Zaposleni_Zaposlenja" msprop:rel_Generator_UserParentTable="Zaposleni" msprop:rel_Generator_ParentPropName="ZaposleniRow">
+    <xs:unique name="Settings_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Settings" />
+      <xs:field xpath="mstns:Name" />
+    </xs:unique>
+    <xs:keyref name="FK_Zaposleni_Zaposlenja" refer="Zaposleni_Constraint1" msprop:rel_Generator_UserChildTable="Zaposlenja" msprop:rel_Generator_ChildPropName="GetZaposlenjaRows" msprop:rel_Generator_UserRelationName="FK_Zaposleni_Zaposlenja" msprop:rel_Generator_ParentPropName="ZaposleniRow" msprop:rel_Generator_RelationVarName="relationFK_Zaposleni_Zaposlenja" msprop:rel_Generator_UserParentTable="Zaposleni">
       <xs:selector xpath=".//mstns:Zaposlenja" />
       <xs:field xpath="mstns:IdZaposlenog" />
     </xs:keyref>

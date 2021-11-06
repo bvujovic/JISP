@@ -15,12 +15,7 @@ namespace JISP.Forms
         public FrmUcenici()
         {
             InitializeComponent();
-
-            pnlLeftMaxWidth = pnlLeft.Width;
         }
-
-        private readonly int pnlLeftMaxWidth;
-        private readonly int pnlLeftMinWidth = 10;
 
         private void FrmUcenici_Load(object sender, EventArgs e)
         {
@@ -51,10 +46,6 @@ namespace JISP.Forms
             timStatus.Stop();
             lblStatus.BackColor = colOriginal;
         }
-
-        /// <summary>Show/Hide levog panela sa kontrolama.</summary>
-        private void PnlLeft_Click(object sender, EventArgs e)
-            => pnlLeft.Width = pnlLeft.Width == pnlLeftMaxWidth ? pnlLeftMinWidth : pnlLeftMaxWidth;
 
         private void TxtFilter_TextChanged(object sender, EventArgs e)
         {
@@ -147,7 +138,19 @@ namespace JISP.Forms
             }
 
             if (e.KeyCode == Keys.Enter)
+            {
                 dgv.CopyCellText(dgvcJOB.Index);
+                e.SuppressKeyPress = true; // protiv "kling" zvuka
+            }
+        }
+
+        private void BtnSrednjoskolci_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex) { Classes.Utils.ShowMbox(ex, btnSrednjoskolci.Text); }
         }
     }
 }

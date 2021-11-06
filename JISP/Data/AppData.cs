@@ -41,7 +41,13 @@ namespace JISP.Data
         /// <summary>Ucitavanje podataka u DataSet iz fajla.</summary>
         public static void LoadDsData()
         {
-            try { Ds.ReadXml(FilePath()); }
+            try
+            {
+                Ds.ReadXml(FilePath());
+                var row = Ds.Settings.FindByName(WebApi.TOKEN_CAPTION);
+                if (row != null)
+                    WebApi.Token = row.Value;
+            }
             catch (Exception ex) { Classes.Utils.ShowMbox(ex, "Ucitavanje podataka iz XMLa"); }
         }
 
@@ -50,6 +56,14 @@ namespace JISP.Data
         {
             try
             {
+                if (WebApi.TokenDisplay != WebApi.TOKEN_MISSING)
+                {
+                    var row = Ds.Settings.FindByName(WebApi.TOKEN_CAPTION);
+                    if (row != null)
+                        row.Value = WebApi.Token;
+                    else
+                        Ds.Settings.AddSettingsRow(WebApi.TOKEN_CAPTION, WebApi.Token);
+                }
                 Ds.WriteXml(FilePath());
                 Classes.Utils.ShowMbox("Podaci su sacuvani.", "Cuvanje podataka u XML");
             }

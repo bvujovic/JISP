@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace JISP.Controls
 {
-    public partial class UcLeftPanel : UserControl
+    public partial class UcLeftPanel : Panel
     {
         public UcLeftPanel()
         {
