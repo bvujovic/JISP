@@ -142,15 +142,16 @@ namespace JISP.Forms
                 dgv.CopyCellText(dgvcJOB.Index);
                 e.SuppressKeyPress = true; // protiv "kling" zvuka
             }
+            if (e.KeyCode == Keys.Escape)
+            {
+                txtFilter.Clear();
+                e.SuppressKeyPress = true; // protiv "kling" zvuka
+            }
         }
 
         private void BtnSrednjoskolci_Click(object sender, EventArgs e)
         {
-            try
-            {
-
-            }
-            catch (Exception ex) { Classes.Utils.ShowMbox(ex, btnSrednjoskolci.Text); }
+            new FrmSrednjoskolci().Show();
         }
     }
 }

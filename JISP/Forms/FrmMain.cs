@@ -90,15 +90,6 @@ namespace JISP.Forms
             Data.AppData.BackupData();
         }
 
-        private async void BtnTest_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var resp = await Data.WebApi.GetJson(Data.WebApi.ReqEnum.Zap_OpstiPodaciOZaposlenima);
-            }
-            catch (Exception ex) { Utils.ShowMbox(ex, btnTest.Text); }
-        }
-
         private void TxtApiToken_Click(object sender, EventArgs e)
         {
             Data.WebApi.Token = Clipboard.GetText();

@@ -62,7 +62,7 @@
       <DependentUpon>UcExitApp.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\UcLeftPanel.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\UcLeftPanel.Designer.cs">
       <DependentUpon>UcLeftPanel.cs</DependentUpon>
@@ -86,6 +86,12 @@
     <Compile Include="Forms\FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FrmSrednjoskolci.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmSrednjoskolci.Designer.cs">
+      <DependentUpon>FrmSrednjoskolci.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmUcenici.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmSrednjoskolci.resx">
+      <DependentUpon>FrmSrednjoskolci.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmUcenici.resx">
       <DependentUpon>FrmUcenici.cs</DependentUpon>

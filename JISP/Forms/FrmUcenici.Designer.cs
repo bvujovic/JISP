@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
+            this.btnSrednjoskolci = new System.Windows.Forms.Button();
             this.ucExitApp1 = new JISP.Controls.UcExitApp();
             this.txtFileName = new System.Windows.Forms.TextBox();
             this.lblRowCount = new System.Windows.Forms.Label();
@@ -45,7 +46,6 @@
             this.dgvcJOB = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnSrednjoskolci = new System.Windows.Forms.Button();
             this.pnlLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsUcenici)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
@@ -68,8 +68,19 @@
             this.pnlLeft.Name = "pnlLeft";
             this.pnlLeft.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
             this.pnlLeft.RightWingWidth = 8;
-            this.pnlLeft.Size = new System.Drawing.Size(146, 428);
+            this.pnlLeft.Size = new System.Drawing.Size(150, 428);
             this.pnlLeft.TabIndex = 0;
+            // 
+            // btnSrednjoskolci
+            // 
+            this.btnSrednjoskolci.Location = new System.Drawing.Point(7, 292);
+            this.btnSrednjoskolci.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSrednjoskolci.Name = "btnSrednjoskolci";
+            this.btnSrednjoskolci.Size = new System.Drawing.Size(127, 38);
+            this.btnSrednjoskolci.TabIndex = 6;
+            this.btnSrednjoskolci.Text = "Srednjoškolci";
+            this.btnSrednjoskolci.UseVisualStyleBackColor = true;
+            this.btnSrednjoskolci.Click += new System.EventHandler(this.BtnSrednjoskolci_Click);
             // 
             // ucExitApp1
             // 
@@ -156,12 +167,12 @@
             this.dgvcJOB});
             this.dgv.DataSource = this.bsUcenici;
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv.Location = new System.Drawing.Point(146, 0);
+            this.dgv.Location = new System.Drawing.Point(150, 0);
             this.dgv.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgv.Name = "dgv";
             this.dgv.RowHeadersWidth = 30;
             this.dgv.RowTemplate.Height = 24;
-            this.dgv.Size = new System.Drawing.Size(654, 428);
+            this.dgv.Size = new System.Drawing.Size(650, 428);
             this.dgv.TabIndex = 1;
             // 
             // dgvcIdUcenika
@@ -213,17 +224,6 @@
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(12, 17);
             this.lblStatus.Text = "/";
-            // 
-            // btnSrednjoskolci
-            // 
-            this.btnSrednjoskolci.Location = new System.Drawing.Point(7, 292);
-            this.btnSrednjoskolci.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSrednjoskolci.Name = "btnSrednjoskolci";
-            this.btnSrednjoskolci.Size = new System.Drawing.Size(127, 38);
-            this.btnSrednjoskolci.TabIndex = 6;
-            this.btnSrednjoskolci.Text = "Srednjoškolci";
-            this.btnSrednjoskolci.UseVisualStyleBackColor = true;
-            this.btnSrednjoskolci.Click += new System.EventHandler(this.BtnSrednjoskolci_Click);
             // 
             // FrmUcenici
             // 

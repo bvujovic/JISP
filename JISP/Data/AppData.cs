@@ -44,6 +44,7 @@ namespace JISP.Data
             try
             {
                 Ds.ReadXml(FilePath());
+                Ds.Zaposleni.CalcJmbgBasedCols();
                 var row = Ds.Settings.FindByName(WebApi.TOKEN_CAPTION);
                 if (row != null)
                     WebApi.Token = row.Value;

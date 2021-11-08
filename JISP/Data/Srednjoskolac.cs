@@ -19,12 +19,12 @@ namespace JISP.Data
         public int RegUceLiceSrednjeObrazovanjeId { get; set; }
         public string SkolskaGodinaUpisaNaziv { get; set; }
         public DateTime DatumUpisa { get; set; }
-        public int TipUpisa { get; set; } // "na osnovu svedocanstva..."
+        public string TipUpisaNaziv { get; set; } // primer "na osnovu svedocanstva..."
         public string TrajanjeProgramaObrazovanja { get; set; }
-        public string OdeljenjeNaziv { get; set; }
+        public string Odeljenje { get; set; }
         public string ModelRealizacije { get; set; }
         public string SmerObrazovniProfilNaziv { get; set; }
-        public string Razred { get; set; }
+        public string Razred { get; set; } // primer "II разред"
         public string JOB { get; set; }
     }
 }
