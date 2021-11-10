@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace JISP.Data
 {
     /// <summary>
-    /// 
+    /// Komunikacija sa Web API-em JISP sistema.
     /// </summary>
     public static class WebApi
     {
@@ -45,20 +45,11 @@ namespace JISP.Data
         /// <see cref="https://stackoverflow.com/questions/14627399/setting-authorization-header-of-httpclient"/>
         public static async Task<string> GetJson(ReqEnum reqEnum, string param = null)
         {
-            try
+            using (var client = new System.Net.Http.HttpClient())
             {
-                using (var client = new System.Net.Http.HttpClient())
-                {
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
-                    //T var url = "https://jisp.mpn.gov.rs/webapi/api/zaposleni/VratiOpstePodatkeOZaposlenima/18976";
-                    var url = UrlForReq(reqEnum, param);
-                    return await client.GetStringAsync(url);
-                }
-            }
-            catch (Exception ex)
-            {
-                Classes.Logger.AddToLog(ex);
-                return null;
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
+                var url = UrlForReq(reqEnum, param);
+                return await client.GetStringAsync(url);
             }
         }
 

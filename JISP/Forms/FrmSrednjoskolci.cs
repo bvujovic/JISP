@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using JISP.Classes;
 using JISP.Data;
 
 namespace JISP.Forms
@@ -26,10 +24,10 @@ namespace JISP.Forms
         {
             try
             {
-                //var json = await WebApi.GetJson(WebApi.ReqEnum.Uc_DuosSrednjoskolci);
-                //var ucenici = Newtonsoft.Json.JsonConvert.DeserializeObject
-                //    <List<Srednjoskolac>>(json);
                 var ucenici = await WebApi.GetList<Srednjoskolac>(WebApi.ReqEnum.Uc_DuosSrednjoskolci);
+                //B
+                //if (ucenici == null)
+                //    throw new Exception("No data.");
                 Ds.Srednjoskolci.Clear();
                 foreach (var u in ucenici)
                 {
@@ -43,32 +41,40 @@ namespace JISP.Forms
                     Ds.Srednjoskolci.AddSrednjoskolciRow(row);
                 }
             }
-            catch (Exception ex) { Classes.Utils.ShowMbox(ex, btnGetBasicData.Text); }
+            catch (Exception ex) { Utils.ShowMbox(ex, btnGetBasicData.Text); }
         }
 
-        private void BtnTest_Click(object sender, EventArgs e)
+        private void BtnCountUniqueValues_Click(object sender, EventArgs e)
         {
             try
             {
                 //broj razlicitih vrednosti u koloni
-                var colIdx = 0;
-                var vc = dgv.ValuesCount(colIdx);
+                var idxCol = dgv.SelectedCells[0].ColumnIndex;
+                var vc = dgv.ValuesCount(idxCol);
+                var sb = new System.Text.StringBuilder($"Broj razlicitih vrednosti: {vc.Values.Count}\r\n\r\n");
+                foreach (var item in vc.OrderBy(it => it.Key))
+                    sb.AppendLine(item.Key + "\t" + item.Value);
+                Utils.ShowMbox(sb.ToString(), btnCountUniqueValues.Text);
             }
-            catch (Exception ex) { Classes.Utils.ShowMbox(ex, btnTest.Text); }
+            catch (Exception ex) { Utils.ShowMbox(ex, btnCountUniqueValues.Text); }
         }
 
         private async void BtnGetAdditionalData_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < dgv.Rows.Count; i++)
+            try
             {
-                var row = dgv.DataRow<Ds.SrednjoskolciRow>(i);
-                var u = await WebApi.GetObject<Srednjoskolac>
-                    (WebApi.ReqEnum.Uc_DuosSrednjoskolciId, row.Id.ToString());
-                row.SkolskaGodinaUpisaNaziv = u.SkolskaGodinaUpisaNaziv;
-                row.ModelRealizacije = u.ModelRealizacije;
-                row.SmerObrazovniProfilNaziv = u.SmerObrazovniProfilNaziv;
-                //System.Threading.Thread.Sleep(500);//? bez ovoga
+                for (int i = 0; i < dgv.Rows.Count; i++)
+                {
+                    var row = dgv.DataRow<Ds.SrednjoskolciRow>(i);
+                    var u = await WebApi.GetObject<Srednjoskolac>
+                        (WebApi.ReqEnum.Uc_DuosSrednjoskolciId, row.Id.ToString());
+                    row.SkolskaGodinaUpisaNaziv = u.SkolskaGodinaUpisaNaziv;
+                    row.ModelRealizacije = u.ModelRealizacije;
+                    row.SmerObrazovniProfilNaziv = u.SmerObrazovniProfilNaziv;
+                    //System.Threading.Thread.Sleep(500);//? bez ovoga
+                }
             }
+            catch (Exception ex) { Utils.ShowMbox(ex, btnGetAdditionalData.Text); }
         }
     }
 }

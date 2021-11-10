@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace JISP.Controls
 {
@@ -18,24 +19,38 @@ namespace JISP.Controls
             Text = "Izlaz";
         }
 
-        /// <summary>true ako je korisnik kliknuo na neko UcExitApp dugme.</summary>
-        public static bool ExitSignal { get; private set; } = false;
-
         protected override void OnClick(EventArgs e)
         {
             base.OnClick(e);
-            // prolaz uz hijerarhiju container kontrola dok neki parent nije forma
-            var p = Parent;
-            do
-            {
-                if (p is Form form)
-                {
-                    ExitSignal = true;
-                    form.Close();
-                    break;
-                }
-                p = p.Parent;
-            } while (p != null);
+
+            Application.OpenForms.OfType<Forms.FrmMain>().First().Close();
+
+            //B
+            //var frmMain = Application.OpenForms.OfType<Form>().FirstOrDefault(it => it.Name == "FrmMain");
+            //if (frmMain != null)
+            //    frmMain.Close();
+
+            //foreach (Form frm in Application.OpenForms)
+            //    if (frm.Name == "FrmMain")
+            //    {
+            //        frm.Close();
+            //        break;
+            //    }
+
+            //Application.Exit();            
+
+            //// prolaz uz hijerarhiju container kontrola dok neki parent nije forma
+            //var p = Parent;
+            //do
+            //{
+            //    if (p is Form form)
+            //    {
+            //        ExitSignal = true;
+            //        form.Close();
+            //        break;
+            //    }
+            //    p = p.Parent;
+            //} while (p != null);
         }
     }
 }

@@ -45,10 +45,10 @@ namespace JISP.Forms
             this.tipUpisaNazivDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.smerObrazovniProfilNazivDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
-            this.btnTest = new System.Windows.Forms.Button();
+            this.btnGetAdditionalData = new System.Windows.Forms.Button();
+            this.btnCountUniqueValues = new System.Windows.Forms.Button();
             this.btnExitApp = new JISP.Controls.UcExitApp();
             this.btnGetBasicData = new System.Windows.Forms.Button();
-            this.btnGetAdditionalData = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ds1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsSrednjoskolci)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
@@ -172,7 +172,7 @@ namespace JISP.Forms
             // pnlLeft
             // 
             this.pnlLeft.Controls.Add(this.btnGetAdditionalData);
-            this.pnlLeft.Controls.Add(this.btnTest);
+            this.pnlLeft.Controls.Add(this.btnCountUniqueValues);
             this.pnlLeft.Controls.Add(this.btnExitApp);
             this.pnlLeft.Controls.Add(this.btnGetBasicData);
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
@@ -183,15 +183,25 @@ namespace JISP.Forms
             this.pnlLeft.Size = new System.Drawing.Size(150, 411);
             this.pnlLeft.TabIndex = 0;
             // 
-            // btnTest
+            // btnGetAdditionalData
             // 
-            this.btnTest.Location = new System.Drawing.Point(12, 166);
-            this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(122, 34);
-            this.btnTest.TabIndex = 3;
-            this.btnTest.Text = "Test";
-            this.btnTest.UseVisualStyleBackColor = true;
-            this.btnTest.Click += new System.EventHandler(this.BtnTest_Click);
+            this.btnGetAdditionalData.Location = new System.Drawing.Point(12, 126);
+            this.btnGetAdditionalData.Name = "btnGetAdditionalData";
+            this.btnGetAdditionalData.Size = new System.Drawing.Size(122, 34);
+            this.btnGetAdditionalData.TabIndex = 4;
+            this.btnGetAdditionalData.Text = "Dohvati dodatno";
+            this.btnGetAdditionalData.UseVisualStyleBackColor = true;
+            this.btnGetAdditionalData.Click += new System.EventHandler(this.BtnGetAdditionalData_Click);
+            // 
+            // btnCountUniqueValues
+            // 
+            this.btnCountUniqueValues.Location = new System.Drawing.Point(12, 188);
+            this.btnCountUniqueValues.Name = "btnCountUniqueValues";
+            this.btnCountUniqueValues.Size = new System.Drawing.Size(122, 34);
+            this.btnCountUniqueValues.TabIndex = 3;
+            this.btnCountUniqueValues.Text = "Broj razl vrednosti";
+            this.btnCountUniqueValues.UseVisualStyleBackColor = true;
+            this.btnCountUniqueValues.Click += new System.EventHandler(this.BtnCountUniqueValues_Click);
             // 
             // btnExitApp
             // 
@@ -213,16 +223,6 @@ namespace JISP.Forms
             this.btnGetBasicData.Text = "Dohvati osnovno";
             this.btnGetBasicData.UseVisualStyleBackColor = true;
             this.btnGetBasicData.Click += new System.EventHandler(this.BtnGetBasicData_Click);
-            // 
-            // btnGetAdditionalData
-            // 
-            this.btnGetAdditionalData.Location = new System.Drawing.Point(12, 126);
-            this.btnGetAdditionalData.Name = "btnGetAdditionalData";
-            this.btnGetAdditionalData.Size = new System.Drawing.Size(122, 34);
-            this.btnGetAdditionalData.TabIndex = 4;
-            this.btnGetAdditionalData.Text = "Dohvati dodatno";
-            this.btnGetAdditionalData.UseVisualStyleBackColor = true;
-            this.btnGetAdditionalData.Click += new System.EventHandler(this.BtnGetAdditionalData_Click);
             // 
             // FrmSrednjoskolci
             // 
@@ -248,7 +248,7 @@ namespace JISP.Forms
         private Controls.UcLeftPanel pnlLeft;
         private System.Windows.Forms.Button btnGetBasicData;
         private Controls.UcExitApp btnExitApp;
-        private System.Windows.Forms.Button btnTest;
+        private System.Windows.Forms.Button btnCountUniqueValues;
         private Controls.UcDGV dgv;
         private System.Windows.Forms.BindingSource bsSrednjoskolci;
         private Data.Ds ds1;

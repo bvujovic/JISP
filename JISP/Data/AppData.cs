@@ -35,6 +35,8 @@ namespace JISP.Data
             foreach (var acc in accounts)
                 if (Directory.Exists(FolderForAccount(acc)))
                     DataFolder = FolderForAccount(acc);
+            if (string.IsNullOrEmpty(DataFolder))
+                DataFolder = System.Windows.Forms.Application.StartupPath;
             LoadDsData();
         }
 
@@ -45,6 +47,7 @@ namespace JISP.Data
             {
                 Ds.ReadXml(FilePath());
                 Ds.Zaposleni.CalcJmbgBasedCols();
+                Ds.AcceptChanges();
                 var row = Ds.Settings.FindByName(WebApi.TOKEN_CAPTION);
                 if (row != null)
                     WebApi.Token = row.Value;

@@ -4,8 +4,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JISP.Forms
@@ -78,7 +76,6 @@ namespace JISP.Forms
             dgv.SuspendLayout();
             try
             {
-                //B var fileName = System.IO.Path.Combine(Data.AppData.DataFolder, txtFileName.Text);
                 var fileName = Data.AppData.FilePath(txtFileName.Text);
                 if (!System.IO.File.Exists(fileName))
                     throw new Exception($"'{fileName}' ne postoji.");
@@ -93,8 +90,6 @@ namespace JISP.Forms
                     {
                         while ((line = sr.ReadLine()) != null && line != "")
                             block.Add(line.Trim());
-                        //Console.WriteLine(block);
-                        //Console.WriteLine(cntLine);
 
                         if (block.Count > 5 && IsJobValid(block[5]))
                             try
@@ -151,7 +146,8 @@ namespace JISP.Forms
 
         private void BtnSrednjoskolci_Click(object sender, EventArgs e)
         {
-            new FrmSrednjoskolci().Show();
+            //B new FrmSrednjoskolci().Show();
+            Classes.Utils.ShowForm(typeof(FrmSrednjoskolci));
         }
     }
 }
