@@ -52,8 +52,6 @@ namespace JISP.Controls
                     Clipboard.SetDataObject(val, false, 3, 200); // obican SetText je ponekad fejlovao
                     CellTextCopied?.Invoke(dgvc, EventArgs.Empty);
                 }
-                else
-                    Clipboard.Clear();
             }
             catch (Exception ex) { Classes.Utils.ShowMbox(ex, "CopyCellText"); }
         }
@@ -76,6 +74,19 @@ namespace JISP.Controls
                     dict[val]++;
             }
             return dict;
+        }
+
+        /// <summary>Postavljanje binding svojstava za dgvc ComboBox tipa.</summary>
+        /// <remarks>Poziv ove metode mora da ide iza bsXXX.DataSource = AppData.Ds</remarks>
+        public void SetupDgvComboColumn(DataGridViewComboBoxColumn dgvc
+            , BindingSource bs, string displayMember, string valueMember, string parentValueMember)
+        {
+            dgvc.DataSource = bs;
+            dgvc.DataPropertyName = parentValueMember;
+            dgvc.ValueMember = valueMember;
+            dgvc.DisplayMember = displayMember;
+            dgvc.DisplayStyleForCurrentCellOnly = true;
+            dgvc.FlatStyle = FlatStyle.Flat;
         }
     }
 }

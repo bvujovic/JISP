@@ -3,7 +3,6 @@ using JISP.Data;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -49,86 +48,21 @@ namespace JISP.Forms
             if (ds != null)
             {
                 sb.AppendLine(caption);
-                foreach (var tbl in ds.Tables.OfType<DataTable>().Where(it => it.Rows.Count > 0))
+                foreach (var tbl in ds.Tables.OfType<DataTable>()
+                    .Where(it => it.Rows.Count > 0 && it.TableName != "Skole"))
                     sb.AppendLine(tbl.TableName + ": " + tbl.Rows.Count);
             }
         }
 
-        //B
-        //private FrmUcenici frmUcenici = null;
-        //private FrmZaposleni frmZaposleni = null;
-        //enum ChildForms
-        //{
-        //    Ucenici, Zaposleni
-        //}
-
         private void BtnUcenici_Click(object sender, EventArgs e)
         {
-            //B ShowForm(frmUcenici, ChildForms.Ucenici);
             Utils.ShowForm(typeof(FrmUcenici));
         }
 
         private void BtnZaposleni_Click(object sender, EventArgs e)
         {
-            //B ShowForm(frmZaposleni, ChildForms.Zaposleni);
             Utils.ShowForm(typeof(FrmZaposleni));
         }
-
-        //B
-        //private void ShowForm(Type typForm)
-        //{
-        //    var frm = Application.OpenForms.OfType<Form>().FirstOrDefault(it => it.GetType() == typForm);
-        //    if (frm == null || frm.IsDisposed)
-        //    {
-        //        if (typForm == typeof(FrmZaposleni))
-        //            frm = new FrmZaposleni();
-        //        if (typForm == typeof(FrmUcenici))
-        //            frm = new FrmUcenici();
-        //        if (typForm == typeof(FrmSrednjoskolci))
-        //            frm = new FrmSrednjoskolci();
-        //    }
-        //    frm.Show();
-        //    frm.WindowState = FormWindowState.Minimized;
-        //    frm.WindowState = FormWindowState.Normal;
-        //}
-
-        //B
-        //private void ShowForm(Form frm, ChildForms childForms)
-        //{
-        //    if (frm == null || frm.IsDisposed)
-        //    {
-        //        if (childForms == ChildForms.Ucenici)
-        //        {
-        //            if (frmUcenici == null || frmUcenici.IsDisposed)
-        //                frmUcenici = new FrmUcenici();
-        //            frm = frmUcenici;
-        //        }
-        //        if (childForms == ChildForms.Zaposleni)
-        //        {
-        //            if (frmZaposleni == null || frmZaposleni.IsDisposed)
-        //                frmZaposleni = new FrmZaposleni();
-        //            frm = frmZaposleni;
-        //        }
-        //    }
-        //    frm.Show();
-        //    frm.WindowState = FormWindowState.Minimized;
-        //    frm.WindowState = FormWindowState.Normal;
-        //}
-
-        //void NewItUp(Form form)
-        //{
-        //    var t = Type.GetType(form);
-        //}
-
-        //***
-        //void m(Form f)
-        //{
-        //    if (f == null)
-        //        return;
-        //    var rr = typeof(FrmMain);
-        //    var t = f.GetType();
-        //    var frm = Activator.CreateInstance(t);
-        //}
 
         private void BtnBackup_Click(object sender, EventArgs e)
         {

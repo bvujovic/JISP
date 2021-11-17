@@ -55,6 +55,9 @@ namespace JISP.Forms
         {
             try
             {
+                // osnovni podaci o zaposlenima ne ukljucuju id zaposlenja
+                // tako da se update te tabele radi kao Clear, pa Add new
+                Ds.Zaposlenja.Clear();
                 var json = Clipboard.GetText();
                 var zaps = Newtonsoft.Json.JsonConvert.DeserializeObject
                     <List<Data.Zaposleni>>(json);
@@ -84,18 +87,13 @@ namespace JISP.Forms
                         if (nja != null)
                             foreach (var nje in nja)
                             {
-                                //B neuspeo pokusaj odbrane od dodavanja duplikata nja - za ovo je potreban idNja
-                                //var redNje = red.GetZaposlenjaRows()
-                                //    .FirstOrDefault(it => it.RadnoMestoNaziv == nje.RadnoMestoNaziv);
-                                //if (redNje == null) // novo zaposlenje
-                                {
-                                    var redNje = Ds.Zaposlenja.NewZaposlenjaRow();
-                                    redNje.IdZaposlenog = red.IdZaposlenog;
-                                    redNje.Aktivan = nje.Aktivan;
-                                    redNje.RadnoMestoNaziv = nje.RadnoMestoNaziv;
-                                    Ds.Zaposlenja.AddZaposlenjaRow(redNje);
-                                }
+                                var redNje = Ds.Zaposlenja.NewZaposlenjaRow();
+                                redNje.IdZaposlenog = red.IdZaposlenog;
+                                redNje.Aktivan = nje.Aktivan;
+                                redNje.RadnoMestoNaziv = nje.RadnoMestoNaziv;
+                                Ds.Zaposlenja.AddZaposlenjaRow(redNje);
                             }
+
                     }
                     catch (Exception ex)
                     {

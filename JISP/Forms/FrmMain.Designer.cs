@@ -43,7 +43,7 @@
             this.btnUcenici.Name = "btnUcenici";
             this.btnUcenici.Size = new System.Drawing.Size(135, 48);
             this.btnUcenici.TabIndex = 0;
-            this.btnUcenici.Text = "Učenici";
+            this.btnUcenici.Text = "&Učenici";
             this.btnUcenici.UseVisualStyleBackColor = true;
             this.btnUcenici.Click += new System.EventHandler(this.BtnUcenici_Click);
             // 
@@ -53,7 +53,7 @@
             this.btnZaposleni.Name = "btnZaposleni";
             this.btnZaposleni.Size = new System.Drawing.Size(135, 48);
             this.btnZaposleni.TabIndex = 1;
-            this.btnZaposleni.Text = "Zaposleni";
+            this.btnZaposleni.Text = "&Zaposleni";
             this.btnZaposleni.UseVisualStyleBackColor = true;
             this.btnZaposleni.Click += new System.EventHandler(this.BtnZaposleni_Click);
             // 
@@ -72,7 +72,7 @@
             this.lblApiTokenCaption.AutoSize = true;
             this.lblApiTokenCaption.Location = new System.Drawing.Point(38, 196);
             this.lblApiTokenCaption.Name = "lblApiTokenCaption";
-            this.lblApiTokenCaption.Size = new System.Drawing.Size(80, 18);
+            this.lblApiTokenCaption.Size = new System.Drawing.Size(99, 22);
             this.lblApiTokenCaption.TabIndex = 4;
             this.lblApiTokenCaption.Text = "API Token:";
             // 
@@ -88,7 +88,7 @@
             // 
             // FrmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(617, 279);
             this.Controls.Add(this.lblApiToken);

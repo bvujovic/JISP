@@ -35,9 +35,21 @@ namespace JISP.Data
             foreach (var acc in accounts)
                 if (Directory.Exists(FolderForAccount(acc)))
                     DataFolder = FolderForAccount(acc);
+            
             if (string.IsNullOrEmpty(DataFolder))
                 DataFolder = System.Windows.Forms.Application.StartupPath;
             LoadDsData();
+
+            DodajSkolu("Основна");
+            DodajSkolu("Средња");
+        }
+
+        /// <summary>Dodavanje skole ako ne postoji u tabeli.</summary>
+        private static void DodajSkolu(string naziv)
+        {
+            var s = Ds.Skole.FirstOrDefault(it => it.Naziv == naziv);
+            if (s == null)
+                Ds.Skole.AddSkoleRow(naziv);
         }
 
         /// <summary>Ucitavanje podataka u DataSet iz fajla.</summary>
@@ -64,11 +76,15 @@ namespace JISP.Data
                 {
                     var row = Ds.Settings.FindByName(WebApi.TOKEN_CAPTION);
                     if (row != null)
-                        row.Value = WebApi.Token;
+                    {
+                        if (!row.IsValueNull() && row.Value != WebApi.Token)
+                            row.Value = WebApi.Token;
+                    }
                     else
                         Ds.Settings.AddSettingsRow(WebApi.TOKEN_CAPTION, WebApi.Token);
                 }
                 Ds.WriteXml(FilePath());
+                Ds.AcceptChanges();
                 Classes.Utils.ShowMbox("Podaci su sacuvani.", "Cuvanje podataka u XML");
             }
             catch (Exception ex) { Classes.Utils.ShowMbox(ex, "Cuvanje podataka u XML"); }

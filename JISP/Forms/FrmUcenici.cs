@@ -18,6 +18,9 @@ namespace JISP.Forms
         private void FrmUcenici_Load(object sender, EventArgs e)
         {
             bsUcenici.DataSource = Data.AppData.Ds;
+            bsSkole.DataSource = Data.AppData.Ds;
+            dgv.SetupDgvComboColumn(dgvcSkola, bsSkole, "Naziv", "IdSkole", "IdSkole");
+
             DisplayRowCount();
             colOriginal = lblStatus.BackColor;
             dgv.CellTextCopied += Dgv_CellTextCopied;
@@ -62,63 +65,6 @@ namespace JISP.Forms
         private void BtnSaveData_Click(object sender, EventArgs e)
             => Data.AppData.SaveDsData();
 
-        private static bool IsJobValid(string job)
-        {
-            if (job.Length != 16)
-                return false;
-            if (job.Contains(' '))
-                return false;
-            return true;
-        }
-
-        private void BtnTextImport_Click(object sender, EventArgs e)
-        {
-            dgv.SuspendLayout();
-            try
-            {
-                var fileName = Data.AppData.FilePath(txtFileName.Text);
-                if (!System.IO.File.Exists(fileName))
-                    throw new Exception($"'{fileName}' ne postoji.");
-
-                using (var sr = new System.IO.StreamReader(fileName))
-                {
-                    var tbl = Data.AppData.Ds.Tables["Ucenici"];
-                    var theEnd = false;
-                    var line = "";
-                    var block = new List<string>();
-                    while (!theEnd)
-                    {
-                        while ((line = sr.ReadLine()) != null && line != "")
-                            block.Add(line.Trim());
-
-                        if (block.Count > 5 && IsJobValid(block[5]))
-                            try
-                            {
-                                var row = tbl.NewRow();
-                                row["Ime"] = block[4];
-                                row["JOB"] = block[5];
-                                tbl.Rows.Add(row);
-                            }
-                            catch (Exception ex)
-                            {
-                                var msg = ex.Message;
-                                if (!msg.Contains("'JOB' is constrained to be unique"))
-                                    if (Classes.Utils.ShowMboxYesNo($"Greska: {msg}" + Environment.NewLine +
-                                        "Da li zelite da nastavite sa uvozom tekst podataka?", "Uvoz txt podataka") == DialogResult.No)
-                                        theEnd = true;
-                            }
-
-                        block.Clear();
-                        if (line == null)
-                            theEnd = true;
-                    }
-                }
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
-            dgv.ResumeLayout();
-            DisplayRowCount();
-        }
-
         private void TxtFilter_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Down)
@@ -146,8 +92,14 @@ namespace JISP.Forms
 
         private void BtnSrednjoskolci_Click(object sender, EventArgs e)
         {
-            //B new FrmSrednjoskolci().Show();
             Classes.Utils.ShowForm(typeof(FrmSrednjoskolci));
+        }
+
+        private void ChkAllowNew_CheckedChanged(object sender, EventArgs e)
+        {
+            dgv.AllowUserToAddRows = chkAllowNew.Checked;
+            if (chkAllowNew.Checked)
+                bsUcenici.MoveLast();
         }
     }
 }
