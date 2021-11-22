@@ -1,9 +1,4 @@
-﻿-! klik na dgv dugme kod zaposlenog - moze li me odvesti u chrome/edge na stranicu zap u zemlji?
-+ UcDGV: statistika unique values u mboxu, npr desni klik na kolonu...
-+ doraditi sistem prikazivanja i gasenja formi: sve forme da se pojavljuju (bez duplikata) i gase isto [Applicatio.Exit() ?]
-    (dugme Izlaz ne radi u FrmSrednjoskolci)
-- prikaz samo ne/aktivnih/svih. check box aktivni sa 3state -> spojiti ovo sa text filterom
-+ cuvanje podataka: poruka o dodatim, izmenjenim, obrisanim redovima za sve tabele
+﻿- prikaz samo ne/aktivnih/svih. check box aktivni sa 3state -> spojiti ovo sa text filterom
 - zaposlenja zaposlenih
     - ucitavanje
     - prikazivanje

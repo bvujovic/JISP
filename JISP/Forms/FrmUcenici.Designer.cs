@@ -30,33 +30,39 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
+            this.btnOdRaz = new System.Windows.Forms.Button();
             this.chkAllowNew = new System.Windows.Forms.CheckBox();
             this.btnSrednjoskolci = new System.Windows.Forms.Button();
             this.ucExitApp1 = new JISP.Controls.UcExitApp();
             this.lblRowCount = new System.Windows.Forms.Label();
             this.btnSaveData = new System.Windows.Forms.Button();
-            this.txtFilter = new System.Windows.Forms.TextBox();
+            this.txtFilter = new JISP.Controls.UcFilterTextBox();
+            this.bsUcenici = new System.Windows.Forms.BindingSource(this.components);
             this.ds = new JISP.Data.Ds();
             this.bsSkole = new System.Windows.Forms.BindingSource(this.components);
-            this.bsUcenici = new System.Windows.Forms.BindingSource(this.components);
             this.dgv = new JISP.Controls.UcDGV();
-            this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.dgvcIdUcenika = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcIme = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcPrezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcJOB = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcSkola = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dgvcRazred = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dgvcOdeljenje = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.bsRazredi = new System.Windows.Forms.BindingSource(this.components);
             this.pnlLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsUcenici)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsSkole)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsUcenici)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.statusStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRazredi)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlLeft
             // 
+            this.pnlLeft.Controls.Add(this.btnOdRaz);
             this.pnlLeft.Controls.Add(this.chkAllowNew);
             this.pnlLeft.Controls.Add(this.btnSrednjoskolci);
             this.pnlLeft.Controls.Add(this.ucExitApp1);
@@ -72,13 +78,24 @@
             this.pnlLeft.Size = new System.Drawing.Size(150, 423);
             this.pnlLeft.TabIndex = 0;
             // 
+            // btnOdRaz
+            // 
+            this.btnOdRaz.Location = new System.Drawing.Point(7, 338);
+            this.btnOdRaz.Margin = new System.Windows.Forms.Padding(4);
+            this.btnOdRaz.Name = "btnOdRaz";
+            this.btnOdRaz.Size = new System.Drawing.Size(127, 38);
+            this.btnOdRaz.TabIndex = 5;
+            this.btnOdRaz.Text = "Razredi i odelj.";
+            this.btnOdRaz.UseVisualStyleBackColor = true;
+            this.btnOdRaz.Click += new System.EventHandler(this.BtnOdRaz_Click);
+            // 
             // chkAllowNew
             // 
             this.chkAllowNew.AutoSize = true;
             this.chkAllowNew.Location = new System.Drawing.Point(7, 142);
             this.chkAllowNew.Name = "chkAllowNew";
             this.chkAllowNew.Size = new System.Drawing.Size(167, 24);
-            this.chkAllowNew.TabIndex = 7;
+            this.chkAllowNew.TabIndex = 1;
             this.chkAllowNew.Text = "Dozvoli dodavanje";
             this.chkAllowNew.UseVisualStyleBackColor = true;
             this.chkAllowNew.CheckedChanged += new System.EventHandler(this.ChkAllowNew_CheckedChanged);
@@ -89,7 +106,7 @@
             this.btnSrednjoskolci.Margin = new System.Windows.Forms.Padding(4);
             this.btnSrednjoskolci.Name = "btnSrednjoskolci";
             this.btnSrednjoskolci.Size = new System.Drawing.Size(127, 38);
-            this.btnSrednjoskolci.TabIndex = 6;
+            this.btnSrednjoskolci.TabIndex = 3;
             this.btnSrednjoskolci.Text = "Srednjoškolci";
             this.btnSrednjoskolci.UseVisualStyleBackColor = true;
             this.btnSrednjoskolci.Click += new System.EventHandler(this.BtnSrednjoskolci_Click);
@@ -102,7 +119,7 @@
             this.ucExitApp1.Margin = new System.Windows.Forms.Padding(4);
             this.ucExitApp1.Name = "ucExitApp1";
             this.ucExitApp1.Size = new System.Drawing.Size(127, 34);
-            this.ucExitApp1.TabIndex = 5;
+            this.ucExitApp1.TabIndex = 4;
             this.ucExitApp1.Text = "Izlaz";
             this.ucExitApp1.UseVisualStyleBackColor = false;
             // 
@@ -122,13 +139,14 @@
             this.btnSaveData.Margin = new System.Windows.Forms.Padding(4);
             this.btnSaveData.Name = "btnSaveData";
             this.btnSaveData.Size = new System.Drawing.Size(127, 38);
-            this.btnSaveData.TabIndex = 1;
+            this.btnSaveData.TabIndex = 2;
             this.btnSaveData.Text = "Sacuvaj podatke";
             this.btnSaveData.UseVisualStyleBackColor = true;
             this.btnSaveData.Click += new System.EventHandler(this.BtnSaveData_Click);
             // 
             // txtFilter
             // 
+            this.txtFilter.BindingSource = this.bsUcenici;
             this.txtFilter.Location = new System.Drawing.Point(7, 108);
             this.txtFilter.Margin = new System.Windows.Forms.Padding(4);
             this.txtFilter.Name = "txtFilter";
@@ -136,6 +154,11 @@
             this.txtFilter.TabIndex = 0;
             this.txtFilter.TextChanged += new System.EventHandler(this.TxtFilter_TextChanged);
             this.txtFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtFilter_KeyDown);
+            // 
+            // bsUcenici
+            // 
+            this.bsUcenici.DataMember = "Ucenici";
+            this.bsUcenici.DataSource = this.ds;
             // 
             // ds
             // 
@@ -146,11 +169,6 @@
             // 
             this.bsSkole.DataMember = "Skole";
             this.bsSkole.DataSource = this.ds;
-            // 
-            // bsUcenici
-            // 
-            this.bsUcenici.DataMember = "Ucenici";
-            this.bsUcenici.DataSource = this.ds;
             // 
             // dgv
             // 
@@ -163,7 +181,9 @@
             this.dgvcIme,
             this.dgvcPrezime,
             this.dgvcJOB,
-            this.dgvcSkola});
+            this.dgvcSkola,
+            this.dgvcRazred,
+            this.dgvcOdeljenje});
             this.dgv.DataSource = this.bsUcenici;
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv.Location = new System.Drawing.Point(150, 0);
@@ -171,25 +191,9 @@
             this.dgv.Name = "dgv";
             this.dgv.RowHeadersWidth = 30;
             this.dgv.RowTemplate.Height = 24;
-            this.dgv.Size = new System.Drawing.Size(843, 423);
-            this.dgv.TabIndex = 1;
-            // 
-            // statusStrip
-            // 
-            this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblStatus});
-            this.statusStrip.Location = new System.Drawing.Point(0, 423);
-            this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(993, 27);
-            this.statusStrip.TabIndex = 2;
-            this.statusStrip.Text = "statusStrip1";
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(16, 21);
-            this.lblStatus.Text = "/";
+            this.dgv.Size = new System.Drawing.Size(876, 423);
+            this.dgv.TabIndex = 0;
+            this.dgv.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.Dgv_DataError);
             // 
             // dgvcIdUcenika
             // 
@@ -232,11 +236,47 @@
             this.dgvcSkola.Name = "dgvcSkola";
             this.dgvcSkola.Width = 125;
             // 
+            // dgvcRazred
+            // 
+            this.dgvcRazred.HeaderText = "Razred";
+            this.dgvcRazred.MinimumWidth = 6;
+            this.dgvcRazred.Name = "dgvcRazred";
+            this.dgvcRazred.Width = 125;
+            // 
+            // dgvcOdeljenje
+            // 
+            this.dgvcOdeljenje.HeaderText = "Odeljenje";
+            this.dgvcOdeljenje.MinimumWidth = 6;
+            this.dgvcOdeljenje.Name = "dgvcOdeljenje";
+            this.dgvcOdeljenje.Width = 125;
+            // 
+            // statusStrip
+            // 
+            this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblStatus});
+            this.statusStrip.Location = new System.Drawing.Point(0, 423);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(1026, 27);
+            this.statusStrip.TabIndex = 2;
+            this.statusStrip.Text = "statusStrip1";
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(16, 21);
+            this.lblStatus.Text = "/";
+            // 
+            // bsRazredi
+            // 
+            this.bsRazredi.DataMember = "Razredi";
+            this.bsRazredi.DataSource = this.ds;
+            // 
             // FrmUcenici
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(993, 450);
+            this.ClientSize = new System.Drawing.Size(1026, 450);
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.pnlLeft);
             this.Controls.Add(this.statusStrip);
@@ -247,12 +287,13 @@
             this.Load += new System.EventHandler(this.FrmUcenici_Load);
             this.pnlLeft.ResumeLayout(false);
             this.pnlLeft.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsUcenici)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsSkole)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsUcenici)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRazredi)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -264,7 +305,7 @@
         private Controls.UcDGV dgv;
         private System.Windows.Forms.BindingSource bsUcenici;
         private Data.Ds ds;
-        private System.Windows.Forms.TextBox txtFilter;
+        private Controls.UcFilterTextBox txtFilter;
         private System.Windows.Forms.Button btnSaveData;
         private System.Windows.Forms.Label lblRowCount;
         private System.Windows.Forms.StatusStrip statusStrip;
@@ -278,5 +319,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcPrezime;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcJOB;
         private System.Windows.Forms.DataGridViewComboBoxColumn dgvcSkola;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dgvcRazred;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcOdeljenje;
+        private System.Windows.Forms.BindingSource bsRazredi;
+        private System.Windows.Forms.Button btnOdRaz;
     }
 }

@@ -38,7 +38,7 @@ namespace JISP.Forms
             this.btnSaveData = new System.Windows.Forms.Button();
             this.btnExit = new JISP.Controls.UcExitApp();
             this.lblRowCount = new System.Windows.Forms.Label();
-            this.txtFilter = new System.Windows.Forms.TextBox();
+            this.txtFilter = new Controls.UcFilterTextBox();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.dgvZaposleni = new JISP.Controls.UcDGV();
             this.dgvcIme = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -142,6 +142,7 @@ namespace JISP.Forms
             // 
             // txtFilter
             // 
+            this.txtFilter.BindingSource = bsZaposleni;
             this.txtFilter.Location = new System.Drawing.Point(193, 1);
             this.txtFilter.Name = "txtFilter";
             this.txtFilter.Size = new System.Drawing.Size(128, 24);
@@ -347,7 +348,7 @@ namespace JISP.Forms
         private Controls.UcExitApp btnExit;
         private System.Windows.Forms.CheckBox chkLoadWoMsgs;
         private System.Windows.Forms.Label lblRowCount;
-        private System.Windows.Forms.TextBox txtFilter;
+        private Controls.UcFilterTextBox txtFilter;
         private System.Windows.Forms.SplitContainer splitContainer;
         private System.Windows.Forms.Panel pnlZaposleniBottom;
         private System.Windows.Forms.DataGridView dgvZaposlenja;

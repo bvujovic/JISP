@@ -22,7 +22,7 @@ namespace JISP.Forms
             var asdf = ds.Skole.AddSkoleRow("asdf");
             ds.Skole.AddSkoleRow("qwer");
 
-            ds.Ucenici.AddUceniciRow("pera", "petrovic", "222222", null);
+            //ds.Ucenici.AddUceniciRow("pera", "petrovic", "222222", null);
         }
     }
 }

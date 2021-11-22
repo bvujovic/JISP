@@ -61,6 +61,12 @@
     <Compile Include="Controls\UcExitApp.Designer.cs">
       <DependentUpon>UcExitApp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UcFilterTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\UcFilterTextBox.Designer.cs">
+      <DependentUpon>UcFilterTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UcLeftPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -91,6 +97,12 @@
     </Compile>
     <Compile Include="Forms\FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmOdRaz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmOdRaz.Designer.cs">
+      <DependentUpon>FrmOdRaz.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmSrednjoskolci.cs">
       <SubType>Form</SubType>

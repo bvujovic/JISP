@@ -40,16 +40,37 @@ namespace JISP.Data
                 DataFolder = System.Windows.Forms.Application.StartupPath;
             LoadDsData();
 
-            DodajSkolu("Основна");
-            DodajSkolu("Средња");
+            var os = AddSchool("Основна");
+            var ss = AddSchool("Средња");
+            var us = AddSchool("Уч. стандард");
+
+            AddClass("I разред ОШ", os);
+            AddClass("II разред ОШ", os);
+            AddClass("III разред ОШ", os);
+            AddClass("IV разред ОШ", os);
+            AddClass("V разред ОШ", os);
+            AddClass("VI разред ОШ", os);
+            AddClass("VII разред ОШ", os);
+            AddClass("VIII разред ОШ", os);
+            AddClass("I разред СрШ", ss);
+            AddClass("II разред СрШ", ss);
+            AddClass("III разред СрШ", ss);
+        }
+
+        /// <summary>Dodavanje razreda ako ne postoji u tabeli.</summary>
+        private static void AddClass(string naziv, Ds.SkoleRow skola)
+        {
+            var c = Ds.Razredi.FirstOrDefault
+                (it => it.Naziv == naziv && it.SkoleRow.IdSkole == skola.IdSkole);
+            if (c == null)
+                Ds.Razredi.AddRazrediRow(naziv, skola);
         }
 
         /// <summary>Dodavanje skole ako ne postoji u tabeli.</summary>
-        private static void DodajSkolu(string naziv)
+        private static Ds.SkoleRow AddSchool(string naziv)
         {
             var s = Ds.Skole.FirstOrDefault(it => it.Naziv == naziv);
-            if (s == null)
-                Ds.Skole.AddSkoleRow(naziv);
+            return s ?? Ds.Skole.AddSkoleRow(naziv);
         }
 
         /// <summary>Ucitavanje podataka u DataSet iz fajla.</summary>

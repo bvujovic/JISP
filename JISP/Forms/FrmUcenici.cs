@@ -19,7 +19,9 @@ namespace JISP.Forms
         {
             bsUcenici.DataSource = Data.AppData.Ds;
             bsSkole.DataSource = Data.AppData.Ds;
+            bsRazredi.DataSource = Data.AppData.Ds;
             dgv.SetupDgvComboColumn(dgvcSkola, bsSkole, "Naziv", "IdSkole", "IdSkole");
+            dgv.SetupDgvComboColumn(dgvcRazred, bsRazredi, "Naziv", "IdRazreda", "IdRazreda");
 
             DisplayRowCount();
             colOriginal = lblStatus.BackColor;
@@ -67,39 +69,37 @@ namespace JISP.Forms
 
         private void TxtFilter_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Down)
-            {
-                bsUcenici.MoveNext();
-                e.Handled = true;
-            }
-            if (e.KeyCode == Keys.Up)
-            {
-                bsUcenici.MovePrevious();
-                e.Handled = true;
-            }
-
             if (e.KeyCode == Keys.Enter)
             {
                 dgv.CopyCellText(dgvcJOB.Index);
                 e.SuppressKeyPress = true; // protiv "kling" zvuka
             }
-            if (e.KeyCode == Keys.Escape)
-            {
-                txtFilter.Clear();
-                e.SuppressKeyPress = true; // protiv "kling" zvuka
-            }
         }
 
         private void BtnSrednjoskolci_Click(object sender, EventArgs e)
-        {
-            Classes.Utils.ShowForm(typeof(FrmSrednjoskolci));
-        }
+            => Classes.Utils.ShowForm(typeof(FrmSrednjoskolci));
+
+        private void BtnOdRaz_Click(object sender, EventArgs e)
+            => Classes.Utils.ShowForm(typeof(FrmOdRaz));
 
         private void ChkAllowNew_CheckedChanged(object sender, EventArgs e)
         {
             dgv.AllowUserToAddRows = chkAllowNew.Checked;
             if (chkAllowNew.Checked)
                 bsUcenici.MoveLast();
+        }
+
+        private void Dgv_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            var msg = e.Exception?.Message;
+            if (msg != null)
+            {
+                var caption = "Greška u tabeli.";
+                msg += "\r\n\r\nPrikaži dodatne informacije?";
+                var res = Classes.Utils.ShowMboxYesNo(msg, caption);
+                if (res == DialogResult.Yes)
+                    Classes.Utils.ShowMbox(e.Exception.StackTrace, caption);
+            }
         }
     }
 }

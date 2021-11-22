@@ -49,7 +49,8 @@ namespace JISP.Forms
             {
                 sb.AppendLine(caption);
                 foreach (var tbl in ds.Tables.OfType<DataTable>()
-                    .Where(it => it.Rows.Count > 0 && it.TableName != "Skole"))
+                    .Where(it => it.Rows.Count > 0
+                    && it.TableName != "Skole" && it.TableName != "Razredi"))
                     sb.AppendLine(tbl.TableName + ": " + tbl.Rows.Count);
             }
         }
