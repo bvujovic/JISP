@@ -31,8 +31,12 @@ namespace JISP.Data
         public async static Task<List<T>> GetList<T>(ReqEnum reqEnum)
         {
             var json = await GetJson(reqEnum);
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<List<T>>(json);
+            //B return Newtonsoft.Json.JsonConvert.DeserializeObject<List<T>>(json);
+            return DeserializeList<T>(json);
         }
+
+        public static List<T> DeserializeList<T>(string json)
+            => Newtonsoft.Json.JsonConvert.DeserializeObject<List<T>>(json);
 
         /// <summary>Dohvata trazeni objekat od JISP WebAPI-a.</summary>
         public async static Task<T> GetObject<T>(ReqEnum reqEnum, string param = null)

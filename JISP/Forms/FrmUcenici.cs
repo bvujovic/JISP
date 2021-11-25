@@ -57,7 +57,7 @@ namespace JISP.Forms
                 var s = txtFilter.Text;
                 bsUcenici.Filter = $"Ime LIKE '%{s}%' OR Prezime LIKE '%{s}%' OR JOB LIKE '%{s}%' ";
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            catch (Exception ex) { Classes.Utils.ShowMbox(ex, "Greška pri filtriranju podataka"); }
             DisplayRowCount();
         }
 
@@ -100,6 +100,40 @@ namespace JISP.Forms
                 if (res == DialogResult.Yes)
                     Classes.Utils.ShowMbox(e.Exception.StackTrace, caption);
             }
+        }
+
+        /// <summary>
+        /// Ucitavaju se podaci o ucenicima na osnovu vec preuzetog JSON fajla
+        /// (Pregled zahteva) i izdvajaju se oni ciji JOBovi nisu 
+        /// pronadjeni u postojecem spisku ucenika.
+        /// </summary>
+        private void BtnNoviUcenici_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var ofd = new OpenFileDialog
+                {
+                    InitialDirectory = Data.AppData.FilePath(""),
+                    Filter = "PreuzmiListuZahteva.json|PreuzmiListuZahteva.json|JSON files (*.json)|*.json|All Files (*.*)|*.*"
+                };
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    var json = System.IO.File.ReadAllText(ofd.FileName);
+                    var ucenici = Data.WebApi.DeserializeList<Data.JobZahtev>(json);
+
+                    var novi = new HashSet<Data.Ucenik>();
+                    foreach (var uc in ucenici.Where(it => it.Lice != null))
+                    {
+                        var row = Data.AppData.Ds.Ucenici.FirstOrDefault(it => it.JOB == uc.Lice.JOB);
+                        if (row == null)
+                            novi.Add(uc.Lice);
+                    }
+                    Clipboard.SetText(string.Join(Environment.NewLine, novi.OrderBy(it => it.NazivUcenika)));
+                    Classes.Utils.ShowMbox
+                        ("Lista novih JOBova sa imenima učenika je u clipboard-u.", "Učitavanje JOB-ova");
+                }
+            }
+            catch (Exception ex) { Classes.Utils.ShowMbox(ex, "Učitavanje JOB-ova"); }
         }
     }
 }

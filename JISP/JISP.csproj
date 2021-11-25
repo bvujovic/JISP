@@ -82,7 +82,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Ds.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Data\JobZahtev.cs" />
     <Compile Include="Data\Srednjoskolac.cs" />
+    <Compile Include="Data\Ucenik.cs" />
     <Compile Include="Data\WebApi.cs" />
     <Compile Include="Data\Zaposleni.cs" />
     <Compile Include="Data\Zaposlenje.cs" />

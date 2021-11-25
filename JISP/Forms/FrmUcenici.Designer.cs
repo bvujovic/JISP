@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
+            this.btnUcitajSveJOBove = new System.Windows.Forms.Button();
             this.btnOdRaz = new System.Windows.Forms.Button();
             this.chkAllowNew = new System.Windows.Forms.CheckBox();
             this.btnSrednjoskolci = new System.Windows.Forms.Button();
@@ -62,6 +63,7 @@
             // 
             // pnlLeft
             // 
+            this.pnlLeft.Controls.Add(this.btnUcitajSveJOBove);
             this.pnlLeft.Controls.Add(this.btnOdRaz);
             this.pnlLeft.Controls.Add(this.chkAllowNew);
             this.pnlLeft.Controls.Add(this.btnSrednjoskolci);
@@ -77,6 +79,17 @@
             this.pnlLeft.RightWingWidth = 8;
             this.pnlLeft.Size = new System.Drawing.Size(150, 423);
             this.pnlLeft.TabIndex = 0;
+            // 
+            // btnUcitajSveJOBove
+            // 
+            this.btnUcitajSveJOBove.Location = new System.Drawing.Point(7, 381);
+            this.btnUcitajSveJOBove.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUcitajSveJOBove.Name = "btnUcitajSveJOBove";
+            this.btnUcitajSveJOBove.Size = new System.Drawing.Size(127, 38);
+            this.btnUcitajSveJOBove.TabIndex = 6;
+            this.btnUcitajSveJOBove.Text = "Novi učenici?...";
+            this.btnUcitajSveJOBove.UseVisualStyleBackColor = true;
+            this.btnUcitajSveJOBove.Click += new System.EventHandler(this.BtnNoviUcenici_Click);
             // 
             // btnOdRaz
             // 
@@ -323,5 +336,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcOdeljenje;
         private System.Windows.Forms.BindingSource bsRazredi;
         private System.Windows.Forms.Button btnOdRaz;
+        private System.Windows.Forms.Button btnUcitajSveJOBove;
     }
 }
