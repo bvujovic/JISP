@@ -1,4 +1,5 @@
 ﻿using JISP.Classes;
+using JISP.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,43 +13,60 @@ namespace JISP.Forms
         {
             InitializeComponent();
 
-            bsZaposleni.DataSource = Ds = Data.AppData.Ds;
+            bsZaposleni.DataSource = Ds = AppData.Ds;
             bsZaposlenja.DataMember = "FK_Zaposleni_Zaposlenja";
             bsZaposlenja.Sort = "Aktivan DESC";
-            DisplayRowCount();
+            DisplayPositionRowCount();
         }
 
-        private readonly Data.Ds Ds;
+        private readonly Ds Ds;
+
+        private void ChkCopyOnClick_CheckedChanged(object sender, EventArgs e)
+            => dgvZaposleni.CopyOnCellClick = dgvZaposlenja.CopyOnCellClick = chkCopyOnClick.Checked;
 
         private void BtnSaveData_Click(object sender, EventArgs e)
-            => Data.AppData.SaveDsData();
+            => AppData.SaveDsData();
 
-        private void DisplayRowCount()
-            => lblRowCount.Text = $"Redova: {bsZaposleni.Count}";
+        private void DisplayPositionRowCount()
+            => lblRowCount.Text = $"Red {bsZaposleni.Position + 1} / {bsZaposleni.Count}";
 
-        private void TxtFilter_TextChanged(object sender, EventArgs e)
+        private void BsZaposleni_CurrentChanged(object sender, EventArgs e)
+            => DisplayPositionRowCount();
+
+        /// <summary>Za dati naziv radnog mesta ili njegov deo,
+        /// vraca skup IDeva zaposlenih sa tim radim mestom.</summary>
+        private static IEnumerable<int> FilterZaposleniIDs(string s)
+        {
+            var ids = new HashSet<int>();
+            foreach (var zap in AppData.Ds.Zaposlenja.Where
+                (it => it.RadnoMestoNaziv.Contains(s)))
+                ids.Add(zap.IdZaposlenog);
+            return ids;
+        }
+
+        private void FilterChanged(object sender, EventArgs e)
         {
             try
             {
                 var s = txtFilter.Text;
-                bsZaposleni.Filter = $"Ime LIKE '%{s}%' OR Prezime LIKE '%{s}%' OR JMBG LIKE '%{s}%' ";
+                // osnovna pretraga: ime, prezime, jmbg
+                var filter = $"Ime LIKE '%{s}%' OR Prezime LIKE '%{s}%' OR JMBG LIKE '%{s}%' ";
+                // pretraga po zaposlenjima (radna mesta)
+                var ids = FilterZaposleniIDs(s);
+                if (ids.Count() > 0)
+                    filter += $" OR IdZaposlenog IN ({string.Join(", ", ids)})";
+                // da li je zaposleni aktivan ili ne
+                if (chkAktivniZap.CheckState != CheckState.Indeterminate)
+                    filter = $"({filter}) AND Aktivan = {chkAktivniZap.Checked}";
+                bsZaposleni.Filter = filter;
+
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
-            DisplayRowCount();
+            catch (Exception ex) { Utils.ShowMbox(ex, "Pretraga zaposlenih"); }
+            DisplayPositionRowCount();
         }
 
-        private void ChkAktivniZap_CheckStateChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (chkAktivniZap.CheckState == CheckState.Indeterminate)
-                    bsZaposleni.RemoveFilter();
-                else
-                    bsZaposleni.Filter = $"Aktivan = {chkAktivniZap.Checked}";
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
-            DisplayRowCount();
-        }
+        private void TxtFilter_FilterCleared(object sender, EventArgs e)
+            => chkAktivniZap.CheckState = CheckState.Indeterminate;
 
         /// <summary>Ucitavanje JSON podataka o zaposlenima iz clipboard-a.</summary>
         private void BtnLoadData_Click(object sender, EventArgs e)
@@ -60,7 +78,7 @@ namespace JISP.Forms
                 Ds.Zaposlenja.Clear();
                 var json = Clipboard.GetText();
                 var zaps = Newtonsoft.Json.JsonConvert.DeserializeObject
-                    <List<Data.Zaposleni>>(json);
+                    <List<Zaposleni>>(json);
                 foreach (var zap in zaps)
                     try
                     {
@@ -97,13 +115,13 @@ namespace JISP.Forms
                     }
                     catch (Exception ex)
                     {
-                        if (!chkLoadWoMsgs.Checked &&
-                            Utils.ShowMboxYesNo($"Greška: {ex.Message}\r\nNastavi učitavanje?", btnLoadData.Text) != DialogResult.Yes)
+                        if (Utils.ShowMboxYesNo($"Greška: {ex.Message}\r\nNastavi učitavanje?", btnLoadData.Text)
+                            != DialogResult.Yes)
                             break;
                     }
             }
             catch (Exception ex) { Utils.ShowMbox(ex, btnLoadData.Text); }
-            DisplayRowCount();
+            DisplayPositionRowCount();
         }
 
         private void DgvZaposleni_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -111,7 +129,7 @@ namespace JISP.Forms
             if (e.ColumnIndex != dgvcZapId.Index || e.RowIndex == -1)
                 return;
             var drv = dgvZaposleni.CurrentRow.DataBoundItem as System.Data.DataRowView;
-            if (drv.Row is Data.Ds.ZaposleniRow zap)
+            if (drv.Row is Ds.ZaposleniRow zap)
             {
                 var url = $"https://jisp.mpn.gov.rs/regzaposlenih/sekcije/{zap.JMBG}/{zap.IdZaposlenog}";
                 Utils.GoToLink(url);

@@ -44,17 +44,17 @@ namespace JISP.Data
             var ss = AddSchool("Средња");
             var us = AddSchool("Уч. стандард");
 
-            AddClass("I разред ОШ", os);
-            AddClass("II разред ОШ", os);
-            AddClass("III разред ОШ", os);
-            AddClass("IV разред ОШ", os);
-            AddClass("V разред ОШ", os);
-            AddClass("VI разред ОШ", os);
-            AddClass("VII разред ОШ", os);
-            AddClass("VIII разред ОШ", os);
-            AddClass("I разред СрШ", ss);
-            AddClass("II разред СрШ", ss);
-            AddClass("III разред СрШ", ss);
+            //AddClass("I разред ОШ", os);
+            //AddClass("II разред ОШ", os);
+            //AddClass("III разред ОШ", os);
+            //AddClass("IV разред ОШ", os);
+            //AddClass("V разред ОШ", os);
+            //AddClass("VI разред ОШ", os);
+            //AddClass("VII разред ОШ", os);
+            //AddClass("VIII разред ОШ", os);
+            //AddClass("I разред СрШ", ss);
+            //AddClass("II разред СрШ", ss);
+            //AddClass("III разред СрШ", ss);
         }
 
         /// <summary>Dodavanje razreda ako ne postoji u tabeli.</summary>

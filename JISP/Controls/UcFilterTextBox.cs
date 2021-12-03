@@ -40,7 +40,11 @@ namespace JISP.Controls
             {
                 Clear();
                 e.SuppressKeyPress = true; // protiv "kling" zvuka
+                FilterCleared?.Invoke(this, EventArgs.Empty);
             }
         }
+
+        /// <summary>Esc taster -> brisanje sadrzaja text box-a.</summary>
+        public event EventHandler FilterCleared;
     }
 }

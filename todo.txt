@@ -1,5 +1,3 @@
-﻿- prikaz samo ne/aktivnih/svih. check box aktivni sa 3state -> spojiti ovo sa text filterom
-- zaposlenja zaposlenih
-    - ucitavanje
-    - prikazivanje
-    - cuvanje
+﻿+ prikaz samo ne/aktivnih/svih. check box aktivni sa 3state -> spojiti ovo sa text filterom
++ FrmZaposleni: chk podesavanje kopiranje teksta na klik iz dgv-a
+- preuzimanje i prikaz podataka o razredima i odeljenjima

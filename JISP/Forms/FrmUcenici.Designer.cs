@@ -42,16 +42,16 @@
             this.ds = new JISP.Data.Ds();
             this.bsSkole = new System.Windows.Forms.BindingSource(this.components);
             this.dgv = new JISP.Controls.UcDGV();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.bsRazredi = new System.Windows.Forms.BindingSource(this.components);
             this.dgvcIdUcenika = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcIme = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcPrezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcJOB = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcSkola = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.dgvcRazred = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dgvcSkola = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcRazred = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcOdeljenje = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.bsRazredi = new System.Windows.Forms.BindingSource(this.components);
             this.pnlLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsUcenici)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
@@ -197,6 +197,7 @@
             this.dgvcSkola,
             this.dgvcRazred,
             this.dgvcOdeljenje});
+            this.dgv.CopyOnCellClick = false;
             this.dgv.DataSource = this.bsUcenici;
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv.Location = new System.Drawing.Point(150, 0);
@@ -207,6 +208,28 @@
             this.dgv.Size = new System.Drawing.Size(876, 423);
             this.dgv.TabIndex = 0;
             this.dgv.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.Dgv_DataError);
+            // 
+            // statusStrip
+            // 
+            this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblStatus});
+            this.statusStrip.Location = new System.Drawing.Point(0, 423);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(1026, 27);
+            this.statusStrip.TabIndex = 2;
+            this.statusStrip.Text = "statusStrip1";
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(16, 21);
+            this.lblStatus.Text = "/";
+            // 
+            // bsRazredi
+            // 
+            this.bsRazredi.DataMember = "Razredi";
+            this.bsRazredi.DataSource = this.ds;
             // 
             // dgvcIdUcenika
             // 
@@ -244,46 +267,31 @@
             // 
             // dgvcSkola
             // 
+            this.dgvcSkola.DataPropertyName = "Skola";
             this.dgvcSkola.HeaderText = "Škola";
             this.dgvcSkola.MinimumWidth = 6;
             this.dgvcSkola.Name = "dgvcSkola";
+            this.dgvcSkola.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvcSkola.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dgvcSkola.Width = 125;
             // 
             // dgvcRazred
             // 
+            this.dgvcRazred.DataPropertyName = "Razred";
             this.dgvcRazred.HeaderText = "Razred";
             this.dgvcRazred.MinimumWidth = 6;
             this.dgvcRazred.Name = "dgvcRazred";
+            this.dgvcRazred.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvcRazred.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dgvcRazred.Width = 125;
             // 
             // dgvcOdeljenje
             // 
+            this.dgvcOdeljenje.DataPropertyName = "Odeljenje";
             this.dgvcOdeljenje.HeaderText = "Odeljenje";
             this.dgvcOdeljenje.MinimumWidth = 6;
             this.dgvcOdeljenje.Name = "dgvcOdeljenje";
             this.dgvcOdeljenje.Width = 125;
-            // 
-            // statusStrip
-            // 
-            this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblStatus});
-            this.statusStrip.Location = new System.Drawing.Point(0, 423);
-            this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(1026, 27);
-            this.statusStrip.TabIndex = 2;
-            this.statusStrip.Text = "statusStrip1";
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(16, 21);
-            this.lblStatus.Text = "/";
-            // 
-            // bsRazredi
-            // 
-            this.bsRazredi.DataMember = "Razredi";
-            this.bsRazredi.DataSource = this.ds;
             // 
             // FrmUcenici
             // 
@@ -327,15 +335,15 @@
         private System.Windows.Forms.Button btnSrednjoskolci;
         private System.Windows.Forms.CheckBox chkAllowNew;
         private System.Windows.Forms.BindingSource bsSkole;
+        private System.Windows.Forms.BindingSource bsRazredi;
+        private System.Windows.Forms.Button btnOdRaz;
+        private System.Windows.Forms.Button btnUcitajSveJOBove;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcIdUcenika;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcIme;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcPrezime;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcJOB;
-        private System.Windows.Forms.DataGridViewComboBoxColumn dgvcSkola;
-        private System.Windows.Forms.DataGridViewComboBoxColumn dgvcRazred;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcSkola;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcRazred;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcOdeljenje;
-        private System.Windows.Forms.BindingSource bsRazredi;
-        private System.Windows.Forms.Button btnOdRaz;
-        private System.Windows.Forms.Button btnUcitajSveJOBove;
     }
 }

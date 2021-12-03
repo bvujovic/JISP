@@ -64,6 +64,11 @@ namespace JISP.Data
 
             Uc_DuosSrednjoskolci,
             Uc_DuosSrednjoskolciId,
+
+            /// <summary>DUOS osnovna skola: job, razred, odeljenje</summary>
+            Uc_DuosOS,
+            /// <summary>DUOS srednja skola: job, razred, odeljenje</summary>
+            Uc_DuosSS,
         }
 
         private static string UrlForReq(ReqEnum reqEnum, string param = null)
@@ -80,6 +85,11 @@ namespace JISP.Data
                     return urlBase + "ucenik/VratiUpisSrednjeByUstanovaId/18976";
                 case ReqEnum.Uc_DuosSrednjoskolciId:
                     return urlBase + $"ucenik/VratiUpisSrednjeObrazovanjeById/{param}";
+
+                case ReqEnum.Uc_DuosOS:
+                    return urlBase + "ucenik/VratiUpisOsnovnoByUstanovaId/18976";
+                case ReqEnum.Uc_DuosSS:
+                    return urlBase + "ucenik/VratiUpisSrednjeByUstanovaId/18976";
                 default:
                     throw new Exception("Nepostojeci reqEnum: " + reqEnum);
             }

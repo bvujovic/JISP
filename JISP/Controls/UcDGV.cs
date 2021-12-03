@@ -27,10 +27,15 @@ namespace JISP.Controls
             return drv.Row as T;
         }
 
+        /// <summary>Da li se tekst celije kopira u klipbord pri kliku na celiju.</summary>
+        public bool CopyOnCellClick { get; set; } = false;
+
         protected override void OnCellClick(DataGridViewCellEventArgs e)
         {
             base.OnCellClick(e);
-            if (e.ColumnIndex != -1 && e.RowIndex != -1 && SelectedCells.Count > 0)
+            if (CopyOnCellClick
+                && e.ColumnIndex != -1 && e.RowIndex != -1 && SelectedCells.Count > 0
+                && Columns[e.ColumnIndex].CellType == typeof(DataGridViewTextBoxCell))
                 CopyCellText(SelectedCells[0]);
         }
 

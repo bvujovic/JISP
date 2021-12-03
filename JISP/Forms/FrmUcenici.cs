@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JISP.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,8 +21,9 @@ namespace JISP.Forms
             bsUcenici.DataSource = Data.AppData.Ds;
             bsSkole.DataSource = Data.AppData.Ds;
             bsRazredi.DataSource = Data.AppData.Ds;
-            dgv.SetupDgvComboColumn(dgvcSkola, bsSkole, "Naziv", "IdSkole", "IdSkole");
-            dgv.SetupDgvComboColumn(dgvcRazred, bsRazredi, "Naziv", "IdRazreda", "IdRazreda");
+            dgv.CopyOnCellClick = true;
+            //dgv.SetupDgvComboColumn(dgvcSkola, bsSkole, "Naziv", "IdSkole", "IdSkole");
+            //dgv.SetupDgvComboColumn(dgvcRazred, bsRazredi, "Naziv", "IdRazreda", "IdRazreda");
 
             DisplayRowCount();
             colOriginal = lblStatus.BackColor;
@@ -57,7 +59,7 @@ namespace JISP.Forms
                 var s = txtFilter.Text;
                 bsUcenici.Filter = $"Ime LIKE '%{s}%' OR Prezime LIKE '%{s}%' OR JOB LIKE '%{s}%' ";
             }
-            catch (Exception ex) { Classes.Utils.ShowMbox(ex, "Greška pri filtriranju podataka"); }
+            catch (Exception ex) { Utils.ShowMbox(ex, "Greška pri filtriranju podataka"); }
             DisplayRowCount();
         }
 
@@ -77,10 +79,31 @@ namespace JISP.Forms
         }
 
         private void BtnSrednjoskolci_Click(object sender, EventArgs e)
-            => Classes.Utils.ShowForm(typeof(FrmSrednjoskolci));
+            => Utils.ShowForm(typeof(FrmSrednjoskolci));
 
-        private void BtnOdRaz_Click(object sender, EventArgs e)
-            => Classes.Utils.ShowForm(typeof(FrmOdRaz));
+        private async void BtnOdRaz_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var os = await Data.WebApi.GetList<Data.DUOS>(Data.WebApi.ReqEnum.Uc_DuosOS);
+                //TODO ima li duplikata JOBova u ovom skupu...
+                // kako imam 43, a ne 62 izmenjena reda
+                foreach (var duos in os)
+                {
+                    var uc = Data.AppData.Ds.Ucenici.FirstOrDefault(it => it.JOB == duos.JOB);
+                    if (uc != null)
+                    {
+                        uc.Skola = "Основна";
+                        uc.Razred = duos.Razred;
+                        uc.Odeljenje = duos.Odeljenje;
+                    }
+                    else
+                        throw new Exception($"JOB {duos.JOB} nije pronadjen.");
+                }
+                //TODO isto ovo uraditi i za srednjoskolce
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, "Uzimanje podataka o razredima i odeljenjima"); }
+        }
 
         private void ChkAllowNew_CheckedChanged(object sender, EventArgs e)
         {
@@ -96,9 +119,9 @@ namespace JISP.Forms
             {
                 var caption = "Greška u tabeli.";
                 msg += "\r\n\r\nPrikaži dodatne informacije?";
-                var res = Classes.Utils.ShowMboxYesNo(msg, caption);
+                var res = Utils.ShowMboxYesNo(msg, caption);
                 if (res == DialogResult.Yes)
-                    Classes.Utils.ShowMbox(e.Exception.StackTrace, caption);
+                    Utils.ShowMbox(e.Exception.StackTrace, caption);
             }
         }
 
@@ -129,7 +152,7 @@ namespace JISP.Forms
                             novi.Add(uc.Lice);
                     }
                     Clipboard.SetText(string.Join(Environment.NewLine, novi.OrderBy(it => it.NazivUcenika)));
-                    Classes.Utils.ShowMbox
+                    Utils.ShowMbox
                         ("Lista novih JOBova sa imenima učenika je u clipboard-u.", "Učitavanje JOB-ova");
                 }
             }
