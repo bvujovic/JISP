@@ -101,12 +101,6 @@
     <Compile Include="Forms\FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FrmOdRaz.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FrmOdRaz.Designer.cs">
-      <DependentUpon>FrmOdRaz.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\FrmSrednjoskolci.cs">
       <SubType>Form</SubType>
     </Compile>

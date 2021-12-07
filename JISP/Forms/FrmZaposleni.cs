@@ -37,9 +37,10 @@ namespace JISP.Forms
         /// vraca skup IDeva zaposlenih sa tim radim mestom.</summary>
         private static IEnumerable<int> FilterZaposleniIDs(string s)
         {
+            s = s.ToLower();
             var ids = new HashSet<int>();
             foreach (var zap in AppData.Ds.Zaposlenja.Where
-                (it => it.RadnoMestoNaziv.Contains(s)))
+                (it => it.RadnoMestoNaziv.ToLower().Contains(s)))
                 ids.Add(zap.IdZaposlenog);
             return ids;
         }

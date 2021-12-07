@@ -1,10 +1,11 @@
 ﻿using JISP.Classes;
+using JISP.Data;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JISP.Forms
@@ -18,14 +19,9 @@ namespace JISP.Forms
 
         private void FrmUcenici_Load(object sender, EventArgs e)
         {
-            bsUcenici.DataSource = Data.AppData.Ds;
-            bsSkole.DataSource = Data.AppData.Ds;
-            bsRazredi.DataSource = Data.AppData.Ds;
+            bsUcenici.DataSource = AppData.Ds;
             dgv.CopyOnCellClick = true;
-            //dgv.SetupDgvComboColumn(dgvcSkola, bsSkole, "Naziv", "IdSkole", "IdSkole");
-            //dgv.SetupDgvComboColumn(dgvcRazred, bsRazredi, "Naziv", "IdRazreda", "IdRazreda");
-
-            DisplayRowCount();
+            DisplayPositionRowCount();
             colOriginal = lblStatus.BackColor;
             dgv.CellTextCopied += Dgv_CellTextCopied;
             lblStatus.TextChanged += LblStatus_TextChanged;
@@ -57,17 +53,18 @@ namespace JISP.Forms
             try
             {
                 var s = txtFilter.Text;
-                bsUcenici.Filter = $"Ime LIKE '%{s}%' OR Prezime LIKE '%{s}%' OR JOB LIKE '%{s}%' ";
+                bsUcenici.Filter = $"Ime LIKE '%{s}%' OR Prezime LIKE '%{s}%' OR JOB LIKE '%{s}%' "
+                        + $" OR Skola LIKE '%{s}%' OR Razred LIKE '%{s}%' OR Odeljenje LIKE '%{s}%'";
             }
             catch (Exception ex) { Utils.ShowMbox(ex, "Greška pri filtriranju podataka"); }
-            DisplayRowCount();
+            DisplayPositionRowCount();
         }
 
-        private void DisplayRowCount()
-            => lblRowCount.Text = $"Redova: {bsUcenici.Count}";
+        private void DisplayPositionRowCount()
+             => lblRowCount.Text = $"Red {bsUcenici.Position + 1} / {bsUcenici.Count}";
 
         private void BtnSaveData_Click(object sender, EventArgs e)
-            => Data.AppData.SaveDsData();
+            => AppData.SaveDsData();
 
         private void TxtFilter_KeyDown(object sender, KeyEventArgs e)
         {
@@ -85,24 +82,30 @@ namespace JISP.Forms
         {
             try
             {
-                var os = await Data.WebApi.GetList<Data.DUOS>(Data.WebApi.ReqEnum.Uc_DuosOS);
-                //TODO ima li duplikata JOBova u ovom skupu...
-                // kako imam 43, a ne 62 izmenjena reda
-                foreach (var duos in os)
-                {
-                    var uc = Data.AppData.Ds.Ucenici.FirstOrDefault(it => it.JOB == duos.JOB);
-                    if (uc != null)
-                    {
-                        uc.Skola = "Основна";
-                        uc.Razred = duos.Razred;
-                        uc.Odeljenje = duos.Odeljenje;
-                    }
-                    else
-                        throw new Exception($"JOB {duos.JOB} nije pronadjen.");
-                }
-                //TODO isto ovo uraditi i za srednjoskolce
+                await GetDuosData(WebApi.ReqEnum.Uc_DuosOS);
+                await GetDuosData(WebApi.ReqEnum.Uc_DuosSS);
             }
             catch (Exception ex) { Utils.ShowMbox(ex, "Uzimanje podataka o razredima i odeljenjima"); }
+        }
+
+        /// <summary>Preuzimanje DUOS podataka o ucenicima za tekucu sk. godinu.</summary>
+        private static async Task GetDuosData(WebApi.ReqEnum reqEnumDuos)
+        {
+            var data = await WebApi.GetList<DUOS>(reqEnumDuos);
+            data = data.Where(it => it.SkolskaGodina == DUOS.TekucaSkGod)
+                .ToList();
+            foreach (var duos in data)
+            {
+                var uc = AppData.Ds.Ucenici.FirstOrDefault(it => it.JOB == duos.JOB);
+                if (uc != null)
+                {
+                    uc.Skola = reqEnumDuos == WebApi.ReqEnum.Uc_DuosOS ? "Основна" : "Средња";
+                    uc.Razred = duos.Razred;
+                    uc.Odeljenje = duos.Odeljenje;
+                }
+                else
+                    throw new Exception($"JOB {duos.JOB} nije pronadjen.");
+            }
         }
 
         private void ChkAllowNew_CheckedChanged(object sender, EventArgs e)
@@ -136,18 +139,18 @@ namespace JISP.Forms
             {
                 var ofd = new OpenFileDialog
                 {
-                    InitialDirectory = Data.AppData.FilePath(""),
+                    InitialDirectory = AppData.FilePath(""),
                     Filter = "PreuzmiListuZahteva.json|PreuzmiListuZahteva.json|JSON files (*.json)|*.json|All Files (*.*)|*.*"
                 };
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
                     var json = System.IO.File.ReadAllText(ofd.FileName);
-                    var ucenici = Data.WebApi.DeserializeList<Data.JobZahtev>(json);
+                    var ucenici = WebApi.DeserializeList<JobZahtev>(json);
 
-                    var novi = new HashSet<Data.Ucenik>();
+                    var novi = new HashSet<Ucenik>();
                     foreach (var uc in ucenici.Where(it => it.Lice != null))
                     {
-                        var row = Data.AppData.Ds.Ucenici.FirstOrDefault(it => it.JOB == uc.Lice.JOB);
+                        var row = AppData.Ds.Ucenici.FirstOrDefault(it => it.JOB == uc.Lice.JOB);
                         if (row == null)
                             novi.Add(uc.Lice);
                     }
@@ -156,7 +159,10 @@ namespace JISP.Forms
                         ("Lista novih JOBova sa imenima učenika je u clipboard-u.", "Učitavanje JOB-ova");
                 }
             }
-            catch (Exception ex) { Classes.Utils.ShowMbox(ex, "Učitavanje JOB-ova"); }
+            catch (Exception ex) { Utils.ShowMbox(ex, "Učitavanje JOB-ova"); }
         }
+
+        private void BsUcenici_CurrentChanged(object sender, EventArgs e)
+            => DisplayPositionRowCount();
     }
 }

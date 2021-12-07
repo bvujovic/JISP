@@ -75,8 +75,6 @@ namespace JISP.Classes
                     frm = new Forms.FrmUcenici();
                 if (typForm == typeof(Forms.FrmSrednjoskolci))
                     frm = new Forms.FrmSrednjoskolci();
-                if (typForm == typeof(Forms.FrmOdRaz))
-                    frm = new Forms.FrmOdRaz();
             }
             frm.Show();
             frm.WindowState = FormWindowState.Minimized;

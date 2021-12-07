@@ -29,6 +29,18 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.bsUcenici = new System.Windows.Forms.BindingSource(this.components);
+            this.ds = new JISP.Data.Ds();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.dgv = new JISP.Controls.UcDGV();
+            this.dgvcIdUcenika = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcIme = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcPrezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcJOB = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcSkola = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcRazred = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcOdeljenje = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
             this.btnUcitajSveJOBove = new System.Windows.Forms.Button();
             this.btnOdRaz = new System.Windows.Forms.Button();
@@ -38,28 +50,124 @@
             this.lblRowCount = new System.Windows.Forms.Label();
             this.btnSaveData = new System.Windows.Forms.Button();
             this.txtFilter = new JISP.Controls.UcFilterTextBox();
-            this.bsUcenici = new System.Windows.Forms.BindingSource(this.components);
-            this.ds = new JISP.Data.Ds();
-            this.bsSkole = new System.Windows.Forms.BindingSource(this.components);
-            this.dgv = new JISP.Controls.UcDGV();
-            this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.bsRazredi = new System.Windows.Forms.BindingSource(this.components);
-            this.dgvcIdUcenika = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcIme = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcPrezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcJOB = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcSkola = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcRazred = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcOdeljenje = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pnlLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsUcenici)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSkole)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.statusStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsRazredi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
+            this.pnlLeft.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // bsUcenici
+            // 
+            this.bsUcenici.DataMember = "Ucenici";
+            this.bsUcenici.DataSource = this.ds;
+            this.bsUcenici.CurrentChanged += new System.EventHandler(this.BsUcenici_CurrentChanged);
+            // 
+            // ds
+            // 
+            this.ds.DataSetName = "Ds";
+            this.ds.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // statusStrip
+            // 
+            this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblStatus});
+            this.statusStrip.Location = new System.Drawing.Point(0, 423);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(1026, 27);
+            this.statusStrip.TabIndex = 2;
+            this.statusStrip.Text = "statusStrip1";
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(16, 21);
+            this.lblStatus.Text = "/";
+            // 
+            // dgv
+            // 
+            this.dgv.AllowUserToAddRows = false;
+            this.dgv.AllowUserToDeleteRows = false;
+            this.dgv.AutoGenerateColumns = false;
+            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvcIdUcenika,
+            this.dgvcIme,
+            this.dgvcPrezime,
+            this.dgvcJOB,
+            this.dgvcSkola,
+            this.dgvcRazred,
+            this.dgvcOdeljenje});
+            this.dgv.CopyOnCellClick = false;
+            this.dgv.DataSource = this.bsUcenici;
+            this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv.Location = new System.Drawing.Point(150, 0);
+            this.dgv.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgv.Name = "dgv";
+            this.dgv.RowHeadersWidth = 30;
+            this.dgv.RowTemplate.Height = 24;
+            this.dgv.Size = new System.Drawing.Size(876, 423);
+            this.dgv.TabIndex = 1;
+            this.dgv.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.Dgv_DataError);
+            // 
+            // dgvcIdUcenika
+            // 
+            this.dgvcIdUcenika.DataPropertyName = "IdUcenika";
+            this.dgvcIdUcenika.HeaderText = "IdUcenika";
+            this.dgvcIdUcenika.MinimumWidth = 6;
+            this.dgvcIdUcenika.Name = "dgvcIdUcenika";
+            this.dgvcIdUcenika.Visible = false;
+            this.dgvcIdUcenika.Width = 125;
+            // 
+            // dgvcIme
+            // 
+            this.dgvcIme.DataPropertyName = "Ime";
+            this.dgvcIme.HeaderText = "Učenik";
+            this.dgvcIme.MinimumWidth = 6;
+            this.dgvcIme.Name = "dgvcIme";
+            this.dgvcIme.Width = 265;
+            // 
+            // dgvcPrezime
+            // 
+            this.dgvcPrezime.DataPropertyName = "Prezime";
+            this.dgvcPrezime.HeaderText = "Prezime";
+            this.dgvcPrezime.MinimumWidth = 6;
+            this.dgvcPrezime.Name = "dgvcPrezime";
+            this.dgvcPrezime.Visible = false;
+            this.dgvcPrezime.Width = 125;
+            // 
+            // dgvcJOB
+            // 
+            this.dgvcJOB.DataPropertyName = "JOB";
+            this.dgvcJOB.HeaderText = "JOB";
+            this.dgvcJOB.MinimumWidth = 6;
+            this.dgvcJOB.Name = "dgvcJOB";
+            this.dgvcJOB.Width = 180;
+            // 
+            // dgvcSkola
+            // 
+            this.dgvcSkola.DataPropertyName = "Skola";
+            this.dgvcSkola.HeaderText = "Škola";
+            this.dgvcSkola.MinimumWidth = 6;
+            this.dgvcSkola.Name = "dgvcSkola";
+            this.dgvcSkola.Width = 125;
+            // 
+            // dgvcRazred
+            // 
+            this.dgvcRazred.DataPropertyName = "Razred";
+            this.dgvcRazred.HeaderText = "Razred";
+            this.dgvcRazred.MinimumWidth = 6;
+            this.dgvcRazred.Name = "dgvcRazred";
+            this.dgvcRazred.Width = 125;
+            // 
+            // dgvcOdeljenje
+            // 
+            this.dgvcOdeljenje.DataPropertyName = "Odeljenje";
+            this.dgvcOdeljenje.HeaderText = "Odeljenje";
+            this.dgvcOdeljenje.MinimumWidth = 6;
+            this.dgvcOdeljenje.Name = "dgvcOdeljenje";
+            this.dgvcOdeljenje.Width = 125;
             // 
             // pnlLeft
             // 
@@ -86,7 +194,7 @@
             this.btnUcitajSveJOBove.Margin = new System.Windows.Forms.Padding(4);
             this.btnUcitajSveJOBove.Name = "btnUcitajSveJOBove";
             this.btnUcitajSveJOBove.Size = new System.Drawing.Size(127, 38);
-            this.btnUcitajSveJOBove.TabIndex = 6;
+            this.btnUcitajSveJOBove.TabIndex = 5;
             this.btnUcitajSveJOBove.Text = "Novi učenici?...";
             this.btnUcitajSveJOBove.UseVisualStyleBackColor = true;
             this.btnUcitajSveJOBove.Click += new System.EventHandler(this.BtnNoviUcenici_Click);
@@ -97,7 +205,7 @@
             this.btnOdRaz.Margin = new System.Windows.Forms.Padding(4);
             this.btnOdRaz.Name = "btnOdRaz";
             this.btnOdRaz.Size = new System.Drawing.Size(127, 38);
-            this.btnOdRaz.TabIndex = 5;
+            this.btnOdRaz.TabIndex = 4;
             this.btnOdRaz.Text = "Razredi i odelj.";
             this.btnOdRaz.UseVisualStyleBackColor = true;
             this.btnOdRaz.Click += new System.EventHandler(this.BtnOdRaz_Click);
@@ -132,7 +240,7 @@
             this.ucExitApp1.Margin = new System.Windows.Forms.Padding(4);
             this.ucExitApp1.Name = "ucExitApp1";
             this.ucExitApp1.Size = new System.Drawing.Size(127, 34);
-            this.ucExitApp1.TabIndex = 4;
+            this.ucExitApp1.TabIndex = 6;
             this.ucExitApp1.Text = "Izlaz";
             this.ucExitApp1.UseVisualStyleBackColor = false;
             // 
@@ -153,7 +261,7 @@
             this.btnSaveData.Name = "btnSaveData";
             this.btnSaveData.Size = new System.Drawing.Size(127, 38);
             this.btnSaveData.TabIndex = 2;
-            this.btnSaveData.Text = "Sacuvaj podatke";
+            this.btnSaveData.Text = "Sačuvaj podatke";
             this.btnSaveData.UseVisualStyleBackColor = true;
             this.btnSaveData.Click += new System.EventHandler(this.BtnSaveData_Click);
             // 
@@ -168,131 +276,6 @@
             this.txtFilter.TextChanged += new System.EventHandler(this.TxtFilter_TextChanged);
             this.txtFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtFilter_KeyDown);
             // 
-            // bsUcenici
-            // 
-            this.bsUcenici.DataMember = "Ucenici";
-            this.bsUcenici.DataSource = this.ds;
-            // 
-            // ds
-            // 
-            this.ds.DataSetName = "Ds";
-            this.ds.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // bsSkole
-            // 
-            this.bsSkole.DataMember = "Skole";
-            this.bsSkole.DataSource = this.ds;
-            // 
-            // dgv
-            // 
-            this.dgv.AllowUserToAddRows = false;
-            this.dgv.AllowUserToDeleteRows = false;
-            this.dgv.AutoGenerateColumns = false;
-            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dgvcIdUcenika,
-            this.dgvcIme,
-            this.dgvcPrezime,
-            this.dgvcJOB,
-            this.dgvcSkola,
-            this.dgvcRazred,
-            this.dgvcOdeljenje});
-            this.dgv.CopyOnCellClick = false;
-            this.dgv.DataSource = this.bsUcenici;
-            this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv.Location = new System.Drawing.Point(150, 0);
-            this.dgv.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dgv.Name = "dgv";
-            this.dgv.RowHeadersWidth = 30;
-            this.dgv.RowTemplate.Height = 24;
-            this.dgv.Size = new System.Drawing.Size(876, 423);
-            this.dgv.TabIndex = 0;
-            this.dgv.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.Dgv_DataError);
-            // 
-            // statusStrip
-            // 
-            this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblStatus});
-            this.statusStrip.Location = new System.Drawing.Point(0, 423);
-            this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(1026, 27);
-            this.statusStrip.TabIndex = 2;
-            this.statusStrip.Text = "statusStrip1";
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(16, 21);
-            this.lblStatus.Text = "/";
-            // 
-            // bsRazredi
-            // 
-            this.bsRazredi.DataMember = "Razredi";
-            this.bsRazredi.DataSource = this.ds;
-            // 
-            // dgvcIdUcenika
-            // 
-            this.dgvcIdUcenika.DataPropertyName = "IdUcenika";
-            this.dgvcIdUcenika.HeaderText = "IdUcenika";
-            this.dgvcIdUcenika.MinimumWidth = 6;
-            this.dgvcIdUcenika.Name = "dgvcIdUcenika";
-            this.dgvcIdUcenika.Visible = false;
-            this.dgvcIdUcenika.Width = 125;
-            // 
-            // dgvcIme
-            // 
-            this.dgvcIme.DataPropertyName = "Ime";
-            this.dgvcIme.HeaderText = "Ucenik";
-            this.dgvcIme.MinimumWidth = 6;
-            this.dgvcIme.Name = "dgvcIme";
-            this.dgvcIme.Width = 265;
-            // 
-            // dgvcPrezime
-            // 
-            this.dgvcPrezime.DataPropertyName = "Prezime";
-            this.dgvcPrezime.HeaderText = "Prezime";
-            this.dgvcPrezime.MinimumWidth = 6;
-            this.dgvcPrezime.Name = "dgvcPrezime";
-            this.dgvcPrezime.Visible = false;
-            this.dgvcPrezime.Width = 125;
-            // 
-            // dgvcJOB
-            // 
-            this.dgvcJOB.DataPropertyName = "JOB";
-            this.dgvcJOB.HeaderText = "JOB";
-            this.dgvcJOB.MinimumWidth = 6;
-            this.dgvcJOB.Name = "dgvcJOB";
-            this.dgvcJOB.Width = 180;
-            // 
-            // dgvcSkola
-            // 
-            this.dgvcSkola.DataPropertyName = "Skola";
-            this.dgvcSkola.HeaderText = "Škola";
-            this.dgvcSkola.MinimumWidth = 6;
-            this.dgvcSkola.Name = "dgvcSkola";
-            this.dgvcSkola.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvcSkola.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dgvcSkola.Width = 125;
-            // 
-            // dgvcRazred
-            // 
-            this.dgvcRazred.DataPropertyName = "Razred";
-            this.dgvcRazred.HeaderText = "Razred";
-            this.dgvcRazred.MinimumWidth = 6;
-            this.dgvcRazred.Name = "dgvcRazred";
-            this.dgvcRazred.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvcRazred.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dgvcRazred.Width = 125;
-            // 
-            // dgvcOdeljenje
-            // 
-            this.dgvcOdeljenje.DataPropertyName = "Odeljenje";
-            this.dgvcOdeljenje.HeaderText = "Odeljenje";
-            this.dgvcOdeljenje.MinimumWidth = 6;
-            this.dgvcOdeljenje.Name = "dgvcOdeljenje";
-            this.dgvcOdeljenje.Width = 125;
-            // 
             // FrmUcenici
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -304,17 +287,15 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FrmUcenici";
-            this.Text = "Ucenici";
+            this.Text = "Učenici";
             this.Load += new System.EventHandler(this.FrmUcenici_Load);
-            this.pnlLeft.ResumeLayout(false);
-            this.pnlLeft.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsUcenici)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSkole)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsRazredi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
+            this.pnlLeft.ResumeLayout(false);
+            this.pnlLeft.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -334,8 +315,6 @@
         private Controls.UcExitApp ucExitApp1;
         private System.Windows.Forms.Button btnSrednjoskolci;
         private System.Windows.Forms.CheckBox chkAllowNew;
-        private System.Windows.Forms.BindingSource bsSkole;
-        private System.Windows.Forms.BindingSource bsRazredi;
         private System.Windows.Forms.Button btnOdRaz;
         private System.Windows.Forms.Button btnUcitajSveJOBove;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcIdUcenika;
