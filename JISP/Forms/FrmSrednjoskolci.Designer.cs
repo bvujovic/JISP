@@ -45,10 +45,10 @@ namespace JISP.Forms
             this.tipUpisaNazivDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.smerObrazovniProfilNazivDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
-            this.btnGetAdditionalData = new System.Windows.Forms.Button();
-            this.btnCountUniqueValues = new System.Windows.Forms.Button();
-            this.btnExitApp = new JISP.Controls.UcExitApp();
-            this.btnGetBasicData = new System.Windows.Forms.Button();
+            this.btnGetAdditionalData = new Controls.UcButton();
+            this.btnCountUniqueValues = new Controls.UcButton();
+            this.btnExitApp = new JISP.Controls.UcExitAppButton();
+            this.btnGetBasicData = new Controls.UcButton();
             ((System.ComponentModel.ISupportInitialize)(this.ds1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsSrednjoskolci)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
@@ -246,9 +246,9 @@ namespace JISP.Forms
         #endregion
 
         private Controls.UcLeftPanel pnlLeft;
-        private System.Windows.Forms.Button btnGetBasicData;
-        private Controls.UcExitApp btnExitApp;
-        private System.Windows.Forms.Button btnCountUniqueValues;
+        private Controls.UcButton btnGetBasicData;
+        private Controls.UcExitAppButton btnExitApp;
+        private Controls.UcButton btnCountUniqueValues;
         private Controls.UcDGV dgv;
         private System.Windows.Forms.BindingSource bsSrednjoskolci;
         private Data.Ds ds1;
@@ -263,6 +263,6 @@ namespace JISP.Forms
         private System.Windows.Forms.DataGridViewTextBoxColumn modelRealizacijeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipUpisaNazivDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn smerObrazovniProfilNazivDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button btnGetAdditionalData;
+        private Controls.UcButton btnGetAdditionalData;
     }
 }

@@ -52,9 +52,9 @@ namespace JISP.Forms
             this.dgvcNjaRMNaziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
             this.chkCopyOnClick = new System.Windows.Forms.CheckBox();
-            this.btnLoadData = new System.Windows.Forms.Button();
-            this.btnSaveData = new System.Windows.Forms.Button();
-            this.btnExit = new JISP.Controls.UcExitApp();
+            this.btnLoadData = new JISP.Controls.UcButton();
+            this.btnSaveData = new JISP.Controls.UcButton();
+            this.btnExit = new JISP.Controls.UcExitAppButton();
             label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bsZaposleni)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
@@ -73,7 +73,7 @@ namespace JISP.Forms
             label1.AutoSize = true;
             label1.Location = new System.Drawing.Point(147, 4);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(56, 24);
+            label1.Size = new System.Drawing.Size(44, 18);
             label1.TabIndex = 8;
             label1.Text = "Filter:";
             // 
@@ -82,7 +82,7 @@ namespace JISP.Forms
             this.lblRowCount.AutoSize = true;
             this.lblRowCount.Location = new System.Drawing.Point(3, 5);
             this.lblRowCount.Name = "lblRowCount";
-            this.lblRowCount.Size = new System.Drawing.Size(75, 24);
+            this.lblRowCount.Size = new System.Drawing.Size(59, 18);
             this.lblRowCount.TabIndex = 6;
             this.lblRowCount.Text = "Redova";
             // 
@@ -131,7 +131,7 @@ namespace JISP.Forms
             this.chkAktivniZap.CheckState = System.Windows.Forms.CheckState.Indeterminate;
             this.chkAktivniZap.Location = new System.Drawing.Point(509, 4);
             this.chkAktivniZap.Name = "chkAktivniZap";
-            this.chkAktivniZap.Size = new System.Drawing.Size(86, 28);
+            this.chkAktivniZap.Size = new System.Drawing.Size(69, 22);
             this.chkAktivniZap.TabIndex = 1;
             this.chkAktivniZap.Text = "Aktivni";
             this.chkAktivniZap.ThreeState = true;
@@ -235,7 +235,7 @@ namespace JISP.Forms
             this.txtFilter.BindingSource = this.bsZaposleni;
             this.txtFilter.Location = new System.Drawing.Point(193, 1);
             this.txtFilter.Name = "txtFilter";
-            this.txtFilter.Size = new System.Drawing.Size(128, 29);
+            this.txtFilter.Size = new System.Drawing.Size(128, 24);
             this.txtFilter.TabIndex = 0;
             this.txtFilter.FilterCleared += new System.EventHandler(this.TxtFilter_FilterCleared);
             this.txtFilter.TextChanged += new System.EventHandler(this.FilterChanged);
@@ -266,7 +266,7 @@ namespace JISP.Forms
             this.dgvcNjeAktivan.MinimumWidth = 6;
             this.dgvcNjeAktivan.Name = "dgvcNjeAktivan";
             this.dgvcNjeAktivan.ReadOnly = true;
-            this.dgvcNjeAktivan.Width = 76;
+            this.dgvcNjeAktivan.Width = 61;
             // 
             // dgvcNjaRMNaziv
             // 
@@ -294,9 +294,9 @@ namespace JISP.Forms
             // chkCopyOnClick
             // 
             this.chkCopyOnClick.AutoSize = true;
-            this.chkCopyOnClick.Location = new System.Drawing.Point(9, 159);
+            this.chkCopyOnClick.Location = new System.Drawing.Point(8, 64);
             this.chkCopyOnClick.Name = "chkCopyOnClick";
-            this.chkCopyOnClick.Size = new System.Drawing.Size(169, 28);
+            this.chkCopyOnClick.Size = new System.Drawing.Size(135, 22);
             this.chkCopyOnClick.TabIndex = 2;
             this.chkCopyOnClick.Text = "Kopiranje na klik";
             this.chkCopyOnClick.UseVisualStyleBackColor = true;
@@ -304,17 +304,18 @@ namespace JISP.Forms
             // 
             // btnLoadData
             // 
-            this.btnLoadData.Location = new System.Drawing.Point(8, 110);
+            this.btnLoadData.Location = new System.Drawing.Point(8, 138);
             this.btnLoadData.Name = "btnLoadData";
             this.btnLoadData.Size = new System.Drawing.Size(128, 40);
             this.btnLoadData.TabIndex = 1;
             this.btnLoadData.Text = "Učitaj podatke";
+            this.btnLoadData.ToolTipText = null;
             this.btnLoadData.UseVisualStyleBackColor = true;
             this.btnLoadData.Click += new System.EventHandler(this.BtnLoadData_Click);
             // 
             // btnSaveData
             // 
-            this.btnSaveData.Location = new System.Drawing.Point(8, 64);
+            this.btnSaveData.Location = new System.Drawing.Point(8, 92);
             this.btnSaveData.Name = "btnSaveData";
             this.btnSaveData.Size = new System.Drawing.Size(128, 40);
             this.btnSaveData.TabIndex = 0;
@@ -335,7 +336,7 @@ namespace JISP.Forms
             // 
             // FrmZaposleni
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(968, 575);
             this.Controls.Add(this.splitContainer);
@@ -365,9 +366,9 @@ namespace JISP.Forms
         private JISP.Controls.UcLeftPanel pnlLeft;
         private Controls.UcDGV dgvZaposleni;
         private System.Windows.Forms.BindingSource bsZaposleni;
-        private System.Windows.Forms.Button btnSaveData;
-        private System.Windows.Forms.Button btnLoadData;
-        private Controls.UcExitApp btnExit;
+        private Controls.UcButton btnSaveData;
+        private Controls.UcButton btnLoadData;
+        private Controls.UcExitAppButton btnExit;
         private System.Windows.Forms.CheckBox chkCopyOnClick;
         private System.Windows.Forms.Label lblRowCount;
         private Controls.UcFilterTextBox txtFilter;

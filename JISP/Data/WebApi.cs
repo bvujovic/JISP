@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
@@ -44,11 +45,11 @@ namespace JISP.Data
             return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(json);
         }
 
-        /// <summary>Dohvata JSON podatke od JISP WebAPI-a.</summary>
+        /// <summary>Dohvata (GET) JSON podatke od JISP WebAPI-a.</summary>
         /// <see cref="https://stackoverflow.com/questions/14627399/setting-authorization-header-of-httpclient"/>
         public static async Task<string> GetJson(ReqEnum reqEnum, string param = null)
         {
-            using (var client = new System.Net.Http.HttpClient())
+            using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
                 var url = UrlForReq(reqEnum, param);
@@ -56,10 +57,36 @@ namespace JISP.Data
             }
         }
 
+        /// <summary>Dohvata (POST) JSON podatke od JISP WebAPI-a.</summary>
+        public static async Task<string> PostJson(ReqEnum reqEnum, string body, string param = null)
+        {
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
+                var url = UrlForReq(reqEnum, param);
+                var content = new StringContent(body, System.Text.Encoding.UTF8, "application/json");
+                var res = await client.PostAsync(url, content);
+
+                if (res.IsSuccessStatusCode)
+                    return await res.Content.ReadAsStringAsync();
+                else
+                    throw new Exception($"POST response error: {res.ReasonPhrase}");
+            }
+        }
+
+        /// <summary>Dohvata listu trazenih objekata od JISP WebAPI-a.</summary>
+        public async static Task<List<T>> PostForList<T>(ReqEnum reqEnum)
+        {
+            var json = await GetJson(reqEnum);
+            return DeserializeList<T>(json);
+        }
+
         public enum ReqEnum
         {
             Zap_OpstiPodaciOZaposlenima,
-            Zap_Zaposlenja,
+            Zap_ZaposlenjaOpste,
+            /// <example>body = "{'regUstUstanovaId':18976,'regZapZaposleniId':582792}"</example>
+            Zap_ZaposlenjaDetaljno,
 
             Uc_DuosSrednjoskolci,
             Uc_DuosSrednjoskolciId,
@@ -77,8 +104,10 @@ namespace JISP.Data
             {
                 case ReqEnum.Zap_OpstiPodaciOZaposlenima:
                     return urlBase + "zaposleni/VratiOpstePodatkeOZaposlenima/18976";
-                case ReqEnum.Zap_Zaposlenja:
+                case ReqEnum.Zap_ZaposlenjaOpste:
                     return urlBase + "zaposleni/VratiOpstePodatkeOZaposlenima/18976";
+                case ReqEnum.Zap_ZaposlenjaDetaljno:
+                    return urlBase + "zaposleni/VratiZaposlenja";
 
                 case ReqEnum.Uc_DuosSrednjoskolci:
                     return urlBase + "ucenik/VratiUpisSrednjeByUstanovaId/18976";

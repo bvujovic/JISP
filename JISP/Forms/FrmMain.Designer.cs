@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnUcenici = new System.Windows.Forms.Button();
-            this.btnZaposleni = new System.Windows.Forms.Button();
-            this.btnBackup = new System.Windows.Forms.Button();
+            this.btnUcenici = new JISP.Controls.UcButton();
+            this.btnZaposleni = new JISP.Controls.UcButton();
+            this.btnBackup = new JISP.Controls.UcButton();
             this.lblApiTokenCaption = new System.Windows.Forms.Label();
             this.lblApiToken = new System.Windows.Forms.Label();
             this.ttApiToken = new System.Windows.Forms.ToolTip(this.components);
@@ -44,6 +44,7 @@
             this.btnUcenici.Size = new System.Drawing.Size(135, 48);
             this.btnUcenici.TabIndex = 0;
             this.btnUcenici.Text = "&Učenici";
+            this.btnUcenici.ToolTipText = null;
             this.btnUcenici.UseVisualStyleBackColor = true;
             this.btnUcenici.Click += new System.EventHandler(this.BtnUcenici_Click);
             // 
@@ -54,6 +55,7 @@
             this.btnZaposleni.Size = new System.Drawing.Size(135, 48);
             this.btnZaposleni.TabIndex = 1;
             this.btnZaposleni.Text = "&Zaposleni";
+            this.btnZaposleni.ToolTipText = null;
             this.btnZaposleni.UseVisualStyleBackColor = true;
             this.btnZaposleni.Click += new System.EventHandler(this.BtnZaposleni_Click);
             // 
@@ -64,6 +66,7 @@
             this.btnBackup.Size = new System.Drawing.Size(135, 48);
             this.btnBackup.TabIndex = 2;
             this.btnBackup.Text = "BackUp";
+            this.btnBackup.ToolTipText = "Čuvanje podataka iz DataSet-a u posebnom XML fajlu.";
             this.btnBackup.UseVisualStyleBackColor = true;
             this.btnBackup.Click += new System.EventHandler(this.BtnBackup_Click);
             // 
@@ -72,7 +75,7 @@
             this.lblApiTokenCaption.AutoSize = true;
             this.lblApiTokenCaption.Location = new System.Drawing.Point(38, 196);
             this.lblApiTokenCaption.Name = "lblApiTokenCaption";
-            this.lblApiTokenCaption.Size = new System.Drawing.Size(99, 22);
+            this.lblApiTokenCaption.Size = new System.Drawing.Size(80, 18);
             this.lblApiTokenCaption.TabIndex = 4;
             this.lblApiTokenCaption.Text = "API Token:";
             // 
@@ -88,7 +91,7 @@
             // 
             // FrmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(617, 279);
             this.Controls.Add(this.lblApiToken);
@@ -111,9 +114,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnUcenici;
-        private System.Windows.Forms.Button btnZaposleni;
-        private System.Windows.Forms.Button btnBackup;
+        private Controls.UcButton btnUcenici;
+        private Controls.UcButton btnZaposleni;
+        private Controls.UcButton btnBackup;
         private System.Windows.Forms.Label lblApiTokenCaption;
         private System.Windows.Forms.Label lblApiToken;
         private System.Windows.Forms.ToolTip ttApiToken;

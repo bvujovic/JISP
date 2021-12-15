@@ -1,6 +1,6 @@
 ﻿namespace JISP.Controls
 {
-    partial class UcExitApp
+    partial class UcExitAppButton
     {
         /// <summary> 
         /// Required designer variable.

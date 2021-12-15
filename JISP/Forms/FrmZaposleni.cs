@@ -70,16 +70,14 @@ namespace JISP.Forms
             => chkAktivniZap.CheckState = CheckState.Indeterminate;
 
         /// <summary>Ucitavanje JSON podataka o zaposlenima iz clipboard-a.</summary>
-        private void BtnLoadData_Click(object sender, EventArgs e)
+        private async void BtnLoadData_Click(object sender, EventArgs e)
         {
             try
             {
                 // osnovni podaci o zaposlenima ne ukljucuju id zaposlenja
                 // tako da se update te tabele radi kao Clear, pa Add new
                 Ds.Zaposlenja.Clear();
-                var json = Clipboard.GetText();
-                var zaps = Newtonsoft.Json.JsonConvert.DeserializeObject
-                    <List<Zaposleni>>(json);
+                var zaps = await WebApi.GetList<Zaposleni>(WebApi.ReqEnum.Zap_OpstiPodaciOZaposlenima);
                 foreach (var zap in zaps)
                     try
                     {

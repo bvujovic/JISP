@@ -52,14 +52,20 @@
     <Compile Include="Classes\JMBG.cs" />
     <Compile Include="Classes\Logger.cs" />
     <Compile Include="Classes\Utils.cs" />
+    <Compile Include="Controls\UcButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\UcButton.Designer.cs">
+      <DependentUpon>UcButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UcDGV.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\UcExitApp.cs">
+    <Compile Include="Controls\UcExitAppButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\UcExitApp.Designer.cs">
-      <DependentUpon>UcExitApp.cs</DependentUpon>
+    <Compile Include="Controls\UcExitAppButton.Designer.cs">
+      <DependentUpon>UcExitAppButton.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\UcFilterTextBox.cs">
       <SubType>Component</SubType>

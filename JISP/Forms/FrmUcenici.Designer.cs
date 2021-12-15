@@ -42,13 +42,13 @@
             this.dgvcRazred = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcOdeljenje = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
-            this.btnUcitajSveJOBove = new System.Windows.Forms.Button();
-            this.btnOdRaz = new System.Windows.Forms.Button();
+            this.btnUcitajSveJOBove = new Controls.UcButton();
+            this.btnOdRaz = new Controls.UcButton();
             this.chkAllowNew = new System.Windows.Forms.CheckBox();
-            this.btnSrednjoskolci = new System.Windows.Forms.Button();
-            this.ucExitApp1 = new JISP.Controls.UcExitApp();
+            this.btnSrednjoskolci = new Controls.UcButton();
+            this.ucExitApp1 = new JISP.Controls.UcExitAppButton();
             this.lblRowCount = new System.Windows.Forms.Label();
-            this.btnSaveData = new System.Windows.Forms.Button();
+            this.btnSaveData = new Controls.UcButton();
             this.txtFilter = new JISP.Controls.UcFilterTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.bsUcenici)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
@@ -61,6 +61,7 @@
             // 
             this.bsUcenici.DataMember = "Ucenici";
             this.bsUcenici.DataSource = this.ds;
+            this.bsUcenici.Sort = "Skola, Razred, Odeljenje";
             this.bsUcenici.CurrentChanged += new System.EventHandler(this.BsUcenici_CurrentChanged);
             // 
             // ds
@@ -73,16 +74,16 @@
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblStatus});
-            this.statusStrip.Location = new System.Drawing.Point(0, 423);
+            this.statusStrip.Location = new System.Drawing.Point(0, 428);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(1026, 27);
+            this.statusStrip.Size = new System.Drawing.Size(1026, 22);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "statusStrip1";
             // 
             // lblStatus
             // 
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(16, 21);
+            this.lblStatus.Size = new System.Drawing.Size(12, 17);
             this.lblStatus.Text = "/";
             // 
             // dgv
@@ -107,7 +108,7 @@
             this.dgv.Name = "dgv";
             this.dgv.RowHeadersWidth = 30;
             this.dgv.RowTemplate.Height = 24;
-            this.dgv.Size = new System.Drawing.Size(876, 423);
+            this.dgv.Size = new System.Drawing.Size(876, 428);
             this.dgv.TabIndex = 1;
             this.dgv.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.Dgv_DataError);
             // 
@@ -185,7 +186,7 @@
             this.pnlLeft.Name = "pnlLeft";
             this.pnlLeft.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
             this.pnlLeft.RightWingWidth = 8;
-            this.pnlLeft.Size = new System.Drawing.Size(150, 423);
+            this.pnlLeft.Size = new System.Drawing.Size(150, 428);
             this.pnlLeft.TabIndex = 0;
             // 
             // btnUcitajSveJOBove
@@ -215,7 +216,7 @@
             this.chkAllowNew.AutoSize = true;
             this.chkAllowNew.Location = new System.Drawing.Point(7, 142);
             this.chkAllowNew.Name = "chkAllowNew";
-            this.chkAllowNew.Size = new System.Drawing.Size(167, 24);
+            this.chkAllowNew.Size = new System.Drawing.Size(140, 20);
             this.chkAllowNew.TabIndex = 1;
             this.chkAllowNew.Text = "Dozvoli dodavanje";
             this.chkAllowNew.UseVisualStyleBackColor = true;
@@ -250,7 +251,7 @@
             this.lblRowCount.Location = new System.Drawing.Point(8, 81);
             this.lblRowCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRowCount.Name = "lblRowCount";
-            this.lblRowCount.Size = new System.Drawing.Size(65, 20);
+            this.lblRowCount.Size = new System.Drawing.Size(57, 16);
             this.lblRowCount.TabIndex = 3;
             this.lblRowCount.Text = "Redova";
             // 
@@ -271,14 +272,14 @@
             this.txtFilter.Location = new System.Drawing.Point(7, 108);
             this.txtFilter.Margin = new System.Windows.Forms.Padding(4);
             this.txtFilter.Name = "txtFilter";
-            this.txtFilter.Size = new System.Drawing.Size(127, 26);
+            this.txtFilter.Size = new System.Drawing.Size(127, 22);
             this.txtFilter.TabIndex = 0;
             this.txtFilter.TextChanged += new System.EventHandler(this.TxtFilter_TextChanged);
             this.txtFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtFilter_KeyDown);
             // 
             // FrmUcenici
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1026, 450);
             this.Controls.Add(this.dgv);
@@ -308,15 +309,15 @@
         private System.Windows.Forms.BindingSource bsUcenici;
         private Data.Ds ds;
         private Controls.UcFilterTextBox txtFilter;
-        private System.Windows.Forms.Button btnSaveData;
+        private Controls.UcButton btnSaveData;
         private System.Windows.Forms.Label lblRowCount;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel lblStatus;
-        private Controls.UcExitApp ucExitApp1;
-        private System.Windows.Forms.Button btnSrednjoskolci;
+        private Controls.UcExitAppButton ucExitApp1;
+        private Controls.UcButton btnSrednjoskolci;
         private System.Windows.Forms.CheckBox chkAllowNew;
-        private System.Windows.Forms.Button btnOdRaz;
-        private System.Windows.Forms.Button btnUcitajSveJOBove;
+        private Controls.UcButton btnOdRaz;
+        private Controls.UcButton btnUcitajSveJOBove;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcIdUcenika;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcIme;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcPrezime;
