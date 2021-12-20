@@ -20,6 +20,12 @@ namespace JISP.Forms
             ttApiToken.SetToolTip(lblApiToken, "Klikni za paste web api token-a.");
             lblApiToken.Text = WebApi.TokenDisplay;
             FormClosing += FrmMain_FormClosing;
+
+            //TODO...
+            //MessageBox.Show(Properties.Settings.Default.DataFolder);
+            //Properties.Settings.Default.DataFolder = DateTime.Now.ToLongTimeString();
+            //MessageBox.Show(Properties.Settings.Default.DataFolder);
+            //Properties.Settings.Default.Save();
         }
 
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)

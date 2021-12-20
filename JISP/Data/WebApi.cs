@@ -21,6 +21,7 @@ namespace JISP.Data
             set { token = value; }
         }
 
+        private const string SV_SAVA_ID = "18976";
         public const string TOKEN_MISSING = "???";
         public const string TOKEN_CAPTION = "ApiToken";
 
@@ -103,21 +104,21 @@ namespace JISP.Data
             switch (reqEnum)
             {
                 case ReqEnum.Zap_OpstiPodaciOZaposlenima:
-                    return urlBase + "zaposleni/VratiOpstePodatkeOZaposlenima/18976";
+                    return urlBase + "zaposleni/VratiOpstePodatkeOZaposlenima/" + SV_SAVA_ID;
                 case ReqEnum.Zap_ZaposlenjaOpste:
-                    return urlBase + "zaposleni/VratiOpstePodatkeOZaposlenima/18976";
+                    return urlBase + "zaposleni/VratiOpstePodatkeOZaposlenima/" + SV_SAVA_ID;
                 case ReqEnum.Zap_ZaposlenjaDetaljno:
                     return urlBase + "zaposleni/VratiZaposlenja";
 
                 case ReqEnum.Uc_DuosSrednjoskolci:
-                    return urlBase + "ucenik/VratiUpisSrednjeByUstanovaId/18976";
+                    return urlBase + "ucenik/VratiUpisSrednjeByUstanovaId/" + SV_SAVA_ID;
                 case ReqEnum.Uc_DuosSrednjoskolciId:
                     return urlBase + $"ucenik/VratiUpisSrednjeObrazovanjeById/{param}";
 
                 case ReqEnum.Uc_DuosOS:
-                    return urlBase + "ucenik/VratiUpisOsnovnoByUstanovaId/18976";
+                    return urlBase + "ucenik/VratiUpisOsnovnoByUstanovaId/" + SV_SAVA_ID;
                 case ReqEnum.Uc_DuosSS:
-                    return urlBase + "ucenik/VratiUpisSrednjeByUstanovaId/18976";
+                    return urlBase + "ucenik/VratiUpisSrednjeByUstanovaId/" + SV_SAVA_ID;
                 default:
                     throw new Exception("Nepostojeci reqEnum: " + reqEnum);
             }

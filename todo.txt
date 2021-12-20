@@ -1,4 +1,5 @@
-﻿+ preuzimanje i prikaz podataka o razredima i odeljenjima
+﻿- pamcenje DataFolder-a
+- dodavanje dat. rodj ucenicima
 - ubrzavanje unosa ocena
 - odrediti tacan kriterijum aktivnosti zaposlenog: ima zaposlenja u SvSavi koja su aktivna?
 - zaposlenima dodati i predmete na kojima rade. ovo bi trebalo da bude pretrazivo u formi.

@@ -22,5 +22,17 @@ namespace JISP.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DataFolder {
+            get {
+                return ((string)(this["DataFolder"]));
+            }
+            set {
+                this["DataFolder"] = value;
+            }
+        }
     }
 }
