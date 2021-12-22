@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JISP
@@ -16,10 +14,6 @@ namespace JISP
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            try { Data.AppData.AppInit(); }
-            catch (Exception ex) { Classes.Utils.ShowMbox(ex, "Inicijalizacija aplikacije"); }
-
             Application.Run(new Forms.FrmMain());
         }
     }

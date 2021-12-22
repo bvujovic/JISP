@@ -1,9 +1,38 @@
-﻿using System.Data;
+﻿using JISP.Classes;
+using System.Data;
 
 namespace JISP.Data
 {
     partial class Ds
     {
+        partial class UceniciDataTable
+        {
+            protected override void OnColumnChanged(DataColumnChangeEventArgs e)
+            {
+                base.OnColumnChanged(e);
+                if (e.Column.Ordinal == DatumRodjenjaColumn.Ordinal)
+                    (e.Row as UceniciRow).CalcDatRodjBasedData();
+            }
+
+            public void CalcDatRodjBasedCols()
+            {
+                foreach (UceniciRow uc in this.Rows)
+                    uc.CalcDatRodjBasedData();
+            }
+        }
+
+        public partial class UceniciRow
+        {
+            public void CalcDatRodjBasedData()
+            {
+                if (!IsDatumRodjenjaNull())
+                {
+                    DanaDoRodj = JMBG.DaysToBDay(DatumRodjenja);
+                    Godine = JMBG.YearsOld(DatumRodjenja);
+                }
+            }
+        }
+
         partial class ZaposleniDataTable
         {
             protected override void OnColumnChanged(DataColumnChangeEventArgs e)

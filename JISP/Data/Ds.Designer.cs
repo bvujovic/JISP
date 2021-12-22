@@ -440,6 +440,8 @@ namespace JISP.Data {
             
             private global::System.Data.DataColumn columnPrezime;
             
+            private global::System.Data.DataColumn columnRegUceLiceId;
+            
             private global::System.Data.DataColumn columnJOB;
             
             private global::System.Data.DataColumn columnSkola;
@@ -447,6 +449,14 @@ namespace JISP.Data {
             private global::System.Data.DataColumn columnRazred;
             
             private global::System.Data.DataColumn columnOdeljenje;
+            
+            private global::System.Data.DataColumn columnPol;
+            
+            private global::System.Data.DataColumn columnDatumRodjenja;
+            
+            private global::System.Data.DataColumn columnGodine;
+            
+            private global::System.Data.DataColumn columnDanaDoRodj;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -507,6 +517,14 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn RegUceLiceIdColumn {
+                get {
+                    return this.columnRegUceLiceId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn JOBColumn {
                 get {
                     return this.columnJOB;
@@ -534,6 +552,38 @@ namespace JISP.Data {
             public global::System.Data.DataColumn OdeljenjeColumn {
                 get {
                     return this.columnOdeljenje;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn PolColumn {
+                get {
+                    return this.columnPol;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn DatumRodjenjaColumn {
+                get {
+                    return this.columnDatumRodjenja;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn GodineColumn {
+                get {
+                    return this.columnGodine;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn DanaDoRodjColumn {
+                get {
+                    return this.columnDanaDoRodj;
                 }
             }
             
@@ -574,16 +624,21 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public UceniciRow AddUceniciRow(string Ime, string Prezime, string JOB, string Skola, string Razred, string Odeljenje) {
+            public UceniciRow AddUceniciRow(string Ime, string Prezime, int RegUceLiceId, string JOB, string Skola, string Razred, string Odeljenje, char Pol, System.DateTime DatumRodjenja, double Godine, int DanaDoRodj) {
                 UceniciRow rowUceniciRow = ((UceniciRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         Ime,
                         Prezime,
+                        RegUceLiceId,
                         JOB,
                         Skola,
                         Razred,
-                        Odeljenje};
+                        Odeljenje,
+                        Pol,
+                        DatumRodjenja,
+                        Godine,
+                        DanaDoRodj};
                 rowUceniciRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowUceniciRow);
                 return rowUceniciRow;
@@ -616,10 +671,15 @@ namespace JISP.Data {
                 this.columnIdUcenika = base.Columns["IdUcenika"];
                 this.columnIme = base.Columns["Ime"];
                 this.columnPrezime = base.Columns["Prezime"];
+                this.columnRegUceLiceId = base.Columns["RegUceLiceId"];
                 this.columnJOB = base.Columns["JOB"];
                 this.columnSkola = base.Columns["Skola"];
                 this.columnRazred = base.Columns["Razred"];
                 this.columnOdeljenje = base.Columns["Odeljenje"];
+                this.columnPol = base.Columns["Pol"];
+                this.columnDatumRodjenja = base.Columns["DatumRodjenja"];
+                this.columnGodine = base.Columns["Godine"];
+                this.columnDanaDoRodj = base.Columns["DanaDoRodj"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -631,6 +691,8 @@ namespace JISP.Data {
                 base.Columns.Add(this.columnIme);
                 this.columnPrezime = new global::System.Data.DataColumn("Prezime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPrezime);
+                this.columnRegUceLiceId = new global::System.Data.DataColumn("RegUceLiceId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRegUceLiceId);
                 this.columnJOB = new global::System.Data.DataColumn("JOB", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnJOB);
                 this.columnSkola = new global::System.Data.DataColumn("Skola", typeof(string), null, global::System.Data.MappingType.Element);
@@ -639,6 +701,14 @@ namespace JISP.Data {
                 base.Columns.Add(this.columnRazred);
                 this.columnOdeljenje = new global::System.Data.DataColumn("Odeljenje", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOdeljenje);
+                this.columnPol = new global::System.Data.DataColumn("Pol", typeof(char), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPol);
+                this.columnDatumRodjenja = new global::System.Data.DataColumn("DatumRodjenja", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDatumRodjenja);
+                this.columnGodine = new global::System.Data.DataColumn("Godine", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGodine);
+                this.columnDanaDoRodj = new global::System.Data.DataColumn("DanaDoRodj", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDanaDoRodj);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnJOB}, false));
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint2", new global::System.Data.DataColumn[] {
@@ -2271,6 +2341,22 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int RegUceLiceId {
+                get {
+                    try {
+                        return ((int)(this[this.tableUcenici.RegUceLiceIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RegUceLiceId\' in table \'Ucenici\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableUcenici.RegUceLiceIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string JOB {
                 get {
                     return ((string)(this[this.tableUcenici.JOBColumn]));
@@ -2330,6 +2416,70 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public char Pol {
+                get {
+                    try {
+                        return ((char)(this[this.tableUcenici.PolColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Pol\' in table \'Ucenici\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableUcenici.PolColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public System.DateTime DatumRodjenja {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableUcenici.DatumRodjenjaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DatumRodjenja\' in table \'Ucenici\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableUcenici.DatumRodjenjaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public double Godine {
+                get {
+                    try {
+                        return ((double)(this[this.tableUcenici.GodineColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Godine\' in table \'Ucenici\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableUcenici.GodineColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int DanaDoRodj {
+                get {
+                    try {
+                        return ((int)(this[this.tableUcenici.DanaDoRodjColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DanaDoRodj\' in table \'Ucenici\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableUcenici.DanaDoRodjColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsImeNull() {
                 return this.IsNull(this.tableUcenici.ImeColumn);
             }
@@ -2350,6 +2500,18 @@ namespace JISP.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetPrezimeNull() {
                 this[this.tableUcenici.PrezimeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsRegUceLiceIdNull() {
+                return this.IsNull(this.tableUcenici.RegUceLiceIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetRegUceLiceIdNull() {
+                this[this.tableUcenici.RegUceLiceIdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2386,6 +2548,54 @@ namespace JISP.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetOdeljenjeNull() {
                 this[this.tableUcenici.OdeljenjeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsPolNull() {
+                return this.IsNull(this.tableUcenici.PolColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetPolNull() {
+                this[this.tableUcenici.PolColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsDatumRodjenjaNull() {
+                return this.IsNull(this.tableUcenici.DatumRodjenjaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetDatumRodjenjaNull() {
+                this[this.tableUcenici.DatumRodjenjaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsGodineNull() {
+                return this.IsNull(this.tableUcenici.GodineColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetGodineNull() {
+                this[this.tableUcenici.GodineColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsDanaDoRodjNull() {
+                return this.IsNull(this.tableUcenici.DanaDoRodjColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetDanaDoRodjNull() {
+                this[this.tableUcenici.DanaDoRodjColumn] = global::System.Convert.DBNull;
             }
         }
         

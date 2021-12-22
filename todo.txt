@@ -1,5 +1,7 @@
-﻿- pamcenje DataFolder-a
-- dodavanje dat. rodj ucenicima
-- ubrzavanje unosa ocena
+﻿+ pamcenje DataFolder-a
++ dodavanje dat. rodj ucenicima
+[- ubrzavanje unosa ocena]
 - odrediti tacan kriterijum aktivnosti zaposlenog: ima zaposlenja u SvSavi koja su aktivna?
 - zaposlenima dodati i predmete na kojima rade. ovo bi trebalo da bude pretrazivo u formi.
+[- boje dugmica: Sacuvaj - plava, Dodaj novo - zelena, Izmeni - zuta, Obrisi - crvena, Izlaz iz app - crna]
+[- ukidanje FrmSrednjoskolci i dodavanje tih podataka u FrmUcenici]

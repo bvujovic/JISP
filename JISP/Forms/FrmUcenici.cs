@@ -78,6 +78,29 @@ namespace JISP.Forms
         private void BtnSrednjoskolci_Click(object sender, EventArgs e)
             => Utils.ShowForm(typeof(FrmSrednjoskolci));
 
+        private async void BtnOpstiPodaci_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dgv.SelectedRows)
+                {
+                    var drv = row.DataBoundItem as DataRowView;
+                    var uc = drv.Row as Ds.UceniciRow;
+                    if (!uc.IsRegUceLiceIdNull())
+                    {
+                        var uo = await WebApi.GetObject<UcenikOpste>
+                            (WebApi.ReqEnum.Uc_OpstiPodaci, uc.RegUceLiceId.ToString());
+                        uc.Pol = uo.PolSlovo;
+                        if (uo.DatumRodjenja.HasValue)
+                        {
+                            uc.DatumRodjenja = uo.DatumRodjenja.Value;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, "Uzimanje podataka o razredima i odeljenjima"); }
+        }
+
         private async void BtnOdRaz_Click(object sender, EventArgs e)
         {
             try
@@ -99,6 +122,7 @@ namespace JISP.Forms
                 var uc = AppData.Ds.Ucenici.FirstOrDefault(it => it.JOB == duos.JOB);
                 if (uc != null)
                 {
+                    uc.RegUceLiceId = duos.RegUceLiceId;
                     uc.Skola = reqEnumDuos == WebApi.ReqEnum.Uc_DuosOS ? "Основна" : "Средња";
                     uc.Razred = duos.Razred;
                     uc.Odeljenje = duos.Odeljenje;

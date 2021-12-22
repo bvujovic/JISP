@@ -29,11 +29,22 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.bsUcenici = new System.Windows.Forms.BindingSource(this.components);
             this.ds = new JISP.Data.Ds();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.dgv = new JISP.Controls.UcDGV();
+            this.pnlLeft = new JISP.Controls.UcLeftPanel();
+            this.btnOpstiPodaci = new JISP.Controls.UcButton();
+            this.btnUcitajSveJOBove = new JISP.Controls.UcButton();
+            this.btnOdRaz = new JISP.Controls.UcButton();
+            this.chkAllowNew = new System.Windows.Forms.CheckBox();
+            this.btnSrednjoskolci = new JISP.Controls.UcButton();
+            this.ucExitApp1 = new JISP.Controls.UcExitAppButton();
+            this.lblRowCount = new System.Windows.Forms.Label();
+            this.btnSaveData = new JISP.Controls.UcButton();
+            this.txtFilter = new JISP.Controls.UcFilterTextBox();
             this.dgvcIdUcenika = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcIme = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcPrezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,15 +52,10 @@
             this.dgvcSkola = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcRazred = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcOdeljenje = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pnlLeft = new JISP.Controls.UcLeftPanel();
-            this.btnUcitajSveJOBove = new Controls.UcButton();
-            this.btnOdRaz = new Controls.UcButton();
-            this.chkAllowNew = new System.Windows.Forms.CheckBox();
-            this.btnSrednjoskolci = new Controls.UcButton();
-            this.ucExitApp1 = new JISP.Controls.UcExitAppButton();
-            this.lblRowCount = new System.Windows.Forms.Label();
-            this.btnSaveData = new Controls.UcButton();
-            this.txtFilter = new JISP.Controls.UcFilterTextBox();
+            this.dgvcPol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcDatRodj = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcDanaDoRodj = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcGodine = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.bsUcenici)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
             this.statusStrip.SuspendLayout();
@@ -76,7 +82,7 @@
             this.lblStatus});
             this.statusStrip.Location = new System.Drawing.Point(0, 428);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(1026, 22);
+            this.statusStrip.Size = new System.Drawing.Size(1297, 22);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "statusStrip1";
             // 
@@ -99,7 +105,11 @@
             this.dgvcJOB,
             this.dgvcSkola,
             this.dgvcRazred,
-            this.dgvcOdeljenje});
+            this.dgvcOdeljenje,
+            this.dgvcPol,
+            this.dgvcDatRodj,
+            this.dgvcDanaDoRodj,
+            this.dgvcGodine});
             this.dgv.CopyOnCellClick = false;
             this.dgv.DataSource = this.bsUcenici;
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -108,9 +118,135 @@
             this.dgv.Name = "dgv";
             this.dgv.RowHeadersWidth = 30;
             this.dgv.RowTemplate.Height = 24;
-            this.dgv.Size = new System.Drawing.Size(876, 428);
+            this.dgv.Size = new System.Drawing.Size(1147, 428);
             this.dgv.TabIndex = 1;
             this.dgv.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.Dgv_DataError);
+            // 
+            // pnlLeft
+            // 
+            this.pnlLeft.Controls.Add(this.btnOpstiPodaci);
+            this.pnlLeft.Controls.Add(this.btnUcitajSveJOBove);
+            this.pnlLeft.Controls.Add(this.btnOdRaz);
+            this.pnlLeft.Controls.Add(this.chkAllowNew);
+            this.pnlLeft.Controls.Add(this.btnSrednjoskolci);
+            this.pnlLeft.Controls.Add(this.ucExitApp1);
+            this.pnlLeft.Controls.Add(this.lblRowCount);
+            this.pnlLeft.Controls.Add(this.btnSaveData);
+            this.pnlLeft.Controls.Add(this.txtFilter);
+            this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlLeft.Location = new System.Drawing.Point(0, 0);
+            this.pnlLeft.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlLeft.Name = "pnlLeft";
+            this.pnlLeft.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
+            this.pnlLeft.RightWingWidth = 8;
+            this.pnlLeft.Size = new System.Drawing.Size(150, 428);
+            this.pnlLeft.TabIndex = 0;
+            // 
+            // btnOpstiPodaci
+            // 
+            this.btnOpstiPodaci.Location = new System.Drawing.Point(7, 302);
+            this.btnOpstiPodaci.Margin = new System.Windows.Forms.Padding(4);
+            this.btnOpstiPodaci.Name = "btnOpstiPodaci";
+            this.btnOpstiPodaci.Size = new System.Drawing.Size(127, 38);
+            this.btnOpstiPodaci.TabIndex = 6;
+            this.btnOpstiPodaci.Text = "Opšti podaci";
+            this.btnOpstiPodaci.ToolTipText = "Uzimanje opštih podataka (datum rođenja, ...) za selektovane učenike";
+            this.btnOpstiPodaci.UseVisualStyleBackColor = false;
+            this.btnOpstiPodaci.Click += new System.EventHandler(this.BtnOpstiPodaci_Click);
+            // 
+            // btnUcitajSveJOBove
+            // 
+            this.btnUcitajSveJOBove.Location = new System.Drawing.Point(7, 256);
+            this.btnUcitajSveJOBove.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUcitajSveJOBove.Name = "btnUcitajSveJOBove";
+            this.btnUcitajSveJOBove.Size = new System.Drawing.Size(127, 38);
+            this.btnUcitajSveJOBove.TabIndex = 5;
+            this.btnUcitajSveJOBove.Text = "Novi učenici?...";
+            this.btnUcitajSveJOBove.ToolTipText = null;
+            this.btnUcitajSveJOBove.UseVisualStyleBackColor = false;
+            this.btnUcitajSveJOBove.Click += new System.EventHandler(this.BtnNoviUcenici_Click);
+            // 
+            // btnOdRaz
+            // 
+            this.btnOdRaz.Location = new System.Drawing.Point(7, 210);
+            this.btnOdRaz.Margin = new System.Windows.Forms.Padding(4);
+            this.btnOdRaz.Name = "btnOdRaz";
+            this.btnOdRaz.Size = new System.Drawing.Size(127, 38);
+            this.btnOdRaz.TabIndex = 4;
+            this.btnOdRaz.Text = "Razredi i odelj.";
+            this.btnOdRaz.ToolTipText = null;
+            this.btnOdRaz.UseVisualStyleBackColor = false;
+            this.btnOdRaz.Click += new System.EventHandler(this.BtnOdRaz_Click);
+            // 
+            // chkAllowNew
+            // 
+            this.chkAllowNew.AutoSize = true;
+            this.chkAllowNew.Location = new System.Drawing.Point(7, 125);
+            this.chkAllowNew.Name = "chkAllowNew";
+            this.chkAllowNew.Size = new System.Drawing.Size(140, 20);
+            this.chkAllowNew.TabIndex = 1;
+            this.chkAllowNew.Text = "Dozvoli dodavanje";
+            this.chkAllowNew.UseVisualStyleBackColor = true;
+            this.chkAllowNew.CheckedChanged += new System.EventHandler(this.ChkAllowNew_CheckedChanged);
+            // 
+            // btnSrednjoskolci
+            // 
+            this.btnSrednjoskolci.Location = new System.Drawing.Point(7, 164);
+            this.btnSrednjoskolci.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSrednjoskolci.Name = "btnSrednjoskolci";
+            this.btnSrednjoskolci.Size = new System.Drawing.Size(127, 38);
+            this.btnSrednjoskolci.TabIndex = 3;
+            this.btnSrednjoskolci.Text = "Srednjoškolci";
+            this.btnSrednjoskolci.ToolTipText = null;
+            this.btnSrednjoskolci.UseVisualStyleBackColor = true;
+            this.btnSrednjoskolci.Click += new System.EventHandler(this.BtnSrednjoskolci_Click);
+            // 
+            // ucExitApp1
+            // 
+            this.ucExitApp1.BackColor = System.Drawing.Color.Red;
+            this.ucExitApp1.ForeColor = System.Drawing.Color.White;
+            this.ucExitApp1.Location = new System.Drawing.Point(7, 15);
+            this.ucExitApp1.Margin = new System.Windows.Forms.Padding(4);
+            this.ucExitApp1.Name = "ucExitApp1";
+            this.ucExitApp1.Size = new System.Drawing.Size(127, 34);
+            this.ucExitApp1.TabIndex = 101;
+            this.ucExitApp1.Text = "Izlaz";
+            this.ucExitApp1.ToolTipText = "Izlaz iz aplikacije";
+            this.ucExitApp1.UseVisualStyleBackColor = false;
+            // 
+            // lblRowCount
+            // 
+            this.lblRowCount.AutoSize = true;
+            this.lblRowCount.Location = new System.Drawing.Point(4, 66);
+            this.lblRowCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblRowCount.Name = "lblRowCount";
+            this.lblRowCount.Size = new System.Drawing.Size(57, 16);
+            this.lblRowCount.TabIndex = 3;
+            this.lblRowCount.Text = "Redova";
+            // 
+            // btnSaveData
+            // 
+            this.btnSaveData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSaveData.Location = new System.Drawing.Point(7, 386);
+            this.btnSaveData.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSaveData.Name = "btnSaveData";
+            this.btnSaveData.Size = new System.Drawing.Size(127, 38);
+            this.btnSaveData.TabIndex = 100;
+            this.btnSaveData.Text = "Sačuvaj podatke";
+            this.btnSaveData.ToolTipText = null;
+            this.btnSaveData.UseVisualStyleBackColor = false;
+            this.btnSaveData.Click += new System.EventHandler(this.BtnSaveData_Click);
+            // 
+            // txtFilter
+            // 
+            this.txtFilter.BindingSource = this.bsUcenici;
+            this.txtFilter.Location = new System.Drawing.Point(7, 86);
+            this.txtFilter.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFilter.Name = "txtFilter";
+            this.txtFilter.Size = new System.Drawing.Size(127, 22);
+            this.txtFilter.TabIndex = 0;
+            this.txtFilter.TextChanged += new System.EventHandler(this.TxtFilter_TextChanged);
+            this.txtFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtFilter_KeyDown);
             // 
             // dgvcIdUcenika
             // 
@@ -152,7 +288,6 @@
             this.dgvcSkola.HeaderText = "Škola";
             this.dgvcSkola.MinimumWidth = 6;
             this.dgvcSkola.Name = "dgvcSkola";
-            this.dgvcSkola.Width = 125;
             // 
             // dgvcRazred
             // 
@@ -160,7 +295,6 @@
             this.dgvcRazred.HeaderText = "Razred";
             this.dgvcRazred.MinimumWidth = 6;
             this.dgvcRazred.Name = "dgvcRazred";
-            this.dgvcRazred.Width = 125;
             // 
             // dgvcOdeljenje
             // 
@@ -170,123 +304,45 @@
             this.dgvcOdeljenje.Name = "dgvcOdeljenje";
             this.dgvcOdeljenje.Width = 125;
             // 
-            // pnlLeft
+            // dgvcPol
             // 
-            this.pnlLeft.Controls.Add(this.btnUcitajSveJOBove);
-            this.pnlLeft.Controls.Add(this.btnOdRaz);
-            this.pnlLeft.Controls.Add(this.chkAllowNew);
-            this.pnlLeft.Controls.Add(this.btnSrednjoskolci);
-            this.pnlLeft.Controls.Add(this.ucExitApp1);
-            this.pnlLeft.Controls.Add(this.lblRowCount);
-            this.pnlLeft.Controls.Add(this.btnSaveData);
-            this.pnlLeft.Controls.Add(this.txtFilter);
-            this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlLeft.Location = new System.Drawing.Point(0, 0);
-            this.pnlLeft.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
-            this.pnlLeft.RightWingWidth = 8;
-            this.pnlLeft.Size = new System.Drawing.Size(150, 428);
-            this.pnlLeft.TabIndex = 0;
+            this.dgvcPol.DataPropertyName = "Pol";
+            this.dgvcPol.HeaderText = "Pol";
+            this.dgvcPol.Name = "dgvcPol";
+            this.dgvcPol.Width = 50;
             // 
-            // btnUcitajSveJOBove
+            // dgvcDatRodj
             // 
-            this.btnUcitajSveJOBove.Location = new System.Drawing.Point(7, 381);
-            this.btnUcitajSveJOBove.Margin = new System.Windows.Forms.Padding(4);
-            this.btnUcitajSveJOBove.Name = "btnUcitajSveJOBove";
-            this.btnUcitajSveJOBove.Size = new System.Drawing.Size(127, 38);
-            this.btnUcitajSveJOBove.TabIndex = 5;
-            this.btnUcitajSveJOBove.Text = "Novi učenici?...";
-            this.btnUcitajSveJOBove.UseVisualStyleBackColor = true;
-            this.btnUcitajSveJOBove.Click += new System.EventHandler(this.BtnNoviUcenici_Click);
+            this.dgvcDatRodj.DataPropertyName = "DatumRodjenja";
+            this.dgvcDatRodj.HeaderText = "Dat Rođ";
+            this.dgvcDatRodj.Name = "dgvcDatRodj";
             // 
-            // btnOdRaz
+            // dgvcDanaDoRodj
             // 
-            this.btnOdRaz.Location = new System.Drawing.Point(7, 338);
-            this.btnOdRaz.Margin = new System.Windows.Forms.Padding(4);
-            this.btnOdRaz.Name = "btnOdRaz";
-            this.btnOdRaz.Size = new System.Drawing.Size(127, 38);
-            this.btnOdRaz.TabIndex = 4;
-            this.btnOdRaz.Text = "Razredi i odelj.";
-            this.btnOdRaz.UseVisualStyleBackColor = true;
-            this.btnOdRaz.Click += new System.EventHandler(this.BtnOdRaz_Click);
+            this.dgvcDanaDoRodj.DataPropertyName = "DanaDoRodj";
+            this.dgvcDanaDoRodj.HeaderText = "Do Rođ.";
+            this.dgvcDanaDoRodj.Name = "dgvcDanaDoRodj";
+            this.dgvcDanaDoRodj.Width = 90;
             // 
-            // chkAllowNew
+            // dgvcGodine
             // 
-            this.chkAllowNew.AutoSize = true;
-            this.chkAllowNew.Location = new System.Drawing.Point(7, 142);
-            this.chkAllowNew.Name = "chkAllowNew";
-            this.chkAllowNew.Size = new System.Drawing.Size(140, 20);
-            this.chkAllowNew.TabIndex = 1;
-            this.chkAllowNew.Text = "Dozvoli dodavanje";
-            this.chkAllowNew.UseVisualStyleBackColor = true;
-            this.chkAllowNew.CheckedChanged += new System.EventHandler(this.ChkAllowNew_CheckedChanged);
-            // 
-            // btnSrednjoskolci
-            // 
-            this.btnSrednjoskolci.Location = new System.Drawing.Point(7, 292);
-            this.btnSrednjoskolci.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSrednjoskolci.Name = "btnSrednjoskolci";
-            this.btnSrednjoskolci.Size = new System.Drawing.Size(127, 38);
-            this.btnSrednjoskolci.TabIndex = 3;
-            this.btnSrednjoskolci.Text = "Srednjoškolci";
-            this.btnSrednjoskolci.UseVisualStyleBackColor = true;
-            this.btnSrednjoskolci.Click += new System.EventHandler(this.BtnSrednjoskolci_Click);
-            // 
-            // ucExitApp1
-            // 
-            this.ucExitApp1.BackColor = System.Drawing.Color.Red;
-            this.ucExitApp1.ForeColor = System.Drawing.Color.White;
-            this.ucExitApp1.Location = new System.Drawing.Point(7, 15);
-            this.ucExitApp1.Margin = new System.Windows.Forms.Padding(4);
-            this.ucExitApp1.Name = "ucExitApp1";
-            this.ucExitApp1.Size = new System.Drawing.Size(127, 34);
-            this.ucExitApp1.TabIndex = 6;
-            this.ucExitApp1.Text = "Izlaz";
-            this.ucExitApp1.UseVisualStyleBackColor = false;
-            // 
-            // lblRowCount
-            // 
-            this.lblRowCount.AutoSize = true;
-            this.lblRowCount.Location = new System.Drawing.Point(8, 81);
-            this.lblRowCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblRowCount.Name = "lblRowCount";
-            this.lblRowCount.Size = new System.Drawing.Size(57, 16);
-            this.lblRowCount.TabIndex = 3;
-            this.lblRowCount.Text = "Redova";
-            // 
-            // btnSaveData
-            // 
-            this.btnSaveData.Location = new System.Drawing.Point(7, 189);
-            this.btnSaveData.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSaveData.Name = "btnSaveData";
-            this.btnSaveData.Size = new System.Drawing.Size(127, 38);
-            this.btnSaveData.TabIndex = 2;
-            this.btnSaveData.Text = "Sačuvaj podatke";
-            this.btnSaveData.UseVisualStyleBackColor = true;
-            this.btnSaveData.Click += new System.EventHandler(this.BtnSaveData_Click);
-            // 
-            // txtFilter
-            // 
-            this.txtFilter.BindingSource = this.bsUcenici;
-            this.txtFilter.Location = new System.Drawing.Point(7, 108);
-            this.txtFilter.Margin = new System.Windows.Forms.Padding(4);
-            this.txtFilter.Name = "txtFilter";
-            this.txtFilter.Size = new System.Drawing.Size(127, 22);
-            this.txtFilter.TabIndex = 0;
-            this.txtFilter.TextChanged += new System.EventHandler(this.TxtFilter_TextChanged);
-            this.txtFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtFilter_KeyDown);
+            this.dgvcGodine.DataPropertyName = "Godine";
+            dataGridViewCellStyle1.Format = "N1";
+            this.dgvcGodine.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvcGodine.HeaderText = "Godine";
+            this.dgvcGodine.Name = "dgvcGodine";
+            this.dgvcGodine.Width = 75;
             // 
             // FrmUcenici
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1026, 450);
+            this.ClientSize = new System.Drawing.Size(1297, 450);
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.pnlLeft);
             this.Controls.Add(this.statusStrip);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Icon = Properties.Resources.grb_srb;
+            this.Icon = global::JISP.Properties.Resources.grb_srb;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FrmUcenici";
             this.Text = "Učenici";
@@ -319,6 +375,7 @@
         private System.Windows.Forms.CheckBox chkAllowNew;
         private Controls.UcButton btnOdRaz;
         private Controls.UcButton btnUcitajSveJOBove;
+        private Controls.UcButton btnOpstiPodaci;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcIdUcenika;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcIme;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcPrezime;
@@ -326,5 +383,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcSkola;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcRazred;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcOdeljenje;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcPol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcDatRodj;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcDanaDoRodj;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcGodine;
     }
 }

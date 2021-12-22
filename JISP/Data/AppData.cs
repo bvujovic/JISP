@@ -12,7 +12,7 @@ namespace JISP.Data
         public static string AppName { get => "JISP"; }
 
         /// <summary>Folder u kojem ce se cuvati podaci: txt, xml...</summary>
-        private static string DataFolder { get; set; }
+        public static string DataFolder => Properties.Settings.Default.DataFolder;
 
         private static readonly string dataFileName = "ds.xml";
 
@@ -26,34 +26,16 @@ namespace JISP.Data
             return fileName;
         }
 
-        private static string FolderForAccount(string accName)
-            => $"c:/Users/{accName}/OneDrive/x/Posao/JISP/prog_data/";
-
-        public static void AppInit()
-        {
-            var accounts = new[] { "bvnet", "sosos" };
-            foreach (var acc in accounts)
-                if (Directory.Exists(FolderForAccount(acc)))
-                    DataFolder = FolderForAccount(acc);
-            
-            if (string.IsNullOrEmpty(DataFolder))
-                DataFolder = System.Windows.Forms.Application.StartupPath;
-            LoadDsData();
-        }
-
         /// <summary>Ucitavanje podataka u DataSet iz fajla.</summary>
         public static void LoadDsData()
         {
-            try
-            {
-                Ds.ReadXml(FilePath());
-                Ds.Zaposleni.CalcJmbgBasedCols();
-                Ds.AcceptChanges();
-                var row = Ds.Settings.FindByName(WebApi.TOKEN_CAPTION);
-                if (row != null)
-                    WebApi.Token = row.Value;
-            }
-            catch (Exception ex) { Classes.Utils.ShowMbox(ex, "Ucitavanje podataka iz XMLa"); }
+            Ds.ReadXml(FilePath());
+            Ds.Zaposleni.CalcJmbgBasedCols();
+            Ds.Ucenici.CalcDatRodjBasedCols();
+            Ds.AcceptChanges();
+            var row = Ds.Settings.FindByName(WebApi.TOKEN_CAPTION);
+            if (row != null)
+                WebApi.Token = row.Value;
         }
 
         /// <summary>Cuvanje podataka iz DataSet-a u fajl.</summary>

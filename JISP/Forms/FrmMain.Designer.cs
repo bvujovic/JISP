@@ -29,51 +29,31 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnUcenici = new JISP.Controls.UcButton();
-            this.btnZaposleni = new JISP.Controls.UcButton();
-            this.btnBackup = new JISP.Controls.UcButton();
+            System.Windows.Forms.Label label2;
             this.lblApiTokenCaption = new System.Windows.Forms.Label();
             this.lblApiToken = new System.Windows.Forms.Label();
             this.ttApiToken = new System.Windows.Forms.ToolTip(this.components);
+            this.btnBackup = new JISP.Controls.UcButton();
+            this.btnZaposleni = new JISP.Controls.UcButton();
+            this.btnUcenici = new JISP.Controls.UcButton();
+            this.lblDataFolder = new System.Windows.Forms.Label();
+            this.ttDataFolder = new System.Windows.Forms.ToolTip(this.components);
+            label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // btnUcenici
+            // label2
             // 
-            this.btnUcenici.Location = new System.Drawing.Point(41, 36);
-            this.btnUcenici.Name = "btnUcenici";
-            this.btnUcenici.Size = new System.Drawing.Size(135, 48);
-            this.btnUcenici.TabIndex = 0;
-            this.btnUcenici.Text = "&Učenici";
-            this.btnUcenici.ToolTipText = null;
-            this.btnUcenici.UseVisualStyleBackColor = true;
-            this.btnUcenici.Click += new System.EventHandler(this.BtnUcenici_Click);
-            // 
-            // btnZaposleni
-            // 
-            this.btnZaposleni.Location = new System.Drawing.Point(41, 90);
-            this.btnZaposleni.Name = "btnZaposleni";
-            this.btnZaposleni.Size = new System.Drawing.Size(135, 48);
-            this.btnZaposleni.TabIndex = 1;
-            this.btnZaposleni.Text = "&Zaposleni";
-            this.btnZaposleni.ToolTipText = null;
-            this.btnZaposleni.UseVisualStyleBackColor = true;
-            this.btnZaposleni.Click += new System.EventHandler(this.BtnZaposleni_Click);
-            // 
-            // btnBackup
-            // 
-            this.btnBackup.Location = new System.Drawing.Point(382, 36);
-            this.btnBackup.Name = "btnBackup";
-            this.btnBackup.Size = new System.Drawing.Size(135, 48);
-            this.btnBackup.TabIndex = 2;
-            this.btnBackup.Text = "BackUp";
-            this.btnBackup.ToolTipText = "Čuvanje podataka iz DataSet-a u posebnom XML fajlu.";
-            this.btnBackup.UseVisualStyleBackColor = true;
-            this.btnBackup.Click += new System.EventHandler(this.BtnBackup_Click);
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(69, 214);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(143, 18);
+            label2.TabIndex = 6;
+            label2.Text = "Folder sa podacima:";
             // 
             // lblApiTokenCaption
             // 
             this.lblApiTokenCaption.AutoSize = true;
-            this.lblApiTokenCaption.Location = new System.Drawing.Point(38, 196);
+            this.lblApiTokenCaption.Location = new System.Drawing.Point(69, 188);
             this.lblApiTokenCaption.Name = "lblApiTokenCaption";
             this.lblApiTokenCaption.Size = new System.Drawing.Size(80, 18);
             this.lblApiTokenCaption.TabIndex = 4;
@@ -83,17 +63,62 @@
             // 
             this.lblApiToken.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblApiToken.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblApiToken.Location = new System.Drawing.Point(124, 193);
+            this.lblApiToken.Location = new System.Drawing.Point(210, 185);
             this.lblApiToken.Name = "lblApiToken";
-            this.lblApiToken.Size = new System.Drawing.Size(189, 24);
+            this.lblApiToken.Size = new System.Drawing.Size(338, 24);
             this.lblApiToken.TabIndex = 5;
-            this.lblApiToken.Click += new System.EventHandler(this.TxtApiToken_Click);
+            this.lblApiToken.Click += new System.EventHandler(this.LblApiToken_Click);
+            // 
+            // btnBackup
+            // 
+            this.btnBackup.Location = new System.Drawing.Point(413, 36);
+            this.btnBackup.Name = "btnBackup";
+            this.btnBackup.Size = new System.Drawing.Size(135, 48);
+            this.btnBackup.TabIndex = 2;
+            this.btnBackup.Text = "BackUp";
+            this.btnBackup.ToolTipText = "Čuvanje podataka iz DataSet-a u posebnom XML fajlu.";
+            this.btnBackup.UseVisualStyleBackColor = true;
+            this.btnBackup.Click += new System.EventHandler(this.BtnBackup_Click);
+            // 
+            // btnZaposleni
+            // 
+            this.btnZaposleni.Location = new System.Drawing.Point(69, 90);
+            this.btnZaposleni.Name = "btnZaposleni";
+            this.btnZaposleni.Size = new System.Drawing.Size(135, 48);
+            this.btnZaposleni.TabIndex = 1;
+            this.btnZaposleni.Text = "&Zaposleni";
+            this.btnZaposleni.ToolTipText = null;
+            this.btnZaposleni.UseVisualStyleBackColor = true;
+            this.btnZaposleni.Click += new System.EventHandler(this.BtnZaposleni_Click);
+            // 
+            // btnUcenici
+            // 
+            this.btnUcenici.Location = new System.Drawing.Point(69, 36);
+            this.btnUcenici.Name = "btnUcenici";
+            this.btnUcenici.Size = new System.Drawing.Size(135, 48);
+            this.btnUcenici.TabIndex = 0;
+            this.btnUcenici.Text = "&Učenici";
+            this.btnUcenici.ToolTipText = null;
+            this.btnUcenici.UseVisualStyleBackColor = true;
+            this.btnUcenici.Click += new System.EventHandler(this.BtnUcenici_Click);
+            // 
+            // lblDataFolder
+            // 
+            this.lblDataFolder.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblDataFolder.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblDataFolder.Location = new System.Drawing.Point(210, 211);
+            this.lblDataFolder.Name = "lblDataFolder";
+            this.lblDataFolder.Size = new System.Drawing.Size(338, 24);
+            this.lblDataFolder.TabIndex = 7;
+            this.lblDataFolder.Click += new System.EventHandler(this.LblDataFolder_Click);
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(617, 279);
+            this.Controls.Add(this.lblDataFolder);
+            this.Controls.Add(label2);
             this.Controls.Add(this.lblApiToken);
             this.Controls.Add(this.lblApiTokenCaption);
             this.Controls.Add(this.btnBackup);
@@ -101,7 +126,7 @@
             this.Controls.Add(this.btnUcenici);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = Properties.Resources.grb_srb;
+            this.Icon = global::JISP.Properties.Resources.grb_srb;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "FrmMain";
@@ -121,6 +146,8 @@
         private System.Windows.Forms.Label lblApiTokenCaption;
         private System.Windows.Forms.Label lblApiToken;
         private System.Windows.Forms.ToolTip ttApiToken;
+        private System.Windows.Forms.Label lblDataFolder;
+        private System.Windows.Forms.ToolTip ttDataFolder;
     }
 }
 

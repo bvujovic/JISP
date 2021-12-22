@@ -17,15 +17,32 @@ namespace JISP.Forms
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            ttApiToken.SetToolTip(lblApiToken, "Klikni za paste web api token-a.");
+            try
+            {
+                // ako folder u kome se nalaze podaci za app ne postoji -> korisnik mora da ga definise
+                var setts = Properties.Settings.Default;
+                if (string.IsNullOrEmpty(setts.DataFolder))
+                {
+                    var fbd = new FolderBrowserDialog { Description = "Odabir foldera u kojem će se čuvati podaci ove aplikacije." };
+                    if (fbd.ShowDialog() == DialogResult.OK)
+                    {
+                        setts.DataFolder = fbd.SelectedPath;
+                        setts.Save();
+                    }
+                }
+                lblDataFolder.Text = setts.DataFolder;
+                AppData.LoadDsData();
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowMbox(ex, "Učitavanje podataka iz XMLa");
+                Close();
+            }
+
+            ttDataFolder.SetToolTip(lblDataFolder, "Klik za otvaranje foldera sa podacima");
+            ttApiToken.SetToolTip(lblApiToken, "Klik za paste Web API Token-a");
             lblApiToken.Text = WebApi.TokenDisplay;
             FormClosing += FrmMain_FormClosing;
-
-            //TODO...
-            //MessageBox.Show(Properties.Settings.Default.DataFolder);
-            //Properties.Settings.Default.DataFolder = DateTime.Now.ToLongTimeString();
-            //MessageBox.Show(Properties.Settings.Default.DataFolder);
-            //Properties.Settings.Default.Save();
         }
 
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -76,11 +93,16 @@ namespace JISP.Forms
             AppData.BackupData();
         }
 
-        private void TxtApiToken_Click(object sender, EventArgs e)
+        private void LblApiToken_Click(object sender, EventArgs e)
         {
             WebApi.Token = Clipboard.GetText();
             lblApiToken.Text = WebApi.TokenDisplay;
             AppData.SaveDsData();
+        }
+
+        private void LblDataFolder_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(AppData.DataFolder);
         }
     }
 }

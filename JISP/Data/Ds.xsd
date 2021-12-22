@@ -18,10 +18,21 @@
               <xs:element name="IdUcenika" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnIdUcenika" msprop:Generator_ColumnPropNameInRow="IdUcenika" msprop:Generator_ColumnPropNameInTable="IdUcenikaColumn" msprop:Generator_UserColumnName="IdUcenika" type="xs:int" />
               <xs:element name="Ime" msprop:Generator_ColumnVarNameInTable="columnIme" msprop:Generator_ColumnPropNameInRow="Ime" msprop:Generator_ColumnPropNameInTable="ImeColumn" msprop:Generator_UserColumnName="Ime" type="xs:string" minOccurs="0" />
               <xs:element name="Prezime" msprop:Generator_ColumnVarNameInTable="columnPrezime" msprop:Generator_ColumnPropNameInRow="Prezime" msprop:Generator_ColumnPropNameInTable="PrezimeColumn" msprop:Generator_UserColumnName="Prezime" type="xs:string" minOccurs="0" />
+              <xs:element name="RegUceLiceId" msprop:Generator_ColumnVarNameInTable="columnRegUceLiceId" msprop:Generator_ColumnPropNameInRow="RegUceLiceId" msprop:Generator_ColumnPropNameInTable="RegUceLiceIdColumn" msprop:Generator_UserColumnName="RegUceLiceId" type="xs:int" minOccurs="0" />
               <xs:element name="JOB" msprop:Generator_ColumnVarNameInTable="columnJOB" msprop:Generator_ColumnPropNameInRow="JOB" msprop:Generator_ColumnPropNameInTable="JOBColumn" msprop:Generator_UserColumnName="JOB" type="xs:string" />
               <xs:element name="Skola" msprop:Generator_ColumnVarNameInTable="columnSkola" msprop:Generator_ColumnPropNameInRow="Skola" msprop:Generator_ColumnPropNameInTable="SkolaColumn" msprop:Generator_UserColumnName="Skola" type="xs:string" minOccurs="0" />
               <xs:element name="Razred" msprop:Generator_ColumnVarNameInTable="columnRazred" msprop:Generator_ColumnPropNameInRow="Razred" msprop:Generator_ColumnPropNameInTable="RazredColumn" msprop:Generator_UserColumnName="Razred" type="xs:string" minOccurs="0" />
               <xs:element name="Odeljenje" msprop:Generator_ColumnVarNameInTable="columnOdeljenje" msprop:Generator_ColumnPropNameInRow="Odeljenje" msprop:Generator_ColumnPropNameInTable="OdeljenjeColumn" msprop:Generator_UserColumnName="Odeljenje" type="xs:string" minOccurs="0" />
+              <xs:element name="Pol" msprop:Generator_ColumnVarNameInTable="columnPol" msprop:Generator_ColumnPropNameInRow="Pol" msprop:Generator_ColumnPropNameInTable="PolColumn" msprop:Generator_UserColumnName="Pol" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DatumRodjenja" msprop:Generator_ColumnVarNameInTable="columnDatumRodjenja" msprop:Generator_ColumnPropNameInRow="DatumRodjenja" msprop:Generator_ColumnPropNameInTable="DatumRodjenjaColumn" msprop:Generator_UserColumnName="DatumRodjenja" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Godine" msprop:Generator_ColumnVarNameInTable="columnGodine" msprop:Generator_ColumnPropNameInRow="Godine" msprop:Generator_ColumnPropNameInTable="GodineColumn" msprop:Generator_UserColumnName="Godine" type="xs:double" minOccurs="0" />
+              <xs:element name="DanaDoRodj" msprop:Generator_ColumnVarNameInTable="columnDanaDoRodj" msprop:Generator_ColumnPropNameInRow="DanaDoRodj" msprop:Generator_ColumnPropNameInTable="DanaDoRodjColumn" msprop:Generator_UserColumnName="DanaDoRodj" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

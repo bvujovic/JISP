@@ -22,7 +22,7 @@
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
+    <MapFileExtensions>false</MapFileExtensions>
     <SupportUrl>https://github.com/bvujovic/JISP/releases</SupportUrl>
     <ProductName>Naš JISP</ProductName>
     <PublisherName>BV</PublisherName>
@@ -135,6 +135,7 @@
     <Compile Include="Data\Model\JobZahtev.cs" />
     <Compile Include="Data\Model\Srednjoskolac.cs" />
     <Compile Include="Data\Model\Ucenik.cs" />
+    <Compile Include="Data\Model\UcenikOpste.cs" />
     <Compile Include="Data\WebApi.cs" />
     <Compile Include="Data\Model\Zaposleni.cs" />
     <Compile Include="Data\Model\Zaposlenje.cs" />
@@ -164,6 +165,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
     <EmbeddedResource Include="Controls\UcLeftPanel.resx">
       <DependentUpon>UcLeftPanel.cs</DependentUpon>
     </EmbeddedResource>

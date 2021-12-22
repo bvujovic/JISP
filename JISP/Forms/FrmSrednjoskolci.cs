@@ -25,9 +25,6 @@ namespace JISP.Forms
             try
             {
                 var ucenici = await WebApi.GetList<Srednjoskolac>(WebApi.ReqEnum.Uc_DuosSrednjoskolci);
-                //B
-                //if (ucenici == null)
-                //    throw new Exception("No data.");
                 Ds.Srednjoskolci.Clear();
                 foreach (var u in ucenici)
                 {
@@ -48,7 +45,7 @@ namespace JISP.Forms
         {
             try
             {
-                //broj razlicitih vrednosti u koloni
+                // broj razlicitih vrednosti u koloni
                 var idxCol = dgv.SelectedCells[0].ColumnIndex;
                 var vc = dgv.ValuesCount(idxCol);
                 var sb = new System.Text.StringBuilder($"Broj razlicitih vrednosti: {vc.Values.Count}\r\n\r\n");
