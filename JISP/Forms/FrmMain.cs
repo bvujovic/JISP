@@ -81,11 +81,13 @@ namespace JISP.Forms
         private void BtnUcenici_Click(object sender, EventArgs e)
         {
             Utils.ShowForm(typeof(FrmUcenici));
+            this.WindowState = FormWindowState.Minimized;
         }
 
         private void BtnZaposleni_Click(object sender, EventArgs e)
         {
             Utils.ShowForm(typeof(FrmZaposleni));
+            this.WindowState = FormWindowState.Minimized;
         }
 
         private void BtnBackup_Click(object sender, EventArgs e)

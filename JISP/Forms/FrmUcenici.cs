@@ -23,6 +23,7 @@ namespace JISP.Forms
             dgv.CopyOnCellClick = true;
             DisplayPositionRowCount();
             colOriginal = lblStatus.BackColor;
+            dgv.ColumnsForCopyOnClick = new int [] { dgvcJOB.Index };
             dgv.CellTextCopied += Dgv_CellTextCopied;
             lblStatus.TextChanged += LblStatus_TextChanged;
             timStatus.Tick += TimStatus_Tick;
@@ -82,6 +83,8 @@ namespace JISP.Forms
         {
             try
             {
+                if (dgv.SelectedRows.Count == 0)
+                    throw new Exception("Nije selektovan nijedan red u tabeli.");
                 foreach (DataGridViewRow row in dgv.SelectedRows)
                 {
                     var drv = row.DataBoundItem as DataRowView;
@@ -92,9 +95,7 @@ namespace JISP.Forms
                             (WebApi.ReqEnum.Uc_OpstiPodaci, uc.RegUceLiceId.ToString());
                         uc.Pol = uo.PolSlovo;
                         if (uo.DatumRodjenja.HasValue)
-                        {
                             uc.DatumRodjenja = uo.DatumRodjenja.Value;
-                        }
                     }
                 }
             }

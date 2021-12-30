@@ -30,11 +30,15 @@ namespace JISP.Controls
         /// <summary>Da li se tekst celije kopira u klipbord pri kliku na celiju.</summary>
         public bool CopyOnCellClick { get; set; } = false;
 
+        /// <summary>Niz indeksa kolona/celija ciji ce se podaci kopirati na korisnikov klik.</summary>
+        public int[] ColumnsForCopyOnClick { get; set; }
+
         protected override void OnCellClick(DataGridViewCellEventArgs e)
         {
             base.OnCellClick(e);
             if (CopyOnCellClick
                 && e.ColumnIndex != -1 && e.RowIndex != -1 && SelectedCells.Count > 0
+                && (ColumnsForCopyOnClick == null || ColumnsForCopyOnClick.Contains(e.ColumnIndex))
                 && Columns[e.ColumnIndex].CellType == typeof(DataGridViewTextBoxCell))
                 CopyCellText(SelectedCells[0]);
         }

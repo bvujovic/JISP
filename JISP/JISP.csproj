@@ -27,8 +27,8 @@
     <ProductName>Naš JISP</ProductName>
     <PublisherName>BV</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>3</ApplicationRevision>
-    <ApplicationVersion>0.2.0.%2a</ApplicationVersion>
+    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationVersion>0.2.0.4</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -57,7 +57,7 @@
     <ApplicationIcon>Resources\grb_srb.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>29742158EB84A83C7DA5278C9688676401AED47B</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>54A2F715D7CF68F0FE7BE2253EF1F7ABD02C1C5F</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>JISP_TemporaryKey.pfx</ManifestKeyFile>

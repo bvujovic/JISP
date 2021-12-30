@@ -1,5 +1,5 @@
-﻿+ pamcenje DataFolder-a
-+ dodavanje dat. rodj ucenicima
+﻿- FrmMain: A static Instance
+- FrmMain: hide in taskbar dok je neka druga forma aktivna
 [- ubrzavanje unosa ocena]
 - odrediti tacan kriterijum aktivnosti zaposlenog: ima zaposlenja u SvSavi koja su aktivna?
 - zaposlenima dodati i predmete na kojima rade. ovo bi trebalo da bude pretrazivo u formi.

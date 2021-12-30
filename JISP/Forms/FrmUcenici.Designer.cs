@@ -52,6 +52,7 @@
             this.dgvcSkola = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcRazred = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcOdeljenje = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcNapomene = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcPol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcDatRodj = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcDanaDoRodj = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -80,22 +81,23 @@
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblStatus});
-            this.statusStrip.Location = new System.Drawing.Point(0, 428);
+            this.statusStrip.Location = new System.Drawing.Point(0, 423);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(1297, 22);
+            this.statusStrip.Size = new System.Drawing.Size(1297, 27);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "statusStrip1";
             // 
             // lblStatus
             // 
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(12, 17);
+            this.lblStatus.Size = new System.Drawing.Size(16, 21);
             this.lblStatus.Text = "/";
             // 
             // dgv
             // 
             this.dgv.AllowUserToAddRows = false;
             this.dgv.AllowUserToDeleteRows = false;
+            this.dgv.AllowUserToOrderColumns = true;
             this.dgv.AutoGenerateColumns = false;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -106,6 +108,7 @@
             this.dgvcSkola,
             this.dgvcRazred,
             this.dgvcOdeljenje,
+            this.dgvcNapomene,
             this.dgvcPol,
             this.dgvcDatRodj,
             this.dgvcDanaDoRodj,
@@ -118,7 +121,7 @@
             this.dgv.Name = "dgv";
             this.dgv.RowHeadersWidth = 30;
             this.dgv.RowTemplate.Height = 24;
-            this.dgv.Size = new System.Drawing.Size(1147, 428);
+            this.dgv.Size = new System.Drawing.Size(1147, 423);
             this.dgv.TabIndex = 1;
             this.dgv.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.Dgv_DataError);
             // 
@@ -139,7 +142,7 @@
             this.pnlLeft.Name = "pnlLeft";
             this.pnlLeft.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
             this.pnlLeft.RightWingWidth = 8;
-            this.pnlLeft.Size = new System.Drawing.Size(150, 428);
+            this.pnlLeft.Size = new System.Drawing.Size(150, 423);
             this.pnlLeft.TabIndex = 0;
             // 
             // btnOpstiPodaci
@@ -183,7 +186,7 @@
             this.chkAllowNew.AutoSize = true;
             this.chkAllowNew.Location = new System.Drawing.Point(7, 125);
             this.chkAllowNew.Name = "chkAllowNew";
-            this.chkAllowNew.Size = new System.Drawing.Size(140, 20);
+            this.chkAllowNew.Size = new System.Drawing.Size(167, 24);
             this.chkAllowNew.TabIndex = 1;
             this.chkAllowNew.Text = "Dozvoli dodavanje";
             this.chkAllowNew.UseVisualStyleBackColor = true;
@@ -220,14 +223,14 @@
             this.lblRowCount.Location = new System.Drawing.Point(4, 66);
             this.lblRowCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRowCount.Name = "lblRowCount";
-            this.lblRowCount.Size = new System.Drawing.Size(57, 16);
+            this.lblRowCount.Size = new System.Drawing.Size(65, 20);
             this.lblRowCount.TabIndex = 3;
             this.lblRowCount.Text = "Redova";
             // 
             // btnSaveData
             // 
             this.btnSaveData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSaveData.Location = new System.Drawing.Point(7, 386);
+            this.btnSaveData.Location = new System.Drawing.Point(7, 381);
             this.btnSaveData.Margin = new System.Windows.Forms.Padding(4);
             this.btnSaveData.Name = "btnSaveData";
             this.btnSaveData.Size = new System.Drawing.Size(127, 38);
@@ -243,7 +246,7 @@
             this.txtFilter.Location = new System.Drawing.Point(7, 86);
             this.txtFilter.Margin = new System.Windows.Forms.Padding(4);
             this.txtFilter.Name = "txtFilter";
-            this.txtFilter.Size = new System.Drawing.Size(127, 22);
+            this.txtFilter.Size = new System.Drawing.Size(127, 26);
             this.txtFilter.TabIndex = 0;
             this.txtFilter.TextChanged += new System.EventHandler(this.TxtFilter_TextChanged);
             this.txtFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtFilter_KeyDown);
@@ -288,6 +291,7 @@
             this.dgvcSkola.HeaderText = "Škola";
             this.dgvcSkola.MinimumWidth = 6;
             this.dgvcSkola.Name = "dgvcSkola";
+            this.dgvcSkola.Width = 125;
             // 
             // dgvcRazred
             // 
@@ -295,6 +299,7 @@
             this.dgvcRazred.HeaderText = "Razred";
             this.dgvcRazred.MinimumWidth = 6;
             this.dgvcRazred.Name = "dgvcRazred";
+            this.dgvcRazred.Width = 125;
             // 
             // dgvcOdeljenje
             // 
@@ -304,10 +309,19 @@
             this.dgvcOdeljenje.Name = "dgvcOdeljenje";
             this.dgvcOdeljenje.Width = 125;
             // 
+            // dgvcNapomene
+            // 
+            this.dgvcNapomene.DataPropertyName = "Napomene";
+            this.dgvcNapomene.HeaderText = "Napomene";
+            this.dgvcNapomene.MinimumWidth = 6;
+            this.dgvcNapomene.Name = "dgvcNapomene";
+            this.dgvcNapomene.Width = 125;
+            // 
             // dgvcPol
             // 
             this.dgvcPol.DataPropertyName = "Pol";
             this.dgvcPol.HeaderText = "Pol";
+            this.dgvcPol.MinimumWidth = 6;
             this.dgvcPol.Name = "dgvcPol";
             this.dgvcPol.Width = 50;
             // 
@@ -315,12 +329,15 @@
             // 
             this.dgvcDatRodj.DataPropertyName = "DatumRodjenja";
             this.dgvcDatRodj.HeaderText = "Dat Rođ";
+            this.dgvcDatRodj.MinimumWidth = 6;
             this.dgvcDatRodj.Name = "dgvcDatRodj";
+            this.dgvcDatRodj.Width = 125;
             // 
             // dgvcDanaDoRodj
             // 
             this.dgvcDanaDoRodj.DataPropertyName = "DanaDoRodj";
             this.dgvcDanaDoRodj.HeaderText = "Do Rođ.";
+            this.dgvcDanaDoRodj.MinimumWidth = 6;
             this.dgvcDanaDoRodj.Name = "dgvcDanaDoRodj";
             this.dgvcDanaDoRodj.Width = 90;
             // 
@@ -330,12 +347,13 @@
             dataGridViewCellStyle1.Format = "N1";
             this.dgvcGodine.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvcGodine.HeaderText = "Godine";
+            this.dgvcGodine.MinimumWidth = 6;
             this.dgvcGodine.Name = "dgvcGodine";
             this.dgvcGodine.Width = 75;
             // 
             // FrmUcenici
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1297, 450);
             this.Controls.Add(this.dgv);
@@ -383,6 +401,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcSkola;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcRazred;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcOdeljenje;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcNapomene;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcPol;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcDatRodj;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcDanaDoRodj;

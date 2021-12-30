@@ -46,7 +46,7 @@
             label2.AutoSize = true;
             label2.Location = new System.Drawing.Point(69, 214);
             label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(143, 18);
+            label2.Size = new System.Drawing.Size(172, 22);
             label2.TabIndex = 6;
             label2.Text = "Folder sa podacima:";
             // 
@@ -55,7 +55,7 @@
             this.lblApiTokenCaption.AutoSize = true;
             this.lblApiTokenCaption.Location = new System.Drawing.Point(69, 188);
             this.lblApiTokenCaption.Name = "lblApiTokenCaption";
-            this.lblApiTokenCaption.Size = new System.Drawing.Size(80, 18);
+            this.lblApiTokenCaption.Size = new System.Drawing.Size(99, 22);
             this.lblApiTokenCaption.TabIndex = 4;
             this.lblApiTokenCaption.Text = "API Token:";
             // 
@@ -114,7 +114,7 @@
             // 
             // FrmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(617, 279);
             this.Controls.Add(this.lblDataFolder);
@@ -130,6 +130,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "FrmMain";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "JISP";
             this.Load += new System.EventHandler(this.FrmMain_Load);
