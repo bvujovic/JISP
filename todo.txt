@@ -1,7 +1,11 @@
-﻿- FrmMain: A static Instance
-- FrmMain: hide in taskbar dok je neka druga forma aktivna
-[- ubrzavanje unosa ocena]
+﻿+ FrmMain: A static Instance
++ FrmMain: hide in taskbar dok je neka druga forma aktivna
+- dugmici
+	+ skoro svim dugmicima dodati tooltip
+	[- boje dugmica: Sacuvaj - plava, Dodaj novo - zelena, Izmeni - zuta, Obrisi - crvena, Izlaz iz app - crna]
+- ukidanje FrmSrednjoskolci i dodavanje tih podataka u FrmUcenici
 - odrediti tacan kriterijum aktivnosti zaposlenog: ima zaposlenja u SvSavi koja su aktivna?
 - zaposlenima dodati i predmete na kojima rade. ovo bi trebalo da bude pretrazivo u formi.
-[- boje dugmica: Sacuvaj - plava, Dodaj novo - zelena, Izmeni - zuta, Obrisi - crvena, Izlaz iz app - crna]
-[- ukidanje FrmSrednjoskolci i dodavanje tih podataka u FrmUcenici]
+- pravljenje tooltipova sa objasnjenjima pretraga za zaposlene i ucenike
+- napraviti nove SShotove
+[- ubrzavanje unosa koeficijenata u douniv. obrazovanju]

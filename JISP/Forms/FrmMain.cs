@@ -13,7 +13,10 @@ namespace JISP.Forms
         public FrmMain()
         {
             InitializeComponent();
+            Instance = this;
         }
+
+        public static FrmMain Instance { get; private set; }
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
@@ -32,6 +35,7 @@ namespace JISP.Forms
                 }
                 lblDataFolder.Text = setts.DataFolder;
                 AppData.LoadDsData();
+                Text = "Naš JISP - " + Utils.GetVersion();
             }
             catch (Exception ex)
             {
@@ -81,13 +85,22 @@ namespace JISP.Forms
         private void BtnUcenici_Click(object sender, EventArgs e)
         {
             Utils.ShowForm(typeof(FrmUcenici));
-            this.WindowState = FormWindowState.Minimized;
+            //B this.WindowState = FormWindowState.Minimized;
         }
 
         private void BtnZaposleni_Click(object sender, EventArgs e)
         {
             Utils.ShowForm(typeof(FrmZaposleni));
-            this.WindowState = FormWindowState.Minimized;
+            //B this.WindowState = FormWindowState.Minimized;
+        }
+
+        public void FrmChild_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (Application.OpenForms.Count == 0)
+            {
+                ShowInTaskbar = true;
+                WindowState = FormWindowState.Normal;
+            }
         }
 
         private void BtnBackup_Click(object sender, EventArgs e)

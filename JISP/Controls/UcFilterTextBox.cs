@@ -46,5 +46,12 @@ namespace JISP.Controls
 
         /// <summary>Esc taster -> brisanje sadrzaja text box-a.</summary>
         public event EventHandler FilterCleared;
+
+        protected override void OnTextChanged(EventArgs e)
+        {
+            base.OnTextChanged(e);
+            BackColor = InputLanguage.CurrentInputLanguage.LayoutName.Contains("Cyrillic")
+                ? System.Drawing.Color.White : System.Drawing.Color.Orange;
+        }
     }
 }

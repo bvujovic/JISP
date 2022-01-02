@@ -22,14 +22,14 @@
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>false</MapFileExtensions>
+    <MapFileExtensions>true</MapFileExtensions>
     <SupportUrl>https://github.com/bvujovic/JISP/releases</SupportUrl>
     <ProductName>Naš JISP</ProductName>
     <PublisherName>BV</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>4</ApplicationRevision>
-    <ApplicationVersion>0.2.0.4</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>0.3.0.0</ApplicationVersion>
+    <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -57,7 +57,7 @@
     <ApplicationIcon>Resources\grb_srb.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>54A2F715D7CF68F0FE7BE2253EF1F7ABD02C1C5F</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>29742158EB84A83C7DA5278C9688676401AED47B</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>JISP_TemporaryKey.pfx</ManifestKeyFile>
@@ -166,6 +166,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="Controls\UcDGV.resx">
+      <DependentUpon>UcDGV.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\UcLeftPanel.resx">
       <DependentUpon>UcLeftPanel.cs</DependentUpon>
     </EmbeddedResource>
