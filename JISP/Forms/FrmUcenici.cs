@@ -20,10 +20,10 @@ namespace JISP.Forms
         private void FrmUcenici_Load(object sender, EventArgs e)
         {
             bsUcenici.DataSource = AppData.Ds;
-            dgv.CopyOnCellClick = true;
             DisplayPositionRowCount();
             colOriginal = lblStatus.BackColor;
-            dgv.ColumnsForCopyOnClick = new int [] { dgvcJOB.Index };
+            dgv.ColumnsForCopyOnClick = new int[] { dgvcJOB.Index };
+            dgv.CopyOnCellClick = true;
             dgv.CellTextCopied += Dgv_CellTextCopied;
             lblStatus.TextChanged += LblStatus_TextChanged;
             timStatus.Tick += TimStatus_Tick;
@@ -49,12 +49,33 @@ namespace JISP.Forms
             lblStatus.BackColor = colOriginal;
         }
 
+        /// <summary>IDevi ucenika cija imena/prezimena pocinju datim stringom.</summary>
+        /// <example>str "stef rad" -> Stefan Snezana Radovanovic</example>
+        private static IEnumerable<int> IDeviZaDeoImena(string str)
+        {
+            var ss = str.ToLower().Split();
+            var ids = new List<int>();
+            foreach (var uc in AppData.Ds.Ucenici)
+            {
+                var deloviIme = uc.Ime.Split();
+                var hits = 0;
+                foreach (var s in ss)
+                    if (deloviIme.Any(it => it.ToLower().StartsWith(s)))
+                        hits++;
+                if (hits == ss.Length) // ako svaki deo datog stringa zapocinje bar neki deo imena
+                    ids.Add(uc.IdUcenika); // onda ucenik zadovoljava uslov i njegov ID je deo rezultata
+            }
+            return ids;
+        }
+
         private void TxtFilter_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 var s = txtFilter.Text;
-                bsUcenici.Filter = $"Ime LIKE '%{s}%' OR Prezime LIKE '%{s}%' OR JOB LIKE '%{s}%' "
+                var ids = IDeviZaDeoImena(s);
+                var deoImena = ids.Count() > 0 ? $"IdUcenika IN ({string.Join(", ", ids)}) OR " : "";
+                bsUcenici.Filter = $"{deoImena} JOB LIKE '%{s}%' "
                         + $" OR Skola LIKE '%{s}%' OR Razred LIKE '%{s}%' OR Odeljenje LIKE '%{s}%'";
             }
             catch (Exception ex) { Utils.ShowMbox(ex, "Greška pri filtriranju podataka"); }
@@ -99,7 +120,7 @@ namespace JISP.Forms
                     }
                 }
             }
-            catch (Exception ex) { Utils.ShowMbox(ex, "Uzimanje podataka o razredima i odeljenjima"); }
+            catch (Exception ex) { Utils.ShowMbox(ex, btnOpstiPodaci.ToolTipText); }
         }
 
         private async void BtnOdRaz_Click(object sender, EventArgs e)
@@ -109,7 +130,7 @@ namespace JISP.Forms
                 await GetDuosData(WebApi.ReqEnum.Uc_DuosOS);
                 await GetDuosData(WebApi.ReqEnum.Uc_DuosSS);
             }
-            catch (Exception ex) { Utils.ShowMbox(ex, "Uzimanje podataka o razredima i odeljenjima"); }
+            catch (Exception ex) { Utils.ShowMbox(ex, btnOdRaz.ToolTipText); }
         }
 
         /// <summary>Preuzimanje DUOS podataka o ucenicima za tekucu sk. godinu.</summary>
@@ -181,10 +202,10 @@ namespace JISP.Forms
                     }
                     Clipboard.SetText(string.Join(Environment.NewLine, novi.OrderBy(it => it.NazivUcenika)));
                     Utils.ShowMbox
-                        ("Lista novih JOBova sa imenima učenika je u clipboard-u.", "Učitavanje JOB-ova");
+                        ("Lista novih JOBova sa imenima učenika je u clipboard-u.", btnNoviUcenici.Text);
                 }
             }
-            catch (Exception ex) { Utils.ShowMbox(ex, "Učitavanje JOB-ova"); }
+            catch (Exception ex) { Utils.ShowMbox(ex, btnNoviUcenici.Text); }
         }
 
         private void BsUcenici_CurrentChanged(object sender, EventArgs e)

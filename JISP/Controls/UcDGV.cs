@@ -10,6 +10,22 @@ namespace JISP.Controls
         public UcDGV()
         {
             RowHeadersWidth = 30;
+            InitializeComponent();
+        }
+
+        private void InitializeComponent()
+        {
+            var dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // UcDGV
+            // 
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
+            this.ResumeLayout(false);
         }
 
         /// <summary>Vraca (DataSet) red sa podacima na osnovu tekuceg DataGridView reda.</summary>

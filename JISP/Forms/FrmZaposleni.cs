@@ -69,7 +69,7 @@ namespace JISP.Forms
         private void TxtFilter_FilterCleared(object sender, EventArgs e)
             => chkAktivniZap.CheckState = CheckState.Indeterminate;
 
-        /// <summary>Ucitavanje JSON podataka o zaposlenima iz clipboard-a.</summary>
+        /// <summary>Dohvatanje podataka o zaposlenima (ime, prezime, JMBG, zaposlenja).</summary>
         private async void BtnLoadData_Click(object sender, EventArgs e)
         {
             try
@@ -99,7 +99,6 @@ namespace JISP.Forms
                             red.JMBG = zap.JMBG;
                             red.Aktivan = (bool)zap.TrenutnoZaposlen;
                         }
-
                         var nja = zap.ZaposleniZaposlenje;
                         if (nja != null)
                             foreach (var nje in nja)
@@ -110,7 +109,6 @@ namespace JISP.Forms
                                 redNje.RadnoMestoNaziv = nje.RadnoMestoNaziv;
                                 Ds.Zaposlenja.AddZaposlenjaRow(redNje);
                             }
-
                     }
                     catch (Exception ex)
                     {

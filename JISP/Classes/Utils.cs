@@ -1,11 +1,12 @@
-﻿using System;
+﻿using JISP.Forms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
 namespace JISP.Classes
 {
-    public class Utils
+    public static class Utils
     {
         /// <summary>Prikazuje modalni MessageBox.</summary>
         public static DialogResult ShowMbox(string message, string title)
@@ -67,18 +68,44 @@ namespace JISP.Classes
         public static void ShowForm(Type typForm)
         {
             var frm = Application.OpenForms.OfType<Form>().FirstOrDefault(it => it.GetType() == typForm);
+            var frmMain = FrmMain.Instance;
             if (frm == null || frm.IsDisposed)
             {
-                if (typForm == typeof(Forms.FrmZaposleni))
-                    frm = new Forms.FrmZaposleni();
-                if (typForm == typeof(Forms.FrmUcenici))
-                    frm = new Forms.FrmUcenici();
-                if (typForm == typeof(Forms.FrmSrednjoskolci))
-                    frm = new Forms.FrmSrednjoskolci();
+                if (typForm == typeof(FrmZaposleni))
+                    frm = new FrmZaposleni();
+                if (typForm == typeof(FrmUcenici))
+                    frm = new FrmUcenici();
+                if (typForm == typeof(FrmSrednjoskolci))
+                    frm = new FrmSrednjoskolci();
+
+                frm.StartPosition = FormStartPosition.CenterScreen;
+                frm.FormClosed += frmMain.FrmChild_FormClosed;
+                frmMain.ShowInTaskbar = false;
+                frmMain.WindowState = FormWindowState.Minimized;
             }
             frm.Show();
             frm.WindowState = FormWindowState.Minimized;
             frm.WindowState = FormWindowState.Normal;
+        }
+
+        public static string GetVersion()
+        {
+            try
+            {
+                return System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion.ToStringNoZeros();
+                // System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            }
+            catch { return "DEBUG verzija"; }
+        }
+
+        /// <summary>String formatiranje verzije (aplikacije) bez kranjih nula.</summary>
+        /// <example>0.3.0.0 -> 0.3</example>
+        public static string ToStringNoZeros(this Version v)
+        {
+            if (v.Revision == 0)
+                return $"{v.Major}.{v.Minor}" + (v.Build != 0 ? $".{v.Build}" : "");
+            else
+                return v.ToString();
         }
     }
 }
