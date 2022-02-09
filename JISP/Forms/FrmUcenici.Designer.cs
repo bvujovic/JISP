@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.bsUcenici = new System.Windows.Forms.BindingSource(this.components);
             this.ds = new JISP.Data.Ds();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
@@ -57,6 +58,7 @@
             this.lblRowCount = new System.Windows.Forms.Label();
             this.btnSaveData = new JISP.Controls.UcButton();
             this.txtFilter = new JISP.Controls.UcFilterTextBox();
+            this.btnOcene = new JISP.Controls.UcButton();
             ((System.ComponentModel.ISupportInitialize)(this.bsUcenici)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
             this.statusStrip.SuspendLayout();
@@ -98,7 +100,10 @@
             this.dgv.AllowUserToAddRows = false;
             this.dgv.AllowUserToDeleteRows = false;
             this.dgv.AllowUserToOrderColumns = true;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv.AutoGenerateColumns = false;
+            this.dgv.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgvcIdUcenika,
@@ -219,8 +224,8 @@
             // dgvcGodine
             // 
             this.dgvcGodine.DataPropertyName = "Godine";
-            dataGridViewCellStyle1.Format = "N1";
-            this.dgvcGodine.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Format = "N1";
+            this.dgvcGodine.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvcGodine.HeaderText = "Godine";
             this.dgvcGodine.MinimumWidth = 6;
             this.dgvcGodine.Name = "dgvcGodine";
@@ -228,6 +233,7 @@
             // 
             // pnlLeft
             // 
+            this.pnlLeft.Controls.Add(this.btnOcene);
             this.pnlLeft.Controls.Add(this.btnOpstiPodaci);
             this.pnlLeft.Controls.Add(this.btnNoviUcenici);
             this.pnlLeft.Controls.Add(this.btnOdRaz);
@@ -248,7 +254,7 @@
             // 
             // btnOpstiPodaci
             // 
-            this.btnOpstiPodaci.Location = new System.Drawing.Point(7, 302);
+            this.btnOpstiPodaci.Location = new System.Drawing.Point(7, 278);
             this.btnOpstiPodaci.Margin = new System.Windows.Forms.Padding(4);
             this.btnOpstiPodaci.Name = "btnOpstiPodaci";
             this.btnOpstiPodaci.Size = new System.Drawing.Size(127, 38);
@@ -260,7 +266,7 @@
             // 
             // btnNoviUcenici
             // 
-            this.btnNoviUcenici.Location = new System.Drawing.Point(7, 256);
+            this.btnNoviUcenici.Location = new System.Drawing.Point(7, 240);
             this.btnNoviUcenici.Margin = new System.Windows.Forms.Padding(4);
             this.btnNoviUcenici.Name = "btnNoviUcenici";
             this.btnNoviUcenici.Size = new System.Drawing.Size(127, 38);
@@ -273,7 +279,7 @@
             // 
             // btnOdRaz
             // 
-            this.btnOdRaz.Location = new System.Drawing.Point(7, 210);
+            this.btnOdRaz.Location = new System.Drawing.Point(7, 202);
             this.btnOdRaz.Margin = new System.Windows.Forms.Padding(4);
             this.btnOdRaz.Name = "btnOdRaz";
             this.btnOdRaz.Size = new System.Drawing.Size(127, 38);
@@ -353,6 +359,18 @@
             this.txtFilter.TextChanged += new System.EventHandler(this.TxtFilter_TextChanged);
             this.txtFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtFilter_KeyDown);
             // 
+            // btnOcene
+            // 
+            this.btnOcene.Location = new System.Drawing.Point(7, 316);
+            this.btnOcene.Margin = new System.Windows.Forms.Padding(4);
+            this.btnOcene.Name = "btnOcene";
+            this.btnOcene.Size = new System.Drawing.Size(127, 38);
+            this.btnOcene.TabIndex = 102;
+            this.btnOcene.Text = "Unos ocena";
+            this.btnOcene.ToolTipText = "Provera unosa ocena: pregled unetih ocena i računanje proseka";
+            this.btnOcene.UseVisualStyleBackColor = false;
+            this.btnOcene.Click += new System.EventHandler(this.BtnOcene_Click);
+            // 
             // FrmUcenici
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -408,5 +426,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcDatRodj;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcDanaDoRodj;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcGodine;
+        private Controls.UcButton btnOcene;
     }
 }

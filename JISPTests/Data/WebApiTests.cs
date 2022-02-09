@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace JISP.Data.Tests
+namespace JISPTests.Data.Tests
 {
     [TestClass()]
     public class WebApiTests

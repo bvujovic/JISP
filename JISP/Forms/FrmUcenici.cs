@@ -210,5 +210,8 @@ namespace JISP.Forms
 
         private void BsUcenici_CurrentChanged(object sender, EventArgs e)
             => DisplayPositionRowCount();
+
+        private void BtnOcene_Click(object sender, EventArgs e)
+            => Utils.ShowForm(typeof(FrmUceniciOcene));
     }
 }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JISP.Classes.Tests
+namespace JISPTests.Classes.Tests
 {
     [TestClass()]
     public class JMBGTests
