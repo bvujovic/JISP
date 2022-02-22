@@ -49,6 +49,10 @@
             this.dgvcDanaDoRodj = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcGodine = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
+            this.gbOceneUnos = new System.Windows.Forms.GroupBox();
+            this.lblOceneProsek = new System.Windows.Forms.Label();
+            this.btnOcenePaste = new System.Windows.Forms.Button();
+            this.chkOceneProveraNaziva = new System.Windows.Forms.CheckBox();
             this.btnOpstiPodaci = new JISP.Controls.UcButton();
             this.btnNoviUcenici = new JISP.Controls.UcButton();
             this.btnOdRaz = new JISP.Controls.UcButton();
@@ -58,12 +62,13 @@
             this.lblRowCount = new System.Windows.Forms.Label();
             this.btnSaveData = new JISP.Controls.UcButton();
             this.txtFilter = new JISP.Controls.UcFilterTextBox();
-            this.btnOcene = new JISP.Controls.UcButton();
+            this.ttOceneProvera = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bsUcenici)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.pnlLeft.SuspendLayout();
+            this.gbOceneUnos.SuspendLayout();
             this.SuspendLayout();
             // 
             // bsUcenici
@@ -233,7 +238,7 @@
             // 
             // pnlLeft
             // 
-            this.pnlLeft.Controls.Add(this.btnOcene);
+            this.pnlLeft.Controls.Add(this.gbOceneUnos);
             this.pnlLeft.Controls.Add(this.btnOpstiPodaci);
             this.pnlLeft.Controls.Add(this.btnNoviUcenici);
             this.pnlLeft.Controls.Add(this.btnOdRaz);
@@ -251,6 +256,48 @@
             this.pnlLeft.RightWingWidth = 8;
             this.pnlLeft.Size = new System.Drawing.Size(150, 428);
             this.pnlLeft.TabIndex = 0;
+            // 
+            // gbOceneUnos
+            // 
+            this.gbOceneUnos.Controls.Add(this.lblOceneProsek);
+            this.gbOceneUnos.Controls.Add(this.btnOcenePaste);
+            this.gbOceneUnos.Controls.Add(this.chkOceneProveraNaziva);
+            this.gbOceneUnos.Location = new System.Drawing.Point(7, 316);
+            this.gbOceneUnos.Name = "gbOceneUnos";
+            this.gbOceneUnos.Size = new System.Drawing.Size(127, 65);
+            this.gbOceneUnos.TabIndex = 102;
+            this.gbOceneUnos.TabStop = false;
+            this.gbOceneUnos.Text = "Unos ocena";
+            // 
+            // lblOceneProsek
+            // 
+            this.lblOceneProsek.Location = new System.Drawing.Point(52, 45);
+            this.lblOceneProsek.Name = "lblOceneProsek";
+            this.lblOceneProsek.Size = new System.Drawing.Size(74, 16);
+            this.lblOceneProsek.TabIndex = 4;
+            this.lblOceneProsek.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnOcenePaste
+            // 
+            this.btnOcenePaste.Location = new System.Drawing.Point(6, 16);
+            this.btnOcenePaste.Name = "btnOcenePaste";
+            this.btnOcenePaste.Size = new System.Drawing.Size(40, 45);
+            this.btnOcenePaste.TabIndex = 3;
+            this.btnOcenePaste.Text = "test";
+            this.btnOcenePaste.UseVisualStyleBackColor = true;
+            this.btnOcenePaste.Click += new System.EventHandler(this.BtnOcenePaste_Click);
+            // 
+            // chkOceneProveraNaziva
+            // 
+            this.chkOceneProveraNaziva.AutoSize = true;
+            this.chkOceneProveraNaziva.Checked = true;
+            this.chkOceneProveraNaziva.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkOceneProveraNaziva.Location = new System.Drawing.Point(51, 20);
+            this.chkOceneProveraNaziva.Name = "chkOceneProveraNaziva";
+            this.chkOceneProveraNaziva.Size = new System.Drawing.Size(75, 20);
+            this.chkOceneProveraNaziva.TabIndex = 5;
+            this.chkOceneProveraNaziva.Text = "Provera";
+            this.chkOceneProveraNaziva.UseVisualStyleBackColor = true;
             // 
             // btnOpstiPodaci
             // 
@@ -359,18 +406,6 @@
             this.txtFilter.TextChanged += new System.EventHandler(this.TxtFilter_TextChanged);
             this.txtFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtFilter_KeyDown);
             // 
-            // btnOcene
-            // 
-            this.btnOcene.Location = new System.Drawing.Point(7, 316);
-            this.btnOcene.Margin = new System.Windows.Forms.Padding(4);
-            this.btnOcene.Name = "btnOcene";
-            this.btnOcene.Size = new System.Drawing.Size(127, 38);
-            this.btnOcene.TabIndex = 102;
-            this.btnOcene.Text = "Unos ocena";
-            this.btnOcene.ToolTipText = "Provera unosa ocena: pregled unetih ocena i računanje proseka";
-            this.btnOcene.UseVisualStyleBackColor = false;
-            this.btnOcene.Click += new System.EventHandler(this.BtnOcene_Click);
-            // 
             // FrmUcenici
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -392,6 +427,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.pnlLeft.ResumeLayout(false);
             this.pnlLeft.PerformLayout();
+            this.gbOceneUnos.ResumeLayout(false);
+            this.gbOceneUnos.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -426,6 +463,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcDatRodj;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcDanaDoRodj;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcGodine;
-        private Controls.UcButton btnOcene;
+        private System.Windows.Forms.GroupBox gbOceneUnos;
+        private System.Windows.Forms.Label lblOceneProsek;
+        private System.Windows.Forms.Button btnOcenePaste;
+        private System.Windows.Forms.CheckBox chkOceneProveraNaziva;
+        private System.Windows.Forms.ToolTip ttOceneProvera;
     }
 }

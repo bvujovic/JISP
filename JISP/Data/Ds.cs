@@ -1,5 +1,6 @@
 ﻿using JISP.Classes;
 using System.Data;
+using System.Linq;
 
 namespace JISP.Data
 {
@@ -47,6 +48,16 @@ namespace JISP.Data
                 foreach (ZaposleniRow zap in this.Rows)
                     zap.CalcJmbgBasedData();
             }
+
+            /// <summary>
+            /// Upisivanje podataka u kolonu Aktivan.
+            /// Zaposleni je aktivan ako ima bar jedno aktivno zaposlenje.
+            /// </summary>
+            public void CalcAktivan()
+            {
+                foreach (ZaposleniRow zap in this.Rows)
+                    zap.Aktivan = zap.GetZaposlenjaRows().Any(it => it.Aktivan);
+            }
         }
 
         public partial class ZaposleniRow
@@ -62,6 +73,9 @@ namespace JISP.Data
                     Godine = Classes.JMBG.YearsOld(bdate);
                 }
             }
+
+            public override string ToString()
+                => $"{Ime} {Prezime}";
         }
     }
 }

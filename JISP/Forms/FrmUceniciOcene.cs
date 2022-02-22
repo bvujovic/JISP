@@ -16,7 +16,7 @@ namespace JISP.Forms
         }
 
         private void ResetLblMarksAverageText()
-            => lblMarksAverage.Text = "Prosek: /";
+            => lblMarksAverage.Text = ""; // "Prosek: /";
 
         private void BtnPasteClipboard_Click(object sender, EventArgs e)
         {

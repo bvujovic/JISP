@@ -31,6 +31,7 @@ namespace JISP.Data
         {
             Ds.ReadXml(FilePath());
             Ds.Zaposleni.CalcJmbgBasedCols();
+            Ds.Zaposleni.CalcAktivan();
             Ds.Ucenici.CalcDatRodjBasedCols();
             Ds.AcceptChanges();
             var row = Ds.Settings.FindByName(WebApi.TOKEN_CAPTION);

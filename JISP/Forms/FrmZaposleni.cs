@@ -60,7 +60,6 @@ namespace JISP.Forms
                 if (chkAktivniZap.CheckState != CheckState.Indeterminate)
                     filter = $"({filter}) AND Aktivan = {chkAktivniZap.Checked}";
                 bsZaposleni.Filter = filter;
-
             }
             catch (Exception ex) { Utils.ShowMbox(ex, "Pretraga zaposlenih"); }
             DisplayPositionRowCount();

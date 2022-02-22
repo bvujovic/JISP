@@ -27,6 +27,8 @@ namespace JISP.Forms
             dgv.CellTextCopied += Dgv_CellTextCopied;
             lblStatus.TextChanged += LblStatus_TextChanged;
             timStatus.Tick += TimStatus_Tick;
+            ttOceneProvera.SetToolTip(chkOceneProveraNaziva, "Provera naziva ocena");
+            ResetLblOceneProsekText();
         }
 
         private void Dgv_CellTextCopied(object sender, EventArgs e)
@@ -211,7 +213,22 @@ namespace JISP.Forms
         private void BsUcenici_CurrentChanged(object sender, EventArgs e)
             => DisplayPositionRowCount();
 
-        private void BtnOcene_Click(object sender, EventArgs e)
-            => Utils.ShowForm(typeof(FrmUceniciOcene));
+        private void BtnOcenePaste_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ResetLblOceneProsekText();
+                var avg = Marks.CalcAverage(Clipboard.GetText(), chkOceneProveraNaziva.Checked);
+                lblOceneProsek.Text = avg.ToString("0.00");
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, "Računanje proseka ocena"); }
+        }
+
+        private void ResetLblOceneProsekText()
+            => lblOceneProsek.Text = ""; // "Prosek: /";
+
+        //B
+        //private void BtnOcene_Click(object sender, EventArgs e)
+        //    => Utils.ShowForm(typeof(FrmUceniciOcene));
     }
 }
