@@ -130,9 +130,34 @@ namespace JISP.Forms
             try
             {
                 await GetDuosData(WebApi.ReqEnum.Uc_DuosOS);
-                await GetDuosData(WebApi.ReqEnum.Uc_DuosSS);
+                await PostForDuosData(WebApi.ReqEnum.Uc_DuosSS);
             }
             catch (Exception ex) { Utils.ShowMbox(ex, btnOdRaz.ToolTipText); }
+        }
+
+        /// <summary>Preuzimanje DUOS podataka o ucenicima za tekucu sk. godinu.</summary>
+        private static async Task PostForDuosData(WebApi.ReqEnum reqEnum)
+        {
+            var body = "{\"ustanovaId\":" + WebApi.SV_SAVA_ID + ",\"pageIndex\":0,\"pageSize\":1000,\"searchTerm\":\"\"}";
+            var duosSS = await WebApi.PostForObject<DUOS_SS>(reqEnum, body);
+            AcceptDuosData(duosSS.UpisSrednje, reqEnum);
+        }
+
+        private static void AcceptDuosData(List<DUOS> duoses, WebApi.ReqEnum reqEnum)
+        {
+            foreach (var duos in duoses)
+            {
+                var uc = AppData.Ds.Ucenici.FirstOrDefault(it => it.JOB == duos.JOB);
+                if (uc != null)
+                {
+                    uc.RegUceLiceId = duos.RegUceLiceId;
+                    uc.Skola = reqEnum == WebApi.ReqEnum.Uc_DuosOS ? "Основна" : "Средња";
+                    uc.Razred = duos.Razred;
+                    uc.Odeljenje = duos.Odeljenje;
+                }
+                else
+                    throw new Exception($"JOB {duos.JOB} nije pronadjen.");
+            }
         }
 
         /// <summary>Preuzimanje DUOS podataka o ucenicima za tekucu sk. godinu.</summary>
@@ -227,8 +252,10 @@ namespace JISP.Forms
         private void ResetLblOceneProsekText()
             => lblOceneProsek.Text = ""; // "Prosek: /";
 
-        //B
-        //private void BtnOcene_Click(object sender, EventArgs e)
-        //    => Utils.ShowForm(typeof(FrmUceniciOcene));
+        private void FrmUcenici_Activated(object sender, EventArgs e)
+        {
+            if (this.ActiveControl.Equals(txtFilter) && txtFilter.Text != "")
+                txtFilter.SelectAll();
+        }
     }
 }

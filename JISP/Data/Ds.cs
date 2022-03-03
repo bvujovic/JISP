@@ -32,6 +32,9 @@ namespace JISP.Data
                     Godine = JMBG.YearsOld(DatumRodjenja);
                 }
             }
+
+            public override string ToString()
+                => $"{Ime}, JOB: {JOB}";
         }
 
         partial class ZaposleniDataTable

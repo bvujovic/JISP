@@ -21,7 +21,7 @@ namespace JISP.Data
             set { token = value; }
         }
 
-        private const string SV_SAVA_ID = "18976";
+        public const string SV_SAVA_ID = "18976";
         public const string TOKEN_MISSING = "???";
         public const string TOKEN_CAPTION = "ApiToken";
 
@@ -59,7 +59,7 @@ namespace JISP.Data
         }
 
         /// <summary>Dohvata (POST) JSON podatke od JISP WebAPI-a.</summary>
-        public static async Task<string> PostJson(ReqEnum reqEnum, string body, string param = null)
+        public static async Task<string> PostForJson(ReqEnum reqEnum, string body, string param = null)
         {
             using (var client = new HttpClient())
             {
@@ -75,10 +75,17 @@ namespace JISP.Data
             }
         }
 
-        /// <summary>Dohvata listu trazenih objekata od JISP WebAPI-a.</summary>
-        public async static Task<List<T>> PostForList<T>(ReqEnum reqEnum)
+        /// <summary>Dohvata (POST) trazeni objekat od JISP WebAPI-a.</summary>
+        public async static Task<T> PostForObject<T>(ReqEnum reqEnum, string param = null)
         {
-            var json = await GetJson(reqEnum);
+            var json = await PostForJson(reqEnum, param);
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(json);
+        }
+
+        /// <summary>Dohvata (POST) listu trazenih objekata od JISP WebAPI-a.</summary>
+        public async static Task<List<T>> PostForList<T>(ReqEnum reqEnum, string body, string param = null)
+        {
+            var json = await PostForJson(reqEnum, body, param);
             return DeserializeList<T>(json);
         }
 
@@ -120,7 +127,8 @@ namespace JISP.Data
                 case ReqEnum.Uc_DuosOS:
                     return urlBase + "ucenik/VratiUpisOsnovnoByUstanovaId/" + SV_SAVA_ID;
                 case ReqEnum.Uc_DuosSS:
-                    return urlBase + "ucenik/VratiUpisSrednjeByUstanovaId/" + SV_SAVA_ID;
+                    //B return urlBase + "ucenik/VratiUpisSrednjeByUstanovaId/" + SV_SAVA_ID;
+                    return urlBase + "ucenik/VratiUpisSrednjeByUstanovaId";
 
                 case ReqEnum.Uc_OpstiPodaci:
                     return urlBase + $"ucenik/OpstiPodaci?Id={param}";

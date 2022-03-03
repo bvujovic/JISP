@@ -301,11 +301,11 @@
             // 
             // btnOpstiPodaci
             // 
-            this.btnOpstiPodaci.Location = new System.Drawing.Point(7, 278);
+            this.btnOpstiPodaci.Location = new System.Drawing.Point(7, 164);
             this.btnOpstiPodaci.Margin = new System.Windows.Forms.Padding(4);
             this.btnOpstiPodaci.Name = "btnOpstiPodaci";
             this.btnOpstiPodaci.Size = new System.Drawing.Size(127, 38);
-            this.btnOpstiPodaci.TabIndex = 6;
+            this.btnOpstiPodaci.TabIndex = 3;
             this.btnOpstiPodaci.Text = "Opšti podaci";
             this.btnOpstiPodaci.ToolTipText = "Uzimanje opštih podataka (datum rođenja, pol, ...) za selektovane učenike";
             this.btnOpstiPodaci.UseVisualStyleBackColor = false;
@@ -332,7 +332,7 @@
             this.btnOdRaz.Size = new System.Drawing.Size(127, 38);
             this.btnOdRaz.TabIndex = 4;
             this.btnOdRaz.Text = "Razredi i odelj.";
-            this.btnOdRaz.ToolTipText = "Dohvatanje podataka o razredima i odeljenjima";
+            this.btnOdRaz.ToolTipText = "Dohvatanje podataka o razredima i odeljenjima za sve učenike";
             this.btnOdRaz.UseVisualStyleBackColor = false;
             this.btnOdRaz.Click += new System.EventHandler(this.BtnOdRaz_Click);
             // 
@@ -349,11 +349,11 @@
             // 
             // btnSrednjoskolci
             // 
-            this.btnSrednjoskolci.Location = new System.Drawing.Point(7, 164);
+            this.btnSrednjoskolci.Location = new System.Drawing.Point(7, 278);
             this.btnSrednjoskolci.Margin = new System.Windows.Forms.Padding(4);
             this.btnSrednjoskolci.Name = "btnSrednjoskolci";
             this.btnSrednjoskolci.Size = new System.Drawing.Size(127, 38);
-            this.btnSrednjoskolci.TabIndex = 3;
+            this.btnSrednjoskolci.TabIndex = 6;
             this.btnSrednjoskolci.Text = "Srednjoškolci...";
             this.btnSrednjoskolci.ToolTipText = "Pokretanje forme Srednjoškolci";
             this.btnSrednjoskolci.UseVisualStyleBackColor = true;
@@ -419,6 +419,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FrmUcenici";
             this.Text = "Učenici";
+            this.Activated += new System.EventHandler(this.FrmUcenici_Activated);
             this.Load += new System.EventHandler(this.FrmUcenici_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bsUcenici)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).EndInit();

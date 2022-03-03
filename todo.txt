@@ -1,8 +1,7 @@
-﻿- dugmici
-	+ skoro svim dugmicima dodati tooltip
+﻿- FrmUcenici: AcceptDuosData pozvati i iz GetDuosData da ne bi bilo duplog koda
+- dugmici
 	[- boje dugmica: Sacuvaj - plava, Dodaj novo - zelena, Izmeni - zuta, Obrisi - crvena, Izlaz iz app - crna]
 - ukidanje FrmSrednjoskolci i dodavanje tih podataka u FrmUcenici
-+ odrediti tacan kriterijum aktivnosti zaposlenog: ima zaposlenja u SvSavi koja su aktivna?
 - zaposlenima dodati i predmete na kojima rade. ovo bi trebalo da bude pretrazivo u formi.
 - pravljenje tooltipova sa objasnjenjima pretraga za zaposlene i ucenike
 - napraviti nove SShotove
