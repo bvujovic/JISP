@@ -886,6 +886,8 @@ namespace JISP.Data {
             
             private global::System.Data.DataColumn columnNapomene;
             
+            private global::System.Data.DataColumn columnImaSliku;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public ZaposleniDataTable() {
@@ -993,6 +995,14 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn ImaSlikuColumn {
+                get {
+                    return this.columnImaSliku;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1028,7 +1038,7 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ZaposleniRow AddZaposleniRow(int IdZaposlenog, string Ime, string Prezime, string JMBG, double Godine, int DanaDoRodj, bool Aktivan, char Pol, string Napomene) {
+            public ZaposleniRow AddZaposleniRow(int IdZaposlenog, string Ime, string Prezime, string JMBG, double Godine, int DanaDoRodj, bool Aktivan, char Pol, string Napomene, bool ImaSliku) {
                 ZaposleniRow rowZaposleniRow = ((ZaposleniRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IdZaposlenog,
@@ -1039,7 +1049,8 @@ namespace JISP.Data {
                         DanaDoRodj,
                         Aktivan,
                         Pol,
-                        Napomene};
+                        Napomene,
+                        ImaSliku};
                 rowZaposleniRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowZaposleniRow);
                 return rowZaposleniRow;
@@ -1078,6 +1089,7 @@ namespace JISP.Data {
                 this.columnAktivan = base.Columns["Aktivan"];
                 this.columnPol = base.Columns["Pol"];
                 this.columnNapomene = base.Columns["Napomene"];
+                this.columnImaSliku = base.Columns["ImaSliku"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1101,6 +1113,8 @@ namespace JISP.Data {
                 base.Columns.Add(this.columnPol);
                 this.columnNapomene = new global::System.Data.DataColumn("Napomene", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNapomene);
+                this.columnImaSliku = new global::System.Data.DataColumn("ImaSliku", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnImaSliku);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIdZaposlenog}, true));
                 this.columnIdZaposlenog.AutoIncrementSeed = -1;
@@ -1109,6 +1123,8 @@ namespace JISP.Data {
                 this.columnIdZaposlenog.Unique = true;
                 this.columnJMBG.MaxLength = 13;
                 this.columnAktivan.AllowDBNull = false;
+                this.columnImaSliku.AllowDBNull = false;
+                this.columnImaSliku.DefaultValue = ((bool)(false));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2784,6 +2800,17 @@ namespace JISP.Data {
                 }
                 set {
                     this[this.tableZaposleni.NapomeneColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool ImaSliku {
+                get {
+                    return ((bool)(this[this.tableZaposleni.ImaSlikuColumn]));
+                }
+                set {
+                    this[this.tableZaposleni.ImaSlikuColumn] = value;
                 }
             }
             

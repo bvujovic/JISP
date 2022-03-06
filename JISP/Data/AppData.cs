@@ -33,6 +33,7 @@ namespace JISP.Data
             Ds.Zaposleni.CalcJmbgBasedCols();
             Ds.Zaposleni.CalcAktivan();
             Ds.Ucenici.CalcDatRodjBasedCols();
+            Classes.SlikeZaposlenih.PostaviKoImaSliku();
             Ds.AcceptChanges();
             var row = Ds.Settings.FindByName(WebApi.TOKEN_CAPTION);
             if (row != null)

@@ -121,4 +121,10 @@
   <data name="grb_srb" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\grb_srb.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="person_gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\person_gray.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="person_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\person_red.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

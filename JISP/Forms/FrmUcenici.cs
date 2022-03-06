@@ -29,6 +29,10 @@ namespace JISP.Forms
             timStatus.Tick += TimStatus_Tick;
             ttOceneProvera.SetToolTip(chkOceneProveraNaziva, "Provera naziva ocena");
             ResetLblOceneProsekText();
+
+            //T
+            //foreach (var uc in AppData.Ds.Ucenici)
+            //    Console.WriteLine(uc);
         }
 
         private void Dgv_CellTextCopied(object sender, EventArgs e)
@@ -163,22 +167,26 @@ namespace JISP.Forms
         /// <summary>Preuzimanje DUOS podataka o ucenicima za tekucu sk. godinu.</summary>
         private static async Task GetDuosData(WebApi.ReqEnum reqEnumDuos)
         {
-            var data = await WebApi.GetList<DUOS>(reqEnumDuos);
-            data = data.Where(it => it.SkolskaGodina == DUOS.TekucaSkGod)
+            var duoses = await WebApi.GetList<DUOS>(reqEnumDuos);
+            duoses = duoses.Where(it => it.SkolskaGodina == DUOS.TekucaSkGod)
                 .ToList();
-            foreach (var duos in data)
-            {
-                var uc = AppData.Ds.Ucenici.FirstOrDefault(it => it.JOB == duos.JOB);
-                if (uc != null)
-                {
-                    uc.RegUceLiceId = duos.RegUceLiceId;
-                    uc.Skola = reqEnumDuos == WebApi.ReqEnum.Uc_DuosOS ? "Основна" : "Средња";
-                    uc.Razred = duos.Razred;
-                    uc.Odeljenje = duos.Odeljenje;
-                }
-                else
-                    throw new Exception($"JOB {duos.JOB} nije pronadjen.");
-            }
+            //! OVO NIJE TESTIRANO!!!
+            AcceptDuosData(duoses, reqEnumDuos);
+
+            //B
+            //foreach (var duos in data)
+            //{
+            //    var uc = AppData.Ds.Ucenici.FirstOrDefault(it => it.JOB == duos.JOB);
+            //    if (uc != null)
+            //    {
+            //        uc.RegUceLiceId = duos.RegUceLiceId;
+            //        uc.Skola = reqEnumDuos == WebApi.ReqEnum.Uc_DuosOS ? "Основна" : "Средња";
+            //        uc.Razred = duos.Razred;
+            //        uc.Odeljenje = duos.Odeljenje;
+            //    }
+            //    else
+            //        throw new Exception($"JOB {duos.JOB} nije pronadjen.");
+            //}
         }
 
         private void ChkAllowNew_CheckedChanged(object sender, EventArgs e)

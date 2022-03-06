@@ -95,6 +95,7 @@
     <Compile Include="Classes\JMBG.cs" />
     <Compile Include="Classes\Logger.cs" />
     <Compile Include="Classes\Marks.cs" />
+    <Compile Include="Classes\SlikeZaposlenih.cs" />
     <Compile Include="Classes\Utils.cs" />
     <Compile Include="Controls\UcButton.cs">
       <SubType>Component</SubType>
@@ -147,6 +148,12 @@
     <Compile Include="Forms\FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FrmSlikaZap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmSlikaZap.Designer.cs">
+      <DependentUpon>FrmSlikaZap.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmSrednjoskolci.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmSlikaZap.resx">
+      <DependentUpon>FrmSlikaZap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmSrednjoskolci.resx">
       <DependentUpon>FrmSrednjoskolci.cs</DependentUpon>
@@ -246,6 +256,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\person_gray.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\person_red.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,11 +12,21 @@ namespace JISP.Forms
         public FrmZaposleni()
         {
             InitializeComponent();
+            Ds = AppData.Ds;
+        }
 
-            bsZaposleni.DataSource = Ds = AppData.Ds;
+        private void FrmZaposleni_Load(object sender, EventArgs e)
+        {
+            bsZaposleni.DataSource = Ds;
             bsZaposlenja.DataMember = "FK_Zaposleni_Zaposlenja";
             bsZaposlenja.Sort = "Aktivan DESC";
             DisplayPositionRowCount();
+
+            SlikeZaposlenih.PrikaziIkonice(dgvZaposleni, dgvcImaSliku.Name);
+
+            //T
+            //foreach (var zap in Ds.Zaposleni)
+            //    Console.WriteLine(zap);
         }
 
         private readonly Ds Ds;
@@ -122,13 +132,24 @@ namespace JISP.Forms
 
         private void DgvZaposleni_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex != dgvcZapId.Index || e.RowIndex == -1)
+            if (e.RowIndex == -1)
                 return;
             var drv = dgvZaposleni.CurrentRow.DataBoundItem as System.Data.DataRowView;
             if (drv.Row is Ds.ZaposleniRow zap)
             {
-                var url = $"https://jisp.mpn.gov.rs/regzaposlenih/sekcije/{zap.JMBG}/{zap.IdZaposlenog}";
-                Utils.GoToLink(url);
+                if (e.ColumnIndex == dgvcZapId.Index)
+                {
+                    var url = $"https://jisp.mpn.gov.rs/regzaposlenih/sekcije/{zap.JMBG}/{zap.IdZaposlenog}";
+                    Utils.GoToLink(url);
+                }
+                if (e.ColumnIndex == dgvcImaSliku.Index)
+                {
+                    if (zap.ImaSliku)
+                        SlikeZaposlenih.PrikaziSliku(zap);
+                    else
+                        if (ofdZapSlika.ShowDialog() == DialogResult.OK)
+                        SlikeZaposlenih.SacuvajSlikuZaZap(ofdZapSlika.FileName, zap.IdZaposlenog);
+                }
             }
         }
     }
