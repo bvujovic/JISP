@@ -50,7 +50,8 @@ namespace JISP.Controls
         protected override void OnTextChanged(EventArgs e)
         {
             base.OnTextChanged(e);
-            BackColor = InputLanguage.CurrentInputLanguage.LayoutName.Contains("Cyrillic")
+            //B BackColor = InputLanguage.CurrentInputLanguage.LayoutName.Contains("Cyrillic")
+            BackColor = InputLanguage.CurrentInputLanguage.Culture.Name.StartsWith("sr-Cyrl")
                 ? System.Drawing.Color.White : System.Drawing.Color.Orange;
         }
     }

@@ -22,8 +22,6 @@ namespace JISP.Forms
             bsZaposlenja.Sort = "Aktivan DESC";
             DisplayPositionRowCount();
 
-            SlikeZaposlenih.PrikaziIkonice(dgvZaposleni, dgvcImaSliku.Name);
-
             //T
             //foreach (var zap in Ds.Zaposleni)
             //    Console.WriteLine(zap);
@@ -137,20 +135,28 @@ namespace JISP.Forms
             var drv = dgvZaposleni.CurrentRow.DataBoundItem as System.Data.DataRowView;
             if (drv.Row is Ds.ZaposleniRow zap)
             {
+                // otvaranje stranice o zaposlenom u JISPu
                 if (e.ColumnIndex == dgvcZapId.Index)
                 {
                     var url = $"https://jisp.mpn.gov.rs/regzaposlenih/sekcije/{zap.JMBG}/{zap.IdZaposlenog}";
                     Utils.GoToLink(url);
                 }
+                // prikaz ili postavljanje slike za zaposlenog
                 if (e.ColumnIndex == dgvcImaSliku.Index)
                 {
                     if (zap.ImaSliku)
                         SlikeZaposlenih.PrikaziSliku(zap);
                     else
                         if (ofdZapSlika.ShowDialog() == DialogResult.OK)
+                    {
                         SlikeZaposlenih.SacuvajSlikuZaZap(ofdZapSlika.FileName, zap.IdZaposlenog);
+                        SlikeZaposlenih.PrikaziIkonicu(dgvZaposleni.CurrentRow, dgvcImaSliku.Name);
+                    }
                 }
             }
         }
+
+        private void DgvZaposleni_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+            => SlikeZaposlenih.PrikaziIkonice(dgvZaposleni, dgvcImaSliku.Name);
     }
 }

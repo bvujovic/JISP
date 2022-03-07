@@ -16,16 +16,31 @@ namespace JISP.Classes
         public static void PrikaziIkonice(DataGridView dgv, string imeKolone)
         {
             foreach (DataGridViewRow row in dgv.Rows)
-            {
-                var cell = row.Cells[imeKolone] as DataGridViewImageCell;
-                var zap = (row.DataBoundItem as System.Data.DataRowView).Row as Data.Ds.ZaposleniRow;
-                cell.Value = zap.ImaSliku ?
-                    Properties.Resources.person_red : Properties.Resources.person_gray;
-            }
+                PrikaziIkonicu(row, imeKolone);
         }
 
+        /// <summary>Prikaz ikonice (ima/nema sliku) za dati red u DGV-u.</summary>
+        public static void PrikaziIkonicu(DataGridViewRow row, string imeKolone)
+        {
+            var cell = row.Cells[imeKolone] as DataGridViewImageCell;
+            var zap = (row.DataBoundItem as System.Data.DataRowView).Row as Ds.ZaposleniRow;
+            cell.Value = zap.ImaSliku ?
+                Properties.Resources.person_red : Properties.Resources.person_gray;
+        }
+
+        /// <summary>Relativna putanja foldera sa slikama zaposlenih.</summary>
         private static readonly string imgFolderName = "img\\zap";
+        /// <summary>Apsolutna putanja foldera sa slikama zaposlenih.</summary>
         private static string imgFolderPath = null;
+
+        /// <summary>Kreiranje img/zap foldera ako on vec ne postoji</summary>
+        private static void KreirajFolderINE()
+        {
+            if (imgFolderPath == null)
+                imgFolderPath = Path.Combine(AppData.DataFolder, imgFolderName);
+            if (!Directory.Exists(imgFolderPath))
+                Directory.CreateDirectory(imgFolderPath);
+        }
 
         /// <summary>
         /// Postavljanje zap.ImaSliku na true/false u zavisnosti od toga
@@ -33,20 +48,9 @@ namespace JISP.Classes
         /// </summary>
         public static void PostaviKoImaSliku()
         {
-            // kreiranje img/zap foldera ako on vec ne postoji
-            if (imgFolderPath == null)
-                imgFolderPath = Path.Combine(Data.AppData.DataFolder, imgFolderName);
-            if (!Directory.Exists(imgFolderPath))
-                Directory.CreateDirectory(imgFolderPath);
-
-            // postavljenje ImaSliku svojstva
+            KreirajFolderINE();
             foreach (var zap in AppData.Ds.Zaposleni)
                 zap.ImaSliku = SlikeZaposlenogIzFoldera(zap.IdZaposlenog).Any();
-            //B
-            //{
-            //    var imgs = Directory.GetFiles(imgFolderPath, zap.IdZaposlenog + "_*");
-            //    zap.ImaSliku = imgs.Any();
-            //}
         }
 
         private static string[] SlikeZaposlenogIzFoldera(int idZap)
@@ -60,6 +64,7 @@ namespace JISP.Classes
                 var idx = filePath.LastIndexOf('\\');
                 var fileName = idZap + "_" + filePath.Substring(idx + 1);
                 File.Copy(filePath, Path.Combine(imgFolderPath, fileName));
+                PostaviKoImaSliku();
             }
             catch (Exception ex) { Utils.ShowMbox(ex, "Čuvanje slike zaposlenog"); }
         }
@@ -71,11 +76,12 @@ namespace JISP.Classes
         {
             try
             {
-                if (frmSlikaZap == null)
+                if (frmSlikaZap == null || frmSlikaZap.Disposing || frmSlikaZap.IsDisposed)
                     frmSlikaZap = new Forms.FrmSlikaZap();
                 frmSlikaZap.Text = zap.ToString();
                 frmSlikaZap.Slika = SlikeZaposlenogIzFoldera(zap.IdZaposlenog).First();
                 frmSlikaZap.Show();
+                frmSlikaZap.Activate();
             }
             catch (Exception ex) { Utils.ShowMbox(ex, "Prikaz slike zaposlenog"); }
         }

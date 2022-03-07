@@ -30,10 +30,10 @@ namespace JISP.Forms
             }
         }
 
-        private void FrmSlikaZap_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            e.Cancel = true;
-            Hide();
-        }
+        //private void FrmSlikaZap_FormClosing(object sender, FormClosingEventArgs e)
+        //{
+        //    e.Cancel = true;
+        //    Hide();
+        //}
     }
 }

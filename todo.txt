@@ -1,5 +1,5 @@
-﻿- dodati slike zaposlenima: ispraviti nestajanje ikonica i zatvaranje formi
-- FrmUcenici: AcceptDuosData pozvati i iz GetDuosData da ne bi bilo duplog koda
+﻿+ dodati slike zaposlenima: ispraviti nestajanje ikonica i zatvaranje formi
+? FrmUcenici: AcceptDuosData pozvati i iz GetDuosData da ne bi bilo duplog koda
 - FrmUcenici: chk Samo tekuci da prikazuje samo ucenike koji su upisani u tekucu
 	skolsku godinu (dodati taj podatak za ucenika)
 - dugmici
