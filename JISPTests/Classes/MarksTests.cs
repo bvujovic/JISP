@@ -41,7 +41,7 @@ namespace JISPTests.Classes.Tests
         [TestMethod]
         public void CalcAverage_Subsubject()
         {
-            var clipboard = 
+            var clipboard =
 @"Страни језик
 Енглески језик
 добар

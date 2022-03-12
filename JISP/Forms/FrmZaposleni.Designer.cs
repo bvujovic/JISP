@@ -142,6 +142,7 @@ namespace JISP.Forms
             this.dgvZaposleni.Location = new System.Drawing.Point(0, 30);
             this.dgvZaposleni.Name = "dgvZaposleni";
             this.dgvZaposleni.RowHeadersWidth = 30;
+            this.dgvZaposleni.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvZaposleni.Size = new System.Drawing.Size(840, 424);
             this.dgvZaposleni.TabIndex = 1;
             this.dgvZaposleni.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvZaposleni_CellClick);
@@ -263,7 +264,6 @@ namespace JISP.Forms
             this.txtFilter.Name = "txtFilter";
             this.txtFilter.Size = new System.Drawing.Size(128, 24);
             this.txtFilter.TabIndex = 0;
-            this.txtFilter.FilterCleared += new System.EventHandler(this.TxtFilter_FilterCleared);
             this.txtFilter.TextChanged += new System.EventHandler(this.FilterChanged);
             // 
             // dgvZaposlenja

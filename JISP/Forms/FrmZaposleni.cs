@@ -21,6 +21,7 @@ namespace JISP.Forms
             bsZaposlenja.DataMember = "FK_Zaposleni_Zaposlenja";
             bsZaposlenja.Sort = "Aktivan DESC";
             DisplayPositionRowCount();
+            chkAktivniZap.CheckState = CheckState.Checked;
 
             //T
             //foreach (var zap in Ds.Zaposleni)
@@ -48,7 +49,7 @@ namespace JISP.Forms
             s = s.ToLower();
             var ids = new HashSet<int>();
             foreach (var zap in AppData.Ds.Zaposlenja.Where
-                (it => it.RadnoMestoNaziv.ToLower().Contains(s)))
+                (it => it.Aktivan && it.RadnoMestoNaziv.ToLower().Contains(s)))
                 ids.Add(zap.IdZaposlenog);
             return ids;
         }
@@ -73,8 +74,9 @@ namespace JISP.Forms
             DisplayPositionRowCount();
         }
 
-        private void TxtFilter_FilterCleared(object sender, EventArgs e)
-            => chkAktivniZap.CheckState = CheckState.Indeterminate;
+        //B
+        //private void TxtFilter_FilterCleared(object sender, EventArgs e)
+        //    => chkAktivniZap.CheckState = CheckState.Indeterminate;
 
         /// <summary>Dohvatanje podataka o zaposlenima (ime, prezime, JMBG, zaposlenja).</summary>
         private async void BtnLoadData_Click(object sender, EventArgs e)

@@ -53,7 +53,7 @@
             this.gbOceneUnos = new System.Windows.Forms.GroupBox();
             this.lblOceneProsek = new System.Windows.Forms.Label();
             this.btnOcenePaste = new System.Windows.Forms.Button();
-            this.chkOceneProveraNaziva = new System.Windows.Forms.CheckBox();
+            this.chkOceneSaVladanjem = new System.Windows.Forms.CheckBox();
             this.btnOpstiPodaci = new JISP.Controls.UcButton();
             this.btnNoviUcenici = new JISP.Controls.UcButton();
             this.btnOdRaz = new JISP.Controls.UcButton();
@@ -274,7 +274,7 @@
             // 
             this.gbOceneUnos.Controls.Add(this.lblOceneProsek);
             this.gbOceneUnos.Controls.Add(this.btnOcenePaste);
-            this.gbOceneUnos.Controls.Add(this.chkOceneProveraNaziva);
+            this.gbOceneUnos.Controls.Add(this.chkOceneSaVladanjem);
             this.gbOceneUnos.Location = new System.Drawing.Point(7, 316);
             this.gbOceneUnos.Name = "gbOceneUnos";
             this.gbOceneUnos.Size = new System.Drawing.Size(127, 65);
@@ -296,21 +296,21 @@
             this.btnOcenePaste.Name = "btnOcenePaste";
             this.btnOcenePaste.Size = new System.Drawing.Size(40, 45);
             this.btnOcenePaste.TabIndex = 3;
-            this.btnOcenePaste.Text = "test";
+            this.btnOcenePaste.Text = "ОК";
             this.btnOcenePaste.UseVisualStyleBackColor = true;
             this.btnOcenePaste.Click += new System.EventHandler(this.BtnOcenePaste_Click);
             // 
-            // chkOceneProveraNaziva
+            // chkOceneSaVladanjem
             // 
-            this.chkOceneProveraNaziva.AutoSize = true;
-            this.chkOceneProveraNaziva.Checked = true;
-            this.chkOceneProveraNaziva.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkOceneProveraNaziva.Location = new System.Drawing.Point(51, 20);
-            this.chkOceneProveraNaziva.Name = "chkOceneProveraNaziva";
-            this.chkOceneProveraNaziva.Size = new System.Drawing.Size(75, 20);
-            this.chkOceneProveraNaziva.TabIndex = 5;
-            this.chkOceneProveraNaziva.Text = "Provera";
-            this.chkOceneProveraNaziva.UseVisualStyleBackColor = true;
+            this.chkOceneSaVladanjem.AutoSize = true;
+            this.chkOceneSaVladanjem.Checked = true;
+            this.chkOceneSaVladanjem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkOceneSaVladanjem.Location = new System.Drawing.Point(51, 20);
+            this.chkOceneSaVladanjem.Name = "chkOceneSaVladanjem";
+            this.chkOceneSaVladanjem.Size = new System.Drawing.Size(81, 20);
+            this.chkOceneSaVladanjem.TabIndex = 5;
+            this.chkOceneSaVladanjem.Text = "Vladanje";
+            this.chkOceneSaVladanjem.UseVisualStyleBackColor = true;
             // 
             // btnOpstiPodaci
             // 
@@ -480,7 +480,7 @@
         private System.Windows.Forms.GroupBox gbOceneUnos;
         private System.Windows.Forms.Label lblOceneProsek;
         private System.Windows.Forms.Button btnOcenePaste;
-        private System.Windows.Forms.CheckBox chkOceneProveraNaziva;
+        private System.Windows.Forms.CheckBox chkOceneSaVladanjem;
         private System.Windows.Forms.ToolTip ttOceneProvera;
         private System.Windows.Forms.CheckBox checkBox1;
     }

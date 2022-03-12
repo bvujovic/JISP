@@ -27,7 +27,7 @@ namespace JISP.Forms
             dgv.CellTextCopied += Dgv_CellTextCopied;
             lblStatus.TextChanged += LblStatus_TextChanged;
             timStatus.Tick += TimStatus_Tick;
-            ttOceneProvera.SetToolTip(chkOceneProveraNaziva, "Provera naziva ocena");
+            ttOceneProvera.SetToolTip(chkOceneSaVladanjem, "Provera naziva ocena");
             ResetLblOceneProsekText();
 
             //T
@@ -251,7 +251,7 @@ namespace JISP.Forms
             try
             {
                 ResetLblOceneProsekText();
-                var avg = Marks.CalcAverage(Clipboard.GetText(), chkOceneProveraNaziva.Checked);
+                var avg = Ocene.Prosek(Clipboard.GetText(), chkOceneSaVladanjem.Checked);
                 lblOceneProsek.Text = avg.ToString("0.00");
             }
             catch (Exception ex) { Utils.ShowMbox(ex, "Računanje proseka ocena"); }
