@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31727.386
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JISP", "JISP\JISP.csproj", "{57350B3C-7EB5-4BC3-92D5-05E597B45807}"
 EndProject
@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ScreenShots", "ScreenShots"
 		ScreenShots\zaposleni.png = ScreenShots\zaposleni.png
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xUnitTests", "xUnitTests\xUnitTests.csproj", "{E480B436-7FF1-4628-931D-FE3E3B5559E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{613E40A0-7698-420F-A96B-776CF610B213}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{613E40A0-7698-420F-A96B-776CF610B213}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{613E40A0-7698-420F-A96B-776CF610B213}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E480B436-7FF1-4628-931D-FE3E3B5559E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E480B436-7FF1-4628-931D-FE3E3B5559E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E480B436-7FF1-4628-931D-FE3E3B5559E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E480B436-7FF1-4628-931D-FE3E3B5559E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

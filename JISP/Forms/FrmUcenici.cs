@@ -262,7 +262,7 @@ namespace JISP.Forms
 
         private void FrmUcenici_Activated(object sender, EventArgs e)
         {
-            if (this.ActiveControl.Equals(txtFilter) && txtFilter.Text != "")
+            //B if (this.ActiveControl.Equals(txtFilter) && txtFilter.Text != "")
                 txtFilter.SelectAll();
         }
     }
