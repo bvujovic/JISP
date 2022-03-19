@@ -31,7 +31,6 @@ namespace JISPTests.Classes.Tests
         [DataTestMethod]
         [ExpectedException(typeof(Exception))]
         [DataRow("")]                               // prazan clipboard
-        // [DataRow("српски")]                         // nema ocene
         [DataRow("Географија\r\nвеома успешан")]    // "veoma uspesan" ne ulazi u prosek
         public void CalcAverage_Exceptions(string clipboard)
         {
@@ -49,6 +48,22 @@ namespace JISPTests.Classes.Tests
 довољан";
             var result = Marks.CalcAverage(clipboard);
             Assert.AreEqual(2.5, result);
+        }
+
+        /// <summary>Zaokruzivanje cifre 5 nadole - poslednja cifra ce ostati parna.</summary>
+        [TestMethod]
+        public void Round2Dec_TieBreak_Down()
+        {
+            var res = Math.Round(3.825, 2);
+            Assert.AreEqual(3.82, res);
+        }
+
+        /// <summary>Zaokruzivanje cifre 5 nagore - poslednja cifra ce postati parna.</summary>
+        [TestMethod]
+        public void Round2Dec_TieBreak_Up()
+        {
+            var res = Math.Round(3.835, 2);
+            Assert.AreEqual(3.84, res);
         }
     }
 }

@@ -25,14 +25,15 @@ namespace JISP.Forms
                 // ako folder u kome se nalaze podaci za app ne postoji -> korisnik mora da ga definise
                 var setts = Properties.Settings.Default;
                 if (string.IsNullOrEmpty(setts.DataFolder))
-                {
-                    var fbd = new FolderBrowserDialog { Description = "Odabir foldera u kojem će se čuvati podaci ove aplikacije." };
-                    if (fbd.ShowDialog() == DialogResult.OK)
+                    if (!AppData.LoadFromRegistry())
                     {
-                        setts.DataFolder = fbd.SelectedPath;
-                        setts.Save();
+                        var fbd = new FolderBrowserDialog { Description = "Odabir foldera u kojem će se čuvati podaci ove aplikacije." };
+                        if (fbd.ShowDialog() == DialogResult.OK)
+                        {
+                            setts.DataFolder = fbd.SelectedPath;
+                            setts.Save();
+                        }
                     }
-                }
                 lblDataFolder.Text = setts.DataFolder;
                 AppData.LoadDsData();
                 Text = "Naš JISP - " + Utils.GetVersion();
@@ -51,6 +52,7 @@ namespace JISP.Forms
 
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
+            AppData.SaveToRegistry();
             if (AppData.Ds.HasChanges())
             {
                 var sb = new System.Text.StringBuilder();

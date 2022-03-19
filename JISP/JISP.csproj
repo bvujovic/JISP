@@ -155,23 +155,11 @@
     <Compile Include="Forms\FrmSlikaZap.Designer.cs">
       <DependentUpon>FrmSlikaZap.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FrmSrednjoskolci.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FrmSrednjoskolci.Designer.cs">
-      <DependentUpon>FrmSrednjoskolci.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\FrmUcenici.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FrmUcenici.Designer.cs">
       <DependentUpon>FrmUcenici.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FrmUceniciOcene.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FrmUceniciOcene.Designer.cs">
-      <DependentUpon>FrmUceniciOcene.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmZaposleni.cs">
       <SubType>Form</SubType>
@@ -194,14 +182,8 @@
     <EmbeddedResource Include="Forms\FrmSlikaZap.resx">
       <DependentUpon>FrmSlikaZap.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FrmSrednjoskolci.resx">
-      <DependentUpon>FrmSrednjoskolci.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmUcenici.resx">
       <DependentUpon>FrmUcenici.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FrmUceniciOcene.resx">
-      <DependentUpon>FrmUceniciOcene.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmZaposleni.resx">
       <DependentUpon>FrmZaposleni.cs</DependentUpon>

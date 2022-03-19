@@ -29,6 +29,7 @@ namespace JISP.Forms
             timStatus.Tick += TimStatus_Tick;
             ttOceneProvera.SetToolTip(chkOceneSaVladanjem, "Provera naziva ocena");
             ResetLblOceneProsekText();
+            FilterData();
 
             //T
             //foreach (var uc in AppData.Ds.Ucenici)
@@ -74,15 +75,30 @@ namespace JISP.Forms
             return ids;
         }
 
+        private void ChkSamoTekuci_CheckedChanged(object sender, EventArgs e)
+        {
+            FilterData();
+        }
+
         private void TxtFilter_TextChanged(object sender, EventArgs e)
+        {
+            FilterData();
+        }
+
+        private void FilterData()
         {
             try
             {
                 var s = txtFilter.Text;
                 var ids = IDeviZaDeoImena(s);
                 var deoImena = ids.Count() > 0 ? $"IdUcenika IN ({string.Join(", ", ids)}) OR " : "";
-                bsUcenici.Filter = $"{deoImena} JOB LIKE '%{s}%' "
-                        + $" OR Skola LIKE '%{s}%' OR Razred LIKE '%{s}%' OR Odeljenje LIKE '%{s}%'";
+
+                var filter = $"{deoImena} JOB LIKE '%{s}%' "
+                       + $" OR Skola LIKE '%{s}%' OR Razred LIKE '%{s}%' OR Odeljenje LIKE '%{s}%'";
+                if (chkSamoTekuci.Checked)
+                    filter = $"({filter}) AND RegUceLiceId IS NOT NULL";
+
+                bsUcenici.Filter = filter;
             }
             catch (Exception ex) { Utils.ShowMbox(ex, "Greška pri filtriranju podataka"); }
             DisplayPositionRowCount();
@@ -102,9 +118,6 @@ namespace JISP.Forms
                 e.SuppressKeyPress = true; // protiv "kling" zvuka
             }
         }
-
-        private void BtnSrednjoskolci_Click(object sender, EventArgs e)
-            => Utils.ShowForm(typeof(FrmSrednjoskolci));
 
         private async void BtnOpstiPodaci_Click(object sender, EventArgs e)
         {
@@ -189,6 +202,16 @@ namespace JISP.Forms
             //}
         }
 
+        private void BtnDohvatiOcene_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //B await GetDuosData(WebApi.ReqEnum.Uc_DuosOS);
+
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, btnDohvatiOcene.ToolTipText); }
+        }
+
         private void ChkAllowNew_CheckedChanged(object sender, EventArgs e)
         {
             dgv.AllowUserToAddRows = chkAllowNew.Checked;
@@ -262,8 +285,8 @@ namespace JISP.Forms
 
         private void FrmUcenici_Activated(object sender, EventArgs e)
         {
-            //B if (this.ActiveControl.Equals(txtFilter) && txtFilter.Text != "")
-                txtFilter.SelectAll();
+            txtFilter.Focus();
+            txtFilter.SelectAll();
         }
     }
 }

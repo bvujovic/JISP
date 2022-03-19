@@ -9,8 +9,10 @@ namespace JISP.Data
     {
         public static Ds Ds { get; private set; } = new Ds();
 
-        public static string AppName { get => "JISP"; }
+        /// <summary>Kratko ime aplikacije bez razmaka i nasih slova.</summary>
+        public static string AppNameMachine { get => "NasJISP"; }
 
+        //TODO Sa dodatkom cuvanja DataFolder-a u rigistry-u verovatno je bolje da se napusti cuvanje toga u Settings.
         /// <summary>Folder u kojem ce se cuvati podaci: txt, xml...</summary>
         public static string DataFolder => Properties.Settings.Default.DataFolder;
 
@@ -24,6 +26,36 @@ namespace JISP.Data
             if (!string.IsNullOrEmpty(DataFolder))
                 fileName = Path.Combine(DataFolder, fileName);
             return fileName;
+        }
+
+        /// <summary>Mesto u registry-u na kojem se cuva putanja do DataFolder-a.</summary>
+        /// <see cref="Computer\HKEY_CURRENT_USER\SOFTWARE\NasJISP"/>
+        private static string RegistryPath => @"SOFTWARE\BV\" + AppNameMachine;
+
+        /// <summary>Ucitava podatke (DataFolder) iz registry-a.</summary>
+        public static bool LoadFromRegistry()
+        {
+            try
+            {
+                var key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(RegistryPath);
+                if (key != null)
+                {
+                    Properties.Settings.Default.DataFolder = key.GetValue("DataFolder").ToString();
+                    key.Close();
+                    return true;
+                }
+                else
+                    return false;
+            }
+            catch { return false; }
+        }
+
+        /// <summary>Cuva podatke (DataFolder) u registry.</summary>
+        public static void SaveToRegistry()
+        {
+            var key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(RegistryPath);
+            key.SetValue("DataFolder", DataFolder);
+            key.Close();
         }
 
         /// <summary>Ucitavanje podataka u DataSet iz fajla.</summary>

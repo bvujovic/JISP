@@ -1,12 +1,13 @@
-﻿+ dodati slike zaposlenima: ispraviti nestajanje ikonica i zatvaranje formi
-? FrmUcenici: AcceptDuosData pozvati i iz GetDuosData da ne bi bilo duplog koda
-- FrmUcenici: chk Samo tekuci da prikazuje samo ucenike koji su upisani u tekucu
-	skolsku godinu (dodati taj podatak za ucenika)
+﻿? FrmUcenici: AcceptDuosData pozvati i iz GetDuosData da ne bi bilo duplog koda
++ FrmUcenici: chk Samo tekuci da prikazuje samo ucenike koji su upisani
+	- ... u tekucuskolsku godinu (dodati taj podatak za ucenika)
 - dugmici
 	[- boje dugmica: Sacuvaj - plava, Dodaj novo - zelena, Izmeni - zuta, Obrisi - crvena, Izlaz iz app - crna]
 - ukidanje FrmSrednjoskolci i dodavanje tih podataka u FrmUcenici
+- FrmUceniciOcene: dodati podatke o ocenama
+	- FrmUcenici: dodati podatak o broju unetih ocena (polugodiste/kraj?)
 - zaposlenima dodati i predmete na kojima rade. ovo bi trebalo da bude pretrazivo u formi.
-- zapamtiti folder sa podacima tako da ovaj ne mora da se unosi svaki put
++ zapamtiti folder sa podacima tako da ovaj ne mora da se unosi svaki put
 	kad se instalira nova verzija programa (config.ini?)
 - pravljenje tooltipova sa objasnjenjima pretraga za zaposlene i ucenike
 - napraviti nove SShotove

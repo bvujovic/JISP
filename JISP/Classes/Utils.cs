@@ -75,10 +75,6 @@ namespace JISP.Classes
                     frm = new FrmZaposleni();
                 if (typForm == typeof(FrmUcenici))
                     frm = new FrmUcenici();
-                if (typForm == typeof(FrmSrednjoskolci))
-                    frm = new FrmSrednjoskolci();
-                if (typForm == typeof(FrmUceniciOcene))
-                    frm = new FrmUceniciOcene();
 
                 frm.StartPosition = FormStartPosition.CenterScreen;
                 frm.FormClosed += frmMain.FrmChild_FormClosed;
