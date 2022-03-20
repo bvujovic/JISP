@@ -60,7 +60,8 @@ namespace JISP.Classes
 
         public static void GoToLink(string url)
         {
-            try { System.Diagnostics.Process.Start("chrome.exe", url); }
+            var process = Data.AppData.Browser == "Chrome" ? "chrome.exe" : "msedge.exe";
+            try { System.Diagnostics.Process.Start(process, url); }
             catch (Exception ex) { ShowMbox(ex, "Go to Link"); }
         }
 

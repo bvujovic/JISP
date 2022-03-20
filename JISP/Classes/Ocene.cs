@@ -49,5 +49,11 @@ namespace JISP
             else
                 throw new Exception("Nije pronađena nijedna ocena.");
         }
+
+        public static int IzbrojOcene(string json)
+        {
+            var ocene = Newtonsoft.Json.JsonConvert.DeserializeObject<Data.OceneUcenika>(json);
+            return ocene.UkupanBrojOcena;
+        }
     }
 }

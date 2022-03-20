@@ -30,30 +30,42 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label label2;
+            System.Windows.Forms.Label label1;
             this.lblApiTokenCaption = new System.Windows.Forms.Label();
             this.lblApiToken = new System.Windows.Forms.Label();
             this.ttApiToken = new System.Windows.Forms.ToolTip(this.components);
+            this.lblDataFolder = new System.Windows.Forms.Label();
+            this.ttDataFolder = new System.Windows.Forms.ToolTip(this.components);
+            this.cmbBrowser = new System.Windows.Forms.ComboBox();
             this.btnBackup = new JISP.Controls.UcButton();
             this.btnZaposleni = new JISP.Controls.UcButton();
             this.btnUcenici = new JISP.Controls.UcButton();
-            this.lblDataFolder = new System.Windows.Forms.Label();
-            this.ttDataFolder = new System.Windows.Forms.ToolTip(this.components);
             label2 = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(69, 214);
+            label2.Location = new System.Drawing.Point(69, 205);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(143, 18);
             label2.TabIndex = 6;
             label2.Text = "Folder sa podacima:";
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(69, 231);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(120, 18);
+            label1.TabIndex = 8;
+            label1.Text = "Internet Browser:";
+            // 
             // lblApiTokenCaption
             // 
             this.lblApiTokenCaption.AutoSize = true;
-            this.lblApiTokenCaption.Location = new System.Drawing.Point(69, 188);
+            this.lblApiTokenCaption.Location = new System.Drawing.Point(69, 179);
             this.lblApiTokenCaption.Name = "lblApiTokenCaption";
             this.lblApiTokenCaption.Size = new System.Drawing.Size(80, 18);
             this.lblApiTokenCaption.TabIndex = 4;
@@ -63,11 +75,34 @@
             // 
             this.lblApiToken.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblApiToken.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblApiToken.Location = new System.Drawing.Point(210, 185);
+            this.lblApiToken.Location = new System.Drawing.Point(210, 176);
             this.lblApiToken.Name = "lblApiToken";
             this.lblApiToken.Size = new System.Drawing.Size(338, 24);
             this.lblApiToken.TabIndex = 5;
             this.lblApiToken.Click += new System.EventHandler(this.LblApiToken_Click);
+            // 
+            // lblDataFolder
+            // 
+            this.lblDataFolder.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblDataFolder.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblDataFolder.Location = new System.Drawing.Point(210, 202);
+            this.lblDataFolder.Name = "lblDataFolder";
+            this.lblDataFolder.Size = new System.Drawing.Size(338, 24);
+            this.lblDataFolder.TabIndex = 7;
+            this.lblDataFolder.Click += new System.EventHandler(this.LblDataFolder_Click);
+            // 
+            // cmbBrowser
+            // 
+            this.cmbBrowser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBrowser.FormattingEnabled = true;
+            this.cmbBrowser.Items.AddRange(new object[] {
+            "Chrome",
+            "MS Edge"});
+            this.cmbBrowser.Location = new System.Drawing.Point(210, 228);
+            this.cmbBrowser.Name = "cmbBrowser";
+            this.cmbBrowser.Size = new System.Drawing.Size(121, 25);
+            this.cmbBrowser.TabIndex = 9;
+            this.cmbBrowser.SelectedIndexChanged += new System.EventHandler(this.CmbBrowser_SelectedIndexChanged);
             // 
             // btnBackup
             // 
@@ -102,21 +137,13 @@
             this.btnUcenici.UseVisualStyleBackColor = true;
             this.btnUcenici.Click += new System.EventHandler(this.BtnUcenici_Click);
             // 
-            // lblDataFolder
-            // 
-            this.lblDataFolder.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblDataFolder.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblDataFolder.Location = new System.Drawing.Point(210, 211);
-            this.lblDataFolder.Name = "lblDataFolder";
-            this.lblDataFolder.Size = new System.Drawing.Size(338, 24);
-            this.lblDataFolder.TabIndex = 7;
-            this.lblDataFolder.Click += new System.EventHandler(this.LblDataFolder_Click);
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(617, 279);
+            this.Controls.Add(this.cmbBrowser);
+            this.Controls.Add(label1);
             this.Controls.Add(this.lblDataFolder);
             this.Controls.Add(label2);
             this.Controls.Add(this.lblApiToken);
@@ -148,6 +175,7 @@
         private System.Windows.Forms.ToolTip ttApiToken;
         private System.Windows.Forms.Label lblDataFolder;
         private System.Windows.Forms.ToolTip ttDataFolder;
+        private System.Windows.Forms.ComboBox cmbBrowser;
     }
 }
 

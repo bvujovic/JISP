@@ -46,16 +46,36 @@ namespace JISP.Data
             return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(json);
         }
 
+        /// <summary>Dohvata trazeni objekat od JISP WebAPI-a.</summary>
+        public async static Task<T> GetObject<T>(string url)
+        {
+            var json = await GetJson(url);
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(json);
+        }
+
         /// <summary>Dohvata (GET) JSON podatke od JISP WebAPI-a.</summary>
         /// <see cref="https://stackoverflow.com/questions/14627399/setting-authorization-header-of-httpclient"/>
-        public static async Task<string> GetJson(ReqEnum reqEnum, string param = null)
+        public static async Task<string> GetJson(string url)
         {
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
-                var url = UrlForReq(reqEnum, param);
                 return await client.GetStringAsync(url);
             }
+        }
+
+        /// <summary>Dohvata (GET) JSON podatke od JISP WebAPI-a.</summary>
+        /// <see cref="https://stackoverflow.com/questions/14627399/setting-authorization-header-of-httpclient"/>
+        public static async Task<string> GetJson(ReqEnum reqEnum, string param = null)
+        {
+            return await GetJson(UrlForReq(reqEnum, param));
+            //B
+            //using (var client = new HttpClient())
+            //{
+            //    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
+            //    var url = UrlForReq(reqEnum, param);
+            //    return await client.GetStringAsync(url);
+            //}
         }
 
         /// <summary>Dohvata (POST) JSON podatke od JISP WebAPI-a.</summary>

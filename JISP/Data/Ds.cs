@@ -33,6 +33,9 @@ namespace JISP.Data
                 }
             }
 
+            public bool JeOsnovac
+                => !IsSkolaNull() && Skola == "Основна";
+
             public override string ToString()
                 => $"{Ime}, JOB: {JOB}";
         }

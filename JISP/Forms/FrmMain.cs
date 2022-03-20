@@ -36,6 +36,7 @@ namespace JISP.Forms
                     }
                 lblDataFolder.Text = setts.DataFolder;
                 AppData.LoadDsData();
+                cmbBrowser.SelectedItem = AppData.Browser;
                 Text = "Naš JISP - " + Utils.GetVersion();
             }
             catch (Exception ex)
@@ -120,6 +121,11 @@ namespace JISP.Forms
         private void LblDataFolder_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(AppData.DataFolder);
+        }
+
+        private void CmbBrowser_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AppData.Browser = cmbBrowser.SelectedItem.ToString();
         }
     }
 }

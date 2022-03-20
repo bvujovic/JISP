@@ -12,6 +12,9 @@ namespace JISP.Data
         public string SkolskaGodina { get; set; }
         public string Razred { get; set; }
         public string Odeljenje { get; set; }
+        public int Id { get; set; }
+        public int RegUceLiceSrednjeObrazovanjeId { get; set; }
+        public int RegUceLiceOsnovnoObrazovanjeId { get; set; }
 
         public static string TekucaSkGod => "2021/2022";
 

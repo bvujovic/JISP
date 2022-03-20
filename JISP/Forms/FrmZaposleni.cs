@@ -20,7 +20,6 @@ namespace JISP.Forms
             bsZaposleni.DataSource = Ds;
             bsZaposlenja.DataMember = "FK_Zaposleni_Zaposlenja";
             bsZaposlenja.Sort = "Aktivan DESC";
-            DisplayPositionRowCount();
             chkAktivniZap.CheckState = CheckState.Checked;
 
             //T
@@ -35,12 +34,6 @@ namespace JISP.Forms
 
         private void BtnSaveData_Click(object sender, EventArgs e)
             => AppData.SaveDsData();
-
-        private void DisplayPositionRowCount()
-            => lblRowCount.Text = $"Red {bsZaposleni.Position + 1} / {bsZaposleni.Count}";
-
-        private void BsZaposleni_CurrentChanged(object sender, EventArgs e)
-            => DisplayPositionRowCount();
 
         /// <summary>Za dati naziv radnog mesta ili njegov deo,
         /// vraca skup IDeva zaposlenih sa tim radim mestom.</summary>
@@ -71,7 +64,6 @@ namespace JISP.Forms
                 bsZaposleni.Filter = filter;
             }
             catch (Exception ex) { Utils.ShowMbox(ex, "Pretraga zaposlenih"); }
-            DisplayPositionRowCount();
         }
 
         //B
@@ -127,7 +119,6 @@ namespace JISP.Forms
                     }
             }
             catch (Exception ex) { Utils.ShowMbox(ex, btnLoadData.Text); }
-            DisplayPositionRowCount();
         }
 
         private void DgvZaposleni_CellClick(object sender, DataGridViewCellEventArgs e)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -7,26 +8,157 @@ namespace JISP.Controls
 {
     public class UcDGV : DataGridView
     {
+        private ContextMenuStrip ctxMenuDGV;
+        private IContainer components;
+        private ToolStripMenuItem tsmiSort;
+        private ToolStripMenuItem tsmiSelekcija;
+        private ToolStripMenuItem tsmiSelCeoRed;
+        private ToolStripMenuItem tsmiSelCelija;
+        private ToolStripMenuItem tsmiPrikazKolona;
+
         public UcDGV()
         {
             RowHeadersWidth = 30;
             InitializeComponent();
+
+            DisplayPositionRowCount();
+            SelectionChanged += (o, ea) => DisplayPositionRowCount();
+        }
+
+        private void CtxMenuDGV_Opening(object sender, CancelEventArgs e)
+        {
+            if (!tsmiPrikazKolona.HasDropDownItems)
+                foreach (DataGridViewColumn col in Columns)
+                {
+                    var tsmi = new ToolStripMenuItem { Text = col.HeaderText, CheckOnClick = true, Checked = true };
+                    tsmi.CheckedChanged += TsmiPrikazKol_CheckedChanged;
+                    tsmiPrikazKolona.DropDownItems.Add(tsmi);
+                }
+        }
+
+        private void TsmiPrikazKol_CheckedChanged(object sender, EventArgs e)
+        {
+            var tsmi = sender as ToolStripMenuItem;
+            var col = Columns.Cast<DataGridViewColumn>().FirstOrDefault(it => it.HeaderText == tsmi.Text);
+            col.Visible = tsmi.Checked;
         }
 
         private void InitializeComponent()
         {
-            var dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.ctxMenuDGV = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiPrikazKolona = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSort = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSelekcija = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSelCeoRed = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSelCelija = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctxMenuDGV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
+            // 
+            // ctxMenuDGV
+            // 
+            this.ctxMenuDGV.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiPrikazKolona,
+            this.tsmiSort,
+            this.tsmiSelekcija});
+            this.ctxMenuDGV.Name = "ctxMenuDGV";
+            this.ctxMenuDGV.Size = new System.Drawing.Size(145, 70);
+            this.ctxMenuDGV.Opening += new System.ComponentModel.CancelEventHandler(this.CtxMenuDGV_Opening);
+            // 
+            // tsmiPrikazKolona
+            // 
+            this.tsmiPrikazKolona.Name = "tsmiPrikazKolona";
+            this.tsmiPrikazKolona.Size = new System.Drawing.Size(144, 22);
+            this.tsmiPrikazKolona.Text = "Prikaz kolona";
+            // 
+            // tsmiSort
+            // 
+            this.tsmiSort.Name = "tsmiSort";
+            this.tsmiSort.Size = new System.Drawing.Size(144, 22);
+            this.tsmiSort.Text = "Sortiranje";
+            this.tsmiSort.Visible = false;
+            // 
+            // tsmiSelekcija
+            // 
+            this.tsmiSelekcija.DropDownItems.AddRange(new ToolStripItem[] {
+            this.tsmiSelCeoRed,
+            this.tsmiSelCelija});
+            this.tsmiSelekcija.Name = "tsmiSelekcija";
+            this.tsmiSelekcija.Size = new System.Drawing.Size(144, 22);
+            this.tsmiSelekcija.Text = "Selekcija";
+            // 
+            // tsmiSelCeoRed
+            // 
+            this.tsmiSelCeoRed.Checked = true;
+            this.tsmiSelCeoRed.CheckOnClick = true;
+            this.tsmiSelCeoRed.Name = "tsmiSelCeoRed";
+            this.tsmiSelCeoRed.Size = new System.Drawing.Size(115, 22);
+            this.tsmiSelCeoRed.Text = "Ceo red";
+            this.tsmiSelCeoRed.CheckedChanged += TsmiSelelekcija_CheckedChanged;
+            // 
+            // tsmiSelCelija
+            // 
+            this.tsmiSelCelija.CheckOnClick = true;
+            this.tsmiSelCelija.Name = "tsmiSelCelija";
+            this.tsmiSelCelija.Size = new System.Drawing.Size(115, 22);
+            this.tsmiSelCelija.Text = "Ćelija";
+            this.tsmiSelCelija.CheckedChanged += TsmiSelelekcija_CheckedChanged;
             // 
             // UcDGV
             // 
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.ContextMenuStrip = this.ctxMenuDGV;
+            this.ctxMenuDGV.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
+
         }
+
+        private void TsmiSelelekcija_CheckedChanged(object sender, EventArgs e)
+        {
+            var tsmi = sender as ToolStripMenuItem;
+
+            var selCeoRed = tsmi == tsmiSelCeoRed && tsmi.Checked || tsmi == tsmiSelCelija && !tsmi.Checked;
+            SelectionMode = selCeoRed ? DataGridViewSelectionMode.FullRowSelect : DataGridViewSelectionMode.RowHeaderSelect;
+
+            tsmiSelCeoRed.Checked = selCeoRed;
+            tsmiSelCelija.Checked = !selCeoRed;
+        }
+
+        public void AddSorting(string headerText, string sortBy)
+        {
+            tsmiSort.Visible = true;
+            var tsmi = new ToolStripMenuItem { Text = headerText, Tag = sortBy };
+            tsmi.Click += TsmiSortStavka_Click;
+            tsmiSort.DropDownItems.Add(tsmi);
+            if (tsmiSort.DropDownItems.Count == 1)
+                PrimeniSort(tsmi);
+        }
+
+        private void TsmiSortStavka_Click(object sender, EventArgs e)
+        {
+            var tsmi = sender as ToolStripMenuItem;
+            PrimeniSort(tsmi);
+        }
+
+        private void PrimeniSort(ToolStripMenuItem tsmi)
+        {
+            if (tsmi != null && DataSource is BindingSource bs)
+            {
+                bs.Sort = (string)tsmi.Tag;
+                if (bs.Count > 0)
+                    bs.Position = 0;
+            }
+        }
+
+        [Browsable(true), EditorBrowsable(EditorBrowsableState.Always)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Controla (Label npr) za prikaz red. br. tekuceg i ukupnog broja redova."), Category("Layout")]
+        public Control CtrlDisplayPositionRowCount { get; set; }
 
         /// <summary>Vraca (DataSet) red sa podacima na osnovu tekuceg DataGridView reda.</summary>
         public T CurrDataRow<T>() where T : class
@@ -41,6 +173,16 @@ namespace JISP.Controls
         {
             var drv = dgvRow.DataBoundItem as System.Data.DataRowView;
             return drv.Row as T;
+        }
+
+        /// <summary>Vraca kolekciju selektovanih (DataSet) redova.</summary>
+        /// <remarks>Baca izuzetak ako nema selektovanih redova.</remarks>
+        public IEnumerable<T> SelectedDataRows<T>() where T : class
+        {
+            if (SelectedRows.Count == 0)
+                throw new Exception("Nije selektovan nijedan red u tabeli.");
+            else
+                return SelectedRows.Cast<DataGridViewRow>().Select(it => DataRow<T>(it));
         }
 
         /// <summary>Da li se tekst celije kopira u klipbord pri kliku na celiju.</summary>
@@ -112,6 +254,16 @@ namespace JISP.Controls
             dgvc.DisplayMember = displayMember;
             dgvc.DisplayStyleForCurrentCellOnly = true;
             dgvc.FlatStyle = FlatStyle.Flat;
+        }
+
+        /// <summary>Prikaz tekuceg reda ili broja selektovanih redova u datoj kontroli (labeli).</summary>
+        public void DisplayPositionRowCount()
+        {
+            if (DataSource is BindingSource bs && CtrlDisplayPositionRowCount != null)
+                if (SelectedRows.Count < 2)
+                    CtrlDisplayPositionRowCount.Text = $"Red {bs.Position + 1} / {bs.Count}";
+                else
+                    CtrlDisplayPositionRowCount.Text = $"Redova {SelectedRows.Count}";
         }
     }
 }

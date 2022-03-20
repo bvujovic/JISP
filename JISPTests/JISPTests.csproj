@@ -57,7 +57,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Classes\JMBGTests.cs" />
-    <Compile Include="Classes\MarksTests.cs" />
     <Compile Include="Data\WebApiTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

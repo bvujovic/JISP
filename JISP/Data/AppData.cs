@@ -12,6 +12,9 @@ namespace JISP.Data
         /// <summary>Kratko ime aplikacije bez razmaka i nasih slova.</summary>
         public static string AppNameMachine { get => "NasJISP"; }
 
+        /// <summary>Internet browser koji se koristi za JISP.</summary>
+        public static string Browser { get; set; }
+
         //TODO Sa dodatkom cuvanja DataFolder-a u rigistry-u verovatno je bolje da se napusti cuvanje toga u Settings.
         /// <summary>Folder u kojem ce se cuvati podaci: txt, xml...</summary>
         public static string DataFolder => Properties.Settings.Default.DataFolder;
@@ -70,6 +73,8 @@ namespace JISP.Data
             var row = Ds.Settings.FindByName(WebApi.TOKEN_CAPTION);
             if (row != null)
                 WebApi.Token = row.Value;
+            row = Ds.Settings.FindByName("browser");
+            Browser = (row != null) ? row.Value : "Chrome";
         }
 
         /// <summary>Cuvanje podataka iz DataSet-a u fajl.</summary>
@@ -87,6 +92,13 @@ namespace JISP.Data
                     }
                     else
                         Ds.Settings.AddSettingsRow(WebApi.TOKEN_CAPTION, WebApi.Token);
+                }
+                {
+                    var row = Ds.Settings.FindByName("browser");
+                    if (row != null)
+                        row.Value = Browser;
+                    else
+                        Ds.Settings.AddSettingsRow("browser", Browser);
                 }
                 Ds.WriteXml(FilePath());
                 Ds.AcceptChanges();

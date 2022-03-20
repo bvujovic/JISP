@@ -1,0 +1,137 @@
+﻿{
+    "srednjeObrazovanjeId": 1265923,
+    "polugodiste": null,
+    "izostanci": [
+        {
+            "id": 6890449,
+            "jeObrisano": false,
+            "vrstaIzostankaId": 31526,
+            "vrstaIzostankaNaziv": "Оправдани",
+            "brojIzostanaka": 140,
+            "polugodiste": true
+        }
+    ],
+    "obavezniPredmeti": [
+        {
+            "id": 19142705,
+            "jeObrisano": false,
+            "predmet": "Српски језик и књижевност",
+            "posebanPredmetNaziv": null,
+            "ocenaId": 19368,
+            "ocenaNaziv": "одличан",
+            "polugodiste": true,
+            "regUstProgramPredmetPogramAktivnostId": 2087459,
+            "jeObavezanPredmet": true,
+            "predmetDodatnoId": null
+        },
+        {
+            "id": 19142706,
+            "jeObrisano": false,
+            "predmet": "Физичко васпитање",
+            "posebanPredmetNaziv": null,
+            "ocenaId": 19368,
+            "ocenaNaziv": "одличан",
+            "polugodiste": true,
+            "regUstProgramPredmetPogramAktivnostId": 2087460,
+            "jeObavezanPredmet": true,
+            "predmetDodatnoId": null
+        },
+        {
+            "id": 19142707,
+            "jeObrisano": false,
+            "predmet": "Математика",
+            "posebanPredmetNaziv": null,
+            "ocenaId": 19368,
+            "ocenaNaziv": "одличан",
+            "polugodiste": true,
+            "regUstProgramPredmetPogramAktivnostId": 2087454,
+            "jeObavezanPredmet": true,
+            "predmetDodatnoId": null
+        },
+        {
+            "id": 19142708,
+            "jeObrisano": false,
+            "predmet": "Уређење друштва",
+            "posebanPredmetNaziv": null,
+            "ocenaId": 19368,
+            "ocenaNaziv": "одличан",
+            "polugodiste": true,
+            "regUstProgramPredmetPogramAktivnostId": 2087457,
+            "jeObavezanPredmet": true,
+            "predmetDodatnoId": null
+        },
+        {
+            "id": 19142709,
+            "jeObrisano": false,
+            "predmet": "Технологија рада",
+            "posebanPredmetNaziv": null,
+            "ocenaId": 19368,
+            "ocenaNaziv": "одличан",
+            "polugodiste": true,
+            "regUstProgramPredmetPogramAktivnostId": 2087456,
+            "jeObavezanPredmet": true,
+            "predmetDodatnoId": null
+        },
+        {
+            "id": 19142710,
+            "jeObrisano": false,
+            "predmet": "Техничко цртање и машински елементи",
+            "posebanPredmetNaziv": null,
+            "ocenaId": 19368,
+            "ocenaNaziv": "одличан",
+            "polugodiste": true,
+            "regUstProgramPredmetPogramAktivnostId": 2087458,
+            "jeObavezanPredmet": true,
+            "predmetDodatnoId": null
+        },
+        {
+            "id": 19142711,
+            "jeObrisano": false,
+            "predmet": "Практична настава",
+            "posebanPredmetNaziv": null,
+            "ocenaId": 19368,
+            "ocenaNaziv": "одличан",
+            "polugodiste": true,
+            "regUstProgramPredmetPogramAktivnostId": 2087455,
+            "jeObavezanPredmet": true,
+            "predmetDodatnoId": null
+        }
+    ],
+    "izborniPredmeti": [
+        {
+            "id": 19142712,
+            "jeObrisano": false,
+            "predmet": "Верска настава",
+            "posebanPredmetNaziv": "православни катихизис",
+            "ocenaId": 19369,
+            "ocenaNaziv": "истиче се",
+            "polugodiste": true,
+            "regUstProgramPredmetPogramAktivnostId": 2087461,
+            "jeObavezanPredmet": false,
+            "predmetDodatnoId": 34088
+        }
+    ],
+    "pohvaleNagrade": [],
+    "vaspitneMere": [],
+    "vladanje": [
+        {
+            "id": 1527285,
+            "jeObrisano": false,
+            "ocena": null,
+            "opisnaOcena": 19359,
+            "polugodiste": true
+        }
+    ],
+    "regUceLiceId": 0,
+    "id": 1265923,
+    "zahtevId": null,
+    "napomena": null,
+    "napomenaVerifikacija": null,
+    "daLiJeDraft": false,
+    "registarId": 0,
+    "nazivSekcije": null,
+    "regUstUstanovaId": 18976,
+    "objekatIdDrugi": 0,
+    "objekatIdCetvrti": null,
+    "objekatIdPeti": null
+}
