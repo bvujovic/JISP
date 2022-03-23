@@ -198,7 +198,7 @@ namespace JISP.Controls
                 && e.ColumnIndex != -1 && e.RowIndex != -1 && SelectedCells.Count > 0
                 && (ColumnsForCopyOnClick == null || ColumnsForCopyOnClick.Contains(e.ColumnIndex))
                 && Columns[e.ColumnIndex].CellType == typeof(DataGridViewTextBoxCell))
-                CopyCellText(SelectedCells[0]);
+                CopyCellText(SelectedCells[e.ColumnIndex]);
         }
 
         /// <summary>Kopiranje teksta celije u klipbord.</summary>

@@ -84,7 +84,7 @@ namespace xUnitTests
         {
             try
             {
-                var json = System.IO.File.ReadAllText("_Data/BrojOcena_ImaOcene.json");
+                var json = System.IO.File.ReadAllText("_Data/Ocene/BrojOcena_ImaOcene.json");
                 var rezultat = Ocene.IzbrojOcene(json);
                 Assert.Equal(8, rezultat);
             }
@@ -96,7 +96,7 @@ namespace xUnitTests
         {
             try
             {
-                var json = System.IO.File.ReadAllText("_Data/BrojOcena_NemaOcene.json");
+                var json = System.IO.File.ReadAllText("_Data/Ocene/BrojOcena_NemaOcene.json");
                 var rezultat = Ocene.IzbrojOcene(json);
                 Assert.Equal(0, rezultat);
             }

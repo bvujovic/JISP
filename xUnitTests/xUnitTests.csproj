@@ -9,13 +9,21 @@
   <ItemGroup>
     <None Remove="_Data\BrojOcena_ImaOcene.json" />
     <None Remove="_Data\BrojOcena_NemaOcene.json" />
+    <None Remove="_Data\KoefDuos\Sacuvaj_Bojan_2021-12.json" />
+    <None Remove="_Data\KoefDuos\Sacuvaj_Bojan_2022-01.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="_Data\BrojOcena_ImaOcene.json">
+    <Content Include="_Data\Ocene\BrojOcena_ImaOcene.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="_Data\BrojOcena_NemaOcene.json">
+    <Content Include="_Data\Ocene\BrojOcena_NemaOcene.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_Data\KoefDuos\Sacuvaj_Bojan_2021-12.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_Data\KoefDuos\Sacuvaj_Bojan_2022-01.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -35,6 +43,18 @@
 
   <ItemGroup>
     <ProjectReference Include="..\JISP\JISP.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="_Data\KoefDuos\SacuvajBash_Marija_2021-12a.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="_Data\KoefDuos\Sacuvaj_Marija_2021-12a.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="_Data\KoefDuos\Sacuvaj_Marija_2022-01a.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

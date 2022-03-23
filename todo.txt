@@ -1,16 +1,7 @@
-﻿+ FrmUcenici: chk Samo tekuci da prikazuje samo ucenike koji su upisani
-	- ... u tekucu skolsku godinu (dodati taj podatak za ucenika)
-- dugmici
-	[- boje dugmica: Sacuvaj - plava, Dodaj novo - zelena, Izmeni - zuta, Obrisi - crvena, Izlaz iz app - crna]
-+ ukidanje FrmSrednjoskolci i dodavanje tih podataka u FrmUcenici
-+ FrmUcenici: dodati podatak o broju unetih ocena (polugodiste/kraj?)
-- zaposlenima dodati i predmete na kojima rade. ovo bi trebalo da bude pretrazivo u formi.
-+ zapamtiti folder sa podacima tako da ovaj ne mora da se unosi svaki put
-	kad se instalira nova verzija programa (config.ini?)
-- pravljenje tooltipova sa objasnjenjima pretraga za zaposlene i ucenike
-- napraviti nove SShotove
-[- ubrzavanje unosa koeficijenata u douniv. obrazovanju]
-+ FrmMain: combo koji browser se koristi (edge, chrome)
-+ FrmUcenici: sortiranje skola, razred, odeljenje
+﻿- ubrzavanje unosa koeficijenata u douniv. obrazovanju: interfejs i testiranje
 - Koriscenje novije verzije .NET-a u projektu
 - UcDGV: pamcenje spiska Visible kolona
+- zaposlenima dodati i predmete na kojima rade. ovo bi trebalo da bude pretrazivo u formi.
+- dugmici
+	[- boje dugmica: Sacuvaj - plava, Dodaj novo - zelena, Izmeni - zuta, Obrisi - crvena, Izlaz iz app - crna]
+- napraviti nove SShotove

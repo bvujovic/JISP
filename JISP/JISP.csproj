@@ -93,6 +93,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\JMBG.cs" />
+    <Compile Include="Classes\KoefDuos\KoefDuos.cs" />
+    <Compile Include="Classes\KoefDuos\KoefDuosMesec.cs" />
     <Compile Include="Classes\Logger.cs" />
     <Compile Include="Classes\Ocene.cs" />
     <Compile Include="Classes\SlikeZaposlenih.cs" />
