@@ -23,7 +23,11 @@ namespace JISP.Controls
         protected override void OnClick(EventArgs e)
         {
             base.OnClick(e);
-            //B Application.OpenForms.OfType<Forms.FrmMain>().FirstOrDefault()?.Close();
+            
+            Application.OpenForms.OfType<Forms.FrmSlikaZap>().FirstOrDefault()?.Close();
+            Application.OpenForms.OfType<Forms.FrmZaposleni>().FirstOrDefault()?.Close();
+            Application.OpenForms.OfType<Forms.FrmUcenici>().FirstOrDefault()?.Close();
+
             var frmMain = Forms.FrmMain.Instance;
             if (!frmMain.Disposing && !frmMain.IsDisposed)
                 frmMain.Close();

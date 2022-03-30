@@ -15,6 +15,8 @@ namespace JISP.Controls
         private ToolStripMenuItem tsmiSelCeoRed;
         private ToolStripMenuItem tsmiSelCelija;
         private ToolStripMenuItem tsmiPrikazKolona;
+        /// <summary>Kolone koje su u dizajneru postavljenje na Visible = true</summary>
+        private List<DataGridViewColumn> availableColumns = null;
 
         public UcDGV()
         {
@@ -25,15 +27,21 @@ namespace JISP.Controls
             SelectionChanged += (o, ea) => DisplayPositionRowCount();
         }
 
-        private void CtxMenuDGV_Opening(object sender, CancelEventArgs e)
+        /// <summary>Ucitavanje podesavanja (vidljivost kolona...) iz XML fajla.</summary>
+        public void LoadSettings()
         {
-            if (!tsmiPrikazKolona.HasDropDownItems)
-                foreach (DataGridViewColumn col in Columns)
-                {
-                    var tsmi = new ToolStripMenuItem { Text = col.HeaderText, CheckOnClick = true, Checked = true };
-                    tsmi.CheckedChanged += TsmiPrikazKol_CheckedChanged;
-                    tsmiPrikazKolona.DropDownItems.Add(tsmi);
-                }
+            availableColumns = Columns.Cast<DataGridViewColumn>().Where(it => it.Visible).ToList();
+            var row = Data.AppData.Ds.Settings.FindByName(this.Name);
+            string[] visibleColumns = row?.Value.Split('|');
+            foreach (DataGridViewColumn col in availableColumns)
+            {
+                var tsmi = new ToolStripMenuItem { Text = col.HeaderText, CheckOnClick = true };
+                tsmi.Checked = visibleColumns == null || visibleColumns.Contains(col.Name);
+                if (!tsmi.Checked)
+                    col.Visible = false;
+                tsmi.CheckedChanged += TsmiPrikazKol_CheckedChanged;
+                tsmiPrikazKolona.DropDownItems.Add(tsmi);
+            }
         }
 
         private void TsmiPrikazKol_CheckedChanged(object sender, EventArgs e)
@@ -41,6 +49,27 @@ namespace JISP.Controls
             var tsmi = sender as ToolStripMenuItem;
             var col = Columns.Cast<DataGridViewColumn>().FirstOrDefault(it => it.HeaderText == tsmi.Text);
             col.Visible = tsmi.Checked;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            SaveSettings();
+            base.Dispose(disposing);
+        }
+
+        /// <summary>Cuvanje podesavanja (vidljivost kolona...) u XML fajlu.</summary>
+        private void SaveSettings()
+        {
+            if (availableColumns != null)
+            {
+                var vidljivostDostupnihKolona =
+                    string.Join("|", availableColumns.Where(it => it.Visible).Select(it => it.Name));
+                var row = Data.AppData.Ds.Settings.FindByName(this.Name);
+                if (row == null)
+                    Data.AppData.Ds.Settings.AddSettingsRow(this.Name, vidljivostDostupnihKolona);
+                else
+                    row.Value = vidljivostDostupnihKolona;
+            }
         }
 
         private void InitializeComponent()
@@ -65,7 +94,6 @@ namespace JISP.Controls
             this.tsmiSelekcija});
             this.ctxMenuDGV.Name = "ctxMenuDGV";
             this.ctxMenuDGV.Size = new System.Drawing.Size(145, 70);
-            this.ctxMenuDGV.Opening += new System.ComponentModel.CancelEventHandler(this.CtxMenuDGV_Opening);
             // 
             // tsmiPrikazKolona
             // 
@@ -136,16 +164,16 @@ namespace JISP.Controls
             tsmi.Click += TsmiSortStavka_Click;
             tsmiSort.DropDownItems.Add(tsmi);
             if (tsmiSort.DropDownItems.Count == 1)
-                PrimeniSort(tsmi);
+                ApplySorting(tsmi);
         }
 
         private void TsmiSortStavka_Click(object sender, EventArgs e)
         {
             var tsmi = sender as ToolStripMenuItem;
-            PrimeniSort(tsmi);
+            ApplySorting(tsmi);
         }
 
-        private void PrimeniSort(ToolStripMenuItem tsmi)
+        private void ApplySorting(ToolStripMenuItem tsmi)
         {
             if (tsmi != null && DataSource is BindingSource bs)
             {

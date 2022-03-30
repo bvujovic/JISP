@@ -21,6 +21,7 @@ namespace JISP.Forms
             bsZaposlenja.DataMember = "FK_Zaposleni_Zaposlenja";
             bsZaposlenja.Sort = "Aktivan DESC";
             chkAktivniZap.CheckState = CheckState.Checked;
+            dgvZaposleni.LoadSettings();
 
             //T
             //foreach (var zap in Ds.Zaposleni)

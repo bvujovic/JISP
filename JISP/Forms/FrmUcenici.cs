@@ -21,18 +21,19 @@ namespace JISP.Forms
         {
             bsUcenici.DataSource = AppData.Ds;
             colOriginal = lblStatus.BackColor;
-            dgv.ColumnsForCopyOnClick = new int[] { dgvcJOB.Index };
-            dgv.CopyOnCellClick = true;
-            dgv.CellTextCopied += Dgv_CellTextCopied;
+            dgvUcenici.ColumnsForCopyOnClick = new int[] { dgvcJOB.Index };
+            dgvUcenici.CopyOnCellClick = true;
+            dgvUcenici.CellTextCopied += Dgv_CellTextCopied;
             lblStatus.TextChanged += LblStatus_TextChanged;
             timStatus.Tick += TimStatus_Tick;
             ttOceneProvera.SetToolTip(chkOceneSaVladanjem, "Provera naziva ocena");
             ResetLblOceneProsekText();
             FilterData();
-            dgv.AddSorting("Škola, razred, odeljenje", "Skola, Razred, Odeljenje");
-            dgv.AddSorting("Napomene, škola, razred, odeljenje", "Napomene DESC, Skola, Razred, Odeljenje");
-            dgv.AddSorting("Do rođendana", "DanaDoRodj");
-            dgv.AddSorting("Godine", "Godine");
+            dgvUcenici.AddSorting("Škola, razred, odeljenje", "Skola, Razred, Odeljenje");
+            dgvUcenici.AddSorting("Napomene, škola, razred, odeljenje", "Napomene DESC, Skola, Razred, Odeljenje");
+            dgvUcenici.AddSorting("Do rođendana", "DanaDoRodj");
+            dgvUcenici.AddSorting("Godine", "Godine");
+            dgvUcenici.LoadSettings();
 
             //T
             //foreach (var uc in AppData.Ds.Ucenici)
@@ -113,7 +114,7 @@ namespace JISP.Forms
         {
             if (e.KeyCode == Keys.Enter)
             {
-                dgv.CopyCellText(dgvcJOB.Index);
+                dgvUcenici.CopyCellText(dgvcJOB.Index);
                 e.SuppressKeyPress = true; // protiv "kling" zvuka
             }
         }
@@ -123,7 +124,7 @@ namespace JISP.Forms
             try
             {
                 // dohvatanje ocena
-                var x = dgv.SelectedDataRows<Ds.UceniciRow>().ToList();
+                var x = dgvUcenici.SelectedDataRows<Ds.UceniciRow>().ToList();
                 foreach (var uc in x)
                 {
                     var nivo = uc.JeOsnovac ? "Osnovno" : "Srednje";
@@ -133,7 +134,7 @@ namespace JISP.Forms
                 }
 
                 // dohvatanje smera - samo za srednjoskolce
-                foreach (var uc in dgv.SelectedDataRows<Ds.UceniciRow>().Where(it => !it.JeOsnovac))
+                foreach (var uc in dgvUcenici.SelectedDataRows<Ds.UceniciRow>().Where(it => !it.JeOsnovac))
                 {
                     var url = "https://jisp.mpn.gov.rs/webapi/api/ucenik/VratiUpisSrednjeObrazovanjeById/";
                     var json = await WebApi.GetJson(url + uc.Id);
@@ -149,9 +150,9 @@ namespace JISP.Forms
         {
             try
             {
-                if (dgv.SelectedRows.Count == 0)
+                if (dgvUcenici.SelectedRows.Count == 0)
                     throw new Exception("Nije selektovan nijedan red u tabeli.");
-                foreach (DataGridViewRow row in dgv.SelectedRows)
+                foreach (DataGridViewRow row in dgvUcenici.SelectedRows)
                 {
                     var drv = row.DataBoundItem as DataRowView;
                     var uc = drv.Row as Ds.UceniciRow;
@@ -217,7 +218,7 @@ namespace JISP.Forms
 
         private void ChkAllowNew_CheckedChanged(object sender, EventArgs e)
         {
-            dgv.AllowUserToAddRows = chkAllowNew.Checked;
+            dgvUcenici.AllowUserToAddRows = chkAllowNew.Checked;
             if (chkAllowNew.Checked)
                 bsUcenici.MoveLast();
         }

@@ -50,9 +50,43 @@ namespace JISP.Controls
         protected override void OnTextChanged(EventArgs e)
         {
             base.OnTextChanged(e);
-            //B BackColor = InputLanguage.CurrentInputLanguage.LayoutName.Contains("Cyrillic")
-            BackColor = InputLanguage.CurrentInputLanguage.Culture.Name.StartsWith("sr-Cyrl")
-                ? System.Drawing.Color.White : System.Drawing.Color.Orange;
+            BackColor = IsCyrillic ? System.Drawing.Color.White : System.Drawing.Color.Orange;
+        }
+
+        private static bool IsCyrillic
+            => CurrentCultureName.StartsWith("sr-Cyrl");
+
+        private static string CurrentCultureName
+            => InputLanguage.CurrentInputLanguage.Culture.Name;
+
+        /// <summary>Postavljanje layout-a tastature na cirilicu generisanjem Alt+Shift signala.</summary>
+        /// <see cref="https://stackoverflow.com/questions/37291533/change-keyboard-layout-from-c-sharp-code-with-net-4-5-2"/>
+        private void SetCyrillic()
+        {
+            if (IsCyrillic)
+                return;
+            var firstCulture = CurrentCultureName;
+            SendKeys.SendWait("%+");
+            var i = 10; // max 10 pokusaja
+            // ispucavaju se Alt+Shift kombinacije dogod se ne predje na cirilicu ili se izbroji od 10 do 0
+            // ili se obrne pun krug ponudjenih tastatura a nema cirilice
+            while (CurrentCultureName != firstCulture && !IsCyrillic && i-- > 0)
+                SendKeys.SendWait("%+");
+            timCyrillic.Tick += Tim_Tick;
+        }
+
+        private void Tim_Tick(object sender, EventArgs e)
+        {
+            SetCyrillic();
+            timCyrillic.Stop();
+        }
+
+        private readonly Timer timCyrillic = new Timer { Enabled = true, Interval = 1000 };
+
+        protected override void OnEnter(EventArgs e)
+        {
+            base.OnEnter(e);
+                SetCyrillic();
         }
     }
 }
