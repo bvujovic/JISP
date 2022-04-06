@@ -1,0 +1,15 @@
+GET /webapi/api/ucenik/VratiUpisOsnovnoByUstanovaId/18976 HTTP/1.1
+Host: jisp.mpn.gov.rs
+Connection: keep-alive
+sec-ch-ua: " Not A;Brand";v="99", "Chromium";v="99", "Microsoft Edge";v="99"
+Accept: application/json, text/plain, */*
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxODUxNiIsInVuaXF1ZV9uYW1lIjoiYm9qYW4ucHJvZ0BnbWFpbC5jb20iLCJGdWxsTmFtZSI6ItCR0L7RmNCw0L0g0JLRg9GY0L7QstC40ZsiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxMzg0NjQ5IiwibmFtZWlkIjoiMTg1MTYiLCJFbWFpbCI6ImJvamFuLnByb2dAZ21haWwuY29tIiwiRG9kYXRub1BvbGplMSI6IiIsIkRvZGF0bm9Qb2xqZTIiOiIiLCJEb2RhdG5vUG9samUzIjoiIiwiRG9kYXRub1BvbGplNCI6IiIsIkRvZGF0bm9Qb2xqZTUiOiIiLCJBdXRob3JpemF0aW9uIGNsYWltIjp7IkF1dG9yaXphY2lqZSI6W119LCJuYmYiOjE2NDg1NDM1MTIsImV4cCI6MTY0ODYyOTkxMiwiaWF0IjoxNjQ4NTQzNTEyLCJpc3MiOiJVcHJhdmxqYW5qZUtvcmlzbmljaW1hQ1RTSSIsImF1ZCI6IkNsaWVudE5hbWUifQ.ORLxVBUAFuG-dF1w7Shyz7M4GOwwxHv702EItAlWiPE
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36 Edg/99.0.1150.55
+sec-ch-ua-platform: "Windows"
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: https://jisp.mpn.gov.rs/regucenika/lista-dece-u-osnovnom-obrazovanju
+Accept-Encoding: gzip, deflate, br
+Accept-Language: sr-Latn-RS,sr-Cyrl-RS;q=0.9,sr;q=0.8,en;q=0.7,en-GB;q=0.6,en-US;q=0.5

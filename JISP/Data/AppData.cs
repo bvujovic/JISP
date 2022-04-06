@@ -106,22 +106,5 @@ namespace JISP.Data
             }
             catch (Exception ex) { Classes.Utils.ShowMbox(ex, "Cuvanje podataka u XML"); }
         }
-
-        public static void BackupData()
-        {
-            try
-            {
-                var origDS = FilePath();
-                Ds.WriteXml(origDS);
-                var backupFolder = "backup";
-                if (!string.IsNullOrEmpty(DataFolder))
-                    backupFolder = Path.Combine(DataFolder, "backup");
-                var date = DateTime.Now.ToString(Classes.Utils.DatumVremeFormatFile);
-                var backupDS = Path.Combine(backupFolder, $"ds_{date}.xml");
-                File.Copy(origDS, backupDS);
-                System.Diagnostics.Process.Start(backupFolder);
-            }
-            catch (Exception ex) { Classes.Utils.ShowMbox(ex, "Backup podataka"); }
-        }
     }
 }

@@ -37,6 +37,7 @@ namespace JISP.Forms
                 lblDataFolder.Text = setts.DataFolder;
                 AppData.LoadDsData();
                 cmbBrowser.SelectedItem = AppData.Browser;
+                BackupData.CreateBackupIfNeeded();
                 Text = "Naš JISP - " + Utils.GetVersion();
             }
             catch (Exception ex)
@@ -86,13 +87,11 @@ namespace JISP.Forms
         private void BtnUcenici_Click(object sender, EventArgs e)
         {
             Utils.ShowForm(typeof(FrmUcenici));
-            //B this.WindowState = FormWindowState.Minimized;
         }
 
         private void BtnZaposleni_Click(object sender, EventArgs e)
         {
             Utils.ShowForm(typeof(FrmZaposleni));
-            //B this.WindowState = FormWindowState.Minimized;
         }
 
         public void FrmChild_FormClosed(object sender, FormClosedEventArgs e)
@@ -106,14 +105,18 @@ namespace JISP.Forms
 
         private void BtnBackup_Click(object sender, EventArgs e)
         {
-            AppData.BackupData();
+            BackupData.CreateBackup();
         }
 
         private void LblApiToken_Click(object sender, EventArgs e)
         {
-            WebApi.Token = Clipboard.GetText();
+            var clipboard = Clipboard.GetText();
+            if (clipboard.Contains(Environment.NewLine))
+                WebApi.TakeApiToken(clipboard);
+            else
+                WebApi.Token = clipboard;
             lblApiToken.Text = WebApi.TokenDisplay;
-            AppData.SaveDsData();
+            //B AppData.SaveDsData();
         }
 
         private void LblDataFolder_Click(object sender, EventArgs e)

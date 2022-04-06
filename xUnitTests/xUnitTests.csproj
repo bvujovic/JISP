@@ -55,6 +55,9 @@
     <None Update="_Data\KoefDuos\Sacuvaj_Marija_2022-01a.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="_Data\request_headers.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

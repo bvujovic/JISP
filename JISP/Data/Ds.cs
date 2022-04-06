@@ -36,6 +36,9 @@ namespace JISP.Data
             public bool JeOsnovac
                 => !IsSkolaNull() && Skola == "Основна";
 
+            public bool JeSrednjoskolac
+                => !IsSkolaNull() && Skola == "Средња";
+
             public override string ToString()
                 => $"{Ime}, JOB: {JOB}";
         }

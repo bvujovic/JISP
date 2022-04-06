@@ -127,6 +127,7 @@
       <DependentUpon>UcLeftPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Data\AppData.cs" />
+    <Compile Include="Data\BackupData.cs" />
     <Compile Include="Data\Ds.cs">
       <DependentUpon>Ds.xsd</DependentUpon>
     </Compile>

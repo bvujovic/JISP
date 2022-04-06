@@ -173,23 +173,36 @@ namespace JISP.Forms
         {
             try
             {
-                await GetDuosData(WebApi.ReqEnum.Uc_DuosOS);
-                await PostForDuosData(WebApi.ReqEnum.Uc_DuosSS);
+                var ucenici = dgvUcenici.SelectedDataRows<Ds.UceniciRow>();
+                if (ucenici.Any(it => it.JeOsnovac))
+                    await GetDuosData(WebApi.ReqEnum.Uc_DuosOS, ucenici.Where(it => it.JeOsnovac));
+                if (ucenici.Any(it => it.JeSrednjoskolac))
+                    await PostForDuosData(WebApi.ReqEnum.Uc_DuosSS, ucenici.Where(it => it.JeSrednjoskolac));
             }
             catch (Exception ex) { Utils.ShowMbox(ex, btnOdRaz.ToolTipText); }
         }
 
         /// <summary>Preuzimanje DUOS podataka o ucenicima za tekucu sk. godinu.</summary>
-        private static async Task PostForDuosData(WebApi.ReqEnum reqEnum)
+        private static async Task GetDuosData(WebApi.ReqEnum reqEnumDuos, IEnumerable<Ds.UceniciRow> selRows)
+        {
+            var duoses = await WebApi.GetList<DUOS>(reqEnumDuos);
+            duoses = duoses.Where(it => it.SkolskaGodina == DUOS.TekucaSkGod)
+                .ToList();
+            AcceptDuosData(duoses, reqEnumDuos, selRows);
+        }
+
+        /// <summary>Preuzimanje DUOS podataka o ucenicima za tekucu sk. godinu.</summary>
+        private static async Task PostForDuosData(WebApi.ReqEnum reqEnum, IEnumerable<Ds.UceniciRow> selRows)
         {
             var body = "{\"ustanovaId\":" + WebApi.SV_SAVA_ID + ",\"pageIndex\":0,\"pageSize\":1000,\"searchTerm\":\"\"}";
             var duosSS = await WebApi.PostForObject<DUOS_SS>(reqEnum, body);
-            AcceptDuosData(duosSS.UpisSrednje, reqEnum);
+            AcceptDuosData(duosSS.UpisSrednje, reqEnum, selRows);
         }
 
-        private static void AcceptDuosData(List<DUOS> duoses, WebApi.ReqEnum reqEnum)
+        private static void AcceptDuosData(List<DUOS> duoses, WebApi.ReqEnum reqEnum, IEnumerable<Ds.UceniciRow> selRows)
         {
-            foreach (var duos in duoses)
+            var selectedJOBs = selRows.Select(it => it.JOB);
+            foreach (var duos in duoses.Where(it => selectedJOBs.Contains(it.JOB)))
             {
                 var uc = AppData.Ds.Ucenici.FirstOrDefault(it => it.JOB == duos.JOB);
                 if (uc != null)
@@ -205,15 +218,6 @@ namespace JISP.Forms
                 else
                     throw new Exception($"JOB {duos.JOB} nije pronadjen.");
             }
-        }
-
-        /// <summary>Preuzimanje DUOS podataka o ucenicima za tekucu sk. godinu.</summary>
-        private static async Task GetDuosData(WebApi.ReqEnum reqEnumDuos)
-        {
-            var duoses = await WebApi.GetList<DUOS>(reqEnumDuos);
-            duoses = duoses.Where(it => it.SkolskaGodina == DUOS.TekucaSkGod)
-                .ToList();
-            AcceptDuosData(duoses, reqEnumDuos);
         }
 
         private void ChkAllowNew_CheckedChanged(object sender, EventArgs e)

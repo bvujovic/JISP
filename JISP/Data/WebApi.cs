@@ -29,6 +29,17 @@ namespace JISP.Data
             => token == null || token.Length < 100 ? TOKEN_MISSING :
                 token.Substring(0, 3) + "..." + token.Substring(token.Length - 3);
 
+        /// <summary>Uzimanje API token-a iz request header-a nekog zahteva.</summary>
+        public static void TakeApiToken(string clipboard)
+        {
+            var start = "Authorization: Bearer ";
+            var idxStart = clipboard.IndexOf(start) + start.Length;
+            if (idxStart == -1)
+                throw new Exception($"API token ({start}...) nije pronađen u clipboard-u.");
+            var idxEnd = clipboard.IndexOf(Environment.NewLine, idxStart);
+            Token = clipboard.Substring(idxStart, idxEnd - idxStart);
+        }
+
         /// <summary>Dohvata listu trazenih objekata od JISP WebAPI-a.</summary>
         public async static Task<List<T>> GetList<T>(ReqEnum reqEnum)
         {
