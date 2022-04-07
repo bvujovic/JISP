@@ -29,10 +29,7 @@ namespace JISP.Forms
             ttOceneProvera.SetToolTip(chkOceneSaVladanjem, "Provera naziva ocena");
             ResetLblOceneProsekText();
             FilterData();
-            dgvUcenici.AddSorting("Škola, razred, odeljenje", "Skola, Razred, Odeljenje");
-            dgvUcenici.AddSorting("Napomene, škola, razred, odeljenje", "Napomene DESC, Skola, Razred, Odeljenje");
-            dgvUcenici.AddSorting("Do rođendana", "DanaDoRodj");
-            dgvUcenici.AddSorting("Godine", "Godine");
+            dgvUcenici.StandardSort = bsUcenici.Sort;
             dgvUcenici.LoadSettings();
 
             //T
@@ -247,31 +244,40 @@ namespace JISP.Forms
         /// </summary>
         private void BtnNoviUcenici_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var ofd = new OpenFileDialog
-                {
-                    InitialDirectory = AppData.FilePath(""),
-                    Filter = "PreuzmiListuZahteva.json|PreuzmiListuZahteva.json|JSON files (*.json)|*.json|All Files (*.*)|*.*"
-                };
-                if (ofd.ShowDialog() == DialogResult.OK)
-                {
-                    var json = System.IO.File.ReadAllText(ofd.FileName);
-                    var ucenici = WebApi.DeserializeList<JobZahtev>(json);
+            var imeFajlaLista = "PreuzmiListuZahteva.json";
+            var mboxResult = MessageBox.Show($"Yes - dodavanje jednog učenika\r\nNo - dodavanje učenika iz fajla {imeFajlaLista}"
+                , "Dodavanje jednog ili više učenika?"
+                , MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
-                    var novi = new HashSet<Ucenik>();
-                    foreach (var uc in ucenici.Where(it => it.Lice != null))
+            if (mboxResult == DialogResult.Yes)
+                new FrmUcenikOsnovno(null).ShowDialog();
+
+            if (mboxResult == DialogResult.No)
+                try
+                {
+                    var ofd = new OpenFileDialog
                     {
-                        var row = AppData.Ds.Ucenici.FirstOrDefault(it => it.JOB == uc.Lice.JOB);
-                        if (row == null)
-                            novi.Add(uc.Lice);
+                        InitialDirectory = AppData.FilePath(""),
+                        Filter = $"{imeFajlaLista}|{imeFajlaLista}|JSON files (*.json)|*.json|All Files (*.*)|*.*"
+                    };
+                    if (ofd.ShowDialog() == DialogResult.OK)
+                    {
+                        var json = System.IO.File.ReadAllText(ofd.FileName);
+                        var ucenici = WebApi.DeserializeList<JobZahtev>(json);
+
+                        var novi = new HashSet<Ucenik>();
+                        foreach (var uc in ucenici.Where(it => it.Lice != null))
+                        {
+                            var row = AppData.Ds.Ucenici.FirstOrDefault(it => it.JOB == uc.Lice.JOB);
+                            if (row == null)
+                                novi.Add(uc.Lice);
+                        }
+                        Clipboard.SetText(string.Join(Environment.NewLine, novi.OrderBy(it => it.NazivUcenika)));
+                        Utils.ShowMbox
+                            ("Lista novih JOBova sa imenima učenika je u clipboard-u.", btnNoviUcenici.Text);
                     }
-                    Clipboard.SetText(string.Join(Environment.NewLine, novi.OrderBy(it => it.NazivUcenika)));
-                    Utils.ShowMbox
-                        ("Lista novih JOBova sa imenima učenika je u clipboard-u.", btnNoviUcenici.Text);
                 }
-            }
-            catch (Exception ex) { Utils.ShowMbox(ex, btnNoviUcenici.Text); }
+                catch (Exception ex) { Utils.ShowMbox(ex, btnNoviUcenici.Text); }
         }
 
         private void BtnOcenePaste_Click(object sender, EventArgs e)
@@ -286,12 +292,21 @@ namespace JISP.Forms
         }
 
         private void ResetLblOceneProsekText()
-            => lblOceneProsek.Text = ""; // "Prosek: /";
+            => lblOceneProsek.Text = "";
 
         private void FrmUcenici_Activated(object sender, EventArgs e)
         {
             txtFilter.Focus();
             txtFilter.SelectAll();
+        }
+
+        private void DgvUcenici_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == -1 || e.ColumnIndex == dgvcIme.Index || e.ColumnIndex == dgvcJOB.Index)
+            {
+                var uc = dgvUcenici.CurrDataRow<Ds.UceniciRow>();
+                new FrmUcenikOsnovno(uc).ShowDialog();
+            }
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿- ubrzavanje unosa koeficijenata u douniv. obrazovanju: interfejs i testiranje
 - zaposlenima dodati i predmete na kojima rade. ovo bi trebalo da bude pretrazivo u formi
-+ UcDGV: pamcenje spiska Visible kolona
 - Koriscenje novije verzije .NET-a u projektu
 - dugmici
 	[- boje dugmica: Sacuvaj - plava, Dodaj novo - zelena, Izmeni - zuta, Obrisi - crvena, Izlaz iz app - crna]

@@ -29,11 +29,5 @@ namespace JISP.Forms
                 this.Height = pic.Image.Height + this.Height - pic.Height;
             }
         }
-
-        //private void FrmSlikaZap_FormClosing(object sender, FormClosingEventArgs e)
-        //{
-        //    e.Cancel = true;
-        //    Hide();
-        //}
     }
 }

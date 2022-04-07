@@ -63,6 +63,7 @@ namespace JISP.Controls
         /// <see cref="https://stackoverflow.com/questions/37291533/change-keyboard-layout-from-c-sharp-code-with-net-4-5-2"/>
         private void SetCyrillic()
         {
+#if !DEBUG
             if (IsCyrillic)
                 return;
             var firstCulture = CurrentCultureName;
@@ -73,6 +74,7 @@ namespace JISP.Controls
             while (CurrentCultureName != firstCulture && !IsCyrillic && i-- > 0)
                 SendKeys.SendWait("%+");
             timCyrillic.Tick += Tim_Tick;
+#endif
         }
 
         private void Tim_Tick(object sender, EventArgs e)
@@ -86,7 +88,7 @@ namespace JISP.Controls
         protected override void OnEnter(EventArgs e)
         {
             base.OnEnter(e);
-                SetCyrillic();
+            SetCyrillic();
         }
     }
 }

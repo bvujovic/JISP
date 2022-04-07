@@ -68,6 +68,7 @@ namespace JISP.Controls
                 if (row == null)
                     Data.AppData.Ds.Settings.AddSettingsRow(this.Name, vidljivostDostupnihKolona);
                 else
+                    if (row.Value != vidljivostDostupnihKolona)
                     row.Value = vidljivostDostupnihKolona;
             }
         }
@@ -105,8 +106,8 @@ namespace JISP.Controls
             // 
             this.tsmiSort.Name = "tsmiSort";
             this.tsmiSort.Size = new System.Drawing.Size(144, 22);
-            this.tsmiSort.Text = "Sortiranje";
-            this.tsmiSort.Visible = false;
+            this.tsmiSort.Text = "Podrazumevano sortiranje";
+            this.tsmiSort.Click += TsmiSort_Click;
             // 
             // tsmiSelekcija
             // 
@@ -146,6 +147,12 @@ namespace JISP.Controls
 
         }
 
+        private void TsmiSort_Click(object sender, EventArgs e)
+        {
+            try { (DataSource as BindingSource).Sort = StandardSort; }
+            catch (Exception ex) { Classes.Utils.ShowMbox(ex, "Sortiranje"); }
+        }
+
         private void TsmiSelelekcija_CheckedChanged(object sender, EventArgs e)
         {
             var tsmi = sender as ToolStripMenuItem;
@@ -157,31 +164,7 @@ namespace JISP.Controls
             tsmiSelCelija.Checked = !selCeoRed;
         }
 
-        public void AddSorting(string headerText, string sortBy)
-        {
-            tsmiSort.Visible = true;
-            var tsmi = new ToolStripMenuItem { Text = headerText, Tag = sortBy };
-            tsmi.Click += TsmiSortStavka_Click;
-            tsmiSort.DropDownItems.Add(tsmi);
-            if (tsmiSort.DropDownItems.Count == 1)
-                ApplySorting(tsmi);
-        }
-
-        private void TsmiSortStavka_Click(object sender, EventArgs e)
-        {
-            var tsmi = sender as ToolStripMenuItem;
-            ApplySorting(tsmi);
-        }
-
-        private void ApplySorting(ToolStripMenuItem tsmi)
-        {
-            if (tsmi != null && DataSource is BindingSource bs)
-            {
-                bs.Sort = (string)tsmi.Tag;
-                if (bs.Count > 0)
-                    bs.Position = 0;
-            }
-        }
+        public string StandardSort { get; set; } = null;
 
         [Browsable(true), EditorBrowsable(EditorBrowsableState.Always)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -222,11 +205,30 @@ namespace JISP.Controls
         protected override void OnCellClick(DataGridViewCellEventArgs e)
         {
             base.OnCellClick(e);
+
+            // kopiranje sadrzaja celije na klik
             if (CopyOnCellClick
                 && e.ColumnIndex != -1 && e.RowIndex != -1 && SelectedCells.Count > 0
                 && (ColumnsForCopyOnClick == null || ColumnsForCopyOnClick.Contains(e.ColumnIndex))
                 && Columns[e.ColumnIndex].CellType == typeof(DataGridViewTextBoxCell))
                 CopyCellText(SelectedCells[e.ColumnIndex]);
+
+            // klik na zaglavlje kolone -> sortiranje
+            if (e.RowIndex == -1 && !string.IsNullOrEmpty(StandardSort))
+            {
+                try
+                {
+                    var bs = DataSource as BindingSource;
+                    var prevBsSort = bs.Sort;
+                    var col = Columns[e.ColumnIndex];
+                    var colName = col.DataPropertyName;
+                    bs.Sort = colName + $", {StandardSort}";
+                    // bs.Sort = colName + ", Skola, Razred, Odeljenje";
+                    if (prevBsSort == bs.Sort)
+                        bs.Sort = colName + $" DESC, {StandardSort}";
+                }
+                catch (Exception ex) { Classes.Utils.ShowMbox(ex, "Sortiranje"); }
+            }
         }
 
         /// <summary>Kopiranje teksta celije u klipbord.</summary>
