@@ -47,7 +47,7 @@ namespace JISP.Forms
             }
 
             ttDataFolder.SetToolTip(lblDataFolder, "Klik za otvaranje foldera sa podacima");
-            ttApiToken.SetToolTip(lblApiToken, "Klik za paste Web API Token-a");
+            ttApiToken.SetToolTip(lblApiToken, "Klik za paste Web API Token-a (Copy response headers)");
             lblApiToken.Text = WebApi.TokenDisplay;
             FormClosing += FrmMain_FormClosing;
         }
@@ -80,7 +80,11 @@ namespace JISP.Forms
             {
                 sb.AppendLine(caption);
                 foreach (var tbl in ds.Tables.OfType<DataTable>().Where(it => it.Rows.Count > 0))
-                    sb.AppendLine(tbl.TableName + ": " + tbl.Rows.Count);
+                {
+                    var count = tbl.Rows.Cast<DataRow>().Where(it => it.RowState != DataRowState.Unchanged).Count();
+                    if (count > 0)
+                        sb.AppendLine(tbl.TableName + ": " + count);
+                }
             }
         }
 
@@ -116,7 +120,7 @@ namespace JISP.Forms
             else
                 WebApi.Token = clipboard;
             lblApiToken.Text = WebApi.TokenDisplay;
-            //B AppData.SaveDsData();
+            AppData.SaveSett(WebApi.TOKEN_CAPTION, WebApi.Token);
         }
 
         private void LblDataFolder_Click(object sender, EventArgs e)

@@ -83,28 +83,26 @@ namespace JISP.Data
             try
             {
                 if (WebApi.TokenDisplay != WebApi.TOKEN_MISSING)
-                {
-                    var row = Ds.Settings.FindByName(WebApi.TOKEN_CAPTION);
-                    if (row != null)
-                    {
-                        if (!row.IsValueNull() && row.Value != WebApi.Token)
-                            row.Value = WebApi.Token;
-                    }
-                    else
-                        Ds.Settings.AddSettingsRow(WebApi.TOKEN_CAPTION, WebApi.Token);
-                }
-                {
-                    var row = Ds.Settings.FindByName("browser");
-                    if (row != null)
-                        row.Value = Browser;
-                    else
-                        Ds.Settings.AddSettingsRow("browser", Browser);
-                }
+                    SaveSett(WebApi.TOKEN_CAPTION, WebApi.Token);
+                SaveSett("browser", Browser);
                 Ds.WriteXml(FilePath());
                 Ds.AcceptChanges();
-                Classes.Utils.ShowMbox("Podaci su sacuvani.", "Cuvanje podataka u XML");
+                //B Classes.Utils.ShowMbox("Podaci su sacuvani.", "Cuvanje podataka u XML");
             }
             catch (Exception ex) { Classes.Utils.ShowMbox(ex, "Cuvanje podataka u XML"); }
+        }
+
+        /// <summary>Cuvanje vrednosti value pod imenom name u Settings tabeli.</summary>
+        public static void SaveSett(string name, string value)
+        {
+            var row = Ds.Settings.FindByName(name);
+            if (row != null)
+            {
+                if (!row.IsValueNull() && row.Value != value)
+                    row.Value = value;
+            }
+            else
+                Ds.Settings.AddSettingsRow(name, value);
         }
     }
 }

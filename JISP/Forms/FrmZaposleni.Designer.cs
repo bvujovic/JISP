@@ -37,10 +37,6 @@ namespace JISP.Forms
             this.lblRowCount = new System.Windows.Forms.Label();
             this.bsZaposleni = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer = new System.Windows.Forms.SplitContainer();
-            this.pnlZaposleniBottom = new System.Windows.Forms.Panel();
-            this.chkAktivniZap = new System.Windows.Forms.CheckBox();
-            this.bsZaposlenja = new System.Windows.Forms.BindingSource(this.components);
-            this.ofdZapSlika = new System.Windows.Forms.OpenFileDialog();
             this.dgvZaposleni = new JISP.Controls.UcDGV();
             this.dgvcIme = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcPrezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,10 +47,14 @@ namespace JISP.Forms
             this.dgvcImaSliku = new System.Windows.Forms.DataGridViewImageColumn();
             this.dgvcZapId = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dgvcNapomene = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pnlZaposleniTop = new System.Windows.Forms.Panel();
+            this.chkAktivniZap = new System.Windows.Forms.CheckBox();
             this.txtFilter = new JISP.Controls.UcFilterTextBox();
             this.dgvZaposlenja = new JISP.Controls.UcDGV();
             this.dgvcNjeAktivan = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvcNjaRMNaziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsZaposlenja = new System.Windows.Forms.BindingSource(this.components);
+            this.ofdZapSlika = new System.Windows.Forms.OpenFileDialog();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
             this.chkCopyOnClick = new System.Windows.Forms.CheckBox();
             this.btnLoadData = new JISP.Controls.UcButton();
@@ -66,10 +66,10 @@ namespace JISP.Forms
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
-            this.pnlZaposleniBottom.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsZaposlenja)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvZaposleni)).BeginInit();
+            this.pnlZaposleniTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvZaposlenja)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsZaposlenja)).BeginInit();
             this.pnlLeft.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -107,7 +107,7 @@ namespace JISP.Forms
             // splitContainer.Panel1
             // 
             this.splitContainer.Panel1.Controls.Add(this.dgvZaposleni);
-            this.splitContainer.Panel1.Controls.Add(this.pnlZaposleniBottom);
+            this.splitContainer.Panel1.Controls.Add(this.pnlZaposleniTop);
             // 
             // splitContainer.Panel2
             // 
@@ -115,43 +115,6 @@ namespace JISP.Forms
             this.splitContainer.Size = new System.Drawing.Size(840, 575);
             this.splitContainer.SplitterDistance = 454;
             this.splitContainer.TabIndex = 0;
-            // 
-            // pnlZaposleniBottom
-            // 
-            this.pnlZaposleniBottom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlZaposleniBottom.Controls.Add(lblFilterCaption);
-            this.pnlZaposleniBottom.Controls.Add(this.chkAktivniZap);
-            this.pnlZaposleniBottom.Controls.Add(this.txtFilter);
-            this.pnlZaposleniBottom.Controls.Add(this.lblRowCount);
-            this.pnlZaposleniBottom.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlZaposleniBottom.Location = new System.Drawing.Point(0, 0);
-            this.pnlZaposleniBottom.Name = "pnlZaposleniBottom";
-            this.pnlZaposleniBottom.Size = new System.Drawing.Size(840, 30);
-            this.pnlZaposleniBottom.TabIndex = 0;
-            // 
-            // chkAktivniZap
-            // 
-            this.chkAktivniZap.AutoSize = true;
-            this.chkAktivniZap.Checked = true;
-            this.chkAktivniZap.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.chkAktivniZap.Location = new System.Drawing.Point(509, 4);
-            this.chkAktivniZap.Name = "chkAktivniZap";
-            this.chkAktivniZap.Size = new System.Drawing.Size(69, 22);
-            this.chkAktivniZap.TabIndex = 1;
-            this.chkAktivniZap.Text = "Aktivni";
-            this.chkAktivniZap.ThreeState = true;
-            this.chkAktivniZap.UseVisualStyleBackColor = true;
-            this.chkAktivniZap.CheckStateChanged += new System.EventHandler(this.FilterChanged);
-            // 
-            // bsZaposlenja
-            // 
-            this.bsZaposlenja.DataSource = this.bsZaposleni;
-            this.bsZaposlenja.Sort = "";
-            // 
-            // ofdZapSlika
-            // 
-            this.ofdZapSlika.Filter = "Image files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
-            this.ofdZapSlika.Title = "Odabir slike za zaposlenog";
             // 
             // dgvZaposleni
             // 
@@ -185,6 +148,7 @@ namespace JISP.Forms
             this.dgvZaposleni.StandardSort = null;
             this.dgvZaposleni.TabIndex = 1;
             this.dgvZaposleni.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvZaposleni_CellClick);
+            this.dgvZaposleni.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvZaposleni_CellDoubleClick);
             this.dgvZaposleni.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.DgvZaposleni_RowsAdded);
             // 
             // dgvcIme
@@ -272,6 +236,33 @@ namespace JISP.Forms
             this.dgvcNapomene.Name = "dgvcNapomene";
             this.dgvcNapomene.Width = 125;
             // 
+            // pnlZaposleniTop
+            // 
+            this.pnlZaposleniTop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlZaposleniTop.Controls.Add(lblFilterCaption);
+            this.pnlZaposleniTop.Controls.Add(this.chkAktivniZap);
+            this.pnlZaposleniTop.Controls.Add(this.txtFilter);
+            this.pnlZaposleniTop.Controls.Add(this.lblRowCount);
+            this.pnlZaposleniTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlZaposleniTop.Location = new System.Drawing.Point(0, 0);
+            this.pnlZaposleniTop.Name = "pnlZaposleniTop";
+            this.pnlZaposleniTop.Size = new System.Drawing.Size(840, 30);
+            this.pnlZaposleniTop.TabIndex = 0;
+            // 
+            // chkAktivniZap
+            // 
+            this.chkAktivniZap.AutoSize = true;
+            this.chkAktivniZap.Checked = true;
+            this.chkAktivniZap.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+            this.chkAktivniZap.Location = new System.Drawing.Point(509, 4);
+            this.chkAktivniZap.Name = "chkAktivniZap";
+            this.chkAktivniZap.Size = new System.Drawing.Size(69, 22);
+            this.chkAktivniZap.TabIndex = 1;
+            this.chkAktivniZap.Text = "Aktivni";
+            this.chkAktivniZap.ThreeState = true;
+            this.chkAktivniZap.UseVisualStyleBackColor = true;
+            this.chkAktivniZap.CheckStateChanged += new System.EventHandler(this.FilterChanged);
+            // 
             // txtFilter
             // 
             this.txtFilter.BindingSource = this.bsZaposleni;
@@ -323,6 +314,16 @@ namespace JISP.Forms
             this.dgvcNjaRMNaziv.MinimumWidth = 6;
             this.dgvcNjaRMNaziv.Name = "dgvcNjaRMNaziv";
             this.dgvcNjaRMNaziv.ReadOnly = true;
+            // 
+            // bsZaposlenja
+            // 
+            this.bsZaposlenja.DataSource = this.bsZaposleni;
+            this.bsZaposlenja.Sort = "";
+            // 
+            // ofdZapSlika
+            // 
+            this.ofdZapSlika.Filter = "Image files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
+            this.ofdZapSlika.Title = "Odabir slike za zaposlenog";
             // 
             // pnlLeft
             // 
@@ -401,11 +402,11 @@ namespace JISP.Forms
             this.splitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
-            this.pnlZaposleniBottom.ResumeLayout(false);
-            this.pnlZaposleniBottom.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsZaposlenja)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvZaposleni)).EndInit();
+            this.pnlZaposleniTop.ResumeLayout(false);
+            this.pnlZaposleniTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvZaposlenja)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsZaposlenja)).EndInit();
             this.pnlLeft.ResumeLayout(false);
             this.pnlLeft.PerformLayout();
             this.ResumeLayout(false);
@@ -424,7 +425,7 @@ namespace JISP.Forms
         private System.Windows.Forms.Label lblRowCount;
         private Controls.UcFilterTextBox txtFilter;
         private System.Windows.Forms.SplitContainer splitContainer;
-        private System.Windows.Forms.Panel pnlZaposleniBottom;
+        private System.Windows.Forms.Panel pnlZaposleniTop;
         private Controls.UcDGV dgvZaposlenja;
         private System.Windows.Forms.BindingSource bsZaposlenja;
         private System.Windows.Forms.CheckBox chkAktivniZap;

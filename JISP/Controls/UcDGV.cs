@@ -64,12 +64,7 @@ namespace JISP.Controls
             {
                 var vidljivostDostupnihKolona =
                     string.Join("|", availableColumns.Where(it => it.Visible).Select(it => it.Name));
-                var row = Data.AppData.Ds.Settings.FindByName(this.Name);
-                if (row == null)
-                    Data.AppData.Ds.Settings.AddSettingsRow(this.Name, vidljivostDostupnihKolona);
-                else
-                    if (row.Value != vidljivostDostupnihKolona)
-                    row.Value = vidljivostDostupnihKolona;
+                Data.AppData.SaveSett(this.Name, vidljivostDostupnihKolona);
             }
         }
 

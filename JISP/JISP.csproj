@@ -177,6 +177,12 @@
     <Compile Include="Forms\FrmZaposleni.Designer.cs">
       <DependentUpon>FrmZaposleni.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FrmZaposlenja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmZaposlenja.Designer.cs">
+      <DependentUpon>FrmZaposlenja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
@@ -200,6 +206,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmZaposleni.resx">
       <DependentUpon>FrmZaposleni.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmZaposlenja.resx">
+      <DependentUpon>FrmZaposlenja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

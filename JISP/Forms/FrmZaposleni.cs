@@ -153,5 +153,14 @@ namespace JISP.Forms
 
         private void DgvZaposleni_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
             => SlikeZaposlenih.PrikaziIkonice(dgvZaposleni, dgvcImaSliku.Name);
+
+        private void DgvZaposleni_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == -1 || e.ColumnIndex == dgvcIme.Index || e.ColumnIndex == dgvcPrezime.Index)
+            {
+                var zap = dgvZaposleni.CurrDataRow<Ds.ZaposleniRow>();
+                new FrmZaposlenja(zap).ShowDialog();
+            }
+        }
     }
 }

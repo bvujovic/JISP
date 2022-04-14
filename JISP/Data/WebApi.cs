@@ -80,13 +80,6 @@ namespace JISP.Data
         public static async Task<string> GetJson(ReqEnum reqEnum, string param = null)
         {
             return await GetJson(UrlForReq(reqEnum, param));
-            //B
-            //using (var client = new HttpClient())
-            //{
-            //    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
-            //    var url = UrlForReq(reqEnum, param);
-            //    return await client.GetStringAsync(url);
-            //}
         }
 
         /// <summary>Dohvata (POST) JSON podatke od JISP WebAPI-a.</summary>
@@ -123,9 +116,9 @@ namespace JISP.Data
         public enum ReqEnum
         {
             Zap_OpstiPodaciOZaposlenima,
-            Zap_ZaposlenjaOpste,
+            //B Zap_ZaposlenjaOpste,
             /// <example>body = "{'regUstUstanovaId':18976,'regZapZaposleniId':582792}"</example>
-            Zap_ZaposlenjaDetaljno,
+            Zap_Zaposlenja,
 
             Uc_DuosSrednjoskolci,
             Uc_DuosSrednjoskolciId,
@@ -145,9 +138,9 @@ namespace JISP.Data
             {
                 case ReqEnum.Zap_OpstiPodaciOZaposlenima:
                     return urlBase + "zaposleni/VratiOpstePodatkeOZaposlenima/" + SV_SAVA_ID;
-                case ReqEnum.Zap_ZaposlenjaOpste:
-                    return urlBase + "zaposleni/VratiOpstePodatkeOZaposlenima/" + SV_SAVA_ID;
-                case ReqEnum.Zap_ZaposlenjaDetaljno:
+                //case ReqEnum.Zap_ZaposlenjaOpste:
+                //    return urlBase + "zaposleni/VratiOpstePodatkeOZaposlenima/" + SV_SAVA_ID;
+                case ReqEnum.Zap_Zaposlenja:
                     return urlBase + "zaposleni/VratiZaposlenja";
 
                 case ReqEnum.Uc_DuosSrednjoskolci:
