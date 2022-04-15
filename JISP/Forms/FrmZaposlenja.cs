@@ -1,4 +1,5 @@
-﻿using JISP.Data;
+﻿using JISP.Classes;
+using JISP.Data;
 using System;
 using System.Windows.Forms;
 
@@ -10,10 +11,22 @@ namespace JISP.Forms
         {
             InitializeComponent();
 
-            zaposleni = zap;
-            Text = $"Zaposlenja ({zap})";
-            bsZaposlenja.DataSource = AppData.Ds;
-            SetBsFilter();
+            try
+            {
+                zaposleni = zap;
+                Text = $"Zaposlenja ({zap})";
+
+                bsZaposlenja.DataSource = AppData.Ds;
+                dgvZaposlenjaSve.StandardSort = bsZaposlenja.Sort;
+                dgvZaposlenjaSve.LoadSettings();
+                SetBsFilter();
+
+                bsObracunZarada.DataSource = AppData.Ds;
+                dgvObracunZarada.LoadSettings();
+                bsObracunZarada.Filter = $"IdZaposlenog = {zaposleni.IdZaposlenog}";
+                numOzGodina.Value = DateTime.Now.Year;
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, Text); }
         }
 
         private readonly Ds.ZaposleniRow zaposleni;
@@ -49,15 +62,69 @@ namespace JISP.Forms
                     AppData.Ds.Zaposlenja.AddZaposlenjaRow(z);
                 }
             }
-            catch (Exception ex) { Classes.Utils.ShowMbox(ex, btnLoadData.Text); }
+            catch (Exception ex) { Utils.ShowMbox(ex, btnLoadData.Text); }
         }
 
         private void SetBsFilter()
         {
-            bsZaposlenja.Filter = $"IdZaposlenog = {zaposleni.IdZaposlenog} AND Aktivan = {chkAktivno.Checked}";
+            var s = $"IdZaposlenog = {zaposleni.IdZaposlenog}";
+            if (chkAktivno.CheckState != CheckState.Indeterminate)
+                s += $" AND Aktivan = {chkAktivno.Checked}";
+            bsZaposlenja.Filter = s;
         }
 
-        private void ChkAktivno_CheckedChanged(object sender, EventArgs e)
+        private void ChkAktivno_CheckStateChanged(object sender, EventArgs e)
             => SetBsFilter();
+
+        private async void BtnUcitajObracunZarada_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // dohvatanje podataka
+                var json = await WebApi.GetJson(WebApi.ReqEnum.Zap_ObracunZarada
+                    , zaposleni.IdZaposlenog.ToString());
+                dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
+                // brisanje starih obracuna zarada za zaposlenog
+                var ozs = zaposleni.GetObracunZaradaRows();
+                foreach (var oz in ozs)
+                    AppData.Ds.ObracunZarada.RemoveObracunZaradaRow(oz);
+                // popunjavanje data seta dobijenim podacima
+                foreach (var obj in arr)
+                {
+                    var oz = AppData.Ds.ObracunZarada.NewObracunZaradaRow();
+                    oz.IdZaposlenog = zaposleni.IdZaposlenog;
+                    oz.BrojUgovora = obj.brojUgovora;
+                    oz.Godina = obj.godinaBroj;
+                    oz.MesecNaziv = obj.mesecSifarnikNaziv;
+                    oz.OsnovniKoef = obj.osnovniKoeficijentZaposlenog;
+                    if (obj.dodatniKoeficijentZaposlenog != null)
+                        oz.DodatniKoef = obj.dodatniKoeficijentZaposlenog;
+                    oz.Norma = obj.normaZaposlenog;
+                    AppData.Ds.ObracunZarada.AddObracunZaradaRow(oz);
+                }
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, btnUcitajObracunZarada.Text); }
+        }
+
+        private void BtnKreirajObracune_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (lstchkMeseci.CheckedItems.Count == 0)
+                {
+                    MessageBox.Show("0");
+                    return;
+                }
+                var strStariOZ = "...";
+                var god = (int)numOzGodina.Value;
+                foreach (int idxMesec in lstchkMeseci.CheckedIndices)
+                {
+                    var mes = idxMesec + 1;
+                    string strNoviUnos = Classes.ObracunZarada.ObracunZarada.KreirajNoviUnos(strStariOZ, god, mes);
+                    MessageBox.Show(strNoviUnos);
+                }
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, btnKreirajObracune.Text); }
+        }
     }
 }

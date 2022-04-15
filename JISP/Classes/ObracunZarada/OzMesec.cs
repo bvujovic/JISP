@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 
-namespace JISP.Classes.KoefDuos
+namespace JISP.Classes.ObracunZarada
 {
     /// <summary>
-    /// Mesec za dati koeficijent za zaposlene u DUOSu.
+    /// Podatak koji predstavlja mesec u obracunu zarada za zaposlene.
     /// </summary>
-    public class KoefDuosMesec
+    public class OzMesec
     {
-        public KoefDuosMesec(int godina, int mesec)
+        public OzMesec(int godina, int mesec)
         {
             Godina = godina;
             Mesec = mesec;

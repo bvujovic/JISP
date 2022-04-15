@@ -70,11 +70,14 @@ namespace JISP.Data
             Ds.Ucenici.CalcDatRodjBasedCols();
             Classes.SlikeZaposlenih.PostaviKoImaSliku();
             Ds.AcceptChanges();
-            var row = Ds.Settings.FindByName(WebApi.TOKEN_CAPTION);
-            if (row != null)
-                WebApi.Token = row.Value;
-            row = Ds.Settings.FindByName("browser");
-            Browser = (row != null) ? row.Value : "Chrome";
+            //B
+            //var row = Ds.Settings.FindByName(WebApi.TOKEN_CAPTION);
+            //if (row != null)
+            //    WebApi.Token = row.Value;
+            //row = Ds.Settings.FindByName("browser");
+            //Browser = (row != null) ? row.Value : "Chrome";
+            WebApi.Token = LoadSett(WebApi.TOKEN_CAPTION);
+            Browser = LoadSett("browser", "Chrome");
         }
 
         /// <summary>Cuvanje podataka iz DataSet-a u fajl.</summary>
@@ -103,6 +106,13 @@ namespace JISP.Data
             }
             else
                 Ds.Settings.AddSettingsRow(name, value);
+        }
+
+        /// <summary>Ucitavanje vrednosti iz Settings tabele pod imenom name.</summary>
+        public static string LoadSett(string name, string defaultValue = null)
+        {
+            var row = Ds.Settings.FindByName(name);
+            return (row != null) ? row.Value : defaultValue;
         }
     }
 }

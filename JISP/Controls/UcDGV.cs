@@ -20,7 +20,7 @@ namespace JISP.Controls
 
         public UcDGV()
         {
-            RowHeadersWidth = 30;
+            RowHeadersWidth = 30;            
             InitializeComponent();
 
             DisplayPositionRowCount();
@@ -31,8 +31,9 @@ namespace JISP.Controls
         public void LoadSettings()
         {
             availableColumns = Columns.Cast<DataGridViewColumn>().Where(it => it.Visible).ToList();
-            var row = Data.AppData.Ds.Settings.FindByName(this.Name);
-            string[] visibleColumns = row?.Value.Split('|');
+            //B var row = Data.AppData.Ds.Settings.FindByName(this.Name);
+            var strVisibleColumns = Data.AppData.LoadSett(this.Name);
+            string[] visibleColumns = strVisibleColumns?.Split('|');
             foreach (DataGridViewColumn col in availableColumns)
             {
                 var tsmi = new ToolStripMenuItem { Text = col.HeaderText, CheckOnClick = true };
@@ -206,7 +207,12 @@ namespace JISP.Controls
                 && e.ColumnIndex != -1 && e.RowIndex != -1 && SelectedCells.Count > 0
                 && (ColumnsForCopyOnClick == null || ColumnsForCopyOnClick.Contains(e.ColumnIndex))
                 && Columns[e.ColumnIndex].CellType == typeof(DataGridViewTextBoxCell))
-                CopyCellText(SelectedCells[e.ColumnIndex]);
+            {
+                if (SelectedCells.Count == 1)
+                    CopyCellText(SelectedCells[0]);
+                else
+                    CopyCellText(SelectedCells[e.ColumnIndex]);
+            }
 
             // klik na zaglavlje kolone -> sortiranje
             if (e.RowIndex == -1 && !string.IsNullOrEmpty(StandardSort))
@@ -218,7 +224,6 @@ namespace JISP.Controls
                     var col = Columns[e.ColumnIndex];
                     var colName = col.DataPropertyName;
                     bs.Sort = colName + $", {StandardSort}";
-                    // bs.Sort = colName + ", Skola, Razred, Odeljenje";
                     if (prevBsSort == bs.Sort)
                         bs.Sort = colName + $" DESC, {StandardSort}";
                 }

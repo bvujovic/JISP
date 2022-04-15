@@ -1,25 +1,25 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 
-namespace JISP.Classes.KoefDuos
+namespace JISP.Classes.ObracunZarada
 {
     /// <summary>
-    /// Rad sa koeficijentima zaposlenih u DUOSu.
+    /// Rad sa obracunom zarada za zaposlene.
     /// </summary>
-    public class KoefDuos
+    public class ObracunZarada
     {
         /// <summary>
         /// Metoda pravi string u JSON formatu koji ce biti poslat (POST) JISPu radi
-        /// kreiranja novog koef. zap. u DUOSu na osnovu starog i godine i meseca za novi.
+        /// kreiranja novog obracuna zarada na osnovu starog i godine i meseca za novi.
         /// </summary>
         public static string KreirajNoviUnos(string strStariUnos, int godina, int mesec)
         {
             dynamic jsonStari = JObject.Parse(strStariUnos);
             var noviPodaci = jsonStari.regZapObracunZaradaDouniverzitetskoObrazovanjeMesec[0];
-            var kdm = new KoefDuosMesec(godina, mesec);
-            noviPodaci.godinaBroj = kdm.Godina;
-            noviPodaci.mesecSifarnik = kdm.MesecSifarnik;
-            noviPodaci.mesecBroj = kdm.Mesec;
+            var ozm = new OzMesec(godina, mesec);
+            noviPodaci.godinaBroj = ozm.Godina;
+            noviPodaci.mesecSifarnik = ozm.MesecSifarnik;
+            noviPodaci.mesecBroj = ozm.Mesec;
             return jsonStari.ToString();
         }
 

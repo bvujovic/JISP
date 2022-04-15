@@ -116,9 +116,8 @@ namespace JISP.Data
         public enum ReqEnum
         {
             Zap_OpstiPodaciOZaposlenima,
-            //B Zap_ZaposlenjaOpste,
-            /// <example>body = "{'regUstUstanovaId':18976,'regZapZaposleniId':582792}"</example>
             Zap_Zaposlenja,
+            Zap_ObracunZarada,
 
             Uc_DuosSrednjoskolci,
             Uc_DuosSrednjoskolciId,
@@ -138,10 +137,10 @@ namespace JISP.Data
             {
                 case ReqEnum.Zap_OpstiPodaciOZaposlenima:
                     return urlBase + "zaposleni/VratiOpstePodatkeOZaposlenima/" + SV_SAVA_ID;
-                //case ReqEnum.Zap_ZaposlenjaOpste:
-                //    return urlBase + "zaposleni/VratiOpstePodatkeOZaposlenima/" + SV_SAVA_ID;
                 case ReqEnum.Zap_Zaposlenja:
                     return urlBase + "zaposleni/VratiZaposlenja";
+                case ReqEnum.Zap_ObracunZarada:
+                    return urlBase + $"zaposleni/VratiObracuneZradeZaZaposlenog/{param}/" + SV_SAVA_ID;
 
                 case ReqEnum.Uc_DuosSrednjoskolci:
                     return urlBase + "ucenik/VratiUpisSrednjeByUstanovaId/" + SV_SAVA_ID;
@@ -151,7 +150,6 @@ namespace JISP.Data
                 case ReqEnum.Uc_DuosOS:
                     return urlBase + "ucenik/VratiUpisOsnovnoByUstanovaId/" + SV_SAVA_ID;
                 case ReqEnum.Uc_DuosSS:
-                    //B return urlBase + "ucenik/VratiUpisSrednjeByUstanovaId/" + SV_SAVA_ID;
                     return urlBase + "ucenik/VratiUpisSrednjeByUstanovaId";
 
                 case ReqEnum.Uc_OpstiPodaci:

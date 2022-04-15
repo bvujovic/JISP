@@ -72,14 +72,12 @@ namespace JISP.Forms
         //private void TxtFilter_FilterCleared(object sender, EventArgs e)
         //    => chkAktivniZap.CheckState = CheckState.Indeterminate;
 
-        /// <summary>Dohvatanje podataka o zaposlenima (ime, prezime, JMBG, zaposlenja).</summary>
+        /// <summary>Dohvatanje podataka o zaposlenima (ime, prezime, JMBG).</summary>
         private async void BtnLoadData_Click(object sender, EventArgs e)
         {
             try
             {
-                // osnovni podaci o zaposlenima ne ukljucuju id zaposlenja
-                // tako da se update te tabele radi kao Clear, pa Add new
-                Ds.Zaposlenja.Clear();
+                //B Ds.Zaposlenja.Clear();
                 var zaps = await WebApi.GetList<Zaposleni>(WebApi.ReqEnum.Zap_OpstiPodaciOZaposlenima);
                 foreach (var zap in zaps)
                     try
@@ -97,21 +95,25 @@ namespace JISP.Forms
                         }
                         else // update zaposlenog
                         {
-                            red.Ime = zap.Ime;
-                            red.Prezime = zap.Prezime;
-                            red.JMBG = zap.JMBG;
-                            red.Aktivan = (bool)zap.TrenutnoZaposlen;
-                        }
-                        var nja = zap.ZaposleniZaposlenje;
-                        if (nja != null)
-                            foreach (var nje in nja)
+                            if (red.Ime != zap.Ime || red.Prezime != zap.Prezime || red.JMBG != zap.JMBG)
                             {
-                                var redNje = Ds.Zaposlenja.NewZaposlenjaRow();
-                                redNje.IdZaposlenog = red.IdZaposlenog;
-                                redNje.Aktivan = nje.Aktivan;
-                                redNje.RadnoMestoNaziv = nje.RadnoMestoNaziv;
-                                Ds.Zaposlenja.AddZaposlenjaRow(redNje);
+                                red.Ime = zap.Ime;
+                                red.Prezime = zap.Prezime;
+                                red.JMBG = zap.JMBG;
+                                //red.Aktivan = (bool)zap.TrenutnoZaposlen;
                             }
+                        }
+                        //B
+                        //var nja = zap.ZaposleniZaposlenje;
+                        //if (nja != null)
+                        //    foreach (var nje in nja)
+                        //    {
+                        //        var redNje = Ds.Zaposlenja.NewZaposlenjaRow();
+                        //        redNje.IdZaposlenog = red.IdZaposlenog;
+                        //        redNje.Aktivan = nje.Aktivan;
+                        //        redNje.RadnoMestoNaziv = nje.RadnoMestoNaziv;
+                        //        Ds.Zaposlenja.AddZaposlenjaRow(redNje);
+                        //    }
                     }
                     catch (Exception ex)
                     {
@@ -119,6 +121,7 @@ namespace JISP.Forms
                             != DialogResult.Yes)
                             break;
                     }
+                Utils.ShowMbox("Gotovo", btnLoadData.Text);
             }
             catch (Exception ex) { Utils.ShowMbox(ex, btnLoadData.Text); }
         }
@@ -156,7 +159,7 @@ namespace JISP.Forms
 
         private void DgvZaposleni_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == -1 || e.ColumnIndex == dgvcIme.Index || e.ColumnIndex == dgvcPrezime.Index)
+            if (e.ColumnIndex != dgvcNapomene.Index)
             {
                 var zap = dgvZaposleni.CurrDataRow<Ds.ZaposleniRow>();
                 new FrmZaposlenja(zap).ShowDialog();
