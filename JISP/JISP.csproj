@@ -28,7 +28,7 @@
     <PublisherName>BV</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.3.7.0</ApplicationVersion>
+    <ApplicationVersion>0.3.9.0</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -188,6 +188,9 @@
     <Compile Include="Settings.cs" />
     <EmbeddedResource Include="Controls\UcDGV.resx">
       <DependentUpon>UcDGV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UcFilterTextBox.resx">
+      <DependentUpon>UcFilterTextBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UcLeftPanel.resx">
       <DependentUpon>UcLeftPanel.cs</DependentUpon>

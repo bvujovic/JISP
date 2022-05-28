@@ -54,8 +54,8 @@ namespace JISP.Forms
             try
             {
                 var s = txtFilter.Text;
-                // osnovna pretraga: ime, prezime, jmbg
-                var filter = $"Ime LIKE '%{s}%' OR Prezime LIKE '%{s}%' OR JMBG LIKE '%{s}%' ";
+                // osnovna pretraga: ime, prezime, devPrezime, jmbg
+                var filter = $"Ime LIKE '%{s}%' OR Prezime LIKE '%{s}%' OR DevojackoPrezime LIKE '%{s}%' OR JMBG LIKE '%{s}%' ";
                 // pretraga po zaposlenjima (radna mesta)
                 var ids = FilterZaposleniIDs(s);
                 if (ids.Count() > 0)
@@ -68,17 +68,12 @@ namespace JISP.Forms
             catch (Exception ex) { Utils.ShowMbox(ex, "Pretraga zaposlenih"); }
         }
 
-        //B
-        //private void TxtFilter_FilterCleared(object sender, EventArgs e)
-        //    => chkAktivniZap.CheckState = CheckState.Indeterminate;
-
         /// <summary>Dohvatanje podataka o zaposlenima (ime, prezime, JMBG).</summary>
         private async void BtnLoadData_Click(object sender, EventArgs e)
         {
             try
             {
-                //B Ds.Zaposlenja.Clear();
-                var zaps = await WebApi.GetList<Zaposleni>(WebApi.ReqEnum.Zap_OpstiPodaciOZaposlenima);
+                var zaps = await WebApi.GetList<Zaposleni>(WebApi.ReqEnum.Zap_Opste);
                 foreach (var zap in zaps)
                     try
                     {
@@ -100,20 +95,8 @@ namespace JISP.Forms
                                 red.Ime = zap.Ime;
                                 red.Prezime = zap.Prezime;
                                 red.JMBG = zap.JMBG;
-                                //red.Aktivan = (bool)zap.TrenutnoZaposlen;
                             }
                         }
-                        //B
-                        //var nja = zap.ZaposleniZaposlenje;
-                        //if (nja != null)
-                        //    foreach (var nje in nja)
-                        //    {
-                        //        var redNje = Ds.Zaposlenja.NewZaposlenjaRow();
-                        //        redNje.IdZaposlenog = red.IdZaposlenog;
-                        //        redNje.Aktivan = nje.Aktivan;
-                        //        redNje.RadnoMestoNaziv = nje.RadnoMestoNaziv;
-                        //        Ds.Zaposlenja.AddZaposlenjaRow(redNje);
-                        //    }
                     }
                     catch (Exception ex)
                     {
@@ -137,7 +120,8 @@ namespace JISP.Forms
                 if (e.ColumnIndex == dgvcZapId.Index)
                 {
                     var url = $"https://jisp.mpn.gov.rs/regzaposlenih/sekcije/{zap.JMBG}/{zap.IdZaposlenog}";
-                    Utils.GoToLink(url);
+                    //B Utils.GoToLink(url);
+                    Clipboard.SetText(url);
                 }
                 // prikaz ili postavljanje slike za zaposlenog
                 if (e.ColumnIndex == dgvcImaSliku.Index)
@@ -164,6 +148,57 @@ namespace JISP.Forms
                 var zap = dgvZaposleni.CurrDataRow<Ds.ZaposleniRow>();
                 new FrmZaposlenja(zap).ShowDialog();
             }
+        }
+
+        private async void BtnLoadDataExtra_Click(object sender, EventArgs e)
+        {
+            var akcija = btnLoadDataExtra.Text;
+            btnLoadDataExtra.Text = "...";
+            try
+            {
+                var zaps = dgvZaposleni.SelectedDataRows<Ds.ZaposleniRow>();
+                foreach (var zap in zaps)
+                {
+                    var json = await WebApi.GetJson(WebApi.ReqEnum.Zap_Dodatno, zap.IdZaposlenog.ToString());
+                    dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(json);
+                    zap.Pol = Utils.Pol((int)obj.pol);
+                    zap.Prebivaliste = $"{obj.mestoPrebivalistaNaziv}, {obj.adresaPrebivalistaNaziv}, {obj.adresniKodPrebivalista}";
+                    if (obj.elektronskaPosta != null)
+                    {
+                        var list = new List<string>();
+                        foreach (var ep in obj.elektronskaPosta)
+                            list.Add((string)ep.elektronskaPosta);
+                        zap.Email = string.Join(", ", list);
+                    }
+                    if (obj.telefon != null)
+                    {
+                        var list = new List<string>();
+                        foreach (var ep in obj.telefon)
+                            list.Add((string)ep.telefon);
+                        zap.Telefon = string.Join(", ", list);
+                    }
+                    if (obj.devojackoPrezime != null)
+                        zap.DevojackoPrezime = obj.devojackoPrezime;
+                }
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, akcija); }
+            btnLoadDataExtra.Text = akcija;
+        }
+
+        private async void BtnKvalifStruktura_Click(object sender, EventArgs e)
+        {
+            var akcija = btnKvalifStruktura.Text;
+            btnKvalifStruktura.Text = "...";
+            try
+            {
+                var fileName = "kvalifikaciona_struktura_"
+                        + DateTime.Now.ToString(Utils.DatumVremeFormatFileSec) + ".xlsx";
+                var filePath = Utils.GetDownloadsFolder(fileName);
+                await WebApi.PostForFile(filePath, "ustanova/VratiCenusIzvestajFajl"
+                    , "{'idUstanove':'18976','tipIzvestaja':'kvalifikaciona_struktura'}");
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, akcija); }
+            btnKvalifStruktura.Text = akcija;
         }
     }
 }

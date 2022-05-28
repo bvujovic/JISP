@@ -24,7 +24,7 @@ namespace JISP.Data
             {
                 var originalFileName = AppData.FilePath();
                 var folderPath = BackupFolderPath;
-                var date = DateTime.Now.ToString(Classes.Utils.DatumVremeFormatFile);
+                var date = DateTime.Now.ToString(Classes.Utils.DatumVremeFormatFileMin);
                 var fileName = Path.Combine(folderPath, $"{filePrefix}{date}{fileExtension}");
                 File.Copy(originalFileName, fileName);
                 System.Diagnostics.Process.Start(folderPath);

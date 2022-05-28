@@ -7,28 +7,12 @@
 <DiagramLayout xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ex:showrelationlabel="False" ViewPortX="346" ViewPortY="75" xmlns:ex="urn:schemas-microsoft-com:xml-msdatasource-layout-extended" xmlns="urn:schemas-microsoft-com:xml-msdatasource-layout">
   <Shapes>
     <Shape ID="DesignTable:Ucenici" ZOrder="7" X="1078" Y="437" Height="410" Width="182" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="406" />
-    <Shape ID="DesignTable:Zaposleni" ZOrder="6" X="448" Y="191" Height="260" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="256" />
+    <Shape ID="DesignTable:Zaposleni" ZOrder="6" X="448" Y="191" Height="315" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="311" />
     <Shape ID="DesignTable:Zaposlenja" ZOrder="5" X="759" Y="187" Height="257" Width="163" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="253" />
     <Shape ID="DesignTable:Settings" ZOrder="4" X="1202" Y="163" Height="111" Width="161" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="107" />
     <Shape ID="DesignTable:ObracunZarada" ZOrder="3" X="587" Y="540" Height="181" Width="155" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="177" />
   </Shapes>
   <Connectors>
-    <Connector ID="DesignRelation:Zaposleni_ObracunZarada" ZOrder="2" LineWidth="11">
-      <RoutePoints>
-        <Point>
-          <X>553</X>
-          <Y>451</Y>
-        </Point>
-        <Point>
-          <X>553</X>
-          <Y>591</Y>
-        </Point>
-        <Point>
-          <X>587</X>
-          <Y>591</Y>
-        </Point>
-      </RoutePoints>
-    </Connector>
     <Connector ID="DesignRelation:FK_Zaposleni_Zaposlenja" ZOrder="1" LineWidth="11">
       <RoutePoints>
         <Point>
@@ -38,6 +22,22 @@
         <Point>
           <X>759</X>
           <Y>265</Y>
+        </Point>
+      </RoutePoints>
+    </Connector>
+    <Connector ID="DesignRelation:Zaposleni_ObracunZarada" ZOrder="2" LineWidth="11">
+      <RoutePoints>
+        <Point>
+          <X>553</X>
+          <Y>506</Y>
+        </Point>
+        <Point>
+          <X>553</X>
+          <Y>591</Y>
+        </Point>
+        <Point>
+          <X>587</X>
+          <Y>591</Y>
         </Point>
       </RoutePoints>
     </Connector>

@@ -189,7 +189,7 @@ namespace JISP.Controls
             if (SelectedRows.Count == 0)
                 throw new Exception("Nije selektovan nijedan red u tabeli.");
             else
-                return SelectedRows.Cast<DataGridViewRow>().Select(it => DataRow<T>(it));
+                return SelectedRows.Cast<DataGridViewRow>().Select(it => DataRow<T>(it)).Reverse();
         }
 
         /// <summary>Da li se tekst celije kopira u klipbord pri kliku na celiju.</summary>

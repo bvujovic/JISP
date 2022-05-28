@@ -113,9 +113,34 @@ namespace JISP.Data
             return DeserializeList<T>(json);
         }
 
+        /// <summary>Preuzimanje fajla od JISPa u Downloads i njegovo pokretanje.</summary>
+        public static async Task<string> PostForFile(string filePath, string url, string content)
+        {
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
+                url = "https://jisp.mpn.gov.rs/webapi/api/" + url;
+                var jsonContent = new StringContent(content, System.Text.Encoding.UTF8, "application/json");
+                var res = await client.PostAsync(url, jsonContent);
+                if (res.IsSuccessStatusCode)
+                {
+                    var data = new byte[res.Content.Headers.ContentLength.Value];
+                    data = await res.Content.ReadAsByteArrayAsync();
+                    System.IO.File.WriteAllBytes(filePath, data);
+                    System.Diagnostics.Process.Start(filePath);
+                    return await res.Content.ReadAsStringAsync();
+                }
+                else
+                    throw new Exception($"POST response error: {res.ReasonPhrase}");
+            }
+        }
+
         public enum ReqEnum
         {
-            Zap_OpstiPodaciOZaposlenima,
+            /// <summary>Ime, Prezime, JMBG</summary>
+            Zap_Opste,
+            /// <summary>Telefon, Mejl, Adresa</summary>
+            Zap_Dodatno,
             Zap_Zaposlenja,
             Zap_ObracunZarada,
 
@@ -135,8 +160,10 @@ namespace JISP.Data
             var urlBase = "https://jisp.mpn.gov.rs/webapi/api/";
             switch (reqEnum)
             {
-                case ReqEnum.Zap_OpstiPodaciOZaposlenima:
+                case ReqEnum.Zap_Opste:
                     return urlBase + "zaposleni/VratiOpstePodatkeOZaposlenima/" + SV_SAVA_ID;
+                case ReqEnum.Zap_Dodatno:
+                    return urlBase + $"Zaposleni/VratiPodatkeZaposlenogZaId/{param}/";
                 case ReqEnum.Zap_Zaposlenja:
                     return urlBase + "zaposleni/VratiZaposlenja";
                 case ReqEnum.Zap_ObracunZarada:

@@ -51,7 +51,8 @@ namespace JISP.Classes
         public const string VremeSamoSitnoFormat = "mm:ss.fff";
         public const string DatumFormat = "yyyy-MM-dd";
         public const string DatumVremeFormat = "yyyy-MM-dd HH:mm";
-        public const string DatumVremeFormatFile = "yyyy.MM.dd_HH.mm";
+        public const string DatumVremeFormatFileMin = "yyyy.MM.dd_HH.mm";
+        public const string DatumVremeFormatFileSec = "yyyy.MM.dd_HH.mm.ss";
         public const string DatumVremeSveFormat = "yyyy-MM-dd HH:mm:ss.ff";
 
         /// <summary>Vraca trenutno vreme u SamoSitno formatu (min:sec.ms).</summary>
@@ -92,7 +93,6 @@ namespace JISP.Classes
             try
             {
                 return System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion.ToStringNoZeros();
-                // System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             }
             catch { return "DEBUG verzija"; }
         }
@@ -105,6 +105,29 @@ namespace JISP.Classes
                 return $"{v.Major}.{v.Minor}" + (v.Build != 0 ? $".{v.Build}" : "");
             else
                 return v.ToString();
+        }
+
+        /// <summary>Metod vraca slovo/karakter pola (М - Ж - /) na osnovu koda za pol.</summary>
+        //TODO resiti problem sa slicnim kodom u UcenikOpste - ovo ovde je verovatno bolje resenje
+        public static char Pol(int polKod)
+        {
+            if (polKod == 11157)
+                return 'М';
+            if (polKod == 11159)
+                return 'Ж';
+            return '/';
+        }
+
+        /// <summary>Vraca putanju Downloads foldera [za dati file/folder u Downloads-u].</summary>
+        public static string GetDownloadsFolder(string item = null)
+        {
+            var path = System.IO.Path.GetDirectoryName
+                (Environment.GetFolderPath(Environment.SpecialFolder.Personal));
+            path = System.IO.Path.Combine(path, "Downloads");
+            if (item == null)
+                return path;
+            else
+                return System.IO.Path.Combine(path, item);
         }
     }
 }
