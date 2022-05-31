@@ -1,9 +1,12 @@
 ﻿# Pomoćna windows aplikacija za JISP
 
-Aplikacija koja olakšava pretragu podataka unetih u JISP za neku školu.
+Aplikacija koja olakšava pregled podataka unetih u JISP za neku školu.
 
-## Pretraga učenika
-![Pretraga učenika](https://github.com/bvujovic/JISP/blob/master/ScreenShots/ucenici.png)
+## Zaposleni
+![Zaposleni](https://github.com/bvujovic/JISP/blob/master/ScreenShots/zaposleni.png)
 
-## Pretraga zaposlenih
-![Pretraga zaposlenih](https://github.com/bvujovic/JISP/blob/master/ScreenShots/zaposleni.png)
+## Zaposlenja
+![Zaposlenja](https://github.com/bvujovic/JISP/blob/master/ScreenShots/zaposlenja.png)
+
+## Učenici
+![Učenici](https://github.com/bvujovic/JISP/blob/master/ScreenShots/ucenici.png)

@@ -482,8 +482,8 @@ namespace JISP.Forms
             this.dgvcStatusAktivnosti.DataPropertyName = "StatusAktivnosti";
             this.dgvcStatusAktivnosti.HeaderText = "KvalifStrukt";
             this.dgvcStatusAktivnosti.Name = "dgvcStatusAktivnosti";
-            this.dgvcStatusAktivnosti.ToolTipText = "Vidljivost u izveštaju Kvalifikaciona struktura (string, + vidi se, - ne vidi se)" +
-    "";
+            this.dgvcStatusAktivnosti.ToolTipText = "Vidljivost u izveštaju Kvalifikaciona struktura (string, + vidi se, - ne vidi se," +
+    " -- ne vidi se i ne treba...)";
             // 
             // dgvcNapomene
             // 

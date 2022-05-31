@@ -34,9 +34,13 @@ namespace JISP.Data {
         
         private ObracunZaradaDataTable tableObracunZarada;
         
+        private AngazovanjaDataTable tableAngazovanja;
+        
         private global::System.Data.DataRelation relationFK_Zaposleni_Zaposlenja;
         
         private global::System.Data.DataRelation relationZaposleni_ObracunZarada;
+        
+        private global::System.Data.DataRelation relationZaposlenja_Angazovanja;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -80,6 +84,9 @@ namespace JISP.Data {
                 }
                 if ((ds.Tables["ObracunZarada"] != null)) {
                     base.Tables.Add(new ObracunZaradaDataTable(ds.Tables["ObracunZarada"]));
+                }
+                if ((ds.Tables["Angazovanja"] != null)) {
+                    base.Tables.Add(new AngazovanjaDataTable(ds.Tables["Angazovanja"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -146,6 +153,16 @@ namespace JISP.Data {
         public ObracunZaradaDataTable ObracunZarada {
             get {
                 return this.tableObracunZarada;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public AngazovanjaDataTable Angazovanja {
+            get {
+                return this.tableAngazovanja;
             }
         }
         
@@ -231,6 +248,9 @@ namespace JISP.Data {
                 if ((ds.Tables["ObracunZarada"] != null)) {
                     base.Tables.Add(new ObracunZaradaDataTable(ds.Tables["ObracunZarada"]));
                 }
+                if ((ds.Tables["Angazovanja"] != null)) {
+                    base.Tables.Add(new AngazovanjaDataTable(ds.Tables["Angazovanja"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -294,8 +314,15 @@ namespace JISP.Data {
                     this.tableObracunZarada.InitVars();
                 }
             }
+            this.tableAngazovanja = ((AngazovanjaDataTable)(base.Tables["Angazovanja"]));
+            if ((initTable == true)) {
+                if ((this.tableAngazovanja != null)) {
+                    this.tableAngazovanja.InitVars();
+                }
+            }
             this.relationFK_Zaposleni_Zaposlenja = this.Relations["FK_Zaposleni_Zaposlenja"];
             this.relationZaposleni_ObracunZarada = this.Relations["Zaposleni_ObracunZarada"];
+            this.relationZaposlenja_Angazovanja = this.Relations["Zaposlenja_Angazovanja"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -316,6 +343,8 @@ namespace JISP.Data {
             base.Tables.Add(this.tableSettings);
             this.tableObracunZarada = new ObracunZaradaDataTable();
             base.Tables.Add(this.tableObracunZarada);
+            this.tableAngazovanja = new AngazovanjaDataTable();
+            base.Tables.Add(this.tableAngazovanja);
             global::System.Data.ForeignKeyConstraint fkc;
             fkc = new global::System.Data.ForeignKeyConstraint("FK_Zaposleni_Zaposlenja", new global::System.Data.DataColumn[] {
                         this.tableZaposleni.IdZaposlenogColumn}, new global::System.Data.DataColumn[] {
@@ -339,6 +368,10 @@ namespace JISP.Data {
                         this.tableZaposleni.IdZaposlenogColumn}, new global::System.Data.DataColumn[] {
                         this.tableObracunZarada.IdZaposlenogColumn}, false);
             this.Relations.Add(this.relationZaposleni_ObracunZarada);
+            this.relationZaposlenja_Angazovanja = new global::System.Data.DataRelation("Zaposlenja_Angazovanja", new global::System.Data.DataColumn[] {
+                        this.tableZaposlenja.IdZaposlenjaColumn}, new global::System.Data.DataColumn[] {
+                        this.tableAngazovanja.IdZaposlenjaColumn}, false);
+            this.Relations.Add(this.relationZaposlenja_Angazovanja);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -368,6 +401,12 @@ namespace JISP.Data {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private bool ShouldSerializeObracunZarada() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private bool ShouldSerializeAngazovanja() {
             return false;
         }
         
@@ -440,6 +479,9 @@ namespace JISP.Data {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void ObracunZaradaRowChangeEventHandler(object sender, ObracunZaradaRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public delegate void AngazovanjaRowChangeEventHandler(object sender, AngazovanjaRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -2477,6 +2519,353 @@ namespace JISP.Data {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class AngazovanjaDataTable : global::System.Data.TypedTableBase<AngazovanjaRow> {
+            
+            private global::System.Data.DataColumn columnIdAngazovanja;
+            
+            private global::System.Data.DataColumn columnIdZaposlenja;
+            
+            private global::System.Data.DataColumn columnSkolskaGodina;
+            
+            private global::System.Data.DataColumn columnIzvorFinansiranja;
+            
+            private global::System.Data.DataColumn columnProcenatAngazovanja;
+            
+            private global::System.Data.DataColumn columnPredmet;
+            
+            private global::System.Data.DataColumn columnPodnivoPredmeta;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public AngazovanjaDataTable() {
+                this.TableName = "Angazovanja";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal AngazovanjaDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected AngazovanjaDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IdAngazovanjaColumn {
+                get {
+                    return this.columnIdAngazovanja;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IdZaposlenjaColumn {
+                get {
+                    return this.columnIdZaposlenja;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn SkolskaGodinaColumn {
+                get {
+                    return this.columnSkolskaGodina;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IzvorFinansiranjaColumn {
+                get {
+                    return this.columnIzvorFinansiranja;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ProcenatAngazovanjaColumn {
+                get {
+                    return this.columnProcenatAngazovanja;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn PredmetColumn {
+                get {
+                    return this.columnPredmet;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn PodnivoPredmetaColumn {
+                get {
+                    return this.columnPodnivoPredmeta;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public AngazovanjaRow this[int index] {
+                get {
+                    return ((AngazovanjaRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event AngazovanjaRowChangeEventHandler AngazovanjaRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event AngazovanjaRowChangeEventHandler AngazovanjaRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event AngazovanjaRowChangeEventHandler AngazovanjaRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event AngazovanjaRowChangeEventHandler AngazovanjaRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void AddAngazovanjaRow(AngazovanjaRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public AngazovanjaRow AddAngazovanjaRow(int IdAngazovanja, ZaposlenjaRow parentZaposlenjaRowByZaposlenja_Angazovanja, string SkolskaGodina, string IzvorFinansiranja, float ProcenatAngazovanja, string Predmet, string PodnivoPredmeta) {
+                AngazovanjaRow rowAngazovanjaRow = ((AngazovanjaRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        IdAngazovanja,
+                        null,
+                        SkolskaGodina,
+                        IzvorFinansiranja,
+                        ProcenatAngazovanja,
+                        Predmet,
+                        PodnivoPredmeta};
+                if ((parentZaposlenjaRowByZaposlenja_Angazovanja != null)) {
+                    columnValuesArray[1] = parentZaposlenjaRowByZaposlenja_Angazovanja[0];
+                }
+                rowAngazovanjaRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowAngazovanjaRow);
+                return rowAngazovanjaRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public AngazovanjaRow FindByIdAngazovanja(int IdAngazovanja) {
+                return ((AngazovanjaRow)(this.Rows.Find(new object[] {
+                            IdAngazovanja})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                AngazovanjaDataTable cln = ((AngazovanjaDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new AngazovanjaDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal void InitVars() {
+                this.columnIdAngazovanja = base.Columns["IdAngazovanja"];
+                this.columnIdZaposlenja = base.Columns["IdZaposlenja"];
+                this.columnSkolskaGodina = base.Columns["SkolskaGodina"];
+                this.columnIzvorFinansiranja = base.Columns["IzvorFinansiranja"];
+                this.columnProcenatAngazovanja = base.Columns["ProcenatAngazovanja"];
+                this.columnPredmet = base.Columns["Predmet"];
+                this.columnPodnivoPredmeta = base.Columns["PodnivoPredmeta"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            private void InitClass() {
+                this.columnIdAngazovanja = new global::System.Data.DataColumn("IdAngazovanja", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdAngazovanja);
+                this.columnIdZaposlenja = new global::System.Data.DataColumn("IdZaposlenja", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdZaposlenja);
+                this.columnSkolskaGodina = new global::System.Data.DataColumn("SkolskaGodina", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSkolskaGodina);
+                this.columnIzvorFinansiranja = new global::System.Data.DataColumn("IzvorFinansiranja", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIzvorFinansiranja);
+                this.columnProcenatAngazovanja = new global::System.Data.DataColumn("ProcenatAngazovanja", typeof(float), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProcenatAngazovanja);
+                this.columnPredmet = new global::System.Data.DataColumn("Predmet", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPredmet);
+                this.columnPodnivoPredmeta = new global::System.Data.DataColumn("PodnivoPredmeta", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPodnivoPredmeta);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnIdAngazovanja}, true));
+                this.columnIdAngazovanja.AutoIncrementSeed = -1;
+                this.columnIdAngazovanja.AutoIncrementStep = -1;
+                this.columnIdAngazovanja.AllowDBNull = false;
+                this.columnIdAngazovanja.Unique = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public AngazovanjaRow NewAngazovanjaRow() {
+                return ((AngazovanjaRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new AngazovanjaRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(AngazovanjaRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.AngazovanjaRowChanged != null)) {
+                    this.AngazovanjaRowChanged(this, new AngazovanjaRowChangeEvent(((AngazovanjaRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.AngazovanjaRowChanging != null)) {
+                    this.AngazovanjaRowChanging(this, new AngazovanjaRowChangeEvent(((AngazovanjaRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.AngazovanjaRowDeleted != null)) {
+                    this.AngazovanjaRowDeleted(this, new AngazovanjaRowChangeEvent(((AngazovanjaRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.AngazovanjaRowDeleting != null)) {
+                    this.AngazovanjaRowDeleting(this, new AngazovanjaRowChangeEvent(((AngazovanjaRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void RemoveAngazovanjaRow(AngazovanjaRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                Ds ds = new Ds();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "AngazovanjaDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class UceniciRow : global::System.Data.DataRow {
@@ -3659,6 +4048,17 @@ namespace JISP.Data {
             public void SetAktivanNull() {
                 this[this.tableZaposlenja.AktivanColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public AngazovanjaRow[] GetAngazovanjaRows() {
+                if ((this.Table.ChildRelations["Zaposlenja_Angazovanja"] == null)) {
+                    return new AngazovanjaRow[0];
+                }
+                else {
+                    return ((AngazovanjaRow[])(base.GetChildRows(this.Table.ChildRelations["Zaposlenja_Angazovanja"])));
+                }
+            }
         }
         
         /// <summary>
@@ -3949,6 +4349,211 @@ namespace JISP.Data {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class AngazovanjaRow : global::System.Data.DataRow {
+            
+            private AngazovanjaDataTable tableAngazovanja;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal AngazovanjaRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableAngazovanja = ((AngazovanjaDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int IdAngazovanja {
+                get {
+                    return ((int)(this[this.tableAngazovanja.IdAngazovanjaColumn]));
+                }
+                set {
+                    this[this.tableAngazovanja.IdAngazovanjaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int IdZaposlenja {
+                get {
+                    try {
+                        return ((int)(this[this.tableAngazovanja.IdZaposlenjaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IdZaposlenja\' in table \'Angazovanja\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAngazovanja.IdZaposlenjaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string SkolskaGodina {
+                get {
+                    try {
+                        return ((string)(this[this.tableAngazovanja.SkolskaGodinaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SkolskaGodina\' in table \'Angazovanja\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAngazovanja.SkolskaGodinaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string IzvorFinansiranja {
+                get {
+                    try {
+                        return ((string)(this[this.tableAngazovanja.IzvorFinansiranjaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IzvorFinansiranja\' in table \'Angazovanja\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAngazovanja.IzvorFinansiranjaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public float ProcenatAngazovanja {
+                get {
+                    try {
+                        return ((float)(this[this.tableAngazovanja.ProcenatAngazovanjaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ProcenatAngazovanja\' in table \'Angazovanja\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAngazovanja.ProcenatAngazovanjaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Predmet {
+                get {
+                    try {
+                        return ((string)(this[this.tableAngazovanja.PredmetColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Predmet\' in table \'Angazovanja\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAngazovanja.PredmetColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string PodnivoPredmeta {
+                get {
+                    try {
+                        return ((string)(this[this.tableAngazovanja.PodnivoPredmetaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PodnivoPredmeta\' in table \'Angazovanja\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAngazovanja.PodnivoPredmetaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public ZaposlenjaRow ZaposlenjaRow {
+                get {
+                    return ((ZaposlenjaRow)(this.GetParentRow(this.Table.ParentRelations["Zaposlenja_Angazovanja"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Zaposlenja_Angazovanja"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsIdZaposlenjaNull() {
+                return this.IsNull(this.tableAngazovanja.IdZaposlenjaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetIdZaposlenjaNull() {
+                this[this.tableAngazovanja.IdZaposlenjaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsSkolskaGodinaNull() {
+                return this.IsNull(this.tableAngazovanja.SkolskaGodinaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetSkolskaGodinaNull() {
+                this[this.tableAngazovanja.SkolskaGodinaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsIzvorFinansiranjaNull() {
+                return this.IsNull(this.tableAngazovanja.IzvorFinansiranjaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetIzvorFinansiranjaNull() {
+                this[this.tableAngazovanja.IzvorFinansiranjaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsProcenatAngazovanjaNull() {
+                return this.IsNull(this.tableAngazovanja.ProcenatAngazovanjaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetProcenatAngazovanjaNull() {
+                this[this.tableAngazovanja.ProcenatAngazovanjaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsPredmetNull() {
+                return this.IsNull(this.tableAngazovanja.PredmetColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetPredmetNull() {
+                this[this.tableAngazovanja.PredmetColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsPodnivoPredmetaNull() {
+                return this.IsNull(this.tableAngazovanja.PodnivoPredmetaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetPodnivoPredmetaNull() {
+                this[this.tableAngazovanja.PodnivoPredmetaColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -4104,6 +4709,40 @@ namespace JISP.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ObracunZaradaRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public class AngazovanjaRowChangeEvent : global::System.EventArgs {
+            
+            private AngazovanjaRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public AngazovanjaRowChangeEvent(AngazovanjaRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public AngazovanjaRow Row {
                 get {
                     return this.eventRow;
                 }

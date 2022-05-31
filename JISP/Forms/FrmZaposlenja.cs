@@ -1,6 +1,7 @@
 ﻿using JISP.Classes;
 using JISP.Data;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace JISP.Forms
@@ -15,6 +16,12 @@ namespace JISP.Forms
             {
                 zaposleni = zap;
                 Text = $"Zaposlenja ({zap})";
+
+                if (CheckStateAktivno.HasValue)
+                    chkAktivno.CheckState = CheckStateAktivno.Value;
+                if (CheckedIndicesMeseci != null)
+                    foreach (var cim in CheckedIndicesMeseci)
+                        lstchkMeseci.SetItemChecked((int)cim, true);
 
                 bsZaposlenja.DataSource = AppData.Ds;
                 dgvZaposlenjaSve.StandardSort = bsZaposlenja.Sort;
@@ -49,6 +56,7 @@ namespace JISP.Forms
                         continue;
                     var z = AppData.Ds.Zaposlenja.NewZaposlenjaRow();
                     z.IdZaposlenog = zaposleni.IdZaposlenog;
+                    z.IdZaposlenja = obj.id;
                     z.BrojUgovoraORadu = obj.brojUgovoraORadu;
                     z.DatumZaposlenOd = obj.datumZaposlenOd;
                     if (obj.datumZaposlenDo != null)
@@ -125,6 +133,52 @@ namespace JISP.Forms
                 }
             }
             catch (Exception ex) { Utils.ShowMbox(ex, btnKreirajObracune.Text); }
+        }
+
+        private static CheckState? CheckStateAktivno = null;
+        private static CheckedListBox.CheckedIndexCollection CheckedIndicesMeseci = null;
+
+        private void FrmZaposlenja_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            CheckStateAktivno = chkAktivno.CheckState;
+            CheckedIndicesMeseci = lstchkMeseci.CheckedIndices;
+        }
+
+        private async void BtnUcitajAngazovanja_Click(object sender, EventArgs e)
+        {
+            tcBottom.SelectedTab = tpAngazovanja;
+            var akcija = btnUcitajAngazovanja.Text;
+            btnUcitajAngazovanja.Text = "...";
+            try
+            {
+                var zaposlenja = dgvZaposlenjaSve.SelectedDataRows<Ds.ZaposlenjaRow>();
+                foreach (var zap in zaposlenja)
+                {
+                    var idZaposlenja = zap.IdZaposlenja;
+                    if (idZaposlenja < 0)
+                        throw new Exception("IdZaposlenja nije ispravan. Potrebno je ponovo učitati zaposlenja.");
+                    var json = await WebApi.GetJson(WebApi.ReqEnum.Zap_Angazovanja, idZaposlenja.ToString());
+                    dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
+                    foreach (var obj in arr)
+                    {
+                        var ang = AppData.Ds.Angazovanja.FindByIdAngazovanja((int)obj.id);
+                        if (ang != null)
+                            AppData.Ds.Angazovanja.RemoveAngazovanjaRow(ang);
+
+                        var a = AppData.Ds.Angazovanja.NewAngazovanjaRow();
+                        a.IdAngazovanja = obj.id;
+                        a.IdZaposlenja = idZaposlenja;
+                        a.SkolskaGodina = obj.skolskaGodinaNaziv;
+                        a.IzvorFinansiranja = Utils.SkratiIzvorFin((string)obj.izvorFinansiranjaNaziv);
+                        a.ProcenatAngazovanja = obj.procenatAngazovanja;
+                        a.Predmet = obj.predmetNaziv;
+                        a.PodnivoPredmeta = obj.podnivoPredmetaNaziv;
+                        AppData.Ds.Angazovanja.AddAngazovanjaRow(a);
+                    }
+                }
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, akcija); }
+            btnUcitajAngazovanja.Text = akcija;
         }
     }
 }

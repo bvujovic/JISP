@@ -30,12 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label lblOzGodina;
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
+            this.btnUcitajAngazovanja = new JISP.Controls.UcButton();
             this.btnLoadData = new JISP.Controls.UcButton();
             this.btnExit = new JISP.Controls.UcExitAppButton();
             this.pnlZaposleniTop = new System.Windows.Forms.Panel();
@@ -54,6 +57,14 @@
             this.ds = new JISP.Data.Ds();
             this.scMain = new System.Windows.Forms.SplitContainer();
             this.tcBottom = new System.Windows.Forms.TabControl();
+            this.tpAngazovanja = new System.Windows.Forms.TabPage();
+            this.ucDGV1 = new JISP.Controls.UcDGV();
+            this.skolskaGodinaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.izvorFinansiranjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.procenatAngazovanjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.predmetDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.podnivoPredmetaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsAngazovanja = new System.Windows.Forms.BindingSource(this.components);
             this.tpObracunZarada = new System.Windows.Forms.TabPage();
             this.dgvObracunZarada = new JISP.Controls.UcDGV();
             this.brojUgovoraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -79,6 +90,9 @@
             this.scMain.Panel2.SuspendLayout();
             this.scMain.SuspendLayout();
             this.tcBottom.SuspendLayout();
+            this.tpAngazovanja.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ucDGV1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAngazovanja)).BeginInit();
             this.tpObracunZarada.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvObracunZarada)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsObracunZarada)).BeginInit();
@@ -97,6 +111,7 @@
             // 
             // pnlLeft
             // 
+            this.pnlLeft.Controls.Add(this.btnUcitajAngazovanja);
             this.pnlLeft.Controls.Add(this.btnLoadData);
             this.pnlLeft.Controls.Add(this.btnExit);
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
@@ -106,6 +121,18 @@
             this.pnlLeft.RightWingWidth = 6;
             this.pnlLeft.Size = new System.Drawing.Size(146, 511);
             this.pnlLeft.TabIndex = 2;
+            // 
+            // btnUcitajAngazovanja
+            // 
+            this.btnUcitajAngazovanja.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUcitajAngazovanja.Location = new System.Drawing.Point(8, 104);
+            this.btnUcitajAngazovanja.Name = "btnUcitajAngazovanja";
+            this.btnUcitajAngazovanja.Size = new System.Drawing.Size(128, 54);
+            this.btnUcitajAngazovanja.TabIndex = 4;
+            this.btnUcitajAngazovanja.Text = "Učitaj angažovanja";
+            this.btnUcitajAngazovanja.ToolTipText = "Dohvatanje podataka o zaposlenjima";
+            this.btnUcitajAngazovanja.UseVisualStyleBackColor = true;
+            this.btnUcitajAngazovanja.Click += new System.EventHandler(this.BtnUcitajAngazovanja_Click);
             // 
             // btnLoadData
             // 
@@ -168,18 +195,18 @@
             // 
             this.dgvZaposlenjaSve.AllowUserToAddRows = false;
             this.dgvZaposlenjaSve.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvZaposlenjaSve.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvZaposlenjaSve.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvZaposlenjaSve.AutoGenerateColumns = false;
             this.dgvZaposlenjaSve.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvZaposlenjaSve.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvZaposlenjaSve.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvZaposlenjaSve.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvZaposlenjaSve.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.aktivanDataGridViewCheckBoxColumn,
@@ -198,13 +225,13 @@
             this.dgvZaposlenjaSve.Location = new System.Drawing.Point(0, 30);
             this.dgvZaposlenjaSve.Name = "dgvZaposlenjaSve";
             this.dgvZaposlenjaSve.ReadOnly = true;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.dgvZaposlenjaSve.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.dgvZaposlenjaSve.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvZaposlenjaSve.RowHeadersWidth = 30;
             this.dgvZaposlenjaSve.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvZaposlenjaSve.Size = new System.Drawing.Size(893, 211);
@@ -305,6 +332,7 @@
             // 
             // tcBottom
             // 
+            this.tcBottom.Controls.Add(this.tpAngazovanja);
             this.tcBottom.Controls.Add(this.tpObracunZarada);
             this.tcBottom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tcBottom.Location = new System.Drawing.Point(0, 0);
@@ -313,15 +341,110 @@
             this.tcBottom.Size = new System.Drawing.Size(893, 266);
             this.tcBottom.TabIndex = 0;
             // 
+            // tpAngazovanja
+            // 
+            this.tpAngazovanja.BackColor = System.Drawing.SystemColors.Control;
+            this.tpAngazovanja.Controls.Add(this.ucDGV1);
+            this.tpAngazovanja.Location = new System.Drawing.Point(4, 27);
+            this.tpAngazovanja.Name = "tpAngazovanja";
+            this.tpAngazovanja.Padding = new System.Windows.Forms.Padding(3);
+            this.tpAngazovanja.Size = new System.Drawing.Size(885, 235);
+            this.tpAngazovanja.TabIndex = 1;
+            this.tpAngazovanja.Text = "Angažovanja";
+            // 
+            // ucDGV1
+            // 
+            this.ucDGV1.AllowUserToAddRows = false;
+            this.ucDGV1.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ucDGV1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.ucDGV1.AutoGenerateColumns = false;
+            this.ucDGV1.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ucDGV1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.ucDGV1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ucDGV1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.skolskaGodinaDataGridViewTextBoxColumn,
+            this.izvorFinansiranjaDataGridViewTextBoxColumn,
+            this.procenatAngazovanjaDataGridViewTextBoxColumn,
+            this.predmetDataGridViewTextBoxColumn,
+            this.podnivoPredmetaDataGridViewTextBoxColumn});
+            this.ucDGV1.ColumnsForCopyOnClick = null;
+            this.ucDGV1.CopyOnCellClick = false;
+            this.ucDGV1.CtrlDisplayPositionRowCount = null;
+            this.ucDGV1.DataSource = this.bsAngazovanja;
+            this.ucDGV1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucDGV1.Location = new System.Drawing.Point(3, 3);
+            this.ucDGV1.Name = "ucDGV1";
+            this.ucDGV1.ReadOnly = true;
+            this.ucDGV1.RowHeadersWidth = 30;
+            this.ucDGV1.Size = new System.Drawing.Size(879, 229);
+            this.ucDGV1.StandardSort = null;
+            this.ucDGV1.TabIndex = 0;
+            // 
+            // skolskaGodinaDataGridViewTextBoxColumn
+            // 
+            this.skolskaGodinaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.skolskaGodinaDataGridViewTextBoxColumn.DataPropertyName = "SkolskaGodina";
+            this.skolskaGodinaDataGridViewTextBoxColumn.HeaderText = "Šk. godina";
+            this.skolskaGodinaDataGridViewTextBoxColumn.Name = "skolskaGodinaDataGridViewTextBoxColumn";
+            this.skolskaGodinaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.skolskaGodinaDataGridViewTextBoxColumn.Width = 103;
+            // 
+            // izvorFinansiranjaDataGridViewTextBoxColumn
+            // 
+            this.izvorFinansiranjaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.izvorFinansiranjaDataGridViewTextBoxColumn.DataPropertyName = "IzvorFinansiranja";
+            this.izvorFinansiranjaDataGridViewTextBoxColumn.FillWeight = 150F;
+            this.izvorFinansiranjaDataGridViewTextBoxColumn.HeaderText = "Izvor finansiranja";
+            this.izvorFinansiranjaDataGridViewTextBoxColumn.Name = "izvorFinansiranjaDataGridViewTextBoxColumn";
+            this.izvorFinansiranjaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // procenatAngazovanjaDataGridViewTextBoxColumn
+            // 
+            this.procenatAngazovanjaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.procenatAngazovanjaDataGridViewTextBoxColumn.DataPropertyName = "ProcenatAngazovanja";
+            this.procenatAngazovanjaDataGridViewTextBoxColumn.HeaderText = "Procenat";
+            this.procenatAngazovanjaDataGridViewTextBoxColumn.Name = "procenatAngazovanjaDataGridViewTextBoxColumn";
+            this.procenatAngazovanjaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.procenatAngazovanjaDataGridViewTextBoxColumn.Width = 93;
+            // 
+            // predmetDataGridViewTextBoxColumn
+            // 
+            this.predmetDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.predmetDataGridViewTextBoxColumn.DataPropertyName = "Predmet";
+            this.predmetDataGridViewTextBoxColumn.HeaderText = "Predmet";
+            this.predmetDataGridViewTextBoxColumn.Name = "predmetDataGridViewTextBoxColumn";
+            this.predmetDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // podnivoPredmetaDataGridViewTextBoxColumn
+            // 
+            this.podnivoPredmetaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.podnivoPredmetaDataGridViewTextBoxColumn.DataPropertyName = "PodnivoPredmeta";
+            this.podnivoPredmetaDataGridViewTextBoxColumn.HeaderText = "Predmet - podnivo";
+            this.podnivoPredmetaDataGridViewTextBoxColumn.Name = "podnivoPredmetaDataGridViewTextBoxColumn";
+            this.podnivoPredmetaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // bsAngazovanja
+            // 
+            this.bsAngazovanja.DataMember = "Zaposlenja_Angazovanja";
+            this.bsAngazovanja.DataSource = this.bsZaposlenja;
+            // 
             // tpObracunZarada
             // 
             this.tpObracunZarada.BackColor = System.Drawing.SystemColors.Control;
             this.tpObracunZarada.Controls.Add(this.dgvObracunZarada);
             this.tpObracunZarada.Controls.Add(this.pnlBottomLeft);
-            this.tpObracunZarada.Location = new System.Drawing.Point(4, 27);
+            this.tpObracunZarada.Location = new System.Drawing.Point(4, 22);
             this.tpObracunZarada.Name = "tpObracunZarada";
             this.tpObracunZarada.Padding = new System.Windows.Forms.Padding(3);
-            this.tpObracunZarada.Size = new System.Drawing.Size(885, 235);
+            this.tpObracunZarada.Size = new System.Drawing.Size(885, 240);
             this.tpObracunZarada.TabIndex = 0;
             this.tpObracunZarada.Text = "Obračun zarada";
             // 
@@ -359,7 +482,7 @@
             this.dgvObracunZarada.ReadOnly = true;
             this.dgvObracunZarada.RowHeadersWidth = 30;
             this.dgvObracunZarada.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvObracunZarada.Size = new System.Drawing.Size(733, 229);
+            this.dgvObracunZarada.Size = new System.Drawing.Size(733, 234);
             this.dgvObracunZarada.StandardSort = null;
             this.dgvObracunZarada.TabIndex = 1;
             // 
@@ -424,7 +547,7 @@
             this.pnlBottomLeft.Name = "pnlBottomLeft";
             this.pnlBottomLeft.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
             this.pnlBottomLeft.RightWingWidth = 6;
-            this.pnlBottomLeft.Size = new System.Drawing.Size(146, 229);
+            this.pnlBottomLeft.Size = new System.Drawing.Size(146, 234);
             this.pnlBottomLeft.TabIndex = 0;
             // 
             // lstchkMeseci
@@ -505,6 +628,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmZaposlenja";
             this.Text = "Zaposlenja";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmZaposlenja_FormClosed);
             this.pnlLeft.ResumeLayout(false);
             this.pnlZaposleniTop.ResumeLayout(false);
             this.pnlZaposleniTop.PerformLayout();
@@ -516,6 +640,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.scMain)).EndInit();
             this.scMain.ResumeLayout(false);
             this.tcBottom.ResumeLayout(false);
+            this.tpAngazovanja.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ucDGV1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAngazovanja)).EndInit();
             this.tpObracunZarada.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvObracunZarada)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsObracunZarada)).EndInit();
@@ -561,5 +688,14 @@
         private System.Windows.Forms.NumericUpDown numOzGodina;
         private Controls.UcButton btnKreirajObracune;
         private System.Windows.Forms.CheckedListBox lstchkMeseci;
+        private Controls.UcButton btnUcitajAngazovanja;
+        private System.Windows.Forms.TabPage tpAngazovanja;
+        private Controls.UcDGV ucDGV1;
+        private System.Windows.Forms.BindingSource bsAngazovanja;
+        private System.Windows.Forms.DataGridViewTextBoxColumn skolskaGodinaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn izvorFinansiranjaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn procenatAngazovanjaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn predmetDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn podnivoPredmetaDataGridViewTextBoxColumn;
     }
 }

@@ -17,6 +17,14 @@ namespace JISP.Classes
             );
         }
 
+        public static string SkratiIzvorFin(string s)
+        {
+            s = s.Replace("Буџет Републике Србије - МПНТР - ", "Буџет РС, МПНТР: ");
+            s = s.Replace("Основно и средње образовање", "ОиС образовање");
+            s = s.Replace("Ученички и студентски стандард", "Уч. стандард");
+            return s;
+        }
+
         public static DialogResult ShowMbox(Exception ex, string title)
         {
             var msg = ex.Message;

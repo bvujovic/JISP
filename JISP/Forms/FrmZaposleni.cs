@@ -143,7 +143,8 @@ namespace JISP.Forms
 
         private void DgvZaposleni_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex != dgvcNapomene.Index)
+            if (e.RowIndex != -1
+                && new int[] { dgvcIme.Index, dgvcPrezime.Index, dgvcJMBG.Index }.Contains(e.ColumnIndex))
             {
                 var zap = dgvZaposleni.CurrDataRow<Ds.ZaposleniRow>();
                 new FrmZaposlenja(zap).ShowDialog();

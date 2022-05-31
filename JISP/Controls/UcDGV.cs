@@ -215,7 +215,7 @@ namespace JISP.Controls
             }
 
             // klik na zaglavlje kolone -> sortiranje
-            if (e.RowIndex == -1 && !string.IsNullOrEmpty(StandardSort))
+            if (e.ColumnIndex != -1 && e.RowIndex == -1 && !string.IsNullOrEmpty(StandardSort))
             {
                 try
                 {

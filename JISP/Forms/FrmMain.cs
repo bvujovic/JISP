@@ -47,7 +47,7 @@ namespace JISP.Forms
             }
 
             ttDataFolder.SetToolTip(lblDataFolder, "Klik za otvaranje foldera sa podacima");
-            ttApiToken.SetToolTip(lblApiToken, "Klik za paste Web API Token-a (Copy response headers)");
+            ttApiToken.SetToolTip(lblApiToken, "Klik za paste Web API Token-a (Copy request headers)");
             lblApiToken.Text = WebApi.TokenDisplay;
             FormClosing += FrmMain_FormClosing;
         }
