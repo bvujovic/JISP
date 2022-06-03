@@ -23,6 +23,7 @@ namespace JISP.Forms
             chkAktivniZap.CheckState = CheckState.Checked;
             dgvZaposleni.StandardSort = bsZaposleni.Sort = "Ime";
             dgvZaposleni.LoadSettings();
+            dgvZaposlenja.LoadSettings();
 
             //T
             //foreach (var zap in Ds.Zaposleni)
@@ -200,6 +201,12 @@ namespace JISP.Forms
             }
             catch (Exception ex) { Utils.ShowMbox(ex, akcija); }
             btnKvalifStruktura.Text = akcija;
+        }
+
+        private void FrmZaposleni_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            dgvZaposleni.SaveSettings();
+            dgvZaposlenja.SaveSettings();
         }
     }
 }

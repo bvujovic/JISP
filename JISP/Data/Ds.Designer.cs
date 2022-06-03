@@ -53,6 +53,7 @@ namespace JISP.Data {
             base.Tables.CollectionChanged += schemaChangedHandler;
             base.Relations.CollectionChanged += schemaChangedHandler;
             this.EndInit();
+            this.InitExpressions();
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -64,6 +65,9 @@ namespace JISP.Data {
                 global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler1 = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
                 this.Tables.CollectionChanged += schemaChangedHandler1;
                 this.Relations.CollectionChanged += schemaChangedHandler1;
+                if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.ExcludeSchema)) {
+                    this.InitExpressions();
+                }
                 return;
             }
             string strSchema = ((string)(info.GetValue("XmlSchema", typeof(string))));
@@ -99,6 +103,7 @@ namespace JISP.Data {
             }
             else {
                 this.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
+                this.InitExpressions();
             }
             this.GetSerializationData(info, context);
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -210,6 +215,7 @@ namespace JISP.Data {
         public override global::System.Data.DataSet Clone() {
             Ds cln = ((Ds)(base.Clone()));
             cln.InitVars();
+            cln.InitExpressions();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
         }
@@ -337,7 +343,7 @@ namespace JISP.Data {
             base.Tables.Add(this.tableUcenici);
             this.tableZaposleni = new ZaposleniDataTable();
             base.Tables.Add(this.tableZaposleni);
-            this.tableZaposlenja = new ZaposlenjaDataTable();
+            this.tableZaposlenja = new ZaposlenjaDataTable(false);
             base.Tables.Add(this.tableZaposlenja);
             this.tableSettings = new SettingsDataTable();
             base.Tables.Add(this.tableSettings);
@@ -463,6 +469,12 @@ namespace JISP.Data {
             }
             xs.Add(dsSchema);
             return type;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitExpressions() {
+            this.Zaposlenja.ImaObracunTemplateColumn.Expression = "ObracunTemplate is not null";
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -1495,12 +1507,25 @@ namespace JISP.Data {
             
             private global::System.Data.DataColumn columnIdZaposlenog;
             
+            private global::System.Data.DataColumn columnObracunTemplate;
+            
+            private global::System.Data.DataColumn columnImaObracunTemplate;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ZaposlenjaDataTable() {
+            public ZaposlenjaDataTable() : 
+                    this(false) {
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public ZaposlenjaDataTable(bool initExpressions) {
                 this.TableName = "Zaposlenja";
                 this.BeginInit();
                 this.InitClass();
+                if ((initExpressions == true)) {
+                    this.InitExpressions();
+                }
                 this.EndInit();
             }
             
@@ -1626,6 +1651,22 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ObracunTemplateColumn {
+                get {
+                    return this.columnObracunTemplate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ImaObracunTemplateColumn {
+                get {
+                    return this.columnImaObracunTemplate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1661,7 +1702,7 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ZaposlenjaRow AddZaposlenjaRow(string BrojUgovoraORadu, string RadnoMestoNaziv, System.DateTime DatumUgovora, int ProcenatRadnogVremena, bool MaticnaUstanova, System.DateTime DatumZaposlenOd, System.DateTime DatumZaposlenDo, string NoksNivoNaziv, string VrstaAngazovanja, bool Aktivan, ZaposleniRow parentZaposleniRowByFK_Zaposleni_Zaposlenja) {
+            public ZaposlenjaRow AddZaposlenjaRow(string BrojUgovoraORadu, string RadnoMestoNaziv, System.DateTime DatumUgovora, int ProcenatRadnogVremena, bool MaticnaUstanova, System.DateTime DatumZaposlenOd, System.DateTime DatumZaposlenDo, string NoksNivoNaziv, string VrstaAngazovanja, bool Aktivan, ZaposleniRow parentZaposleniRowByFK_Zaposleni_Zaposlenja, string ObracunTemplate, bool ImaObracunTemplate) {
                 ZaposlenjaRow rowZaposlenjaRow = ((ZaposlenjaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1675,6 +1716,35 @@ namespace JISP.Data {
                         NoksNivoNaziv,
                         VrstaAngazovanja,
                         Aktivan,
+                        null,
+                        ObracunTemplate,
+                        ImaObracunTemplate};
+                if ((parentZaposleniRowByFK_Zaposleni_Zaposlenja != null)) {
+                    columnValuesArray[11] = parentZaposleniRowByFK_Zaposleni_Zaposlenja[0];
+                }
+                rowZaposlenjaRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowZaposlenjaRow);
+                return rowZaposlenjaRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public ZaposlenjaRow AddZaposlenjaRow(string BrojUgovoraORadu, string RadnoMestoNaziv, System.DateTime DatumUgovora, int ProcenatRadnogVremena, bool MaticnaUstanova, System.DateTime DatumZaposlenOd, System.DateTime DatumZaposlenDo, string NoksNivoNaziv, string VrstaAngazovanja, bool Aktivan, ZaposleniRow parentZaposleniRowByFK_Zaposleni_Zaposlenja, string ObracunTemplate) {
+                ZaposlenjaRow rowZaposlenjaRow = ((ZaposlenjaRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        BrojUgovoraORadu,
+                        RadnoMestoNaziv,
+                        DatumUgovora,
+                        ProcenatRadnogVremena,
+                        MaticnaUstanova,
+                        DatumZaposlenOd,
+                        DatumZaposlenDo,
+                        NoksNivoNaziv,
+                        VrstaAngazovanja,
+                        Aktivan,
+                        null,
+                        ObracunTemplate,
                         null};
                 if ((parentZaposleniRowByFK_Zaposleni_Zaposlenja != null)) {
                     columnValuesArray[11] = parentZaposleniRowByFK_Zaposleni_Zaposlenja[0];
@@ -1720,6 +1790,8 @@ namespace JISP.Data {
                 this.columnVrstaAngazovanja = base.Columns["VrstaAngazovanja"];
                 this.columnAktivan = base.Columns["Aktivan"];
                 this.columnIdZaposlenog = base.Columns["IdZaposlenog"];
+                this.columnObracunTemplate = base.Columns["ObracunTemplate"];
+                this.columnImaObracunTemplate = base.Columns["ImaObracunTemplate"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1749,6 +1821,10 @@ namespace JISP.Data {
                 base.Columns.Add(this.columnAktivan);
                 this.columnIdZaposlenog = new global::System.Data.DataColumn("IdZaposlenog", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIdZaposlenog);
+                this.columnObracunTemplate = new global::System.Data.DataColumn("ObracunTemplate", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnObracunTemplate);
+                this.columnImaObracunTemplate = new global::System.Data.DataColumn("ImaObracunTemplate", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnImaObracunTemplate);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIdZaposlenja}, true));
                 this.columnIdZaposlenja.AutoIncrement = true;
@@ -1758,6 +1834,8 @@ namespace JISP.Data {
                 this.columnIdZaposlenja.Unique = true;
                 this.columnRadnoMestoNaziv.AllowDBNull = false;
                 this.columnIdZaposlenog.AllowDBNull = false;
+                this.columnImaObracunTemplate.AllowDBNull = false;
+                this.columnImaObracunTemplate.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1776,6 +1854,12 @@ namespace JISP.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Type GetRowType() {
                 return typeof(ZaposlenjaRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            private void InitExpressions() {
+                this.ImaObracunTemplateColumn.Expression = "ObracunTemplate is not null";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2179,6 +2263,8 @@ namespace JISP.Data {
             
             private global::System.Data.DataColumn columnNorma;
             
+            private global::System.Data.DataColumn columnKoefZaPredsednikaSindikata;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ObracunZaradaDataTable() {
@@ -2278,6 +2364,14 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn KoefZaPredsednikaSindikataColumn {
+                get {
+                    return this.columnKoefZaPredsednikaSindikata;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2313,17 +2407,18 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ObracunZaradaRow AddObracunZaradaRow(ZaposleniRow parentZaposleniRowByZaposleni_ObracunZarada, string BrojUgovora, int Godina, string MesecNaziv, double OsnovniKoef, double DodatniKoef, double Norma) {
+            public ObracunZaradaRow AddObracunZaradaRow(int IdObracuna, ZaposleniRow parentZaposleniRowByZaposleni_ObracunZarada, string BrojUgovora, int Godina, string MesecNaziv, double OsnovniKoef, double DodatniKoef, double Norma, double KoefZaPredsednikaSindikata) {
                 ObracunZaradaRow rowObracunZaradaRow = ((ObracunZaradaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
+                        IdObracuna,
                         null,
                         BrojUgovora,
                         Godina,
                         MesecNaziv,
                         OsnovniKoef,
                         DodatniKoef,
-                        Norma};
+                        Norma,
+                        KoefZaPredsednikaSindikata};
                 if ((parentZaposleniRowByZaposleni_ObracunZarada != null)) {
                     columnValuesArray[1] = parentZaposleniRowByZaposleni_ObracunZarada[0];
                 }
@@ -2364,6 +2459,7 @@ namespace JISP.Data {
                 this.columnOsnovniKoef = base.Columns["OsnovniKoef"];
                 this.columnDodatniKoef = base.Columns["DodatniKoef"];
                 this.columnNorma = base.Columns["Norma"];
+                this.columnKoefZaPredsednikaSindikata = base.Columns["KoefZaPredsednikaSindikata"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2385,13 +2481,17 @@ namespace JISP.Data {
                 base.Columns.Add(this.columnDodatniKoef);
                 this.columnNorma = new global::System.Data.DataColumn("Norma", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNorma);
+                this.columnKoefZaPredsednikaSindikata = new global::System.Data.DataColumn("KoefZaPredsednikaSindikata", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnKoefZaPredsednikaSindikata);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIdObracuna}, true));
-                this.columnIdObracuna.AutoIncrement = true;
                 this.columnIdObracuna.AutoIncrementSeed = -1;
                 this.columnIdObracuna.AutoIncrementStep = -1;
                 this.columnIdObracuna.AllowDBNull = false;
                 this.columnIdObracuna.Unique = true;
+                this.columnIdZaposlenog.AllowDBNull = false;
+                this.columnGodina.AllowDBNull = false;
+                this.columnMesecNaziv.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3932,6 +4032,33 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string ObracunTemplate {
+                get {
+                    try {
+                        return ((string)(this[this.tableZaposlenja.ObracunTemplateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ObracunTemplate\' in table \'Zaposlenja\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableZaposlenja.ObracunTemplateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool ImaObracunTemplate {
+                get {
+                    return ((bool)(this[this.tableZaposlenja.ImaObracunTemplateColumn]));
+                }
+                set {
+                    this[this.tableZaposlenja.ImaObracunTemplateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ZaposleniRow ZaposleniRow {
                 get {
                     return ((ZaposleniRow)(this.GetParentRow(this.Table.ParentRelations["FK_Zaposleni_Zaposlenja"])));
@@ -4051,6 +4178,18 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsObracunTemplateNull() {
+                return this.IsNull(this.tableZaposlenja.ObracunTemplateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetObracunTemplateNull() {
+                this[this.tableZaposlenja.ObracunTemplateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public AngazovanjaRow[] GetAngazovanjaRows() {
                 if ((this.Table.ChildRelations["Zaposlenja_Angazovanja"] == null)) {
                     return new AngazovanjaRow[0];
@@ -4144,12 +4283,7 @@ namespace JISP.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public int IdZaposlenog {
                 get {
-                    try {
-                        return ((int)(this[this.tableObracunZarada.IdZaposlenogColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'IdZaposlenog\' in table \'ObracunZarada\' is DBNull.", e);
-                    }
+                    return ((int)(this[this.tableObracunZarada.IdZaposlenogColumn]));
                 }
                 set {
                     this[this.tableObracunZarada.IdZaposlenogColumn] = value;
@@ -4176,12 +4310,7 @@ namespace JISP.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public int Godina {
                 get {
-                    try {
-                        return ((int)(this[this.tableObracunZarada.GodinaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Godina\' in table \'ObracunZarada\' is DBNull.", e);
-                    }
+                    return ((int)(this[this.tableObracunZarada.GodinaColumn]));
                 }
                 set {
                     this[this.tableObracunZarada.GodinaColumn] = value;
@@ -4192,12 +4321,7 @@ namespace JISP.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string MesecNaziv {
                 get {
-                    try {
-                        return ((string)(this[this.tableObracunZarada.MesecNazivColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MesecNaziv\' in table \'ObracunZarada\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableObracunZarada.MesecNazivColumn]));
                 }
                 set {
                     this[this.tableObracunZarada.MesecNazivColumn] = value;
@@ -4254,6 +4378,23 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public double KoefZaPredsednikaSindikata {
+                get {
+                    try {
+                        return ((double)(this[this.tableObracunZarada.KoefZaPredsednikaSindikataColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'KoefZaPredsednikaSindikata\' in table \'ObracunZarada\' is DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tableObracunZarada.KoefZaPredsednikaSindikataColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ZaposleniRow ZaposleniRow {
                 get {
                     return ((ZaposleniRow)(this.GetParentRow(this.Table.ParentRelations["Zaposleni_ObracunZarada"])));
@@ -4261,18 +4402,6 @@ namespace JISP.Data {
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["Zaposleni_ObracunZarada"]);
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsIdZaposlenogNull() {
-                return this.IsNull(this.tableObracunZarada.IdZaposlenogColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetIdZaposlenogNull() {
-                this[this.tableObracunZarada.IdZaposlenogColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4285,30 +4414,6 @@ namespace JISP.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetBrojUgovoraNull() {
                 this[this.tableObracunZarada.BrojUgovoraColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsGodinaNull() {
-                return this.IsNull(this.tableObracunZarada.GodinaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetGodinaNull() {
-                this[this.tableObracunZarada.GodinaColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsMesecNazivNull() {
-                return this.IsNull(this.tableObracunZarada.MesecNazivColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetMesecNazivNull() {
-                this[this.tableObracunZarada.MesecNazivColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4345,6 +4450,18 @@ namespace JISP.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetNormaNull() {
                 this[this.tableObracunZarada.NormaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsKoefZaPredsednikaSindikataNull() {
+                return this.IsNull(this.tableObracunZarada.KoefZaPredsednikaSindikataColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetKoefZaPredsednikaSindikataNull() {
+                this[this.tableObracunZarada.KoefZaPredsednikaSindikataColumn] = global::System.Convert.DBNull;
             }
         }
         

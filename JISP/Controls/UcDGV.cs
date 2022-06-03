@@ -52,14 +52,15 @@ namespace JISP.Controls
             col.Visible = tsmi.Checked;
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            SaveSettings();
-            base.Dispose(disposing);
-        }
+        //B
+        //protected override void Dispose(bool disposing)
+        //{
+        //    SaveSettings();
+        //    base.Dispose(disposing);
+        //}
 
         /// <summary>Cuvanje podesavanja (vidljivost kolona...) u XML fajlu.</summary>
-        private void SaveSettings()
+        public void SaveSettings()
         {
             if (availableColumns != null)
             {

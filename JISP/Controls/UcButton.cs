@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JISP.Controls
@@ -27,7 +28,8 @@ namespace JISP.Controls
         public string ToolTipText
         {
             get { return toolTipText; }
-            set {
+            set
+            {
                 toolTipText = value;
                 SetToolTipIN();
             }
@@ -42,5 +44,39 @@ namespace JISP.Controls
                 tt.SetToolTip(this, ToolTipText);
             }
         }
+
+        /// <summary>Ovu metodu bi trebalo zvati kod Click async poziva - Text postaje ..., rad sa izuzecima.</summary>
+        /// <example>await btnUcitajObracunZarada.RunAsync(async () => { });</example>
+        /// <see cref="https://stackoverflow.com/questions/33941583/converting-action-method-call-to-async-action-method-call"/>
+        /// <seealso cref="https://stackoverflow.com/questions/20593501/the-await-operator-can-only-be-used-within-an-async-lambda-expression"/>
+        public async Task RunAsync(Func<Task> func)
+        {
+            var originalText = Text;
+            Text = "...";
+            try
+            {
+                await func();
+            }
+            catch (Exception ex) { Classes.Utils.ShowMbox(ex, originalText); }
+            Text = originalText;
+        }
+
+        //B
+        //public Func<Task> Funct { get; set; }
+        //protected override async void OnClick(EventArgs e)
+        //{
+        //    if (Funct != null)
+        //    {
+        //        var originalText = Text;
+        //        Text = "...";
+        //        try
+        //        {
+        //            await Funct();
+        //        }
+        //        catch (Exception ex) { Classes.Utils.ShowMbox(ex, originalText); }
+        //        Text = originalText;
+        //    }
+        //    base.OnClick(e);
+        //}
     }
 }

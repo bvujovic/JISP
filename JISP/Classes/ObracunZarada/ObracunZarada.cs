@@ -32,14 +32,15 @@ namespace JISP.Classes.ObracunZarada
         /// <exception cref="Exception">Desava se ako u strBash nije pronadjen "--data-raw".</exception>
         public static string Bash2Json(string strBash)
         {
-            var start = "  --data-raw '";
+            var start = "  --data-raw ";
             var idxStart = strBash.IndexOf(start);
             if (idxStart == -1)
                 throw new Exception($"Nije pronadjen string: {start}.\r\n"
                     + "Komandu Sačuvaj je potrebno kopirati pomoću opcije: Copy as cURL (bash).");
-            idxStart += start.Length;
+            idxStart = strBash.IndexOf('\'', idxStart);
+            idxStart++;
             var idxEnd = strBash.IndexOf("' \\", idxStart);
-            return strBash.Substring(idxStart, idxEnd- idxStart);
+            return strBash.Substring(idxStart, idxEnd - idxStart);
         }
     }
 }

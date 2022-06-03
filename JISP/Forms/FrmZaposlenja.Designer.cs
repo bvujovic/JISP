@@ -38,8 +38,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
+            this.btnDodajOZTemplate = new JISP.Controls.UcButton();
             this.btnUcitajAngazovanja = new JISP.Controls.UcButton();
-            this.btnLoadData = new JISP.Controls.UcButton();
+            this.btnUcitajZaposlenja = new JISP.Controls.UcButton();
             this.btnExit = new JISP.Controls.UcExitAppButton();
             this.pnlZaposleniTop = new System.Windows.Forms.Panel();
             this.chkAktivno = new System.Windows.Forms.CheckBox();
@@ -53,12 +54,13 @@
             this.datumZaposlenDoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noksNivoNazivDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vrstaAngazovanjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcImaObracunTemplate = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.bsZaposlenja = new System.Windows.Forms.BindingSource(this.components);
             this.ds = new JISP.Data.Ds();
             this.scMain = new System.Windows.Forms.SplitContainer();
             this.tcBottom = new System.Windows.Forms.TabControl();
             this.tpAngazovanja = new System.Windows.Forms.TabPage();
-            this.ucDGV1 = new JISP.Controls.UcDGV();
+            this.dgvAngazovanja = new JISP.Controls.UcDGV();
             this.skolskaGodinaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.izvorFinansiranjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.procenatAngazovanjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -75,6 +77,7 @@
             this.normaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsObracunZarada = new System.Windows.Forms.BindingSource(this.components);
             this.pnlBottomLeft = new JISP.Controls.UcLeftPanel();
+            this.btnObrisiObracune = new JISP.Controls.UcButton();
             this.lstchkMeseci = new System.Windows.Forms.CheckedListBox();
             this.numOzGodina = new System.Windows.Forms.NumericUpDown();
             this.btnKreirajObracune = new JISP.Controls.UcButton();
@@ -91,7 +94,7 @@
             this.scMain.SuspendLayout();
             this.tcBottom.SuspendLayout();
             this.tpAngazovanja.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ucDGV1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAngazovanja)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAngazovanja)).BeginInit();
             this.tpObracunZarada.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvObracunZarada)).BeginInit();
@@ -103,7 +106,7 @@
             // lblOzGodina
             // 
             lblOzGodina.AutoSize = true;
-            lblOzGodina.Location = new System.Drawing.Point(0, 97);
+            lblOzGodina.Location = new System.Drawing.Point(0, 101);
             lblOzGodina.Name = "lblOzGodina";
             lblOzGodina.Size = new System.Drawing.Size(56, 18);
             lblOzGodina.TabIndex = 4;
@@ -111,8 +114,9 @@
             // 
             // pnlLeft
             // 
+            this.pnlLeft.Controls.Add(this.btnDodajOZTemplate);
             this.pnlLeft.Controls.Add(this.btnUcitajAngazovanja);
-            this.pnlLeft.Controls.Add(this.btnLoadData);
+            this.pnlLeft.Controls.Add(this.btnUcitajZaposlenja);
             this.pnlLeft.Controls.Add(this.btnExit);
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlLeft.Location = new System.Drawing.Point(0, 0);
@@ -121,6 +125,18 @@
             this.pnlLeft.RightWingWidth = 6;
             this.pnlLeft.Size = new System.Drawing.Size(146, 511);
             this.pnlLeft.TabIndex = 2;
+            // 
+            // btnDodajOZTemplate
+            // 
+            this.btnDodajOZTemplate.Location = new System.Drawing.Point(8, 164);
+            this.btnDodajOZTemplate.Name = "btnDodajOZTemplate";
+            this.btnDodajOZTemplate.Size = new System.Drawing.Size(128, 54);
+            this.btnDodajOZTemplate.TabIndex = 5;
+            this.btnDodajOZTemplate.Text = "Dodaj OZ Template";
+            this.btnDodajOZTemplate.ToolTipText = "Dodavanje template-a za kreiranje obračuna zarada: SacuvajObracunZarade, Copy as " +
+    "cURL (bash)";
+            this.btnDodajOZTemplate.UseVisualStyleBackColor = true;
+            this.btnDodajOZTemplate.Click += new System.EventHandler(this.BtnDodajOZTemplate_Click);
             // 
             // btnUcitajAngazovanja
             // 
@@ -134,16 +150,16 @@
             this.btnUcitajAngazovanja.UseVisualStyleBackColor = true;
             this.btnUcitajAngazovanja.Click += new System.EventHandler(this.BtnUcitajAngazovanja_Click);
             // 
-            // btnLoadData
+            // btnUcitajZaposlenja
             // 
-            this.btnLoadData.Location = new System.Drawing.Point(8, 58);
-            this.btnLoadData.Name = "btnLoadData";
-            this.btnLoadData.Size = new System.Drawing.Size(128, 40);
-            this.btnLoadData.TabIndex = 1;
-            this.btnLoadData.Text = "Učitaj zaposlenja";
-            this.btnLoadData.ToolTipText = "Dohvatanje podataka o zaposlenjima";
-            this.btnLoadData.UseVisualStyleBackColor = true;
-            this.btnLoadData.Click += new System.EventHandler(this.BtnLoadData_Click);
+            this.btnUcitajZaposlenja.Location = new System.Drawing.Point(8, 58);
+            this.btnUcitajZaposlenja.Name = "btnUcitajZaposlenja";
+            this.btnUcitajZaposlenja.Size = new System.Drawing.Size(128, 40);
+            this.btnUcitajZaposlenja.TabIndex = 1;
+            this.btnUcitajZaposlenja.Text = "Učitaj zaposlenja";
+            this.btnUcitajZaposlenja.ToolTipText = "Dohvatanje podataka o zaposlenjima";
+            this.btnUcitajZaposlenja.UseVisualStyleBackColor = true;
+            this.btnUcitajZaposlenja.Click += new System.EventHandler(this.BtnUcitajZaposlenja_Click);
             // 
             // btnExit
             // 
@@ -216,7 +232,8 @@
             this.datumZaposlenOdDataGridViewTextBoxColumn,
             this.datumZaposlenDoDataGridViewTextBoxColumn,
             this.noksNivoNazivDataGridViewTextBoxColumn,
-            this.vrstaAngazovanjaDataGridViewTextBoxColumn});
+            this.vrstaAngazovanjaDataGridViewTextBoxColumn,
+            this.dgvcImaObracunTemplate});
             this.dgvZaposlenjaSve.ColumnsForCopyOnClick = null;
             this.dgvZaposlenjaSve.CopyOnCellClick = true;
             this.dgvZaposlenjaSve.CtrlDisplayPositionRowCount = this.lblRowCount;
@@ -237,6 +254,7 @@
             this.dgvZaposlenjaSve.Size = new System.Drawing.Size(893, 211);
             this.dgvZaposlenjaSve.StandardSort = null;
             this.dgvZaposlenjaSve.TabIndex = 4;
+            this.dgvZaposlenjaSve.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvZaposlenjaSve_CellClick);
             // 
             // aktivanDataGridViewCheckBoxColumn
             // 
@@ -300,6 +318,15 @@
             this.vrstaAngazovanjaDataGridViewTextBoxColumn.ReadOnly = true;
             this.vrstaAngazovanjaDataGridViewTextBoxColumn.Width = 135;
             // 
+            // dgvcImaObracunTemplate
+            // 
+            this.dgvcImaObracunTemplate.DataPropertyName = "ImaObracunTemplate";
+            this.dgvcImaObracunTemplate.HeaderText = "OZ";
+            this.dgvcImaObracunTemplate.Name = "dgvcImaObracunTemplate";
+            this.dgvcImaObracunTemplate.ReadOnly = true;
+            this.dgvcImaObracunTemplate.ToolTipText = "Da li ima template za kreiranje obračuna zarada";
+            this.dgvcImaObracunTemplate.Width = 40;
+            // 
             // bsZaposlenja
             // 
             this.bsZaposlenja.DataMember = "Zaposlenja";
@@ -344,7 +371,7 @@
             // tpAngazovanja
             // 
             this.tpAngazovanja.BackColor = System.Drawing.SystemColors.Control;
-            this.tpAngazovanja.Controls.Add(this.ucDGV1);
+            this.tpAngazovanja.Controls.Add(this.dgvAngazovanja);
             this.tpAngazovanja.Location = new System.Drawing.Point(4, 27);
             this.tpAngazovanja.Name = "tpAngazovanja";
             this.tpAngazovanja.Padding = new System.Windows.Forms.Padding(3);
@@ -352,14 +379,14 @@
             this.tpAngazovanja.TabIndex = 1;
             this.tpAngazovanja.Text = "Angažovanja";
             // 
-            // ucDGV1
+            // dgvAngazovanja
             // 
-            this.ucDGV1.AllowUserToAddRows = false;
-            this.ucDGV1.AllowUserToDeleteRows = false;
+            this.dgvAngazovanja.AllowUserToAddRows = false;
+            this.dgvAngazovanja.AllowUserToDeleteRows = false;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ucDGV1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.ucDGV1.AutoGenerateColumns = false;
-            this.ucDGV1.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvAngazovanja.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvAngazovanja.AutoGenerateColumns = false;
+            this.dgvAngazovanja.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
@@ -367,26 +394,26 @@
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ucDGV1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.ucDGV1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ucDGV1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvAngazovanja.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvAngazovanja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAngazovanja.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.skolskaGodinaDataGridViewTextBoxColumn,
             this.izvorFinansiranjaDataGridViewTextBoxColumn,
             this.procenatAngazovanjaDataGridViewTextBoxColumn,
             this.predmetDataGridViewTextBoxColumn,
             this.podnivoPredmetaDataGridViewTextBoxColumn});
-            this.ucDGV1.ColumnsForCopyOnClick = null;
-            this.ucDGV1.CopyOnCellClick = false;
-            this.ucDGV1.CtrlDisplayPositionRowCount = null;
-            this.ucDGV1.DataSource = this.bsAngazovanja;
-            this.ucDGV1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucDGV1.Location = new System.Drawing.Point(3, 3);
-            this.ucDGV1.Name = "ucDGV1";
-            this.ucDGV1.ReadOnly = true;
-            this.ucDGV1.RowHeadersWidth = 30;
-            this.ucDGV1.Size = new System.Drawing.Size(879, 229);
-            this.ucDGV1.StandardSort = null;
-            this.ucDGV1.TabIndex = 0;
+            this.dgvAngazovanja.ColumnsForCopyOnClick = null;
+            this.dgvAngazovanja.CopyOnCellClick = false;
+            this.dgvAngazovanja.CtrlDisplayPositionRowCount = null;
+            this.dgvAngazovanja.DataSource = this.bsAngazovanja;
+            this.dgvAngazovanja.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvAngazovanja.Location = new System.Drawing.Point(3, 3);
+            this.dgvAngazovanja.Name = "dgvAngazovanja";
+            this.dgvAngazovanja.ReadOnly = true;
+            this.dgvAngazovanja.RowHeadersWidth = 30;
+            this.dgvAngazovanja.Size = new System.Drawing.Size(879, 229);
+            this.dgvAngazovanja.StandardSort = null;
+            this.dgvAngazovanja.TabIndex = 0;
             // 
             // skolskaGodinaDataGridViewTextBoxColumn
             // 
@@ -537,6 +564,7 @@
             // 
             // pnlBottomLeft
             // 
+            this.pnlBottomLeft.Controls.Add(this.btnObrisiObracune);
             this.pnlBottomLeft.Controls.Add(this.lstchkMeseci);
             this.pnlBottomLeft.Controls.Add(this.numOzGodina);
             this.pnlBottomLeft.Controls.Add(lblOzGodina);
@@ -550,10 +578,24 @@
             this.pnlBottomLeft.Size = new System.Drawing.Size(146, 234);
             this.pnlBottomLeft.TabIndex = 0;
             // 
+            // btnObrisiObracune
+            // 
+            this.btnObrisiObracune.Location = new System.Drawing.Point(3, 63);
+            this.btnObrisiObracune.Name = "btnObrisiObracune";
+            this.btnObrisiObracune.Size = new System.Drawing.Size(135, 30);
+            this.btnObrisiObracune.TabIndex = 7;
+            this.btnObrisiObracune.Text = "Obriši obračune";
+            this.btnObrisiObracune.ToolTipText = "Brisanje selekovanih obračuna zarada";
+            this.btnObrisiObracune.UseVisualStyleBackColor = true;
+            this.btnObrisiObracune.Click += new System.EventHandler(this.BtnObrisiObracune_Click);
+            // 
             // lstchkMeseci
             // 
+            this.lstchkMeseci.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lstchkMeseci.CheckOnClick = true;
             this.lstchkMeseci.FormattingEnabled = true;
+            this.lstchkMeseci.IntegralHeight = false;
             this.lstchkMeseci.Items.AddRange(new object[] {
             "Januar",
             "Februar",
@@ -569,12 +611,12 @@
             "Decembar"});
             this.lstchkMeseci.Location = new System.Drawing.Point(3, 125);
             this.lstchkMeseci.Name = "lstchkMeseci";
-            this.lstchkMeseci.Size = new System.Drawing.Size(135, 99);
+            this.lstchkMeseci.Size = new System.Drawing.Size(135, 109);
             this.lstchkMeseci.TabIndex = 6;
             // 
             // numOzGodina
             // 
-            this.numOzGodina.Location = new System.Drawing.Point(62, 95);
+            this.numOzGodina.Location = new System.Drawing.Point(62, 99);
             this.numOzGodina.Maximum = new decimal(new int[] {
             2050,
             0,
@@ -596,9 +638,9 @@
             // 
             // btnKreirajObracune
             // 
-            this.btnKreirajObracune.Location = new System.Drawing.Point(3, 49);
+            this.btnKreirajObracune.Location = new System.Drawing.Point(3, 33);
             this.btnKreirajObracune.Name = "btnKreirajObracune";
-            this.btnKreirajObracune.Size = new System.Drawing.Size(135, 40);
+            this.btnKreirajObracune.Size = new System.Drawing.Size(135, 30);
             this.btnKreirajObracune.TabIndex = 3;
             this.btnKreirajObracune.Text = "Kreiraj obračune";
             this.btnKreirajObracune.ToolTipText = "Kreiranje novih obračuna zarada za selektovane mesece na osnovu starog obračuna";
@@ -609,9 +651,9 @@
             // 
             this.btnUcitajObracunZarada.Location = new System.Drawing.Point(3, 3);
             this.btnUcitajObracunZarada.Name = "btnUcitajObracunZarada";
-            this.btnUcitajObracunZarada.Size = new System.Drawing.Size(135, 40);
+            this.btnUcitajObracunZarada.Size = new System.Drawing.Size(135, 30);
             this.btnUcitajObracunZarada.TabIndex = 2;
-            this.btnUcitajObracunZarada.Text = "Učitaj podatke";
+            this.btnUcitajObracunZarada.Text = "Učitaj obračune";
             this.btnUcitajObracunZarada.ToolTipText = "Dohvatanje podataka o obračunima zarada za zaposlenog";
             this.btnUcitajObracunZarada.UseVisualStyleBackColor = true;
             this.btnUcitajObracunZarada.Click += new System.EventHandler(this.BtnUcitajObracunZarada_Click);
@@ -641,7 +683,7 @@
             this.scMain.ResumeLayout(false);
             this.tcBottom.ResumeLayout(false);
             this.tpAngazovanja.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ucDGV1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAngazovanja)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAngazovanja)).EndInit();
             this.tpObracunZarada.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvObracunZarada)).EndInit();
@@ -656,7 +698,7 @@
         #endregion
 
         private Controls.UcLeftPanel pnlLeft;
-        private Controls.UcButton btnLoadData;
+        private Controls.UcButton btnUcitajZaposlenja;
         private Controls.UcExitAppButton btnExit;
         private System.Windows.Forms.Panel pnlZaposleniTop;
         private System.Windows.Forms.CheckBox chkAktivno;
@@ -664,14 +706,6 @@
         private Controls.UcDGV dgvZaposlenjaSve;
         private System.Windows.Forms.BindingSource bsZaposlenja;
         private Data.Ds ds;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn aktivanDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn brojUgovoraORaduDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn radnoMestoNazivDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn procenatRadnogVremenaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn datumZaposlenOdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn datumZaposlenDoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn noksNivoNazivDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn vrstaAngazovanjaDataGridViewTextBoxColumn;
         private System.Windows.Forms.SplitContainer scMain;
         private System.Windows.Forms.TabControl tcBottom;
         private System.Windows.Forms.TabPage tpObracunZarada;
@@ -690,12 +724,23 @@
         private System.Windows.Forms.CheckedListBox lstchkMeseci;
         private Controls.UcButton btnUcitajAngazovanja;
         private System.Windows.Forms.TabPage tpAngazovanja;
-        private Controls.UcDGV ucDGV1;
+        private Controls.UcDGV dgvAngazovanja;
         private System.Windows.Forms.BindingSource bsAngazovanja;
         private System.Windows.Forms.DataGridViewTextBoxColumn skolskaGodinaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn izvorFinansiranjaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn procenatAngazovanjaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn predmetDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn podnivoPredmetaDataGridViewTextBoxColumn;
+        private Controls.UcButton btnObrisiObracune;
+        private Controls.UcButton btnDodajOZTemplate;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn aktivanDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn brojUgovoraORaduDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn radnoMestoNazivDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn procenatRadnogVremenaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn datumZaposlenOdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn datumZaposlenDoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn noksNivoNazivDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vrstaAngazovanjaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dgvcImaObracunTemplate;
     }
 }

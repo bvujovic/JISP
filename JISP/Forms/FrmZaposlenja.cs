@@ -1,4 +1,5 @@
 ﻿using JISP.Classes;
+using JISP.Controls;
 using JISP.Data;
 using System;
 using System.Linq;
@@ -22,41 +23,55 @@ namespace JISP.Forms
                 if (CheckedIndicesMeseci != null)
                     foreach (var cim in CheckedIndicesMeseci)
                         lstchkMeseci.SetItemChecked((int)cim, true);
+                tcBottom.SelectedIndex = TcBottomSelectedIndex;
 
                 bsZaposlenja.DataSource = AppData.Ds;
                 dgvZaposlenjaSve.StandardSort = bsZaposlenja.Sort;
                 dgvZaposlenjaSve.LoadSettings();
                 SetBsFilter();
 
+                dgvAngazovanja.LoadSettings();
+
                 bsObracunZarada.DataSource = AppData.Ds;
                 dgvObracunZarada.LoadSettings();
                 bsObracunZarada.Filter = $"IdZaposlenog = {zaposleni.IdZaposlenog}";
                 numOzGodina.Value = DateTime.Now.Year;
+
+                //B btnUcitajObracunZarada.Funct = async () => { await BtnUcitajObracunZaradaClick(); };
             }
             catch (Exception ex) { Utils.ShowMbox(ex, Text); }
         }
 
         private readonly Ds.ZaposleniRow zaposleni;
+        private Ds.ZaposlenjaDataTable Zaposlenja => AppData.Ds.Zaposlenja;
 
-        private async void BtnLoadData_Click(object sender, EventArgs e)
+        private async void BtnUcitajZaposlenja_Click(object sender, EventArgs e)
         {
-            try
+            await (sender as UcButton).RunAsync(async () =>
             {
                 var body = $"{{'regUstUstanovaId':{WebApi.SV_SAVA_ID},'regZapZaposleniId':{zaposleni.IdZaposlenog}}}";
                 var json = await WebApi.PostForJson(WebApi.ReqEnum.Zap_Zaposlenja, body);
-
-                var zaps = zaposleni.GetZaposlenjaRows();
-                foreach (var z in zaps)
-                    AppData.Ds.Zaposlenja.RemoveZaposlenjaRow(z);
-
+                var IDsToRemove = zaposleni.GetZaposlenjaRows().Select(it => it.IdZaposlenja).ToList();
+                
                 dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
                 foreach (var obj in arr)
                 {
                     if (obj.regZapZaposleniUstanova.regUstUstanovaId != WebApi.SV_SAVA_ID)
                         continue;
-                    var z = AppData.Ds.Zaposlenja.NewZaposlenjaRow();
-                    z.IdZaposlenog = zaposleni.IdZaposlenog;
-                    z.IdZaposlenja = obj.id;
+                    Ds.ZaposlenjaRow z;
+                    var isNew = true; // da li je dobijeno zaposlenje novo 
+                    if (IDsToRemove.Contains((int)obj.id)) // vec imam dobijeno zaposlenje - treba ga update-ovati
+                    {
+                        IDsToRemove.Remove((int)obj.id);
+                        z = Zaposlenja.FindByIdZaposlenja((int)obj.id);
+                        isNew = false;
+                    }
+                    else
+                    {
+                        z = Zaposlenja.NewZaposlenjaRow();
+                        z.IdZaposlenog = zaposleni.IdZaposlenog;
+                        z.IdZaposlenja = obj.id;
+                    }
                     z.BrojUgovoraORadu = obj.brojUgovoraORadu;
                     z.DatumZaposlenOd = obj.datumZaposlenOd;
                     if (obj.datumZaposlenDo != null)
@@ -67,11 +82,48 @@ namespace JISP.Forms
                     if (obj.noksNivo != null)
                         z.NoksNivoNaziv = obj.noksNivo.naziv;
                     z.Aktivan = obj.statusUgovora != null && obj.statusUgovora == 19292;
-                    AppData.Ds.Zaposlenja.AddZaposlenjaRow(z);
+                    if (isNew)
+                        AppData.Ds.Zaposlenja.AddZaposlenjaRow(z);
+
+                    foreach (var id in IDsToRemove)
+                        Zaposlenja.RemoveZaposlenjaRow(Zaposlenja.FindByIdZaposlenja(id));
                 }
-            }
-            catch (Exception ex) { Utils.ShowMbox(ex, btnLoadData.Text); }
+            });
         }
+
+        //B
+        //private async void BtnLoadData_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        var body = $"{{'regUstUstanovaId':{WebApi.SV_SAVA_ID},'regZapZaposleniId':{zaposleni.IdZaposlenog}}}";
+        //        var json = await WebApi.PostForJson(WebApi.ReqEnum.Zap_Zaposlenja, body);
+        //        var zaps = zaposleni.GetZaposlenjaRows();
+        //        foreach (var z in zaps)
+        //            AppData.Ds.Zaposlenja.RemoveZaposlenjaRow(z);
+        //        dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
+        //        foreach (var obj in arr)
+        //        {
+        //            if (obj.regZapZaposleniUstanova.regUstUstanovaId != WebApi.SV_SAVA_ID)
+        //                continue;
+        //            var z = AppData.Ds.Zaposlenja.NewZaposlenjaRow();
+        //            z.IdZaposlenog = zaposleni.IdZaposlenog;
+        //            z.IdZaposlenja = obj.id;
+        //            z.BrojUgovoraORadu = obj.brojUgovoraORadu;
+        //            z.DatumZaposlenOd = obj.datumZaposlenOd;
+        //            if (obj.datumZaposlenDo != null)
+        //                z.DatumZaposlenDo = obj.datumZaposlenDo;
+        //            z.ProcenatRadnogVremena = obj.procenatRadnogVremena;
+        //            z.RadnoMestoNaziv = obj.radnoMestoNaziv;
+        //            z.VrstaAngazovanja = obj.vrstaAngazovanjaNaziv;
+        //            if (obj.noksNivo != null)
+        //                z.NoksNivoNaziv = obj.noksNivo.naziv;
+        //            z.Aktivan = obj.statusUgovora != null && obj.statusUgovora == 19292;
+        //            AppData.Ds.Zaposlenja.AddZaposlenjaRow(z);
+        //        }
+        //    }
+        //    catch (Exception ex) { Utils.ShowMbox(ex, btnUcitajZaposlenja.Text); }
+        //}
 
         private void SetBsFilter()
         {
@@ -86,7 +138,7 @@ namespace JISP.Forms
 
         private async void BtnUcitajObracunZarada_Click(object sender, EventArgs e)
         {
-            try
+            await (sender as UcButton).RunAsync(async () =>
             {
                 // dohvatanje podataka
                 var json = await WebApi.GetJson(WebApi.ReqEnum.Zap_ObracunZarada
@@ -101,6 +153,7 @@ namespace JISP.Forms
                 {
                     var oz = AppData.Ds.ObracunZarada.NewObracunZaradaRow();
                     oz.IdZaposlenog = zaposleni.IdZaposlenog;
+                    oz.IdObracuna = obj.id;
                     oz.BrojUgovora = obj.brojUgovora;
                     oz.Godina = obj.godinaBroj;
                     oz.MesecNaziv = obj.mesecSifarnikNaziv;
@@ -110,46 +163,66 @@ namespace JISP.Forms
                     oz.Norma = obj.normaZaposlenog;
                     AppData.Ds.ObracunZarada.AddObracunZaradaRow(oz);
                 }
-            }
-            catch (Exception ex) { Utils.ShowMbox(ex, btnUcitajObracunZarada.Text); }
+            });
         }
 
-        private void BtnKreirajObracune_Click(object sender, EventArgs e)
+        private async void BtnKreirajObracune_Click(object sender, EventArgs e)
         {
-            try
+            await (sender as UcButton).RunAsync(async () =>
             {
                 if (lstchkMeseci.CheckedItems.Count == 0)
-                {
-                    MessageBox.Show("0");
-                    return;
-                }
-                var strStariOZ = "...";
+                    throw new Exception("Potrebno je čekirati mesece za koje će se generisati novi obračuni.");
+                var zaps = dgvZaposlenjaSve.SelectedDataRows<Ds.ZaposlenjaRow>();
+                if (zaps.Count() > 1)
+                    throw new Exception("Potrebno je selektovati tačno 1 red (zaposlenje) za koje će se dodati novi obračuni zarada.");
+                var zap = zaps.First();
+                if (!zap.ImaObracunTemplate)
+                    throw new Exception("Selektovano zaposlenje nema zapamćen template za obračun zarada - klik na dugme Dodaj OZ Template.");
+
                 var god = (int)numOzGodina.Value;
                 foreach (int idxMesec in lstchkMeseci.CheckedIndices)
                 {
                     var mes = idxMesec + 1;
-                    string strNoviUnos = Classes.ObracunZarada.ObracunZarada.KreirajNoviUnos(strStariOZ, god, mes);
-                    MessageBox.Show(strNoviUnos);
+                    string strNoviUnos = Classes.ObracunZarada.ObracunZarada.KreirajNoviUnos(zap.ObracunTemplate, god, mes);
+                    await WebApi.PostForJson(WebApi.ReqEnum.Zap_ObracunZaradaKreiraj, strNoviUnos);
                 }
-            }
-            catch (Exception ex) { Utils.ShowMbox(ex, btnKreirajObracune.Text); }
+            });
+        }
+
+        private async void BtnObrisiObracune_Click(object sender, EventArgs e)
+        {
+            if (Utils.ShowMboxYesNo("Da li ste sigurni?", btnObrisiObracune.Text) == DialogResult.Yes)
+                await (sender as UcButton).RunAsync(async () =>
+                {
+                    var ozs = dgvObracunZarada.SelectedDataRows<Ds.ObracunZaradaRow>();
+                    if (ozs.Any(it => it.IdObracuna < 0))
+                        throw new Exception("Id obračuna nije ispravan. Potrebno je ponovo učitati obračune.");
+                    foreach (var oz in ozs)
+                    {
+                        var body = $"{{\"id\":{oz.IdObracuna},\"jeObrisano\":null,\"datumKreiranja\":\"0001-01-01T00:00:00\",\"idSesijeKreiranja\":null,\"idKorisnikaKreiranja\":null,\"datumIzmene\":null,\"idSesijeIzmene\":null,\"idKorisnikaIzmene\":null,\"vremenskiZig\":null,\"regZapObracunZaradaDouniverzitetskoObrazovanjeId\":0,\"godinaSifarnik\":null,\"godinaBroj\":{oz.Godina},\"mesecSifarnik\":null,\"mesecSifarnikNaziv\":\"{oz.MesecNaziv}\",\"mesecBroj\":null,\"osnovniKoeficijentZaposlenog\":{oz.OsnovniKoef:0.00},\"dodatniKoeficijentZaposlenog\":null,\"koeficijentZaStaresinstvo\":null,\"normaZaposlenog\":{oz.Norma},\"brojUgovora\":\"{oz.BrojUgovora}\",\"dodatniKoeficijentZaPredsednikaSindikataUstanove\":null,\"procenatAngazovanjaNaPlaninskojLokaciji\":null,\"regZapObracunZaradaDouniverzitetskoObrazovanje\":null,\"regZapObracunZaradaDouniverzitetskoObrazovanjeDodatniKoef\":null,\"regZapObracunZaradaDouniverzitetskoObrazovanjeDodKoefMulti\":null,\"regZapObracunZaradaDouniverzitetskoObrazovanjeDodKoefMultiInt\":null}}";
+                        await WebApi.PostForJson(WebApi.ReqEnum.Zap_ObracunZaradaObrisi, body);
+                    }
+                });
         }
 
         private static CheckState? CheckStateAktivno = null;
         private static CheckedListBox.CheckedIndexCollection CheckedIndicesMeseci = null;
+        private static int TcBottomSelectedIndex = 0;
 
         private void FrmZaposlenja_FormClosed(object sender, FormClosedEventArgs e)
         {
             CheckStateAktivno = chkAktivno.CheckState;
             CheckedIndicesMeseci = lstchkMeseci.CheckedIndices;
+            TcBottomSelectedIndex = tcBottom.SelectedIndex;
+            dgvZaposlenjaSve.SaveSettings();
+            dgvAngazovanja.SaveSettings();
+            dgvObracunZarada.SaveSettings();
         }
 
         private async void BtnUcitajAngazovanja_Click(object sender, EventArgs e)
         {
             tcBottom.SelectedTab = tpAngazovanja;
-            var akcija = btnUcitajAngazovanja.Text;
-            btnUcitajAngazovanja.Text = "...";
-            try
+            await (sender as UcButton).RunAsync(async () =>
             {
                 var zaposlenja = dgvZaposlenjaSve.SelectedDataRows<Ds.ZaposlenjaRow>();
                 foreach (var zap in zaposlenja)
@@ -176,9 +249,49 @@ namespace JISP.Forms
                         AppData.Ds.Angazovanja.AddAngazovanjaRow(a);
                     }
                 }
+            });
+        }
+
+        private void BtnDodajOZTemplate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var strBash = Clipboard.GetText();
+                ClipboardSadrziString(strBash, "regZapObracunZaradaDouniverzitetskoObrazovanjeMesec");
+                ClipboardSadrziString(strBash, "ukupanDodatniKoeficijentPoRM");
+                string strJson = Classes.ObracunZarada.ObracunZarada.Bash2Json(strBash);
+                dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(strJson);
+                string idZaposlenja = obj.idNavigation.id;
+
+                var zap = AppData.Ds.Zaposlenja.FindByIdZaposlenja(int.Parse(idZaposlenja));
+                if (zap == null)
+                    throw new Exception($"Zaposlenje sa IDem {idZaposlenja} nije pronađeno.");
+                if (zap.ZaposleniRow.IdZaposlenog != zaposleni.IdZaposlenog)
+                    throw new Exception($"U clipboard-u je OZ template ugovora koji pripada zaposlenom {zap.ZaposleniRow}.");
+                zap.ObracunTemplate = strJson;
             }
-            catch (Exception ex) { Utils.ShowMbox(ex, akcija); }
-            btnUcitajAngazovanja.Text = akcija;
+            catch (Exception ex) { Utils.ShowMbox(ex, btnDodajOZTemplate.Text); }
+        }
+
+        /// <summary>Ako prosledjeni haystack ne sadrzi needle - izbacuje se Exception.</summary>
+        private void ClipboardSadrziString(string haystack, string needle)
+        {
+            if (!haystack.Contains(needle))
+                throw new Exception($"Text iz clipboard-a ne sadrži '{needle}' tako da verovatno ne predstavlja JSON telo poruke API metodu SacuvajObracunZarade.");
+        }
+
+        /// <summary>Klik na checkBox celiju ImaObracunTemplate -> kopiranje OZ template-a u clipboard.</summary>
+        private void DgvZaposlenjaSve_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex == -1)
+                    return;
+                var zap = dgvZaposlenjaSve.CurrDataRow<Ds.ZaposlenjaRow>();
+                if (zap.ImaObracunTemplate)
+                    Clipboard.SetText(zap.ObracunTemplate);
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, this.Text); }
         }
     }
 }

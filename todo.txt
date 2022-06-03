@@ -1,6 +1,5 @@
-﻿- ubrzavanje unosa koeficijenata u douniv. obrazovanju: interfejs i testiranje
-- zaposlenima dodati i predmete na kojima rade. ovo bi trebalo da bude pretrazivo u formi
-- Koriscenje novije verzije .NET-a u projektu
+﻿- Predmeti koje nastavnici predaju [i finansiranja] bi trebalo da se vide u dgvZaposleni [i u dgvZaposlenjaSve]
+	i da se pretrazuju
 - dugmici
 	[- boje dugmica: Sacuvaj - plava, Dodaj novo - zelena, Izmeni - zuta, Obrisi - crvena, Izlaz iz app - crna]
-- napraviti nove SShotove
+- Bolje opisati program u README.md

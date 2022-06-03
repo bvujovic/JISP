@@ -308,5 +308,10 @@ namespace JISP.Forms
                 new FrmUcenikOsnovno(uc).ShowDialog();
             }
         }
+
+        private void FrmUcenici_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            dgvUcenici.SaveSettings();
+        }
     }
 }

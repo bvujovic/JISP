@@ -143,6 +143,8 @@ namespace JISP.Data
             Zap_Dodatno,
             Zap_Zaposlenja,
             Zap_ObracunZarada,
+            Zap_ObracunZaradaKreiraj,
+            Zap_ObracunZaradaObrisi,
             Zap_Angazovanja,
 
             Uc_DuosSrednjoskolci,
@@ -169,6 +171,10 @@ namespace JISP.Data
                     return urlBase + "zaposleni/VratiZaposlenja";
                 case ReqEnum.Zap_ObracunZarada:
                     return urlBase + $"zaposleni/VratiObracuneZradeZaZaposlenog/{param}/" + SV_SAVA_ID;
+                case ReqEnum.Zap_ObracunZaradaKreiraj:
+                    return urlBase + $"zaposleni/SacuvajObracunZarade/";
+                case ReqEnum.Zap_ObracunZaradaObrisi:
+                    return urlBase + $"zaposleni/ObrisiObracunZarade/";
                 case ReqEnum.Zap_Angazovanja:
                     return urlBase + $"zaposleni/VratiAngazovanjaPoUgovoruNastavnoOsoblje/{param}/0/";
 

@@ -33,30 +33,13 @@ namespace JISP.Forms
             System.Windows.Forms.Label lblFilterCaption;
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblRowCount = new System.Windows.Forms.Label();
             this.bsZaposleni = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.dgvZaposleni = new JISP.Controls.UcDGV();
-            this.pnlZaposleniTop = new System.Windows.Forms.Panel();
-            this.chkAktivniZap = new System.Windows.Forms.CheckBox();
-            this.txtFilter = new JISP.Controls.UcFilterTextBox();
-            this.dgvZaposlenja = new JISP.Controls.UcDGV();
-            this.dgvcNjeAktivan = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dgvcZaposlenjaProcenat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcZaposlenjaZaposlenOd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcNjaRMNaziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bsZaposlenja = new System.Windows.Forms.BindingSource(this.components);
-            this.ofdZapSlika = new System.Windows.Forms.OpenFileDialog();
-            this.pnlLeft = new JISP.Controls.UcLeftPanel();
-            this.btnKvalifStruktura = new JISP.Controls.UcButton();
-            this.btnLoadDataExtra = new JISP.Controls.UcButton();
-            this.chkCopyOnClick = new System.Windows.Forms.CheckBox();
-            this.btnLoadData = new JISP.Controls.UcButton();
-            this.btnSaveData = new JISP.Controls.UcButton();
-            this.btnExit = new JISP.Controls.UcExitAppButton();
             this.dgvcIme = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcPrezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcJMBG = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,6 +54,24 @@ namespace JISP.Forms
             this.dgvcZapId = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dgvcStatusAktivnosti = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcNapomene = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pnlZaposleniTop = new System.Windows.Forms.Panel();
+            this.chkAktivniZap = new System.Windows.Forms.CheckBox();
+            this.txtFilter = new JISP.Controls.UcFilterTextBox();
+            this.dgvZaposlenja = new JISP.Controls.UcDGV();
+            this.dgvcNjeAktivan = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dgvcZaposlenjaProcenat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcZaposlenjaZaposlenOd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcNjaRMNaziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcZaposlenjaVrstaAng = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsZaposlenja = new System.Windows.Forms.BindingSource(this.components);
+            this.ofdZapSlika = new System.Windows.Forms.OpenFileDialog();
+            this.pnlLeft = new JISP.Controls.UcLeftPanel();
+            this.btnKvalifStruktura = new JISP.Controls.UcButton();
+            this.btnLoadDataExtra = new JISP.Controls.UcButton();
+            this.chkCopyOnClick = new System.Windows.Forms.CheckBox();
+            this.btnLoadData = new JISP.Controls.UcButton();
+            this.btnSaveData = new JISP.Controls.UcButton();
+            this.btnExit = new JISP.Controls.UcExitAppButton();
             lblFilterCaption = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bsZaposleni)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
@@ -167,6 +168,7 @@ namespace JISP.Forms
             this.dgvZaposleni.Location = new System.Drawing.Point(0, 30);
             this.dgvZaposleni.Name = "dgvZaposleni";
             this.dgvZaposleni.RowHeadersWidth = 30;
+            this.dgvZaposleni.RowTemplate.Height = 24;
             this.dgvZaposleni.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvZaposleni.Size = new System.Drawing.Size(840, 424);
             this.dgvZaposleni.StandardSort = null;
@@ -174,203 +176,6 @@ namespace JISP.Forms
             this.dgvZaposleni.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvZaposleni_CellClick);
             this.dgvZaposleni.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvZaposleni_CellDoubleClick);
             this.dgvZaposleni.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.DgvZaposleni_RowsAdded);
-            // 
-            // pnlZaposleniTop
-            // 
-            this.pnlZaposleniTop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlZaposleniTop.Controls.Add(lblFilterCaption);
-            this.pnlZaposleniTop.Controls.Add(this.chkAktivniZap);
-            this.pnlZaposleniTop.Controls.Add(this.txtFilter);
-            this.pnlZaposleniTop.Controls.Add(this.lblRowCount);
-            this.pnlZaposleniTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlZaposleniTop.Location = new System.Drawing.Point(0, 0);
-            this.pnlZaposleniTop.Name = "pnlZaposleniTop";
-            this.pnlZaposleniTop.Size = new System.Drawing.Size(840, 30);
-            this.pnlZaposleniTop.TabIndex = 0;
-            // 
-            // chkAktivniZap
-            // 
-            this.chkAktivniZap.AutoSize = true;
-            this.chkAktivniZap.Checked = true;
-            this.chkAktivniZap.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.chkAktivniZap.Location = new System.Drawing.Point(509, 4);
-            this.chkAktivniZap.Name = "chkAktivniZap";
-            this.chkAktivniZap.Size = new System.Drawing.Size(69, 22);
-            this.chkAktivniZap.TabIndex = 1;
-            this.chkAktivniZap.Text = "Aktivni";
-            this.chkAktivniZap.ThreeState = true;
-            this.chkAktivniZap.UseVisualStyleBackColor = true;
-            this.chkAktivniZap.CheckStateChanged += new System.EventHandler(this.FilterChanged);
-            // 
-            // txtFilter
-            // 
-            this.txtFilter.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtFilter.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
-            this.txtFilter.BindingSource = this.bsZaposleni;
-            this.txtFilter.Location = new System.Drawing.Point(193, 1);
-            this.txtFilter.Name = "txtFilter";
-            this.txtFilter.Size = new System.Drawing.Size(128, 24);
-            this.txtFilter.TabIndex = 0;
-            this.txtFilter.TextChanged += new System.EventHandler(this.FilterChanged);
-            // 
-            // dgvZaposlenja
-            // 
-            this.dgvZaposlenja.AllowUserToAddRows = false;
-            this.dgvZaposlenja.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.dgvZaposlenja.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvZaposlenja.AutoGenerateColumns = false;
-            this.dgvZaposlenja.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvZaposlenja.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvZaposlenja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvZaposlenja.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dgvcNjeAktivan,
-            this.dgvcZaposlenjaProcenat,
-            this.dgvcZaposlenjaZaposlenOd,
-            this.dgvcNjaRMNaziv});
-            this.dgvZaposlenja.ColumnsForCopyOnClick = null;
-            this.dgvZaposlenja.CopyOnCellClick = false;
-            this.dgvZaposlenja.CtrlDisplayPositionRowCount = null;
-            this.dgvZaposlenja.DataSource = this.bsZaposlenja;
-            this.dgvZaposlenja.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvZaposlenja.Location = new System.Drawing.Point(0, 0);
-            this.dgvZaposlenja.Name = "dgvZaposlenja";
-            this.dgvZaposlenja.RowHeadersWidth = 51;
-            this.dgvZaposlenja.Size = new System.Drawing.Size(840, 117);
-            this.dgvZaposlenja.StandardSort = null;
-            this.dgvZaposlenja.TabIndex = 0;
-            // 
-            // dgvcNjeAktivan
-            // 
-            this.dgvcNjeAktivan.DataPropertyName = "Aktivan";
-            this.dgvcNjeAktivan.HeaderText = "Aktivan";
-            this.dgvcNjeAktivan.MinimumWidth = 6;
-            this.dgvcNjeAktivan.Name = "dgvcNjeAktivan";
-            this.dgvcNjeAktivan.ReadOnly = true;
-            this.dgvcNjeAktivan.Width = 65;
-            // 
-            // dgvcZaposlenjaProcenat
-            // 
-            this.dgvcZaposlenjaProcenat.DataPropertyName = "ProcenatRadnogVremena";
-            this.dgvcZaposlenjaProcenat.HeaderText = "Procenat";
-            this.dgvcZaposlenjaProcenat.Name = "dgvcZaposlenjaProcenat";
-            this.dgvcZaposlenjaProcenat.Width = 80;
-            // 
-            // dgvcZaposlenjaZaposlenOd
-            // 
-            this.dgvcZaposlenjaZaposlenOd.DataPropertyName = "DatumZaposlenOd";
-            this.dgvcZaposlenjaZaposlenOd.HeaderText = "Zaposlen od";
-            this.dgvcZaposlenjaZaposlenOd.Name = "dgvcZaposlenjaZaposlenOd";
-            // 
-            // dgvcNjaRMNaziv
-            // 
-            this.dgvcNjaRMNaziv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgvcNjaRMNaziv.DataPropertyName = "RadnoMestoNaziv";
-            this.dgvcNjaRMNaziv.HeaderText = "Radno mesto";
-            this.dgvcNjaRMNaziv.MinimumWidth = 6;
-            this.dgvcNjaRMNaziv.Name = "dgvcNjaRMNaziv";
-            this.dgvcNjaRMNaziv.ReadOnly = true;
-            // 
-            // bsZaposlenja
-            // 
-            this.bsZaposlenja.DataSource = this.bsZaposleni;
-            this.bsZaposlenja.Sort = "";
-            // 
-            // ofdZapSlika
-            // 
-            this.ofdZapSlika.Filter = "Image files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
-            this.ofdZapSlika.Title = "Odabir slike za zaposlenog";
-            // 
-            // pnlLeft
-            // 
-            this.pnlLeft.Controls.Add(this.btnKvalifStruktura);
-            this.pnlLeft.Controls.Add(this.btnLoadDataExtra);
-            this.pnlLeft.Controls.Add(this.chkCopyOnClick);
-            this.pnlLeft.Controls.Add(this.btnLoadData);
-            this.pnlLeft.Controls.Add(this.btnSaveData);
-            this.pnlLeft.Controls.Add(this.btnExit);
-            this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlLeft.Location = new System.Drawing.Point(0, 0);
-            this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
-            this.pnlLeft.RightWingWidth = 6;
-            this.pnlLeft.Size = new System.Drawing.Size(146, 575);
-            this.pnlLeft.TabIndex = 1;
-            // 
-            // btnKvalifStruktura
-            // 
-            this.btnKvalifStruktura.Location = new System.Drawing.Point(8, 230);
-            this.btnKvalifStruktura.Name = "btnKvalifStruktura";
-            this.btnKvalifStruktura.Size = new System.Drawing.Size(128, 40);
-            this.btnKvalifStruktura.TabIndex = 5;
-            this.btnKvalifStruktura.Text = "Kvalif. struktura";
-            this.btnKvalifStruktura.ToolTipText = "Kreiranje izveštaja Kvalifikaciona Struktura";
-            this.btnKvalifStruktura.UseVisualStyleBackColor = true;
-            this.btnKvalifStruktura.Click += new System.EventHandler(this.BtnKvalifStruktura_Click);
-            // 
-            // btnLoadDataExtra
-            // 
-            this.btnLoadDataExtra.Location = new System.Drawing.Point(8, 184);
-            this.btnLoadDataExtra.Name = "btnLoadDataExtra";
-            this.btnLoadDataExtra.Size = new System.Drawing.Size(128, 40);
-            this.btnLoadDataExtra.TabIndex = 4;
-            this.btnLoadDataExtra.Text = "Učitaj dodatno";
-            this.btnLoadDataExtra.ToolTipText = "Dohvatanje dodatnih podataka o zaposlenima (mejl, telefon, adresa) za selektovane" +
-    " zaposlene";
-            this.btnLoadDataExtra.UseVisualStyleBackColor = true;
-            this.btnLoadDataExtra.Click += new System.EventHandler(this.BtnLoadDataExtra_Click);
-            // 
-            // chkCopyOnClick
-            // 
-            this.chkCopyOnClick.AutoSize = true;
-            this.chkCopyOnClick.Location = new System.Drawing.Point(8, 64);
-            this.chkCopyOnClick.Name = "chkCopyOnClick";
-            this.chkCopyOnClick.Size = new System.Drawing.Size(135, 22);
-            this.chkCopyOnClick.TabIndex = 2;
-            this.chkCopyOnClick.Text = "Kopiranje na klik";
-            this.chkCopyOnClick.UseVisualStyleBackColor = true;
-            this.chkCopyOnClick.CheckedChanged += new System.EventHandler(this.ChkCopyOnClick_CheckedChanged);
-            // 
-            // btnLoadData
-            // 
-            this.btnLoadData.Location = new System.Drawing.Point(8, 138);
-            this.btnLoadData.Name = "btnLoadData";
-            this.btnLoadData.Size = new System.Drawing.Size(128, 40);
-            this.btnLoadData.TabIndex = 1;
-            this.btnLoadData.Text = "Učitaj podatke";
-            this.btnLoadData.ToolTipText = "Dohvatanje podataka o svim zaposlenima (ime, prezime, JMBG, zaposlenja).";
-            this.btnLoadData.UseVisualStyleBackColor = true;
-            this.btnLoadData.Click += new System.EventHandler(this.BtnLoadData_Click);
-            // 
-            // btnSaveData
-            // 
-            this.btnSaveData.Location = new System.Drawing.Point(8, 92);
-            this.btnSaveData.Name = "btnSaveData";
-            this.btnSaveData.Size = new System.Drawing.Size(128, 40);
-            this.btnSaveData.TabIndex = 0;
-            this.btnSaveData.Text = "Sačuvaj podatke";
-            this.btnSaveData.ToolTipText = null;
-            this.btnSaveData.UseVisualStyleBackColor = true;
-            this.btnSaveData.Click += new System.EventHandler(this.BtnSaveData_Click);
-            // 
-            // btnExit
-            // 
-            this.btnExit.BackColor = System.Drawing.Color.Red;
-            this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(8, 12);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(128, 28);
-            this.btnExit.TabIndex = 3;
-            this.btnExit.Text = "Izlaz";
-            this.btnExit.ToolTipText = "Izlaz iz aplikacije";
-            this.btnExit.UseVisualStyleBackColor = false;
             // 
             // dgvcIme
             // 
@@ -493,6 +298,213 @@ namespace JISP.Forms
             this.dgvcNapomene.MinimumWidth = 88;
             this.dgvcNapomene.Name = "dgvcNapomene";
             // 
+            // pnlZaposleniTop
+            // 
+            this.pnlZaposleniTop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlZaposleniTop.Controls.Add(lblFilterCaption);
+            this.pnlZaposleniTop.Controls.Add(this.chkAktivniZap);
+            this.pnlZaposleniTop.Controls.Add(this.txtFilter);
+            this.pnlZaposleniTop.Controls.Add(this.lblRowCount);
+            this.pnlZaposleniTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlZaposleniTop.Location = new System.Drawing.Point(0, 0);
+            this.pnlZaposleniTop.Name = "pnlZaposleniTop";
+            this.pnlZaposleniTop.Size = new System.Drawing.Size(840, 30);
+            this.pnlZaposleniTop.TabIndex = 0;
+            // 
+            // chkAktivniZap
+            // 
+            this.chkAktivniZap.AutoSize = true;
+            this.chkAktivniZap.Checked = true;
+            this.chkAktivniZap.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+            this.chkAktivniZap.Location = new System.Drawing.Point(509, 4);
+            this.chkAktivniZap.Name = "chkAktivniZap";
+            this.chkAktivniZap.Size = new System.Drawing.Size(69, 22);
+            this.chkAktivniZap.TabIndex = 1;
+            this.chkAktivniZap.Text = "Aktivni";
+            this.chkAktivniZap.ThreeState = true;
+            this.chkAktivniZap.UseVisualStyleBackColor = true;
+            this.chkAktivniZap.CheckStateChanged += new System.EventHandler(this.FilterChanged);
+            // 
+            // txtFilter
+            // 
+            this.txtFilter.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtFilter.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.txtFilter.BindingSource = this.bsZaposleni;
+            this.txtFilter.Location = new System.Drawing.Point(193, 1);
+            this.txtFilter.Name = "txtFilter";
+            this.txtFilter.Size = new System.Drawing.Size(128, 24);
+            this.txtFilter.TabIndex = 0;
+            this.txtFilter.TextChanged += new System.EventHandler(this.FilterChanged);
+            // 
+            // dgvZaposlenja
+            // 
+            this.dgvZaposlenja.AllowUserToAddRows = false;
+            this.dgvZaposlenja.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.dgvZaposlenja.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvZaposlenja.AutoGenerateColumns = false;
+            this.dgvZaposlenja.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvZaposlenja.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvZaposlenja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvZaposlenja.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvcNjeAktivan,
+            this.dgvcZaposlenjaProcenat,
+            this.dgvcZaposlenjaZaposlenOd,
+            this.dgvcNjaRMNaziv,
+            this.dgvcZaposlenjaVrstaAng});
+            this.dgvZaposlenja.ColumnsForCopyOnClick = null;
+            this.dgvZaposlenja.CopyOnCellClick = false;
+            this.dgvZaposlenja.CtrlDisplayPositionRowCount = null;
+            this.dgvZaposlenja.DataSource = this.bsZaposlenja;
+            this.dgvZaposlenja.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvZaposlenja.Location = new System.Drawing.Point(0, 0);
+            this.dgvZaposlenja.Name = "dgvZaposlenja";
+            this.dgvZaposlenja.RowHeadersWidth = 51;
+            this.dgvZaposlenja.Size = new System.Drawing.Size(840, 117);
+            this.dgvZaposlenja.StandardSort = null;
+            this.dgvZaposlenja.TabIndex = 0;
+            // 
+            // dgvcNjeAktivan
+            // 
+            this.dgvcNjeAktivan.DataPropertyName = "Aktivan";
+            this.dgvcNjeAktivan.HeaderText = "Aktivan";
+            this.dgvcNjeAktivan.MinimumWidth = 6;
+            this.dgvcNjeAktivan.Name = "dgvcNjeAktivan";
+            this.dgvcNjeAktivan.ReadOnly = true;
+            this.dgvcNjeAktivan.Width = 65;
+            // 
+            // dgvcZaposlenjaProcenat
+            // 
+            this.dgvcZaposlenjaProcenat.DataPropertyName = "ProcenatRadnogVremena";
+            this.dgvcZaposlenjaProcenat.HeaderText = "Procenat";
+            this.dgvcZaposlenjaProcenat.Name = "dgvcZaposlenjaProcenat";
+            this.dgvcZaposlenjaProcenat.Width = 80;
+            // 
+            // dgvcZaposlenjaZaposlenOd
+            // 
+            this.dgvcZaposlenjaZaposlenOd.DataPropertyName = "DatumZaposlenOd";
+            this.dgvcZaposlenjaZaposlenOd.HeaderText = "Zaposlen od";
+            this.dgvcZaposlenjaZaposlenOd.Name = "dgvcZaposlenjaZaposlenOd";
+            // 
+            // dgvcNjaRMNaziv
+            // 
+            this.dgvcNjaRMNaziv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvcNjaRMNaziv.DataPropertyName = "RadnoMestoNaziv";
+            this.dgvcNjaRMNaziv.FillWeight = 200F;
+            this.dgvcNjaRMNaziv.HeaderText = "Radno mesto";
+            this.dgvcNjaRMNaziv.MinimumWidth = 6;
+            this.dgvcNjaRMNaziv.Name = "dgvcNjaRMNaziv";
+            this.dgvcNjaRMNaziv.ReadOnly = true;
+            // 
+            // dgvcZaposlenjaVrstaAng
+            // 
+            this.dgvcZaposlenjaVrstaAng.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvcZaposlenjaVrstaAng.DataPropertyName = "VrstaAngazovanja";
+            this.dgvcZaposlenjaVrstaAng.HeaderText = "Vrsta angažovanja";
+            this.dgvcZaposlenjaVrstaAng.Name = "dgvcZaposlenjaVrstaAng";
+            this.dgvcZaposlenjaVrstaAng.ReadOnly = true;
+            // 
+            // bsZaposlenja
+            // 
+            this.bsZaposlenja.DataSource = this.bsZaposleni;
+            this.bsZaposlenja.Sort = "";
+            // 
+            // ofdZapSlika
+            // 
+            this.ofdZapSlika.Filter = "Image files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
+            this.ofdZapSlika.Title = "Odabir slike za zaposlenog";
+            // 
+            // pnlLeft
+            // 
+            this.pnlLeft.Controls.Add(this.btnKvalifStruktura);
+            this.pnlLeft.Controls.Add(this.btnLoadDataExtra);
+            this.pnlLeft.Controls.Add(this.chkCopyOnClick);
+            this.pnlLeft.Controls.Add(this.btnLoadData);
+            this.pnlLeft.Controls.Add(this.btnSaveData);
+            this.pnlLeft.Controls.Add(this.btnExit);
+            this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlLeft.Location = new System.Drawing.Point(0, 0);
+            this.pnlLeft.Name = "pnlLeft";
+            this.pnlLeft.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
+            this.pnlLeft.RightWingWidth = 6;
+            this.pnlLeft.Size = new System.Drawing.Size(146, 575);
+            this.pnlLeft.TabIndex = 1;
+            // 
+            // btnKvalifStruktura
+            // 
+            this.btnKvalifStruktura.Location = new System.Drawing.Point(8, 230);
+            this.btnKvalifStruktura.Name = "btnKvalifStruktura";
+            this.btnKvalifStruktura.Size = new System.Drawing.Size(128, 40);
+            this.btnKvalifStruktura.TabIndex = 5;
+            this.btnKvalifStruktura.Text = "Kvalif. struktura";
+            this.btnKvalifStruktura.ToolTipText = "Kreiranje izveštaja Kvalifikaciona Struktura";
+            this.btnKvalifStruktura.UseVisualStyleBackColor = true;
+            this.btnKvalifStruktura.Click += new System.EventHandler(this.BtnKvalifStruktura_Click);
+            // 
+            // btnLoadDataExtra
+            // 
+            this.btnLoadDataExtra.Location = new System.Drawing.Point(8, 184);
+            this.btnLoadDataExtra.Name = "btnLoadDataExtra";
+            this.btnLoadDataExtra.Size = new System.Drawing.Size(128, 40);
+            this.btnLoadDataExtra.TabIndex = 4;
+            this.btnLoadDataExtra.Text = "Učitaj dodatno";
+            this.btnLoadDataExtra.ToolTipText = "Dohvatanje dodatnih podataka o zaposlenima (mejl, telefon, adresa) za selektovane" +
+    " zaposlene";
+            this.btnLoadDataExtra.UseVisualStyleBackColor = true;
+            this.btnLoadDataExtra.Click += new System.EventHandler(this.BtnLoadDataExtra_Click);
+            // 
+            // chkCopyOnClick
+            // 
+            this.chkCopyOnClick.AutoSize = true;
+            this.chkCopyOnClick.Location = new System.Drawing.Point(8, 64);
+            this.chkCopyOnClick.Name = "chkCopyOnClick";
+            this.chkCopyOnClick.Size = new System.Drawing.Size(135, 22);
+            this.chkCopyOnClick.TabIndex = 2;
+            this.chkCopyOnClick.Text = "Kopiranje na klik";
+            this.chkCopyOnClick.UseVisualStyleBackColor = true;
+            this.chkCopyOnClick.CheckedChanged += new System.EventHandler(this.ChkCopyOnClick_CheckedChanged);
+            // 
+            // btnLoadData
+            // 
+            this.btnLoadData.Location = new System.Drawing.Point(8, 138);
+            this.btnLoadData.Name = "btnLoadData";
+            this.btnLoadData.Size = new System.Drawing.Size(128, 40);
+            this.btnLoadData.TabIndex = 1;
+            this.btnLoadData.Text = "Učitaj podatke";
+            this.btnLoadData.ToolTipText = "Dohvatanje podataka o svim zaposlenima (ime, prezime, JMBG, zaposlenja).";
+            this.btnLoadData.UseVisualStyleBackColor = true;
+            this.btnLoadData.Click += new System.EventHandler(this.BtnLoadData_Click);
+            // 
+            // btnSaveData
+            // 
+            this.btnSaveData.Location = new System.Drawing.Point(8, 92);
+            this.btnSaveData.Name = "btnSaveData";
+            this.btnSaveData.Size = new System.Drawing.Size(128, 40);
+            this.btnSaveData.TabIndex = 0;
+            this.btnSaveData.Text = "Sačuvaj podatke";
+            this.btnSaveData.ToolTipText = null;
+            this.btnSaveData.UseVisualStyleBackColor = true;
+            this.btnSaveData.Click += new System.EventHandler(this.BtnSaveData_Click);
+            // 
+            // btnExit
+            // 
+            this.btnExit.BackColor = System.Drawing.Color.Red;
+            this.btnExit.ForeColor = System.Drawing.Color.White;
+            this.btnExit.Location = new System.Drawing.Point(8, 12);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(128, 28);
+            this.btnExit.TabIndex = 3;
+            this.btnExit.Text = "Izlaz";
+            this.btnExit.ToolTipText = "Izlaz iz aplikacije";
+            this.btnExit.UseVisualStyleBackColor = false;
+            // 
             // FrmZaposleni
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -505,6 +517,7 @@ namespace JISP.Forms
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmZaposleni";
             this.Text = "Zaposleni";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmZaposleni_FormClosed);
             this.Load += new System.EventHandler(this.FrmZaposleni_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bsZaposleni)).EndInit();
             this.splitContainer.Panel1.ResumeLayout(false);
@@ -539,10 +552,6 @@ namespace JISP.Forms
         private System.Windows.Forms.BindingSource bsZaposlenja;
         private System.Windows.Forms.CheckBox chkAktivniZap;
         private System.Windows.Forms.OpenFileDialog ofdZapSlika;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dgvcNjeAktivan;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcZaposlenjaProcenat;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcZaposlenjaZaposlenOd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcNjaRMNaziv;
         private Controls.UcButton btnLoadDataExtra;
         private Controls.UcButton btnKvalifStruktura;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcIme;
@@ -559,5 +568,10 @@ namespace JISP.Forms
         private System.Windows.Forms.DataGridViewButtonColumn dgvcZapId;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcStatusAktivnosti;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcNapomene;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dgvcNjeAktivan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcZaposlenjaProcenat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcZaposlenjaZaposlenOd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcNjaRMNaziv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcZaposlenjaVrstaAng;
     }
 }
