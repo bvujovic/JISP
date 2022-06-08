@@ -26,5 +26,23 @@ namespace xUnitTests.Classes.ObracunZarada
         //}
 
         // jednakost objekata
+
+        [Theory]
+        [InlineData(1, "Јануар")]
+        [InlineData(6, "Јун")]
+        [InlineData(12, "Децембар")]
+        public void NazivMesecaTest(int brojMeseca, string tacanNaziv)
+        {
+            var naziv = OzMesec.NazivMeseca(brojMeseca);
+            Assert.Equal(tacanNaziv, naziv);
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(13)]
+        public void NazivMeseca_Exceptions(int brojMeseca)
+        {
+            Assert.Throws<Exception>(() => OzMesec.NazivMeseca(brojMeseca));
+        }
     }
 }

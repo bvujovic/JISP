@@ -20,5 +20,21 @@ namespace JISP.Classes.ObracunZarada
 
         public override string ToString()
             => $"{Godina}, {Mesec:00}";
+
+        private static string[] meseci = new[]
+        {
+            "Јануар",   "Фебруар",  "Март",
+            "Април",    "Мај",      "Јун",
+            "Јул",      "Август",   "Септембар",
+            "Октобар",  "Новембар", "Децембар",
+        };
+
+        public static string NazivMeseca(int brojMeseca)
+        {
+            var idx = brojMeseca - 1;
+            if (idx < 0 || idx > meseci.Length - 1)
+                throw new Exception($"Ne postoji mesec pod brojem {brojMeseca}.");
+            return meseci[idx];
+        }
     }
 }

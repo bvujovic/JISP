@@ -2263,6 +2263,8 @@ namespace JISP.Data {
             
             private global::System.Data.DataColumn columnNorma;
             
+            private global::System.Data.DataColumn columnKoefZaStaresinstvo;
+            
             private global::System.Data.DataColumn columnKoefZaPredsednikaSindikata;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2364,6 +2366,14 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn KoefZaStaresinstvoColumn {
+                get {
+                    return this.columnKoefZaStaresinstvo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn KoefZaPredsednikaSindikataColumn {
                 get {
                     return this.columnKoefZaPredsednikaSindikata;
@@ -2407,7 +2417,7 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ObracunZaradaRow AddObracunZaradaRow(int IdObracuna, ZaposleniRow parentZaposleniRowByZaposleni_ObracunZarada, string BrojUgovora, int Godina, string MesecNaziv, double OsnovniKoef, double DodatniKoef, double Norma, double KoefZaPredsednikaSindikata) {
+            public ObracunZaradaRow AddObracunZaradaRow(int IdObracuna, ZaposleniRow parentZaposleniRowByZaposleni_ObracunZarada, string BrojUgovora, int Godina, string MesecNaziv, double OsnovniKoef, double DodatniKoef, double Norma, double KoefZaStaresinstvo, double KoefZaPredsednikaSindikata) {
                 ObracunZaradaRow rowObracunZaradaRow = ((ObracunZaradaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IdObracuna,
@@ -2418,6 +2428,7 @@ namespace JISP.Data {
                         OsnovniKoef,
                         DodatniKoef,
                         Norma,
+                        KoefZaStaresinstvo,
                         KoefZaPredsednikaSindikata};
                 if ((parentZaposleniRowByZaposleni_ObracunZarada != null)) {
                     columnValuesArray[1] = parentZaposleniRowByZaposleni_ObracunZarada[0];
@@ -2459,6 +2470,7 @@ namespace JISP.Data {
                 this.columnOsnovniKoef = base.Columns["OsnovniKoef"];
                 this.columnDodatniKoef = base.Columns["DodatniKoef"];
                 this.columnNorma = base.Columns["Norma"];
+                this.columnKoefZaStaresinstvo = base.Columns["KoefZaStaresinstvo"];
                 this.columnKoefZaPredsednikaSindikata = base.Columns["KoefZaPredsednikaSindikata"];
             }
             
@@ -2481,6 +2493,8 @@ namespace JISP.Data {
                 base.Columns.Add(this.columnDodatniKoef);
                 this.columnNorma = new global::System.Data.DataColumn("Norma", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNorma);
+                this.columnKoefZaStaresinstvo = new global::System.Data.DataColumn("KoefZaStaresinstvo", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnKoefZaStaresinstvo);
                 this.columnKoefZaPredsednikaSindikata = new global::System.Data.DataColumn("KoefZaPredsednikaSindikata", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnKoefZaPredsednikaSindikata);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
@@ -4378,6 +4392,22 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public double KoefZaStaresinstvo {
+                get {
+                    try {
+                        return ((double)(this[this.tableObracunZarada.KoefZaStaresinstvoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'KoefZaStaresinstvo\' in table \'ObracunZarada\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableObracunZarada.KoefZaStaresinstvoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public double KoefZaPredsednikaSindikata {
                 get {
                     try {
@@ -4450,6 +4480,18 @@ namespace JISP.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetNormaNull() {
                 this[this.tableObracunZarada.NormaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsKoefZaStaresinstvoNull() {
+                return this.IsNull(this.tableObracunZarada.KoefZaStaresinstvoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetKoefZaStaresinstvoNull() {
+                this[this.tableObracunZarada.KoefZaStaresinstvoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
