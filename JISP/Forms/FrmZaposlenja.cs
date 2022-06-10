@@ -19,6 +19,7 @@ namespace JISP.Forms
                 zaposleni = zap;
                 Text = $"Zaposlenja ({zap})";
 
+                chkCopyOnClick.Checked = CheckedCopyOnClick;
                 if (CheckStateAktivno.HasValue)
                     chkAktivno.CheckState = CheckStateAktivno.Value;
                 if (CheckedIndicesMeseci != null)
@@ -91,6 +92,7 @@ namespace JISP.Forms
                 foreach (var id in IDsToRemove)
                     Zaposlenja.RemoveZaposlenjaRow(Zaposlenja.FindByIdZaposlenja(id));
             });
+            zaposleni.CalcAngazovanja();
         }
 
         private void SetBsFilter()
@@ -125,6 +127,7 @@ namespace JISP.Forms
                     oz.BrojUgovora = obj.brojUgovora;
                     oz.Godina = obj.godinaBroj;
                     oz.MesecNaziv = obj.mesecSifarnikNaziv;
+                    oz.MesecBroj = OzMesec.BrojMeseca(oz.MesecNaziv);
                     oz.OsnovniKoef = obj.osnovniKoeficijentZaposlenog;
                     if (obj.dodatniKoeficijentZaposlenog != null)
                         oz.DodatniKoef = obj.dodatniKoeficijentZaposlenog;
@@ -179,18 +182,20 @@ namespace JISP.Forms
                         throw new Exception("Id obračuna nije ispravan. Potrebno je ponovo učitati obračune.");
                     foreach (var oz in ozs)
                     {
-                        var body = $"{{\"id\":{oz.IdObracuna},\"jeObrisano\":null,\"datumKreiranja\":\"0001-01-01T00:00:00\",\"idSesijeKreiranja\":null,\"idKorisnikaKreiranja\":null,\"datumIzmene\":null,\"idSesijeIzmene\":null,\"idKorisnikaIzmene\":null,\"vremenskiZig\":null,\"regZapObracunZaradaDouniverzitetskoObrazovanjeId\":0,\"godinaSifarnik\":null,\"godinaBroj\":{oz.Godina},\"mesecSifarnik\":null,\"mesecSifarnikNaziv\":\"{oz.MesecNaziv}\",\"mesecBroj\":null,\"osnovniKoeficijentZaposlenog\":{oz.OsnovniKoef:0.00},\"dodatniKoeficijentZaposlenog\":null,\"koeficijentZaStaresinstvo\":null,\"normaZaposlenog\":{oz.Norma},\"brojUgovora\":\"{oz.BrojUgovora}\",\"dodatniKoeficijentZaPredsednikaSindikataUstanove\":null,\"procenatAngazovanjaNaPlaninskojLokaciji\":null,\"regZapObracunZaradaDouniverzitetskoObrazovanje\":null,\"regZapObracunZaradaDouniverzitetskoObrazovanjeDodatniKoef\":null,\"regZapObracunZaradaDouniverzitetskoObrazovanjeDodKoefMulti\":null,\"regZapObracunZaradaDouniverzitetskoObrazovanjeDodKoefMultiInt\":null}}";
+                        var body = $"{{\"id\":{oz.IdObracuna},\"jeObrisano\":null,\"datumKreiranja\":\"0001-01-01T00:00:00\",\"idSesijeKreiranja\":null,\"idKorisnikaKreiranja\":null,\"datumIzmene\":null,\"idSesijeIzmene\":null,\"idKorisnikaIzmene\":null,\"vremenskiZig\":null,\"regZapObracunZaradaDouniverzitetskoObrazovanjeId\":0,\"godinaSifarnik\":null,\"godinaBroj\":{oz.Godina},\"mesecSifarnik\":null,\"mesecSifarnikNaziv\":\"{oz.MesecNaziv}\",\"mesecBroj\":null,\"osnovniKoeficijentZaposlenog\":{oz.OsnovniKoef:0.00},\"dodatniKoeficijentZaposlenog\":null,\"koeficijentZaStaresinstvo\":null,\"normaZaposlenog\":{oz.Norma:0.00},\"brojUgovora\":\"{oz.BrojUgovora}\",\"dodatniKoeficijentZaPredsednikaSindikataUstanove\":null,\"procenatAngazovanjaNaPlaninskojLokaciji\":null,\"regZapObracunZaradaDouniverzitetskoObrazovanje\":null,\"regZapObracunZaradaDouniverzitetskoObrazovanjeDodatniKoef\":null,\"regZapObracunZaradaDouniverzitetskoObrazovanjeDodKoefMulti\":null,\"regZapObracunZaradaDouniverzitetskoObrazovanjeDodKoefMultiInt\":null}}";
                         await WebApi.PostForJson(WebApi.ReqEnum.Zap_ObracunZaradaObrisi, body);
                     }
                 });
         }
 
+        private static bool CheckedCopyOnClick = false;
         private static CheckState? CheckStateAktivno = null;
         private static CheckedListBox.CheckedIndexCollection CheckedIndicesMeseci = null;
         private static int TcBottomSelectedIndex = 0;
 
         private void FrmZaposlenja_FormClosed(object sender, FormClosedEventArgs e)
         {
+            CheckedCopyOnClick = chkCopyOnClick.Checked;
             CheckStateAktivno = chkAktivno.CheckState;
             CheckedIndicesMeseci = lstchkMeseci.CheckedIndices;
             TcBottomSelectedIndex = tcBottom.SelectedIndex;
@@ -230,6 +235,7 @@ namespace JISP.Forms
                     }
                 }
             });
+            zaposleni.CalcAngazovanja();
         }
 
         private void BtnDodajOZTemplate_Click(object sender, EventArgs e)
@@ -239,7 +245,7 @@ namespace JISP.Forms
                 var strBash = Clipboard.GetText();
                 ClipboardSadrziString(strBash, "regZapObracunZaradaDouniverzitetskoObrazovanjeMesec");
                 ClipboardSadrziString(strBash, "ukupanDodatniKoeficijentPoRM");
-                string strJson = Classes.ObracunZarada.ObracunZarada.Bash2Json(strBash);
+                string strJson = ObracunZarada.Bash2Json(strBash);
                 dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(strJson);
                 string idZaposlenja = obj.idNavigation.id;
 

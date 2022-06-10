@@ -69,9 +69,9 @@
             this.dodatniKoefDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcOzKoefZaStaresinstvo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.normaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblBrojRedovaOZ = new System.Windows.Forms.Label();
             this.bsObracunZarada = new System.Windows.Forms.BindingSource(this.components);
             this.pnlBottomLeft = new JISP.Controls.UcLeftPanel();
-            this.lblBrojRedovaOZ = new System.Windows.Forms.Label();
             this.btnObrisiObracune = new JISP.Controls.UcButton();
             this.lstchkMeseci = new System.Windows.Forms.CheckedListBox();
             this.numOzGodina = new System.Windows.Forms.NumericUpDown();
@@ -356,6 +356,7 @@
             // scMain
             // 
             this.scMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.scMain.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.scMain.Location = new System.Drawing.Point(146, 0);
             this.scMain.Name = "scMain";
             this.scMain.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -485,10 +486,21 @@
             this.normaDataGridViewTextBoxColumn.Name = "normaDataGridViewTextBoxColumn";
             this.normaDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // lblBrojRedovaOZ
+            // 
+            this.lblBrojRedovaOZ.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblBrojRedovaOZ.AutoSize = true;
+            this.lblBrojRedovaOZ.Location = new System.Drawing.Point(4, 207);
+            this.lblBrojRedovaOZ.Name = "lblBrojRedovaOZ";
+            this.lblBrojRedovaOZ.Size = new System.Drawing.Size(59, 18);
+            this.lblBrojRedovaOZ.TabIndex = 8;
+            this.lblBrojRedovaOZ.Text = "Redova";
+            // 
             // bsObracunZarada
             // 
             this.bsObracunZarada.DataMember = "ObracunZarada";
             this.bsObracunZarada.DataSource = this.ds;
+            this.bsObracunZarada.Sort = "Godina, MesecBroj, BrojUgovora";
             // 
             // pnlBottomLeft
             // 
@@ -506,16 +518,6 @@
             this.pnlBottomLeft.RightWingWidth = 6;
             this.pnlBottomLeft.Size = new System.Drawing.Size(146, 229);
             this.pnlBottomLeft.TabIndex = 0;
-            // 
-            // lblBrojRedovaOZ
-            // 
-            this.lblBrojRedovaOZ.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblBrojRedovaOZ.AutoSize = true;
-            this.lblBrojRedovaOZ.Location = new System.Drawing.Point(4, 207);
-            this.lblBrojRedovaOZ.Name = "lblBrojRedovaOZ";
-            this.lblBrojRedovaOZ.Size = new System.Drawing.Size(59, 18);
-            this.lblBrojRedovaOZ.TabIndex = 8;
-            this.lblBrojRedovaOZ.Text = "Redova";
             // 
             // btnObrisiObracune
             // 

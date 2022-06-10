@@ -24,10 +24,6 @@ namespace JISP.Forms
             dgvZaposleni.StandardSort = bsZaposleni.Sort = "Ime";
             dgvZaposleni.LoadSettings();
             dgvZaposlenja.LoadSettings();
-
-            //T
-            //foreach (var zap in Ds.Zaposleni)
-            //    Console.WriteLine(zap);
         }
 
         private readonly Ds Ds;
@@ -56,7 +52,7 @@ namespace JISP.Forms
             {
                 var s = txtFilter.Text;
                 // osnovna pretraga: ime, prezime, devPrezime, jmbg
-                var filter = $"Ime LIKE '%{s}%' OR Prezime LIKE '%{s}%' OR DevojackoPrezime LIKE '%{s}%' OR JMBG LIKE '%{s}%' ";
+                var filter = $"Ime LIKE '%{s}%' OR Prezime LIKE '%{s}%' OR Angazovanja LIKE '%{s}%' OR JMBG LIKE '%{s}%' ";
                 // pretraga po zaposlenjima (radna mesta)
                 var ids = FilterZaposleniIDs(s);
                 if (ids.Count() > 0)
@@ -136,6 +132,9 @@ namespace JISP.Forms
                         SlikeZaposlenih.PrikaziIkonicu(dgvZaposleni.CurrentRow, dgvcImaSliku.Name);
                     }
                 }
+                // Ponovno sastavljanje stringa Angazovanje: finansiranje, norma, predmet za sva ang.
+                if (e.ColumnIndex == dgvcAngazovanja.Index)
+                    zap.CalcAngazovanja();
             }
         }
 

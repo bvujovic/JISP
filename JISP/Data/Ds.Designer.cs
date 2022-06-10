@@ -1053,6 +1053,8 @@ namespace JISP.Data {
             
             private global::System.Data.DataColumn columnStatusAktivnosti;
             
+            private global::System.Data.DataColumn columnAngazovanja;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ZaposleniDataTable() {
@@ -1208,6 +1210,14 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn AngazovanjaColumn {
+                get {
+                    return this.columnAngazovanja;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1243,7 +1253,23 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ZaposleniRow AddZaposleniRow(int IdZaposlenog, string Ime, string Prezime, string JMBG, double Godine, int DanaDoRodj, bool Aktivan, char Pol, string DevojackoPrezime, string Email, string Telefon, string Prebivaliste, string Napomene, bool ImaSliku, string StatusAktivnosti) {
+            public ZaposleniRow AddZaposleniRow(
+                        int IdZaposlenog, 
+                        string Ime, 
+                        string Prezime, 
+                        string JMBG, 
+                        double Godine, 
+                        int DanaDoRodj, 
+                        bool Aktivan, 
+                        char Pol, 
+                        string DevojackoPrezime, 
+                        string Email, 
+                        string Telefon, 
+                        string Prebivaliste, 
+                        string Napomene, 
+                        bool ImaSliku, 
+                        string StatusAktivnosti, 
+                        string Angazovanja) {
                 ZaposleniRow rowZaposleniRow = ((ZaposleniRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IdZaposlenog,
@@ -1260,7 +1286,8 @@ namespace JISP.Data {
                         Prebivaliste,
                         Napomene,
                         ImaSliku,
-                        StatusAktivnosti};
+                        StatusAktivnosti,
+                        Angazovanja};
                 rowZaposleniRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowZaposleniRow);
                 return rowZaposleniRow;
@@ -1305,6 +1332,7 @@ namespace JISP.Data {
                 this.columnNapomene = base.Columns["Napomene"];
                 this.columnImaSliku = base.Columns["ImaSliku"];
                 this.columnStatusAktivnosti = base.Columns["StatusAktivnosti"];
+                this.columnAngazovanja = base.Columns["Angazovanja"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1340,6 +1368,8 @@ namespace JISP.Data {
                 base.Columns.Add(this.columnImaSliku);
                 this.columnStatusAktivnosti = new global::System.Data.DataColumn("StatusAktivnosti", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnStatusAktivnosti);
+                this.columnAngazovanja = new global::System.Data.DataColumn("Angazovanja", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAngazovanja);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIdZaposlenog}, true));
                 this.columnIdZaposlenog.AutoIncrementSeed = -1;
@@ -2257,6 +2287,8 @@ namespace JISP.Data {
             
             private global::System.Data.DataColumn columnMesecNaziv;
             
+            private global::System.Data.DataColumn columnMesecBroj;
+            
             private global::System.Data.DataColumn columnOsnovniKoef;
             
             private global::System.Data.DataColumn columnDodatniKoef;
@@ -2342,6 +2374,14 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn MesecBrojColumn {
+                get {
+                    return this.columnMesecBroj;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn OsnovniKoefColumn {
                 get {
                     return this.columnOsnovniKoef;
@@ -2417,7 +2457,7 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ObracunZaradaRow AddObracunZaradaRow(int IdObracuna, ZaposleniRow parentZaposleniRowByZaposleni_ObracunZarada, string BrojUgovora, int Godina, string MesecNaziv, double OsnovniKoef, double DodatniKoef, double Norma, double KoefZaStaresinstvo, double KoefZaPredsednikaSindikata) {
+            public ObracunZaradaRow AddObracunZaradaRow(int IdObracuna, ZaposleniRow parentZaposleniRowByZaposleni_ObracunZarada, string BrojUgovora, int Godina, string MesecNaziv, int MesecBroj, double OsnovniKoef, double DodatniKoef, double Norma, double KoefZaStaresinstvo, double KoefZaPredsednikaSindikata) {
                 ObracunZaradaRow rowObracunZaradaRow = ((ObracunZaradaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IdObracuna,
@@ -2425,6 +2465,7 @@ namespace JISP.Data {
                         BrojUgovora,
                         Godina,
                         MesecNaziv,
+                        MesecBroj,
                         OsnovniKoef,
                         DodatniKoef,
                         Norma,
@@ -2467,6 +2508,7 @@ namespace JISP.Data {
                 this.columnBrojUgovora = base.Columns["BrojUgovora"];
                 this.columnGodina = base.Columns["Godina"];
                 this.columnMesecNaziv = base.Columns["MesecNaziv"];
+                this.columnMesecBroj = base.Columns["MesecBroj"];
                 this.columnOsnovniKoef = base.Columns["OsnovniKoef"];
                 this.columnDodatniKoef = base.Columns["DodatniKoef"];
                 this.columnNorma = base.Columns["Norma"];
@@ -2487,6 +2529,8 @@ namespace JISP.Data {
                 base.Columns.Add(this.columnGodina);
                 this.columnMesecNaziv = new global::System.Data.DataColumn("MesecNaziv", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMesecNaziv);
+                this.columnMesecBroj = new global::System.Data.DataColumn("MesecBroj", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMesecBroj);
                 this.columnOsnovniKoef = new global::System.Data.DataColumn("OsnovniKoef", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOsnovniKoef);
                 this.columnDodatniKoef = new global::System.Data.DataColumn("DodatniKoef", typeof(double), null, global::System.Data.MappingType.Element);
@@ -2506,6 +2550,7 @@ namespace JISP.Data {
                 this.columnIdZaposlenog.AllowDBNull = false;
                 this.columnGodina.AllowDBNull = false;
                 this.columnMesecNaziv.AllowDBNull = false;
+                this.columnMesecBroj.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3688,6 +3733,22 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Angazovanja {
+                get {
+                    try {
+                        return ((string)(this[this.tableZaposleni.AngazovanjaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Angazovanja\' in table \'Zaposleni\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableZaposleni.AngazovanjaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsImeNull() {
                 return this.IsNull(this.tableZaposleni.ImeColumn);
             }
@@ -3828,6 +3889,18 @@ namespace JISP.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetStatusAktivnostiNull() {
                 this[this.tableZaposleni.StatusAktivnostiColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsAngazovanjaNull() {
+                return this.IsNull(this.tableZaposleni.AngazovanjaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetAngazovanjaNull() {
+                this[this.tableZaposleni.AngazovanjaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4339,6 +4412,17 @@ namespace JISP.Data {
                 }
                 set {
                     this[this.tableObracunZarada.MesecNazivColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int MesecBroj {
+                get {
+                    return ((int)(this[this.tableObracunZarada.MesecBrojColumn]));
+                }
+                set {
+                    this[this.tableObracunZarada.MesecBrojColumn] = value;
                 }
             }
             

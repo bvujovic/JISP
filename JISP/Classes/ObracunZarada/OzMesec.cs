@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace JISP.Classes.ObracunZarada
 {
@@ -28,6 +29,14 @@ namespace JISP.Classes.ObracunZarada
             "Јул",      "Август",   "Септембар",
             "Октобар",  "Новембар", "Децембар",
         };
+
+        public static int BrojMeseca(string nazivMeseca)
+        {
+            for (int i = 0; i < meseci.Length; i++)
+                if (meseci[i] == nazivMeseca)
+                    return i + 1;
+            return 0;
+        }
 
         public static string NazivMeseca(int brojMeseca)
         {

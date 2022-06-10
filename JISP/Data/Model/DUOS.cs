@@ -16,8 +16,6 @@ namespace JISP.Data
         public int RegUceLiceSrednjeObrazovanjeId { get; set; }
         public int RegUceLiceOsnovnoObrazovanjeId { get; set; }
 
-        public static string TekucaSkGod => "2021/2022";
-
         public override string ToString()
             => $"{JOB}, {RegUceLiceId}: {SkolskaGodina}, {Razred}, {Odeljenje}";
     }

@@ -1,4 +1,6 @@
 ﻿using JISP.Classes;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
@@ -83,8 +85,58 @@ namespace JISP.Data
                 }
             }
 
+            /// <summary>Sastavlja tekst koji opisuje finansiranje, norme i predmete za sva angazovanja zap.</summary>
+            public void CalcAngazovanja()
+            {
+                try
+                {
+                    var angs = new List<string>();
+                    foreach (var zap in GetZaposlenjaRows().Where(it => it.Aktivan))
+                    {
+                        foreach (var ang in zap.GetAngazovanjaRows()
+                            .Where(it => it.SkolskaGodina == AppData.TekucaSkGod))
+                        {
+                            var strAng = "";
+                            var predmet = !ang.IsPredmetNull() ? ang.Predmet : "";
+                            predmet += !ang.IsPodnivoPredmetaNull() ? ", " + ang.PodnivoPredmeta : "";
+
+                            var posao = Utils.SuperSkratiIzvorFin(ang.IzvorFinansiranja)
+                                + ": " + ang.ProcenatAngazovanja + "%";
+                            if (predmet != "")
+                                posao += " - " + predmet;
+
+                            strAng += posao + Environment.NewLine;
+                            angs.Add(posao);
+                        }
+                    }
+                    Angazovanja = string.Join(Environment.NewLine, angs);
+                }
+                catch { Angazovanja = string.Empty; }
+            }
+
             public override string ToString()
                 => $"{Ime} {Prezime}";
         }
+
+        //partial class ZaposlenjaDataTable
+        //{
+        //    protected override void OnTableNewRow(DataTableNewRowEventArgs e)
+        //    {
+        //        base.OnTableNewRow(e);
+        //        var zaposleni = e.Row.GetParentRow("FK_Zaposleni_Zaposlenja") as ZaposleniRow;
+        //        zaposleni.CalcAngazovanja();
+        //    }
+        //}
+
+        //partial class AngazovanjaDataTable
+        //{
+        //    protected override void OnTableNewRow(DataTableNewRowEventArgs e)
+        //    {
+        //        base.OnTableNewRow(e);
+        //        var zaposleni = e.Row.GetParentRow("Zaposlenja_Angazovanja").GetParentRow("FK_Zaposleni_Zaposlenja")
+        //            as ZaposleniRow;
+        //        zaposleni.CalcAngazovanja();
+        //    }
+        //}
     }
 }

@@ -12,6 +12,8 @@ namespace JISP.Data
         /// <summary>Kratko ime aplikacije bez razmaka i nasih slova.</summary>
         public static string AppNameMachine { get => "NasJISP"; }
 
+        public static string TekucaSkGod => "2021/2022";
+
         /// <summary>Internet browser koji se koristi za JISP.</summary>
         public static string Browser { get; set; }
 
@@ -70,12 +72,10 @@ namespace JISP.Data
             Ds.Ucenici.CalcDatRodjBasedCols();
             Classes.SlikeZaposlenih.PostaviKoImaSliku();
             Ds.AcceptChanges();
-            //B
-            //var row = Ds.Settings.FindByName(WebApi.TOKEN_CAPTION);
-            //if (row != null)
-            //    WebApi.Token = row.Value;
-            //row = Ds.Settings.FindByName("browser");
-            //Browser = (row != null) ? row.Value : "Chrome";
+            //foreach (var oz in Ds.ObracunZarada)
+            //    oz.MesecBroj = Classes.ObracunZarada.OzMesec.BrojMeseca(oz.MesecNaziv);
+            //foreach (var zap in Ds.Zaposleni)
+            //    zap.CalcAngazovanja();
             WebApi.Token = LoadSett(WebApi.TOKEN_CAPTION);
             Browser = LoadSett("browser", "Chrome");
         }

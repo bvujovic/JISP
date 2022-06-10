@@ -19,10 +19,18 @@ namespace JISP.Classes
 
         public static string SkratiIzvorFin(string s)
         {
-            s = s.Replace("Буџет Републике Србије - МПНТР - ", "Буџет РС, МПНТР: ");
+            s = s.Replace("Буџет Републике Србије - МПНТР - ", KratakBudzet);
             s = s.Replace("Основно и средње образовање", "ОиС образовање");
             s = s.Replace("Ученички и студентски стандард", "Уч. стандард");
             return s;
+        }
+
+        private static readonly string KratakBudzet = "Буџет РС, МПНТР: ";
+
+        /// <summary>Izbacivanje "Budzet..." iz izvora fin. Ostaje samo Obrazovanje ili Standard.</summary>
+        public static string SuperSkratiIzvorFin(string s)
+        {
+            return s.Replace(KratakBudzet, "");
         }
 
         public static DialogResult ShowMbox(Exception ex, string title)

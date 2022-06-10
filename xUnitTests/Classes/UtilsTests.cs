@@ -15,5 +15,14 @@ namespace xUnitTests.Classes
             var res = Utils.SkratiIzvorFin(source);
             Assert.Equal(target, res);
         }
+
+        [Theory]
+        [InlineData("Буџет РС, МПНТР: ОиС образовање", "ОиС образовање")]
+        [InlineData("Буџет РС, МПНТР: Уч. стандард", "Уч. стандард")]
+        public void SuperSkratiIzvorFin(string source, string target)
+        {
+            var res = Utils.SuperSkratiIzvorFin(source);
+            Assert.Equal(target, res);
+        }
     }
 }

@@ -1,5 +1,4 @@
-﻿- Predmeti koje nastavnici predaju [i finansiranja] bi trebalo da se vide u dgvZaposleni [i u dgvZaposlenjaSve]
-	i da se pretrazuju
+﻿- čuvanje JSON podataka o ocenama na polugodištu i kraju godine
 - dugmici
 	[- boje dugmica: Sacuvaj - plava, Dodaj novo - zelena, Izmeni - zuta, Obrisi - crvena, Izlaz iz app - crna]
 - Bolje opisati program u README.md
