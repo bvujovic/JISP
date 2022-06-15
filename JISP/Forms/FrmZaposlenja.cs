@@ -74,8 +74,6 @@ namespace JISP.Forms
                         z.IdZaposlenog = zaposleni.IdZaposlenog;
                         z.IdZaposlenja = obj.id;
                     }
-                    if (obj.brojUgovoraORadu == null)
-                        ;
                     z.BrojUgovoraORadu = obj.brojUgovoraORadu ?? "Непознато";
                     z.DatumZaposlenOd = obj.datumZaposlenOd;
                     if (obj.datumZaposlenDo != null)
@@ -216,12 +214,17 @@ namespace JISP.Forms
                     if (idZaposlenja < 0)
                         throw new Exception("IdZaposlenja nije ispravan. Potrebno je ponovo učitati zaposlenja.");
                     var json = await WebApi.GetJson(WebApi.ReqEnum.Zap_Angazovanja, idZaposlenja.ToString());
+                    //B var IDsToRemove = zap.GetAngazovanjaRows().Select(it => it.IdAngazovanja);
+                    var oldAngs = zap.GetAngazovanjaRows();
+                    Utils.ShowMbox($"Ažuriranje {oldAngs.Length} angažovanja.", "DEBUG poruka");
+                    foreach (var ang in oldAngs)
+                        AppData.Ds.Angazovanja.RemoveAngazovanjaRow(ang);
                     dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
                     foreach (var obj in arr)
                     {
-                        var ang = AppData.Ds.Angazovanja.FindByIdAngazovanja((int)obj.id);
-                        if (ang != null)
-                            AppData.Ds.Angazovanja.RemoveAngazovanjaRow(ang);
+                        //var ang = AppData.Ds.Angazovanja.FindByIdAngazovanja((int)obj.id);
+                        //if (ang != null)
+                        //    AppData.Ds.Angazovanja.RemoveAngazovanjaRow(ang);
 
                         var a = AppData.Ds.Angazovanja.NewAngazovanjaRow();
                         a.IdAngazovanja = obj.id;

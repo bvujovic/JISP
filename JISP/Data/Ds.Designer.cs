@@ -538,6 +538,10 @@ namespace JISP.Data {
             
             private global::System.Data.DataColumn columnSmer;
             
+            private global::System.Data.DataColumn columnOcenePG;
+            
+            private global::System.Data.DataColumn columnOceneKraj;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public UceniciDataTable() {
@@ -717,6 +721,22 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn OcenePGColumn {
+                get {
+                    return this.columnOcenePG;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn OceneKrajColumn {
+                get {
+                    return this.columnOceneKraj;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -769,7 +789,9 @@ namespace JISP.Data {
                         int BrojOcenaKraj, 
                         int Id, 
                         int RegUceLiceObrazovanjeId, 
-                        string Smer) {
+                        string Smer, 
+                        string OcenePG, 
+                        string OceneKraj) {
                 UceniciRow rowUceniciRow = ((UceniciRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -789,7 +811,9 @@ namespace JISP.Data {
                         BrojOcenaKraj,
                         Id,
                         RegUceLiceObrazovanjeId,
-                        Smer};
+                        Smer,
+                        OcenePG,
+                        OceneKraj};
                 rowUceniciRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowUceniciRow);
                 return rowUceniciRow;
@@ -837,6 +861,8 @@ namespace JISP.Data {
                 this.columnId = base.Columns["Id"];
                 this.columnRegUceLiceObrazovanjeId = base.Columns["RegUceLiceObrazovanjeId"];
                 this.columnSmer = base.Columns["Smer"];
+                this.columnOcenePG = base.Columns["OcenePG"];
+                this.columnOceneKraj = base.Columns["OceneKraj"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -878,6 +904,10 @@ namespace JISP.Data {
                 base.Columns.Add(this.columnRegUceLiceObrazovanjeId);
                 this.columnSmer = new global::System.Data.DataColumn("Smer", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSmer);
+                this.columnOcenePG = new global::System.Data.DataColumn("OcenePG", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOcenePG);
+                this.columnOceneKraj = new global::System.Data.DataColumn("OceneKraj", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOceneKraj);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnJOB}, false));
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint2", new global::System.Data.DataColumn[] {
@@ -3313,6 +3343,38 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string OcenePG {
+                get {
+                    try {
+                        return ((string)(this[this.tableUcenici.OcenePGColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OcenePG\' in table \'Ucenici\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableUcenici.OcenePGColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string OceneKraj {
+                get {
+                    try {
+                        return ((string)(this[this.tableUcenici.OceneKrajColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OceneKraj\' in table \'Ucenici\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableUcenici.OceneKrajColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsPrezimeNull() {
                 return this.IsNull(this.tableUcenici.PrezimeColumn);
             }
@@ -3489,6 +3551,30 @@ namespace JISP.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetSmerNull() {
                 this[this.tableUcenici.SmerColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsOcenePGNull() {
+                return this.IsNull(this.tableUcenici.OcenePGColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetOcenePGNull() {
+                this[this.tableUcenici.OcenePGColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsOceneKrajNull() {
+                return this.IsNull(this.tableUcenici.OceneKrajColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetOceneKrajNull() {
+                this[this.tableUcenici.OceneKrajColumn] = global::System.Convert.DBNull;
             }
         }
         

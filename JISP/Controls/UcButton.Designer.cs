@@ -29,7 +29,12 @@ namespace JISP.Controls
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // UcButton
+            // 
+            this.ResumeLayout(false);
+
         }
 
         #endregion

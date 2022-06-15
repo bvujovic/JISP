@@ -61,9 +61,9 @@ namespace JISP.Controls
 
         /// <summary>Postavljanje layout-a tastature na cirilicu generisanjem Alt+Shift signala.</summary>
         /// <see cref="https://stackoverflow.com/questions/37291533/change-keyboard-layout-from-c-sharp-code-with-net-4-5-2"/>
-        private void SetCyrillic()
+        public void SetCyrillic()
         {
-#if !DEBUG
+//#if !DEBUG
             if (IsCyrillic)
                 return;
             var firstCulture = CurrentCultureName;
@@ -74,7 +74,7 @@ namespace JISP.Controls
             while (CurrentCultureName != firstCulture && !IsCyrillic && i-- > 0)
                 SendKeys.SendWait("%+");
             timCyrillic.Tick += Tim_Tick;
-#endif
+//#endif
         }
 
         private void Tim_Tick(object sender, EventArgs e)

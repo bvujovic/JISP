@@ -52,19 +52,20 @@
             this.dgvcDanaDoRodj = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcGodine = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcBrojOcenaPolu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcOcenePgJson = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrojOcenaKraj = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcOceneKrajJson = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcSmer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblRowCount = new System.Windows.Forms.Label();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
+            this.btnDohvatiPodatke = new JISP.Controls.UcButton();
+            this.cmbPodaciZaDohvatanje = new System.Windows.Forms.ComboBox();
             this.chkSamoTekuci = new System.Windows.Forms.CheckBox();
             this.gbOceneUnos = new System.Windows.Forms.GroupBox();
             this.lblOceneProsek = new System.Windows.Forms.Label();
             this.btnOcenePaste = new System.Windows.Forms.Button();
             this.chkOceneSaVladanjem = new System.Windows.Forms.CheckBox();
-            this.btnOpstiPodaci = new JISP.Controls.UcButton();
             this.btnNoviUcenici = new JISP.Controls.UcButton();
-            this.btnOdRaz = new JISP.Controls.UcButton();
-            this.chkAllowNew = new System.Windows.Forms.CheckBox();
-            this.btnOceneSmerovi = new JISP.Controls.UcButton();
             this.ucExitApp1 = new JISP.Controls.UcExitAppButton();
             this.btnSaveData = new JISP.Controls.UcButton();
             this.txtFilter = new JISP.Controls.UcFilterTextBox();
@@ -136,6 +137,9 @@
             this.dgvcDanaDoRodj,
             this.dgvcGodine,
             this.dgvcBrojOcenaPolu,
+            this.dgvcOcenePgJson,
+            this.BrojOcenaKraj,
+            this.dgvcOceneKrajJson,
             this.dgvcSmer});
             this.dgvUcenici.ColumnsForCopyOnClick = null;
             this.dgvUcenici.CopyOnCellClick = false;
@@ -291,6 +295,27 @@
             this.dgvcBrojOcenaPolu.ToolTipText = "Broj ocena na polugodištu";
             this.dgvcBrojOcenaPolu.Width = 70;
             // 
+            // dgvcOcenePgJson
+            // 
+            this.dgvcOcenePgJson.DataPropertyName = "OcenePG";
+            this.dgvcOcenePgJson.HeaderText = "OcenePG";
+            this.dgvcOcenePgJson.Name = "dgvcOcenePgJson";
+            this.dgvcOcenePgJson.ReadOnly = true;
+            // 
+            // BrojOcenaKraj
+            // 
+            this.BrojOcenaKraj.DataPropertyName = "BrojOcenaKraj";
+            this.BrojOcenaKraj.HeaderText = "oc kraj";
+            this.BrojOcenaKraj.Name = "BrojOcenaKraj";
+            this.BrojOcenaKraj.ReadOnly = true;
+            // 
+            // dgvcOceneKrajJson
+            // 
+            this.dgvcOceneKrajJson.DataPropertyName = "OceneKraj";
+            this.dgvcOceneKrajJson.HeaderText = "OceneKraj";
+            this.dgvcOceneKrajJson.Name = "dgvcOceneKrajJson";
+            this.dgvcOceneKrajJson.ReadOnly = true;
+            // 
             // dgvcSmer
             // 
             this.dgvcSmer.DataPropertyName = "Smer";
@@ -307,18 +332,16 @@
             this.lblRowCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRowCount.Name = "lblRowCount";
             this.lblRowCount.Size = new System.Drawing.Size(56, 16);
-            this.lblRowCount.TabIndex = 3;
+            this.lblRowCount.TabIndex = 1;
             this.lblRowCount.Text = "Redova";
             // 
             // pnlLeft
             // 
+            this.pnlLeft.Controls.Add(this.btnDohvatiPodatke);
+            this.pnlLeft.Controls.Add(this.cmbPodaciZaDohvatanje);
             this.pnlLeft.Controls.Add(this.chkSamoTekuci);
             this.pnlLeft.Controls.Add(this.gbOceneUnos);
-            this.pnlLeft.Controls.Add(this.btnOpstiPodaci);
             this.pnlLeft.Controls.Add(this.btnNoviUcenici);
-            this.pnlLeft.Controls.Add(this.btnOdRaz);
-            this.pnlLeft.Controls.Add(this.chkAllowNew);
-            this.pnlLeft.Controls.Add(this.btnOceneSmerovi);
             this.pnlLeft.Controls.Add(this.ucExitApp1);
             this.pnlLeft.Controls.Add(this.lblRowCount);
             this.pnlLeft.Controls.Add(this.btnSaveData);
@@ -332,6 +355,33 @@
             this.pnlLeft.Size = new System.Drawing.Size(150, 490);
             this.pnlLeft.TabIndex = 0;
             // 
+            // btnDohvatiPodatke
+            // 
+            this.btnDohvatiPodatke.Location = new System.Drawing.Point(7, 245);
+            this.btnDohvatiPodatke.Name = "btnDohvatiPodatke";
+            this.btnDohvatiPodatke.Size = new System.Drawing.Size(127, 30);
+            this.btnDohvatiPodatke.TabIndex = 12;
+            this.btnDohvatiPodatke.Text = "Dohvati podatke";
+            this.btnDohvatiPodatke.ToolTipText = null;
+            this.btnDohvatiPodatke.UseVisualStyleBackColor = true;
+            this.btnDohvatiPodatke.Click += new System.EventHandler(this.BtnDohvatiPodatke_Click);
+            // 
+            // cmbPodaciZaDohvatanje
+            // 
+            this.cmbPodaciZaDohvatanje.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPodaciZaDohvatanje.DropDownWidth = 300;
+            this.cmbPodaciZaDohvatanje.FormattingEnabled = true;
+            this.cmbPodaciZaDohvatanje.Items.AddRange(new object[] {
+            "Opšti podaci (datum rođenja, pol, ...)",
+            "Razredi i odeljenja",
+            "Smerovi za srednjoškolce",
+            "Ocene na polugodištu",
+            "Ocene za kraj godine"});
+            this.cmbPodaciZaDohvatanje.Location = new System.Drawing.Point(7, 220);
+            this.cmbPodaciZaDohvatanje.Name = "cmbPodaciZaDohvatanje";
+            this.cmbPodaciZaDohvatanje.Size = new System.Drawing.Size(127, 24);
+            this.cmbPodaciZaDohvatanje.TabIndex = 11;
+            // 
             // chkSamoTekuci
             // 
             this.chkSamoTekuci.AutoSize = true;
@@ -340,7 +390,7 @@
             this.chkSamoTekuci.Location = new System.Drawing.Point(7, 115);
             this.chkSamoTekuci.Name = "chkSamoTekuci";
             this.chkSamoTekuci.Size = new System.Drawing.Size(100, 20);
-            this.chkSamoTekuci.TabIndex = 1;
+            this.chkSamoTekuci.TabIndex = 3;
             this.chkSamoTekuci.Text = "Samo tekući";
             this.chkSamoTekuci.UseVisualStyleBackColor = true;
             this.chkSamoTekuci.CheckedChanged += new System.EventHandler(this.ChkSamoTekuci_CheckedChanged);
@@ -354,7 +404,7 @@
             this.gbOceneUnos.Location = new System.Drawing.Point(7, 382);
             this.gbOceneUnos.Name = "gbOceneUnos";
             this.gbOceneUnos.Size = new System.Drawing.Size(127, 65);
-            this.gbOceneUnos.TabIndex = 102;
+            this.gbOceneUnos.TabIndex = 9;
             this.gbOceneUnos.TabStop = false;
             this.gbOceneUnos.Text = "Unos ocena";
             // 
@@ -363,7 +413,7 @@
             this.lblOceneProsek.Location = new System.Drawing.Point(52, 45);
             this.lblOceneProsek.Name = "lblOceneProsek";
             this.lblOceneProsek.Size = new System.Drawing.Size(74, 16);
-            this.lblOceneProsek.TabIndex = 4;
+            this.lblOceneProsek.TabIndex = 2;
             this.lblOceneProsek.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnOcenePaste
@@ -371,7 +421,7 @@
             this.btnOcenePaste.Location = new System.Drawing.Point(6, 16);
             this.btnOcenePaste.Name = "btnOcenePaste";
             this.btnOcenePaste.Size = new System.Drawing.Size(40, 45);
-            this.btnOcenePaste.TabIndex = 3;
+            this.btnOcenePaste.TabIndex = 0;
             this.btnOcenePaste.Text = "ОК";
             this.btnOcenePaste.UseVisualStyleBackColor = true;
             this.btnOcenePaste.Click += new System.EventHandler(this.BtnOcenePaste_Click);
@@ -384,70 +434,21 @@
             this.chkOceneSaVladanjem.Location = new System.Drawing.Point(51, 20);
             this.chkOceneSaVladanjem.Name = "chkOceneSaVladanjem";
             this.chkOceneSaVladanjem.Size = new System.Drawing.Size(80, 20);
-            this.chkOceneSaVladanjem.TabIndex = 5;
+            this.chkOceneSaVladanjem.TabIndex = 1;
             this.chkOceneSaVladanjem.Text = "Vladanje";
             this.chkOceneSaVladanjem.UseVisualStyleBackColor = true;
             // 
-            // btnOpstiPodaci
-            // 
-            this.btnOpstiPodaci.Location = new System.Drawing.Point(7, 240);
-            this.btnOpstiPodaci.Margin = new System.Windows.Forms.Padding(4);
-            this.btnOpstiPodaci.Name = "btnOpstiPodaci";
-            this.btnOpstiPodaci.Size = new System.Drawing.Size(127, 38);
-            this.btnOpstiPodaci.TabIndex = 5;
-            this.btnOpstiPodaci.Text = "Opšti podaci";
-            this.btnOpstiPodaci.ToolTipText = "Dohvatanje opštih podataka (datum rođenja, pol, ...) za selektovane učenike";
-            this.btnOpstiPodaci.UseVisualStyleBackColor = false;
-            this.btnOpstiPodaci.Click += new System.EventHandler(this.BtnOpstiPodaci_Click);
-            // 
             // btnNoviUcenici
             // 
-            this.btnNoviUcenici.Location = new System.Drawing.Point(7, 164);
+            this.btnNoviUcenici.Location = new System.Drawing.Point(7, 142);
             this.btnNoviUcenici.Margin = new System.Windows.Forms.Padding(4);
             this.btnNoviUcenici.Name = "btnNoviUcenici";
             this.btnNoviUcenici.Size = new System.Drawing.Size(127, 38);
-            this.btnNoviUcenici.TabIndex = 3;
-            this.btnNoviUcenici.Text = "Novi učenici...";
-            this.btnNoviUcenici.ToolTipText = "Na osnovu već preuzetog fajla (PreuzmiListuZahteva.json) prikazuju se učenici čij" +
-    "i JOBovi nisu pronađeni u postojećem spisku učenika.";
+            this.btnNoviUcenici.TabIndex = 5;
+            this.btnNoviUcenici.Text = "Novi učenik/ci ...";
+            this.btnNoviUcenici.ToolTipText = "Dodavanje jednog ili više učenika.";
             this.btnNoviUcenici.UseVisualStyleBackColor = false;
             this.btnNoviUcenici.Click += new System.EventHandler(this.BtnNoviUcenici_Click);
-            // 
-            // btnOdRaz
-            // 
-            this.btnOdRaz.Location = new System.Drawing.Point(7, 202);
-            this.btnOdRaz.Margin = new System.Windows.Forms.Padding(4);
-            this.btnOdRaz.Name = "btnOdRaz";
-            this.btnOdRaz.Size = new System.Drawing.Size(127, 38);
-            this.btnOdRaz.TabIndex = 4;
-            this.btnOdRaz.Text = "Razredi i odelj.";
-            this.btnOdRaz.ToolTipText = "Dohvatanje podataka o razredima i odeljenjima za selektovane učenike";
-            this.btnOdRaz.UseVisualStyleBackColor = false;
-            this.btnOdRaz.Click += new System.EventHandler(this.BtnOdRaz_Click);
-            // 
-            // chkAllowNew
-            // 
-            this.chkAllowNew.AutoSize = true;
-            this.chkAllowNew.Location = new System.Drawing.Point(7, 138);
-            this.chkAllowNew.Name = "chkAllowNew";
-            this.chkAllowNew.Size = new System.Drawing.Size(139, 20);
-            this.chkAllowNew.TabIndex = 2;
-            this.chkAllowNew.Text = "Dozvoli dodavanje";
-            this.chkAllowNew.UseVisualStyleBackColor = true;
-            this.chkAllowNew.Visible = false;
-            this.chkAllowNew.CheckedChanged += new System.EventHandler(this.ChkAllowNew_CheckedChanged);
-            // 
-            // btnOceneSmerovi
-            // 
-            this.btnOceneSmerovi.Location = new System.Drawing.Point(7, 278);
-            this.btnOceneSmerovi.Margin = new System.Windows.Forms.Padding(4);
-            this.btnOceneSmerovi.Name = "btnOceneSmerovi";
-            this.btnOceneSmerovi.Size = new System.Drawing.Size(127, 38);
-            this.btnOceneSmerovi.TabIndex = 6;
-            this.btnOceneSmerovi.Text = "Ocene i smerovi";
-            this.btnOceneSmerovi.ToolTipText = "Dohvatanje ocena za selektovane učenike";
-            this.btnOceneSmerovi.UseVisualStyleBackColor = true;
-            this.btnOceneSmerovi.Click += new System.EventHandler(this.BtnOceneSmerovi_Click);
             // 
             // ucExitApp1
             // 
@@ -457,7 +458,7 @@
             this.ucExitApp1.Margin = new System.Windows.Forms.Padding(4);
             this.ucExitApp1.Name = "ucExitApp1";
             this.ucExitApp1.Size = new System.Drawing.Size(127, 34);
-            this.ucExitApp1.TabIndex = 101;
+            this.ucExitApp1.TabIndex = 0;
             this.ucExitApp1.Text = "Izlaz";
             this.ucExitApp1.ToolTipText = "Izlaz iz aplikacije";
             this.ucExitApp1.UseVisualStyleBackColor = false;
@@ -469,7 +470,7 @@
             this.btnSaveData.Margin = new System.Windows.Forms.Padding(4);
             this.btnSaveData.Name = "btnSaveData";
             this.btnSaveData.Size = new System.Drawing.Size(127, 38);
-            this.btnSaveData.TabIndex = 100;
+            this.btnSaveData.TabIndex = 10;
             this.btnSaveData.Text = "Sačuvaj podatke";
             this.btnSaveData.ToolTipText = null;
             this.btnSaveData.UseVisualStyleBackColor = false;
@@ -482,7 +483,7 @@
             this.txtFilter.Margin = new System.Windows.Forms.Padding(4);
             this.txtFilter.Name = "txtFilter";
             this.txtFilter.Size = new System.Drawing.Size(127, 22);
-            this.txtFilter.TabIndex = 0;
+            this.txtFilter.TabIndex = 2;
             this.txtFilter.TextChanged += new System.EventHandler(this.TxtFilter_TextChanged);
             this.txtFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtFilter_KeyDown);
             // 
@@ -528,17 +529,15 @@
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel lblStatus;
         private Controls.UcExitAppButton ucExitApp1;
-        private Controls.UcButton btnOceneSmerovi;
-        private System.Windows.Forms.CheckBox chkAllowNew;
-        private Controls.UcButton btnOdRaz;
         private Controls.UcButton btnNoviUcenici;
-        private Controls.UcButton btnOpstiPodaci;
         private System.Windows.Forms.GroupBox gbOceneUnos;
         private System.Windows.Forms.Label lblOceneProsek;
         private System.Windows.Forms.Button btnOcenePaste;
         private System.Windows.Forms.CheckBox chkOceneSaVladanjem;
         private System.Windows.Forms.ToolTip ttOceneProvera;
         private System.Windows.Forms.CheckBox chkSamoTekuci;
+        private Controls.UcButton btnDohvatiPodatke;
+        private System.Windows.Forms.ComboBox cmbPodaciZaDohvatanje;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcIdUcenika;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcIme;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcPrezime;
@@ -552,6 +551,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcDanaDoRodj;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcGodine;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcBrojOcenaPolu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcOcenePgJson;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrojOcenaKraj;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcOceneKrajJson;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcSmer;
     }
 }
