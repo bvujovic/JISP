@@ -67,12 +67,15 @@ namespace JISP.Forms
             this.dgvcNjaRMNaziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcZaposlenjaVrstaAng = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.btnUcitajZaposlenja = new JISP.Controls.UcButton();
             this.btnKvalifStruktura = new JISP.Controls.UcButton();
             this.btnLoadDataExtra = new JISP.Controls.UcButton();
             this.chkCopyOnClick = new System.Windows.Forms.CheckBox();
             this.btnLoadData = new JISP.Controls.UcButton();
             this.btnSaveData = new JISP.Controls.UcButton();
             this.btnExit = new JISP.Controls.UcExitAppButton();
+            this.BtnCsvZaposlenja = new JISP.Controls.UcButton();
             lblFilterCaption = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bsZaposleni)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
@@ -431,6 +434,9 @@ namespace JISP.Forms
             // 
             // pnlLeft
             // 
+            this.pnlLeft.Controls.Add(this.BtnCsvZaposlenja);
+            this.pnlLeft.Controls.Add(this.lblStatus);
+            this.pnlLeft.Controls.Add(this.btnUcitajZaposlenja);
             this.pnlLeft.Controls.Add(this.btnKvalifStruktura);
             this.pnlLeft.Controls.Add(this.btnLoadDataExtra);
             this.pnlLeft.Controls.Add(this.chkCopyOnClick);
@@ -445,9 +451,29 @@ namespace JISP.Forms
             this.pnlLeft.Size = new System.Drawing.Size(146, 575);
             this.pnlLeft.TabIndex = 0;
             // 
+            // lblStatus
+            // 
+            this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(5, 548);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(0, 18);
+            this.lblStatus.TabIndex = 7;
+            // 
+            // btnUcitajZaposlenja
+            // 
+            this.btnUcitajZaposlenja.Location = new System.Drawing.Point(8, 230);
+            this.btnUcitajZaposlenja.Name = "btnUcitajZaposlenja";
+            this.btnUcitajZaposlenja.Size = new System.Drawing.Size(128, 40);
+            this.btnUcitajZaposlenja.TabIndex = 6;
+            this.btnUcitajZaposlenja.Text = "Učitaj zaposlenja";
+            this.btnUcitajZaposlenja.ToolTipText = "Dohvatanje zaposlenja i angažovanja za selektovane zaposlene";
+            this.btnUcitajZaposlenja.UseVisualStyleBackColor = true;
+            this.btnUcitajZaposlenja.Click += new System.EventHandler(this.BtnUcitajZaposlenja_Click);
+            // 
             // btnKvalifStruktura
             // 
-            this.btnKvalifStruktura.Location = new System.Drawing.Point(8, 230);
+            this.btnKvalifStruktura.Location = new System.Drawing.Point(8, 322);
             this.btnKvalifStruktura.Name = "btnKvalifStruktura";
             this.btnKvalifStruktura.Size = new System.Drawing.Size(128, 40);
             this.btnKvalifStruktura.TabIndex = 5;
@@ -512,6 +538,17 @@ namespace JISP.Forms
             this.btnExit.Text = "Izlaz";
             this.btnExit.ToolTipText = "Izlaz iz aplikacije";
             this.btnExit.UseVisualStyleBackColor = false;
+            // 
+            // BtnCsvZaposlenja
+            // 
+            this.BtnCsvZaposlenja.Location = new System.Drawing.Point(8, 276);
+            this.BtnCsvZaposlenja.Name = "BtnCsvZaposlenja";
+            this.BtnCsvZaposlenja.Size = new System.Drawing.Size(128, 40);
+            this.BtnCsvZaposlenja.TabIndex = 8;
+            this.BtnCsvZaposlenja.Text = "CSV zaposlenja";
+            this.BtnCsvZaposlenja.ToolTipText = "Dohvatanje zaposlenja i angažovanja za selektovane zaposlene";
+            this.BtnCsvZaposlenja.UseVisualStyleBackColor = true;
+            this.BtnCsvZaposlenja.Click += new System.EventHandler(this.BtnCsvZaposlenja_Click);
             // 
             // FrmZaposleni
             // 
@@ -582,5 +619,8 @@ namespace JISP.Forms
         private System.Windows.Forms.DataGridViewButtonColumn dgvcZapId;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcStatusAktivnosti;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcNapomene;
+        private Controls.UcButton btnUcitajZaposlenja;
+        private System.Windows.Forms.Label lblStatus;
+        private Controls.UcButton BtnCsvZaposlenja;
     }
 }

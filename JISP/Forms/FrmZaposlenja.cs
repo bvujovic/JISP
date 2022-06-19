@@ -3,6 +3,7 @@ using JISP.Classes.ObracunZarada;
 using JISP.Controls;
 using JISP.Data;
 using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -26,6 +27,13 @@ namespace JISP.Forms
                     foreach (var cim in CheckedIndicesMeseci)
                         lstchkMeseci.SetItemChecked((int)cim, true);
                 tcBottom.SelectedIndex = TcBottomSelectedIndex;
+                if (LastLocation != Point.Empty)
+                {
+                    StartPosition = FormStartPosition.Manual;
+                    Location = LastLocation;
+                }
+                if (LastSize != Size.Empty)
+                    Size = LastSize;
 
                 bsZaposlenja.DataSource = AppData.Ds;
                 dgvZaposlenjaSve.StandardSort = bsZaposlenja.Sort;
@@ -50,46 +58,8 @@ namespace JISP.Forms
         private async void BtnUcitajZaposlenja_Click(object sender, EventArgs e)
         {
             await (sender as UcButton).RunAsync(async () =>
-            {
-                var body = $"{{'regUstUstanovaId':{WebApi.SV_SAVA_ID},'regZapZaposleniId':{zaposleni.IdZaposlenog}}}";
-                var json = await WebApi.PostForJson(WebApi.ReqEnum.Zap_Zaposlenja, body);
-                var IDsToRemove = zaposleni.GetZaposlenjaRows().Select(it => it.IdZaposlenja).ToList();
-
-                dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
-                foreach (var obj in arr)
-                {
-                    if (obj.regZapZaposleniUstanova.regUstUstanovaId != WebApi.SV_SAVA_ID)
-                        continue;
-                    Ds.ZaposlenjaRow z;
-                    var isNew = true; // da li je dobijeno zaposlenje novo 
-                    if (IDsToRemove.Contains((int)obj.id)) // vec imam dobijeno zaposlenje - treba ga update-ovati
-                    {
-                        IDsToRemove.Remove((int)obj.id);
-                        z = Zaposlenja.FindByIdZaposlenja((int)obj.id);
-                        isNew = false;
-                    }
-                    else
-                    {
-                        z = Zaposlenja.NewZaposlenjaRow();
-                        z.IdZaposlenog = zaposleni.IdZaposlenog;
-                        z.IdZaposlenja = obj.id;
-                    }
-                    z.BrojUgovoraORadu = obj.brojUgovoraORadu ?? "Непознато";
-                    z.DatumZaposlenOd = obj.datumZaposlenOd;
-                    if (obj.datumZaposlenDo != null)
-                        z.DatumZaposlenDo = obj.datumZaposlenDo;
-                    z.ProcenatRadnogVremena = obj.procenatRadnogVremena;
-                    z.RadnoMestoNaziv = obj.radnoMestoNaziv;
-                    z.VrstaAngazovanja = obj.vrstaAngazovanjaNaziv;
-                    if (obj.noksNivo != null)
-                        z.NoksNivoNaziv = obj.noksNivo.naziv;
-                    z.Aktivan = obj.statusUgovora != null && obj.statusUgovora == 19292;
-                    if (isNew)
-                        AppData.Ds.Zaposlenja.AddZaposlenjaRow(z);
-                }
-                foreach (var id in IDsToRemove)
-                    Zaposlenja.RemoveZaposlenjaRow(Zaposlenja.FindByIdZaposlenja(id));
-            });
+                await DataGetter.GetZaposlenjaAsync(zaposleni)
+            );
             zaposleni.CalcAngazovanja();
         }
 
@@ -107,34 +77,8 @@ namespace JISP.Forms
         private async void BtnUcitajObracunZarada_Click(object sender, EventArgs e)
         {
             await (sender as UcButton).RunAsync(async () =>
-            {
-                // dohvatanje podataka
-                var json = await WebApi.GetJson(WebApi.ReqEnum.Zap_ObracunZarada
-                    , zaposleni.IdZaposlenog.ToString());
-                dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
-                // brisanje starih obracuna zarada za zaposlenog
-                var ozs = zaposleni.GetObracunZaradaRows();
-                foreach (var oz in ozs)
-                    AppData.Ds.ObracunZarada.RemoveObracunZaradaRow(oz);
-                // popunjavanje data seta dobijenim podacima
-                foreach (var obj in arr)
-                {
-                    var oz = AppData.Ds.ObracunZarada.NewObracunZaradaRow();
-                    oz.IdZaposlenog = zaposleni.IdZaposlenog;
-                    oz.IdObracuna = obj.id;
-                    oz.BrojUgovora = obj.brojUgovora;
-                    oz.Godina = obj.godinaBroj;
-                    oz.MesecNaziv = obj.mesecSifarnikNaziv;
-                    oz.MesecBroj = OzMesec.BrojMeseca(oz.MesecNaziv);
-                    oz.OsnovniKoef = obj.osnovniKoeficijentZaposlenog;
-                    if (obj.dodatniKoeficijentZaposlenog != null)
-                        oz.DodatniKoef = obj.dodatniKoeficijentZaposlenog;
-                    if (obj.koeficijentZaStaresinstvo != null)
-                        oz.KoefZaStaresinstvo = obj.koeficijentZaStaresinstvo;
-                    oz.Norma = obj.normaZaposlenog;
-                    AppData.Ds.ObracunZarada.AddObracunZaradaRow(oz);
-                }
-            });
+                await DataGetter.GetObracuniZaradaAsync(zaposleni)
+            );
         }
 
         private async void BtnKreirajObracune_Click(object sender, EventArgs e)
@@ -190,6 +134,8 @@ namespace JISP.Forms
         private static CheckState? CheckStateAktivno = null;
         private static CheckedListBox.CheckedIndexCollection CheckedIndicesMeseci = null;
         private static int TcBottomSelectedIndex = 0;
+        private static Point LastLocation = Point.Empty;
+        private static Size LastSize = Size.Empty;
 
         private void FrmZaposlenja_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -197,6 +143,8 @@ namespace JISP.Forms
             CheckStateAktivno = chkAktivno.CheckState;
             CheckedIndicesMeseci = lstchkMeseci.CheckedIndices;
             TcBottomSelectedIndex = tcBottom.SelectedIndex;
+            LastLocation = Location;
+            LastSize = Size;
             dgvZaposlenjaSve.SaveSettings();
             dgvAngazovanja.SaveSettings();
             dgvObracunZarada.SaveSettings();
@@ -206,38 +154,8 @@ namespace JISP.Forms
         {
             tcBottom.SelectedTab = tpAngazovanja;
             await (sender as UcButton).RunAsync(async () =>
-            {
-                var zaposlenja = dgvZaposlenjaSve.SelectedDataRows<Ds.ZaposlenjaRow>();
-                foreach (var zap in zaposlenja)
-                {
-                    var idZaposlenja = zap.IdZaposlenja;
-                    if (idZaposlenja < 0)
-                        throw new Exception("IdZaposlenja nije ispravan. Potrebno je ponovo učitati zaposlenja.");
-                    var json = await WebApi.GetJson(WebApi.ReqEnum.Zap_Angazovanja, idZaposlenja.ToString());
-                    //B var IDsToRemove = zap.GetAngazovanjaRows().Select(it => it.IdAngazovanja);
-                    var oldAngs = zap.GetAngazovanjaRows();
-                    Utils.ShowMbox($"Ažuriranje {oldAngs.Length} angažovanja.", "DEBUG poruka");
-                    foreach (var ang in oldAngs)
-                        AppData.Ds.Angazovanja.RemoveAngazovanjaRow(ang);
-                    dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
-                    foreach (var obj in arr)
-                    {
-                        //var ang = AppData.Ds.Angazovanja.FindByIdAngazovanja((int)obj.id);
-                        //if (ang != null)
-                        //    AppData.Ds.Angazovanja.RemoveAngazovanjaRow(ang);
-
-                        var a = AppData.Ds.Angazovanja.NewAngazovanjaRow();
-                        a.IdAngazovanja = obj.id;
-                        a.IdZaposlenja = idZaposlenja;
-                        a.SkolskaGodina = obj.skolskaGodinaNaziv;
-                        a.IzvorFinansiranja = Utils.SkratiIzvorFin((string)obj.izvorFinansiranjaNaziv);
-                        a.ProcenatAngazovanja = obj.procenatAngazovanja;
-                        a.Predmet = obj.predmetNaziv;
-                        a.PodnivoPredmeta = obj.podnivoPredmetaNaziv;
-                        AppData.Ds.Angazovanja.AddAngazovanjaRow(a);
-                    }
-                }
-            });
+                await DataGetter.GetAngazovanjaAsync(dgvZaposlenjaSve.SelectedDataRows<Ds.ZaposlenjaRow>())
+            );
             zaposleni.CalcAngazovanja();
         }
 

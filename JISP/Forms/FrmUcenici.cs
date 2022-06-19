@@ -117,12 +117,19 @@ namespace JISP.Forms
         {
             try
             {
+                var filter = "";
                 var s = txtFilter.Text;
-                var ids = IDeviZaDeoImena(s);
-                var deoImena = ids.Count() > 0 ? $"IdUcenika IN ({string.Join(", ", ids)}) OR " : "";
+                // pretraga razreda i odeljenja
+                if (s.StartsWith("I") || s.StartsWith("V"))
+                    filter = $"Razred LIKE '{s}%' OR Odeljenje LIKE '{s}%'";
+                else // 
+                {
+                    var ids = IDeviZaDeoImena(s);
+                    var deoImena = ids.Count() > 0 ? $"IdUcenika IN ({string.Join(", ", ids)}) OR " : "";
 
-                var filter = $"{deoImena} JOB LIKE '%{s}%' "
-                       + $" OR Skola LIKE '%{s}%' OR Razred LIKE '%{s}%' OR Odeljenje LIKE '%{s}%'";
+                    filter = $"{deoImena} JOB LIKE '%{s}%' "
+                           + $" OR Skola LIKE '%{s}%' OR Razred LIKE '%{s}%' OR Odeljenje LIKE '%{s}%'";
+                }
                 if (chkSamoTekuci.Checked)
                     filter = $"({filter}) AND RegUceLiceId IS NOT NULL";
 
@@ -205,7 +212,9 @@ namespace JISP.Forms
             {
                 ResetLblOceneProsekText();
                 var avg = Ocene.Prosek(Clipboard.GetText(), chkOceneSaVladanjem.Checked);
-                lblOceneProsek.Text = avg.ToString("0.00");
+                var strAvg = avg.ToString("0.00");
+                lblOceneProsek.Text = strAvg;
+                Clipboard.SetText(strAvg);
             }
             catch (Exception ex) { Utils.ShowMbox(ex, "Računanje proseka ocena"); }
         }
@@ -294,7 +303,7 @@ namespace JISP.Forms
                     }
                 });
 
-            if(selItem == CmbDohvatiOdRaz)
+            if (selItem == CmbDohvatiOdRaz)
                 await (sender as UcButton).RunAsync(async () =>
                 {
                     var ucenici = dgvUcenici.SelectedDataRows<Ds.UceniciRow>();
@@ -330,7 +339,7 @@ namespace JISP.Forms
                     }
                 });
 
-            if(selItem == CmbDohvatiOceneKraj)
+            if (selItem == CmbDohvatiOceneKraj)
                 await (sender as UcButton).RunAsync(async () =>
                 {
                     foreach (var uc in dgvUcenici.SelectedDataRows<Ds.UceniciRow>())

@@ -207,5 +207,51 @@ namespace JISP.Forms
             dgvZaposleni.SaveSettings();
             dgvZaposlenja.SaveSettings();
         }
+
+        private async void BtnUcitajZaposlenja_Click(object sender, EventArgs e)
+        {
+            var zaposleni = dgvZaposleni.SelectedDataRows<Ds.ZaposleniRow>();
+            foreach (var zap in zaposleni)
+                await (sender as Controls.UcButton).RunAsync(async () =>
+                {
+                    lblStatus.Text = zap.Ime;
+                    await DataGetter.GetZaposlenjaAsync(zap);
+                    await DataGetter.GetAngazovanjaAsync(zap.GetZaposlenjaRows());
+                    zap.CalcAngazovanja();
+                });
+            lblStatus.Text = "";
+        }
+
+        private void BtnCsvZaposlenja_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var sb = new System.Text.StringBuilder("Zaposleni;Radno mesto;Kategorija;Procenat;Tip ugovora" + Environment.NewLine);
+                var uracunataAngazovanja = new[] {
+                    "На неодређено",
+                    "На одређено - до преузимања односно коначности одлуке о избору кандидата по конкурсу",
+                    "На одређено - верска настава",
+                    "На одређено - директор установе",
+                };
+
+                foreach (var zaposleni in Ds.Zaposleni.Where(it => it.Aktivan).OrderBy(it => it.Ime))
+                    foreach (var zap in zaposleni.GetZaposlenjaRows().Where(it => it.Aktivan))
+                    {
+                        var uracunato = uracunataAngazovanja.Contains(zap.VrstaAngazovanja) 
+                            ? "DA" : zap.VrstaAngazovanja;
+                        if (zaposleni.Angazovanja.Contains("стандард"))
+                            uracunato = "US";
+                        var kat = "";
+                        if (zap.RadnoMestoNaziv.Contains("Васпитач") || zap.RadnoMestoNaziv.Contains("васпитач"))
+                            kat = "Васпитач";
+                        if (zap.RadnoMestoNaziv.Contains("Наставник") || zap.RadnoMestoNaziv.Contains("наставник"))
+                            kat = "Наставник";
+                        sb.AppendLine($"{zaposleni};{zap.RadnoMestoNaziv};{kat};{zap.ProcenatRadnogVremena};{uracunato}");
+                    }
+
+                Clipboard.SetText(sb.ToString());
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, BtnCsvZaposlenja.Text); }
+        }
     }
 }

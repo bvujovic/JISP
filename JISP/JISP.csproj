@@ -28,7 +28,7 @@
     <PublisherName>BV</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.4.3.0</ApplicationVersion>
+    <ApplicationVersion>0.4.4.0</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -128,6 +128,7 @@
     </Compile>
     <Compile Include="Data\AppData.cs" />
     <Compile Include="Data\BackupData.cs" />
+    <Compile Include="Data\DataGetter.cs" />
     <Compile Include="Data\Ds.cs">
       <DependentUpon>Ds.xsd</DependentUpon>
     </Compile>
