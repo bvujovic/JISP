@@ -40,9 +40,9 @@
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
             this.chkCopyOnClick = new System.Windows.Forms.CheckBox();
             this.btnDodajOZTemplate = new JISP.Controls.UcButton();
-            this.btnUcitajAngazovanja = new JISP.Controls.UcButton();
             this.btnUcitajZaposlenja = new JISP.Controls.UcButton();
             this.btnExit = new JISP.Controls.UcExitAppButton();
+            this.btnUcitajAngazovanja = new JISP.Controls.UcButton();
             this.pnlZaposleniTop = new System.Windows.Forms.Panel();
             this.chkAktivno = new System.Windows.Forms.CheckBox();
             this.lblBrojRedovaZaposlenja = new System.Windows.Forms.Label();
@@ -62,13 +62,6 @@
             this.tcBottom = new System.Windows.Forms.TabControl();
             this.tpObracunZarada = new System.Windows.Forms.TabPage();
             this.dgvObracunZarada = new JISP.Controls.UcDGV();
-            this.brojUgovoraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.godinaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mesecNazivDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.osnovniKoefDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dodatniKoefDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcOzKoefZaStaresinstvo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.normaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblBrojRedovaOZ = new System.Windows.Forms.Label();
             this.bsObracunZarada = new System.Windows.Forms.BindingSource(this.components);
             this.pnlBottomLeftOZ = new JISP.Controls.UcLeftPanel();
@@ -86,6 +79,15 @@
             this.podnivoPredmetaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsAngazovanja = new System.Windows.Forms.BindingSource(this.components);
             this.pnlBottomLeftAng = new JISP.Controls.UcLeftPanel();
+            this.btnUcitajOzOpis = new JISP.Controls.UcButton();
+            this.brojUgovoraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.godinaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mesecNazivDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.osnovniKoefDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dodatniKoefDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcOzKoefZaStaresinstvo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.normaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KoefSveOpis = new System.Windows.Forms.DataGridViewTextBoxColumn();
             lblOzGodina = new System.Windows.Forms.Label();
             this.pnlLeft.SuspendLayout();
             this.pnlZaposleniTop.SuspendLayout();
@@ -111,7 +113,7 @@
             // lblOzGodina
             // 
             lblOzGodina.AutoSize = true;
-            lblOzGodina.Location = new System.Drawing.Point(0, 101);
+            lblOzGodina.Location = new System.Drawing.Point(0, 129);
             lblOzGodina.Name = "lblOzGodina";
             lblOzGodina.Size = new System.Drawing.Size(56, 18);
             lblOzGodina.TabIndex = 4;
@@ -128,7 +130,7 @@
             this.pnlLeft.Name = "pnlLeft";
             this.pnlLeft.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
             this.pnlLeft.RightWingWidth = 6;
-            this.pnlLeft.Size = new System.Drawing.Size(146, 511);
+            this.pnlLeft.Size = new System.Drawing.Size(146, 569);
             this.pnlLeft.TabIndex = 2;
             // 
             // chkCopyOnClick
@@ -154,18 +156,6 @@
             this.btnDodajOZTemplate.UseVisualStyleBackColor = true;
             this.btnDodajOZTemplate.Click += new System.EventHandler(this.BtnDodajOZTemplate_Click);
             // 
-            // btnUcitajAngazovanja
-            // 
-            this.btnUcitajAngazovanja.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUcitajAngazovanja.Location = new System.Drawing.Point(3, 3);
-            this.btnUcitajAngazovanja.Name = "btnUcitajAngazovanja";
-            this.btnUcitajAngazovanja.Size = new System.Drawing.Size(135, 45);
-            this.btnUcitajAngazovanja.TabIndex = 4;
-            this.btnUcitajAngazovanja.Text = "Učitaj angažovanja";
-            this.btnUcitajAngazovanja.ToolTipText = "Dohvatanje podataka o zaposlenjima";
-            this.btnUcitajAngazovanja.UseVisualStyleBackColor = true;
-            this.btnUcitajAngazovanja.Click += new System.EventHandler(this.BtnUcitajAngazovanja_Click);
-            // 
             // btnUcitajZaposlenja
             // 
             this.btnUcitajZaposlenja.Location = new System.Drawing.Point(8, 92);
@@ -189,6 +179,18 @@
             this.btnExit.ToolTipText = "Izlaz iz aplikacije";
             this.btnExit.UseVisualStyleBackColor = false;
             // 
+            // btnUcitajAngazovanja
+            // 
+            this.btnUcitajAngazovanja.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUcitajAngazovanja.Location = new System.Drawing.Point(3, 3);
+            this.btnUcitajAngazovanja.Name = "btnUcitajAngazovanja";
+            this.btnUcitajAngazovanja.Size = new System.Drawing.Size(135, 45);
+            this.btnUcitajAngazovanja.TabIndex = 4;
+            this.btnUcitajAngazovanja.Text = "Učitaj angažovanja";
+            this.btnUcitajAngazovanja.ToolTipText = "Dohvatanje podataka o zaposlenjima";
+            this.btnUcitajAngazovanja.UseVisualStyleBackColor = true;
+            this.btnUcitajAngazovanja.Click += new System.EventHandler(this.BtnUcitajAngazovanja_Click);
+            // 
             // pnlZaposleniTop
             // 
             this.pnlZaposleniTop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -197,7 +199,7 @@
             this.pnlZaposleniTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlZaposleniTop.Location = new System.Drawing.Point(0, 0);
             this.pnlZaposleniTop.Name = "pnlZaposleniTop";
-            this.pnlZaposleniTop.Size = new System.Drawing.Size(903, 30);
+            this.pnlZaposleniTop.Size = new System.Drawing.Size(985, 30);
             this.pnlZaposleniTop.TabIndex = 3;
             // 
             // chkAktivno
@@ -267,7 +269,7 @@
             this.dgvZaposlenjaSve.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvZaposlenjaSve.RowHeadersWidth = 30;
             this.dgvZaposlenjaSve.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvZaposlenjaSve.Size = new System.Drawing.Size(903, 211);
+            this.dgvZaposlenjaSve.Size = new System.Drawing.Size(985, 211);
             this.dgvZaposlenjaSve.StandardSort = null;
             this.dgvZaposlenjaSve.TabIndex = 4;
             this.dgvZaposlenjaSve.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvZaposlenjaSve_CellClick);
@@ -370,7 +372,7 @@
             // scMain.Panel2
             // 
             this.scMain.Panel2.Controls.Add(this.tcBottom);
-            this.scMain.Size = new System.Drawing.Size(903, 511);
+            this.scMain.Size = new System.Drawing.Size(985, 569);
             this.scMain.SplitterDistance = 241;
             this.scMain.TabIndex = 5;
             // 
@@ -382,7 +384,7 @@
             this.tcBottom.Location = new System.Drawing.Point(0, 0);
             this.tcBottom.Name = "tcBottom";
             this.tcBottom.SelectedIndex = 0;
-            this.tcBottom.Size = new System.Drawing.Size(903, 266);
+            this.tcBottom.Size = new System.Drawing.Size(985, 324);
             this.tcBottom.TabIndex = 0;
             // 
             // tpObracunZarada
@@ -393,7 +395,7 @@
             this.tpObracunZarada.Location = new System.Drawing.Point(4, 27);
             this.tpObracunZarada.Name = "tpObracunZarada";
             this.tpObracunZarada.Padding = new System.Windows.Forms.Padding(3);
-            this.tpObracunZarada.Size = new System.Drawing.Size(895, 235);
+            this.tpObracunZarada.Size = new System.Drawing.Size(977, 293);
             this.tpObracunZarada.TabIndex = 0;
             this.tpObracunZarada.Text = "Obračun zarada";
             // 
@@ -421,7 +423,8 @@
             this.osnovniKoefDataGridViewTextBoxColumn,
             this.dodatniKoefDataGridViewTextBoxColumn,
             this.dgvcOzKoefZaStaresinstvo,
-            this.normaDataGridViewTextBoxColumn});
+            this.normaDataGridViewTextBoxColumn,
+            this.KoefSveOpis});
             this.dgvObracunZarada.ColumnsForCopyOnClick = null;
             this.dgvObracunZarada.CopyOnCellClick = false;
             this.dgvObracunZarada.CtrlDisplayPositionRowCount = this.lblBrojRedovaOZ;
@@ -432,66 +435,15 @@
             this.dgvObracunZarada.ReadOnly = true;
             this.dgvObracunZarada.RowHeadersWidth = 30;
             this.dgvObracunZarada.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvObracunZarada.Size = new System.Drawing.Size(743, 229);
+            this.dgvObracunZarada.Size = new System.Drawing.Size(825, 287);
             this.dgvObracunZarada.StandardSort = null;
             this.dgvObracunZarada.TabIndex = 1;
-            // 
-            // brojUgovoraDataGridViewTextBoxColumn
-            // 
-            this.brojUgovoraDataGridViewTextBoxColumn.DataPropertyName = "BrojUgovora";
-            this.brojUgovoraDataGridViewTextBoxColumn.HeaderText = "Broj ugovora";
-            this.brojUgovoraDataGridViewTextBoxColumn.Name = "brojUgovoraDataGridViewTextBoxColumn";
-            this.brojUgovoraDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // godinaDataGridViewTextBoxColumn
-            // 
-            this.godinaDataGridViewTextBoxColumn.DataPropertyName = "Godina";
-            this.godinaDataGridViewTextBoxColumn.HeaderText = "Godina";
-            this.godinaDataGridViewTextBoxColumn.Name = "godinaDataGridViewTextBoxColumn";
-            this.godinaDataGridViewTextBoxColumn.ReadOnly = true;
-            this.godinaDataGridViewTextBoxColumn.Width = 80;
-            // 
-            // mesecNazivDataGridViewTextBoxColumn
-            // 
-            this.mesecNazivDataGridViewTextBoxColumn.DataPropertyName = "MesecNaziv";
-            this.mesecNazivDataGridViewTextBoxColumn.HeaderText = "Mesec";
-            this.mesecNazivDataGridViewTextBoxColumn.Name = "mesecNazivDataGridViewTextBoxColumn";
-            this.mesecNazivDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // osnovniKoefDataGridViewTextBoxColumn
-            // 
-            this.osnovniKoefDataGridViewTextBoxColumn.DataPropertyName = "OsnovniKoef";
-            this.osnovniKoefDataGridViewTextBoxColumn.HeaderText = "Osnovni koef";
-            this.osnovniKoefDataGridViewTextBoxColumn.Name = "osnovniKoefDataGridViewTextBoxColumn";
-            this.osnovniKoefDataGridViewTextBoxColumn.ReadOnly = true;
-            this.osnovniKoefDataGridViewTextBoxColumn.Width = 110;
-            // 
-            // dodatniKoefDataGridViewTextBoxColumn
-            // 
-            this.dodatniKoefDataGridViewTextBoxColumn.DataPropertyName = "DodatniKoef";
-            this.dodatniKoefDataGridViewTextBoxColumn.HeaderText = "Dodatni koef";
-            this.dodatniKoefDataGridViewTextBoxColumn.Name = "dodatniKoefDataGridViewTextBoxColumn";
-            this.dodatniKoefDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dgvcOzKoefZaStaresinstvo
-            // 
-            this.dgvcOzKoefZaStaresinstvo.DataPropertyName = "KoefZaStaresinstvo";
-            this.dgvcOzKoefZaStaresinstvo.HeaderText = "Starešinstvo";
-            this.dgvcOzKoefZaStaresinstvo.Name = "dgvcOzKoefZaStaresinstvo";
-            this.dgvcOzKoefZaStaresinstvo.ReadOnly = true;
-            // 
-            // normaDataGridViewTextBoxColumn
-            // 
-            this.normaDataGridViewTextBoxColumn.DataPropertyName = "Norma";
-            this.normaDataGridViewTextBoxColumn.HeaderText = "Norma";
-            this.normaDataGridViewTextBoxColumn.Name = "normaDataGridViewTextBoxColumn";
-            this.normaDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // lblBrojRedovaOZ
             // 
             this.lblBrojRedovaOZ.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblBrojRedovaOZ.AutoSize = true;
-            this.lblBrojRedovaOZ.Location = new System.Drawing.Point(4, 207);
+            this.lblBrojRedovaOZ.Location = new System.Drawing.Point(4, 265);
             this.lblBrojRedovaOZ.Name = "lblBrojRedovaOZ";
             this.lblBrojRedovaOZ.Size = new System.Drawing.Size(59, 18);
             this.lblBrojRedovaOZ.TabIndex = 8;
@@ -505,6 +457,7 @@
             // 
             // pnlBottomLeftOZ
             // 
+            this.pnlBottomLeftOZ.Controls.Add(this.btnUcitajOzOpis);
             this.pnlBottomLeftOZ.Controls.Add(this.lblBrojRedovaOZ);
             this.pnlBottomLeftOZ.Controls.Add(this.btnObrisiObracune);
             this.pnlBottomLeftOZ.Controls.Add(this.lstchkMeseci);
@@ -517,7 +470,7 @@
             this.pnlBottomLeftOZ.Name = "pnlBottomLeftOZ";
             this.pnlBottomLeftOZ.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
             this.pnlBottomLeftOZ.RightWingWidth = 6;
-            this.pnlBottomLeftOZ.Size = new System.Drawing.Size(146, 229);
+            this.pnlBottomLeftOZ.Size = new System.Drawing.Size(146, 287);
             this.pnlBottomLeftOZ.TabIndex = 0;
             // 
             // btnObrisiObracune
@@ -551,14 +504,14 @@
             "Oktobar",
             "Novembar",
             "Decembar"});
-            this.lstchkMeseci.Location = new System.Drawing.Point(3, 125);
+            this.lstchkMeseci.Location = new System.Drawing.Point(3, 157);
             this.lstchkMeseci.Name = "lstchkMeseci";
-            this.lstchkMeseci.Size = new System.Drawing.Size(135, 79);
+            this.lstchkMeseci.Size = new System.Drawing.Size(135, 105);
             this.lstchkMeseci.TabIndex = 6;
             // 
             // numOzGodina
             // 
-            this.numOzGodina.Location = new System.Drawing.Point(62, 99);
+            this.numOzGodina.Location = new System.Drawing.Point(62, 127);
             this.numOzGodina.Maximum = new decimal(new int[] {
             2050,
             0,
@@ -605,10 +558,10 @@
             this.tpAngazovanja.BackColor = System.Drawing.SystemColors.Control;
             this.tpAngazovanja.Controls.Add(this.dgvAngazovanja);
             this.tpAngazovanja.Controls.Add(this.pnlBottomLeftAng);
-            this.tpAngazovanja.Location = new System.Drawing.Point(4, 27);
+            this.tpAngazovanja.Location = new System.Drawing.Point(4, 22);
             this.tpAngazovanja.Name = "tpAngazovanja";
             this.tpAngazovanja.Padding = new System.Windows.Forms.Padding(3);
-            this.tpAngazovanja.Size = new System.Drawing.Size(895, 235);
+            this.tpAngazovanja.Size = new System.Drawing.Size(895, 240);
             this.tpAngazovanja.TabIndex = 1;
             this.tpAngazovanja.Text = "Angažovanja";
             // 
@@ -644,7 +597,7 @@
             this.dgvAngazovanja.Name = "dgvAngazovanja";
             this.dgvAngazovanja.ReadOnly = true;
             this.dgvAngazovanja.RowHeadersWidth = 30;
-            this.dgvAngazovanja.Size = new System.Drawing.Size(743, 229);
+            this.dgvAngazovanja.Size = new System.Drawing.Size(743, 234);
             this.dgvAngazovanja.StandardSort = null;
             this.dgvAngazovanja.TabIndex = 0;
             // 
@@ -704,14 +657,84 @@
             this.pnlBottomLeftAng.Name = "pnlBottomLeftAng";
             this.pnlBottomLeftAng.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
             this.pnlBottomLeftAng.RightWingWidth = 6;
-            this.pnlBottomLeftAng.Size = new System.Drawing.Size(146, 229);
+            this.pnlBottomLeftAng.Size = new System.Drawing.Size(146, 234);
             this.pnlBottomLeftAng.TabIndex = 1;
+            // 
+            // btnUcitajOzOpis
+            // 
+            this.btnUcitajOzOpis.Location = new System.Drawing.Point(3, 93);
+            this.btnUcitajOzOpis.Name = "btnUcitajOzOpis";
+            this.btnUcitajOzOpis.Size = new System.Drawing.Size(135, 30);
+            this.btnUcitajOzOpis.TabIndex = 9;
+            this.btnUcitajOzOpis.Text = "Učitaj opise";
+            this.btnUcitajOzOpis.ToolTipText = "Učitavanje detalja/opisa za selektovane obračune";
+            this.btnUcitajOzOpis.UseVisualStyleBackColor = true;
+            this.btnUcitajOzOpis.Click += new System.EventHandler(this.BtnUcitajOzOpis_Click);
+            // 
+            // brojUgovoraDataGridViewTextBoxColumn
+            // 
+            this.brojUgovoraDataGridViewTextBoxColumn.DataPropertyName = "BrojUgovora";
+            this.brojUgovoraDataGridViewTextBoxColumn.HeaderText = "Broj ugovora";
+            this.brojUgovoraDataGridViewTextBoxColumn.Name = "brojUgovoraDataGridViewTextBoxColumn";
+            this.brojUgovoraDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // godinaDataGridViewTextBoxColumn
+            // 
+            this.godinaDataGridViewTextBoxColumn.DataPropertyName = "Godina";
+            this.godinaDataGridViewTextBoxColumn.HeaderText = "Godina";
+            this.godinaDataGridViewTextBoxColumn.Name = "godinaDataGridViewTextBoxColumn";
+            this.godinaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.godinaDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // mesecNazivDataGridViewTextBoxColumn
+            // 
+            this.mesecNazivDataGridViewTextBoxColumn.DataPropertyName = "MesecNaziv";
+            this.mesecNazivDataGridViewTextBoxColumn.HeaderText = "Mesec";
+            this.mesecNazivDataGridViewTextBoxColumn.Name = "mesecNazivDataGridViewTextBoxColumn";
+            this.mesecNazivDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // osnovniKoefDataGridViewTextBoxColumn
+            // 
+            this.osnovniKoefDataGridViewTextBoxColumn.DataPropertyName = "OsnovniKoef";
+            this.osnovniKoefDataGridViewTextBoxColumn.HeaderText = "Osnovni koef";
+            this.osnovniKoefDataGridViewTextBoxColumn.Name = "osnovniKoefDataGridViewTextBoxColumn";
+            this.osnovniKoefDataGridViewTextBoxColumn.ReadOnly = true;
+            this.osnovniKoefDataGridViewTextBoxColumn.Width = 110;
+            // 
+            // dodatniKoefDataGridViewTextBoxColumn
+            // 
+            this.dodatniKoefDataGridViewTextBoxColumn.DataPropertyName = "DodatniKoef";
+            this.dodatniKoefDataGridViewTextBoxColumn.HeaderText = "Dodatni koef";
+            this.dodatniKoefDataGridViewTextBoxColumn.Name = "dodatniKoefDataGridViewTextBoxColumn";
+            this.dodatniKoefDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dgvcOzKoefZaStaresinstvo
+            // 
+            this.dgvcOzKoefZaStaresinstvo.DataPropertyName = "KoefZaStaresinstvo";
+            this.dgvcOzKoefZaStaresinstvo.HeaderText = "Starešinstvo";
+            this.dgvcOzKoefZaStaresinstvo.Name = "dgvcOzKoefZaStaresinstvo";
+            this.dgvcOzKoefZaStaresinstvo.ReadOnly = true;
+            // 
+            // normaDataGridViewTextBoxColumn
+            // 
+            this.normaDataGridViewTextBoxColumn.DataPropertyName = "Norma";
+            this.normaDataGridViewTextBoxColumn.HeaderText = "Norma";
+            this.normaDataGridViewTextBoxColumn.Name = "normaDataGridViewTextBoxColumn";
+            this.normaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.normaDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // KoefSveOpis
+            // 
+            this.KoefSveOpis.DataPropertyName = "KoefSveOpis";
+            this.KoefSveOpis.HeaderText = "Koef opis";
+            this.KoefSveOpis.Name = "KoefSveOpis";
+            this.KoefSveOpis.ReadOnly = true;
             // 
             // FrmZaposlenja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1049, 511);
+            this.ClientSize = new System.Drawing.Size(1131, 569);
             this.Controls.Add(this.scMain);
             this.Controls.Add(this.pnlLeft);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
@@ -788,6 +811,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn vrstaAngazovanjaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgvcImaObracunTemplate;
         private System.Windows.Forms.CheckBox chkCopyOnClick;
+        private System.Windows.Forms.Label lblBrojRedovaOZ;
+        private Controls.UcLeftPanel pnlBottomLeftAng;
         private System.Windows.Forms.DataGridViewTextBoxColumn brojUgovoraDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn godinaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn mesecNazivDataGridViewTextBoxColumn;
@@ -795,7 +820,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dodatniKoefDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcOzKoefZaStaresinstvo;
         private System.Windows.Forms.DataGridViewTextBoxColumn normaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Label lblBrojRedovaOZ;
-        private Controls.UcLeftPanel pnlBottomLeftAng;
+        private System.Windows.Forms.DataGridViewTextBoxColumn KoefSveOpis;
+        private Controls.UcButton btnUcitajOzOpis;
     }
 }

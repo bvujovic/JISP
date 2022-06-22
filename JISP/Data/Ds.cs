@@ -8,6 +8,13 @@ namespace JISP.Data
 {
     partial class Ds
     {
+        partial class ObracunZaradaRow
+        {
+            /// <summary>Ukupan broj meseci po formuli: 12*Godina + MesecBroj</summary>
+            public int MeseciTotal
+                => Godina * 12 + MesecBroj;
+        }
+
         partial class UceniciDataTable
         {
             protected override void OnColumnChanged(DataColumnChangeEventArgs e)

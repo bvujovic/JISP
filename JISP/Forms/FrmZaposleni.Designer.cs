@@ -67,6 +67,7 @@ namespace JISP.Forms
             this.dgvcNjaRMNaziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcZaposlenjaVrstaAng = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
+            this.BtnCsvZaposlenja = new JISP.Controls.UcButton();
             this.lblStatus = new System.Windows.Forms.Label();
             this.btnUcitajZaposlenja = new JISP.Controls.UcButton();
             this.btnKvalifStruktura = new JISP.Controls.UcButton();
@@ -75,7 +76,6 @@ namespace JISP.Forms
             this.btnLoadData = new JISP.Controls.UcButton();
             this.btnSaveData = new JISP.Controls.UcButton();
             this.btnExit = new JISP.Controls.UcExitAppButton();
-            this.BtnCsvZaposlenja = new JISP.Controls.UcButton();
             lblFilterCaption = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bsZaposleni)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
@@ -451,6 +451,17 @@ namespace JISP.Forms
             this.pnlLeft.Size = new System.Drawing.Size(146, 575);
             this.pnlLeft.TabIndex = 0;
             // 
+            // BtnCsvZaposlenja
+            // 
+            this.BtnCsvZaposlenja.Location = new System.Drawing.Point(8, 276);
+            this.BtnCsvZaposlenja.Name = "BtnCsvZaposlenja";
+            this.BtnCsvZaposlenja.Size = new System.Drawing.Size(128, 40);
+            this.BtnCsvZaposlenja.TabIndex = 8;
+            this.BtnCsvZaposlenja.Text = "CSV zaposlenja";
+            this.BtnCsvZaposlenja.ToolTipText = "Dohvatanje zaposlenja i angažovanja za selektovane zaposlene";
+            this.BtnCsvZaposlenja.UseVisualStyleBackColor = true;
+            this.BtnCsvZaposlenja.Click += new System.EventHandler(this.BtnCsvZaposlenja_Click);
+            // 
             // lblStatus
             // 
             this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -466,8 +477,8 @@ namespace JISP.Forms
             this.btnUcitajZaposlenja.Name = "btnUcitajZaposlenja";
             this.btnUcitajZaposlenja.Size = new System.Drawing.Size(128, 40);
             this.btnUcitajZaposlenja.TabIndex = 6;
-            this.btnUcitajZaposlenja.Text = "Učitaj zaposlenja";
-            this.btnUcitajZaposlenja.ToolTipText = "Dohvatanje zaposlenja i angažovanja za selektovane zaposlene";
+            this.btnUcitajZaposlenja.Text = "Učitaj sve";
+            this.btnUcitajZaposlenja.ToolTipText = "Dohvatanje zaposlenja, angažovanja i obračune zarada za selektovane zaposlene";
             this.btnUcitajZaposlenja.UseVisualStyleBackColor = true;
             this.btnUcitajZaposlenja.Click += new System.EventHandler(this.BtnUcitajZaposlenja_Click);
             // 
@@ -511,7 +522,7 @@ namespace JISP.Forms
             this.btnLoadData.Name = "btnLoadData";
             this.btnLoadData.Size = new System.Drawing.Size(128, 40);
             this.btnLoadData.TabIndex = 3;
-            this.btnLoadData.Text = "Učitaj podatke";
+            this.btnLoadData.Text = "Učitaj osnovno";
             this.btnLoadData.ToolTipText = "Dohvatanje podataka o svim zaposlenima (ime, prezime, JMBG, zaposlenja).";
             this.btnLoadData.UseVisualStyleBackColor = true;
             this.btnLoadData.Click += new System.EventHandler(this.BtnLoadData_Click);
@@ -538,17 +549,6 @@ namespace JISP.Forms
             this.btnExit.Text = "Izlaz";
             this.btnExit.ToolTipText = "Izlaz iz aplikacije";
             this.btnExit.UseVisualStyleBackColor = false;
-            // 
-            // BtnCsvZaposlenja
-            // 
-            this.BtnCsvZaposlenja.Location = new System.Drawing.Point(8, 276);
-            this.BtnCsvZaposlenja.Name = "BtnCsvZaposlenja";
-            this.BtnCsvZaposlenja.Size = new System.Drawing.Size(128, 40);
-            this.BtnCsvZaposlenja.TabIndex = 8;
-            this.BtnCsvZaposlenja.Text = "CSV zaposlenja";
-            this.BtnCsvZaposlenja.ToolTipText = "Dohvatanje zaposlenja i angažovanja za selektovane zaposlene";
-            this.BtnCsvZaposlenja.UseVisualStyleBackColor = true;
-            this.BtnCsvZaposlenja.Click += new System.EventHandler(this.BtnCsvZaposlenja_Click);
             // 
             // FrmZaposleni
             // 

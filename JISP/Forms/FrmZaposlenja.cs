@@ -101,9 +101,11 @@ namespace JISP.Forms
                 foreach (int idxMesec in lstchkMeseci.CheckedIndices)
                 {
                     var mes = idxMesec + 1;
-                    if (unetiOZovi.Where(it => it.MesecNaziv == OzMesec.NazivMeseca(mes)).Any())
-                        dupliMeseci.Add(mes);
-                    else
+                    //TODO videti sta valja uciniti sa ovom proverom vec unetih OZova
+                    //if (unetiOZovi.Where(it => it.MesecNaziv == OzMesec.NazivMeseca(mes)
+                    //    && it.Godina == god).Any())
+                    //    dupliMeseci.Add(mes);
+                    //else
                     {
                         string strNoviUnos = ObracunZarada.KreirajNoviUnos(zap.ObracunTemplate, god, mes);
                         await WebApi.PostForJson(WebApi.ReqEnum.Zap_ObracunZaradaKreiraj, strNoviUnos);
@@ -204,5 +206,13 @@ namespace JISP.Forms
         private void ChkCopyOnClick_CheckedChanged(object sender, EventArgs e)
             => dgvZaposlenjaSve.CopyOnCellClick = dgvAngazovanja.CopyOnCellClick
             = dgvObracunZarada.CopyOnCellClick = chkCopyOnClick.Checked;
+
+        private async void BtnUcitajOzOpis_Click(object sender, EventArgs e)
+        {
+            foreach (var oz in dgvObracunZarada.SelectedDataRows<Ds.ObracunZaradaRow>())
+                await (sender as UcButton).RunAsync(async () =>
+                    await DataGetter.GetOzOpisAsync(oz)
+                );
+        }
     }
 }

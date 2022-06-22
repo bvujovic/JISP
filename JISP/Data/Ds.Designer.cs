@@ -2329,6 +2329,10 @@ namespace JISP.Data {
             
             private global::System.Data.DataColumn columnKoefZaPredsednikaSindikata;
             
+            private global::System.Data.DataColumn columnKoefSveOpis;
+            
+            private global::System.Data.DataColumn columnIdZaposlenja;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ObracunZaradaDataTable() {
@@ -2452,6 +2456,22 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn KoefSveOpisColumn {
+                get {
+                    return this.columnKoefSveOpis;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IdZaposlenjaColumn {
+                get {
+                    return this.columnIdZaposlenja;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2487,7 +2507,7 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ObracunZaradaRow AddObracunZaradaRow(int IdObracuna, ZaposleniRow parentZaposleniRowByZaposleni_ObracunZarada, string BrojUgovora, int Godina, string MesecNaziv, int MesecBroj, double OsnovniKoef, double DodatniKoef, double Norma, double KoefZaStaresinstvo, double KoefZaPredsednikaSindikata) {
+            public ObracunZaradaRow AddObracunZaradaRow(int IdObracuna, ZaposleniRow parentZaposleniRowByZaposleni_ObracunZarada, string BrojUgovora, int Godina, string MesecNaziv, int MesecBroj, double OsnovniKoef, double DodatniKoef, double Norma, double KoefZaStaresinstvo, double KoefZaPredsednikaSindikata, string KoefSveOpis, int IdZaposlenja) {
                 ObracunZaradaRow rowObracunZaradaRow = ((ObracunZaradaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IdObracuna,
@@ -2500,7 +2520,9 @@ namespace JISP.Data {
                         DodatniKoef,
                         Norma,
                         KoefZaStaresinstvo,
-                        KoefZaPredsednikaSindikata};
+                        KoefZaPredsednikaSindikata,
+                        KoefSveOpis,
+                        IdZaposlenja};
                 if ((parentZaposleniRowByZaposleni_ObracunZarada != null)) {
                     columnValuesArray[1] = parentZaposleniRowByZaposleni_ObracunZarada[0];
                 }
@@ -2544,6 +2566,8 @@ namespace JISP.Data {
                 this.columnNorma = base.Columns["Norma"];
                 this.columnKoefZaStaresinstvo = base.Columns["KoefZaStaresinstvo"];
                 this.columnKoefZaPredsednikaSindikata = base.Columns["KoefZaPredsednikaSindikata"];
+                this.columnKoefSveOpis = base.Columns["KoefSveOpis"];
+                this.columnIdZaposlenja = base.Columns["IdZaposlenja"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2571,6 +2595,10 @@ namespace JISP.Data {
                 base.Columns.Add(this.columnKoefZaStaresinstvo);
                 this.columnKoefZaPredsednikaSindikata = new global::System.Data.DataColumn("KoefZaPredsednikaSindikata", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnKoefZaPredsednikaSindikata);
+                this.columnKoefSveOpis = new global::System.Data.DataColumn("KoefSveOpis", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnKoefSveOpis);
+                this.columnIdZaposlenja = new global::System.Data.DataColumn("IdZaposlenja", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdZaposlenja);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIdObracuna}, true));
                 this.columnIdObracuna.AutoIncrementSeed = -1;
@@ -4595,6 +4623,38 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string KoefSveOpis {
+                get {
+                    try {
+                        return ((string)(this[this.tableObracunZarada.KoefSveOpisColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'KoefSveOpis\' in table \'ObracunZarada\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableObracunZarada.KoefSveOpisColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int IdZaposlenja {
+                get {
+                    try {
+                        return ((int)(this[this.tableObracunZarada.IdZaposlenjaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IdZaposlenja\' in table \'ObracunZarada\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableObracunZarada.IdZaposlenjaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ZaposleniRow ZaposleniRow {
                 get {
                     return ((ZaposleniRow)(this.GetParentRow(this.Table.ParentRelations["Zaposleni_ObracunZarada"])));
@@ -4674,6 +4734,30 @@ namespace JISP.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetKoefZaPredsednikaSindikataNull() {
                 this[this.tableObracunZarada.KoefZaPredsednikaSindikataColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsKoefSveOpisNull() {
+                return this.IsNull(this.tableObracunZarada.KoefSveOpisColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetKoefSveOpisNull() {
+                this[this.tableObracunZarada.KoefSveOpisColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsIdZaposlenjaNull() {
+                return this.IsNull(this.tableObracunZarada.IdZaposlenjaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetIdZaposlenjaNull() {
+                this[this.tableObracunZarada.IdZaposlenjaColumn] = global::System.Convert.DBNull;
             }
         }
         

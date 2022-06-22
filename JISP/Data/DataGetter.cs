@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using JISP.Classes;
 
 namespace JISP.Data
 {
@@ -30,7 +31,7 @@ namespace JISP.Data
                     a.IdAngazovanja = obj.id;
                     a.IdZaposlenja = idZaposlenja;
                     a.SkolskaGodina = obj.skolskaGodinaNaziv;
-                    a.IzvorFinansiranja = Classes.Utils.SkratiIzvorFin((string)obj.izvorFinansiranjaNaziv);
+                    a.IzvorFinansiranja = Utils.SkratiIzvorFin((string)obj.izvorFinansiranjaNaziv);
                     a.ProcenatAngazovanja = obj.procenatAngazovanja;
                     a.Predmet = obj.predmetNaziv;
                     a.PodnivoPredmeta = obj.podnivoPredmetaNaziv;
@@ -109,6 +110,35 @@ namespace JISP.Data
             }
             foreach (var id in IDsToRemove)
                 zaposlenja.RemoveZaposlenjaRow(zaposlenja.FindByIdZaposlenja(id));
+        }
+
+        private class Koef
+        {
+            public Koef(string naziv, int procenat)
+            {
+                Naziv = naziv;
+                Procenat = procenat;
+            }
+            public string Naziv { get; set; }
+            public int Procenat { get; set; }
+            public override string ToString()
+                => $"{Naziv} {Procenat}";
+        }
+
+        /// <summary>Ucitava i pamti IdZaposlenja i KoefSveOpis za dati OZ.</summary>
+        public static async Task GetOzOpisAsync(Ds.ObracunZaradaRow oz)
+        {
+            var json = await WebApi.GetJson(WebApi.ReqEnum.Zap_ObracunZaradaOpis
+                , oz.IdObracuna.ToString());
+            dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(json);
+
+            var koefMulti = obj.regZapObracunZaradaDouniverzitetskoObrazovanjeDodKoefMulti;
+            var koefs = new List<Koef>();
+            foreach (var k in koefMulti)
+                koefs.Add(new Koef(Utils.SkratiNazivKoef((string)k.nazivOsnovaDodatnogKoeficijenta), (int)k.procenat));
+
+            oz.KoefSveOpis = string.Join(", ", koefs.OrderByDescending(it => it.Procenat));
+            oz.IdZaposlenja = (int)obj.regZapObracunZaradaDouniverzitetskoObrazovanje.id;
         }
     }
 }

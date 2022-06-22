@@ -8,9 +8,9 @@
   <Shapes>
     <Shape ID="DesignTable:Ucenici" ZOrder="9" X="1297" Y="396" Height="410" Width="165" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="406" />
     <Shape ID="DesignTable:Zaposleni" ZOrder="4" X="529" Y="203" Height="353" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="349" />
-    <Shape ID="DesignTable:Zaposlenja" ZOrder="3" X="746" Y="461" Height="296" Width="163" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="292" />
+    <Shape ID="DesignTable:Zaposlenja" ZOrder="3" X="750" Y="484" Height="296" Width="163" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="292" />
     <Shape ID="DesignTable:Settings" ZOrder="8" X="1404" Y="181" Height="111" Width="161" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="107" />
-    <Shape ID="DesignTable:ObracunZarada" ZOrder="2" X="758" Y="181" Height="238" Width="177" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="234" />
+    <Shape ID="DesignTable:ObracunZarada" ZOrder="2" X="742" Y="168" Height="277" Width="194" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="273" />
     <Shape ID="DesignTable:Angazovanja" ZOrder="1" X="960" Y="591" Height="162" Width="162" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="158" />
   </Shapes>
   <Connectors>
@@ -18,11 +18,11 @@
       <RoutePoints>
         <Point>
           <X>679</X>
-          <Y>476</Y>
+          <Y>499</Y>
         </Point>
         <Point>
-          <X>746</X>
-          <Y>476</Y>
+          <X>750</X>
+          <Y>499</Y>
         </Point>
       </RoutePoints>
     </Connector>
@@ -30,23 +30,23 @@
       <RoutePoints>
         <Point>
           <X>679</X>
-          <Y>275</Y>
+          <Y>262</Y>
         </Point>
         <Point>
-          <X>758</X>
-          <Y>275</Y>
+          <X>742</X>
+          <Y>262</Y>
         </Point>
       </RoutePoints>
     </Connector>
     <Connector ID="DesignRelation:Zaposlenja_Angazovanja" ZOrder="5" LineWidth="11">
       <RoutePoints>
         <Point>
-          <X>909</X>
-          <Y>628</Y>
+          <X>913</X>
+          <Y>651</Y>
         </Point>
         <Point>
           <X>960</X>
-          <Y>628</Y>
+          <Y>651</Y>
         </Point>
       </RoutePoints>
     </Connector>

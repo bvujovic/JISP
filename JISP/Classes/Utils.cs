@@ -33,6 +33,36 @@ namespace JISP.Classes
             return s.Replace(KratakBudzet, "");
         }
 
+        public static string SkratiNazivKoef(string s)
+        {
+            switch (s)
+            {
+                case "Директор школе": return "Dir";
+                case "Запослени у школи за ученике са сметњам у развоју": return "Zap";
+                case "Помоћник директора школе": return "PDir";
+                case "Организатор практичне наставе": return "Org";
+
+                case "Наставник у одељењу за ученике са сметњама у развоју": return "Nast";
+                case "Наставник одељенски/разредни старешина": return "Star";
+                case "Наставник комбинованог одељења од 2 разреда": return "Komb2";
+                case "Наставник комбинованог одељења од 3 разреда": return "Komb3";
+                case "Наставник комбинованог одељења од 4 разреда": return "Komb4";
+
+                default:
+                    {
+                        if (s.EndsWith("докторат"))
+                            return "Dokt";
+                        if (s.EndsWith("магистратуру"))
+                            return "Mag";
+                        if (s.EndsWith("двогодишњу специјализацију"))
+                            return "Spec1";
+                        if (s.EndsWith("једногодишњу специјализацију"))
+                            return "Spec2";
+                    }
+                    return "???";
+            }
+        }
+
         public static DialogResult ShowMbox(Exception ex, string title)
         {
             var msg = ex.Message;
