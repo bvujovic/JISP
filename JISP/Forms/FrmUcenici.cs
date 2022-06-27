@@ -22,7 +22,7 @@ namespace JISP.Forms
         {
             bsUcenici.DataSource = AppData.Ds;
             colOriginal = lblStatus.BackColor;
-            dgvUcenici.ColumnsForCopyOnClick = new int[] { dgvcJOB.Index, dgvcOcenePgJson.Index, dgvcOceneKrajJson.Index };
+            dgvUcenici.ColumnsForCopyOnClick = new int[] { dgvcJOB.Index, dgvcOcenePgJson.Index, dgvcOceneKrajJson.Index, dgvcZavrsObrazovanjaJSON.Index };
             dgvUcenici.CopyOnCellClick = true;
             dgvUcenici.CellTextCopied += Dgv_CellTextCopied;
             lblStatus.TextChanged += LblStatus_TextChanged;
@@ -46,6 +46,7 @@ namespace JISP.Forms
                 CmbDohvatiSmer,
                 CmbDohvatiOcenePG,
                 CmbDohvatiOceneKraj,
+                CmbDohvatiZavrsObraz,
             });
             float maxWidth = 0;
             using (var g = cmbPodaciZaDohvatanje.CreateGraphics())
@@ -63,6 +64,7 @@ namespace JISP.Forms
         private const string CmbDohvatiSmer = "Smerovi za srednjoškolce";
         private const string CmbDohvatiOcenePG = "Ocene na polugodištu";
         private const string CmbDohvatiOceneKraj = "Ocene za kraj godine";
+        private const string CmbDohvatiZavrsObraz = "Završetak obrazovanja";
 
         private void Dgv_CellTextCopied(object sender, EventArgs e)
         {
@@ -349,6 +351,17 @@ namespace JISP.Forms
                         uc.OceneKraj = await WebApi.GetJson(url);
                         var ocene = Newtonsoft.Json.JsonConvert.DeserializeObject<OceneUcenika>(uc.OceneKraj);
                         uc.BrojOcenaKraj = ocene.UkupanBrojOcena;
+                    }
+                });
+
+            if (selItem == CmbDohvatiZavrsObraz)
+                await (sender as UcButton).RunAsync(async () =>
+                {
+                    foreach (var uc in dgvUcenici.SelectedDataRows<Ds.UceniciRow>())
+                    {
+                        var nivo = uc.JeOsnovac ? "Osnovno" : "Srednje";
+                        var url = $"https://jisp.mpn.gov.rs/webapi/api/ucenik/Vrati{nivo}ObrazovanjeZavrsetak{nivo[0]}OById/" + uc.RegUceLiceObrazovanjeId;
+                        uc.ZavrsObrazovanjaJSON = await WebApi.GetJson(url);
                     }
                 });
         }

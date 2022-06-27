@@ -117,7 +117,6 @@ namespace JISP.Forms
                 if (e.ColumnIndex == dgvcZapId.Index)
                 {
                     var url = $"https://jisp.mpn.gov.rs/regzaposlenih/sekcije/{zap.JMBG}/{zap.IdZaposlenog}";
-                    //B Utils.GoToLink(url);
                     Clipboard.SetText(url);
                 }
                 // prikaz ili postavljanje slike za zaposlenog
@@ -230,7 +229,9 @@ namespace JISP.Forms
         {
             try
             {
-                var sb = new System.Text.StringBuilder("Zaposleni;Radno mesto;Kategorija;Procenat;Tip ugovora;Dodatni koef." + Environment.NewLine);
+                var sb = new System.Text.StringBuilder("Zaposleni;Radno mesto;Kategorija;Procenat;Tip ugovora;Dodatni koef.;"
+                    + "Svi;Nastavnici;Vaspitači;Ostali;Provera"
+                    + Environment.NewLine);
                 var uracunataAngazovanja = new[] {
                     "На неодређено",
                     "На одређено - до преузимања односно коначности одлуке о избору кандидата по конкурсу",
@@ -241,10 +242,17 @@ namespace JISP.Forms
                 foreach (var zaposleni in Ds.Zaposleni.Where(it => it.Aktivan).OrderBy(it => it.Ime))
                     foreach (var zap in zaposleni.GetZaposlenjaRows().Where(it => it.Aktivan))
                     {
-                        var uracunato = uracunataAngazovanja.Contains(zap.VrstaAngazovanja) 
+                        var uracunato = uracunataAngazovanja.Contains(zap.VrstaAngazovanja)
                             ? "DA" : zap.VrstaAngazovanja;
-                        if (zaposleni.Angazovanja.Contains("стандард"))
-                            uracunato = "US";
+                        var angs = zap.GetAngazovanjaRows();
+                        if (angs.Length > 0)
+                        {
+                            var fin = angs.First().IzvorFinansiranja;
+                            if (fin.Contains("стандард"))
+                                uracunato = "US";
+                            if (fin.Contains("Сопствена"))
+                                uracunato = "SS";
+                        }
                         var kat = "";
                         if (zap.RadnoMestoNaziv.Contains("Васпитач") || zap.RadnoMestoNaziv.Contains("васпитач"))
                             kat = "Vaspitač";
@@ -252,26 +260,36 @@ namespace JISP.Forms
                             kat = "Nastavnik";
                         if (zap.RadnoMestoNaziv.Contains("Библиотекар")
                             || zap.RadnoMestoNaziv.Contains("Директор")
-                            || zap.RadnoMestoNaziv.Contains("Домар")
-                            || zap.RadnoMestoNaziv.Contains("Радник")
-                            || zap.RadnoMestoNaziv.Contains("увар") // kuvar, Kuvar
-                            || zap.RadnoMestoNaziv.Contains("Медицин")
+                            || zap.RadnoMestoNaziv.Contains("Управник")
                             || zap.RadnoMestoNaziv.Contains("Помоћник дир")
                             || zap.RadnoMestoNaziv.Contains("Организатор")
+                            || zap.RadnoMestoNaziv.Contains("Шеф рачуноводства")
+                            || zap.RadnoMestoNaziv.Contains("Домар")
                             || zap.RadnoMestoNaziv.Contains("Референт")
                             || zap.RadnoMestoNaziv.Contains("Економ")
                             || zap.RadnoMestoNaziv.Contains("Техничар")
+                            || zap.RadnoMestoNaziv.Contains("Медицин")
+                            || zap.RadnoMestoNaziv.Contains("Радник")
                             || zap.RadnoMestoNaziv.Contains("арадник") // saradnik, Saradnik
                             || zap.RadnoMestoNaziv.Contains("екретар") // sekretar, Sekretar
+                            || zap.RadnoMestoNaziv.Contains("увар") // kuvar, Kuvar
                             || zap.RadnoMestoNaziv.Contains("Чистачица")
-                            || zap.RadnoMestoNaziv.Contains("Шеф рачуноводства")
                             )
                             kat = "Ostali";
                         var koefOpis = zaposleni.GetObracunZaradaRows().Where
                             (it => !it.IsIdZaposlenjaNull() && it.IdZaposlenja == zap.IdZaposlenja)
                             .FirstOrDefault()?.KoefSveOpis;
 
-                        sb.AppendLine($"{zaposleni};{zap.RadnoMestoNaziv};{kat};{zap.ProcenatRadnogVremena};{uracunato};{koefOpis}");
+                        var proc = zap.ProcenatRadnogVremena;
+                        var svi = uracunato == "DA" ? proc : 0;
+                        var nastavnik = uracunato == "DA" && kat == "Nastavnik" ? proc : 0;
+                        var vaspitac = uracunato == "DA" && kat == "Vaspitač" ? proc : 0;
+                        var ostali = uracunato == "DA" && kat == "Ostali" ? proc : 0;
+                        var provera = koefOpis.Contains("Nast") && (kat == "Nastavnik" || kat == "Vaspitač")
+                            || koefOpis.Contains("Zap") && kat == "Ostali";
+
+                        sb.AppendLine($"{zaposleni};{zap.RadnoMestoNaziv};{kat};{proc};{uracunato};{koefOpis}"
+                            + $";{svi};{nastavnik};{vaspitac};{ostali};{provera}");
                     }
 
                 Clipboard.SetText(sb.ToString());

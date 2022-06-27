@@ -31,7 +31,6 @@ namespace JISP.Controls
         public void LoadSettings()
         {
             availableColumns = Columns.Cast<DataGridViewColumn>().Where(it => it.Visible).ToList();
-            //B var row = Data.AppData.Ds.Settings.FindByName(this.Name);
             var strVisibleColumns = Data.AppData.LoadSett(this.Name);
             string[] visibleColumns = strVisibleColumns?.Split('|');
             foreach (DataGridViewColumn col in availableColumns)
@@ -51,13 +50,6 @@ namespace JISP.Controls
             var col = Columns.Cast<DataGridViewColumn>().FirstOrDefault(it => it.HeaderText == tsmi.Text);
             col.Visible = tsmi.Checked;
         }
-
-        //B
-        //protected override void Dispose(bool disposing)
-        //{
-        //    SaveSettings();
-        //    base.Dispose(disposing);
-        //}
 
         /// <summary>Cuvanje podesavanja (vidljivost kolona...) u XML fajlu.</summary>
         public void SaveSettings()

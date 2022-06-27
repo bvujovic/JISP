@@ -65,6 +65,7 @@
             this.lblBrojRedovaOZ = new System.Windows.Forms.Label();
             this.bsObracunZarada = new System.Windows.Forms.BindingSource(this.components);
             this.pnlBottomLeftOZ = new JISP.Controls.UcLeftPanel();
+            this.btnUcitajOzOpis = new JISP.Controls.UcButton();
             this.btnObrisiObracune = new JISP.Controls.UcButton();
             this.lstchkMeseci = new System.Windows.Forms.CheckedListBox();
             this.numOzGodina = new System.Windows.Forms.NumericUpDown();
@@ -79,7 +80,6 @@
             this.podnivoPredmetaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsAngazovanja = new System.Windows.Forms.BindingSource(this.components);
             this.pnlBottomLeftAng = new JISP.Controls.UcLeftPanel();
-            this.btnUcitajOzOpis = new JISP.Controls.UcButton();
             this.brojUgovoraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.godinaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mesecNazivDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -473,6 +473,17 @@
             this.pnlBottomLeftOZ.Size = new System.Drawing.Size(146, 287);
             this.pnlBottomLeftOZ.TabIndex = 0;
             // 
+            // btnUcitajOzOpis
+            // 
+            this.btnUcitajOzOpis.Location = new System.Drawing.Point(3, 93);
+            this.btnUcitajOzOpis.Name = "btnUcitajOzOpis";
+            this.btnUcitajOzOpis.Size = new System.Drawing.Size(135, 30);
+            this.btnUcitajOzOpis.TabIndex = 9;
+            this.btnUcitajOzOpis.Text = "Učitaj opise";
+            this.btnUcitajOzOpis.ToolTipText = "Učitavanje detalja/opisa za selektovane obračune";
+            this.btnUcitajOzOpis.UseVisualStyleBackColor = true;
+            this.btnUcitajOzOpis.Click += new System.EventHandler(this.BtnUcitajOzOpis_Click);
+            // 
             // btnObrisiObracune
             // 
             this.btnObrisiObracune.Location = new System.Drawing.Point(3, 63);
@@ -561,7 +572,7 @@
             this.tpAngazovanja.Location = new System.Drawing.Point(4, 22);
             this.tpAngazovanja.Name = "tpAngazovanja";
             this.tpAngazovanja.Padding = new System.Windows.Forms.Padding(3);
-            this.tpAngazovanja.Size = new System.Drawing.Size(895, 240);
+            this.tpAngazovanja.Size = new System.Drawing.Size(977, 298);
             this.tpAngazovanja.TabIndex = 1;
             this.tpAngazovanja.Text = "Angažovanja";
             // 
@@ -597,7 +608,7 @@
             this.dgvAngazovanja.Name = "dgvAngazovanja";
             this.dgvAngazovanja.ReadOnly = true;
             this.dgvAngazovanja.RowHeadersWidth = 30;
-            this.dgvAngazovanja.Size = new System.Drawing.Size(743, 234);
+            this.dgvAngazovanja.Size = new System.Drawing.Size(825, 292);
             this.dgvAngazovanja.StandardSort = null;
             this.dgvAngazovanja.TabIndex = 0;
             // 
@@ -657,19 +668,8 @@
             this.pnlBottomLeftAng.Name = "pnlBottomLeftAng";
             this.pnlBottomLeftAng.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
             this.pnlBottomLeftAng.RightWingWidth = 6;
-            this.pnlBottomLeftAng.Size = new System.Drawing.Size(146, 234);
+            this.pnlBottomLeftAng.Size = new System.Drawing.Size(146, 292);
             this.pnlBottomLeftAng.TabIndex = 1;
-            // 
-            // btnUcitajOzOpis
-            // 
-            this.btnUcitajOzOpis.Location = new System.Drawing.Point(3, 93);
-            this.btnUcitajOzOpis.Name = "btnUcitajOzOpis";
-            this.btnUcitajOzOpis.Size = new System.Drawing.Size(135, 30);
-            this.btnUcitajOzOpis.TabIndex = 9;
-            this.btnUcitajOzOpis.Text = "Učitaj opise";
-            this.btnUcitajOzOpis.ToolTipText = "Učitavanje detalja/opisa za selektovane obračune";
-            this.btnUcitajOzOpis.UseVisualStyleBackColor = true;
-            this.btnUcitajOzOpis.Click += new System.EventHandler(this.BtnUcitajOzOpis_Click);
             // 
             // brojUgovoraDataGridViewTextBoxColumn
             // 
@@ -725,8 +725,10 @@
             // 
             // KoefSveOpis
             // 
+            this.KoefSveOpis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.KoefSveOpis.DataPropertyName = "KoefSveOpis";
             this.KoefSveOpis.HeaderText = "Koef opis";
+            this.KoefSveOpis.MinimumWidth = 50;
             this.KoefSveOpis.Name = "KoefSveOpis";
             this.KoefSveOpis.ReadOnly = true;
             // 
@@ -813,6 +815,7 @@
         private System.Windows.Forms.CheckBox chkCopyOnClick;
         private System.Windows.Forms.Label lblBrojRedovaOZ;
         private Controls.UcLeftPanel pnlBottomLeftAng;
+        private Controls.UcButton btnUcitajOzOpis;
         private System.Windows.Forms.DataGridViewTextBoxColumn brojUgovoraDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn godinaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn mesecNazivDataGridViewTextBoxColumn;
@@ -821,6 +824,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcOzKoefZaStaresinstvo;
         private System.Windows.Forms.DataGridViewTextBoxColumn normaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn KoefSveOpis;
-        private Controls.UcButton btnUcitajOzOpis;
     }
 }

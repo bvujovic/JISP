@@ -90,7 +90,6 @@ namespace JISP.Data
                 SaveSett("browser", Browser);
                 Ds.WriteXml(FilePath());
                 Ds.AcceptChanges();
-                //B Classes.Utils.ShowMbox("Podaci su sacuvani.", "Cuvanje podataka u XML");
             }
             catch (Exception ex) { Classes.Utils.ShowMbox(ex, "Cuvanje podataka u XML"); }
         }

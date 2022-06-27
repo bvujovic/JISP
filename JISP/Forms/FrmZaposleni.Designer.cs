@@ -458,7 +458,8 @@ namespace JISP.Forms
             this.BtnCsvZaposlenja.Size = new System.Drawing.Size(128, 40);
             this.BtnCsvZaposlenja.TabIndex = 8;
             this.BtnCsvZaposlenja.Text = "CSV zaposlenja";
-            this.BtnCsvZaposlenja.ToolTipText = "Dohvatanje zaposlenja i angažovanja za selektovane zaposlene";
+            this.BtnCsvZaposlenja.ToolTipText = "Stavljanje u klipbord podatаkа u CSV formatu o svim zaposlenima radi provere Kval" +
+    "ifikacione strukture";
             this.BtnCsvZaposlenja.UseVisualStyleBackColor = true;
             this.BtnCsvZaposlenja.Click += new System.EventHandler(this.BtnCsvZaposlenja_Click);
             // 

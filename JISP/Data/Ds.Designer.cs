@@ -542,6 +542,8 @@ namespace JISP.Data {
             
             private global::System.Data.DataColumn columnOceneKraj;
             
+            private global::System.Data.DataColumn columnZavrsObrazovanjaJSON;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public UceniciDataTable() {
@@ -737,6 +739,14 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ZavrsObrazovanjaJSONColumn {
+                get {
+                    return this.columnZavrsObrazovanjaJSON;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -791,7 +801,8 @@ namespace JISP.Data {
                         int RegUceLiceObrazovanjeId, 
                         string Smer, 
                         string OcenePG, 
-                        string OceneKraj) {
+                        string OceneKraj, 
+                        string ZavrsObrazovanjaJSON) {
                 UceniciRow rowUceniciRow = ((UceniciRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -813,7 +824,8 @@ namespace JISP.Data {
                         RegUceLiceObrazovanjeId,
                         Smer,
                         OcenePG,
-                        OceneKraj};
+                        OceneKraj,
+                        ZavrsObrazovanjaJSON};
                 rowUceniciRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowUceniciRow);
                 return rowUceniciRow;
@@ -863,6 +875,7 @@ namespace JISP.Data {
                 this.columnSmer = base.Columns["Smer"];
                 this.columnOcenePG = base.Columns["OcenePG"];
                 this.columnOceneKraj = base.Columns["OceneKraj"];
+                this.columnZavrsObrazovanjaJSON = base.Columns["ZavrsObrazovanjaJSON"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -908,6 +921,8 @@ namespace JISP.Data {
                 base.Columns.Add(this.columnOcenePG);
                 this.columnOceneKraj = new global::System.Data.DataColumn("OceneKraj", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOceneKraj);
+                this.columnZavrsObrazovanjaJSON = new global::System.Data.DataColumn("ZavrsObrazovanjaJSON", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnZavrsObrazovanjaJSON);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnJOB}, false));
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint2", new global::System.Data.DataColumn[] {
@@ -3403,6 +3418,22 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string ZavrsObrazovanjaJSON {
+                get {
+                    try {
+                        return ((string)(this[this.tableUcenici.ZavrsObrazovanjaJSONColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ZavrsObrazovanjaJSON\' in table \'Ucenici\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableUcenici.ZavrsObrazovanjaJSONColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsPrezimeNull() {
                 return this.IsNull(this.tableUcenici.PrezimeColumn);
             }
@@ -3603,6 +3634,18 @@ namespace JISP.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetOceneKrajNull() {
                 this[this.tableUcenici.OceneKrajColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsZavrsObrazovanjaJSONNull() {
+                return this.IsNull(this.tableUcenici.ZavrsObrazovanjaJSONColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetZavrsObrazovanjaJSONNull() {
+                this[this.tableUcenici.ZavrsObrazovanjaJSONColumn] = global::System.Convert.DBNull;
             }
         }
         

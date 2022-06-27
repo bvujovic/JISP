@@ -17,7 +17,6 @@ namespace JISP.Data
                     throw new Exception("IdZaposlenja nije ispravan. Potrebno je ponovo učitati zaposlenja.");
                 var json = await WebApi.GetJson(WebApi.ReqEnum.Zap_Angazovanja, idZaposlenja.ToString());
                 var oldAngs = zap.GetAngazovanjaRows().ToList(); //HACK ToList() ne treba da bude ovde
-                                                                 //B Utils.ShowMbox($"Ažuriranje {oldAngs.Length} angažovanja.", "DEBUG poruka");
                 foreach (var ang in oldAngs)
                     AppData.Ds.Angazovanja.RemoveAngazovanjaRow(ang);
                 dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);

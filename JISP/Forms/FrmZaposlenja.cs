@@ -46,8 +46,6 @@ namespace JISP.Forms
                 dgvObracunZarada.LoadSettings();
                 bsObracunZarada.Filter = $"IdZaposlenog = {zaposleni.IdZaposlenog}";
                 numOzGodina.Value = DateTime.Now.Year;
-
-                //B btnUcitajObracunZarada.Funct = async () => { await BtnUcitajObracunZaradaClick(); };
             }
             catch (Exception ex) { Utils.ShowMbox(ex, Text); }
         }

@@ -60,23 +60,5 @@ namespace JISP.Controls
             catch (Exception ex) { Classes.Utils.ShowMbox(ex, originalText); }
             Text = originalText;
         }
-
-        //B
-        //public Func<Task> Funct { get; set; }
-        //protected override async void OnClick(EventArgs e)
-        //{
-        //    if (Funct != null)
-        //    {
-        //        var originalText = Text;
-        //        Text = "...";
-        //        try
-        //        {
-        //            await Funct();
-        //        }
-        //        catch (Exception ex) { Classes.Utils.ShowMbox(ex, originalText); }
-        //        Text = originalText;
-        //    }
-        //    base.OnClick(e);
-        //}
     }
 }
