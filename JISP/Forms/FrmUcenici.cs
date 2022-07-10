@@ -22,7 +22,7 @@ namespace JISP.Forms
         {
             bsUcenici.DataSource = AppData.Ds;
             colOriginal = lblStatus.BackColor;
-            dgvUcenici.ColumnsForCopyOnClick = new int[] { dgvcJOB.Index, dgvcOcenePgJson.Index, dgvcOceneKrajJson.Index, dgvcZavrsObrazovanjaJSON.Index };
+            dgvUcenici.ColumnsForCopyOnClick = new int[] { dgvcJOB.Index, dgvcOcenePgJson.Index, dgvcOceneKrajJson.Index };
             dgvUcenici.CopyOnCellClick = true;
             dgvUcenici.CellTextCopied += Dgv_CellTextCopied;
             lblStatus.TextChanged += LblStatus_TextChanged;
@@ -48,15 +48,7 @@ namespace JISP.Forms
                 CmbDohvatiOceneKraj,
                 CmbDohvatiZavrsObraz,
             });
-            float maxWidth = 0;
-            using (var g = cmbPodaciZaDohvatanje.CreateGraphics())
-                foreach (string s in cmbPodaciZaDohvatanje.Items)
-                {
-                    var size = g.MeasureString(s, cmbPodaciZaDohvatanje.Font);
-                    if (size.Width > maxWidth)
-                        maxWidth = size.Width;
-                }
-            cmbPodaciZaDohvatanje.DropDownWidth = (int)maxWidth + 5;
+            cmbPodaciZaDohvatanje.AdjustWidth();
         }
 
         private const string CmbDohvatiOpste = "Opšte: pol, datum rođenja...)";
@@ -362,6 +354,8 @@ namespace JISP.Forms
                         var nivo = uc.JeOsnovac ? "Osnovno" : "Srednje";
                         var url = $"https://jisp.mpn.gov.rs/webapi/api/ucenik/Vrati{nivo}ObrazovanjeZavrsetak{nivo[0]}OById/" + uc.RegUceLiceObrazovanjeId;
                         uc.ZavrsObrazovanjaJSON = await WebApi.GetJson(url);
+                        dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(uc.ZavrsObrazovanjaJSON);
+                        uc.ZavrsObrazovanjaKratko = obj.prosecnaOcenaNaZavrsnomMatruskomIspitu;
                     }
                 });
         }

@@ -68,7 +68,7 @@
             this.dgvcOcenePgJson = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BrojOcenaKraj = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcOceneKrajJson = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcZavrsObrazovanjaJSON = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcZavrsObrazovanjaKratko = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcSmer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.bsUcenici)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
@@ -141,7 +141,7 @@
             this.dgvcOcenePgJson,
             this.BrojOcenaKraj,
             this.dgvcOceneKrajJson,
-            this.dgvcZavrsObrazovanjaJSON,
+            this.dgvcZavrsObrazovanjaKratko,
             this.dgvcSmer});
             this.dgvUcenici.ColumnsForCopyOnClick = null;
             this.dgvUcenici.CopyOnCellClick = false;
@@ -480,12 +480,12 @@
             this.dgvcOceneKrajJson.Name = "dgvcOceneKrajJson";
             this.dgvcOceneKrajJson.ReadOnly = true;
             // 
-            // dgvcZavrsObrazovanjaJSON
+            // dgvcZavrsObrazovanjaKratko
             // 
-            this.dgvcZavrsObrazovanjaJSON.DataPropertyName = "ZavrsObrazovanjaJSON";
-            this.dgvcZavrsObrazovanjaJSON.HeaderText = "Zavrs Obraz";
-            this.dgvcZavrsObrazovanjaJSON.Name = "dgvcZavrsObrazovanjaJSON";
-            this.dgvcZavrsObrazovanjaJSON.ReadOnly = true;
+            this.dgvcZavrsObrazovanjaKratko.DataPropertyName = "ZavrsObrazovanjaKratko";
+            this.dgvcZavrsObrazovanjaKratko.HeaderText = "Zavrs Obraz";
+            this.dgvcZavrsObrazovanjaKratko.Name = "dgvcZavrsObrazovanjaKratko";
+            this.dgvcZavrsObrazovanjaKratko.ReadOnly = true;
             // 
             // dgvcSmer
             // 
@@ -563,7 +563,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcOcenePgJson;
         private System.Windows.Forms.DataGridViewTextBoxColumn BrojOcenaKraj;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcOceneKrajJson;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcZavrsObrazovanjaJSON;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcZavrsObrazovanjaKratko;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcSmer;
     }
 }

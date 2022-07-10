@@ -139,5 +139,39 @@ namespace JISP.Data
             oz.KoefSveOpis = string.Join(", ", koefs.OrderByDescending(it => it.Procenat));
             oz.IdZaposlenja = (int)obj.regZapObracunZaradaDouniverzitetskoObrazovanje.id;
         }
+
+        public static async Task GetResenjaAsync(IEnumerable<Ds.ZaposlenjaRow> zaposlenja)
+        {
+            foreach (var zap in zaposlenja)
+            {
+                var idZaposlenja = zap.IdZaposlenja;
+                if (idZaposlenja < 0)
+                    throw new Exception("IdZaposlenja nije ispravan. Potrebno je ponovo učitati zaposlenja.");
+                var json = await WebApi.GetJson(WebApi.ReqEnum.Zap_Resenja, idZaposlenja.ToString());
+                //B var oldAngs = zap.GetAngazovanjaRows().ToList(); //HACK ToList() ne treba da bude ovde
+                var oldRes = zap.GetResenjaRows();
+                foreach (var res in oldRes)
+                    AppData.Ds.Resenja.RemoveResenjaRow(res);
+                dynamic jobj = Newtonsoft.Json.Linq.JObject.Parse(json);
+                foreach (var obj in jobj.regZapZaposlenjeResenja)
+                {
+                    var r = AppData.Ds.Resenja.NewResenjaRow();
+                    r.IdResenja = obj.id;
+                    r.IdZaposlenja = idZaposlenja;
+                    r.BrojResenja = obj.brojResenja;
+                    r.SkolskaGodina = obj.skolskaGodinaNaziv;
+                    r.TipResenja = obj.tipResenjaNaziv;
+                    if (obj.procenatAngazovanjaPoResenju != null)
+                        r.ProcenatAngPoRes = obj.procenatAngazovanjaPoResenju;
+                    r.DatumPodnosenja = obj.datumPodnosenjaResenja;
+                    if (obj.resenjeDokumentId != null)
+                    {
+                        r.DokumentId = obj.resenjeDokumentId;
+                        r.Dokument = obj.resenjeDokumentNaziv;
+                    }
+                    AppData.Ds.Resenja.AddResenjaRow(r);
+                }
+            }
+        }
     }
 }

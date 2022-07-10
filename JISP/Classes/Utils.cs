@@ -175,5 +175,37 @@ namespace JISP.Classes
             else
                 return System.IO.Path.Combine(path, item);
         }
+
+        /// <summary>Podesavanje sirine kontrole prema najduzem tekstu neke stavke.</summary>
+        public static void AdjustWidth(this ComboBox cmb)
+        {
+            float maxWidth = 0;
+            using (var g = cmb.CreateGraphics())
+                foreach (string s in cmb.Items)
+                {
+                    var size = g.MeasureString(s, cmb.Font);
+                    if (size.Width > maxWidth)
+                        maxWidth = size.Width;
+                }
+            cmb.DropDownWidth = (int)maxWidth + 5;
+        }
+
+        public static async System.Threading.Tasks.Task PreuzmiDokumentResenja(Controls.UcDGV dgv, DataGridViewCellEventArgs e)
+        {
+            var res = dgv.CurrDataRow<Data.Ds.ResenjaRow>();
+            if (res.IsDokumentNull())
+                return;
+            var cell = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            var originalText = (string)cell.Value;
+            cell.Value = "...";
+            try
+            {
+                var filePath = GetDownloadsFolder(originalText);
+                await Data.WebApi.PostForFile(filePath, "Upload/PreuzmiDokument"
+                    , $"{{'documentId':'{res.DokumentId}'}}", true);
+            }
+            catch (Exception ex) { ShowMbox(ex, "Preuzimanje rešenja"); }
+            cell.Value = originalText;
+        }
     }
 }

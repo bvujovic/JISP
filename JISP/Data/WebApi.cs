@@ -114,7 +114,7 @@ namespace JISP.Data
         }
 
         /// <summary>Preuzimanje fajla od JISPa u Downloads i njegovo pokretanje.</summary>
-        public static async Task<string> PostForFile(string filePath, string url, string content)
+        public static async Task PostForFile(string filePath, string url, string content, bool isJson)
         {
             using (var client = new HttpClient())
             {
@@ -124,11 +124,20 @@ namespace JISP.Data
                 var res = await client.PostAsync(url, jsonContent);
                 if (res.IsSuccessStatusCode)
                 {
-                    var data = new byte[res.Content.Headers.ContentLength.Value];
-                    data = await res.Content.ReadAsByteArrayAsync();
+                    byte[] data = null;
+                    if (isJson)
+                    {
+                        var json = await res.Content.ReadAsStringAsync();
+                        dynamic jobj = Newtonsoft.Json.Linq.JObject.Parse(json);
+                        data = Convert.FromBase64String((string)jobj.sadrzaj);
+                    }
+                    else
+                    {
+                        data = new byte[res.Content.Headers.ContentLength.Value];
+                        data = await res.Content.ReadAsByteArrayAsync();
+                    }
                     System.IO.File.WriteAllBytes(filePath, data);
                     System.Diagnostics.Process.Start(filePath);
-                    return await res.Content.ReadAsStringAsync();
                 }
                 else
                     throw new Exception($"POST response error: {res.ReasonPhrase}");
@@ -147,6 +156,7 @@ namespace JISP.Data
             Zap_ObracunZaradaObrisi,
             Zap_ObracunZaradaOpis,
             Zap_Angazovanja,
+            Zap_Resenja,
 
             Uc_DuosSrednjoskolci,
             Uc_DuosSrednjoskolciId,
@@ -178,6 +188,8 @@ namespace JISP.Data
                     return urlBase + $"zaposleni/ObrisiObracunZarade/";
                 case ReqEnum.Zap_Angazovanja:
                     return urlBase + $"zaposleni/VratiAngazovanjaPoUgovoruNastavnoOsoblje/{param}/0/";
+                case ReqEnum.Zap_Resenja:
+                    return urlBase + $"zaposleni/VratiZaposlenje/{param}/";
                 case ReqEnum.Zap_ObracunZaradaOpis:
                     return urlBase + $"zaposleni/VratiObracunZaradeZaId/{param}";
 

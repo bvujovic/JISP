@@ -152,7 +152,6 @@ namespace JISP.Forms
 
         private async void BtnUcitajAngazovanja_Click(object sender, EventArgs e)
         {
-            tcBottom.SelectedTab = tpAngazovanja;
             await (sender as UcButton).RunAsync(async () =>
                 await DataGetter.GetAngazovanjaAsync(dgvZaposlenjaSve.SelectedDataRows<Ds.ZaposlenjaRow>())
             );
@@ -211,6 +210,19 @@ namespace JISP.Forms
                 await (sender as UcButton).RunAsync(async () =>
                     await DataGetter.GetOzOpisAsync(oz)
                 );
+        }
+
+        private async void BtnUcitajResenja_Click(object sender, EventArgs e)
+        {
+            await (sender as UcButton).RunAsync(async () =>
+                await DataGetter.GetResenjaAsync(dgvZaposlenjaSve.SelectedDataRows<Ds.ZaposlenjaRow>())
+            );
+        }
+
+        private async void DgvResenja_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgvcResDokument.Index)
+                await Utils.PreuzmiDokumentResenja(dgvResenja, e);
         }
     }
 }

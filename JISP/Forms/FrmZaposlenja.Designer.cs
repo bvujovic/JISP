@@ -37,6 +37,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
             this.chkCopyOnClick = new System.Windows.Forms.CheckBox();
             this.btnDodajOZTemplate = new JISP.Controls.UcButton();
@@ -62,6 +65,14 @@
             this.tcBottom = new System.Windows.Forms.TabControl();
             this.tpObracunZarada = new System.Windows.Forms.TabPage();
             this.dgvObracunZarada = new JISP.Controls.UcDGV();
+            this.brojUgovoraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.godinaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mesecNazivDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.osnovniKoefDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dodatniKoefDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcOzKoefZaStaresinstvo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.normaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KoefSveOpis = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblBrojRedovaOZ = new System.Windows.Forms.Label();
             this.bsObracunZarada = new System.Windows.Forms.BindingSource(this.components);
             this.pnlBottomLeftOZ = new JISP.Controls.UcLeftPanel();
@@ -80,14 +91,17 @@
             this.podnivoPredmetaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsAngazovanja = new System.Windows.Forms.BindingSource(this.components);
             this.pnlBottomLeftAng = new JISP.Controls.UcLeftPanel();
-            this.brojUgovoraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.godinaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mesecNazivDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.osnovniKoefDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dodatniKoefDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcOzKoefZaStaresinstvo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.normaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.KoefSveOpis = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tpResenja = new System.Windows.Forms.TabPage();
+            this.dgvResenja = new JISP.Controls.UcDGV();
+            this.brojResenjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SkolskaGodina = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipResenjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.procenatAngPoResDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DatumPodnosenja = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcResDokument = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.bsResenja = new System.Windows.Forms.BindingSource(this.components);
+            this.pnlBottomLeftRes = new JISP.Controls.UcLeftPanel();
+            this.btnUcitajResenja = new JISP.Controls.UcButton();
             lblOzGodina = new System.Windows.Forms.Label();
             this.pnlLeft.SuspendLayout();
             this.pnlZaposleniTop.SuspendLayout();
@@ -108,6 +122,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvAngazovanja)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAngazovanja)).BeginInit();
             this.pnlBottomLeftAng.SuspendLayout();
+            this.tpResenja.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResenja)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsResenja)).BeginInit();
+            this.pnlBottomLeftRes.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblOzGodina
@@ -380,6 +398,7 @@
             // 
             this.tcBottom.Controls.Add(this.tpObracunZarada);
             this.tcBottom.Controls.Add(this.tpAngazovanja);
+            this.tcBottom.Controls.Add(this.tpResenja);
             this.tcBottom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tcBottom.Location = new System.Drawing.Point(0, 0);
             this.tcBottom.Name = "tcBottom";
@@ -438,6 +457,67 @@
             this.dgvObracunZarada.Size = new System.Drawing.Size(825, 287);
             this.dgvObracunZarada.StandardSort = null;
             this.dgvObracunZarada.TabIndex = 1;
+            // 
+            // brojUgovoraDataGridViewTextBoxColumn
+            // 
+            this.brojUgovoraDataGridViewTextBoxColumn.DataPropertyName = "BrojUgovora";
+            this.brojUgovoraDataGridViewTextBoxColumn.HeaderText = "Broj ugovora";
+            this.brojUgovoraDataGridViewTextBoxColumn.Name = "brojUgovoraDataGridViewTextBoxColumn";
+            this.brojUgovoraDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // godinaDataGridViewTextBoxColumn
+            // 
+            this.godinaDataGridViewTextBoxColumn.DataPropertyName = "Godina";
+            this.godinaDataGridViewTextBoxColumn.HeaderText = "Godina";
+            this.godinaDataGridViewTextBoxColumn.Name = "godinaDataGridViewTextBoxColumn";
+            this.godinaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.godinaDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // mesecNazivDataGridViewTextBoxColumn
+            // 
+            this.mesecNazivDataGridViewTextBoxColumn.DataPropertyName = "MesecNaziv";
+            this.mesecNazivDataGridViewTextBoxColumn.HeaderText = "Mesec";
+            this.mesecNazivDataGridViewTextBoxColumn.Name = "mesecNazivDataGridViewTextBoxColumn";
+            this.mesecNazivDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // osnovniKoefDataGridViewTextBoxColumn
+            // 
+            this.osnovniKoefDataGridViewTextBoxColumn.DataPropertyName = "OsnovniKoef";
+            this.osnovniKoefDataGridViewTextBoxColumn.HeaderText = "Osnovni koef";
+            this.osnovniKoefDataGridViewTextBoxColumn.Name = "osnovniKoefDataGridViewTextBoxColumn";
+            this.osnovniKoefDataGridViewTextBoxColumn.ReadOnly = true;
+            this.osnovniKoefDataGridViewTextBoxColumn.Width = 110;
+            // 
+            // dodatniKoefDataGridViewTextBoxColumn
+            // 
+            this.dodatniKoefDataGridViewTextBoxColumn.DataPropertyName = "DodatniKoef";
+            this.dodatniKoefDataGridViewTextBoxColumn.HeaderText = "Dodatni koef";
+            this.dodatniKoefDataGridViewTextBoxColumn.Name = "dodatniKoefDataGridViewTextBoxColumn";
+            this.dodatniKoefDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dgvcOzKoefZaStaresinstvo
+            // 
+            this.dgvcOzKoefZaStaresinstvo.DataPropertyName = "KoefZaStaresinstvo";
+            this.dgvcOzKoefZaStaresinstvo.HeaderText = "Starešinstvo";
+            this.dgvcOzKoefZaStaresinstvo.Name = "dgvcOzKoefZaStaresinstvo";
+            this.dgvcOzKoefZaStaresinstvo.ReadOnly = true;
+            // 
+            // normaDataGridViewTextBoxColumn
+            // 
+            this.normaDataGridViewTextBoxColumn.DataPropertyName = "Norma";
+            this.normaDataGridViewTextBoxColumn.HeaderText = "Norma";
+            this.normaDataGridViewTextBoxColumn.Name = "normaDataGridViewTextBoxColumn";
+            this.normaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.normaDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // KoefSveOpis
+            // 
+            this.KoefSveOpis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.KoefSveOpis.DataPropertyName = "KoefSveOpis";
+            this.KoefSveOpis.HeaderText = "Koef opis";
+            this.KoefSveOpis.MinimumWidth = 50;
+            this.KoefSveOpis.Name = "KoefSveOpis";
+            this.KoefSveOpis.ReadOnly = true;
             // 
             // lblBrojRedovaOZ
             // 
@@ -671,66 +751,130 @@
             this.pnlBottomLeftAng.Size = new System.Drawing.Size(146, 292);
             this.pnlBottomLeftAng.TabIndex = 1;
             // 
-            // brojUgovoraDataGridViewTextBoxColumn
+            // tpResenja
             // 
-            this.brojUgovoraDataGridViewTextBoxColumn.DataPropertyName = "BrojUgovora";
-            this.brojUgovoraDataGridViewTextBoxColumn.HeaderText = "Broj ugovora";
-            this.brojUgovoraDataGridViewTextBoxColumn.Name = "brojUgovoraDataGridViewTextBoxColumn";
-            this.brojUgovoraDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tpResenja.BackColor = System.Drawing.SystemColors.Control;
+            this.tpResenja.Controls.Add(this.dgvResenja);
+            this.tpResenja.Controls.Add(this.pnlBottomLeftRes);
+            this.tpResenja.Location = new System.Drawing.Point(4, 27);
+            this.tpResenja.Name = "tpResenja";
+            this.tpResenja.Padding = new System.Windows.Forms.Padding(3);
+            this.tpResenja.Size = new System.Drawing.Size(977, 293);
+            this.tpResenja.TabIndex = 2;
+            this.tpResenja.Text = "Rešenja";
             // 
-            // godinaDataGridViewTextBoxColumn
+            // dgvResenja
             // 
-            this.godinaDataGridViewTextBoxColumn.DataPropertyName = "Godina";
-            this.godinaDataGridViewTextBoxColumn.HeaderText = "Godina";
-            this.godinaDataGridViewTextBoxColumn.Name = "godinaDataGridViewTextBoxColumn";
-            this.godinaDataGridViewTextBoxColumn.ReadOnly = true;
-            this.godinaDataGridViewTextBoxColumn.Width = 80;
+            this.dgvResenja.AllowUserToAddRows = false;
+            this.dgvResenja.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvResenja.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
+            this.dgvResenja.AutoGenerateColumns = false;
+            this.dgvResenja.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvResenja.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.dgvResenja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvResenja.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.brojResenjaDataGridViewTextBoxColumn,
+            this.SkolskaGodina,
+            this.tipResenjaDataGridViewTextBoxColumn,
+            this.procenatAngPoResDataGridViewTextBoxColumn,
+            this.DatumPodnosenja,
+            this.dgvcResDokument});
+            this.dgvResenja.ColumnsForCopyOnClick = null;
+            this.dgvResenja.CopyOnCellClick = false;
+            this.dgvResenja.CtrlDisplayPositionRowCount = null;
+            this.dgvResenja.DataSource = this.bsResenja;
+            this.dgvResenja.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvResenja.Location = new System.Drawing.Point(149, 3);
+            this.dgvResenja.Name = "dgvResenja";
+            this.dgvResenja.ReadOnly = true;
+            this.dgvResenja.RowHeadersWidth = 30;
+            this.dgvResenja.Size = new System.Drawing.Size(825, 287);
+            this.dgvResenja.StandardSort = null;
+            this.dgvResenja.TabIndex = 1;
+            this.dgvResenja.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvResenja_CellClick);
             // 
-            // mesecNazivDataGridViewTextBoxColumn
+            // brojResenjaDataGridViewTextBoxColumn
             // 
-            this.mesecNazivDataGridViewTextBoxColumn.DataPropertyName = "MesecNaziv";
-            this.mesecNazivDataGridViewTextBoxColumn.HeaderText = "Mesec";
-            this.mesecNazivDataGridViewTextBoxColumn.Name = "mesecNazivDataGridViewTextBoxColumn";
-            this.mesecNazivDataGridViewTextBoxColumn.ReadOnly = true;
+            this.brojResenjaDataGridViewTextBoxColumn.DataPropertyName = "BrojResenja";
+            this.brojResenjaDataGridViewTextBoxColumn.HeaderText = "Broj Rešenja";
+            this.brojResenjaDataGridViewTextBoxColumn.Name = "brojResenjaDataGridViewTextBoxColumn";
+            this.brojResenjaDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // osnovniKoefDataGridViewTextBoxColumn
+            // SkolskaGodina
             // 
-            this.osnovniKoefDataGridViewTextBoxColumn.DataPropertyName = "OsnovniKoef";
-            this.osnovniKoefDataGridViewTextBoxColumn.HeaderText = "Osnovni koef";
-            this.osnovniKoefDataGridViewTextBoxColumn.Name = "osnovniKoefDataGridViewTextBoxColumn";
-            this.osnovniKoefDataGridViewTextBoxColumn.ReadOnly = true;
-            this.osnovniKoefDataGridViewTextBoxColumn.Width = 110;
+            this.SkolskaGodina.DataPropertyName = "SkolskaGodina";
+            this.SkolskaGodina.HeaderText = "Šk. God";
+            this.SkolskaGodina.Name = "SkolskaGodina";
+            this.SkolskaGodina.ReadOnly = true;
             // 
-            // dodatniKoefDataGridViewTextBoxColumn
+            // tipResenjaDataGridViewTextBoxColumn
             // 
-            this.dodatniKoefDataGridViewTextBoxColumn.DataPropertyName = "DodatniKoef";
-            this.dodatniKoefDataGridViewTextBoxColumn.HeaderText = "Dodatni koef";
-            this.dodatniKoefDataGridViewTextBoxColumn.Name = "dodatniKoefDataGridViewTextBoxColumn";
-            this.dodatniKoefDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tipResenjaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.tipResenjaDataGridViewTextBoxColumn.DataPropertyName = "TipResenja";
+            this.tipResenjaDataGridViewTextBoxColumn.HeaderText = "Tip Rešenja";
+            this.tipResenjaDataGridViewTextBoxColumn.Name = "tipResenjaDataGridViewTextBoxColumn";
+            this.tipResenjaDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // dgvcOzKoefZaStaresinstvo
+            // procenatAngPoResDataGridViewTextBoxColumn
             // 
-            this.dgvcOzKoefZaStaresinstvo.DataPropertyName = "KoefZaStaresinstvo";
-            this.dgvcOzKoefZaStaresinstvo.HeaderText = "Starešinstvo";
-            this.dgvcOzKoefZaStaresinstvo.Name = "dgvcOzKoefZaStaresinstvo";
-            this.dgvcOzKoefZaStaresinstvo.ReadOnly = true;
+            this.procenatAngPoResDataGridViewTextBoxColumn.DataPropertyName = "ProcenatAngPoRes";
+            this.procenatAngPoResDataGridViewTextBoxColumn.HeaderText = "Procenat";
+            this.procenatAngPoResDataGridViewTextBoxColumn.Name = "procenatAngPoResDataGridViewTextBoxColumn";
+            this.procenatAngPoResDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // normaDataGridViewTextBoxColumn
+            // DatumPodnosenja
             // 
-            this.normaDataGridViewTextBoxColumn.DataPropertyName = "Norma";
-            this.normaDataGridViewTextBoxColumn.HeaderText = "Norma";
-            this.normaDataGridViewTextBoxColumn.Name = "normaDataGridViewTextBoxColumn";
-            this.normaDataGridViewTextBoxColumn.ReadOnly = true;
-            this.normaDataGridViewTextBoxColumn.Width = 80;
+            this.DatumPodnosenja.DataPropertyName = "DatumPodnosenja";
+            this.DatumPodnosenja.HeaderText = "Kreirano";
+            this.DatumPodnosenja.Name = "DatumPodnosenja";
+            this.DatumPodnosenja.ReadOnly = true;
             // 
-            // KoefSveOpis
+            // dgvcResDokument
             // 
-            this.KoefSveOpis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.KoefSveOpis.DataPropertyName = "KoefSveOpis";
-            this.KoefSveOpis.HeaderText = "Koef opis";
-            this.KoefSveOpis.MinimumWidth = 50;
-            this.KoefSveOpis.Name = "KoefSveOpis";
-            this.KoefSveOpis.ReadOnly = true;
+            this.dgvcResDokument.DataPropertyName = "Dokument";
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.dgvcResDokument.DefaultCellStyle = dataGridViewCellStyle10;
+            this.dgvcResDokument.HeaderText = "Dokument";
+            this.dgvcResDokument.Name = "dgvcResDokument";
+            this.dgvcResDokument.ReadOnly = true;
+            this.dgvcResDokument.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvcResDokument.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // bsResenja
+            // 
+            this.bsResenja.DataMember = "Zaposlenja_Resenja";
+            this.bsResenja.DataSource = this.bsZaposlenja;
+            // 
+            // pnlBottomLeftRes
+            // 
+            this.pnlBottomLeftRes.Controls.Add(this.btnUcitajResenja);
+            this.pnlBottomLeftRes.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlBottomLeftRes.Location = new System.Drawing.Point(3, 3);
+            this.pnlBottomLeftRes.Name = "pnlBottomLeftRes";
+            this.pnlBottomLeftRes.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
+            this.pnlBottomLeftRes.RightWingWidth = 6;
+            this.pnlBottomLeftRes.Size = new System.Drawing.Size(146, 287);
+            this.pnlBottomLeftRes.TabIndex = 0;
+            // 
+            // btnUcitajResenja
+            // 
+            this.btnUcitajResenja.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUcitajResenja.Location = new System.Drawing.Point(3, 3);
+            this.btnUcitajResenja.Name = "btnUcitajResenja";
+            this.btnUcitajResenja.Size = new System.Drawing.Size(135, 30);
+            this.btnUcitajResenja.TabIndex = 5;
+            this.btnUcitajResenja.Text = "Učitaj rešenja";
+            this.btnUcitajResenja.ToolTipText = "Dohvatanje podataka o zaposlenjima";
+            this.btnUcitajResenja.UseVisualStyleBackColor = true;
+            this.btnUcitajResenja.Click += new System.EventHandler(this.BtnUcitajResenja_Click);
             // 
             // FrmZaposlenja
             // 
@@ -767,6 +911,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvAngazovanja)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAngazovanja)).EndInit();
             this.pnlBottomLeftAng.ResumeLayout(false);
+            this.tpResenja.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResenja)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsResenja)).EndInit();
+            this.pnlBottomLeftRes.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -824,5 +972,17 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcOzKoefZaStaresinstvo;
         private System.Windows.Forms.DataGridViewTextBoxColumn normaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn KoefSveOpis;
+        private System.Windows.Forms.TabPage tpResenja;
+        private Controls.UcLeftPanel pnlBottomLeftRes;
+        private Controls.UcButton btnUcitajResenja;
+        private Controls.UcDGV dgvResenja;
+        private System.Windows.Forms.DataGridViewTextBoxColumn skGodDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource bsResenja;
+        private System.Windows.Forms.DataGridViewTextBoxColumn brojResenjaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SkolskaGodina;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tipResenjaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn procenatAngPoResDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DatumPodnosenja;
+        private System.Windows.Forms.DataGridViewButtonColumn dgvcResDokument;
     }
 }

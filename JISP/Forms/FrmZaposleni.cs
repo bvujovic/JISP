@@ -21,7 +21,7 @@ namespace JISP.Forms
             bsZaposlenja.DataMember = "FK_Zaposleni_Zaposlenja";
             bsZaposlenja.Sort = "Aktivan DESC";
             chkAktivniZap.CheckState = CheckState.Checked;
-            dgvZaposleni.StandardSort = bsZaposleni.Sort = "Ime";
+            dgvZaposleni.StandardSort = bsZaposleni.Sort = "Ime, Prezime";
             dgvZaposleni.LoadSettings();
             dgvZaposlenja.LoadSettings();
         }
@@ -150,14 +150,17 @@ namespace JISP.Forms
             }
         }
 
+        public IEnumerable<Ds.ZaposleniRow> SelektovaniZaposleni
+            => dgvZaposleni.SelectedDataRows<Ds.ZaposleniRow>();
+
         private async void BtnLoadDataExtra_Click(object sender, EventArgs e)
         {
             var akcija = btnLoadDataExtra.Text;
             btnLoadDataExtra.Text = "...";
             try
             {
-                var zaps = dgvZaposleni.SelectedDataRows<Ds.ZaposleniRow>();
-                foreach (var zap in zaps)
+                //B var zaps = dgvZaposleni.SelectedDataRows<Ds.ZaposleniRow>();
+                foreach (var zap in SelektovaniZaposleni)
                 {
                     var json = await WebApi.GetJson(WebApi.ReqEnum.Zap_Dodatno, zap.IdZaposlenog.ToString());
                     dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(json);
@@ -195,7 +198,7 @@ namespace JISP.Forms
                         + DateTime.Now.ToString(Utils.DatumVremeFormatFileSec) + ".xlsx";
                 var filePath = Utils.GetDownloadsFolder(fileName);
                 await WebApi.PostForFile(filePath, "ustanova/VratiCenusIzvestajFajl"
-                    , "{'idUstanove':'18976','tipIzvestaja':'kvalifikaciona_struktura'}");
+                    , "{'idUstanove':'18976','tipIzvestaja':'kvalifikaciona_struktura'}", false);
             }
             catch (Exception ex) { Utils.ShowMbox(ex, akcija); }
             btnKvalifStruktura.Text = akcija;
@@ -295,6 +298,11 @@ namespace JISP.Forms
                 Clipboard.SetText(sb.ToString());
             }
             catch (Exception ex) { Utils.ShowMbox(ex, BtnCsvZaposlenja.Text); }
+        }
+
+        private void BtnResenja_Click(object sender, EventArgs e)
+        {
+            new FrmResenja().ShowDialog();
         }
     }
 }
