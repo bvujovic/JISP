@@ -7,9 +7,9 @@ using System.Windows.Forms;
 
 namespace JISP.Forms
 {
-    public partial class FrmUcenikOsnovno : Form
+    public partial class FrmUcenikImeJOB : Form
     {
-        public FrmUcenikOsnovno(Ds.UceniciRow ucenik)
+        public FrmUcenikImeJOB(Ds.UceniciRow ucenik)
         {
             InitializeComponent();
 

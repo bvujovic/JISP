@@ -55,9 +55,9 @@ namespace JISP.Classes
                         if (s.EndsWith("магистратуру"))
                             return "Mag";
                         if (s.EndsWith("двогодишњу специјализацију"))
-                            return "Spec1";
-                        if (s.EndsWith("једногодишњу специјализацију"))
                             return "Spec2";
+                        if (s.EndsWith("једногодишњу специјализацију"))
+                            return "Spec1";
                     }
                     return "???";
             }

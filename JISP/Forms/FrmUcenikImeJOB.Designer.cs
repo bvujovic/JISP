@@ -1,6 +1,6 @@
 ﻿namespace JISP.Forms
 {
-    partial class FrmUcenikOsnovno
+    partial class FrmUcenikImeJOB
     {
         /// <summary>
         /// Required designer variable.

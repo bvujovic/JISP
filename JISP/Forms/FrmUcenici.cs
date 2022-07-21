@@ -170,7 +170,7 @@ namespace JISP.Forms
                 , MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
             if (mboxResult == DialogResult.Yes)
-                new FrmUcenikOsnovno(null).ShowDialog();
+                new FrmUcenikImeJOB(null).ShowDialog();
 
             if (mboxResult == DialogResult.No)
                 try
@@ -232,7 +232,7 @@ namespace JISP.Forms
             if (e.ColumnIndex == -1 || e.ColumnIndex == dgvcIme.Index || e.ColumnIndex == dgvcJOB.Index)
             {
                 var uc = dgvUcenici.CurrDataRow<Ds.UceniciRow>();
-                new FrmUcenikOsnovno(uc).ShowDialog();
+                new FrmUcenikImeJOB(uc).ShowDialog();
             }
         }
 
@@ -355,7 +355,11 @@ namespace JISP.Forms
                         var url = $"https://jisp.mpn.gov.rs/webapi/api/ucenik/Vrati{nivo}ObrazovanjeZavrsetak{nivo[0]}OById/" + uc.RegUceLiceObrazovanjeId;
                         uc.ZavrsObrazovanjaJSON = await WebApi.GetJson(url);
                         dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(uc.ZavrsObrazovanjaJSON);
-                        uc.ZavrsObrazovanjaKratko = obj.prosecnaOcenaNaZavrsnomMatruskomIspitu;
+                        uc.ZavrsObrazovanjaKratko
+                            = (string)obj.datumZavrsetka + "; "
+                            + obj.zavrsetakIsprave[0].ispravaNaziv + "; "
+                            + obj.regNoksNacionalnaKvalifikacijaId + ", "
+                            + obj.prosecnaOcenaNaZavrsnomMatruskomIspitu;
                     }
                 });
         }
