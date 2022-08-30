@@ -28,7 +28,7 @@
     <PublisherName>BV</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.4.7.0</ApplicationVersion>
+    <ApplicationVersion>0.4.9.0</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -160,6 +160,18 @@
     <Compile Include="Forms\FrmResenja.Designer.cs">
       <DependentUpon>FrmResenja.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FrmSistematizacija.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmSistematizacija.Designer.cs">
+      <DependentUpon>FrmSistematizacija.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmSistematizacijaSacuvajNormu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmSistematizacijaSacuvajNormu.Designer.cs">
+      <DependentUpon>FrmSistematizacijaSacuvajNormu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmSlikaZap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,6 +222,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmResenja.resx">
       <DependentUpon>FrmResenja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmSistematizacija.resx">
+      <DependentUpon>FrmSistematizacija.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmSistematizacijaSacuvajNormu.resx">
+      <DependentUpon>FrmSistematizacijaSacuvajNormu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmSlikaZap.resx">
       <DependentUpon>FrmSlikaZap.cs</DependentUpon>

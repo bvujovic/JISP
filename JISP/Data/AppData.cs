@@ -72,10 +72,6 @@ namespace JISP.Data
             Ds.Ucenici.CalcDatRodjBasedCols();
             Classes.SlikeZaposlenih.PostaviKoImaSliku();
             Ds.AcceptChanges();
-            //foreach (var oz in Ds.ObracunZarada)
-            //    oz.MesecBroj = Classes.ObracunZarada.OzMesec.BrojMeseca(oz.MesecNaziv);
-            //foreach (var zap in Ds.Zaposleni)
-            //    zap.CalcAngazovanja();
             WebApi.Token = LoadSett(WebApi.TOKEN_CAPTION);
             Browser = LoadSett("browser", "Chrome");
         }
@@ -85,6 +81,7 @@ namespace JISP.Data
         {
             try
             {
+                ClearTempTables();
                 if (WebApi.TokenDisplay != WebApi.TOKEN_MISSING)
                     SaveSett(WebApi.TOKEN_CAPTION, WebApi.Token);
                 SaveSett("browser", Browser);
@@ -92,6 +89,14 @@ namespace JISP.Data
                 Ds.AcceptChanges();
             }
             catch (Exception ex) { Classes.Utils.ShowMbox(ex, "Cuvanje podataka u XML"); }
+        }
+
+        /// <summary>Brisanje podataka iz tabela u kojima se podaci ne cuvaju trajno.</summary>
+        public static void ClearTempTables()
+        {
+            Ds.SistematizacijaDetalji.Clear();
+            Ds.Sistematizacija.Clear();
+            Ds.IzvoriFinansiranja.Clear();
         }
 
         /// <summary>Cuvanje vrednosti value pod imenom name u Settings tabeli.</summary>

@@ -148,7 +148,6 @@ namespace JISP.Data
                 if (idZaposlenja < 0)
                     throw new Exception("IdZaposlenja nije ispravan. Potrebno je ponovo učitati zaposlenja.");
                 var json = await WebApi.GetJson(WebApi.ReqEnum.Zap_Resenja, idZaposlenja.ToString());
-                //B var oldAngs = zap.GetAngazovanjaRows().ToList(); //HACK ToList() ne treba da bude ovde
                 var oldRes = zap.GetResenjaRows();
                 foreach (var res in oldRes)
                     AppData.Ds.Resenja.RemoveResenjaRow(res);
@@ -171,6 +170,68 @@ namespace JISP.Data
                     }
                     AppData.Ds.Resenja.AddResenjaRow(r);
                 }
+            }
+        }
+
+        /// <summary>Učitava podateke u tabelu Sistematizacija.</summary>
+        public static async Task GetSistematizacijaAsync()
+        {
+            var json = await WebApi.GetJson(WebApi.ReqEnum.Zap_Sistematizacija);
+            dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
+            AppData.Ds.Sistematizacija.Clear();
+            foreach (var item in arr)
+            {
+                var sis = AppData.Ds.Sistematizacija.NewSistematizacijaRow();
+                sis.IdSistematizacije = item.id;
+                sis.SkolskaGodinaId = item.skolskaGodina;
+                sis.RegUstSisId = item.regUstUstanovaSistematizacijaId;
+                sis.IzvorFinansiranja = item.izvorFinansiranjaNaziv;
+                sis.RucniUnos = item.rucniUnosSistematizacije;
+                sis.RadnoMestoId = item.radnoMestoId;
+                sis.RadnoMesto = item.radnoMestoNaziv;
+                sis.PredmetId = item.predmetId != null ? (int)item.predmetId : 0;
+                sis.PodnivoPredmetaId = item.predmetPodnivoId != null ? (int)item.predmetPodnivoId : 0;
+                sis.Predmet = item.predmetNaziv + " " + (item.podnivoPredmetaNaziv ?? "");
+                sis.JezikNastaveId = item.jezikNastaveId != null ? (int)item.jezikNastaveId : 0;
+                sis.UkupnaNormaPoSistematizaciji = item.ukupnaNormaPoSistematizaciji;
+                sis.UkupnaNormaPoRMOsimZamena = item.ukupnaNormaPoRMOsimZamena;
+                AppData.Ds.Sistematizacija.AddSistematizacijaRow(sis);
+            }
+        }
+
+        /// <summary>Učitava podateke u tabelu SistematizacijaDetalji.</summary>
+        public static async Task GetSistematizacijaDetaljiAsync(Ds.SistematizacijaRow sis)
+        {
+            var body = $"{{\"skolskaGodina\":{sis.SkolskaGodinaId},\"regUstUstanovaId\":{WebApi.SV_SAVA_ID},\"radnoMestoId\":{sis.RadnoMestoId},\"predmetId\":{sis.PredmetId},\"podnivoPredmetaId\":{sis.PodnivoPredmetaId},\"jezikNastaveId\":{sis.JezikNastaveId}}}";
+            var json = await WebApi.PostForJson(WebApi.ReqEnum.Zap_SistematizacijaDetalji, body);
+            dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
+
+            foreach (var detalj in sis.GetSistematizacijaDetaljiRows().ToList())
+                AppData.Ds.SistematizacijaDetalji.RemoveSistematizacijaDetaljiRow(detalj);
+
+            foreach (var item in arr)
+            {
+                var det = AppData.Ds.SistematizacijaDetalji.NewSistematizacijaDetaljiRow();
+                det.IdSistematizacije = sis.IdSistematizacije;
+                det.Zaposleni = item.ime + " " + item.prezime;
+                det.TipUgovora = item.tipUgovora;
+                det.ProcenatAngazovanja = item.procenatAngazovanja;
+                AppData.Ds.SistematizacijaDetalji.AddSistematizacijaDetaljiRow(det);
+            }
+        }
+
+        /// <summary>Učitava podateke u tabelu IzvoriFinansiranja.</summary>
+        public static async Task GetIzvoriFinansiranjaAsync()
+        {
+            var json = await WebApi.GetJson(WebApi.ReqEnum.Zap_IzvoriFinansiranja);
+            dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
+            AppData.Ds.IzvoriFinansiranja.Clear();
+            foreach (var item in arr)
+            {
+                var izvor = AppData.Ds.IzvoriFinansiranja.NewIzvoriFinansiranjaRow();
+                izvor.IdIzvoraFin = item.id;
+                izvor.Naziv = item.naziv;
+                AppData.Ds.IzvoriFinansiranja.AddIzvoriFinansiranjaRow(izvor);
             }
         }
     }

@@ -55,6 +55,7 @@ namespace JISP.Forms
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             AppData.SaveToRegistry();
+            AppData.ClearTempTables();
             if (AppData.Ds.HasChanges())
             {
                 var sb = new System.Text.StringBuilder();
@@ -100,7 +101,8 @@ namespace JISP.Forms
 
         public void FrmChild_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (Application.OpenForms.Count == 0)
+            if (Application.OpenForms.Cast<Form>().Where(it => it.Name != "FrmSistematizacija")
+                .Count() == 0)
             {
                 ShowInTaskbar = true;
                 WindowState = FormWindowState.Normal;

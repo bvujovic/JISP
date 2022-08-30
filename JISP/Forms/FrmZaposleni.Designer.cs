@@ -67,6 +67,8 @@ namespace JISP.Forms
             this.bsZaposlenja = new System.Windows.Forms.BindingSource(this.components);
             this.ofdZapSlika = new System.Windows.Forms.OpenFileDialog();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
+            this.btnSistematizacija = new JISP.Controls.UcButton();
+            this.btnResenja = new JISP.Controls.UcButton();
             this.BtnCsvZaposlenja = new JISP.Controls.UcButton();
             this.lblStatus = new System.Windows.Forms.Label();
             this.btnUcitajZaposlenja = new JISP.Controls.UcButton();
@@ -76,7 +78,6 @@ namespace JISP.Forms
             this.btnLoadData = new JISP.Controls.UcButton();
             this.btnSaveData = new JISP.Controls.UcButton();
             this.btnExit = new JISP.Controls.UcExitAppButton();
-            this.btnResenja = new JISP.Controls.UcButton();
             lblFilterCaption = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bsZaposleni)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
@@ -95,7 +96,7 @@ namespace JISP.Forms
             lblFilterCaption.AutoSize = true;
             lblFilterCaption.Location = new System.Drawing.Point(147, 4);
             lblFilterCaption.Name = "lblFilterCaption";
-            lblFilterCaption.Size = new System.Drawing.Size(44, 18);
+            lblFilterCaption.Size = new System.Drawing.Size(56, 24);
             lblFilterCaption.TabIndex = 8;
             lblFilterCaption.Text = "Filter:";
             // 
@@ -104,7 +105,7 @@ namespace JISP.Forms
             this.lblRowCount.AutoSize = true;
             this.lblRowCount.Location = new System.Drawing.Point(3, 5);
             this.lblRowCount.Name = "lblRowCount";
-            this.lblRowCount.Size = new System.Drawing.Size(59, 18);
+            this.lblRowCount.Size = new System.Drawing.Size(75, 24);
             this.lblRowCount.TabIndex = 0;
             this.lblRowCount.Text = "Redova";
             // 
@@ -243,34 +244,43 @@ namespace JISP.Forms
             // 
             this.dgvcDevojackoPrezime.DataPropertyName = "DevojackoPrezime";
             this.dgvcDevojackoPrezime.HeaderText = "Dev prezime";
+            this.dgvcDevojackoPrezime.MinimumWidth = 6;
             this.dgvcDevojackoPrezime.Name = "dgvcDevojackoPrezime";
             this.dgvcDevojackoPrezime.ReadOnly = true;
+            this.dgvcDevojackoPrezime.Width = 125;
             // 
             // dgvcEmail
             // 
             this.dgvcEmail.DataPropertyName = "Email";
             this.dgvcEmail.HeaderText = "Email";
+            this.dgvcEmail.MinimumWidth = 6;
             this.dgvcEmail.Name = "dgvcEmail";
             this.dgvcEmail.ReadOnly = true;
+            this.dgvcEmail.Width = 125;
             // 
             // dgvcTelefon
             // 
             this.dgvcTelefon.DataPropertyName = "Telefon";
             this.dgvcTelefon.HeaderText = "Telefon";
+            this.dgvcTelefon.MinimumWidth = 6;
             this.dgvcTelefon.Name = "dgvcTelefon";
             this.dgvcTelefon.ReadOnly = true;
+            this.dgvcTelefon.Width = 125;
             // 
             // dgvcPrebivaliste
             // 
             this.dgvcPrebivaliste.DataPropertyName = "Prebivaliste";
             this.dgvcPrebivaliste.HeaderText = "Prebivaliste";
+            this.dgvcPrebivaliste.MinimumWidth = 6;
             this.dgvcPrebivaliste.Name = "dgvcPrebivaliste";
             this.dgvcPrebivaliste.ReadOnly = true;
+            this.dgvcPrebivaliste.Width = 125;
             // 
             // dgvcAngazovanja
             // 
             this.dgvcAngazovanja.DataPropertyName = "Angazovanja";
             this.dgvcAngazovanja.HeaderText = "Angazovanja";
+            this.dgvcAngazovanja.MinimumWidth = 6;
             this.dgvcAngazovanja.Name = "dgvcAngazovanja";
             this.dgvcAngazovanja.ReadOnly = true;
             this.dgvcAngazovanja.Width = 190;
@@ -300,9 +310,11 @@ namespace JISP.Forms
             // 
             this.dgvcStatusAktivnosti.DataPropertyName = "StatusAktivnosti1";
             this.dgvcStatusAktivnosti.HeaderText = "KvalifStrukt";
+            this.dgvcStatusAktivnosti.MinimumWidth = 6;
             this.dgvcStatusAktivnosti.Name = "dgvcStatusAktivnosti";
             this.dgvcStatusAktivnosti.ToolTipText = "Vidljivost u izveštaju Kvalifikaciona struktura (string, + vidi se, - ne vidi se," +
     " -- ne vidi se i ne treba...)";
+            this.dgvcStatusAktivnosti.Width = 125;
             // 
             // dgvcNapomene
             // 
@@ -332,7 +344,7 @@ namespace JISP.Forms
             this.chkAktivniZap.CheckState = System.Windows.Forms.CheckState.Indeterminate;
             this.chkAktivniZap.Location = new System.Drawing.Point(509, 4);
             this.chkAktivniZap.Name = "chkAktivniZap";
-            this.chkAktivniZap.Size = new System.Drawing.Size(69, 22);
+            this.chkAktivniZap.Size = new System.Drawing.Size(86, 28);
             this.chkAktivniZap.TabIndex = 1;
             this.chkAktivniZap.Text = "Aktivni";
             this.chkAktivniZap.ThreeState = true;
@@ -344,7 +356,7 @@ namespace JISP.Forms
             this.txtFilter.BindingSource = null;
             this.txtFilter.Location = new System.Drawing.Point(193, 1);
             this.txtFilter.Name = "txtFilter";
-            this.txtFilter.Size = new System.Drawing.Size(128, 24);
+            this.txtFilter.Size = new System.Drawing.Size(128, 29);
             this.txtFilter.TabIndex = 0;
             this.txtFilter.TextChanged += new System.EventHandler(this.FilterChanged);
             // 
@@ -396,6 +408,7 @@ namespace JISP.Forms
             // 
             this.dgvcZaposlenjaProcenat.DataPropertyName = "ProcenatRadnogVremena";
             this.dgvcZaposlenjaProcenat.HeaderText = "Procenat";
+            this.dgvcZaposlenjaProcenat.MinimumWidth = 6;
             this.dgvcZaposlenjaProcenat.Name = "dgvcZaposlenjaProcenat";
             this.dgvcZaposlenjaProcenat.Width = 80;
             // 
@@ -403,7 +416,9 @@ namespace JISP.Forms
             // 
             this.dgvcZaposlenjaZaposlenOd.DataPropertyName = "DatumZaposlenOd";
             this.dgvcZaposlenjaZaposlenOd.HeaderText = "Zaposlen od";
+            this.dgvcZaposlenjaZaposlenOd.MinimumWidth = 6;
             this.dgvcZaposlenjaZaposlenOd.Name = "dgvcZaposlenjaZaposlenOd";
+            this.dgvcZaposlenjaZaposlenOd.Width = 125;
             // 
             // dgvcNjaRMNaziv
             // 
@@ -420,6 +435,7 @@ namespace JISP.Forms
             this.dgvcZaposlenjaVrstaAng.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dgvcZaposlenjaVrstaAng.DataPropertyName = "VrstaAngazovanja";
             this.dgvcZaposlenjaVrstaAng.HeaderText = "Vrsta angažovanja";
+            this.dgvcZaposlenjaVrstaAng.MinimumWidth = 6;
             this.dgvcZaposlenjaVrstaAng.Name = "dgvcZaposlenjaVrstaAng";
             this.dgvcZaposlenjaVrstaAng.ReadOnly = true;
             // 
@@ -435,6 +451,7 @@ namespace JISP.Forms
             // 
             // pnlLeft
             // 
+            this.pnlLeft.Controls.Add(this.btnSistematizacija);
             this.pnlLeft.Controls.Add(this.btnResenja);
             this.pnlLeft.Controls.Add(this.BtnCsvZaposlenja);
             this.pnlLeft.Controls.Add(this.lblStatus);
@@ -452,6 +469,28 @@ namespace JISP.Forms
             this.pnlLeft.RightWingWidth = 6;
             this.pnlLeft.Size = new System.Drawing.Size(146, 575);
             this.pnlLeft.TabIndex = 0;
+            // 
+            // btnSistematizacija
+            // 
+            this.btnSistematizacija.Location = new System.Drawing.Point(8, 368);
+            this.btnSistematizacija.Name = "btnSistematizacija";
+            this.btnSistematizacija.Size = new System.Drawing.Size(128, 40);
+            this.btnSistematizacija.TabIndex = 9;
+            this.btnSistematizacija.Text = "Sistemat. RM";
+            this.btnSistematizacija.ToolTipText = "Sistematizacija radnih mesta";
+            this.btnSistematizacija.UseVisualStyleBackColor = true;
+            this.btnSistematizacija.Click += new System.EventHandler(this.BtnSistematizacija_Click);
+            // 
+            // btnResenja
+            // 
+            this.btnResenja.Location = new System.Drawing.Point(8, 414);
+            this.btnResenja.Name = "btnResenja";
+            this.btnResenja.Size = new System.Drawing.Size(128, 40);
+            this.btnResenja.TabIndex = 10;
+            this.btnResenja.Text = "Rešenja";
+            this.btnResenja.ToolTipText = "Rešenja svih zaposlenih";
+            this.btnResenja.UseVisualStyleBackColor = true;
+            this.btnResenja.Click += new System.EventHandler(this.BtnResenja_Click);
             // 
             // BtnCsvZaposlenja
             // 
@@ -471,7 +510,7 @@ namespace JISP.Forms
             this.lblStatus.AutoSize = true;
             this.lblStatus.Location = new System.Drawing.Point(5, 548);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(0, 18);
+            this.lblStatus.Size = new System.Drawing.Size(0, 24);
             this.lblStatus.TabIndex = 7;
             // 
             // btnUcitajZaposlenja
@@ -513,7 +552,7 @@ namespace JISP.Forms
             this.chkCopyOnClick.AutoSize = true;
             this.chkCopyOnClick.Location = new System.Drawing.Point(8, 64);
             this.chkCopyOnClick.Name = "chkCopyOnClick";
-            this.chkCopyOnClick.Size = new System.Drawing.Size(135, 22);
+            this.chkCopyOnClick.Size = new System.Drawing.Size(169, 28);
             this.chkCopyOnClick.TabIndex = 1;
             this.chkCopyOnClick.Text = "Kopiranje na klik";
             this.chkCopyOnClick.UseVisualStyleBackColor = true;
@@ -553,20 +592,9 @@ namespace JISP.Forms
             this.btnExit.ToolTipText = "Izlaz iz aplikacije";
             this.btnExit.UseVisualStyleBackColor = false;
             // 
-            // btnResenja
-            // 
-            this.btnResenja.Location = new System.Drawing.Point(8, 368);
-            this.btnResenja.Name = "btnResenja";
-            this.btnResenja.Size = new System.Drawing.Size(128, 40);
-            this.btnResenja.TabIndex = 9;
-            this.btnResenja.Text = "Rešenja";
-            this.btnResenja.ToolTipText = "Kreiranje izveštaja Kvalifikaciona Struktura";
-            this.btnResenja.UseVisualStyleBackColor = true;
-            this.btnResenja.Click += new System.EventHandler(this.BtnResenja_Click);
-            // 
             // FrmZaposleni
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(986, 575);
             this.Controls.Add(this.splitContainer);
@@ -637,5 +665,6 @@ namespace JISP.Forms
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcStatusAktivnosti;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcNapomene;
         private Controls.UcButton btnResenja;
+        private Controls.UcButton btnSistematizacija;
     }
 }
