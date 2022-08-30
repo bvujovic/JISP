@@ -155,6 +155,7 @@
               <xs:element name="DokumentId" msprop:Generator_ColumnPropNameInTable="DokumentIdColumn" msprop:Generator_ColumnPropNameInRow="DokumentId" msprop:Generator_UserColumnName="DokumentId" msprop:Generator_ColumnVarNameInTable="columnDokumentId" type="xs:string" minOccurs="0" />
               <xs:element name="IdZaposlenja" msprop:Generator_ColumnPropNameInTable="IdZaposlenjaColumn" msprop:Generator_ColumnPropNameInRow="IdZaposlenja" msprop:Generator_UserColumnName="IdZaposlenja" msprop:Generator_ColumnVarNameInTable="columnIdZaposlenja" type="xs:int" />
               <xs:element name="_Zaposleni" msdata:ReadOnly="true" msdata:Expression="parent._Zaposleni" msprop:Generator_ColumnPropNameInTable="_ZaposleniColumn" msprop:Generator_ColumnPropNameInRow="_Zaposleni" msprop:Generator_UserColumnName="_Zaposleni" msprop:Generator_ColumnVarNameInTable="column_Zaposleni" type="xs:string" minOccurs="0" />
+              <xs:element name="AktivnoZaposlenje" msdata:ReadOnly="true" msdata:Expression="parent.Aktivan" msprop:Generator_UserColumnName="AktivnoZaposlenje" msprop:Generator_ColumnPropNameInTable="AktivnoZaposlenjeColumn" msprop:Generator_ColumnPropNameInRow="AktivnoZaposlenje" msprop:Generator_ColumnVarNameInTable="columnAktivnoZaposlenje" type="xs:boolean" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

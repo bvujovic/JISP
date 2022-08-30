@@ -62,11 +62,11 @@
       <RoutePoints>
         <Point>
           <X>930</X>
-          <Y>514</Y>
+          <Y>501</Y>
         </Point>
         <Point>
-          <X>974</X>
-          <Y>514</Y>
+          <X>975</X>
+          <Y>501</Y>
         </Point>
       </RoutePoints>
     </Connector>

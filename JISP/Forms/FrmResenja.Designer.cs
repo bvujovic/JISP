@@ -29,25 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.Label label1;
             System.Windows.Forms.Label label2;
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.bsResenja = new System.Windows.Forms.BindingSource(this.components);
             this.ds = new JISP.Data.Ds();
             this.dgvResenjaSva = new JISP.Controls.UcDGV();
-            this.lblBrojRedova = new System.Windows.Forms.Label();
-            this.pnlBottomLeftRes = new JISP.Controls.UcLeftPanel();
-            this.gbAkcije = new System.Windows.Forms.GroupBox();
-            this.cmbAkcije = new System.Windows.Forms.ComboBox();
-            this.btnAkcijaPokreni = new JISP.Controls.UcButton();
-            this.btnExit = new JISP.Controls.UcExitAppButton();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.gbFilter = new System.Windows.Forms.GroupBox();
-            this.cmbSkGod = new System.Windows.Forms.ComboBox();
-            this.cmbTipoviResenja = new System.Windows.Forms.ComboBox();
-            this.btnUcitajResenja = new JISP.Controls.UcButton();
             this.dgvcZaposleni = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.brojResenjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.skolskaGodinaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,6 +44,20 @@
             this.procenatAngPoResDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.datumPodnosenjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcDokument = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.lblBrojRedova = new System.Windows.Forms.Label();
+            this.pnlBottomLeftRes = new JISP.Controls.UcLeftPanel();
+            this.chkSamoAktivnaZaposlenja = new System.Windows.Forms.CheckBox();
+            this.gbAkcije = new System.Windows.Forms.GroupBox();
+            this.cmbAkcije = new System.Windows.Forms.ComboBox();
+            this.btnAkcijaPokreni = new JISP.Controls.UcButton();
+            this.btnExit = new JISP.Controls.UcExitAppButton();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.gbFilter = new System.Windows.Forms.GroupBox();
+            this.chkAktivniUgovori = new System.Windows.Forms.CheckBox();
+            this.cmbSkGod = new System.Windows.Forms.ComboBox();
+            this.cmbTipoviResenja = new System.Windows.Forms.ComboBox();
+            this.btnUcitajResenja = new JISP.Controls.UcButton();
+            this.ttSamoAktivnaZaposlenja = new System.Windows.Forms.ToolTip(this.components);
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bsResenja)).BeginInit();
@@ -64,6 +67,24 @@
             this.gbAkcije.SuspendLayout();
             this.gbFilter.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(7, 22);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(110, 18);
+            label1.TabIndex = 7;
+            label1.Text = "Školska godina";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(7, 70);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(80, 18);
+            label2.TabIndex = 9;
+            label2.Text = "Tip rešenja";
             // 
             // bsResenja
             // 
@@ -117,147 +138,6 @@
             this.dgvResenjaSva.TabIndex = 2;
             this.dgvResenjaSva.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvResenjaSva_CellClick);
             // 
-            // lblBrojRedova
-            // 
-            this.lblBrojRedova.AutoSize = true;
-            this.lblBrojRedova.Location = new System.Drawing.Point(8, 64);
-            this.lblBrojRedova.Name = "lblBrojRedova";
-            this.lblBrojRedova.Size = new System.Drawing.Size(59, 18);
-            this.lblBrojRedova.TabIndex = 12;
-            this.lblBrojRedova.Text = "Redova";
-            // 
-            // pnlBottomLeftRes
-            // 
-            this.pnlBottomLeftRes.Controls.Add(this.gbAkcije);
-            this.pnlBottomLeftRes.Controls.Add(this.btnExit);
-            this.pnlBottomLeftRes.Controls.Add(this.lblBrojRedova);
-            this.pnlBottomLeftRes.Controls.Add(this.lblStatus);
-            this.pnlBottomLeftRes.Controls.Add(this.gbFilter);
-            this.pnlBottomLeftRes.Controls.Add(this.btnUcitajResenja);
-            this.pnlBottomLeftRes.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlBottomLeftRes.Location = new System.Drawing.Point(0, 0);
-            this.pnlBottomLeftRes.Name = "pnlBottomLeftRes";
-            this.pnlBottomLeftRes.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
-            this.pnlBottomLeftRes.RightWingWidth = 6;
-            this.pnlBottomLeftRes.Size = new System.Drawing.Size(146, 450);
-            this.pnlBottomLeftRes.TabIndex = 1;
-            // 
-            // gbAkcije
-            // 
-            this.gbAkcije.Controls.Add(this.cmbAkcije);
-            this.gbAkcije.Controls.Add(this.btnAkcijaPokreni);
-            this.gbAkcije.Location = new System.Drawing.Point(3, 250);
-            this.gbAkcije.Name = "gbAkcije";
-            this.gbAkcije.Size = new System.Drawing.Size(135, 96);
-            this.gbAkcije.TabIndex = 16;
-            this.gbAkcije.TabStop = false;
-            this.gbAkcije.Text = "Akcije";
-            // 
-            // cmbAkcije
-            // 
-            this.cmbAkcije.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbAkcije.FormattingEnabled = true;
-            this.cmbAkcije.Location = new System.Drawing.Point(6, 23);
-            this.cmbAkcije.Name = "cmbAkcije";
-            this.cmbAkcije.Size = new System.Drawing.Size(121, 26);
-            this.cmbAkcije.TabIndex = 13;
-            // 
-            // btnAkcijaPokreni
-            // 
-            this.btnAkcijaPokreni.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAkcijaPokreni.Location = new System.Drawing.Point(6, 55);
-            this.btnAkcijaPokreni.Name = "btnAkcijaPokreni";
-            this.btnAkcijaPokreni.Size = new System.Drawing.Size(121, 30);
-            this.btnAkcijaPokreni.TabIndex = 14;
-            this.btnAkcijaPokreni.Text = "OK";
-            this.btnAkcijaPokreni.ToolTipText = "Dohvatanje rešenja za selekto";
-            this.btnAkcijaPokreni.UseVisualStyleBackColor = true;
-            this.btnAkcijaPokreni.Click += new System.EventHandler(this.BtnAkcijaPokreni_Click);
-            // 
-            // btnExit
-            // 
-            this.btnExit.BackColor = System.Drawing.Color.Red;
-            this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(8, 12);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(128, 28);
-            this.btnExit.TabIndex = 15;
-            this.btnExit.Text = "Izlaz";
-            this.btnExit.ToolTipText = "Izlaz iz aplikacije";
-            this.btnExit.UseVisualStyleBackColor = false;
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(6, 423);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(0, 18);
-            this.lblStatus.TabIndex = 11;
-            // 
-            // gbFilter
-            // 
-            this.gbFilter.Controls.Add(this.cmbSkGod);
-            this.gbFilter.Controls.Add(label1);
-            this.gbFilter.Controls.Add(label2);
-            this.gbFilter.Controls.Add(this.cmbTipoviResenja);
-            this.gbFilter.Location = new System.Drawing.Point(3, 98);
-            this.gbFilter.Name = "gbFilter";
-            this.gbFilter.Size = new System.Drawing.Size(135, 133);
-            this.gbFilter.TabIndex = 10;
-            this.gbFilter.TabStop = false;
-            this.gbFilter.Text = "Filteri";
-            // 
-            // cmbSkGod
-            // 
-            this.cmbSkGod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSkGod.FormattingEnabled = true;
-            this.cmbSkGod.Location = new System.Drawing.Point(6, 46);
-            this.cmbSkGod.Name = "cmbSkGod";
-            this.cmbSkGod.Size = new System.Drawing.Size(121, 26);
-            this.cmbSkGod.TabIndex = 6;
-            this.cmbSkGod.SelectedIndexChanged += new System.EventHandler(this.Cmb_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(7, 27);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(110, 18);
-            label1.TabIndex = 7;
-            label1.Text = "Školska godina";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(7, 77);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(80, 18);
-            label2.TabIndex = 9;
-            label2.Text = "Tip rešenja";
-            // 
-            // cmbTipoviResenja
-            // 
-            this.cmbTipoviResenja.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTipoviResenja.FormattingEnabled = true;
-            this.cmbTipoviResenja.Location = new System.Drawing.Point(6, 96);
-            this.cmbTipoviResenja.Name = "cmbTipoviResenja";
-            this.cmbTipoviResenja.Size = new System.Drawing.Size(121, 26);
-            this.cmbTipoviResenja.TabIndex = 8;
-            this.cmbTipoviResenja.SelectedIndexChanged += new System.EventHandler(this.Cmb_SelectedIndexChanged);
-            // 
-            // btnUcitajResenja
-            // 
-            this.btnUcitajResenja.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUcitajResenja.Location = new System.Drawing.Point(8, 368);
-            this.btnUcitajResenja.Name = "btnUcitajResenja";
-            this.btnUcitajResenja.Size = new System.Drawing.Size(121, 30);
-            this.btnUcitajResenja.TabIndex = 5;
-            this.btnUcitajResenja.Text = "Učitaj rešenja";
-            this.btnUcitajResenja.ToolTipText = "Dohvatanje rešenja za selekto";
-            this.btnUcitajResenja.UseVisualStyleBackColor = true;
-            this.btnUcitajResenja.Click += new System.EventHandler(this.BtnUcitajResenja_Click);
-            // 
             // dgvcZaposleni
             // 
             this.dgvcZaposleni.DataPropertyName = "_Zaposleni";
@@ -308,13 +188,161 @@
             // 
             this.dgvcDokument.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dgvcDokument.DataPropertyName = "Dokument";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.dgvcDokument.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.dgvcDokument.DefaultCellStyle = dataGridViewCellStyle7;
             this.dgvcDokument.HeaderText = "Dokument";
             this.dgvcDokument.Name = "dgvcDokument";
             this.dgvcDokument.ReadOnly = true;
             this.dgvcDokument.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvcDokument.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // lblBrojRedova
+            // 
+            this.lblBrojRedova.AutoSize = true;
+            this.lblBrojRedova.Location = new System.Drawing.Point(8, 64);
+            this.lblBrojRedova.Name = "lblBrojRedova";
+            this.lblBrojRedova.Size = new System.Drawing.Size(59, 18);
+            this.lblBrojRedova.TabIndex = 12;
+            this.lblBrojRedova.Text = "Redova";
+            // 
+            // pnlBottomLeftRes
+            // 
+            this.pnlBottomLeftRes.Controls.Add(this.chkSamoAktivnaZaposlenja);
+            this.pnlBottomLeftRes.Controls.Add(this.gbAkcije);
+            this.pnlBottomLeftRes.Controls.Add(this.btnExit);
+            this.pnlBottomLeftRes.Controls.Add(this.lblBrojRedova);
+            this.pnlBottomLeftRes.Controls.Add(this.lblStatus);
+            this.pnlBottomLeftRes.Controls.Add(this.gbFilter);
+            this.pnlBottomLeftRes.Controls.Add(this.btnUcitajResenja);
+            this.pnlBottomLeftRes.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlBottomLeftRes.Location = new System.Drawing.Point(0, 0);
+            this.pnlBottomLeftRes.Name = "pnlBottomLeftRes";
+            this.pnlBottomLeftRes.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
+            this.pnlBottomLeftRes.RightWingWidth = 6;
+            this.pnlBottomLeftRes.Size = new System.Drawing.Size(146, 450);
+            this.pnlBottomLeftRes.TabIndex = 1;
+            // 
+            // chkSamoAktivnaZaposlenja
+            // 
+            this.chkSamoAktivnaZaposlenja.AutoSize = true;
+            this.chkSamoAktivnaZaposlenja.Checked = true;
+            this.chkSamoAktivnaZaposlenja.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkSamoAktivnaZaposlenja.Location = new System.Drawing.Point(8, 399);
+            this.chkSamoAktivnaZaposlenja.Name = "chkSamoAktivnaZaposlenja";
+            this.chkSamoAktivnaZaposlenja.Size = new System.Drawing.Size(118, 22);
+            this.chkSamoAktivnaZaposlenja.TabIndex = 17;
+            this.chkSamoAktivnaZaposlenja.Text = "Samo aktivno";
+            this.chkSamoAktivnaZaposlenja.UseVisualStyleBackColor = true;
+            // 
+            // gbAkcije
+            // 
+            this.gbAkcije.Controls.Add(this.cmbAkcije);
+            this.gbAkcije.Controls.Add(this.btnAkcijaPokreni);
+            this.gbAkcije.Location = new System.Drawing.Point(3, 254);
+            this.gbAkcije.Name = "gbAkcije";
+            this.gbAkcije.Size = new System.Drawing.Size(135, 96);
+            this.gbAkcije.TabIndex = 16;
+            this.gbAkcije.TabStop = false;
+            this.gbAkcije.Text = "Akcije";
+            // 
+            // cmbAkcije
+            // 
+            this.cmbAkcije.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAkcije.FormattingEnabled = true;
+            this.cmbAkcije.Location = new System.Drawing.Point(6, 23);
+            this.cmbAkcije.Name = "cmbAkcije";
+            this.cmbAkcije.Size = new System.Drawing.Size(121, 26);
+            this.cmbAkcije.TabIndex = 13;
+            // 
+            // btnAkcijaPokreni
+            // 
+            this.btnAkcijaPokreni.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAkcijaPokreni.Location = new System.Drawing.Point(6, 55);
+            this.btnAkcijaPokreni.Name = "btnAkcijaPokreni";
+            this.btnAkcijaPokreni.Size = new System.Drawing.Size(121, 30);
+            this.btnAkcijaPokreni.TabIndex = 14;
+            this.btnAkcijaPokreni.Text = "OK";
+            this.btnAkcijaPokreni.ToolTipText = "Dohvatanje rešenja za selekto";
+            this.btnAkcijaPokreni.UseVisualStyleBackColor = true;
+            this.btnAkcijaPokreni.Click += new System.EventHandler(this.BtnAkcijaPokreni_Click);
+            // 
+            // btnExit
+            // 
+            this.btnExit.BackColor = System.Drawing.Color.Red;
+            this.btnExit.ForeColor = System.Drawing.Color.White;
+            this.btnExit.Location = new System.Drawing.Point(8, 12);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(128, 28);
+            this.btnExit.TabIndex = 15;
+            this.btnExit.Text = "Izlaz";
+            this.btnExit.ToolTipText = "Izlaz iz aplikacije";
+            this.btnExit.UseVisualStyleBackColor = false;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(6, 423);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(0, 18);
+            this.lblStatus.TabIndex = 11;
+            // 
+            // gbFilter
+            // 
+            this.gbFilter.Controls.Add(this.chkAktivniUgovori);
+            this.gbFilter.Controls.Add(this.cmbSkGod);
+            this.gbFilter.Controls.Add(label1);
+            this.gbFilter.Controls.Add(label2);
+            this.gbFilter.Controls.Add(this.cmbTipoviResenja);
+            this.gbFilter.Location = new System.Drawing.Point(3, 90);
+            this.gbFilter.Name = "gbFilter";
+            this.gbFilter.Size = new System.Drawing.Size(135, 154);
+            this.gbFilter.TabIndex = 10;
+            this.gbFilter.TabStop = false;
+            this.gbFilter.Text = "Filteri";
+            // 
+            // chkAktivniUgovori
+            // 
+            this.chkAktivniUgovori.AutoSize = true;
+            this.chkAktivniUgovori.Location = new System.Drawing.Point(6, 121);
+            this.chkAktivniUgovori.Name = "chkAktivniUgovori";
+            this.chkAktivniUgovori.Size = new System.Drawing.Size(122, 22);
+            this.chkAktivniUgovori.TabIndex = 10;
+            this.chkAktivniUgovori.Text = "Aktivni ugovori";
+            this.chkAktivniUgovori.UseVisualStyleBackColor = true;
+            this.chkAktivniUgovori.CheckedChanged += new System.EventHandler(this.ChkAktivniUgovori_CheckedChanged);
+            // 
+            // cmbSkGod
+            // 
+            this.cmbSkGod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSkGod.FormattingEnabled = true;
+            this.cmbSkGod.Location = new System.Drawing.Point(6, 41);
+            this.cmbSkGod.Name = "cmbSkGod";
+            this.cmbSkGod.Size = new System.Drawing.Size(121, 26);
+            this.cmbSkGod.TabIndex = 6;
+            this.cmbSkGod.SelectedIndexChanged += new System.EventHandler(this.CmbSkGod_SelectedIndexChanged);
+            // 
+            // cmbTipoviResenja
+            // 
+            this.cmbTipoviResenja.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipoviResenja.FormattingEnabled = true;
+            this.cmbTipoviResenja.Location = new System.Drawing.Point(6, 89);
+            this.cmbTipoviResenja.Name = "cmbTipoviResenja";
+            this.cmbTipoviResenja.Size = new System.Drawing.Size(121, 26);
+            this.cmbTipoviResenja.TabIndex = 8;
+            this.cmbTipoviResenja.SelectedIndexChanged += new System.EventHandler(this.CmbTipoviResenja_SelectedIndexChanged);
+            // 
+            // btnUcitajResenja
+            // 
+            this.btnUcitajResenja.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUcitajResenja.Location = new System.Drawing.Point(8, 368);
+            this.btnUcitajResenja.Name = "btnUcitajResenja";
+            this.btnUcitajResenja.Size = new System.Drawing.Size(121, 30);
+            this.btnUcitajResenja.TabIndex = 5;
+            this.btnUcitajResenja.Text = "Učitaj rešenja";
+            this.btnUcitajResenja.ToolTipText = "Dohvatanje rešenja za selekto";
+            this.btnUcitajResenja.UseVisualStyleBackColor = true;
+            this.btnUcitajResenja.Click += new System.EventHandler(this.BtnUcitajResenja_Click);
             // 
             // FrmResenja
             // 
@@ -362,5 +390,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn procenatAngPoResDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn datumPodnosenjaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn dgvcDokument;
+        private System.Windows.Forms.CheckBox chkSamoAktivnaZaposlenja;
+        private System.Windows.Forms.ToolTip ttSamoAktivnaZaposlenja;
+        private System.Windows.Forms.CheckBox chkAktivniUgovori;
     }
 }

@@ -216,7 +216,7 @@ namespace JISP.Forms
             foreach (var zap in zaposleni)
                 await (sender as Controls.UcButton).RunAsync(async () =>
                 {
-                    lblStatus.Text = zap.Ime;
+                    lblStatus.Text = zap.ToString();
                     await DataGetter.GetZaposlenjaAsync(zap);
                     await DataGetter.GetAngazovanjaAsync(zap.GetZaposlenjaRows().Where(it => it.Aktivan));
                     await DataGetter.GetObracuniZaradaAsync(zap);
@@ -277,6 +277,7 @@ namespace JISP.Forms
                             || zap.RadnoMestoNaziv.Contains("екретар") // sekretar, Sekretar
                             || zap.RadnoMestoNaziv.Contains("увар") // kuvar, Kuvar
                             || zap.RadnoMestoNaziv.Contains("Чистачица")
+                            || zap.RadnoMestoNaziv.Contains("Помоћни наставник")
                             )
                             kat = "Ostali";
                         var koefOpis = zaposleni.GetObracunZaradaRows().Where
@@ -297,7 +298,7 @@ namespace JISP.Forms
 
                 Clipboard.SetText(sb.ToString());
             }
-            catch (Exception ex) { Utils.ShowMbox(ex, BtnCsvZaposlenja.Text); }
+            catch (Exception ex) { Utils.ShowMbox(ex, BtnCsvZaposlenja.Text);}
         }
 
         private void BtnResenja_Click(object sender, EventArgs e)

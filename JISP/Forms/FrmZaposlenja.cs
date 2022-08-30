@@ -143,8 +143,11 @@ namespace JISP.Forms
             CheckStateAktivno = chkAktivno.CheckState;
             CheckedIndicesMeseci = lstchkMeseci.CheckedIndices;
             TcBottomSelectedIndex = tcBottom.SelectedIndex;
-            LastLocation = Location;
-            LastSize = Size;
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                LastLocation = Location;
+                LastSize = Size;
+            }
             dgvZaposlenjaSve.SaveSettings();
             dgvAngazovanja.SaveSettings();
             dgvObracunZarada.SaveSettings();

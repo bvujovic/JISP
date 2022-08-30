@@ -184,11 +184,11 @@
     <Compile Include="Forms\FrmUcenici.Designer.cs">
       <DependentUpon>FrmUcenici.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FrmUcenikOsnovno.cs">
+    <Compile Include="Forms\FrmUcenikImeJOB.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FrmUcenikOsnovno.Designer.cs">
-      <DependentUpon>FrmUcenikOsnovno.cs</DependentUpon>
+    <Compile Include="Forms\FrmUcenikImeJOB.Designer.cs">
+      <DependentUpon>FrmUcenikImeJOB.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmZaposleni.cs">
       <SubType>Form</SubType>
@@ -235,8 +235,8 @@
     <EmbeddedResource Include="Forms\FrmUcenici.resx">
       <DependentUpon>FrmUcenici.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FrmUcenikOsnovno.resx">
-      <DependentUpon>FrmUcenikOsnovno.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FrmUcenikImeJOB.resx">
+      <DependentUpon>FrmUcenikImeJOB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmZaposleni.resx">
       <DependentUpon>FrmZaposleni.cs</DependentUpon>

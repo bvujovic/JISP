@@ -37,25 +37,14 @@ namespace JISP.Forms
                 CmbAkcijaNedostajuciZaposleni,
             });
             cmbAkcije.AdjustWidth();
+
+            ttSamoAktivnaZaposlenja.SetToolTip(chkSamoAktivnaZaposlenja
+                , "Da li se učitavaju rešenja samo za aktivna zaposlenja ili za sva.");
         }
 
         private const string CmbAkcijaDuplikatiBrojeva = "Pronalaženje duplikata brojeva rešenja";
         private const string CmbAkcijaDuplikatiZaposlenih = "Pronalaženje duplikata zaposlenih";
         private const string CmbAkcijaNedostajuciZaposleni = "Prikaz zaposlenih koji nisu u tabeli";
-
-        private void Cmb_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                var filteri = new List<string>();
-                if (cmbSkGod.SelectedIndex > 0)
-                    filteri.Add($"SkolskaGodina = '{cmbSkGod.SelectedItem}'");
-                if (cmbTipoviResenja.SelectedIndex > 0)
-                    filteri.Add($"TipResenja = '{cmbTipoviResenja.SelectedItem}'");
-                bsResenja.Filter = string.Join(" AND ", filteri);
-            }
-            catch (Exception ex) { Utils.ShowMbox(ex, Text); }
-        }
 
         private async void BtnUcitajResenja_Click(object sender, EventArgs e)
         {
@@ -68,7 +57,9 @@ namespace JISP.Forms
                 await (sender as Controls.UcButton).RunAsync(async () =>
                 {
                     lblStatus.Text = zaposleni.ToString();
-                    await DataGetter.GetResenjaAsync(zaposleni.GetZaposlenjaRows());
+                    var zaposlenja = zaposleni.GetZaposlenjaRows().Where
+                        (it => chkSamoAktivnaZaposlenja.Checked ? it.Aktivan : true);
+                    await DataGetter.GetResenjaAsync(zaposlenja);
                 });
             lblStatus.Text = "";
         }
@@ -117,23 +108,31 @@ namespace JISP.Forms
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == dgvcDokument.Index)
                 await Utils.PreuzmiDokumentResenja(dgvResenjaSva, e);
-            //B
-            //{
-            //    var res = dgvResenjaSva.CurrDataRow<Ds.ResenjaRow>();
-            //    if (res.IsDokumentNull())
-            //        return;
-            //    var cell = dgvResenjaSva.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            //    var originalText = (string)cell.Value;
-            //    cell.Value = "...";
-            //    try
-            //    {
-            //        var filePath = Utils.GetDownloadsFolder(originalText);
-            //        await WebApi.PostForFile(filePath, "Upload/PreuzmiDokument"
-            //            , $"{{'documentId':'{res.DokumentId}'}}", true);
-            //    }
-            //    catch (Exception ex) { Utils.ShowMbox(ex, "Preuzimanje rešenja"); }
-            //    cell.Value = originalText;
-            //}
         }
+
+        private void FiltriranjeResenja()
+        {
+            try
+            {
+                var filteri = new List<string>();
+                if (chkAktivniUgovori.Checked)
+                    filteri.Add("AktivnoZaposlenje = 1");
+                if (cmbSkGod.SelectedIndex > 0)
+                    filteri.Add($"SkolskaGodina = '{cmbSkGod.SelectedItem}'");
+                if (cmbTipoviResenja.SelectedIndex > 0)
+                    filteri.Add($"TipResenja = '{cmbTipoviResenja.SelectedItem}'");
+                bsResenja.Filter = string.Join(" AND ", filteri);
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, Text); }
+        }
+
+        private void CmbSkGod_SelectedIndexChanged(object sender, EventArgs e)
+            => FiltriranjeResenja();
+
+        private void CmbTipoviResenja_SelectedIndexChanged(object sender, EventArgs e)
+            => FiltriranjeResenja();
+
+        private void ChkAktivniUgovori_CheckedChanged(object sender, EventArgs e)
+            => FiltriranjeResenja();
     }
 }
