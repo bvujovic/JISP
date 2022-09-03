@@ -51,7 +51,7 @@ namespace JISP.Forms
             cmbPodaciZaDohvatanje.AdjustWidth();
         }
 
-        private const string CmbDohvatiOpste = "Opšte: pol, datum rođenja...)";
+        private const string CmbDohvatiOpste = "Opšte: pol, datum rođenja...";
         private const string CmbDohvatiOdRaz = "Razredi i odeljenja";
         private const string CmbDohvatiSmer = "Smerovi za srednjoškolce";
         private const string CmbDohvatiOcenePG = "Ocene na polugodištu";
@@ -245,7 +245,7 @@ namespace JISP.Forms
         private static async Task GetDuosData(WebApi.ReqEnum reqEnumDuos, IEnumerable<Ds.UceniciRow> selRows)
         {
             var duoses = await WebApi.GetList<DUOS>(reqEnumDuos);
-            duoses = duoses.Where(it => it.SkolskaGodina == AppData.TekucaSkGod)
+            duoses = duoses.Where(it => it.SkolskaGodina == AppData.SkolskaGodina.Naziv)
                 .ToList();
             AcceptDuosData(duoses, reqEnumDuos, selRows);
         }

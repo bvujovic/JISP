@@ -1,4 +1,5 @@
 ﻿using JISP.Classes;
+using JISP.Controls;
 using JISP.Data;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,22 @@ namespace JISP.Forms
             dgvZaposleni.StandardSort = bsZaposleni.Sort = "Ime, Prezime";
             dgvZaposleni.LoadSettings();
             dgvZaposlenja.LoadSettings();
+            PodesiCmbPodaciZaDohvatanje();
         }
+
+        private void PodesiCmbPodaciZaDohvatanje()
+        {
+            cmbPodaciZaDohvatanje.Items.AddRange(new[] {
+                CmbDohvatiOpste,
+                CmbDohvatiDodatno,
+                CmbDohvatiSve,
+            });
+            cmbPodaciZaDohvatanje.AdjustWidth();
+        }
+
+        private const string CmbDohvatiOpste = "Opšte: ime, prezime, JMBG";
+        private const string CmbDohvatiDodatno = "Dodatno: Mejl, tel, adresa, pol, devojačko";
+        private const string CmbDohvatiSve = "Sve: zaposlenja, angažovanja i obračuni z.";
 
         private readonly Ds Ds;
 
@@ -63,47 +79,6 @@ namespace JISP.Forms
                 bsZaposleni.Filter = filter;
             }
             catch (Exception ex) { Utils.ShowMbox(ex, "Pretraga zaposlenih"); }
-        }
-
-        /// <summary>Dohvatanje podataka o zaposlenima (ime, prezime, JMBG).</summary>
-        private async void BtnLoadData_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var zaps = await WebApi.GetList<Zaposleni>(WebApi.ReqEnum.Zap_Opste);
-                foreach (var zap in zaps)
-                    try
-                    {
-                        var red = Ds.Zaposleni.FindByIdZaposlenog(zap.Id);
-                        if (red == null) // novi zaposleni
-                        {
-                            red = Ds.Zaposleni.NewZaposleniRow();
-                            red.IdZaposlenog = zap.Id;
-                            red.Ime = zap.Ime;
-                            red.Prezime = zap.Prezime;
-                            red.JMBG = zap.JMBG;
-                            red.Aktivan = (bool)zap.TrenutnoZaposlen;
-                            Ds.Zaposleni.AddZaposleniRow(red);
-                        }
-                        else // update zaposlenog
-                        {
-                            if (red.Ime != zap.Ime || red.Prezime != zap.Prezime || red.JMBG != zap.JMBG)
-                            {
-                                red.Ime = zap.Ime;
-                                red.Prezime = zap.Prezime;
-                                red.JMBG = zap.JMBG;
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        if (Utils.ShowMboxYesNo($"Greška: {ex.Message}\r\nNastavi učitavanje?", btnLoadData.Text)
-                            != DialogResult.Yes)
-                            break;
-                    }
-                Utils.ShowMbox("Gotovo", btnLoadData.Text);
-            }
-            catch (Exception ex) { Utils.ShowMbox(ex, btnLoadData.Text); }
         }
 
         private void DgvZaposleni_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -153,41 +128,6 @@ namespace JISP.Forms
         public IEnumerable<Ds.ZaposleniRow> SelektovaniZaposleni
             => dgvZaposleni.SelectedDataRows<Ds.ZaposleniRow>();
 
-        private async void BtnLoadDataExtra_Click(object sender, EventArgs e)
-        {
-            var akcija = btnLoadDataExtra.Text;
-            btnLoadDataExtra.Text = "...";
-            try
-            {
-                //B var zaps = dgvZaposleni.SelectedDataRows<Ds.ZaposleniRow>();
-                foreach (var zap in SelektovaniZaposleni)
-                {
-                    var json = await WebApi.GetJson(WebApi.ReqEnum.Zap_Dodatno, zap.IdZaposlenog.ToString());
-                    dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(json);
-                    zap.Pol = Utils.Pol((int)obj.pol);
-                    zap.Prebivaliste = $"{obj.mestoPrebivalistaNaziv}, {obj.adresaPrebivalistaNaziv}, {obj.adresniKodPrebivalista}";
-                    if (obj.elektronskaPosta != null)
-                    {
-                        var list = new List<string>();
-                        foreach (var ep in obj.elektronskaPosta)
-                            list.Add((string)ep.elektronskaPosta);
-                        zap.Email = string.Join(", ", list);
-                    }
-                    if (obj.telefon != null)
-                    {
-                        var list = new List<string>();
-                        foreach (var ep in obj.telefon)
-                            list.Add((string)ep.telefon);
-                        zap.Telefon = string.Join(", ", list);
-                    }
-                    if (obj.devojackoPrezime != null)
-                        zap.DevojackoPrezime = obj.devojackoPrezime;
-                }
-            }
-            catch (Exception ex) { Utils.ShowMbox(ex, akcija); }
-            btnLoadDataExtra.Text = akcija;
-        }
-
         private async void BtnKvalifStruktura_Click(object sender, EventArgs e)
         {
             var akcija = btnKvalifStruktura.Text;
@@ -208,24 +148,6 @@ namespace JISP.Forms
         {
             dgvZaposleni.SaveSettings();
             dgvZaposlenja.SaveSettings();
-        }
-
-        private async void BtnUcitajZaposlenja_Click(object sender, EventArgs e)
-        {
-            var zaposleni = dgvZaposleni.SelectedDataRows<Ds.ZaposleniRow>();
-            foreach (var zap in zaposleni)
-                await (sender as Controls.UcButton).RunAsync(async () =>
-                {
-                    lblStatus.Text = zap.ToString();
-                    await DataGetter.GetZaposlenjaAsync(zap);
-                    await DataGetter.GetAngazovanjaAsync(zap.GetZaposlenjaRows().Where(it => it.Aktivan));
-                    await DataGetter.GetObracuniZaradaAsync(zap);
-                    var ozs = Classes.ObracunZarada.ObracunZarada.PoslednjiObracuni(zap.GetObracunZaradaRows());
-                    foreach (var oz in ozs)
-                        await DataGetter.GetOzOpisAsync(oz);
-                    zap.CalcAngazovanja();
-                });
-            lblStatus.Text = "";
         }
 
         private void BtnCsvZaposlenja_Click(object sender, EventArgs e)
@@ -298,7 +220,7 @@ namespace JISP.Forms
 
                 Clipboard.SetText(sb.ToString());
             }
-            catch (Exception ex) { Utils.ShowMbox(ex, BtnCsvZaposlenja.Text);}
+            catch (Exception ex) { Utils.ShowMbox(ex, BtnCsvZaposlenja.Text); }
         }
 
         private void BtnResenja_Click(object sender, EventArgs e)
@@ -309,6 +231,95 @@ namespace JISP.Forms
         private void BtnSistematizacija_Click(object sender, EventArgs e)
         {
             new FrmSistematizacija().Show();
+        }
+
+        private async void BtnDohvatiPodatke_Click(object sender, EventArgs e)
+        {
+
+            var selItem = (string)cmbPodaciZaDohvatanje.SelectedItem;
+
+            if (selItem == CmbDohvatiOpste)
+                await (sender as UcButton).RunAsync(async () =>
+                {
+                    var zaps = await WebApi.GetList<Zaposleni>(WebApi.ReqEnum.Zap_Opste);
+                    foreach (var zap in zaps)
+                        try
+                        {
+                            var red = Ds.Zaposleni.FindByIdZaposlenog(zap.Id);
+                            if (red == null) // novi zaposleni
+                            {
+                                red = Ds.Zaposleni.NewZaposleniRow();
+                                red.IdZaposlenog = zap.Id;
+                                red.Ime = zap.Ime;
+                                red.Prezime = zap.Prezime;
+                                red.JMBG = zap.JMBG;
+                                red.Aktivan = (bool)zap.TrenutnoZaposlen;
+                                Ds.Zaposleni.AddZaposleniRow(red);
+                            }
+                            else // update zaposlenog
+                            {
+                                if (red.Ime != zap.Ime || red.Prezime != zap.Prezime || red.JMBG != zap.JMBG)
+                                {
+                                    red.Ime = zap.Ime;
+                                    red.Prezime = zap.Prezime;
+                                    red.JMBG = zap.JMBG;
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            if (Utils.ShowMboxYesNo($"Greška: {ex.Message}\r\nNastavi učitavanje?", selItem)
+                                != DialogResult.Yes)
+                                break;
+                        }
+                    Utils.ShowMbox("Gotovo", selItem);
+                });
+
+            if (selItem == CmbDohvatiDodatno)
+                await (sender as UcButton).RunAsync(async () =>
+                {
+                    foreach (var zap in SelektovaniZaposleni)
+                    {
+                        var json = await WebApi.GetJson(WebApi.ReqEnum.Zap_Dodatno, zap.IdZaposlenog.ToString());
+                        dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(json);
+                        zap.Pol = Utils.Pol((int)obj.pol);
+                        zap.Prebivaliste = $"{obj.mestoPrebivalistaNaziv}, {obj.adresaPrebivalistaNaziv}, {obj.adresniKodPrebivalista}";
+                        if (obj.elektronskaPosta != null)
+                        {
+                            var list = new List<string>();
+                            foreach (var ep in obj.elektronskaPosta)
+                                list.Add((string)ep.elektronskaPosta);
+                            zap.Email = string.Join(", ", list);
+                        }
+                        if (obj.telefon != null)
+                        {
+                            var list = new List<string>();
+                            foreach (var ep in obj.telefon)
+                                list.Add((string)ep.telefon);
+                            zap.Telefon = string.Join(", ", list);
+                        }
+                        if (obj.devojackoPrezime != null)
+                            zap.DevojackoPrezime = obj.devojackoPrezime;
+                    }
+                });
+
+            if (selItem == CmbDohvatiSve)
+            {
+                var zaposleni = dgvZaposleni.SelectedDataRows<Ds.ZaposleniRow>();
+                foreach (var zap in zaposleni)
+                    await (sender as UcButton).RunAsync(async () =>
+                    {
+                        lblStatus.Text = zap.ToString();
+                        await DataGetter.GetZaposlenjaAsync(zap);
+                        await DataGetter.GetAngazovanjaAsync(zap.GetZaposlenjaRows().Where(it => it.Aktivan));
+                        await DataGetter.GetObracuniZaradaAsync(zap);
+                        var ozs = Classes.ObracunZarada.ObracunZarada.PoslednjiObracuni(zap.GetObracunZaradaRows());
+                        foreach (var oz in ozs)
+                            await DataGetter.GetOzOpisAsync(oz);
+                        zap.CalcAngazovanja();
+                    });
+                lblStatus.Text = "";
+            }           
         }
     }
 }

@@ -20,6 +20,7 @@ namespace JISP.Forms
         {
             btnOsveziPodatke.PerformClick();
 
+            dgvSistematizacija.TsmiSelekcija(false);
             dgvSistematizacija.ColumnsForCopyOnClick = new int[] { radnoMestoDgvc.Index, predmetDgvc.Index };
             dgvSistematizacija.CopyOnCellClick = true;
             dgvDetalji.ColumnsForCopyOnClick = new int[] { zaposleniDgvc.Index, tipUgovoraDgvc.Index };
@@ -64,8 +65,12 @@ namespace JISP.Forms
             {
                 if (e.RowIndex >= 0 &&
                     (e.ColumnIndex == radnoMestoDgvc.Index || e.ColumnIndex == predmetDgvc.Index))
+                {
                     await DataGetter.GetSistematizacijaDetaljiAsync
                         (dgvSistematizacija.CurrDataRow<Ds.SistematizacijaRow>());
+                    bsDetalji.MoveLast();
+                    bsDetalji.MoveFirst();
+                }
                 else
                 {
                     var sis = dgvSistematizacija.CurrDataRow<Ds.SistematizacijaRow>();

@@ -20,7 +20,7 @@ namespace JISP.Controls
 
         public UcDGV()
         {
-            RowHeadersWidth = 30;            
+            RowHeadersWidth = 30;
             InitializeComponent();
 
             DisplayPositionRowCount();
@@ -151,6 +151,13 @@ namespace JISP.Controls
 
             tsmiSelCeoRed.Checked = selCeoRed;
             tsmiSelCelija.Checked = !selCeoRed;
+        }
+
+        public void TsmiSelekcija(bool ceoRed)
+        {
+            var tsmi = ceoRed ? tsmiSelCeoRed : tsmiSelCelija;
+            tsmi.Checked = true;
+            TsmiSelelekcija_CheckedChanged(tsmi, EventArgs.Empty);
         }
 
         public string StandardSort { get; set; } = null;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JISP.Classes;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,7 +13,13 @@ namespace JISP.Data
         /// <summary>Kratko ime aplikacije bez razmaka i nasih slova.</summary>
         public static string AppNameMachine { get => "NasJISP"; }
 
-        public static string TekucaSkGod => "2021/2022";
+        /// <summary>Tekuca/aktivna skolska godina - izabrana na FrmMain.</summary>
+        public static SkolskaGodina SkolskaGodina { get; set; }
+        //B
+        ///// <summary>Tekuća školska godina. Npr: 2021/2022</summary>
+        //public static string TekucaSkGodStr => $"{TekucaSkGodStart}/{TekucaSkGodStart + 1}";
+        ///// <summary>Godina u kojoj počinje tekuća školska godina. Npr: 2021</summary>
+        //public static int TekucaSkGodStart => 2021;
 
         /// <summary>Internet browser koji se koristi za JISP.</summary>
         public static string Browser { get; set; }
@@ -70,10 +77,12 @@ namespace JISP.Data
             Ds.Zaposleni.CalcJmbgBasedCols();
             Ds.Zaposleni.CalcAktivan();
             Ds.Ucenici.CalcDatRodjBasedCols();
-            Classes.SlikeZaposlenih.PostaviKoImaSliku();
+            SlikeZaposlenih.PostaviKoImaSliku();
             Ds.AcceptChanges();
             WebApi.Token = LoadSett(WebApi.TOKEN_CAPTION);
             Browser = LoadSett("browser", "Chrome");
+            var strSkGod = LoadSett("skGod", DateTime.Today.Year.ToString());
+            SkolskaGodina = new SkolskaGodina(int.Parse(strSkGod));
         }
 
         /// <summary>Cuvanje podataka iz DataSet-a u fajl.</summary>
@@ -85,10 +94,11 @@ namespace JISP.Data
                 if (WebApi.TokenDisplay != WebApi.TOKEN_MISSING)
                     SaveSett(WebApi.TOKEN_CAPTION, WebApi.Token);
                 SaveSett("browser", Browser);
+                SaveSett("skGod", SkolskaGodina.Start.ToString());
                 Ds.WriteXml(FilePath());
                 Ds.AcceptChanges();
             }
-            catch (Exception ex) { Classes.Utils.ShowMbox(ex, "Cuvanje podataka u XML"); }
+            catch (Exception ex) { Utils.ShowMbox(ex, "Cuvanje podataka u XML"); }
         }
 
         /// <summary>Brisanje podataka iz tabela u kojima se podaci ne cuvaju trajno.</summary>

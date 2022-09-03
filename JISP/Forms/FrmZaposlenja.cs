@@ -77,6 +77,7 @@ namespace JISP.Forms
             await (sender as UcButton).RunAsync(async () =>
                 await DataGetter.GetObracuniZaradaAsync(zaposleni)
             );
+            dgvObracunZarada.DisplayPositionRowCount();
         }
 
         private async void BtnKreirajObracune_Click(object sender, EventArgs e)
@@ -226,6 +227,27 @@ namespace JISP.Forms
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == dgvcResDokument.Index)
                 await Utils.PreuzmiDokumentResenja(dgvResenja, e);
+        }
+
+        private void OzGodinaMesec_Changed(object sender, EventArgs e)
+        {
+            try
+            {
+                var vanTekuce = false;
+                var god = (int)numOzGodina.Value;
+                foreach (int idx in lstchkMeseci.CheckedIndices)
+                {
+                    if (god == AppData.SkolskaGodina.Start && idx < 8)
+                        vanTekuce = true;
+                    if (god == AppData.SkolskaGodina.Start + 1 && idx >= 8)
+                        vanTekuce = true;
+                }
+                if (lstchkMeseci.CheckedIndices.Count > 0 && (god < AppData.SkolskaGodina.Start || god > AppData.SkolskaGodina.Start + 1))
+                    vanTekuce = true;
+
+                lstchkMeseci.BackColor = vanTekuce ? Color.Salmon : Color.White;
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, "Obračun zarada - izmena godine i meseca"); }
         }
     }
 }

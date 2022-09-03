@@ -97,6 +97,7 @@
     <Compile Include="Classes\ObracunZarada\OzMesec.cs" />
     <Compile Include="Classes\Logger.cs" />
     <Compile Include="Classes\Ocene.cs" />
+    <Compile Include="Classes\SkolskaGodina.cs" />
     <Compile Include="Classes\SlikeZaposlenih.cs" />
     <Compile Include="Classes\Utils.cs" />
     <Compile Include="Controls\UcButton.cs">

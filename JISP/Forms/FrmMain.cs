@@ -22,6 +22,11 @@ namespace JISP.Forms
         {
             try
             {
+                var godine = new List<SkolskaGodina>();
+                for (int i = 2020; i <= DateTime.Today.Year; i++)
+                    godine.Add(new SkolskaGodina(i));
+                cmbSkolskaGodina.DataSource = godine;
+
                 // ako folder u kome se nalaze podaci za app ne postoji -> korisnik mora da ga definise
                 var setts = Properties.Settings.Default;
                 if (string.IsNullOrEmpty(setts.DataFolder))
@@ -37,6 +42,7 @@ namespace JISP.Forms
                 lblDataFolder.Text = setts.DataFolder;
                 AppData.LoadDsData();
                 cmbBrowser.SelectedItem = AppData.Browser;
+                cmbSkolskaGodina.SelectedItem = AppData.SkolskaGodina;
                 BackupData.CreateBackupIfNeeded();
                 Text = "Naš JISP - " + Utils.GetVersion();
             }
@@ -133,6 +139,11 @@ namespace JISP.Forms
         private void CmbBrowser_SelectedIndexChanged(object sender, EventArgs e)
         {
             AppData.Browser = cmbBrowser.SelectedItem.ToString();
+        }
+
+        private void CmbSkolskaGodina_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AppData.SkolskaGodina = (SkolskaGodina)cmbSkolskaGodina.SelectedItem;
         }
     }
 }

@@ -101,7 +101,7 @@ namespace JISP.Data
                     foreach (var zap in GetZaposlenjaRows().Where(it => it.Aktivan))
                     {
                         foreach (var ang in zap.GetAngazovanjaRows()
-                            .Where(it => it.SkolskaGodina == AppData.TekucaSkGod))
+                            .Where(it => it.SkolskaGodina == AppData.SkolskaGodina.Naziv))
                         {
                             var strAng = "";
                             var predmet = !ang.IsPredmetNull() ? ang.Predmet : "";

@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label label2;
             System.Windows.Forms.Label label1;
+            System.Windows.Forms.Label label3;
             this.lblApiTokenCaption = new System.Windows.Forms.Label();
             this.lblApiToken = new System.Windows.Forms.Label();
             this.ttApiToken = new System.Windows.Forms.ToolTip(this.components);
@@ -40,8 +41,10 @@
             this.btnBackup = new JISP.Controls.UcButton();
             this.btnZaposleni = new JISP.Controls.UcButton();
             this.btnUcenici = new JISP.Controls.UcButton();
+            this.cmbSkolskaGodina = new System.Windows.Forms.ComboBox();
             label2 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label2
@@ -137,11 +140,35 @@
             this.btnUcenici.UseVisualStyleBackColor = true;
             this.btnUcenici.Click += new System.EventHandler(this.BtnUcenici_Click);
             // 
+            // cmbSkolskaGodina
+            // 
+            this.cmbSkolskaGodina.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSkolskaGodina.FormattingEnabled = true;
+            this.cmbSkolskaGodina.Items.AddRange(new object[] {
+            "Chrome",
+            "MS Edge"});
+            this.cmbSkolskaGodina.Location = new System.Drawing.Point(210, 255);
+            this.cmbSkolskaGodina.Name = "cmbSkolskaGodina";
+            this.cmbSkolskaGodina.Size = new System.Drawing.Size(121, 25);
+            this.cmbSkolskaGodina.TabIndex = 11;
+            this.cmbSkolskaGodina.SelectedIndexChanged += new System.EventHandler(this.CmbSkolskaGodina_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(69, 258);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(118, 18);
+            label3.TabIndex = 10;
+            label3.Text = "Školska Godina:";
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(617, 279);
+            this.ClientSize = new System.Drawing.Size(617, 301);
+            this.Controls.Add(this.cmbSkolskaGodina);
+            this.Controls.Add(label3);
             this.Controls.Add(this.cmbBrowser);
             this.Controls.Add(label1);
             this.Controls.Add(this.lblDataFolder);
@@ -176,6 +203,7 @@
         private System.Windows.Forms.Label lblDataFolder;
         private System.Windows.Forms.ToolTip ttDataFolder;
         private System.Windows.Forms.ComboBox cmbBrowser;
+        private System.Windows.Forms.ComboBox cmbSkolskaGodina;
     }
 }
 

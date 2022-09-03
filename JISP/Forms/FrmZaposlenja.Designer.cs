@@ -93,15 +93,15 @@
             this.pnlBottomLeftAng = new JISP.Controls.UcLeftPanel();
             this.tpResenja = new System.Windows.Forms.TabPage();
             this.dgvResenja = new JISP.Controls.UcDGV();
-            this.bsResenja = new System.Windows.Forms.BindingSource(this.components);
-            this.pnlBottomLeftRes = new JISP.Controls.UcLeftPanel();
-            this.btnUcitajResenja = new JISP.Controls.UcButton();
             this.brojResenjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SkolskaGodina = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tipResenjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.procenatAngPoResDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DatumPodnosenja = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcResDokument = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.bsResenja = new System.Windows.Forms.BindingSource(this.components);
+            this.pnlBottomLeftRes = new JISP.Controls.UcLeftPanel();
+            this.btnUcitajResenja = new JISP.Controls.UcButton();
             lblOzGodina = new System.Windows.Forms.Label();
             this.pnlLeft.SuspendLayout();
             this.pnlZaposleniTop.SuspendLayout();
@@ -599,6 +599,7 @@
             this.lstchkMeseci.Name = "lstchkMeseci";
             this.lstchkMeseci.Size = new System.Drawing.Size(135, 105);
             this.lstchkMeseci.TabIndex = 6;
+            this.lstchkMeseci.SelectedIndexChanged += new System.EventHandler(this.OzGodinaMesec_Changed);
             // 
             // numOzGodina
             // 
@@ -621,6 +622,7 @@
             0,
             0,
             0});
+            this.numOzGodina.ValueChanged += new System.EventHandler(this.OzGodinaMesec_Changed);
             // 
             // btnKreirajObracune
             // 
@@ -756,10 +758,10 @@
             this.tpResenja.BackColor = System.Drawing.SystemColors.Control;
             this.tpResenja.Controls.Add(this.dgvResenja);
             this.tpResenja.Controls.Add(this.pnlBottomLeftRes);
-            this.tpResenja.Location = new System.Drawing.Point(4, 27);
+            this.tpResenja.Location = new System.Drawing.Point(4, 22);
             this.tpResenja.Name = "tpResenja";
             this.tpResenja.Padding = new System.Windows.Forms.Padding(3);
-            this.tpResenja.Size = new System.Drawing.Size(977, 293);
+            this.tpResenja.Size = new System.Drawing.Size(977, 298);
             this.tpResenja.TabIndex = 2;
             this.tpResenja.Text = "Rešenja";
             // 
@@ -796,38 +798,10 @@
             this.dgvResenja.Name = "dgvResenja";
             this.dgvResenja.ReadOnly = true;
             this.dgvResenja.RowHeadersWidth = 30;
-            this.dgvResenja.Size = new System.Drawing.Size(825, 287);
+            this.dgvResenja.Size = new System.Drawing.Size(825, 292);
             this.dgvResenja.StandardSort = null;
             this.dgvResenja.TabIndex = 1;
             this.dgvResenja.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvResenja_CellClick);
-            // 
-            // bsResenja
-            // 
-            this.bsResenja.DataMember = "Zaposlenja_Resenja";
-            this.bsResenja.DataSource = this.bsZaposlenja;
-            // 
-            // pnlBottomLeftRes
-            // 
-            this.pnlBottomLeftRes.Controls.Add(this.btnUcitajResenja);
-            this.pnlBottomLeftRes.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlBottomLeftRes.Location = new System.Drawing.Point(3, 3);
-            this.pnlBottomLeftRes.Name = "pnlBottomLeftRes";
-            this.pnlBottomLeftRes.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
-            this.pnlBottomLeftRes.RightWingWidth = 6;
-            this.pnlBottomLeftRes.Size = new System.Drawing.Size(146, 287);
-            this.pnlBottomLeftRes.TabIndex = 0;
-            // 
-            // btnUcitajResenja
-            // 
-            this.btnUcitajResenja.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUcitajResenja.Location = new System.Drawing.Point(3, 3);
-            this.btnUcitajResenja.Name = "btnUcitajResenja";
-            this.btnUcitajResenja.Size = new System.Drawing.Size(135, 30);
-            this.btnUcitajResenja.TabIndex = 5;
-            this.btnUcitajResenja.Text = "Učitaj rešenja";
-            this.btnUcitajResenja.ToolTipText = "Dohvatanje podataka o zaposlenjima";
-            this.btnUcitajResenja.UseVisualStyleBackColor = true;
-            this.btnUcitajResenja.Click += new System.EventHandler(this.BtnUcitajResenja_Click);
             // 
             // brojResenjaDataGridViewTextBoxColumn
             // 
@@ -875,6 +849,34 @@
             this.dgvcResDokument.ReadOnly = true;
             this.dgvcResDokument.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvcResDokument.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // bsResenja
+            // 
+            this.bsResenja.DataMember = "Zaposlenja_Resenja";
+            this.bsResenja.DataSource = this.bsZaposlenja;
+            // 
+            // pnlBottomLeftRes
+            // 
+            this.pnlBottomLeftRes.Controls.Add(this.btnUcitajResenja);
+            this.pnlBottomLeftRes.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlBottomLeftRes.Location = new System.Drawing.Point(3, 3);
+            this.pnlBottomLeftRes.Name = "pnlBottomLeftRes";
+            this.pnlBottomLeftRes.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
+            this.pnlBottomLeftRes.RightWingWidth = 6;
+            this.pnlBottomLeftRes.Size = new System.Drawing.Size(146, 292);
+            this.pnlBottomLeftRes.TabIndex = 0;
+            // 
+            // btnUcitajResenja
+            // 
+            this.btnUcitajResenja.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUcitajResenja.Location = new System.Drawing.Point(3, 3);
+            this.btnUcitajResenja.Name = "btnUcitajResenja";
+            this.btnUcitajResenja.Size = new System.Drawing.Size(135, 30);
+            this.btnUcitajResenja.TabIndex = 5;
+            this.btnUcitajResenja.Text = "Učitaj rešenja";
+            this.btnUcitajResenja.ToolTipText = "Dohvatanje podataka o zaposlenjima";
+            this.btnUcitajResenja.UseVisualStyleBackColor = true;
+            this.btnUcitajResenja.Click += new System.EventHandler(this.BtnUcitajResenja_Click);
             // 
             // FrmZaposlenja
             // 

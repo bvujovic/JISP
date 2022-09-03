@@ -27,7 +27,7 @@ namespace JISP.Data
 
         public static string TokenDisplay
             => token == null || token.Length < 100 ? TOKEN_MISSING :
-                token.Substring(0, 3) + "..." + token.Substring(token.Length - 3);
+                token.Substring(0, 10) + "..." + token.Substring(token.Length - 10);
 
         /// <summary>Uzimanje API token-a iz request header-a nekog zahteva.</summary>
         public static void TakeApiToken(string clipboard)
