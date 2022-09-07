@@ -52,12 +52,12 @@ namespace JISP.Forms
 
         /// <summary>Za dati naziv radnog mesta ili njegov deo,
         /// vraca skup IDeva zaposlenih sa tim radim mestom.</summary>
-        private static IEnumerable<int> FilterZaposleniIDs(string s)
+        private static IEnumerable<int> FilterZaposleniIDs(string s, bool aktivnoZap)
         {
             s = s.ToLower();
             var ids = new HashSet<int>();
             foreach (var zap in AppData.Ds.Zaposlenja.Where
-                (it => it.Aktivan && it.RadnoMestoNaziv.ToLower().Contains(s)))
+                (it => (!aktivnoZap || (aktivnoZap && it.Aktivan)) && it.RadnoMestoNaziv.ToLower().Contains(s)))
                 ids.Add(zap.IdZaposlenog);
             return ids;
         }
@@ -67,10 +67,13 @@ namespace JISP.Forms
             try
             {
                 var s = txtFilter.Text;
+                var aktivnoZap = !s.StartsWith("-");
+                if (!aktivnoZap)
+                    s = s.Substring(1);
                 // osnovna pretraga: ime, prezime, devPrezime, jmbg
                 var filter = $"Ime LIKE '%{s}%' OR Prezime LIKE '%{s}%' OR Angazovanja LIKE '%{s}%' OR JMBG LIKE '%{s}%' ";
                 // pretraga po zaposlenjima (radna mesta)
-                var ids = FilterZaposleniIDs(s);
+                var ids = FilterZaposleniIDs(s, aktivnoZap);
                 if (ids.Count() > 0)
                     filter += $" OR IdZaposlenog IN ({string.Join(", ", ids)})";
                 // da li je zaposleni aktivan ili ne

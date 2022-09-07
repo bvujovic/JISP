@@ -186,7 +186,7 @@ namespace JISP.Data
                 sis.SkolskaGodinaId = item.skolskaGodina;
                 sis.RegUstSisId = item.regUstUstanovaSistematizacijaId;
                 sis.IzvorFinansiranja = item.izvorFinansiranjaNaziv;
-                sis.RucniUnos = item.rucniUnosSistematizacije;
+                sis.RucniUnos = item.rucniUnosSistematizacije != null ? (bool)item.rucniUnosSistematizacije : false;
                 sis.RadnoMestoId = item.radnoMestoId;
                 sis.RadnoMesto = item.radnoMestoNaziv;
                 sis.PredmetId = item.predmetId != null ? (int)item.predmetId : 0;

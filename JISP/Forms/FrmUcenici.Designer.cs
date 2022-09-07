@@ -32,18 +32,15 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.bsUcenici = new System.Windows.Forms.BindingSource(this.components);
             this.ds = new JISP.Data.Ds();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.ttOceneProvera = new System.Windows.Forms.ToolTip(this.components);
-            this.dgvUcenici = new JISP.Controls.UcDGV();
             this.lblRowCount = new System.Windows.Forms.Label();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
             this.btnDohvatiPodatke = new JISP.Controls.UcButton();
             this.cmbPodaciZaDohvatanje = new System.Windows.Forms.ComboBox();
-            this.chkSamoTekuci = new System.Windows.Forms.CheckBox();
             this.gbOceneUnos = new System.Windows.Forms.GroupBox();
             this.lblOceneProsek = new System.Windows.Forms.Label();
             this.btnOcenePaste = new System.Windows.Forms.Button();
@@ -52,30 +49,32 @@
             this.ucExitApp1 = new JISP.Controls.UcExitAppButton();
             this.btnSaveData = new JISP.Controls.UcButton();
             this.txtFilter = new JISP.Controls.UcFilterTextBox();
-            this.dgvcIdUcenika = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcIme = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcPrezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcJOB = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcSkola = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcRazred = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcOdeljenje = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcNapomene = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcPol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcDatRodj = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcDanaDoRodj = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcGodine = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcBrojOcenaPolu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcOcenePgJson = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BrojOcenaKraj = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcOceneKrajJson = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcZavrsObrazovanjaKratko = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcSmer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvUcenikSkGod = new JISP.Controls.UcDGV();
+            this.bsUcenikSkGod = new System.Windows.Forms.BindingSource(this.components);
+            this.imeDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.jobDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.skGodDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.skolaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.razredDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.odeljenjeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.smerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._Pol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._DatumRodjenja = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._DanaDoRodj = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._Godine = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ocenePoluBrojDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oceneKrajBrojDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ocenePoluJSONDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oceneKrajJSONDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ZavrsObrazovanjaRezimeDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.napomeneDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.bsUcenici)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
             this.statusStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUcenici)).BeginInit();
             this.pnlLeft.SuspendLayout();
             this.gbOceneUnos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUcenikSkGod)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsUcenikSkGod)).BeginInit();
             this.SuspendLayout();
             // 
             // bsUcenici
@@ -106,61 +105,6 @@
             this.lblStatus.Size = new System.Drawing.Size(12, 17);
             this.lblStatus.Text = "/";
             // 
-            // dgvUcenici
-            // 
-            this.dgvUcenici.AllowUserToAddRows = false;
-            this.dgvUcenici.AllowUserToDeleteRows = false;
-            this.dgvUcenici.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvUcenici.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvUcenici.AutoGenerateColumns = false;
-            this.dgvUcenici.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvUcenici.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvUcenici.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUcenici.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dgvcIdUcenika,
-            this.dgvcIme,
-            this.dgvcPrezime,
-            this.dgvcJOB,
-            this.dgvcSkola,
-            this.dgvcRazred,
-            this.dgvcOdeljenje,
-            this.dgvcNapomene,
-            this.dgvcPol,
-            this.dgvcDatRodj,
-            this.dgvcDanaDoRodj,
-            this.dgvcGodine,
-            this.dgvcBrojOcenaPolu,
-            this.dgvcOcenePgJson,
-            this.BrojOcenaKraj,
-            this.dgvcOceneKrajJson,
-            this.dgvcZavrsObrazovanjaKratko,
-            this.dgvcSmer});
-            this.dgvUcenici.ColumnsForCopyOnClick = null;
-            this.dgvUcenici.CopyOnCellClick = false;
-            this.dgvUcenici.CtrlDisplayPositionRowCount = this.lblRowCount;
-            this.dgvUcenici.DataSource = this.bsUcenici;
-            this.dgvUcenici.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvUcenici.Location = new System.Drawing.Point(150, 0);
-            this.dgvUcenici.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dgvUcenici.Name = "dgvUcenici";
-            this.dgvUcenici.RowHeadersWidth = 30;
-            this.dgvUcenici.RowTemplate.Height = 24;
-            this.dgvUcenici.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvUcenici.Size = new System.Drawing.Size(1147, 490);
-            this.dgvUcenici.StandardSort = null;
-            this.dgvUcenici.StandardTab = true;
-            this.dgvUcenici.TabIndex = 1;
-            this.dgvUcenici.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvUcenici_CellDoubleClick);
-            this.dgvUcenici.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.Dgv_DataError);
-            // 
             // lblRowCount
             // 
             this.lblRowCount.AutoSize = true;
@@ -175,7 +119,6 @@
             // 
             this.pnlLeft.Controls.Add(this.btnDohvatiPodatke);
             this.pnlLeft.Controls.Add(this.cmbPodaciZaDohvatanje);
-            this.pnlLeft.Controls.Add(this.chkSamoTekuci);
             this.pnlLeft.Controls.Add(this.gbOceneUnos);
             this.pnlLeft.Controls.Add(this.btnNoviUcenici);
             this.pnlLeft.Controls.Add(this.ucExitApp1);
@@ -217,19 +160,6 @@
             this.cmbPodaciZaDohvatanje.Name = "cmbPodaciZaDohvatanje";
             this.cmbPodaciZaDohvatanje.Size = new System.Drawing.Size(127, 24);
             this.cmbPodaciZaDohvatanje.TabIndex = 11;
-            // 
-            // chkSamoTekuci
-            // 
-            this.chkSamoTekuci.AutoSize = true;
-            this.chkSamoTekuci.Checked = true;
-            this.chkSamoTekuci.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkSamoTekuci.Location = new System.Drawing.Point(7, 115);
-            this.chkSamoTekuci.Name = "chkSamoTekuci";
-            this.chkSamoTekuci.Size = new System.Drawing.Size(100, 20);
-            this.chkSamoTekuci.TabIndex = 3;
-            this.chkSamoTekuci.Text = "Samo tekući";
-            this.chkSamoTekuci.UseVisualStyleBackColor = true;
-            this.chkSamoTekuci.CheckedChanged += new System.EventHandler(this.ChkSamoTekuci_CheckedChanged);
             // 
             // gbOceneUnos
             // 
@@ -276,7 +206,7 @@
             // 
             // btnNoviUcenici
             // 
-            this.btnNoviUcenici.Location = new System.Drawing.Point(7, 142);
+            this.btnNoviUcenici.Location = new System.Drawing.Point(7, 143);
             this.btnNoviUcenici.Margin = new System.Windows.Forms.Padding(4);
             this.btnNoviUcenici.Name = "btnNoviUcenici";
             this.btnNoviUcenici.Size = new System.Drawing.Size(127, 38);
@@ -323,185 +253,217 @@
             this.txtFilter.TextChanged += new System.EventHandler(this.TxtFilter_TextChanged);
             this.txtFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtFilter_KeyDown);
             // 
-            // dgvcIdUcenika
+            // dgvUcenikSkGod
             // 
-            this.dgvcIdUcenika.DataPropertyName = "IdUcenika";
-            this.dgvcIdUcenika.HeaderText = "IdUcenika";
-            this.dgvcIdUcenika.MinimumWidth = 6;
-            this.dgvcIdUcenika.Name = "dgvcIdUcenika";
-            this.dgvcIdUcenika.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.dgvcIdUcenika.Visible = false;
-            this.dgvcIdUcenika.Width = 125;
+            this.dgvUcenikSkGod.AllowUserToAddRows = false;
+            this.dgvUcenikSkGod.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvUcenikSkGod.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvUcenikSkGod.AutoGenerateColumns = false;
+            this.dgvUcenikSkGod.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvUcenikSkGod.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvUcenikSkGod.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvUcenikSkGod.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.imeDgvc,
+            this.jobDgvc,
+            this.skGodDataGridViewTextBoxColumn,
+            this.skolaDataGridViewTextBoxColumn,
+            this.razredDataGridViewTextBoxColumn,
+            this.odeljenjeDataGridViewTextBoxColumn,
+            this.smerDataGridViewTextBoxColumn,
+            this._Pol,
+            this._DatumRodjenja,
+            this._DanaDoRodj,
+            this._Godine,
+            this.ocenePoluBrojDataGridViewTextBoxColumn,
+            this.oceneKrajBrojDataGridViewTextBoxColumn,
+            this.ocenePoluJSONDgvc,
+            this.oceneKrajJSONDgvc,
+            this.ZavrsObrazovanjaRezimeDgvc,
+            this.napomeneDgvc});
+            this.dgvUcenikSkGod.ColumnsForCopyOnClick = null;
+            this.dgvUcenikSkGod.CopyOnCellClick = false;
+            this.dgvUcenikSkGod.CtrlDisplayPositionRowCount = this.lblRowCount;
+            this.dgvUcenikSkGod.DataSource = this.bsUcenikSkGod;
+            this.dgvUcenikSkGod.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvUcenikSkGod.Location = new System.Drawing.Point(150, 0);
+            this.dgvUcenikSkGod.Name = "dgvUcenikSkGod";
+            this.dgvUcenikSkGod.ReadOnly = true;
+            this.dgvUcenikSkGod.RowHeadersWidth = 30;
+            this.dgvUcenikSkGod.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvUcenikSkGod.Size = new System.Drawing.Size(1147, 490);
+            this.dgvUcenikSkGod.StandardSort = null;
+            this.dgvUcenikSkGod.TabIndex = 3;
+            this.dgvUcenikSkGod.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvUcenikSkGod_CellDoubleClick);
             // 
-            // dgvcIme
+            // bsUcenikSkGod
             // 
-            this.dgvcIme.DataPropertyName = "Ime";
-            this.dgvcIme.HeaderText = "Učenik";
-            this.dgvcIme.MinimumWidth = 6;
-            this.dgvcIme.Name = "dgvcIme";
-            this.dgvcIme.ReadOnly = true;
-            this.dgvcIme.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.dgvcIme.Width = 225;
+            this.bsUcenikSkGod.DataMember = "UcenikSkGod";
+            this.bsUcenikSkGod.DataSource = this.ds;
+            this.bsUcenikSkGod.Sort = "Skola, Razred, Odeljenje";
             // 
-            // dgvcPrezime
+            // imeDgvc
             // 
-            this.dgvcPrezime.DataPropertyName = "Prezime";
-            this.dgvcPrezime.HeaderText = "Prezime";
-            this.dgvcPrezime.MinimumWidth = 6;
-            this.dgvcPrezime.Name = "dgvcPrezime";
-            this.dgvcPrezime.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.dgvcPrezime.Visible = false;
-            this.dgvcPrezime.Width = 125;
+            this.imeDgvc.DataPropertyName = "_Ime";
+            this.imeDgvc.HeaderText = "Ime";
+            this.imeDgvc.Name = "imeDgvc";
+            this.imeDgvc.ReadOnly = true;
+            this.imeDgvc.Width = 225;
             // 
-            // dgvcJOB
+            // jobDgvc
             // 
-            this.dgvcJOB.DataPropertyName = "JOB";
-            this.dgvcJOB.HeaderText = "JOB";
-            this.dgvcJOB.MinimumWidth = 6;
-            this.dgvcJOB.Name = "dgvcJOB";
-            this.dgvcJOB.ReadOnly = true;
-            this.dgvcJOB.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.dgvcJOB.Width = 165;
+            this.jobDgvc.DataPropertyName = "_JOB";
+            this.jobDgvc.HeaderText = "JOB";
+            this.jobDgvc.Name = "jobDgvc";
+            this.jobDgvc.ReadOnly = true;
+            this.jobDgvc.Width = 165;
             // 
-            // dgvcSkola
+            // skGodDataGridViewTextBoxColumn
             // 
-            this.dgvcSkola.DataPropertyName = "Skola";
-            this.dgvcSkola.HeaderText = "Škola";
-            this.dgvcSkola.MinimumWidth = 6;
-            this.dgvcSkola.Name = "dgvcSkola";
-            this.dgvcSkola.ReadOnly = true;
-            this.dgvcSkola.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.dgvcSkola.Width = 80;
+            this.skGodDataGridViewTextBoxColumn.DataPropertyName = "SkGod";
+            this.skGodDataGridViewTextBoxColumn.HeaderText = "SkGod";
+            this.skGodDataGridViewTextBoxColumn.Name = "skGodDataGridViewTextBoxColumn";
+            this.skGodDataGridViewTextBoxColumn.ReadOnly = true;
+            this.skGodDataGridViewTextBoxColumn.Visible = false;
             // 
-            // dgvcRazred
+            // skolaDataGridViewTextBoxColumn
             // 
-            this.dgvcRazred.DataPropertyName = "Razred";
-            this.dgvcRazred.HeaderText = "Razred";
-            this.dgvcRazred.MinimumWidth = 6;
-            this.dgvcRazred.Name = "dgvcRazred";
-            this.dgvcRazred.ReadOnly = true;
-            this.dgvcRazred.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.dgvcRazred.Width = 85;
+            this.skolaDataGridViewTextBoxColumn.DataPropertyName = "Skola";
+            this.skolaDataGridViewTextBoxColumn.HeaderText = "Skola";
+            this.skolaDataGridViewTextBoxColumn.Name = "skolaDataGridViewTextBoxColumn";
+            this.skolaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.skolaDataGridViewTextBoxColumn.Width = 80;
             // 
-            // dgvcOdeljenje
+            // razredDataGridViewTextBoxColumn
             // 
-            this.dgvcOdeljenje.DataPropertyName = "Odeljenje";
-            this.dgvcOdeljenje.HeaderText = "Odeljenje";
-            this.dgvcOdeljenje.MinimumWidth = 6;
-            this.dgvcOdeljenje.Name = "dgvcOdeljenje";
-            this.dgvcOdeljenje.ReadOnly = true;
-            this.dgvcOdeljenje.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.dgvcOdeljenje.Width = 95;
+            this.razredDataGridViewTextBoxColumn.DataPropertyName = "Razred";
+            this.razredDataGridViewTextBoxColumn.HeaderText = "Razred";
+            this.razredDataGridViewTextBoxColumn.Name = "razredDataGridViewTextBoxColumn";
+            this.razredDataGridViewTextBoxColumn.ReadOnly = true;
+            this.razredDataGridViewTextBoxColumn.Width = 85;
             // 
-            // dgvcNapomene
+            // odeljenjeDataGridViewTextBoxColumn
             // 
-            this.dgvcNapomene.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgvcNapomene.DataPropertyName = "Napomene";
-            this.dgvcNapomene.HeaderText = "Napomene";
-            this.dgvcNapomene.MinimumWidth = 100;
-            this.dgvcNapomene.Name = "dgvcNapomene";
-            this.dgvcNapomene.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.odeljenjeDataGridViewTextBoxColumn.DataPropertyName = "Odeljenje";
+            this.odeljenjeDataGridViewTextBoxColumn.HeaderText = "Odeljenje";
+            this.odeljenjeDataGridViewTextBoxColumn.Name = "odeljenjeDataGridViewTextBoxColumn";
+            this.odeljenjeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.odeljenjeDataGridViewTextBoxColumn.Width = 95;
             // 
-            // dgvcPol
+            // smerDataGridViewTextBoxColumn
             // 
-            this.dgvcPol.DataPropertyName = "Pol";
-            this.dgvcPol.HeaderText = "Pol";
-            this.dgvcPol.MinimumWidth = 6;
-            this.dgvcPol.Name = "dgvcPol";
-            this.dgvcPol.ReadOnly = true;
-            this.dgvcPol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.dgvcPol.Width = 56;
+            this.smerDataGridViewTextBoxColumn.DataPropertyName = "Smer";
+            this.smerDataGridViewTextBoxColumn.HeaderText = "Smer";
+            this.smerDataGridViewTextBoxColumn.Name = "smerDataGridViewTextBoxColumn";
+            this.smerDataGridViewTextBoxColumn.ReadOnly = true;
+            this.smerDataGridViewTextBoxColumn.Width = 121;
             // 
-            // dgvcDatRodj
+            // _Pol
             // 
-            this.dgvcDatRodj.DataPropertyName = "DatumRodjenja";
-            this.dgvcDatRodj.HeaderText = "Dat Rođ";
-            this.dgvcDatRodj.MinimumWidth = 6;
-            this.dgvcDatRodj.Name = "dgvcDatRodj";
-            this.dgvcDatRodj.ReadOnly = true;
-            this.dgvcDatRodj.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.dgvcDatRodj.ToolTipText = "Datum rođenja";
-            this.dgvcDatRodj.Width = 90;
+            this._Pol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this._Pol.DataPropertyName = "_Pol";
+            this._Pol.HeaderText = "Pol";
+            this._Pol.Name = "_Pol";
+            this._Pol.ReadOnly = true;
+            this._Pol.Width = 52;
             // 
-            // dgvcDanaDoRodj
+            // _DatumRodjenja
             // 
-            this.dgvcDanaDoRodj.DataPropertyName = "DanaDoRodj";
-            this.dgvcDanaDoRodj.HeaderText = "Do Rođ";
-            this.dgvcDanaDoRodj.MinimumWidth = 6;
-            this.dgvcDanaDoRodj.Name = "dgvcDanaDoRodj";
-            this.dgvcDanaDoRodj.ReadOnly = true;
-            this.dgvcDanaDoRodj.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.dgvcDanaDoRodj.ToolTipText = "Broj dana do rođendana";
-            this.dgvcDanaDoRodj.Width = 85;
+            this._DatumRodjenja.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this._DatumRodjenja.DataPropertyName = "_DatumRodjenja";
+            this._DatumRodjenja.HeaderText = "Dat Rođ";
+            this._DatumRodjenja.Name = "_DatumRodjenja";
+            this._DatumRodjenja.ReadOnly = true;
+            this._DatumRodjenja.Width = 82;
             // 
-            // dgvcGodine
+            // _DanaDoRodj
             // 
-            this.dgvcGodine.DataPropertyName = "Godine";
+            this._DanaDoRodj.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this._DanaDoRodj.DataPropertyName = "_DanaDoRodj";
+            this._DanaDoRodj.HeaderText = "Do Rođ";
+            this._DanaDoRodj.Name = "_DanaDoRodj";
+            this._DanaDoRodj.ReadOnly = true;
+            this._DanaDoRodj.Width = 79;
+            // 
+            // _Godine
+            // 
+            this._Godine.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this._Godine.DataPropertyName = "_Godine";
             dataGridViewCellStyle3.Format = "N1";
-            this.dgvcGodine.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvcGodine.HeaderText = "Godine";
-            this.dgvcGodine.MinimumWidth = 6;
-            this.dgvcGodine.Name = "dgvcGodine";
-            this.dgvcGodine.ReadOnly = true;
-            this.dgvcGodine.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.dgvcGodine.ToolTipText = "Starost učenika";
-            this.dgvcGodine.Width = 80;
+            dataGridViewCellStyle3.NullValue = null;
+            this._Godine.DefaultCellStyle = dataGridViewCellStyle3;
+            this._Godine.HeaderText = "Godine";
+            this._Godine.Name = "_Godine";
+            this._Godine.ReadOnly = true;
+            this._Godine.Width = 76;
             // 
-            // dgvcBrojOcenaPolu
+            // ocenePoluBrojDataGridViewTextBoxColumn
             // 
-            this.dgvcBrojOcenaPolu.DataPropertyName = "BrojOcenaPolu";
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvcBrojOcenaPolu.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvcBrojOcenaPolu.HeaderText = "oc PG";
-            this.dgvcBrojOcenaPolu.Name = "dgvcBrojOcenaPolu";
-            this.dgvcBrojOcenaPolu.ReadOnly = true;
-            this.dgvcBrojOcenaPolu.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.dgvcBrojOcenaPolu.ToolTipText = "Broj ocena na polugodištu";
-            this.dgvcBrojOcenaPolu.Width = 70;
+            this.ocenePoluBrojDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ocenePoluBrojDataGridViewTextBoxColumn.DataPropertyName = "OcenePoluBroj";
+            this.ocenePoluBrojDataGridViewTextBoxColumn.HeaderText = "Ocene PG";
+            this.ocenePoluBrojDataGridViewTextBoxColumn.Name = "ocenePoluBrojDataGridViewTextBoxColumn";
+            this.ocenePoluBrojDataGridViewTextBoxColumn.ReadOnly = true;
+            this.ocenePoluBrojDataGridViewTextBoxColumn.Width = 94;
             // 
-            // dgvcOcenePgJson
+            // oceneKrajBrojDataGridViewTextBoxColumn
             // 
-            this.dgvcOcenePgJson.DataPropertyName = "OcenePG";
-            this.dgvcOcenePgJson.HeaderText = "OcenePG";
-            this.dgvcOcenePgJson.Name = "dgvcOcenePgJson";
-            this.dgvcOcenePgJson.ReadOnly = true;
+            this.oceneKrajBrojDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.oceneKrajBrojDataGridViewTextBoxColumn.DataPropertyName = "OceneKrajBroj";
+            this.oceneKrajBrojDataGridViewTextBoxColumn.HeaderText = "Ocene Kraj";
+            this.oceneKrajBrojDataGridViewTextBoxColumn.Name = "oceneKrajBrojDataGridViewTextBoxColumn";
+            this.oceneKrajBrojDataGridViewTextBoxColumn.ReadOnly = true;
+            this.oceneKrajBrojDataGridViewTextBoxColumn.Width = 98;
             // 
-            // BrojOcenaKraj
+            // ocenePoluJSONDgvc
             // 
-            this.BrojOcenaKraj.DataPropertyName = "BrojOcenaKraj";
-            this.BrojOcenaKraj.HeaderText = "oc kraj";
-            this.BrojOcenaKraj.Name = "BrojOcenaKraj";
-            this.BrojOcenaKraj.ReadOnly = true;
+            this.ocenePoluJSONDgvc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ocenePoluJSONDgvc.DataPropertyName = "OcenePoluJSON";
+            this.ocenePoluJSONDgvc.HeaderText = "Ocene PG JSON";
+            this.ocenePoluJSONDgvc.Name = "ocenePoluJSONDgvc";
+            this.ocenePoluJSONDgvc.ReadOnly = true;
+            this.ocenePoluJSONDgvc.Width = 133;
             // 
-            // dgvcOceneKrajJson
+            // oceneKrajJSONDgvc
             // 
-            this.dgvcOceneKrajJson.DataPropertyName = "OceneKraj";
-            this.dgvcOceneKrajJson.HeaderText = "OceneKraj";
-            this.dgvcOceneKrajJson.Name = "dgvcOceneKrajJson";
-            this.dgvcOceneKrajJson.ReadOnly = true;
+            this.oceneKrajJSONDgvc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.oceneKrajJSONDgvc.DataPropertyName = "OceneKrajJSON";
+            this.oceneKrajJSONDgvc.HeaderText = "Ocene Kraj JSON";
+            this.oceneKrajJSONDgvc.Name = "oceneKrajJSONDgvc";
+            this.oceneKrajJSONDgvc.ReadOnly = true;
+            this.oceneKrajJSONDgvc.Width = 137;
             // 
-            // dgvcZavrsObrazovanjaKratko
+            // ZavrsObrazovanjaRezimeDgvc
             // 
-            this.dgvcZavrsObrazovanjaKratko.DataPropertyName = "ZavrsObrazovanjaKratko";
-            this.dgvcZavrsObrazovanjaKratko.HeaderText = "Zavrs Obraz";
-            this.dgvcZavrsObrazovanjaKratko.Name = "dgvcZavrsObrazovanjaKratko";
-            this.dgvcZavrsObrazovanjaKratko.ReadOnly = true;
+            this.ZavrsObrazovanjaRezimeDgvc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ZavrsObrazovanjaRezimeDgvc.DataPropertyName = "ZavrsObrazovanjaRezime";
+            this.ZavrsObrazovanjaRezimeDgvc.HeaderText = "Zavrsetak Obraz.";
+            this.ZavrsObrazovanjaRezimeDgvc.Name = "ZavrsObrazovanjaRezimeDgvc";
+            this.ZavrsObrazovanjaRezimeDgvc.ReadOnly = true;
+            this.ZavrsObrazovanjaRezimeDgvc.Width = 134;
             // 
-            // dgvcSmer
+            // napomeneDgvc
             // 
-            this.dgvcSmer.DataPropertyName = "Smer";
-            this.dgvcSmer.HeaderText = "Smer";
-            this.dgvcSmer.Name = "dgvcSmer";
-            this.dgvcSmer.ReadOnly = true;
-            this.dgvcSmer.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.dgvcSmer.Width = 110;
+            this.napomeneDgvc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.napomeneDgvc.DataPropertyName = "Napomene";
+            this.napomeneDgvc.HeaderText = "Napomene";
+            this.napomeneDgvc.MinimumWidth = 100;
+            this.napomeneDgvc.Name = "napomeneDgvc";
+            this.napomeneDgvc.ReadOnly = true;
             // 
             // FrmUcenici
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1297, 512);
-            this.Controls.Add(this.dgvUcenici);
+            this.Controls.Add(this.dgvUcenikSkGod);
             this.Controls.Add(this.pnlLeft);
             this.Controls.Add(this.statusStrip);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -516,11 +478,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.ds)).EndInit();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUcenici)).EndInit();
             this.pnlLeft.ResumeLayout(false);
             this.pnlLeft.PerformLayout();
             this.gbOceneUnos.ResumeLayout(false);
             this.gbOceneUnos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUcenikSkGod)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsUcenikSkGod)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -529,7 +492,6 @@
         #endregion
 
         private JISP.Controls.UcLeftPanel pnlLeft;
-        private Controls.UcDGV dgvUcenici;
         private System.Windows.Forms.BindingSource bsUcenici;
         private Data.Ds ds;
         private Controls.UcFilterTextBox txtFilter;
@@ -544,26 +506,27 @@
         private System.Windows.Forms.Button btnOcenePaste;
         private System.Windows.Forms.CheckBox chkOceneSaVladanjem;
         private System.Windows.Forms.ToolTip ttOceneProvera;
-        private System.Windows.Forms.CheckBox chkSamoTekuci;
         private Controls.UcButton btnDohvatiPodatke;
         private System.Windows.Forms.ComboBox cmbPodaciZaDohvatanje;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcIdUcenika;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcIme;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcPrezime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcJOB;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcSkola;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcRazred;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcOdeljenje;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcNapomene;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcPol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcDatRodj;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcDanaDoRodj;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcGodine;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcBrojOcenaPolu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcOcenePgJson;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BrojOcenaKraj;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcOceneKrajJson;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcZavrsObrazovanjaKratko;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcSmer;
+        private Controls.UcDGV dgvUcenikSkGod;
+        private System.Windows.Forms.BindingSource bsUcenikSkGod;
+        private System.Windows.Forms.DataGridViewTextBoxColumn imeDgvc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn jobDgvc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn skGodDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn skolaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn razredDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn odeljenjeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn smerDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _Pol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _DatumRodjenja;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _DanaDoRodj;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _Godine;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ocenePoluBrojDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn oceneKrajBrojDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ocenePoluJSONDgvc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn oceneKrajJSONDgvc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ZavrsObrazovanjaRezimeDgvc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn napomeneDgvc;
     }
 }

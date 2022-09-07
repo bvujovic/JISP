@@ -31,6 +31,19 @@ namespace JISP.Data
             }
         }
 
+        public partial class UcenikSkGodRow
+        {
+
+            public bool JeOsnovac
+                => !IsSkolaNull() && Skola == "Основна";
+
+            public bool JeSrednjoskolac
+                => !IsSkolaNull() && Skola == "Средња";
+
+            public override string ToString()
+                => $"{_Ime}, JOB: {_JOB}, Razred: {Razred}";
+        }
+
         public partial class UceniciRow
         {
             public void CalcDatRodjBasedData()
@@ -41,12 +54,6 @@ namespace JISP.Data
                     Godine = JMBG.YearsOld(DatumRodjenja);
                 }
             }
-
-            public bool JeOsnovac
-                => !IsSkolaNull() && Skola == "Основна";
-
-            public bool JeSrednjoskolac
-                => !IsSkolaNull() && Skola == "Средња";
 
             public override string ToString()
                 => $"{Ime}, JOB: {JOB}";

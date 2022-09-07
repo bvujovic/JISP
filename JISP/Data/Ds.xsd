@@ -16,8 +16,7 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IdUcenika" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInTable="IdUcenikaColumn" msprop:Generator_ColumnPropNameInRow="IdUcenika" msprop:Generator_UserColumnName="IdUcenika" msprop:Generator_ColumnVarNameInTable="columnIdUcenika" type="xs:int" />
-              <xs:element name="Ime" msprop:Generator_ColumnPropNameInTable="ImeColumn" msprop:Generator_ColumnPropNameInRow="Ime" msprop:Generator_UserColumnName="Ime" msprop:Generator_ColumnVarNameInTable="columnIme" type="xs:string" />
-              <xs:element name="Prezime" msprop:Generator_ColumnPropNameInTable="PrezimeColumn" msprop:Generator_ColumnPropNameInRow="Prezime" msprop:Generator_UserColumnName="Prezime" msprop:Generator_ColumnVarNameInTable="columnPrezime" type="xs:string" minOccurs="0" />
+              <xs:element name="Ime" msprop:Generator_ColumnPropNameInTable="ImeColumn" msprop:Generator_ColumnPropNameInRow="Ime" msprop:Generator_UserColumnName="Ime" msprop:Generator_ColumnVarNameInTable="columnIme" type="xs:string" minOccurs="0" />
               <xs:element name="RegUceLiceId" msprop:Generator_ColumnPropNameInTable="RegUceLiceIdColumn" msprop:Generator_ColumnPropNameInRow="RegUceLiceId" msprop:Generator_UserColumnName="RegUceLiceId" msprop:Generator_ColumnVarNameInTable="columnRegUceLiceId" type="xs:int" minOccurs="0" />
               <xs:element name="JOB" msprop:Generator_ColumnPropNameInTable="JOBColumn" msprop:Generator_ColumnPropNameInRow="JOB" msprop:Generator_UserColumnName="JOB" msprop:Generator_ColumnVarNameInTable="columnJOB" type="xs:string" />
               <xs:element name="Skola" msprop:Generator_ColumnPropNameInTable="SkolaColumn" msprop:Generator_ColumnPropNameInRow="Skola" msprop:Generator_UserColumnName="Skola" msprop:Generator_ColumnVarNameInTable="columnSkola" type="xs:string" minOccurs="0" />
@@ -155,7 +154,7 @@
               <xs:element name="DokumentId" msprop:Generator_ColumnPropNameInTable="DokumentIdColumn" msprop:Generator_ColumnPropNameInRow="DokumentId" msprop:Generator_UserColumnName="DokumentId" msprop:Generator_ColumnVarNameInTable="columnDokumentId" type="xs:string" minOccurs="0" />
               <xs:element name="IdZaposlenja" msprop:Generator_ColumnPropNameInTable="IdZaposlenjaColumn" msprop:Generator_ColumnPropNameInRow="IdZaposlenja" msprop:Generator_UserColumnName="IdZaposlenja" msprop:Generator_ColumnVarNameInTable="columnIdZaposlenja" type="xs:int" />
               <xs:element name="_Zaposleni" msdata:ReadOnly="true" msdata:Expression="parent._Zaposleni" msprop:Generator_ColumnPropNameInTable="_ZaposleniColumn" msprop:Generator_ColumnPropNameInRow="_Zaposleni" msprop:Generator_UserColumnName="_Zaposleni" msprop:Generator_ColumnVarNameInTable="column_Zaposleni" type="xs:string" minOccurs="0" />
-              <xs:element name="AktivnoZaposlenje" msdata:ReadOnly="true" msdata:Expression="parent.Aktivan" msprop:Generator_UserColumnName="AktivnoZaposlenje" msprop:Generator_ColumnPropNameInTable="AktivnoZaposlenjeColumn" msprop:Generator_ColumnPropNameInRow="AktivnoZaposlenje" msprop:Generator_ColumnVarNameInTable="columnAktivnoZaposlenje" type="xs:boolean" minOccurs="0" />
+              <xs:element name="AktivnoZaposlenje" msdata:ReadOnly="true" msdata:Expression="parent.Aktivan" msprop:Generator_ColumnPropNameInTable="AktivnoZaposlenjeColumn" msprop:Generator_ColumnPropNameInRow="AktivnoZaposlenje" msprop:Generator_UserColumnName="AktivnoZaposlenje" msprop:Generator_ColumnVarNameInTable="columnAktivnoZaposlenje" type="xs:boolean" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -164,9 +163,9 @@
             <xs:sequence>
               <xs:element name="IdSistematizacije" msprop:Generator_ColumnPropNameInTable="IdSistematizacijeColumn" msprop:Generator_ColumnPropNameInRow="IdSistematizacije" msprop:Generator_UserColumnName="IdSistematizacije" msprop:Generator_ColumnVarNameInTable="columnIdSistematizacije" type="xs:int" />
               <xs:element name="SkolskaGodinaId" msprop:Generator_ColumnPropNameInTable="SkolskaGodinaIdColumn" msprop:Generator_ColumnPropNameInRow="SkolskaGodinaId" msprop:Generator_UserColumnName="SkolskaGodinaId" msprop:Generator_ColumnVarNameInTable="columnSkolskaGodinaId" type="xs:int" />
-              <xs:element name="RegUstSisId" msprop:Generator_ColumnPropNameInRow="RegUstSisId" msprop:Generator_ColumnPropNameInTable="RegUstSisIdColumn" msprop:Generator_ColumnVarNameInTable="columnRegUstSisId" msprop:Generator_UserColumnName="RegUstSisId" type="xs:int" />
-              <xs:element name="IzvorFinansiranja" msprop:Generator_ColumnPropNameInRow="IzvorFinansiranja" msprop:Generator_ColumnPropNameInTable="IzvorFinansiranjaColumn" msprop:Generator_ColumnVarNameInTable="columnIzvorFinansiranja" msprop:Generator_UserColumnName="IzvorFinansiranja" type="xs:string" />
-              <xs:element name="RucniUnos" msprop:Generator_ColumnPropNameInRow="RucniUnos" msprop:Generator_ColumnPropNameInTable="RucniUnosColumn" msprop:Generator_ColumnVarNameInTable="columnRucniUnos" msprop:Generator_UserColumnName="RucniUnos" type="xs:boolean" />
+              <xs:element name="RegUstSisId" msprop:Generator_ColumnPropNameInTable="RegUstSisIdColumn" msprop:Generator_ColumnPropNameInRow="RegUstSisId" msprop:Generator_UserColumnName="RegUstSisId" msprop:Generator_ColumnVarNameInTable="columnRegUstSisId" type="xs:int" />
+              <xs:element name="IzvorFinansiranja" msprop:Generator_ColumnPropNameInTable="IzvorFinansiranjaColumn" msprop:Generator_ColumnPropNameInRow="IzvorFinansiranja" msprop:Generator_UserColumnName="IzvorFinansiranja" msprop:Generator_ColumnVarNameInTable="columnIzvorFinansiranja" type="xs:string" />
+              <xs:element name="RucniUnos" msprop:Generator_ColumnPropNameInTable="RucniUnosColumn" msprop:Generator_ColumnPropNameInRow="RucniUnos" msprop:Generator_UserColumnName="RucniUnos" msprop:Generator_ColumnVarNameInTable="columnRucniUnos" type="xs:boolean" />
               <xs:element name="RadnoMestoId" msprop:Generator_ColumnPropNameInTable="RadnoMestoIdColumn" msprop:Generator_ColumnPropNameInRow="RadnoMestoId" msprop:Generator_UserColumnName="RadnoMestoId" msprop:Generator_ColumnVarNameInTable="columnRadnoMestoId" type="xs:int" />
               <xs:element name="RadnoMesto" msprop:Generator_ColumnPropNameInTable="RadnoMestoColumn" msprop:Generator_ColumnPropNameInRow="RadnoMesto" msprop:Generator_UserColumnName="RadnoMesto" msprop:Generator_ColumnVarNameInTable="columnRadnoMesto" type="xs:string" />
               <xs:element name="PredmetId" msprop:Generator_ColumnPropNameInTable="PredmetIdColumn" msprop:Generator_ColumnPropNameInRow="PredmetId" msprop:Generator_UserColumnName="PredmetId" msprop:Generator_ColumnVarNameInTable="columnPredmetId" type="xs:int" />
@@ -188,25 +187,54 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="IzvoriFinansiranja" msprop:Generator_RowEvHandlerName="IzvoriFinansiranjaRowChangeEventHandler" msprop:Generator_RowDeletedName="IzvoriFinansiranjaRowDeleted" msprop:Generator_RowDeletingName="IzvoriFinansiranjaRowDeleting" msprop:Generator_RowEvArgName="IzvoriFinansiranjaRowChangeEvent" msprop:Generator_TablePropName="IzvoriFinansiranja" msprop:Generator_RowChangedName="IzvoriFinansiranjaRowChanged" msprop:Generator_RowChangingName="IzvoriFinansiranjaRowChanging" msprop:Generator_TableClassName="IzvoriFinansiranjaDataTable" msprop:Generator_RowClassName="IzvoriFinansiranjaRow" msprop:Generator_TableVarName="tableIzvoriFinansiranja" msprop:Generator_UserTableName="IzvoriFinansiranja">
+        <xs:element name="IzvoriFinansiranja" msprop:Generator_RowEvHandlerName="IzvoriFinansiranjaRowChangeEventHandler" msprop:Generator_RowDeletedName="IzvoriFinansiranjaRowDeleted" msprop:Generator_RowDeletingName="IzvoriFinansiranjaRowDeleting" msprop:Generator_RowEvArgName="IzvoriFinansiranjaRowChangeEvent" msprop:Generator_TablePropName="IzvoriFinansiranja" msprop:Generator_RowChangedName="IzvoriFinansiranjaRowChanged" msprop:Generator_UserTableName="IzvoriFinansiranja" msprop:Generator_RowChangingName="IzvoriFinansiranjaRowChanging" msprop:Generator_RowClassName="IzvoriFinansiranjaRow" msprop:Generator_TableClassName="IzvoriFinansiranjaDataTable" msprop:Generator_TableVarName="tableIzvoriFinansiranja">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="IdIzvoraFin" msprop:Generator_ColumnPropNameInRow="IdIzvoraFin" msprop:Generator_ColumnPropNameInTable="IdIzvoraFinColumn" msprop:Generator_ColumnVarNameInTable="columnIdIzvoraFin" msprop:Generator_UserColumnName="IdIzvoraFin" type="xs:int" />
-              <xs:element name="Naziv" msprop:Generator_ColumnPropNameInRow="Naziv" msprop:Generator_ColumnPropNameInTable="NazivColumn" msprop:Generator_ColumnVarNameInTable="columnNaziv" msprop:Generator_UserColumnName="Naziv" type="xs:string" />
+              <xs:element name="IdIzvoraFin" msprop:Generator_ColumnPropNameInTable="IdIzvoraFinColumn" msprop:Generator_ColumnPropNameInRow="IdIzvoraFin" msprop:Generator_UserColumnName="IdIzvoraFin" msprop:Generator_ColumnVarNameInTable="columnIdIzvoraFin" type="xs:int" />
+              <xs:element name="Naziv" msprop:Generator_ColumnPropNameInTable="NazivColumn" msprop:Generator_ColumnPropNameInRow="Naziv" msprop:Generator_UserColumnName="Naziv" msprop:Generator_ColumnVarNameInTable="columnNaziv" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="UcenikSkGod" msprop:Generator_RowEvHandlerName="UcenikSkGodRowChangeEventHandler" msprop:Generator_RowDeletedName="UcenikSkGodRowDeleted" msprop:Generator_RowDeletingName="UcenikSkGodRowDeleting" msprop:Generator_RowEvArgName="UcenikSkGodRowChangeEvent" msprop:Generator_TablePropName="UcenikSkGod" msprop:Generator_RowChangedName="UcenikSkGodRowChanged" msprop:Generator_UserTableName="UcenikSkGod" msprop:Generator_RowChangingName="UcenikSkGodRowChanging" msprop:Generator_RowClassName="UcenikSkGodRow" msprop:Generator_TableClassName="UcenikSkGodDataTable" msprop:Generator_TableVarName="tableUcenikSkGod">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnVarNameInTable="columnId" type="xs:int" />
+              <xs:element name="IdUcenika" msprop:Generator_ColumnPropNameInTable="IdUcenikaColumn" msprop:Generator_ColumnPropNameInRow="IdUcenika" msprop:Generator_UserColumnName="IdUcenika" msprop:Generator_ColumnVarNameInTable="columnIdUcenika" type="xs:int" minOccurs="0" />
+              <xs:element name="SkGod" msprop:Generator_ColumnPropNameInTable="SkGodColumn" msprop:Generator_ColumnPropNameInRow="SkGod" msprop:Generator_UserColumnName="SkGod" msprop:Generator_ColumnVarNameInTable="columnSkGod" type="xs:string" minOccurs="0" />
+              <xs:element name="RegUceLiceObrazovanjeId" msprop:Generator_ColumnPropNameInTable="RegUceLiceObrazovanjeIdColumn" msprop:Generator_ColumnPropNameInRow="RegUceLiceObrazovanjeId" msprop:Generator_UserColumnName="RegUceLiceObrazovanjeId" msprop:Generator_ColumnVarNameInTable="columnRegUceLiceObrazovanjeId" type="xs:int" minOccurs="0" />
+              <xs:element name="Skola" msprop:Generator_ColumnPropNameInTable="SkolaColumn" msprop:Generator_ColumnPropNameInRow="Skola" msprop:Generator_UserColumnName="Skola" msprop:Generator_ColumnVarNameInTable="columnSkola" type="xs:string" minOccurs="0" />
+              <xs:element name="Razred" msprop:Generator_ColumnPropNameInTable="RazredColumn" msprop:Generator_ColumnPropNameInRow="Razred" msprop:Generator_UserColumnName="Razred" msprop:Generator_ColumnVarNameInTable="columnRazred" type="xs:string" minOccurs="0" />
+              <xs:element name="Odeljenje" msprop:Generator_ColumnPropNameInTable="OdeljenjeColumn" msprop:Generator_ColumnPropNameInRow="Odeljenje" msprop:Generator_UserColumnName="Odeljenje" msprop:Generator_ColumnVarNameInTable="columnOdeljenje" type="xs:string" minOccurs="0" />
+              <xs:element name="Smer" msprop:Generator_ColumnPropNameInTable="SmerColumn" msprop:Generator_ColumnPropNameInRow="Smer" msprop:Generator_UserColumnName="Smer" msprop:Generator_ColumnVarNameInTable="columnSmer" type="xs:string" minOccurs="0" />
+              <xs:element name="_Ime" msdata:ReadOnly="true" msdata:Expression="parent.Ime" msdata:Caption="Ime" msprop:Generator_ColumnPropNameInTable="_ImeColumn" msprop:Generator_ColumnPropNameInRow="_Ime" msprop:Generator_UserColumnName="_Ime" msprop:Generator_ColumnVarNameInTable="column_Ime" type="xs:string" minOccurs="0" />
+              <xs:element name="_JOB" msdata:ReadOnly="true" msdata:Expression="parent.JOB" msprop:Generator_ColumnPropNameInTable="_JOBColumn" msprop:Generator_ColumnPropNameInRow="_JOB" msprop:Generator_UserColumnName="_JOB" msprop:Generator_ColumnVarNameInTable="column_JOB" type="xs:string" minOccurs="0" />
+              <xs:element name="_Pol" msdata:ReadOnly="true" msdata:Expression="parent.Pol" msprop:Generator_ColumnPropNameInRow="_Pol" msprop:Generator_ColumnPropNameInTable="_PolColumn" msprop:Generator_ColumnVarNameInTable="column_Pol" msprop:Generator_UserColumnName="_Pol" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_DatumRodjenja" msdata:ReadOnly="true" msdata:Expression="parent.DatumRodjenja" msprop:Generator_ColumnPropNameInRow="_DatumRodjenja" msprop:Generator_ColumnPropNameInTable="_DatumRodjenjaColumn" msprop:Generator_ColumnVarNameInTable="column_DatumRodjenja" msprop:Generator_UserColumnName="_DatumRodjenja" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="_Godine" msdata:ReadOnly="true" msdata:Expression="parent.Godine" msprop:Generator_ColumnPropNameInRow="_Godine" msprop:Generator_ColumnPropNameInTable="_GodineColumn" msprop:Generator_ColumnVarNameInTable="column_Godine" msprop:Generator_UserColumnName="_Godine" type="xs:double" minOccurs="0" />
+              <xs:element name="_DanaDoRodj" msdata:ReadOnly="true" msdata:Expression="parent.DanaDoRodj" msprop:Generator_ColumnPropNameInRow="_DanaDoRodj" msprop:Generator_ColumnPropNameInTable="_DanaDoRodjColumn" msprop:Generator_ColumnVarNameInTable="column_DanaDoRodj" msprop:Generator_UserColumnName="_DanaDoRodj" type="xs:int" minOccurs="0" />
+              <xs:element name="Napomene" msprop:Generator_ColumnPropNameInTable="NapomeneColumn" msprop:Generator_ColumnPropNameInRow="Napomene" msprop:Generator_UserColumnName="Napomene" msprop:Generator_ColumnVarNameInTable="columnNapomene" type="xs:string" minOccurs="0" />
+              <xs:element name="OcenePoluBroj" msprop:Generator_ColumnPropNameInTable="OcenePoluBrojColumn" msprop:Generator_ColumnPropNameInRow="OcenePoluBroj" msprop:Generator_UserColumnName="OcenePoluBroj" msprop:Generator_ColumnVarNameInTable="columnOcenePoluBroj" type="xs:int" minOccurs="0" />
+              <xs:element name="OceneKrajBroj" msprop:Generator_ColumnPropNameInTable="OceneKrajBrojColumn" msprop:Generator_ColumnPropNameInRow="OceneKrajBroj" msprop:Generator_UserColumnName="OceneKrajBroj" msprop:Generator_ColumnVarNameInTable="columnOceneKrajBroj" type="xs:int" minOccurs="0" />
+              <xs:element name="OcenePoluJSON" msprop:Generator_ColumnPropNameInTable="OcenePoluJSONColumn" msprop:Generator_ColumnPropNameInRow="OcenePoluJSON" msprop:Generator_UserColumnName="OcenePoluJSON" msprop:Generator_ColumnVarNameInTable="columnOcenePoluJSON" type="xs:string" minOccurs="0" />
+              <xs:element name="OceneKrajJSON" msprop:Generator_ColumnPropNameInTable="OceneKrajJSONColumn" msprop:Generator_ColumnPropNameInRow="OceneKrajJSON" msprop:Generator_UserColumnName="OceneKrajJSON" msprop:Generator_ColumnVarNameInTable="columnOceneKrajJSON" type="xs:string" minOccurs="0" />
+              <xs:element name="ZavrsObrazovanjaJSON" msprop:Generator_ColumnPropNameInTable="ZavrsObrazovanjaJSONColumn" msprop:Generator_ColumnPropNameInRow="ZavrsObrazovanjaJSON" msprop:Generator_UserColumnName="ZavrsObrazovanjaJSON" msprop:Generator_ColumnVarNameInTable="columnZavrsObrazovanjaJSON" type="xs:string" minOccurs="0" />
+              <xs:element name="ZavrsObrazovanjaRezime" msprop:Generator_ColumnPropNameInTable="ZavrsObrazovanjaRezimeColumn" msprop:Generator_ColumnPropNameInRow="ZavrsObrazovanjaRezime" msprop:Generator_UserColumnName="ZavrsObrazovanjaRezime" msprop:Generator_ColumnVarNameInTable="columnZavrsObrazovanjaRezime" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
       </xs:choice>
     </xs:complexType>
-    <xs:unique name="Constraint1">
-      <xs:selector xpath=".//mstns:Ucenici" />
-      <xs:field xpath="mstns:JOB" />
-    </xs:unique>
     <xs:unique name="Constraint2" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:Ucenici" />
       <xs:field xpath="mstns:IdUcenika" />
     </xs:unique>
-    <xs:unique name="Zaposleni_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:Zaposleni" />
       <xs:field xpath="mstns:IdZaposlenog" />
     </xs:unique>
@@ -242,20 +270,25 @@
       <xs:selector xpath=".//mstns:IzvoriFinansiranja" />
       <xs:field xpath="mstns:Naziv" />
     </xs:unique>
-    <xs:keyref name="Zaposleni_ObracunZarada" refer="Zaposleni_Constraint1" msprop:rel_Generator_UserParentTable="Zaposleni" msprop:rel_Generator_UserChildTable="ObracunZarada" msprop:rel_Generator_RelationVarName="relationZaposleni_ObracunZarada" msprop:rel_Generator_ChildPropName="GetObracunZaradaRows" msprop:rel_Generator_ParentPropName="ZaposleniRow" msprop:rel_Generator_UserRelationName="Zaposleni_ObracunZarada" msdata:DeleteRule="None">
+    <xs:unique name="UcenikSkGod_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:UcenikSkGod" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:keyref name="Zaposleni_ObracunZarada" refer="Constraint1" msprop:rel_Generator_UserParentTable="Zaposleni" msprop:rel_Generator_UserChildTable="ObracunZarada" msprop:rel_Generator_RelationVarName="relationZaposleni_ObracunZarada" msprop:rel_Generator_ChildPropName="GetObracunZaradaRows" msprop:rel_Generator_UserRelationName="Zaposleni_ObracunZarada" msprop:rel_Generator_ParentPropName="ZaposleniRow" msdata:DeleteRule="None">
       <xs:selector xpath=".//mstns:ObracunZarada" />
       <xs:field xpath="mstns:IdZaposlenog" />
     </xs:keyref>
-    <xs:keyref name="FK_Zaposleni_Zaposlenja" refer="Zaposleni_Constraint1" msprop:rel_Generator_UserParentTable="Zaposleni" msprop:rel_Generator_UserChildTable="Zaposlenja" msprop:rel_Generator_RelationVarName="relationFK_Zaposleni_Zaposlenja" msprop:rel_Generator_ChildPropName="GetZaposlenjaRows" msprop:rel_Generator_ParentPropName="ZaposleniRow" msprop:rel_Generator_UserRelationName="FK_Zaposleni_Zaposlenja" msdata:DeleteRule="None">
+    <xs:keyref name="FK_Zaposleni_Zaposlenja" refer="Constraint1" msprop:rel_Generator_UserParentTable="Zaposleni" msprop:rel_Generator_UserChildTable="Zaposlenja" msprop:rel_Generator_RelationVarName="relationFK_Zaposleni_Zaposlenja" msprop:rel_Generator_ChildPropName="GetZaposlenjaRows" msprop:rel_Generator_UserRelationName="FK_Zaposleni_Zaposlenja" msprop:rel_Generator_ParentPropName="ZaposleniRow" msdata:DeleteRule="None">
       <xs:selector xpath=".//mstns:Zaposlenja" />
       <xs:field xpath="mstns:IdZaposlenog" />
     </xs:keyref>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="Zaposlenja_Angazovanja" msdata:parent="Zaposlenja" msdata:child="Angazovanja" msdata:parentkey="IdZaposlenja" msdata:childkey="IdZaposlenja" msprop:Generator_UserParentTable="Zaposlenja" msprop:Generator_UserChildTable="Angazovanja" msprop:Generator_RelationVarName="relationZaposlenja_Angazovanja" msprop:Generator_ChildPropName="GetAngazovanjaRows" msprop:Generator_ParentPropName="ZaposlenjaRow" msprop:Generator_UserRelationName="Zaposlenja_Angazovanja" />
-      <msdata:Relationship name="Zaposlenja_Resenja" msdata:parent="Zaposlenja" msdata:child="Resenja" msdata:parentkey="IdZaposlenja" msdata:childkey="IdZaposlenja" msprop:Generator_UserParentTable="Zaposlenja" msprop:Generator_UserChildTable="Resenja" msprop:Generator_RelationVarName="relationZaposlenja_Resenja" msprop:Generator_ChildPropName="GetResenjaRows" msprop:Generator_ParentPropName="ZaposlenjaRow" msprop:Generator_UserRelationName="Zaposlenja_Resenja" />
-      <msdata:Relationship name="FK_Sistematizacija_SistematizacijaDetalji" msdata:parent="Sistematizacija" msdata:child="SistematizacijaDetalji" msdata:parentkey="IdSistematizacije" msdata:childkey="IdSistematizacije" msprop:Generator_UserParentTable="Sistematizacija" msprop:Generator_UserChildTable="SistematizacijaDetalji" msprop:Generator_RelationVarName="relationFK_Sistematizacija_SistematizacijaDetalji" msprop:Generator_ChildPropName="GetSistematizacijaDetaljiRows" msprop:Generator_UserRelationName="FK_Sistematizacija_SistematizacijaDetalji" msprop:Generator_ParentPropName="SistematizacijaRow" />
+      <msdata:Relationship name="Zaposlenja_Angazovanja" msdata:parent="Zaposlenja" msdata:child="Angazovanja" msdata:parentkey="IdZaposlenja" msdata:childkey="IdZaposlenja" msprop:Generator_UserParentTable="Zaposlenja" msprop:Generator_UserChildTable="Angazovanja" msprop:Generator_RelationVarName="relationZaposlenja_Angazovanja" msprop:Generator_ChildPropName="GetAngazovanjaRows" msprop:Generator_UserRelationName="Zaposlenja_Angazovanja" msprop:Generator_ParentPropName="ZaposlenjaRow" />
+      <msdata:Relationship name="Zaposlenja_Resenja" msdata:parent="Zaposlenja" msdata:child="Resenja" msdata:parentkey="IdZaposlenja" msdata:childkey="IdZaposlenja" msprop:Generator_UserParentTable="Zaposlenja" msprop:Generator_UserChildTable="Resenja" msprop:Generator_RelationVarName="relationZaposlenja_Resenja" msprop:Generator_ChildPropName="GetResenjaRows" msprop:Generator_UserRelationName="Zaposlenja_Resenja" msprop:Generator_ParentPropName="ZaposlenjaRow" />
+      <msdata:Relationship name="FK_Sistematizacija_SistematizacijaDetalji" msdata:parent="Sistematizacija" msdata:child="SistematizacijaDetalji" msdata:parentkey="IdSistematizacije" msdata:childkey="IdSistematizacije" msprop:Generator_UserParentTable="Sistematizacija" msprop:Generator_UserChildTable="SistematizacijaDetalji" msprop:Generator_RelationVarName="relationFK_Sistematizacija_SistematizacijaDetalji" msprop:Generator_ChildPropName="GetSistematizacijaDetaljiRows" msprop:Generator_ParentPropName="SistematizacijaRow" msprop:Generator_UserRelationName="FK_Sistematizacija_SistematizacijaDetalji" />
+      <msdata:Relationship name="Ucenici_UcenikSkGod" msdata:parent="Ucenici" msdata:child="UcenikSkGod" msdata:parentkey="IdUcenika" msdata:childkey="IdUcenika" msprop:Generator_UserParentTable="Ucenici" msprop:Generator_UserChildTable="UcenikSkGod" msprop:Generator_RelationVarName="relationUcenici_UcenikSkGod" msprop:Generator_ChildPropName="GetUcenikSkGodRows" msprop:Generator_UserRelationName="Ucenici_UcenikSkGod" msprop:Generator_ParentPropName="UceniciRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

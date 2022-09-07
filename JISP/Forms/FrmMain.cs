@@ -144,6 +144,8 @@ namespace JISP.Forms
         private void CmbSkolskaGodina_SelectedIndexChanged(object sender, EventArgs e)
         {
             AppData.SkolskaGodina = (SkolskaGodina)cmbSkolskaGodina.SelectedItem;
+            // ovo pravi gresku na pocetku ucitavanja programa kod ucitavanja podataka iz XMLa
+            //?AppData.SaveSett(AppData.SkGodSett, AppData.SkolskaGodina.Start.ToString());
         }
     }
 }

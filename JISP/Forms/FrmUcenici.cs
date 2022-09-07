@@ -20,18 +20,19 @@ namespace JISP.Forms
 
         private void FrmUcenici_Load(object sender, EventArgs e)
         {
-            bsUcenici.DataSource = AppData.Ds;
+            dgvUcenikSkGod.ColumnsForCopyOnClick = new int[] 
+                { jobDgvc.Index, ocenePoluJSONDgvc.Index, oceneKrajJSONDgvc.Index, ZavrsObrazovanjaRezimeDgvc.Index };
+            dgvUcenikSkGod.CopyOnCellClick = true;
+            bsUcenikSkGod.DataSource = AppData.Ds;
+            dgvUcenikSkGod.StandardSort = bsUcenici.Sort;
+            dgvUcenikSkGod.CellTextCopied += Dgv_CellTextCopied;
+            dgvUcenikSkGod.LoadSettings();
             colOriginal = lblStatus.BackColor;
-            dgvUcenici.ColumnsForCopyOnClick = new int[] { dgvcJOB.Index, dgvcOcenePgJson.Index, dgvcOceneKrajJson.Index };
-            dgvUcenici.CopyOnCellClick = true;
-            dgvUcenici.CellTextCopied += Dgv_CellTextCopied;
             lblStatus.TextChanged += LblStatus_TextChanged;
             timStatus.Tick += TimStatus_Tick;
             ttOceneProvera.SetToolTip(chkOceneSaVladanjem, "Provera naziva ocena");
             ResetLblOceneProsekText();
             FilterData();
-            dgvUcenici.StandardSort = bsUcenici.Sort;
-            dgvUcenici.LoadSettings();
             PodesiCmbPodaciZaDohvatanje();
 
             formLoadStarted = DateTime.Now;
@@ -97,11 +98,6 @@ namespace JISP.Forms
             return ids;
         }
 
-        private void ChkSamoTekuci_CheckedChanged(object sender, EventArgs e)
-        {
-            FilterData();
-        }
-
         private void TxtFilter_TextChanged(object sender, EventArgs e)
         {
             FilterData();
@@ -121,13 +117,11 @@ namespace JISP.Forms
                     var ids = IDeviZaDeoImena(s);
                     var deoImena = ids.Count() > 0 ? $"IdUcenika IN ({string.Join(", ", ids)}) OR " : "";
 
-                    filter = $"{deoImena} JOB LIKE '%{s}%' "
+                    filter = $"{deoImena} _JOB LIKE '%{s}%' "
                            + $" OR Skola LIKE '%{s}%' OR Razred LIKE '%{s}%' OR Odeljenje LIKE '%{s}%'";
                 }
-                if (chkSamoTekuci.Checked)
-                    filter = $"({filter}) AND RegUceLiceId IS NOT NULL";
-
-                bsUcenici.Filter = filter;
+                filter = $"({filter}) AND SkGod = '{AppData.SkolskaGodina}'";
+                bsUcenikSkGod.Filter = filter;
             }
             catch (Exception ex) { Utils.ShowMbox(ex, "Greška pri filtriranju podataka"); }
         }
@@ -139,7 +133,7 @@ namespace JISP.Forms
         {
             if (e.KeyCode == Keys.Enter)
             {
-                dgvUcenici.CopyCellText(dgvcJOB.Index);
+                dgvUcenikSkGod.CopyCellText(jobDgvc.Index);
                 e.SuppressKeyPress = true; // protiv "kling" zvuka
             }
         }
@@ -227,55 +221,80 @@ namespace JISP.Forms
             }
         }
 
-        private void DgvUcenici_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvUcenikSkGod_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == -1 || e.ColumnIndex == dgvcIme.Index || e.ColumnIndex == dgvcJOB.Index)
+            if (e.ColumnIndex == -1 || e.ColumnIndex == imeDgvc.Index || e.ColumnIndex == jobDgvc.Index)
             {
-                var uc = dgvUcenici.CurrDataRow<Ds.UceniciRow>();
+                var uc = dgvUcenikSkGod.CurrDataRow<Ds.UceniciRow>();
                 new FrmUcenikImeJOB(uc).ShowDialog();
             }
         }
 
         private void FrmUcenici_FormClosed(object sender, FormClosedEventArgs e)
         {
-            dgvUcenici.SaveSettings();
+            dgvUcenikSkGod.SaveSettings();
         }
 
         /// <summary>Preuzimanje DUOS podataka o ucenicima za tekucu sk. godinu.</summary>
-        private static async Task GetDuosData(WebApi.ReqEnum reqEnumDuos, IEnumerable<Ds.UceniciRow> selRows)
+        private static async Task GetDuosData(WebApi.ReqEnum reqEnumDuos)
         {
             var duoses = await WebApi.GetList<DUOS>(reqEnumDuos);
-            duoses = duoses.Where(it => it.SkolskaGodina == AppData.SkolskaGodina.Naziv)
-                .ToList();
-            AcceptDuosData(duoses, reqEnumDuos, selRows);
+            AcceptDuosData(duoses, reqEnumDuos);
         }
 
         /// <summary>Preuzimanje DUOS podataka o ucenicima za tekucu sk. godinu.</summary>
-        private static async Task PostForDuosData(WebApi.ReqEnum reqEnum, IEnumerable<Ds.UceniciRow> selRows)
+        private static async Task PostForDuosData(WebApi.ReqEnum reqEnum)
         {
             var body = "{\"ustanovaId\":" + WebApi.SV_SAVA_ID + ",\"pageIndex\":0,\"pageSize\":1000,\"searchTerm\":\"\"}";
             var duosSS = await WebApi.PostForObject<DUOS_SS>(reqEnum, body);
-            AcceptDuosData(duosSS.UpisSrednje, reqEnum, selRows);
+            AcceptDuosData(duosSS.UpisSrednje, reqEnum);
         }
 
-        private static void AcceptDuosData(List<DUOS> duoses, WebApi.ReqEnum reqEnum, IEnumerable<Ds.UceniciRow> selRows)
+        private static void AcceptDuosData(List<DUOS> duoses, WebApi.ReqEnum reqEnum)
         {
-            var selectedJOBs = selRows.Select(it => it.JOB);
-            foreach (var duos in duoses.Where(it => selectedJOBs.Contains(it.JOB)))
+            foreach (var duos in duoses)
             {
-                var uc = AppData.Ds.Ucenici.FirstOrDefault(it => it.JOB == duos.JOB);
-                if (uc != null)
-                {
-                    uc.RegUceLiceId = duos.RegUceLiceId;
-                    uc.Skola = reqEnum == WebApi.ReqEnum.Uc_DuosOS ? "Основна" : "Средња";
-                    uc.Razred = duos.Razred;
-                    uc.Odeljenje = duos.Odeljenje;
-                    uc.Id = duos.Id;
-                    uc.RegUceLiceObrazovanjeId = reqEnum == WebApi.ReqEnum.Uc_DuosOS
+                var u = AppData.Ds.Ucenici.FirstOrDefault(it => it.JOB == duos.JOB);
+                if (u == null)
+                    continue;
+                if (u.IsRegUceLiceIdNull())
+                    u.RegUceLiceId = duos.RegUceLiceId;
+
+                var exUsk = AppData.Ds.UcenikSkGod.FirstOrDefault
+                    (it => it.IdUcenika == u.IdUcenika && it.SkGod == duos.SkolskaGodina);
+                var regUceLiceObrazovanjeId = reqEnum == WebApi.ReqEnum.Uc_DuosOS
                         ? duos.RegUceLiceOsnovnoObrazovanjeId : duos.RegUceLiceSrednjeObrazovanjeId;
+                var skola = reqEnum == WebApi.ReqEnum.Uc_DuosOS ? "Основна" : "Средња";
+                if (exUsk == null)
+                {
+                    var usk = AppData.Ds.UcenikSkGod.NewUcenikSkGodRow();
+                    usk.Id = duos.Id;
+                    usk.IdUcenika = u.IdUcenika;
+                    usk.SkGod = duos.SkolskaGodina;
+                    usk.RegUceLiceObrazovanjeId = regUceLiceObrazovanjeId;
+                    usk.Skola = skola;
+                    usk.Razred = duos.Razred;
+                    usk.Odeljenje = duos.Odeljenje;
+                    AppData.Ds.UcenikSkGod.AddUcenikSkGodRow(usk);
                 }
                 else
-                    throw new Exception($"JOB {duos.JOB} nije pronadjen.");
+                {
+                    var usk = exUsk;
+                    if (usk.Id != duos.Id)
+                        usk.Id = duos.Id;
+                    if (usk.IdUcenika != u.IdUcenika)
+                        usk.IdUcenika = u.IdUcenika;
+                    if (usk.SkGod != duos.SkolskaGodina)
+                        usk.SkGod = duos.SkolskaGodina;
+                    if (usk.RegUceLiceObrazovanjeId != regUceLiceObrazovanjeId)
+                        usk.RegUceLiceObrazovanjeId = regUceLiceObrazovanjeId;
+                    if (usk.Skola != skola)
+                        usk.Skola = skola;
+                    if (usk.Razred != duos.Razred)
+                        usk.Razred = duos.Razred;
+                    if (usk.Odeljenje != duos.Odeljenje)
+                        usk.Odeljenje = duos.Odeljenje;
+                }
             }
         }
 
@@ -286,80 +305,104 @@ namespace JISP.Forms
             if (selItem == CmbDohvatiOpste)
                 await (sender as UcButton).RunAsync(async () =>
                 {
-                    foreach (var uc in dgvUcenici.SelectedDataRows<Ds.UceniciRow>()
-                        .Where(it => !it.IsRegUceLiceIdNull()))
+                    foreach (var uc in dgvUcenikSkGod.SelectedDataRows<Ds.UcenikSkGodRow>())
                     {
+                        var u = AppData.Ds.Ucenici.FindByIdUcenika(uc.IdUcenika);
                         var uo = await WebApi.GetObject<UcenikOpste>
-                            (WebApi.ReqEnum.Uc_OpstiPodaci, uc.RegUceLiceId.ToString());
-                        uc.Pol = uo.PolSlovo;
+                            (WebApi.ReqEnum.Uc_OpstiPodaci, u.RegUceLiceId.ToString());
+                        u.Pol = uo.PolSlovo;
                         if (uo.DatumRodjenja.HasValue)
-                            uc.DatumRodjenja = uo.DatumRodjenja.Value;
+                            u.DatumRodjenja = uo.DatumRodjenja.Value;
                     }
                 });
 
             if (selItem == CmbDohvatiOdRaz)
                 await (sender as UcButton).RunAsync(async () =>
                 {
-                    var ucenici = dgvUcenici.SelectedDataRows<Ds.UceniciRow>();
-                    if (ucenici.Any(it => it.JeOsnovac))
-                        await GetDuosData(WebApi.ReqEnum.Uc_DuosOS, ucenici.Where(it => it.JeOsnovac));
-                    if (ucenici.Any(it => it.JeSrednjoskolac))
-                        await PostForDuosData(WebApi.ReqEnum.Uc_DuosSS, ucenici.Where(it => it.JeSrednjoskolac));
+                    await GetDuosData(WebApi.ReqEnum.Uc_DuosOS);
+                    await PostForDuosData(WebApi.ReqEnum.Uc_DuosSS);
                 });
 
             if (selItem == CmbDohvatiSmer)
                 await (sender as UcButton).RunAsync(async () =>
                 {
-                    foreach (var uc in dgvUcenici.SelectedDataRows<Ds.UceniciRow>().Where(it => !it.JeOsnovac))
+                    foreach (var u in dgvUcenikSkGod.SelectedDataRows<Ds.UcenikSkGodRow>().Where(it => !it.JeOsnovac))
                     {
                         var url = "https://jisp.mpn.gov.rs/webapi/api/ucenik/VratiUpisSrednjeObrazovanjeById/";
-                        var json = await WebApi.GetJson(url + uc.Id);
+                        var json = await WebApi.GetJson(url + u.Id);
                         dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(json);
                         var str = (string)obj.smerObrazovniProfilNaziv;
-                        uc.Smer = str.Contains('(') ? str.Substring(0, str.IndexOf('(')).Trim() : str;
+                        u.Smer = str.Contains('(') ? str.Substring(0, str.IndexOf('(')).Trim() : str;
                     }
                 });
 
             if (selItem == CmbDohvatiOcenePG)
                 await (sender as UcButton).RunAsync(async () =>
                 {
-                    foreach (var uc in dgvUcenici.SelectedDataRows<Ds.UceniciRow>())
+                    foreach (var u in dgvUcenikSkGod.SelectedDataRows<Ds.UcenikSkGodRow>())
                     {
-                        var nivo = uc.JeOsnovac ? "Osnovno" : "Srednje";
+                        var nivo = u.JeOsnovac ? "Osnovno" : "Srednje";
                         var url = $"https://jisp.mpn.gov.rs/webapi/api/ucenik/Vrati{nivo}ObrazovanjeZavrsetakPolugodistaById/";
-                        uc.OcenePG = await WebApi.GetJson(url + uc.Id);
-                        var ocene = Newtonsoft.Json.JsonConvert.DeserializeObject<OceneUcenika>(uc.OcenePG);
-                        uc.BrojOcenaPolu = ocene.UkupanBrojOcena;
+                        var json = await WebApi.GetJson(url + u.Id);
+                        var ocene = Newtonsoft.Json.JsonConvert.DeserializeObject<OceneUcenika>(json);
+                        if (ocene.UkupanBrojOcena == 0)
+                        {
+                            u.SetOcenePoluJSONNull();
+                            u.SetOcenePoluBrojNull();
+                        }
+                        else
+                        {
+                            u.OcenePoluJSON = json;
+                            u.OcenePoluBroj = ocene.UkupanBrojOcena;
+                        }
                     }
                 });
 
             if (selItem == CmbDohvatiOceneKraj)
                 await (sender as UcButton).RunAsync(async () =>
                 {
-                    foreach (var uc in dgvUcenici.SelectedDataRows<Ds.UceniciRow>())
+                    foreach (var u in dgvUcenikSkGod.SelectedDataRows<Ds.UcenikSkGodRow>())
                     {
-                        var nivo = uc.JeOsnovac ? "Osnovno" : "Srednje";
-                        var url = $"https://jisp.mpn.gov.rs/webapi/api/ucenik/Vrati{nivo}ObrazovanjeZavrsetakRazredaById/" + uc.Id;
-                        uc.OceneKraj = await WebApi.GetJson(url);
-                        var ocene = Newtonsoft.Json.JsonConvert.DeserializeObject<OceneUcenika>(uc.OceneKraj);
-                        uc.BrojOcenaKraj = ocene.UkupanBrojOcena;
+                        var nivo = u.JeOsnovac ? "Osnovno" : "Srednje";
+                        var url = $"https://jisp.mpn.gov.rs/webapi/api/ucenik/Vrati{nivo}ObrazovanjeZavrsetakRazredaById/" + u.Id;
+                        var json = await WebApi.GetJson(url);
+                        var ocene = Newtonsoft.Json.JsonConvert.DeserializeObject<OceneUcenika>(json);
+                        if (ocene.UkupanBrojOcena == 0)
+                        {
+                            u.SetOceneKrajJSONNull();
+                            u.SetOceneKrajBrojNull();
+                        }
+                        else
+                        {
+                            u.OceneKrajJSON = json;
+                            u.OceneKrajBroj = ocene.UkupanBrojOcena;
+                        }
                     }
                 });
 
             if (selItem == CmbDohvatiZavrsObraz)
                 await (sender as UcButton).RunAsync(async () =>
                 {
-                    foreach (var uc in dgvUcenici.SelectedDataRows<Ds.UceniciRow>())
+                    foreach (var u in dgvUcenikSkGod.SelectedDataRows<Ds.UcenikSkGodRow>())
                     {
-                        var nivo = uc.JeOsnovac ? "Osnovno" : "Srednje";
-                        var url = $"https://jisp.mpn.gov.rs/webapi/api/ucenik/Vrati{nivo}ObrazovanjeZavrsetak{nivo[0]}OById/" + uc.RegUceLiceObrazovanjeId;
-                        uc.ZavrsObrazovanjaJSON = await WebApi.GetJson(url);
-                        dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(uc.ZavrsObrazovanjaJSON);
-                        uc.ZavrsObrazovanjaKratko
-                            = (string)obj.datumZavrsetka + "; "
-                            + obj.zavrsetakIsprave[0].ispravaNaziv + "; "
-                            + obj.regNoksNacionalnaKvalifikacijaId + ", "
-                            + obj.prosecnaOcenaNaZavrsnomMatruskomIspitu;
+                        var nivo = u.JeOsnovac ? "Osnovno" : "Srednje";
+                        var url = $"https://jisp.mpn.gov.rs/webapi/api/ucenik/Vrati{nivo}ObrazovanjeZavrsetak{nivo[0]}OById/" + u.RegUceLiceObrazovanjeId;
+                        var json = await WebApi.GetJson(url);
+                        dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(json);
+                        if (obj.datumZavrsetka == null)
+                        {
+                            u.SetZavrsObrazovanjaJSONNull();
+                            u.SetZavrsObrazovanjaRezimeNull();
+                        }
+                        else
+                        {
+                            u.ZavrsObrazovanjaJSON = json;
+                            u.ZavrsObrazovanjaRezime
+                                = (string)obj.datumZavrsetka + "; "
+                                + obj.zavrsetakIsprave[0].ispravaNaziv + "; "
+                                + obj.regNoksNacionalnaKvalifikacijaId + ", "
+                                + obj.prosecnaOcenaNaZavrsnomMatruskomIspitu;
+                        }
                     }
                 });
         }

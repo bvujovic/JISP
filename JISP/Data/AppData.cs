@@ -74,16 +74,32 @@ namespace JISP.Data
         public static void LoadDsData()
         {
             Ds.ReadXml(FilePath());
+            //T
+            //Ds.Zaposleni.ReadXml(FilePath());
+            //Ds.ObracunZarada.ReadXml(FilePath());
+            //Ds.Zaposlenja.ReadXml(FilePath());
+            //Ds.Angazovanja.ReadXml(FilePath());
+            //Ds.Resenja.ReadXml(FilePath());
+            //Ds.Ucenici.ReadXml(FilePath());
+            //Ds.UcenikSkGod.ReadXml(FilePath());
+            //Ds.Settings.ReadXml(FilePath());
+
             Ds.Zaposleni.CalcJmbgBasedCols();
             Ds.Zaposleni.CalcAktivan();
             Ds.Ucenici.CalcDatRodjBasedCols();
             SlikeZaposlenih.PostaviKoImaSliku();
             Ds.AcceptChanges();
             WebApi.Token = LoadSett(WebApi.TOKEN_CAPTION);
-            Browser = LoadSett("browser", "Chrome");
-            var strSkGod = LoadSett("skGod", DateTime.Today.Year.ToString());
+            Browser = LoadSett(BrowserSett, "Chrome");
+            var strSkGod = LoadSett(SkGodSett, DateTime.Today.Year.ToString());
             SkolskaGodina = new SkolskaGodina(int.Parse(strSkGod));
         }
+
+        /// <summary>Naziv podesavanja za izabrani internet browser.</summary>
+        public static string BrowserSett => "browser";
+
+        /// <summary>Naziv podesavanja za izabranu skolsku godinu. Cuva se godina pocetka (int).</summary>
+        public static string SkGodSett => "skGod";
 
         /// <summary>Cuvanje podataka iz DataSet-a u fajl.</summary>
         public static void SaveDsData()
@@ -93,8 +109,8 @@ namespace JISP.Data
                 ClearTempTables();
                 if (WebApi.TokenDisplay != WebApi.TOKEN_MISSING)
                     SaveSett(WebApi.TOKEN_CAPTION, WebApi.Token);
-                SaveSett("browser", Browser);
-                SaveSett("skGod", SkolskaGodina.Start.ToString());
+                SaveSett(BrowserSett, Browser);
+                SaveSett(SkGodSett, SkolskaGodina.Start.ToString());
                 Ds.WriteXml(FilePath());
                 Ds.AcceptChanges();
             }
