@@ -135,9 +135,11 @@ namespace JISP.Data
             var koefs = new List<Koef>();
             foreach (var k in koefMulti)
                 koefs.Add(new Koef(Utils.SkratiNazivKoef((string)k.nazivOsnovaDodatnogKoeficijenta), (int)k.procenat));
-
             oz.KoefSveOpis = string.Join(", ", koefs.OrderByDescending(it => it.Procenat));
             oz.IdZaposlenja = (int)obj.regZapObracunZaradaDouniverzitetskoObrazovanje.id;
+            if (obj.regZapObracunZaradaDouniverzitetskoObrazovanje != null
+                && obj.regZapObracunZaradaDouniverzitetskoObrazovanje.ukupanRadniStazTekuceSkolskeGodine != null)
+                oz.Staz = (int)obj.regZapObracunZaradaDouniverzitetskoObrazovanje.ukupanRadniStazTekuceSkolskeGodine;
         }
 
         public static async Task GetResenjaAsync(IEnumerable<Ds.ZaposlenjaRow> zaposlenja)

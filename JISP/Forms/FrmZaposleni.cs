@@ -316,13 +316,34 @@ namespace JISP.Forms
                         await DataGetter.GetZaposlenjaAsync(zap);
                         await DataGetter.GetAngazovanjaAsync(zap.GetZaposlenjaRows().Where(it => it.Aktivan));
                         await DataGetter.GetObracuniZaradaAsync(zap);
-                        var ozs = Classes.ObracunZarada.ObracunZarada.PoslednjiObracuni(zap.GetObracunZaradaRows());
+                        var ozs = Classes.ObracunZarada.ObracunZarada.PoslednjiObracuni
+                            (zap.GetObracunZaradaRows(), zap.GetZaposlenjaRows().Where(it => it.Aktivan).Select(it => it.BrojUgovoraORadu));
                         foreach (var oz in ozs)
                             await DataGetter.GetOzOpisAsync(oz);
                         zap.CalcAngazovanja();
                     });
                 lblStatus.Text = "";
-            }           
+            }
+        }
+
+        private void BtnStaz_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new FrmStaz();
+                if (frm.ShowDialog() != DialogResult.OK)
+                    return;
+
+                AppData.SaveSett(AppData.DatumIzvestajaTrezora, frm.DatumIzvestajaTrezora.ToShortDateString());
+                var krajSkGod = new DateTime(AppData.SkolskaGodina.Start + 1, 8, 31);
+                var meseciOdIzvestaja = (int)((krajSkGod - frm.DatumIzvestajaTrezora).Days / 30.24);
+                foreach (var zap in AppData.Ds.Zaposleni.Where(it => !it.IsStazGodineNull()))
+                {
+                    var stazMeseci = zap.StazGodine * 12 + zap.StazMeseci + meseciOdIzvestaja;
+                    zap.StatusAktivnosti1 = (stazMeseci / 12) + " / " + (stazMeseci % 12);
+                }
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, btnStaz.Text); }
         }
     }
 }

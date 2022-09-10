@@ -101,6 +101,9 @@ namespace JISP.Data
         /// <summary>Naziv podesavanja za izabranu skolsku godinu. Cuva se godina pocetka (int).</summary>
         public static string SkGodSett => "skGod";
 
+        /// <summary>Datum izvestaja trezora u kojem pisu staz i ostali finansijski podaci.</summary>
+        public static string DatumIzvestajaTrezora => nameof(DatumIzvestajaTrezora);
+
         /// <summary>Cuvanje podataka iz DataSet-a u fajl.</summary>
         public static void SaveDsData()
         {

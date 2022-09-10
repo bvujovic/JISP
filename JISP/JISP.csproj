@@ -28,7 +28,7 @@
     <PublisherName>BV</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.5.5.0</ApplicationVersion>
+    <ApplicationVersion>0.5.1.0</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -179,6 +179,12 @@
     <Compile Include="Forms\FrmSlikaZap.Designer.cs">
       <DependentUpon>FrmSlikaZap.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FrmStaz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmStaz.Designer.cs">
+      <DependentUpon>FrmStaz.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmUcenici.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -232,6 +238,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmSlikaZap.resx">
       <DependentUpon>FrmSlikaZap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmStaz.resx">
+      <DependentUpon>FrmStaz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmUcenici.resx">
       <DependentUpon>FrmUcenici.cs</DependentUpon>

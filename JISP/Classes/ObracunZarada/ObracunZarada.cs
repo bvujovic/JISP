@@ -47,16 +47,20 @@ namespace JISP.Classes.ObracunZarada
         }
 
         /// <summary>Obracuni zarada u poslednjim mesecu</summary>
-        /// <remarks>
-        /// Logika nije sasvim ispravna. Metoda vraca OZove (1 ili vise) iz poslednjeg meseca
-        /// bez obzira da li su za sva zaposlenja poslednji OZovi u istom mesecu.
-        /// </remarks>
-        public static IEnumerable<Ds.ObracunZaradaRow> PoslednjiObracuni(Ds.ObracunZaradaRow[] ozs)
+        public static IEnumerable<Ds.ObracunZaradaRow> PoslednjiObracuni
+            (Ds.ObracunZaradaRow[] ozs, IEnumerable<string> aktivniUgovori)
         {
             if (ozs == null || ozs.Length == 0)
                 return Enumerable.Empty<Ds.ObracunZaradaRow>();
-            var max = ozs.Max(it => it.MeseciTotal);
-            return ozs.Where(it => it.MeseciTotal == max);
+
+            var obracuni = new List<Ds.ObracunZaradaRow>();
+            var g = ozs.GroupBy(it => it.BrojUgovora);
+            foreach (var zap in g.Where(it => aktivniUgovori.Contains(it.Key)))
+            {
+                int mes = zap.Max(it => it.MeseciTotal);
+                obracuni.AddRange(zap.Where(it => it.MeseciTotal == mes));
+            }
+            return obracuni;
         }
     }
 }

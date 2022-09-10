@@ -1,4 +1,3 @@
-﻿- čuvanje JSON podataka o ocenama na polugodištu i kraju godine
-- dugmici
+﻿- dugmici
 	[- boje dugmica: Sacuvaj - plava, Dodaj novo - zelena, Izmeni - zuta, Obrisi - crvena, Izlaz iz app - crna]
 - Bolje opisati program u README.md
