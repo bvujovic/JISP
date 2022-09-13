@@ -20,9 +20,12 @@ namespace JISP.Classes
             set
             {
                 start = value;
-                Naziv = $"{start}/{start + 1}";
+                Naziv = $"{Start}/{Kraj}";
             }
         }
+
+        /// <summary>Kalendarska godina u kojoj se zavrsava skolska godina.</summary>
+        public int Kraj => start + 1;
 
         /// <summary>Naziv skolske godine. Na primer "2022/2023".</summary>
         public string Naziv { get; private set; }

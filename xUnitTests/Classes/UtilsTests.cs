@@ -24,5 +24,13 @@ namespace xUnitTests.Classes
             var res = Utils.SuperSkratiIzvorFin(source);
             Assert.Equal(target, res);
         }
+
+        [Theory]
+        [InlineData("2022-07-31", "2022-08-31", 1)]
+        public void DiffMonths_Test(DateTime start, DateTime end, int expected)
+        {
+            var res = Utils.DiffMonths(start, end);
+            Assert.Equal(expected, res);
+        }
     }
 }

@@ -239,7 +239,7 @@ namespace JISP.Forms
                 {
                     if (god == AppData.SkolskaGodina.Start && idx < 8)
                         vanTekuce = true;
-                    if (god == AppData.SkolskaGodina.Start + 1 && idx >= 8)
+                    if (god == AppData.SkolskaGodina.Kraj && idx >= 8)
                         vanTekuce = true;
                 }
                 if (lstchkMeseci.CheckedIndices.Count > 0 && (god < AppData.SkolskaGodina.Start || god > AppData.SkolskaGodina.Start + 1))

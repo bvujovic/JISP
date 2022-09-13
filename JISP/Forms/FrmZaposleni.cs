@@ -335,8 +335,8 @@ namespace JISP.Forms
                     return;
 
                 AppData.SaveSett(AppData.DatumIzvestajaTrezora, frm.DatumIzvestajaTrezora.ToShortDateString());
-                var krajSkGod = new DateTime(AppData.SkolskaGodina.Start + 1, 8, 31);
-                var meseciOdIzvestaja = (int)((krajSkGod - frm.DatumIzvestajaTrezora).Days / 30.24);
+                var krajSkGod = new DateTime(AppData.SkolskaGodina.Kraj, 8, 31);
+                var meseciOdIzvestaja = Utils.DiffMonths(frm.DatumIzvestajaTrezora, krajSkGod);
                 foreach (var zap in AppData.Ds.Zaposleni.Where(it => !it.IsStazGodineNull()))
                 {
                     var stazMeseci = zap.StazGodine * 12 + zap.StazMeseci + meseciOdIzvestaja;
@@ -344,6 +344,16 @@ namespace JISP.Forms
                 }
             }
             catch (Exception ex) { Utils.ShowMbox(ex, btnStaz.Text); }
+        }
+
+        private void FrmZaposleni_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F && e.Control)
+            {
+                txtFilter.SelectAll();
+                txtFilter.Focus();
+                e.SuppressKeyPress = true;
+            }
         }
     }
 }

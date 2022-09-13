@@ -105,6 +105,13 @@ namespace JISP.Classes
         public static string CurrentTimeMS
             => DateTime.Now.ToString(VremeSamoSitnoFormat);
 
+        public static int DiffMonths(DateTime start, DateTime end)
+        {
+            var y = end.Year - start.Year;
+            var m = end.Month - start.Month;
+            return 12 * y + m;
+        }
+
         public static void GoToLink(string url)
         {
             var process = Data.AppData.Browser == "Chrome" ? "chrome.exe" : "msedge.exe";
