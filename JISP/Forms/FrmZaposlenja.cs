@@ -78,6 +78,7 @@ namespace JISP.Forms
                 await DataGetter.GetObracuniZaradaAsync(zaposleni)
             );
             dgvObracunZarada.DisplayPositionRowCount();
+            dgvObracunZarada.SelectAll();
         }
 
         private async void BtnKreirajObracune_Click(object sender, EventArgs e)
@@ -113,6 +114,7 @@ namespace JISP.Forms
                 if (dupliMeseci.Any())
                     throw new Exception($"Obračuni zarada za mesece ({string.Join(", ", dupliMeseci)}) već postoje.");
             });
+            btnUcitajObracunZarada.PerformClick();
         }
 
         private async void BtnObrisiObracune_Click(object sender, EventArgs e)
@@ -129,6 +131,7 @@ namespace JISP.Forms
                         await WebApi.PostForJson(WebApi.ReqEnum.Zap_ObracunZaradaObrisi, body);
                     }
                 });
+            btnUcitajObracunZarada.PerformClick();
         }
 
         private static bool CheckedCopyOnClick = false;
@@ -212,7 +215,7 @@ namespace JISP.Forms
         {
             foreach (var oz in dgvObracunZarada.SelectedDataRows<Ds.ObracunZaradaRow>())
                 await (sender as UcButton).RunAsync(async () =>
-                    await DataGetter.GetOzOpisAsync(oz)
+                    await DataGetter.GetOzDodatnoAsync(oz)
                 );
         }
 

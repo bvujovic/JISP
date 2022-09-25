@@ -19,7 +19,7 @@ namespace JISP.Forms
         private void FrmSistematizacija_Load(object sender, EventArgs e)
         {
             btnOsveziPodatke.PerformClick();
-
+            
             dgvSistematizacija.TsmiSelekcija(false);
             dgvSistematizacija.ColumnsForCopyOnClick = new int[] { radnoMestoDgvc.Index, predmetDgvc.Index };
             dgvSistematizacija.CopyOnCellClick = true;
@@ -33,6 +33,7 @@ namespace JISP.Forms
             {
                 await DataGetter.GetSistematizacijaAsync();
             });
+            dgvSistematizacija.DisplayPositionRowCount();
         }
 
         private void TxtFilter_TextChanged(object sender, EventArgs e)

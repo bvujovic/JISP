@@ -42,6 +42,8 @@ namespace JISP.Classes
                 case "Помоћник директора школе": return "PDir";
                 case "Организатор практичне наставе": return "Org";
 
+                case "За послове руковођења у дому ученика - шеф службе": return "ŠefDom";
+                case "Васпитач у дому ученика у посебним условима": return "Vasp";
                 case "Наставник у одељењу за ученике са сметњама у развоју": return "Nast";
                 case "Наставник одељенски/разредни старешина": return "Star";
                 case "Наставник комбинованог одељења од 2 разреда": return "Komb2";
@@ -213,6 +215,34 @@ namespace JISP.Classes
             }
             catch (Exception ex) { ShowMbox(ex, "Preuzimanje rešenja"); }
             cell.Value = originalText;
+        }
+
+        public static string RezimeZavrsetkaObrazovanja(string json)
+        {
+            dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(json);
+            var stavke = new List<string>();
+            string datum = (string)obj.datumZavrsetka;
+            stavke.Add(datum.Substring(0, datum.IndexOf(" ")));
+            stavke.Add(obj.regNoksNacionalnaKvalifikacijaId.ToString());
+            if (obj.zavrsetakIsprave != null)
+                foreach (var isprava in obj.zavrsetakIsprave)
+                {
+                    string naziv = isprava.ispravaNaziv;
+                    stavke.Add(naziv.Substring(0, naziv.IndexOf(" ")));
+                }
+            if (obj.opis != null)
+                stavke.Add((string)obj.opis);
+            if (obj.zavrsniIspiti != null)
+                foreach (var ispit in obj.zavrsniIspiti)
+                {
+                    string naziv = ispit.testNaziv;
+                    naziv = naziv.Contains("комб") ? "комбиновани" : naziv.Contains("матем") ? "математика" : naziv.Contains("српск") ? "српски" : "";
+                    stavke.Add(naziv + ": " + ispit.brojBodova);
+                }
+            if (obj.prosecnaOcenaSrednjegObrazovanja != null)
+                stavke.Add("просек: " + obj.prosecnaOcenaSrednjegObrazovanja);
+
+            return string.Join(", ", stavke);
         }
     }
 }

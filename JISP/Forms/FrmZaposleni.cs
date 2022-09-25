@@ -316,10 +316,11 @@ namespace JISP.Forms
                         await DataGetter.GetZaposlenjaAsync(zap);
                         await DataGetter.GetAngazovanjaAsync(zap.GetZaposlenjaRows().Where(it => it.Aktivan));
                         await DataGetter.GetObracuniZaradaAsync(zap);
-                        var ozs = Classes.ObracunZarada.ObracunZarada.PoslednjiObracuni
-                            (zap.GetObracunZaradaRows(), zap.GetZaposlenjaRows().Where(it => it.Aktivan).Select(it => it.BrojUgovoraORadu));
-                        foreach (var oz in ozs)
-                            await DataGetter.GetOzOpisAsync(oz);
+                        //var ozs = Classes.ObracunZarada.ObracunZarada.PoslednjiObracuni
+                        //    (zap.GetObracunZaradaRows(), zap.GetZaposlenjaRows().Where(it => it.Aktivan)
+                        //    .Select(it => it.IdZaposlenja));
+                        foreach (var oz in zap.GetObracunZaradaRows().Where(it => it.Godina == AppData.SkolskaGodina.Start))
+                            await DataGetter.GetOzDodatnoAsync(oz);
                         zap.CalcAngazovanja();
                     });
                 lblStatus.Text = "";

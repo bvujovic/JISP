@@ -125,7 +125,7 @@ namespace JISP.Data
         }
 
         /// <summary>Ucitava i pamti IdZaposlenja i KoefSveOpis za dati OZ.</summary>
-        public static async Task GetOzOpisAsync(Ds.ObracunZaradaRow oz)
+        public static async Task GetOzDodatnoAsync(Ds.ObracunZaradaRow oz)
         {
             var json = await WebApi.GetJson(WebApi.ReqEnum.Zap_ObracunZaradaOpis
                 , oz.IdObracuna.ToString());

@@ -397,11 +397,7 @@ namespace JISP.Forms
                         else
                         {
                             u.ZavrsObrazovanjaJSON = json;
-                            u.ZavrsObrazovanjaRezime
-                                = (string)obj.datumZavrsetka + "; "
-                                + obj.zavrsetakIsprave[0].ispravaNaziv + "; "
-                                + obj.regNoksNacionalnaKvalifikacijaId + ", "
-                                + obj.prosecnaOcenaNaZavrsnomMatruskomIspitu;
+                            u.ZavrsObrazovanjaRezime = Utils.RezimeZavrsetkaObrazovanja(json);
                         }
                     }
                 });

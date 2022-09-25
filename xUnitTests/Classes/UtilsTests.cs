@@ -27,10 +27,20 @@ namespace xUnitTests.Classes
 
         [Theory]
         [InlineData("2022-07-31", "2022-08-31", 1)]
+        [InlineData("2022-07-31", "2023-08-31", 13)]
         public void DiffMonths_Test(DateTime start, DateTime end, int expected)
         {
             var res = Utils.DiffMonths(start, end);
             Assert.Equal(expected, res);
+        }
+
+        [Theory]
+        [InlineData("{\"jeObrisano\":null,\"regUceLiceId\":492755,\"opis\":\"ИОП2\",\"datumZavrsetka\":\"2022-06-30T00:00:00\",\"prilagodavanjeZavrsnogIspita\":true,\"ukupanBrojBodova\":null,\"vukovaDiploma\":null,\"stecenaKvalifikacijaId\":null,\"stecenaKvalifikacijaNaziv\":null,\"regNoksNacionalnaKvalifikacijaId\":31,\"zavrsetakIsprave\":[{\"id\":411,\"jeObrisano\":false,\"regUceLiceOsnovnoObrazovanjeId\":6120233,\"isprava\":19382,\"ispravaNaziv\":\"сведочанство о завршеном основном образовању\"},{\"id\":412,\"jeObrisano\":false,\"regUceLiceOsnovnoObrazovanjeId\":6120233,\"isprava\":19383,\"ispravaNaziv\":\"уверење о обављеном завршном испиту\"}],\"zavrsniIspiti\":[{\"id\":670,\"jeObrisano\":false,\"regUceLiceOsnovnoObrazovanjeId\":6120233,\"testId\":19381,\"testNaziv\":\"комбиновани тест\",\"brojBodova\":19,\"testDodatnoId\":null},{\"id\":671,\"jeObrisano\":false,\"regUceLiceOsnovnoObrazovanjeId\":6120233,\"testId\":19379,\"testNaziv\":\"тест из српског језика\",\"brojBodova\":20,\"testDodatnoId\":null},{\"id\":672,\"jeObrisano\":false,\"regUceLiceOsnovnoObrazovanjeId\":6120233,\"testId\":19380,\"testNaziv\":\" тест из математике\",\"brojBodova\":15,\"testDodatnoId\":null}],\"id\":6120233,\"zahtevId\":null,\"napomena\":null,\"napomenaVerifikacija\":null,\"daLiJeDraft\":false,\"registarId\":0,\"nazivSekcije\":null,\"regUstUstanovaId\":0,\"objekatIdDrugi\":0,\"objekatIdCetvrti\":null,\"objekatIdPeti\":null}"
+            , "06/30/2022, 31, сведочанство, уверење, ИОП2, комбиновани: 19, српски: 20, математика: 15")]
+        public void RezimeZavrsetkaObrazovanja_Test(string json, string rezime)
+        {
+            var res = Utils.RezimeZavrsetkaObrazovanja(json);
+            Assert.Equal(rezime, res);
         }
     }
 }

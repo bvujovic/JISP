@@ -295,7 +295,6 @@
             this.dgvUcenikSkGod.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvUcenikSkGod.Location = new System.Drawing.Point(150, 0);
             this.dgvUcenikSkGod.Name = "dgvUcenikSkGod";
-            this.dgvUcenikSkGod.ReadOnly = true;
             this.dgvUcenikSkGod.RowHeadersWidth = 30;
             this.dgvUcenikSkGod.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvUcenikSkGod.Size = new System.Drawing.Size(1147, 490);
@@ -456,7 +455,6 @@
             this.napomeneDgvc.HeaderText = "Napomene";
             this.napomeneDgvc.MinimumWidth = 100;
             this.napomeneDgvc.Name = "napomeneDgvc";
-            this.napomeneDgvc.ReadOnly = true;
             // 
             // FrmUcenici
             // 

@@ -48,13 +48,13 @@ namespace JISP.Classes.ObracunZarada
 
         /// <summary>Obracuni zarada u poslednjim mesecu</summary>
         public static IEnumerable<Ds.ObracunZaradaRow> PoslednjiObracuni
-            (Ds.ObracunZaradaRow[] ozs, IEnumerable<string> aktivniUgovori)
+            (Ds.ObracunZaradaRow[] ozs, IEnumerable<int> aktivniUgovori)
         {
             if (ozs == null || ozs.Length == 0)
                 return Enumerable.Empty<Ds.ObracunZaradaRow>();
 
             var obracuni = new List<Ds.ObracunZaradaRow>();
-            var g = ozs.GroupBy(it => it.BrojUgovora);
+            var g = ozs.GroupBy(it => it.IdZaposlenja);
             foreach (var zap in g.Where(it => aktivniUgovori.Contains(it.Key)))
             {
                 int mes = zap.Max(it => it.MeseciTotal);
