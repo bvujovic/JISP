@@ -171,6 +171,8 @@ namespace JISP.Data
             Uc_DuosSS,
             /// <summary>Opsti podaci o jednom uceniku</summary>
             Uc_OpstiPodaci,
+
+            Job_PreuzmiListuZahteva,
         }
 
         private static string UrlForReq(ReqEnum reqEnum, string param = null)
@@ -218,6 +220,9 @@ namespace JISP.Data
 
                 case ReqEnum.Uc_OpstiPodaci:
                     return urlBase + $"ucenik/OpstiPodaci?Id={param}";
+
+                case ReqEnum.Job_PreuzmiListuZahteva:
+                    return urlBase + $"job/PreuzmiListuZahteva";
                 default:
                     throw new Exception("Nepostojeci reqEnum: " + reqEnum);
             }

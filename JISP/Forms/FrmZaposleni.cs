@@ -1,4 +1,5 @@
 ﻿using JISP.Classes;
+using JISP.Classes.ObracunZarada;
 using JISP.Controls;
 using JISP.Data;
 using System;
@@ -57,7 +58,8 @@ namespace JISP.Forms
             s = s.ToLower();
             var ids = new HashSet<int>();
             foreach (var zap in AppData.Ds.Zaposlenja.Where
-                (it => (!aktivnoZap || (aktivnoZap && it.Aktivan)) && it.RadnoMestoNaziv.ToLower().Contains(s)))
+                (it => (!aktivnoZap || (aktivnoZap && it.Aktivan)) && it.RadnoMestoNaziv.ToLower().Contains(s)
+                || (it.Aktivan && it.VrstaAngazovanja.ToLower().Contains(s))))
                 ids.Add(zap.IdZaposlenog);
             return ids;
         }
@@ -123,9 +125,14 @@ namespace JISP.Forms
             if (e.RowIndex != -1
                 && new int[] { dgvcIme.Index, dgvcPrezime.Index, dgvcJMBG.Index }.Contains(e.ColumnIndex))
             {
-                var zap = dgvZaposleni.CurrDataRow<Ds.ZaposleniRow>();
-                new FrmZaposlenja(zap).ShowDialog();
+                new FrmZaposlenja(dgvZaposleni.CurrDataRow<Ds.ZaposleniRow>()).ShowDialog();
             }
+        }
+
+        private void DgvZaposleni_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+                new FrmZaposlenja(dgvZaposleni.CurrDataRow<Ds.ZaposleniRow>()).ShowDialog();
         }
 
         public IEnumerable<Ds.ZaposleniRow> SelektovaniZaposleni
@@ -205,16 +212,22 @@ namespace JISP.Forms
                             || zap.RadnoMestoNaziv.Contains("Помоћни наставник")
                             )
                             kat = "Ostali";
-                        var koefOpis = zaposleni.GetObracunZaradaRows().Where
-                            (it => !it.IsIdZaposlenjaNull() && it.IdZaposlenja == zap.IdZaposlenja)
-                            .FirstOrDefault()?.KoefSveOpis;
+                        //var koefOpis = zaposleni.GetObracunZaradaRows().Where
+                        //    (it => !it.IsIdZaposlenjaNull() && it.IdZaposlenja == zap.IdZaposlenja)
+                        //    .FirstOrDefault()?.KoefSveOpis;
+
+                        var ozs = zaposleni.GetObracunZaradaRows().Where
+                            (it => !it.IsIdZaposlenjaNull() && it.IdZaposlenja == zap.IdZaposlenja);
+                        var poslednji = ObracunZarada.PoslednjiObracuni(ozs.ToArray(), new int[] { zap.IdZaposlenja });
+                        var koefOpis = poslednji.FirstOrDefault()?.KoefSveOpis;
 
                         var proc = zap.ProcenatRadnogVremena;
                         var svi = uracunato == "DA" ? proc : 0;
                         var nastavnik = uracunato == "DA" && kat == "Nastavnik" ? proc : 0;
                         var vaspitac = uracunato == "DA" && kat == "Vaspitač" ? proc : 0;
                         var ostali = uracunato == "DA" && kat == "Ostali" ? proc : 0;
-                        var provera = koefOpis.Contains("Nast") && (kat == "Nastavnik" || kat == "Vaspitač")
+                        var provera = koefOpis.Contains("Nast") && kat == "Nastavnik"
+                            || koefOpis.Contains("Vasp") && kat == "Vaspitač"
                             || koefOpis.Contains("Zap") && kat == "Ostali";
 
                         sb.AppendLine($"{zaposleni};{zap.RadnoMestoNaziv};{kat};{proc};{uracunato};{koefOpis}"

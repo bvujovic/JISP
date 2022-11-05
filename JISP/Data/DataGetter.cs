@@ -236,5 +236,40 @@ namespace JISP.Data
                 AppData.Ds.IzvoriFinansiranja.AddIzvoriFinansiranjaRow(izvor);
             }
         }
+
+        /// <summary>Učitavanje liste JOB zahteva u kojoj se mogu pronaći: JMBG, JOB, ime, prezime učenika, ime roditelja.</summary>
+        /// <param name="samoPrvaStranica">true - samo prvih 50 stavki/zahteva, false - kompletna lista</param>
+        public static async Task GetListaJobZahteva(bool samoPrvaStranica)
+        {
+            var ucsDatRodj = new List<string>();
+            for (int i = 0; ; i++)
+            {
+                var body = $"{{\"tipZahteva\":0,\"statusZahteva\":0,\"datumOd\":\"\",\"datumDo\":\"\",\"pageIndex\":{i},\"pageSize\":50,\"idUstanove\":{WebApi.SV_SAVA_ID}}}";
+                var json = await WebApi.PostForJson(WebApi.ReqEnum.Job_PreuzmiListuZahteva, body);
+                dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(json);
+                foreach (var z in obj.zahtevi)
+                {
+                    if (z.lice != null && z.lice.job != null && (z.lice.jePrivremeniJOB == null || !(bool)z.lice.jePrivremeniJOB)
+                        && (z.lice.jeOpozvanJOB == null || !(bool)z.lice.jeOpozvanJOB))
+                    {
+                        var uc = AppData.Ds.Ucenici.FirstOrDefault(it => it.JOB == (string)z.lice.job);
+                        if (uc != null)
+                        {
+                            uc.JMBG = z.lice.jmbg;
+                            if (!uc.IsDatumRodjenjaNull() && JMBG.GetBirthDate(uc.JMBG) != uc.DatumRodjenja)
+                                ucsDatRodj.Add(uc.ToString());
+                            //? Ovde je moguce ucitati posebno ime, prezime i ime roditelja za svakog ucenika
+                            //Console.WriteLine(z.lice.ime);
+                            //Console.WriteLine(z.lice.prezime);
+                        }
+                    }
+                }
+                if (samoPrvaStranica || obj.zahtevi.Count < 50)
+                    break;
+            }
+            if (ucsDatRodj.Count > 0)
+                Utils.ShowMbox(string.Join(Environment.NewLine, ucsDatRodj)
+                    , "Spisak učenika čiji se datum rođenja i JMBG se ne slažu");
+        }
     }
 }

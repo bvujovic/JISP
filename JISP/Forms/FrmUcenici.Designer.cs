@@ -39,6 +39,7 @@
             this.ttOceneProvera = new System.Windows.Forms.ToolTip(this.components);
             this.lblRowCount = new System.Windows.Forms.Label();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
+            this.chkCopyOnClick = new System.Windows.Forms.CheckBox();
             this.btnDohvatiPodatke = new JISP.Controls.UcButton();
             this.cmbPodaciZaDohvatanje = new System.Windows.Forms.ComboBox();
             this.gbOceneUnos = new System.Windows.Forms.GroupBox();
@@ -50,9 +51,10 @@
             this.btnSaveData = new JISP.Controls.UcButton();
             this.txtFilter = new JISP.Controls.UcFilterTextBox();
             this.dgvUcenikSkGod = new JISP.Controls.UcDGV();
-            this.bsUcenikSkGod = new System.Windows.Forms.BindingSource(this.components);
             this.imeDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.jobDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcJMBG = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcPrebivaliste = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.skGodDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.skolaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.razredDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,6 +70,7 @@
             this.oceneKrajJSONDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ZavrsObrazovanjaRezimeDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.napomeneDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsUcenikSkGod = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bsUcenici)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
             this.statusStrip.SuspendLayout();
@@ -108,7 +111,7 @@
             // lblRowCount
             // 
             this.lblRowCount.AutoSize = true;
-            this.lblRowCount.Location = new System.Drawing.Point(4, 66);
+            this.lblRowCount.Location = new System.Drawing.Point(4, 122);
             this.lblRowCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRowCount.Name = "lblRowCount";
             this.lblRowCount.Size = new System.Drawing.Size(56, 16);
@@ -117,6 +120,7 @@
             // 
             // pnlLeft
             // 
+            this.pnlLeft.Controls.Add(this.chkCopyOnClick);
             this.pnlLeft.Controls.Add(this.btnDohvatiPodatke);
             this.pnlLeft.Controls.Add(this.cmbPodaciZaDohvatanje);
             this.pnlLeft.Controls.Add(this.gbOceneUnos);
@@ -133,6 +137,17 @@
             this.pnlLeft.RightWingWidth = 8;
             this.pnlLeft.Size = new System.Drawing.Size(150, 490);
             this.pnlLeft.TabIndex = 0;
+            // 
+            // chkCopyOnClick
+            // 
+            this.chkCopyOnClick.AutoSize = true;
+            this.chkCopyOnClick.Location = new System.Drawing.Point(7, 69);
+            this.chkCopyOnClick.Name = "chkCopyOnClick";
+            this.chkCopyOnClick.Size = new System.Drawing.Size(124, 20);
+            this.chkCopyOnClick.TabIndex = 13;
+            this.chkCopyOnClick.Text = "Kopiranje na klik";
+            this.chkCopyOnClick.UseVisualStyleBackColor = true;
+            this.chkCopyOnClick.CheckedChanged += new System.EventHandler(this.ChkCopyOnClick_CheckedChanged);
             // 
             // btnDohvatiPodatke
             // 
@@ -206,7 +221,7 @@
             // 
             // btnNoviUcenici
             // 
-            this.btnNoviUcenici.Location = new System.Drawing.Point(7, 143);
+            this.btnNoviUcenici.Location = new System.Drawing.Point(7, 163);
             this.btnNoviUcenici.Margin = new System.Windows.Forms.Padding(4);
             this.btnNoviUcenici.Name = "btnNoviUcenici";
             this.btnNoviUcenici.Size = new System.Drawing.Size(127, 38);
@@ -245,7 +260,7 @@
             // txtFilter
             // 
             this.txtFilter.BindingSource = this.bsUcenici;
-            this.txtFilter.Location = new System.Drawing.Point(7, 86);
+            this.txtFilter.Location = new System.Drawing.Point(7, 96);
             this.txtFilter.Margin = new System.Windows.Forms.Padding(4);
             this.txtFilter.Name = "txtFilter";
             this.txtFilter.Size = new System.Drawing.Size(127, 22);
@@ -257,6 +272,7 @@
             // 
             this.dgvUcenikSkGod.AllowUserToAddRows = false;
             this.dgvUcenikSkGod.AllowUserToDeleteRows = false;
+            this.dgvUcenikSkGod.AllowUserToOrderColumns = true;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.dgvUcenikSkGod.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvUcenikSkGod.AutoGenerateColumns = false;
@@ -273,6 +289,8 @@
             this.dgvUcenikSkGod.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.imeDgvc,
             this.jobDgvc,
+            this.dgvcJMBG,
+            this.dgvcPrebivaliste,
             this.skGodDataGridViewTextBoxColumn,
             this.skolaDataGridViewTextBoxColumn,
             this.razredDataGridViewTextBoxColumn,
@@ -302,12 +320,6 @@
             this.dgvUcenikSkGod.TabIndex = 3;
             this.dgvUcenikSkGod.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvUcenikSkGod_CellDoubleClick);
             // 
-            // bsUcenikSkGod
-            // 
-            this.bsUcenikSkGod.DataMember = "UcenikSkGod";
-            this.bsUcenikSkGod.DataSource = this.ds;
-            this.bsUcenikSkGod.Sort = "Skola, Razred, Odeljenje";
-            // 
             // imeDgvc
             // 
             this.imeDgvc.DataPropertyName = "_Ime";
@@ -323,6 +335,22 @@
             this.jobDgvc.Name = "jobDgvc";
             this.jobDgvc.ReadOnly = true;
             this.jobDgvc.Width = 165;
+            // 
+            // dgvcJMBG
+            // 
+            this.dgvcJMBG.DataPropertyName = "_JMBG";
+            this.dgvcJMBG.HeaderText = "JMBG";
+            this.dgvcJMBG.Name = "dgvcJMBG";
+            this.dgvcJMBG.ReadOnly = true;
+            this.dgvcJMBG.Width = 125;
+            // 
+            // dgvcPrebivaliste
+            // 
+            this.dgvcPrebivaliste.DataPropertyName = "_Prebivaliste";
+            this.dgvcPrebivaliste.HeaderText = "Prebivalište";
+            this.dgvcPrebivaliste.Name = "dgvcPrebivaliste";
+            this.dgvcPrebivaliste.ReadOnly = true;
+            this.dgvcPrebivaliste.Width = 150;
             // 
             // skGodDataGridViewTextBoxColumn
             // 
@@ -456,6 +484,12 @@
             this.napomeneDgvc.MinimumWidth = 100;
             this.napomeneDgvc.Name = "napomeneDgvc";
             // 
+            // bsUcenikSkGod
+            // 
+            this.bsUcenikSkGod.DataMember = "UcenikSkGod";
+            this.bsUcenikSkGod.DataSource = this.ds;
+            this.bsUcenikSkGod.Sort = "Skola, Razred, Odeljenje";
+            // 
             // FrmUcenici
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -509,8 +543,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcPrezime;
         private Controls.UcDGV dgvUcenikSkGod;
         private System.Windows.Forms.BindingSource bsUcenikSkGod;
+        private System.Windows.Forms.CheckBox chkCopyOnClick;
         private System.Windows.Forms.DataGridViewTextBoxColumn imeDgvc;
         private System.Windows.Forms.DataGridViewTextBoxColumn jobDgvc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcJMBG;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcPrebivaliste;
         private System.Windows.Forms.DataGridViewTextBoxColumn skGodDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn skolaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn razredDataGridViewTextBoxColumn;

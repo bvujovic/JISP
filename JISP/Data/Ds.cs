@@ -50,8 +50,8 @@ namespace JISP.Data
             {
                 if (!IsDatumRodjenjaNull())
                 {
-                    DanaDoRodj = JMBG.DaysToBDay(DatumRodjenja);
-                    Godine = JMBG.YearsOld(DatumRodjenja);
+                    DanaDoRodj = Classes.JMBG.DaysToBDay(DatumRodjenja);
+                    Godine = Classes.JMBG.YearsOld(DatumRodjenja);
                 }
             }
 

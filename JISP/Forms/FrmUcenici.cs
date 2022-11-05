@@ -20,9 +20,10 @@ namespace JISP.Forms
 
         private void FrmUcenici_Load(object sender, EventArgs e)
         {
-            dgvUcenikSkGod.ColumnsForCopyOnClick = new int[] 
-                { jobDgvc.Index, ocenePoluJSONDgvc.Index, oceneKrajJSONDgvc.Index, ZavrsObrazovanjaRezimeDgvc.Index };
-            dgvUcenikSkGod.CopyOnCellClick = true;
+            //B
+            //dgvUcenikSkGod.ColumnsForCopyOnClick = new int[] 
+            //    { jobDgvc.Index, ocenePoluJSONDgvc.Index, oceneKrajJSONDgvc.Index, ZavrsObrazovanjaRezimeDgvc.Index };
+            // dgvUcenikSkGod.CopyOnCellClick = true;
             bsUcenikSkGod.DataSource = AppData.Ds;
             dgvUcenikSkGod.StandardSort = bsUcenici.Sort;
             dgvUcenikSkGod.CellTextCopied += Dgv_CellTextCopied;
@@ -43,6 +44,7 @@ namespace JISP.Forms
             cmbPodaciZaDohvatanje.Items.Clear();
             cmbPodaciZaDohvatanje.Items.AddRange(new[] {
                 CmbDohvatiOpste,
+                CmbDohvatiJmbg,
                 CmbDohvatiOdRaz,
                 CmbDohvatiSmer,
                 CmbDohvatiOcenePG,
@@ -53,6 +55,7 @@ namespace JISP.Forms
         }
 
         private const string CmbDohvatiOpste = "Opšte: pol, datum rođenja...";
+        private const string CmbDohvatiJmbg = "Lista zahteva (JOB): JMBG...";
         private const string CmbDohvatiOdRaz = "Razredi i odeljenja";
         private const string CmbDohvatiSmer = "Smerovi za srednjoškolce";
         private const string CmbDohvatiOcenePG = "Ocene na polugodištu";
@@ -225,8 +228,8 @@ namespace JISP.Forms
         {
             if (e.ColumnIndex == -1 || e.ColumnIndex == imeDgvc.Index || e.ColumnIndex == jobDgvc.Index)
             {
-                var uc = dgvUcenikSkGod.CurrDataRow<Ds.UceniciRow>();
-                new FrmUcenikImeJOB(uc).ShowDialog();
+                var ucSkGod = dgvUcenikSkGod.CurrDataRow<Ds.UcenikSkGodRow>();
+                new FrmUcenikImeJOB(ucSkGod.UceniciRow).ShowDialog();
             }
         }
 
@@ -316,6 +319,19 @@ namespace JISP.Forms
                     }
                 });
 
+            if (selItem == CmbDohvatiJmbg)
+            {
+                var mboxResult = MessageBox.Show($"Koliko stranica od po 50 zahteva je potrebno učitati?\r\n" +
+                    $"Yes - Samo prvu stranicu (najnoviji podaci)\r\nNo - Kompletnu listu zahteva"
+                    , "Učitavanje liste zahteva za JOBom"
+                    , MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (mboxResult != DialogResult.Cancel)
+                    await (sender as UcButton).RunAsync(async () =>
+                        {
+                            await DataGetter.GetListaJobZahteva(mboxResult == DialogResult.Yes);
+                        });
+            }
+
             if (selItem == CmbDohvatiOdRaz)
                 await (sender as UcButton).RunAsync(async () =>
                 {
@@ -402,5 +418,8 @@ namespace JISP.Forms
                     }
                 });
         }
+
+        private void ChkCopyOnClick_CheckedChanged(object sender, EventArgs e)
+            => dgvUcenikSkGod.CopyOnCellClick = dgvUcenikSkGod.CopyOnCellClick = chkCopyOnClick.Checked;
     }
 }
