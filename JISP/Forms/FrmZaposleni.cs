@@ -27,6 +27,7 @@ namespace JISP.Forms
             dgvZaposleni.LoadSettings();
             dgvZaposlenja.LoadSettings();
             PodesiCmbPodaciZaDohvatanje();
+            txtFilter.BindingSource = bsZaposleni;
         }
 
         private void PodesiCmbPodaciZaDohvatanje()
@@ -367,6 +368,16 @@ namespace JISP.Forms
                 txtFilter.SelectAll();
                 txtFilter.Focus();
                 e.SuppressKeyPress = true;
+            }
+        }
+
+        private void TxtFilter_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                DgvZaposleni_CellDoubleClick(this, 
+                    new DataGridViewCellEventArgs(dgvcIme.Index, dgvZaposleni.CurrentRow.Index));
+                e.SuppressKeyPress = true; // protiv "kling" zvuka
             }
         }
     }

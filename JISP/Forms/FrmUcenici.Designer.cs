@@ -51,6 +51,7 @@
             this.btnSaveData = new JISP.Controls.UcButton();
             this.txtFilter = new JISP.Controls.UcFilterTextBox();
             this.dgvUcenikSkGod = new JISP.Controls.UcDGV();
+            this.bsUcenikSkGod = new System.Windows.Forms.BindingSource(this.components);
             this.imeDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.jobDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcJMBG = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,6 +61,7 @@
             this.razredDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.odeljenjeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.smerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcDomGrupa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._Pol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._DatumRodjenja = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._DanaDoRodj = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,7 +72,6 @@
             this.oceneKrajJSONDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ZavrsObrazovanjaRezimeDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.napomeneDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bsUcenikSkGod = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bsUcenici)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
             this.statusStrip.SuspendLayout();
@@ -296,6 +297,7 @@
             this.razredDataGridViewTextBoxColumn,
             this.odeljenjeDataGridViewTextBoxColumn,
             this.smerDataGridViewTextBoxColumn,
+            this.dgvcDomGrupa,
             this._Pol,
             this._DatumRodjenja,
             this._DanaDoRodj,
@@ -319,6 +321,12 @@
             this.dgvUcenikSkGod.StandardSort = null;
             this.dgvUcenikSkGod.TabIndex = 3;
             this.dgvUcenikSkGod.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvUcenikSkGod_CellDoubleClick);
+            // 
+            // bsUcenikSkGod
+            // 
+            this.bsUcenikSkGod.DataMember = "UcenikSkGod";
+            this.bsUcenikSkGod.DataSource = this.ds;
+            this.bsUcenikSkGod.Sort = "Skola, Razred, Odeljenje";
             // 
             // imeDgvc
             // 
@@ -391,6 +399,13 @@
             this.smerDataGridViewTextBoxColumn.Name = "smerDataGridViewTextBoxColumn";
             this.smerDataGridViewTextBoxColumn.ReadOnly = true;
             this.smerDataGridViewTextBoxColumn.Width = 121;
+            // 
+            // dgvcDomGrupa
+            // 
+            this.dgvcDomGrupa.DataPropertyName = "DomGrupa";
+            this.dgvcDomGrupa.HeaderText = "Dom Grupa";
+            this.dgvcDomGrupa.Name = "dgvcDomGrupa";
+            this.dgvcDomGrupa.ReadOnly = true;
             // 
             // _Pol
             // 
@@ -484,12 +499,6 @@
             this.napomeneDgvc.MinimumWidth = 100;
             this.napomeneDgvc.Name = "napomeneDgvc";
             // 
-            // bsUcenikSkGod
-            // 
-            this.bsUcenikSkGod.DataMember = "UcenikSkGod";
-            this.bsUcenikSkGod.DataSource = this.ds;
-            this.bsUcenikSkGod.Sort = "Skola, Razred, Odeljenje";
-            // 
             // FrmUcenici
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -553,6 +562,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn razredDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn odeljenjeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn smerDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcDomGrupa;
         private System.Windows.Forms.DataGridViewTextBoxColumn _Pol;
         private System.Windows.Forms.DataGridViewTextBoxColumn _DatumRodjenja;
         private System.Windows.Forms.DataGridViewTextBoxColumn _DanaDoRodj;

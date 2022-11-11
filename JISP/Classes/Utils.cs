@@ -9,8 +9,10 @@ namespace JISP.Classes
     public static class Utils
     {
         /// <summary>Prikazuje modalni MessageBox.</summary>
-        public static DialogResult ShowMbox(string message, string title)
+        public static DialogResult ShowMbox(string message, string title, bool toClipboard = false)
         {
+            if (toClipboard)
+                Clipboard.SetText(title + Environment.NewLine + message);
             return MessageBox.Show
             (
               message, title, MessageBoxButtons.OK, MessageBoxIcon.Information

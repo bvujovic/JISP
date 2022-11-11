@@ -165,17 +165,19 @@ namespace JISP.Data
             Uc_DuosSrednjoskolci,
             Uc_DuosSrednjoskolciId,
 
+            Uc_DuosDeca,
             /// <summary>DUOS osnovna skola: job, razred, odeljenje</summary>
             Uc_DuosOS,
             /// <summary>DUOS srednja skola: job, razred, odeljenje</summary>
             Uc_DuosSS,
+            Uc_DuosDomGrupe,
             /// <summary>Opsti podaci o jednom uceniku</summary>
             Uc_OpstiPodaci,
 
             Job_PreuzmiListuZahteva,
         }
 
-        private static string UrlForReq(ReqEnum reqEnum, string param = null)
+        public static string UrlForReq(ReqEnum reqEnum, string param = null)
         {
             var urlBase = "https://jisp.mpn.gov.rs/webapi/api/";
             switch (reqEnum)
@@ -213,10 +215,14 @@ namespace JISP.Data
                 case ReqEnum.Uc_DuosSrednjoskolciId:
                     return urlBase + $"ucenik/VratiUpisSrednjeObrazovanjeById/{param}";
 
+                case ReqEnum.Uc_DuosDeca:
+                    return urlBase + "ucenik/vratiPregledDecePredskolsko";
                 case ReqEnum.Uc_DuosOS:
                     return urlBase + "ucenik/VratiUpisOsnovnoByUstanovaId/" + SV_SAVA_ID;
                 case ReqEnum.Uc_DuosSS:
                     return urlBase + "ucenik/VratiUpisSrednjeByUstanovaId";
+                case ReqEnum.Uc_DuosDomGrupe:
+                    return urlBase + "ucenik/VratiUpisUcenickiStandardByUstanovaId/" + SV_SAVA_ID;
 
                 case ReqEnum.Uc_OpstiPodaci:
                     return urlBase + $"ucenik/OpstiPodaci?Id={param}";

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JISP.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace JISP.Controls
         private ToolStripMenuItem tsmiSelCeoRed;
         private ToolStripMenuItem tsmiSelCelija;
         private ToolStripMenuItem tsmiPrikazKolona;
+        private ToolStripMenuItem tsmiRazliciteVrednosti;
+
         /// <summary>Kolone koje su u dizajneru postavljenje na Visible = true</summary>
         private List<DataGridViewColumn> availableColumns = null;
 
@@ -22,6 +25,10 @@ namespace JISP.Controls
         {
             RowHeadersWidth = 30;
             InitializeComponent();
+            tsmiSort.Click += TsmiSort_Click;
+            tsmiRazliciteVrednosti.Click += TsmiRazliciteVrednosti_Click;
+            tsmiSelCeoRed.CheckedChanged += TsmiSelelekcija_CheckedChanged;
+            tsmiSelCelija.CheckedChanged += TsmiSelelekcija_CheckedChanged;
 
             DisplayPositionRowCount();
             SelectionChanged += (o, ea) => DisplayPositionRowCount();
@@ -72,6 +79,7 @@ namespace JISP.Controls
             this.tsmiSelekcija = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSelCeoRed = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSelCelija = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRazliciteVrednosti = new System.Windows.Forms.ToolStripMenuItem();
             this.ctxMenuDGV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
@@ -81,40 +89,40 @@ namespace JISP.Controls
             this.ctxMenuDGV.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiPrikazKolona,
             this.tsmiSort,
+            this.tsmiRazliciteVrednosti,
             this.tsmiSelekcija});
             this.ctxMenuDGV.Name = "ctxMenuDGV";
-            this.ctxMenuDGV.Size = new System.Drawing.Size(145, 70);
+            this.ctxMenuDGV.Size = new System.Drawing.Size(213, 92);
             // 
             // tsmiPrikazKolona
             // 
             this.tsmiPrikazKolona.Name = "tsmiPrikazKolona";
-            this.tsmiPrikazKolona.Size = new System.Drawing.Size(144, 22);
+            this.tsmiPrikazKolona.Size = new System.Drawing.Size(212, 22);
             this.tsmiPrikazKolona.Text = "Prikaz kolona";
             // 
             // tsmiSort
             // 
             this.tsmiSort.Name = "tsmiSort";
-            this.tsmiSort.Size = new System.Drawing.Size(144, 22);
+            this.tsmiSort.Size = new System.Drawing.Size(212, 22);
             this.tsmiSort.Text = "Podrazumevano sortiranje";
-            this.tsmiSort.Click += TsmiSort_Click;
             // 
             // tsmiSelekcija
             // 
-            this.tsmiSelekcija.DropDownItems.AddRange(new ToolStripItem[] {
+            this.tsmiSelekcija.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiSelCeoRed,
             this.tsmiSelCelija});
             this.tsmiSelekcija.Name = "tsmiSelekcija";
-            this.tsmiSelekcija.Size = new System.Drawing.Size(144, 22);
+            this.tsmiSelekcija.Size = new System.Drawing.Size(212, 22);
             this.tsmiSelekcija.Text = "Selekcija";
             // 
             // tsmiSelCeoRed
             // 
             this.tsmiSelCeoRed.Checked = true;
             this.tsmiSelCeoRed.CheckOnClick = true;
+            this.tsmiSelCeoRed.CheckState = System.Windows.Forms.CheckState.Checked;
             this.tsmiSelCeoRed.Name = "tsmiSelCeoRed";
             this.tsmiSelCeoRed.Size = new System.Drawing.Size(115, 22);
             this.tsmiSelCeoRed.Text = "Ceo red";
-            this.tsmiSelCeoRed.CheckedChanged += TsmiSelelekcija_CheckedChanged;
             // 
             // tsmiSelCelija
             // 
@@ -122,7 +130,12 @@ namespace JISP.Controls
             this.tsmiSelCelija.Name = "tsmiSelCelija";
             this.tsmiSelCelija.Size = new System.Drawing.Size(115, 22);
             this.tsmiSelCelija.Text = "Ćelija";
-            this.tsmiSelCelija.CheckedChanged += TsmiSelelekcija_CheckedChanged;
+            // 
+            // tsmiRazliciteVrednosti
+            // 
+            this.tsmiRazliciteVrednosti.Name = "tsmiRazliciteVrednosti";
+            this.tsmiRazliciteVrednosti.Size = new System.Drawing.Size(212, 22);
+            this.tsmiRazliciteVrednosti.Text = "Različite vrednosti";
             // 
             // UcDGV
             // 
@@ -140,6 +153,18 @@ namespace JISP.Controls
         {
             try { (DataSource as BindingSource).Sort = StandardSort; }
             catch (Exception ex) { Classes.Utils.ShowMbox(ex, "Sortiranje"); }
+        }
+
+        private void TsmiRazliciteVrednosti_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var idxColumn = SelectedCells[0].ColumnIndex;
+                var values = ValuesCount(idxColumn);
+                Utils.ShowMbox(string.Join(Environment.NewLine, values.Select(it => it.Value + "\t" + it.Key))
+                    , tsmiRazliciteVrednosti.Text, true);
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, tsmiRazliciteVrednosti.Text); }
         }
 
         private void TsmiSelelekcija_CheckedChanged(object sender, EventArgs e)

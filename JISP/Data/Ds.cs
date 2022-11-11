@@ -33,6 +33,8 @@ namespace JISP.Data
 
         public partial class UcenikSkGodRow
         {
+            public bool JePredskolac
+                => !IsSkolaNull() && Skola == "Вртић";
 
             public bool JeOsnovac
                 => !IsSkolaNull() && Skola == "Основна";

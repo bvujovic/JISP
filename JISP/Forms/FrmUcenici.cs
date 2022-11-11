@@ -35,7 +35,7 @@ namespace JISP.Forms
             ResetLblOceneProsekText();
             FilterData();
             PodesiCmbPodaciZaDohvatanje();
-
+            txtFilter.BindingSource = bsUcenikSkGod;
             formLoadStarted = DateTime.Now;
         }
 
@@ -46,6 +46,7 @@ namespace JISP.Forms
                 CmbDohvatiOpste,
                 CmbDohvatiJmbg,
                 CmbDohvatiOdRaz,
+                CmbDohvatiDomGrupe,
                 CmbDohvatiSmer,
                 CmbDohvatiOcenePG,
                 CmbDohvatiOceneKraj,
@@ -56,7 +57,8 @@ namespace JISP.Forms
 
         private const string CmbDohvatiOpste = "Opšte: pol, datum rođenja...";
         private const string CmbDohvatiJmbg = "Lista zahteva (JOB): JMBG...";
-        private const string CmbDohvatiOdRaz = "Razredi i odeljenja";
+        private const string CmbDohvatiOdRaz = "Razredi, odeljenja i vrtić-grupe";
+        private const string CmbDohvatiDomGrupe = "Vaspitne grupe za dom učenika";
         private const string CmbDohvatiSmer = "Smerovi za srednjoškolce";
         private const string CmbDohvatiOcenePG = "Ocene na polugodištu";
         private const string CmbDohvatiOceneKraj = "Ocene za kraj godine";
@@ -249,8 +251,28 @@ namespace JISP.Forms
         private static async Task PostForDuosData(WebApi.ReqEnum reqEnum)
         {
             var body = "{\"ustanovaId\":" + WebApi.SV_SAVA_ID + ",\"pageIndex\":0,\"pageSize\":1000,\"searchTerm\":\"\"}";
-            var duosSS = await WebApi.PostForObject<DUOS_SS>(reqEnum, body);
-            AcceptDuosData(duosSS.UpisSrednje, reqEnum);
+            if (reqEnum == WebApi.ReqEnum.Uc_DuosSS)
+            {
+                var duosSS = await WebApi.PostForObject<DUOS_SS>(reqEnum, body);
+                AcceptDuosData(duosSS.UpisSrednje, reqEnum);
+            }
+            else
+            {
+                var json = await WebApi.PostForJson(WebApi.ReqEnum.Uc_DuosDeca, body);
+                dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(json);
+                var duoses = new List<DUOS>();
+                foreach (var it in obj.decaPredskolskoList)
+                    if (it.radnaGodina == AppData.SkolskaGodina.Naziv)
+                        duoses.Add(new DUOS
+                        {
+                            RegUceLiceId = it.regUceLiceId,
+                            JOB = it.job,
+                            SkolskaGodina = it.radnaGodina,
+                            Odeljenje = it.vaspitnaGrupa,
+                            Id = it.id,
+                        });
+                AcceptDuosData(duoses, reqEnum);
+            }
         }
 
         private static void AcceptDuosData(List<DUOS> duoses, WebApi.ReqEnum reqEnum)
@@ -267,14 +289,17 @@ namespace JISP.Forms
                     (it => it.IdUcenika == u.IdUcenika && it.SkGod == duos.SkolskaGodina);
                 var regUceLiceObrazovanjeId = reqEnum == WebApi.ReqEnum.Uc_DuosOS
                         ? duos.RegUceLiceOsnovnoObrazovanjeId : duos.RegUceLiceSrednjeObrazovanjeId;
-                var skola = reqEnum == WebApi.ReqEnum.Uc_DuosOS ? "Основна" : "Средња";
+                var skola = reqEnum == WebApi.ReqEnum.Uc_DuosDeca ? "Вртић" :
+                    reqEnum == WebApi.ReqEnum.Uc_DuosOS ? "Основна"
+                    : "Средња";
                 if (exUsk == null)
                 {
                     var usk = AppData.Ds.UcenikSkGod.NewUcenikSkGodRow();
                     usk.Id = duos.Id;
                     usk.IdUcenika = u.IdUcenika;
                     usk.SkGod = duos.SkolskaGodina;
-                    usk.RegUceLiceObrazovanjeId = regUceLiceObrazovanjeId;
+                    if (reqEnum != WebApi.ReqEnum.Uc_DuosDeca)
+                        usk.RegUceLiceObrazovanjeId = regUceLiceObrazovanjeId;
                     usk.Skola = skola;
                     usk.Razred = duos.Razred;
                     usk.Odeljenje = duos.Odeljenje;
@@ -289,11 +314,11 @@ namespace JISP.Forms
                         usk.IdUcenika = u.IdUcenika;
                     if (usk.SkGod != duos.SkolskaGodina)
                         usk.SkGod = duos.SkolskaGodina;
-                    if (usk.RegUceLiceObrazovanjeId != regUceLiceObrazovanjeId)
+                    if (reqEnum != WebApi.ReqEnum.Uc_DuosDeca && usk.RegUceLiceObrazovanjeId != regUceLiceObrazovanjeId)
                         usk.RegUceLiceObrazovanjeId = regUceLiceObrazovanjeId;
                     if (usk.Skola != skola)
                         usk.Skola = skola;
-                    if (usk.Razred != duos.Razred)
+                    if (usk.IsRazredNull() || usk.Razred != duos.Razred)
                         usk.Razred = duos.Razred;
                     if (usk.Odeljenje != duos.Odeljenje)
                         usk.Odeljenje = duos.Odeljenje;
@@ -335,14 +360,31 @@ namespace JISP.Forms
             if (selItem == CmbDohvatiOdRaz)
                 await (sender as UcButton).RunAsync(async () =>
                 {
+                    await PostForDuosData(WebApi.ReqEnum.Uc_DuosDeca);
                     await GetDuosData(WebApi.ReqEnum.Uc_DuosOS);
                     await PostForDuosData(WebApi.ReqEnum.Uc_DuosSS);
+                });
+
+            if (selItem == CmbDohvatiDomGrupe)
+                await (sender as UcButton).RunAsync(async () =>
+                {
+                    var url = WebApi.UrlForReq(WebApi.ReqEnum.Uc_DuosDomGrupe);
+                    var json = await WebApi.GetJson(url);
+                    dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
+                    foreach (var obj in arr)
+                        if (obj.skolskaGodinaNaziv == AppData.SkolskaGodina.Naziv)
+                        {
+                            var ucSkGod = AppData.Ds.UcenikSkGod.FirstOrDefault
+                                (it => it._JOB == (string)obj.job && it.SkGod == AppData.SkolskaGodina.Naziv);
+                            if (ucSkGod != null)
+                                ucSkGod.DomGrupa = obj.vaspitnaGrupaNaziv;
+                        }
                 });
 
             if (selItem == CmbDohvatiSmer)
                 await (sender as UcButton).RunAsync(async () =>
                 {
-                    foreach (var u in dgvUcenikSkGod.SelectedDataRows<Ds.UcenikSkGodRow>().Where(it => !it.JeOsnovac))
+                    foreach (var u in dgvUcenikSkGod.SelectedDataRows<Ds.UcenikSkGodRow>().Where(it => it.JeSrednjoskolac))
                     {
                         var url = "https://jisp.mpn.gov.rs/webapi/api/ucenik/VratiUpisSrednjeObrazovanjeById/";
                         var json = await WebApi.GetJson(url + u.Id);
@@ -355,7 +397,7 @@ namespace JISP.Forms
             if (selItem == CmbDohvatiOcenePG)
                 await (sender as UcButton).RunAsync(async () =>
                 {
-                    foreach (var u in dgvUcenikSkGod.SelectedDataRows<Ds.UcenikSkGodRow>())
+                    foreach (var u in dgvUcenikSkGod.SelectedDataRows<Ds.UcenikSkGodRow>().Where(it => !it.JePredskolac))
                     {
                         var nivo = u.JeOsnovac ? "Osnovno" : "Srednje";
                         var url = $"https://jisp.mpn.gov.rs/webapi/api/ucenik/Vrati{nivo}ObrazovanjeZavrsetakPolugodistaById/";
@@ -377,7 +419,7 @@ namespace JISP.Forms
             if (selItem == CmbDohvatiOceneKraj)
                 await (sender as UcButton).RunAsync(async () =>
                 {
-                    foreach (var u in dgvUcenikSkGod.SelectedDataRows<Ds.UcenikSkGodRow>())
+                    foreach (var u in dgvUcenikSkGod.SelectedDataRows<Ds.UcenikSkGodRow>().Where(it => !it.JePredskolac))
                     {
                         var nivo = u.JeOsnovac ? "Osnovno" : "Srednje";
                         var url = $"https://jisp.mpn.gov.rs/webapi/api/ucenik/Vrati{nivo}ObrazovanjeZavrsetakRazredaById/" + u.Id;
@@ -399,7 +441,7 @@ namespace JISP.Forms
             if (selItem == CmbDohvatiZavrsObraz)
                 await (sender as UcButton).RunAsync(async () =>
                 {
-                    foreach (var u in dgvUcenikSkGod.SelectedDataRows<Ds.UcenikSkGodRow>())
+                    foreach (var u in dgvUcenikSkGod.SelectedDataRows<Ds.UcenikSkGodRow>().Where(it => !it.JePredskolac))
                     {
                         var nivo = u.JeOsnovac ? "Osnovno" : "Srednje";
                         var url = $"https://jisp.mpn.gov.rs/webapi/api/ucenik/Vrati{nivo}ObrazovanjeZavrsetak{nivo[0]}OById/" + u.RegUceLiceObrazovanjeId;
