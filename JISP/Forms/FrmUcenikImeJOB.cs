@@ -17,6 +17,8 @@ namespace JISP.Forms
             {
                 txtUcenik.Text = ucenik.Ime;
                 txtJOB.Text = ucenik.JOB;
+                if (!ucenik.IsPrebivalisteNull())
+                    txtPrebivaliste.Text = ucenik.Prebivaliste;
                 this.ucenik = ucenik;
             }
         }
@@ -27,11 +29,21 @@ namespace JISP.Forms
         {
             try
             {
+                txtUcenik.Text = txtUcenik.Text.Trim();
+                txtJOB.Text = txtJOB.Text.Trim();
+                txtPrebivaliste.Text = txtPrebivaliste.Text.Trim();
+                if (txtUcenik.Text == "" || txtJOB.Text == "")
+                    throw new Exception("Polja Učenik i JOB se moraju popuniti.");
+                if (txtJOB.Text.Length != 16)
+                    throw new Exception("JOB mora imati tačno 16 karaktera.");
+
                 if (ucenik == null) // dodavanje novog ucenika
                 {
                     var uc = AppData.Ds.Ucenici.NewUceniciRow();
                     uc.Ime = txtUcenik.Text;
                     uc.JOB = txtJOB.Text;
+                    if (txtPrebivaliste.Text != "")
+                        uc.Prebivaliste = txtPrebivaliste.Text;
                     AppData.Ds.Ucenici.AddUceniciRow(uc);
                     Classes.Utils.ShowMbox("Učenik je dodat, ali neće biti vidljiv među tekućim"
                         + " dok se ne preuzmu podaci o razredu i odeljenju.", Text);
@@ -40,7 +52,10 @@ namespace JISP.Forms
                 {
                     ucenik.Ime = txtUcenik.Text;
                     ucenik.JOB = txtJOB.Text;
+                    if (txtPrebivaliste.Text != "")
+                        ucenik.Prebivaliste = txtPrebivaliste.Text;
                 }
+                DialogResult = DialogResult.OK;
             }
             catch (Exception ex) { Classes.Utils.ShowMbox(ex, Text); }
         }

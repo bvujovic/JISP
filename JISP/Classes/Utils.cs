@@ -71,7 +71,9 @@ namespace JISP.Classes
         {
             var msg = ex.Message;
             if (ex.InnerException != null)
-                msg += Environment.NewLine + ex.InnerException.Message;
+                msg += Environment.NewLine + Environment.NewLine + ex.InnerException.Message;
+            if (ex.StackTrace != null)
+                msg += Environment.NewLine + Environment.NewLine + ex.StackTrace;
 
             return MessageBox.Show
             (

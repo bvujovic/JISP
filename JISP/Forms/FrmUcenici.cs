@@ -228,7 +228,7 @@ namespace JISP.Forms
 
         private void DgvUcenikSkGod_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == -1 || e.ColumnIndex == imeDgvc.Index || e.ColumnIndex == jobDgvc.Index)
+            if (e.ColumnIndex == -1 || e.ColumnIndex == imeDgvc.Index || e.ColumnIndex == jobDgvc.Index || e.ColumnIndex == dgvcPrebivaliste.Index)
             {
                 var ucSkGod = dgvUcenikSkGod.CurrDataRow<Ds.UcenikSkGodRow>();
                 new FrmUcenikImeJOB(ucSkGod.UceniciRow).ShowDialog();
@@ -371,14 +371,22 @@ namespace JISP.Forms
                     var url = WebApi.UrlForReq(WebApi.ReqEnum.Uc_DuosDomGrupe);
                     var json = await WebApi.GetJson(url);
                     dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
+                    var jobs = AppData.Ds.UcenikSkGod.Where(it => it.SkGod == AppData.SkolskaGodina.Naziv)
+                        .Select(it => it._JOB).ToList();
                     foreach (var obj in arr)
                         if (obj.skolskaGodinaNaziv == AppData.SkolskaGodina.Naziv)
                         {
                             var ucSkGod = AppData.Ds.UcenikSkGod.FirstOrDefault
                                 (it => it._JOB == (string)obj.job && it.SkGod == AppData.SkolskaGodina.Naziv);
                             if (ucSkGod != null)
+                            {
                                 ucSkGod.DomGrupa = obj.vaspitnaGrupaNaziv;
+                                jobs.Remove(ucSkGod._JOB);
+                            }
                         }
+                    foreach (var uc in AppData.Ds.UcenikSkGod.Where(it => it.SkGod == AppData.SkolskaGodina.Naziv
+                        && jobs.Contains(it._JOB) && !it.IsDomGrupaNull()))
+                        uc.SetDomGrupaNull();
                 });
 
             if (selItem == CmbDohvatiSmer)

@@ -23,9 +23,6 @@ namespace JISP.Forms
                 chkCopyOnClick.Checked = CheckedCopyOnClick;
                 if (CheckStateAktivno.HasValue)
                     chkAktivno.CheckState = CheckStateAktivno.Value;
-                if (CheckedIndicesMeseci != null)
-                    foreach (var cim in CheckedIndicesMeseci)
-                        lstchkMeseci.SetItemChecked((int)cim, true);
                 tcBottom.SelectedIndex = TcBottomSelectedIndex;
                 if (LastLocation != Point.Empty)
                 {
@@ -45,13 +42,11 @@ namespace JISP.Forms
                 bsObracunZarada.DataSource = AppData.Ds;
                 dgvObracunZarada.LoadSettings();
                 bsObracunZarada.Filter = $"IdZaposlenog = {zaposleni.IdZaposlenog}";
-                numOzGodina.Value = DateTime.Now.Year;
             }
             catch (Exception ex) { Utils.ShowMbox(ex, Text); }
         }
 
         private readonly Ds.ZaposleniRow zaposleni;
-        private Ds.ZaposlenjaDataTable Zaposlenja => AppData.Ds.Zaposlenja;
 
         private async void BtnUcitajZaposlenja_Click(object sender, EventArgs e)
         {
@@ -81,42 +76,6 @@ namespace JISP.Forms
             dgvObracunZarada.SelectAll();
         }
 
-        private async void BtnKreirajObracune_Click(object sender, EventArgs e)
-        {
-            await (sender as UcButton).RunAsync(async () =>
-            {
-                if (lstchkMeseci.CheckedItems.Count == 0)
-                    throw new Exception("Potrebno je čekirati mesece za koje će se generisati novi obračuni.");
-                var zaps = dgvZaposlenjaSve.SelectedDataRows<Ds.ZaposlenjaRow>();
-                if (zaps.Count() > 1)
-                    throw new Exception("Potrebno je selektovati tačno 1 red (zaposlenje) za koje će se dodati novi obračuni zarada.");
-                var zap = zaps.First();
-                if (!zap.ImaObracunTemplate)
-                    throw new Exception("Selektovano zaposlenje nema zapamćen template za obračun zarada - klik na dugme Dodaj OZ Template.");
-
-                var god = (int)numOzGodina.Value;
-                var unetiOZovi = AppData.Ds.ObracunZarada.Where(it => it.BrojUgovora == zap.BrojUgovoraORadu
-                    && it.Godina == god).ToArray();
-                var dupliMeseci = new System.Collections.Generic.List<int>();
-                foreach (int idxMesec in lstchkMeseci.CheckedIndices)
-                {
-                    var mes = idxMesec + 1;
-                    //TODO videti sta valja uciniti sa ovom proverom vec unetih OZova
-                    //if (unetiOZovi.Where(it => it.MesecNaziv == OzMesec.NazivMeseca(mes)
-                    //    && it.Godina == god).Any())
-                    //    dupliMeseci.Add(mes);
-                    //else
-                    {
-                        string strNoviUnos = ObracunZarada.KreirajNoviUnos(zap.ObracunTemplate, god, mes);
-                        await WebApi.PostForJson(WebApi.ReqEnum.Zap_ObracunZaradaKreiraj, strNoviUnos);
-                    }
-                }
-                if (dupliMeseci.Any())
-                    throw new Exception($"Obračuni zarada za mesece ({string.Join(", ", dupliMeseci)}) već postoje.");
-            });
-            btnUcitajObracunZarada.PerformClick();
-        }
-
         private async void BtnObrisiObracune_Click(object sender, EventArgs e)
         {
             if (Utils.ShowMboxYesNo("Da li ste sigurni?", btnObrisiObracune.Text) == DialogResult.Yes)
@@ -136,7 +95,6 @@ namespace JISP.Forms
 
         private static bool CheckedCopyOnClick = false;
         private static CheckState? CheckStateAktivno = null;
-        private static CheckedListBox.CheckedIndexCollection CheckedIndicesMeseci = null;
         private static int TcBottomSelectedIndex = 0;
         private static Point LastLocation = Point.Empty;
         private static Size LastSize = Size.Empty;
@@ -145,7 +103,6 @@ namespace JISP.Forms
         {
             CheckedCopyOnClick = chkCopyOnClick.Checked;
             CheckStateAktivno = chkAktivno.CheckState;
-            CheckedIndicesMeseci = lstchkMeseci.CheckedIndices;
             TcBottomSelectedIndex = tcBottom.SelectedIndex;
             if (this.WindowState == FormWindowState.Normal)
             {
@@ -163,34 +120,6 @@ namespace JISP.Forms
                 await DataGetter.GetAngazovanjaAsync(dgvZaposlenjaSve.SelectedDataRows<Ds.ZaposlenjaRow>())
             );
             zaposleni.CalcAngazovanja();
-        }
-
-        private void BtnDodajOZTemplate_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var strBash = Clipboard.GetText();
-                ClipboardSadrziString(strBash, "regZapObracunZaradaDouniverzitetskoObrazovanjeMesec");
-                ClipboardSadrziString(strBash, "ukupanDodatniKoeficijentPoRM");
-                string strJson = ObracunZarada.Bash2Json(strBash);
-                dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(strJson);
-                string idZaposlenja = obj.idNavigation.id;
-
-                var zap = AppData.Ds.Zaposlenja.FindByIdZaposlenja(int.Parse(idZaposlenja));
-                if (zap == null)
-                    throw new Exception($"Zaposlenje sa IDem {idZaposlenja} nije pronađeno.");
-                if (zap.ZaposleniRow.IdZaposlenog != zaposleni.IdZaposlenog)
-                    throw new Exception($"U clipboard-u je OZ template ugovora koji pripada zaposlenom {zap.ZaposleniRow}.");
-                zap.ObracunTemplate = strJson;
-            }
-            catch (Exception ex) { Utils.ShowMbox(ex, btnDodajOZTemplate.Text); }
-        }
-
-        /// <summary>Ako prosledjeni haystack ne sadrzi needle - izbacuje se Exception.</summary>
-        private void ClipboardSadrziString(string haystack, string needle)
-        {
-            if (!haystack.Contains(needle))
-                throw new Exception($"Text iz clipboard-a ne sadrži '{needle}' tako da verovatno ne predstavlja JSON telo poruke API metodu SacuvajObracunZarade.");
         }
 
         /// <summary>Klik na checkBox celiju ImaObracunTemplate -> kopiranje OZ template-a u clipboard.</summary>
@@ -230,27 +159,6 @@ namespace JISP.Forms
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == dgvcResDokument.Index)
                 await Utils.PreuzmiDokumentResenja(dgvResenja, e);
-        }
-
-        private void OzGodinaMesec_Changed(object sender, EventArgs e)
-        {
-            try
-            {
-                var vanTekuce = false;
-                var god = (int)numOzGodina.Value;
-                foreach (int idx in lstchkMeseci.CheckedIndices)
-                {
-                    if (god == AppData.SkolskaGodina.Start && idx < 8)
-                        vanTekuce = true;
-                    if (god == AppData.SkolskaGodina.Kraj && idx >= 8)
-                        vanTekuce = true;
-                }
-                if (lstchkMeseci.CheckedIndices.Count > 0 && (god < AppData.SkolskaGodina.Start || god > AppData.SkolskaGodina.Start + 1))
-                    vanTekuce = true;
-
-                lstchkMeseci.BackColor = vanTekuce ? Color.Salmon : Color.White;
-            }
-            catch (Exception ex) { Utils.ShowMbox(ex, "Obračun zarada - izmena godine i meseca"); }
         }
     }
 }

@@ -163,6 +163,7 @@ namespace JISP.Forms
 
         private void BtnCsvZaposlenja_Click(object sender, EventArgs e)
         {
+            Ds.ZaposleniRow tekuciZaposleni = null;
             try
             {
                 var sb = new System.Text.StringBuilder("Zaposleni;Radno mesto;Kategorija;Procenat;Tip ugovora;Dodatni koef.;"
@@ -178,6 +179,7 @@ namespace JISP.Forms
                 foreach (var zaposleni in Ds.Zaposleni.Where(it => it.Aktivan).OrderBy(it => it.Ime))
                     foreach (var zap in zaposleni.GetZaposlenjaRows().Where(it => it.Aktivan))
                     {
+                        tekuciZaposleni = zaposleni;
                         var uracunato = uracunataAngazovanja.Contains(zap.VrstaAngazovanja)
                             ? "DA" : zap.VrstaAngazovanja;
                         var angs = zap.GetAngazovanjaRows();
@@ -237,7 +239,7 @@ namespace JISP.Forms
 
                 Clipboard.SetText(sb.ToString());
             }
-            catch (Exception ex) { Utils.ShowMbox(ex, BtnCsvZaposlenja.Text); }
+            catch (Exception ex) { Utils.ShowMbox(ex, BtnCsvZaposlenja.Text + " - " + tekuciZaposleni); }
         }
 
         private void BtnResenja_Click(object sender, EventArgs e)

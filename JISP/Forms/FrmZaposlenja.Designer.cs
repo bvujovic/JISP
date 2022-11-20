@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Label lblOzGodina;
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -42,7 +41,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
             this.chkCopyOnClick = new System.Windows.Forms.CheckBox();
-            this.btnDodajOZTemplate = new JISP.Controls.UcButton();
             this.btnUcitajZaposlenja = new JISP.Controls.UcButton();
             this.btnExit = new JISP.Controls.UcExitAppButton();
             this.btnUcitajAngazovanja = new JISP.Controls.UcButton();
@@ -58,7 +56,6 @@
             this.datumZaposlenDoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noksNivoNazivDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vrstaAngazovanjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcImaObracunTemplate = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.bsZaposlenja = new System.Windows.Forms.BindingSource(this.components);
             this.ds = new JISP.Data.Ds();
             this.scMain = new System.Windows.Forms.SplitContainer();
@@ -79,9 +76,6 @@
             this.pnlBottomLeftOZ = new JISP.Controls.UcLeftPanel();
             this.btnUcitajOzOpis = new JISP.Controls.UcButton();
             this.btnObrisiObracune = new JISP.Controls.UcButton();
-            this.lstchkMeseci = new System.Windows.Forms.CheckedListBox();
-            this.numOzGodina = new System.Windows.Forms.NumericUpDown();
-            this.btnKreirajObracune = new JISP.Controls.UcButton();
             this.btnUcitajObracunZarada = new JISP.Controls.UcButton();
             this.tpAngazovanja = new System.Windows.Forms.TabPage();
             this.dgvAngazovanja = new JISP.Controls.UcDGV();
@@ -103,7 +97,6 @@
             this.bsResenja = new System.Windows.Forms.BindingSource(this.components);
             this.pnlBottomLeftRes = new JISP.Controls.UcLeftPanel();
             this.btnUcitajResenja = new JISP.Controls.UcButton();
-            lblOzGodina = new System.Windows.Forms.Label();
             this.pnlLeft.SuspendLayout();
             this.pnlZaposleniTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvZaposlenjaSve)).BeginInit();
@@ -118,7 +111,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvObracunZarada)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsObracunZarada)).BeginInit();
             this.pnlBottomLeftOZ.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numOzGodina)).BeginInit();
             this.tpAngazovanja.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAngazovanja)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAngazovanja)).BeginInit();
@@ -129,19 +121,9 @@
             this.pnlBottomLeftRes.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lblOzGodina
-            // 
-            lblOzGodina.AutoSize = true;
-            lblOzGodina.Location = new System.Drawing.Point(0, 129);
-            lblOzGodina.Name = "lblOzGodina";
-            lblOzGodina.Size = new System.Drawing.Size(56, 18);
-            lblOzGodina.TabIndex = 4;
-            lblOzGodina.Text = "Godina";
-            // 
             // pnlLeft
             // 
             this.pnlLeft.Controls.Add(this.chkCopyOnClick);
-            this.pnlLeft.Controls.Add(this.btnDodajOZTemplate);
             this.pnlLeft.Controls.Add(this.btnUcitajZaposlenja);
             this.pnlLeft.Controls.Add(this.btnExit);
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
@@ -162,18 +144,6 @@
             this.chkCopyOnClick.Text = "Kopiranje na klik";
             this.chkCopyOnClick.UseVisualStyleBackColor = true;
             this.chkCopyOnClick.CheckedChanged += new System.EventHandler(this.ChkCopyOnClick_CheckedChanged);
-            // 
-            // btnDodajOZTemplate
-            // 
-            this.btnDodajOZTemplate.Location = new System.Drawing.Point(8, 138);
-            this.btnDodajOZTemplate.Name = "btnDodajOZTemplate";
-            this.btnDodajOZTemplate.Size = new System.Drawing.Size(128, 54);
-            this.btnDodajOZTemplate.TabIndex = 5;
-            this.btnDodajOZTemplate.Text = "Dodaj OZ Template";
-            this.btnDodajOZTemplate.ToolTipText = "Dodavanje template-a za kreiranje obračuna zarada: SacuvajObracunZarade, Copy as " +
-    "cURL (bash)";
-            this.btnDodajOZTemplate.UseVisualStyleBackColor = true;
-            this.btnDodajOZTemplate.Click += new System.EventHandler(this.BtnDodajOZTemplate_Click);
             // 
             // btnUcitajZaposlenja
             // 
@@ -270,8 +240,7 @@
             this.datumZaposlenOdDataGridViewTextBoxColumn,
             this.datumZaposlenDoDataGridViewTextBoxColumn,
             this.noksNivoNazivDataGridViewTextBoxColumn,
-            this.vrstaAngazovanjaDataGridViewTextBoxColumn,
-            this.dgvcImaObracunTemplate});
+            this.vrstaAngazovanjaDataGridViewTextBoxColumn});
             this.dgvZaposlenjaSve.ColumnsForCopyOnClick = null;
             this.dgvZaposlenjaSve.CopyOnCellClick = false;
             this.dgvZaposlenjaSve.CtrlDisplayPositionRowCount = this.lblBrojRedovaZaposlenja;
@@ -355,15 +324,6 @@
             this.vrstaAngazovanjaDataGridViewTextBoxColumn.Name = "vrstaAngazovanjaDataGridViewTextBoxColumn";
             this.vrstaAngazovanjaDataGridViewTextBoxColumn.ReadOnly = true;
             this.vrstaAngazovanjaDataGridViewTextBoxColumn.Width = 135;
-            // 
-            // dgvcImaObracunTemplate
-            // 
-            this.dgvcImaObracunTemplate.DataPropertyName = "ImaObracunTemplate";
-            this.dgvcImaObracunTemplate.HeaderText = "OZ";
-            this.dgvcImaObracunTemplate.Name = "dgvcImaObracunTemplate";
-            this.dgvcImaObracunTemplate.ReadOnly = true;
-            this.dgvcImaObracunTemplate.ToolTipText = "Da li ima template za kreiranje obračuna zarada";
-            this.dgvcImaObracunTemplate.Width = 40;
             // 
             // bsZaposlenja
             // 
@@ -553,10 +513,6 @@
             this.pnlBottomLeftOZ.Controls.Add(this.btnUcitajOzOpis);
             this.pnlBottomLeftOZ.Controls.Add(this.lblBrojRedovaOZ);
             this.pnlBottomLeftOZ.Controls.Add(this.btnObrisiObracune);
-            this.pnlBottomLeftOZ.Controls.Add(this.lstchkMeseci);
-            this.pnlBottomLeftOZ.Controls.Add(this.numOzGodina);
-            this.pnlBottomLeftOZ.Controls.Add(lblOzGodina);
-            this.pnlBottomLeftOZ.Controls.Add(this.btnKreirajObracune);
             this.pnlBottomLeftOZ.Controls.Add(this.btnUcitajObracunZarada);
             this.pnlBottomLeftOZ.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlBottomLeftOZ.Location = new System.Drawing.Point(3, 3);
@@ -568,10 +524,10 @@
             // 
             // btnUcitajOzOpis
             // 
-            this.btnUcitajOzOpis.Location = new System.Drawing.Point(3, 93);
+            this.btnUcitajOzOpis.Location = new System.Drawing.Point(3, 33);
             this.btnUcitajOzOpis.Name = "btnUcitajOzOpis";
             this.btnUcitajOzOpis.Size = new System.Drawing.Size(135, 30);
-            this.btnUcitajOzOpis.TabIndex = 9;
+            this.btnUcitajOzOpis.TabIndex = 5;
             this.btnUcitajOzOpis.Text = "Učitaj opise";
             this.btnUcitajOzOpis.ToolTipText = "Učitavanje detalja/opisa za selektovane obračune";
             this.btnUcitajOzOpis.UseVisualStyleBackColor = true;
@@ -587,66 +543,6 @@
             this.btnObrisiObracune.ToolTipText = "Brisanje selekovanih obračuna zarada";
             this.btnObrisiObracune.UseVisualStyleBackColor = true;
             this.btnObrisiObracune.Click += new System.EventHandler(this.BtnObrisiObracune_Click);
-            // 
-            // lstchkMeseci
-            // 
-            this.lstchkMeseci.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lstchkMeseci.CheckOnClick = true;
-            this.lstchkMeseci.FormattingEnabled = true;
-            this.lstchkMeseci.IntegralHeight = false;
-            this.lstchkMeseci.Items.AddRange(new object[] {
-            "Januar",
-            "Februar",
-            "Mart",
-            "April",
-            "Maj",
-            "Jun",
-            "Jul",
-            "Avgust",
-            "Septembar",
-            "Oktobar",
-            "Novembar",
-            "Decembar"});
-            this.lstchkMeseci.Location = new System.Drawing.Point(3, 157);
-            this.lstchkMeseci.Name = "lstchkMeseci";
-            this.lstchkMeseci.Size = new System.Drawing.Size(135, 105);
-            this.lstchkMeseci.TabIndex = 6;
-            this.lstchkMeseci.SelectedIndexChanged += new System.EventHandler(this.OzGodinaMesec_Changed);
-            // 
-            // numOzGodina
-            // 
-            this.numOzGodina.Location = new System.Drawing.Point(62, 127);
-            this.numOzGodina.Maximum = new decimal(new int[] {
-            2050,
-            0,
-            0,
-            0});
-            this.numOzGodina.Minimum = new decimal(new int[] {
-            1950,
-            0,
-            0,
-            0});
-            this.numOzGodina.Name = "numOzGodina";
-            this.numOzGodina.Size = new System.Drawing.Size(76, 24);
-            this.numOzGodina.TabIndex = 5;
-            this.numOzGodina.Value = new decimal(new int[] {
-            1950,
-            0,
-            0,
-            0});
-            this.numOzGodina.ValueChanged += new System.EventHandler(this.OzGodinaMesec_Changed);
-            // 
-            // btnKreirajObracune
-            // 
-            this.btnKreirajObracune.Location = new System.Drawing.Point(3, 33);
-            this.btnKreirajObracune.Name = "btnKreirajObracune";
-            this.btnKreirajObracune.Size = new System.Drawing.Size(135, 30);
-            this.btnKreirajObracune.TabIndex = 3;
-            this.btnKreirajObracune.Text = "Kreiraj obračune";
-            this.btnKreirajObracune.ToolTipText = "Kreiranje novih obračuna zarada za selektovane mesece na osnovu starog obračuna";
-            this.btnKreirajObracune.UseVisualStyleBackColor = true;
-            this.btnKreirajObracune.Click += new System.EventHandler(this.BtnKreirajObracune_Click);
             // 
             // btnUcitajObracunZarada
             // 
@@ -664,10 +560,10 @@
             this.tpAngazovanja.BackColor = System.Drawing.SystemColors.Control;
             this.tpAngazovanja.Controls.Add(this.dgvAngazovanja);
             this.tpAngazovanja.Controls.Add(this.pnlBottomLeftAng);
-            this.tpAngazovanja.Location = new System.Drawing.Point(4, 27);
+            this.tpAngazovanja.Location = new System.Drawing.Point(4, 22);
             this.tpAngazovanja.Name = "tpAngazovanja";
             this.tpAngazovanja.Padding = new System.Windows.Forms.Padding(3);
-            this.tpAngazovanja.Size = new System.Drawing.Size(1056, 293);
+            this.tpAngazovanja.Size = new System.Drawing.Size(1056, 298);
             this.tpAngazovanja.TabIndex = 1;
             this.tpAngazovanja.Text = "Angažovanja";
             // 
@@ -704,7 +600,7 @@
             this.dgvAngazovanja.Name = "dgvAngazovanja";
             this.dgvAngazovanja.ReadOnly = true;
             this.dgvAngazovanja.RowHeadersWidth = 30;
-            this.dgvAngazovanja.Size = new System.Drawing.Size(904, 287);
+            this.dgvAngazovanja.Size = new System.Drawing.Size(904, 292);
             this.dgvAngazovanja.StandardSort = null;
             this.dgvAngazovanja.TabIndex = 0;
             // 
@@ -764,7 +660,7 @@
             this.pnlBottomLeftAng.Name = "pnlBottomLeftAng";
             this.pnlBottomLeftAng.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
             this.pnlBottomLeftAng.RightWingWidth = 6;
-            this.pnlBottomLeftAng.Size = new System.Drawing.Size(146, 287);
+            this.pnlBottomLeftAng.Size = new System.Drawing.Size(146, 292);
             this.pnlBottomLeftAng.TabIndex = 1;
             // 
             // tpResenja
@@ -772,10 +668,10 @@
             this.tpResenja.BackColor = System.Drawing.SystemColors.Control;
             this.tpResenja.Controls.Add(this.dgvResenja);
             this.tpResenja.Controls.Add(this.pnlBottomLeftRes);
-            this.tpResenja.Location = new System.Drawing.Point(4, 27);
+            this.tpResenja.Location = new System.Drawing.Point(4, 22);
             this.tpResenja.Name = "tpResenja";
             this.tpResenja.Padding = new System.Windows.Forms.Padding(3);
-            this.tpResenja.Size = new System.Drawing.Size(1056, 293);
+            this.tpResenja.Size = new System.Drawing.Size(1056, 298);
             this.tpResenja.TabIndex = 2;
             this.tpResenja.Text = "Rešenja";
             // 
@@ -812,7 +708,7 @@
             this.dgvResenja.Name = "dgvResenja";
             this.dgvResenja.ReadOnly = true;
             this.dgvResenja.RowHeadersWidth = 30;
-            this.dgvResenja.Size = new System.Drawing.Size(904, 287);
+            this.dgvResenja.Size = new System.Drawing.Size(904, 292);
             this.dgvResenja.StandardSort = null;
             this.dgvResenja.TabIndex = 1;
             this.dgvResenja.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvResenja_CellClick);
@@ -877,7 +773,7 @@
             this.pnlBottomLeftRes.Name = "pnlBottomLeftRes";
             this.pnlBottomLeftRes.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
             this.pnlBottomLeftRes.RightWingWidth = 6;
-            this.pnlBottomLeftRes.Size = new System.Drawing.Size(146, 287);
+            this.pnlBottomLeftRes.Size = new System.Drawing.Size(146, 292);
             this.pnlBottomLeftRes.TabIndex = 0;
             // 
             // btnUcitajResenja
@@ -922,7 +818,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.bsObracunZarada)).EndInit();
             this.pnlBottomLeftOZ.ResumeLayout(false);
             this.pnlBottomLeftOZ.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numOzGodina)).EndInit();
             this.tpAngazovanja.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAngazovanja)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAngazovanja)).EndInit();
@@ -953,9 +848,6 @@
         private Controls.UcLeftPanel pnlBottomLeftOZ;
         private Controls.UcButton btnUcitajObracunZarada;
         private System.Windows.Forms.BindingSource bsObracunZarada;
-        private System.Windows.Forms.NumericUpDown numOzGodina;
-        private Controls.UcButton btnKreirajObracune;
-        private System.Windows.Forms.CheckedListBox lstchkMeseci;
         private Controls.UcButton btnUcitajAngazovanja;
         private System.Windows.Forms.TabPage tpAngazovanja;
         private Controls.UcDGV dgvAngazovanja;
@@ -966,16 +858,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn predmetDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn podnivoPredmetaDataGridViewTextBoxColumn;
         private Controls.UcButton btnObrisiObracune;
-        private Controls.UcButton btnDodajOZTemplate;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn aktivanDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn brojUgovoraORaduDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn radnoMestoNazivDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn procenatRadnogVremenaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn datumZaposlenOdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn datumZaposlenDoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn noksNivoNazivDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn vrstaAngazovanjaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dgvcImaObracunTemplate;
         private System.Windows.Forms.CheckBox chkCopyOnClick;
         private System.Windows.Forms.Label lblBrojRedovaOZ;
         private Controls.UcLeftPanel pnlBottomLeftAng;
@@ -1001,5 +883,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn normaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn KoefSveOpis;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcOzStaz;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn aktivanDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn brojUgovoraORaduDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn radnoMestoNazivDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn procenatRadnogVremenaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn datumZaposlenOdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn datumZaposlenDoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn noksNivoNazivDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vrstaAngazovanjaDataGridViewTextBoxColumn;
     }
 }
