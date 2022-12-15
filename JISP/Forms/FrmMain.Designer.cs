@@ -42,6 +42,7 @@
             this.btnZaposleni = new JISP.Controls.UcButton();
             this.btnUcenici = new JISP.Controls.UcButton();
             this.cmbSkolskaGodina = new System.Windows.Forms.ComboBox();
+            this.btnProstorije = new JISP.Controls.UcButton();
             label2 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -65,6 +66,15 @@
             label1.TabIndex = 8;
             label1.Text = "Internet Browser:";
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(69, 258);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(118, 18);
+            label3.TabIndex = 10;
+            label3.Text = "Školska Godina:";
+            // 
             // lblApiTokenCaption
             // 
             this.lblApiTokenCaption.AutoSize = true;
@@ -81,7 +91,7 @@
             this.lblApiToken.Location = new System.Drawing.Point(210, 176);
             this.lblApiToken.Name = "lblApiToken";
             this.lblApiToken.Size = new System.Drawing.Size(338, 24);
-            this.lblApiToken.TabIndex = 5;
+            this.lblApiToken.TabIndex = 4;
             this.lblApiToken.Click += new System.EventHandler(this.LblApiToken_Click);
             // 
             // lblDataFolder
@@ -91,7 +101,7 @@
             this.lblDataFolder.Location = new System.Drawing.Point(210, 202);
             this.lblDataFolder.Name = "lblDataFolder";
             this.lblDataFolder.Size = new System.Drawing.Size(338, 24);
-            this.lblDataFolder.TabIndex = 7;
+            this.lblDataFolder.TabIndex = 5;
             this.lblDataFolder.Click += new System.EventHandler(this.LblDataFolder_Click);
             // 
             // cmbBrowser
@@ -104,15 +114,15 @@
             this.cmbBrowser.Location = new System.Drawing.Point(210, 228);
             this.cmbBrowser.Name = "cmbBrowser";
             this.cmbBrowser.Size = new System.Drawing.Size(121, 25);
-            this.cmbBrowser.TabIndex = 9;
+            this.cmbBrowser.TabIndex = 6;
             this.cmbBrowser.SelectedIndexChanged += new System.EventHandler(this.CmbBrowser_SelectedIndexChanged);
             // 
             // btnBackup
             // 
-            this.btnBackup.Location = new System.Drawing.Point(413, 36);
+            this.btnBackup.Location = new System.Drawing.Point(413, 90);
             this.btnBackup.Name = "btnBackup";
             this.btnBackup.Size = new System.Drawing.Size(135, 48);
-            this.btnBackup.TabIndex = 2;
+            this.btnBackup.TabIndex = 3;
             this.btnBackup.Text = "BackUp";
             this.btnBackup.ToolTipText = "Čuvanje podataka iz DataSet-a u posebnom XML fajlu.";
             this.btnBackup.UseVisualStyleBackColor = true;
@@ -150,23 +160,26 @@
             this.cmbSkolskaGodina.Location = new System.Drawing.Point(210, 255);
             this.cmbSkolskaGodina.Name = "cmbSkolskaGodina";
             this.cmbSkolskaGodina.Size = new System.Drawing.Size(121, 25);
-            this.cmbSkolskaGodina.TabIndex = 11;
+            this.cmbSkolskaGodina.TabIndex = 7;
             this.cmbSkolskaGodina.SelectedIndexChanged += new System.EventHandler(this.CmbSkolskaGodina_SelectedIndexChanged);
             // 
-            // label3
+            // btnProstorije
             // 
-            label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(69, 258);
-            label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(118, 18);
-            label3.TabIndex = 10;
-            label3.Text = "Školska Godina:";
+            this.btnProstorije.Location = new System.Drawing.Point(413, 36);
+            this.btnProstorije.Name = "btnProstorije";
+            this.btnProstorije.Size = new System.Drawing.Size(135, 48);
+            this.btnProstorije.TabIndex = 2;
+            this.btnProstorije.Text = "&Prostorije";
+            this.btnProstorije.ToolTipText = null;
+            this.btnProstorije.UseVisualStyleBackColor = true;
+            this.btnProstorije.Click += new System.EventHandler(this.BtnProstorije_Click);
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(617, 301);
+            this.Controls.Add(this.btnProstorije);
             this.Controls.Add(this.cmbSkolskaGodina);
             this.Controls.Add(label3);
             this.Controls.Add(this.cmbBrowser);
@@ -204,6 +217,7 @@
         private System.Windows.Forms.ToolTip ttDataFolder;
         private System.Windows.Forms.ComboBox cmbBrowser;
         private System.Windows.Forms.ComboBox cmbSkolskaGodina;
+        private Controls.UcButton btnProstorije;
     }
 }
 

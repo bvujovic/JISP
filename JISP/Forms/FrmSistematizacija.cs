@@ -34,6 +34,8 @@ namespace JISP.Forms
                 await DataGetter.GetSistematizacijaAsync();
             });
             dgvSistematizacija.DisplayPositionRowCount();
+            //bsSistematizacija.MoveLast();
+            bsSistematizacija.MoveFirst();
         }
 
         private void TxtFilter_TextChanged(object sender, EventArgs e)

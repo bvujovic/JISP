@@ -105,6 +105,16 @@ namespace JISP.Forms
             Utils.ShowForm(typeof(FrmZaposleni));
         }
 
+        private void BtnProstorije_Click(object sender, EventArgs e)
+        {
+            Utils.ShowForm(typeof(FrmProstorije));
+        }
+
+        private void BtnBackup_Click(object sender, EventArgs e)
+        {
+            BackupData.CreateBackup();
+        }
+
         public void FrmChild_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (Application.OpenForms.Cast<Form>().Where(it => it.Name != "FrmSistematizacija")
@@ -113,11 +123,6 @@ namespace JISP.Forms
                 ShowInTaskbar = true;
                 WindowState = FormWindowState.Normal;
             }
-        }
-
-        private void BtnBackup_Click(object sender, EventArgs e)
-        {
-            BackupData.CreateBackup();
         }
 
         private void LblApiToken_Click(object sender, EventArgs e)

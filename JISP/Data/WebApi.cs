@@ -175,6 +175,14 @@ namespace JISP.Data
             Uc_OpstiPodaci,
 
             Job_PreuzmiListuZahteva,
+
+            Ustanova_Lokacije,
+            Ustanova_Objekti,
+            Ustanova_ProstorijeOsnovno,
+            Ustanova_ProstorijeDodatno,
+            Ustanova_Spratovi,
+            Ustanova_Grejanje,
+            Ustanova_Hladjenje,
         }
 
         public static string UrlForReq(ReqEnum reqEnum, string param = null)
@@ -229,6 +237,24 @@ namespace JISP.Data
 
                 case ReqEnum.Job_PreuzmiListuZahteva:
                     return urlBase + $"job/PreuzmiListuZahteva";
+
+                case ReqEnum.Ustanova_Lokacije:
+                    return urlBase + $"Ustanova/VratiLokacijeUstanove/" + SV_SAVA_ID;
+                case ReqEnum.Ustanova_Objekti:
+                    return urlBase + $"Ustanova/VratiObjektePoIdLokacije/{param}";
+                case ReqEnum.Ustanova_ProstorijeOsnovno:
+                    return urlBase + $"Ustanova/VratiProstorije/{param}";
+                case ReqEnum.Ustanova_ProstorijeDodatno:
+                    return urlBase + $"Ustanova/VratiProstorijuZaId/{param}";
+
+                case ReqEnum.Ustanova_Spratovi:
+                    return urlBase + $"sifarnik/naziv/Sprat";
+                case ReqEnum.Ustanova_Grejanje:
+                    return urlBase + $"sifarnik/naziv/IzvorGrejanja";
+                case ReqEnum.Ustanova_Hladjenje:
+                    return urlBase + $"sifarnik/naziv/VrstaIzvoraHladjenja";
+
+
                 default:
                     throw new Exception("Nepostojeci reqEnum: " + reqEnum);
             }

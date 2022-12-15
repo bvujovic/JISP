@@ -271,5 +271,140 @@ namespace JISP.Data
                 Utils.ShowMbox(string.Join(Environment.NewLine, ucsDatRodj)
                     , "Spisak učenika čiji se datum rođenja i JMBG se ne slažu");
         }
+
+        #region Lokacije, Objekti, Prostorije
+
+        /// <summary>Učitava podatke u tabelu Lokacije.</summary>
+        public static async Task GetLokacijeAsync()
+        {
+            var json = await WebApi.GetJson(WebApi.ReqEnum.Ustanova_Lokacije);
+            dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
+            AppData.Ds.Lokacije.Clear();
+            foreach (var item in arr)
+            {
+                var lok = AppData.Ds.Lokacije.NewLokacijeRow();
+                lok.IdLokacije = item.id;
+                lok.NazivLokacije = item.nazivLokacije;
+                lok.Opstina = item.opstinaNaziv;
+                lok.Mesto = item.mestoNaziv;
+                lok.Ulica = item.ulicaNaziv;
+                lok.KucniBroj = item.kucniBroj;
+                lok.JeSediste = item.jeSediste;
+                AppData.Ds.Lokacije.AddLokacijeRow(lok);
+            }
+        }
+
+        /// <summary>Učitava podatke u tabelu Objekti.</summary>
+        public static async Task GetObjektiAsync()
+        {
+            AppData.Ds.Objekti.Clear();
+            foreach (var lok in AppData.Ds.Lokacije)
+            {
+                var json = await WebApi.GetJson(WebApi.ReqEnum.Ustanova_Objekti, lok.IdLokacije.ToString());
+                dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
+                foreach (var item in arr)
+                {
+                    var obj = AppData.Ds.Objekti.NewObjektiRow();
+                    obj.IdObjekta = item.id;
+                    obj.NazivObjekta = item.naziv;
+                    obj.IdLokacije = item.idLokacije;
+                    obj.GodinaIzgradnje = item.godinaIzgradnje;
+                    obj.GodinaOtvaranja = item.godinaOtvaranja;
+                    obj.UkupnaPovrsinaZaCiscenje = item.ukupnaPovrsinaZaCiscenje;
+                    obj.UkupnaPovrsinaZaGrejanje = item.ukupnaPovrsinaZaGrejanje;
+                    obj.Namena = string.Join(", ", item.listaNamena);
+                    AppData.Ds.Objekti.AddObjektiRow(obj);
+                }
+            }
+        }
+
+        /// <summary>Učitava podatke u tabelu Prostorije.</summary>
+        public static async Task GetProstorijeOsnovnoAsync()
+        {
+            AppData.Ds.Prostorije.Clear();
+            foreach (var lok in AppData.Ds.Objekti)
+            {
+                var json = await WebApi.GetJson(WebApi.ReqEnum.Ustanova_ProstorijeOsnovno, lok.IdObjekta.ToString());
+                dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
+                foreach (var item in arr)
+                {
+                    var p = AppData.Ds.Prostorije.NewProstorijeRow();
+                    p.IdProstorije = item.id;
+                    p.NazivProstorije = item.nazivProstorije;
+                    p.IdObjekta = item.idObjekta;
+                    p.TipProstorije = item.tipProstorijeNaziv;
+                    p.Povrsina = item.povrsina;
+                    p.ProsecnaVisinaPlafona = item.prosecnaVisinaPlafona;
+                    p.DostupLicimaSaSpecPotrebama = item.dostupnostLicimaSaSpecijalnimPotrebamaNaziv;
+                    AppData.Ds.Prostorije.AddProstorijeRow(p);
+                }
+            }
+        }
+
+        /// <summary>Učitava podatke u tabelu Prostorije.</summary>
+        public static async Task GetProstorijeDodatnoAsync(int idProstorije)
+        {
+            var json = await WebApi.GetJson(WebApi.ReqEnum.Ustanova_ProstorijeDodatno, idProstorije.ToString());
+            dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(json);
+            var p = AppData.Ds.Prostorije.FindByIdProstorije(idProstorije);
+            if (p != null)
+            {
+                p.Sprat = AppData.Ds.SifSpratovi.FindByIdSprata((int)obj.sprat).NazivSprata;
+                p.IzvorGrejanja = obj.izvorGrejanja;
+                if (obj.vrstaIzvoraGrejanja != null)
+                    p.VrstaIzvoraGrejanja = AppData.Ds.SifGrejanja.FindByIdGrejanja((int)obj.vrstaIzvoraGrejanja).NazivGrejanja;
+                p.IzvorHladjenja = obj.izvorHladjenja;
+                if (obj.vrstaIzvoraHladjenja != null)
+                    p.VrstaIzvoraHladjenja = AppData.Ds.SifHladjenja.FindByIdHladjenja((int)obj.vrstaIzvoraHladjenja).NazivHladjenja;
+                p.ProstorijaSeKoristi = obj.prostorijaSeKoristi;
+            }
+        }
+
+        /// <summary>Učitava podatke u tabelu SifSpratovi.</summary>
+        public static async Task GetSpratoviAsync()
+        {
+            AppData.Ds.SifSpratovi.Clear();
+            var json = await WebApi.GetJson(WebApi.ReqEnum.Ustanova_Spratovi);
+            dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
+            foreach (var item in arr)
+            {
+                var sprat = AppData.Ds.SifSpratovi.NewSifSpratoviRow();
+                sprat.IdSprata = item.id;
+                sprat.NazivSprata = item.naziv;
+                AppData.Ds.SifSpratovi.AddSifSpratoviRow(sprat);
+            }
+        }
+
+        /// <summary>Učitava podatke u tabelu SifGrejanja.</summary>
+        public static async Task GetGrejanjaAsync()
+        {
+            AppData.Ds.SifGrejanja.Clear();
+            var json = await WebApi.GetJson(WebApi.ReqEnum.Ustanova_Grejanje);
+            dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
+            foreach (var item in arr)
+            {
+                var g = AppData.Ds.SifGrejanja.NewSifGrejanjaRow();
+                g.IdGrejanja = item.id;
+                g.NazivGrejanja = item.naziv;
+                AppData.Ds.SifGrejanja.AddSifGrejanjaRow(g);
+            }
+        }
+
+        /// <summary>Učitava podatke u tabelu SifHladjenja.</summary>
+        public static async Task GetHladjenjaAsync()
+        {
+            AppData.Ds.SifHladjenja.Clear();
+            var json = await WebApi.GetJson(WebApi.ReqEnum.Ustanova_Hladjenje);
+            dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
+            foreach (var item in arr)
+            {
+                var h = AppData.Ds.SifHladjenja.NewSifHladjenjaRow();
+                h.IdHladjenja = item.id;
+                h.NazivHladjenja = item.naziv;
+                AppData.Ds.SifHladjenja.AddSifHladjenjaRow(h);
+            }
+        }
+
+        #endregion Lokacije, Objekti, Prostorije
     }
 }
