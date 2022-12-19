@@ -58,6 +58,8 @@ namespace JISP.Data {
         
         private SifHladjenjaDataTable tableSifHladjenja;
         
+        private RacunariDataTable tableRacunari;
+        
         private global::System.Data.DataRelation relationFK_Zaposleni_Zaposlenja;
         
         private global::System.Data.DataRelation relationZaposleni_ObracunZarada;
@@ -73,6 +75,8 @@ namespace JISP.Data {
         private global::System.Data.DataRelation relationLokacije_Objekti;
         
         private global::System.Data.DataRelation relationObjekti_Prostorije;
+        
+        private global::System.Data.DataRelation relationProstorije_Racunari;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -156,6 +160,9 @@ namespace JISP.Data {
                 }
                 if ((ds.Tables["SifHladjenja"] != null)) {
                     base.Tables.Add(new SifHladjenjaDataTable(ds.Tables["SifHladjenja"]));
+                }
+                if ((ds.Tables["Racunari"] != null)) {
+                    base.Tables.Add(new RacunariDataTable(ds.Tables["Racunari"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -348,6 +355,16 @@ namespace JISP.Data {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public RacunariDataTable Racunari {
+            get {
+                return this.tableRacunari;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -464,6 +481,9 @@ namespace JISP.Data {
                 }
                 if ((ds.Tables["SifHladjenja"] != null)) {
                     base.Tables.Add(new SifHladjenjaDataTable(ds.Tables["SifHladjenja"]));
+                }
+                if ((ds.Tables["Racunari"] != null)) {
+                    base.Tables.Add(new RacunariDataTable(ds.Tables["Racunari"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -600,6 +620,12 @@ namespace JISP.Data {
                     this.tableSifHladjenja.InitVars();
                 }
             }
+            this.tableRacunari = ((RacunariDataTable)(base.Tables["Racunari"]));
+            if ((initTable == true)) {
+                if ((this.tableRacunari != null)) {
+                    this.tableRacunari.InitVars();
+                }
+            }
             this.relationFK_Zaposleni_Zaposlenja = this.Relations["FK_Zaposleni_Zaposlenja"];
             this.relationZaposleni_ObracunZarada = this.Relations["Zaposleni_ObracunZarada"];
             this.relationZaposlenja_Angazovanja = this.Relations["Zaposlenja_Angazovanja"];
@@ -608,6 +634,7 @@ namespace JISP.Data {
             this.relationUcenici_UcenikSkGod = this.Relations["Ucenici_UcenikSkGod"];
             this.relationLokacije_Objekti = this.Relations["Lokacije_Objekti"];
             this.relationObjekti_Prostorije = this.Relations["Objekti_Prostorije"];
+            this.relationProstorije_Racunari = this.Relations["Prostorije_Racunari"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -652,6 +679,8 @@ namespace JISP.Data {
             base.Tables.Add(this.tableSifGrejanja);
             this.tableSifHladjenja = new SifHladjenjaDataTable();
             base.Tables.Add(this.tableSifHladjenja);
+            this.tableRacunari = new RacunariDataTable(false);
+            base.Tables.Add(this.tableRacunari);
             global::System.Data.ForeignKeyConstraint fkc;
             fkc = new global::System.Data.ForeignKeyConstraint("FK_Zaposleni_Zaposlenja", new global::System.Data.DataColumn[] {
                         this.tableZaposleni.IdZaposlenogColumn}, new global::System.Data.DataColumn[] {
@@ -699,6 +728,10 @@ namespace JISP.Data {
                         this.tableObjekti.IdObjektaColumn}, new global::System.Data.DataColumn[] {
                         this.tableProstorije.IdObjektaColumn}, false);
             this.Relations.Add(this.relationObjekti_Prostorije);
+            this.relationProstorije_Racunari = new global::System.Data.DataRelation("Prostorije_Racunari", new global::System.Data.DataColumn[] {
+                        this.tableProstorije.IdProstorijeColumn}, new global::System.Data.DataColumn[] {
+                        this.tableRacunari.IdProstorijeColumn}, false);
+            this.Relations.Add(this.relationProstorije_Racunari);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -805,6 +838,12 @@ namespace JISP.Data {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private bool ShouldSerializeRacunari() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void SchemaChanged(object sender, global::System.ComponentModel.CollectionChangeEventArgs e) {
             if ((e.Action == global::System.ComponentModel.CollectionChangeAction.Remove)) {
                 this.InitVars();
@@ -876,6 +915,7 @@ namespace JISP.Data {
             this.UcenikSkGod._DatumRodjenjaColumn.Expression = "parent.DatumRodjenja";
             this.UcenikSkGod._GodineColumn.Expression = "parent.Godine";
             this.UcenikSkGod._DanaDoRodjColumn.Expression = "parent.DanaDoRodj";
+            this.Racunari._ProstorijaColumn.Expression = "parent.NazivProstorije";
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -928,6 +968,9 @@ namespace JISP.Data {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void SifHladjenjaRowChangeEventHandler(object sender, SifHladjenjaRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public delegate void RacunariRowChangeEventHandler(object sender, RacunariRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -7794,6 +7837,422 @@ namespace JISP.Data {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class RacunariDataTable : global::System.Data.TypedTableBase<RacunariRow> {
+            
+            private global::System.Data.DataColumn columnIdRacunara;
+            
+            private global::System.Data.DataColumn columnNazivRacunara;
+            
+            private global::System.Data.DataColumn column_Prostorija;
+            
+            private global::System.Data.DataColumn columnIdProstorije;
+            
+            private global::System.Data.DataColumn columnStatus;
+            
+            private global::System.Data.DataColumn columnTip;
+            
+            private global::System.Data.DataColumn columnProcesor;
+            
+            private global::System.Data.DataColumn columnGodinaProizvodnje;
+            
+            private global::System.Data.DataColumn columnNapomene;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public RacunariDataTable() : 
+                    this(false) {
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public RacunariDataTable(bool initExpressions) {
+                this.TableName = "Racunari";
+                this.BeginInit();
+                this.InitClass();
+                if ((initExpressions == true)) {
+                    this.InitExpressions();
+                }
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal RacunariDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected RacunariDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IdRacunaraColumn {
+                get {
+                    return this.columnIdRacunara;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn NazivRacunaraColumn {
+                get {
+                    return this.columnNazivRacunara;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn _ProstorijaColumn {
+                get {
+                    return this.column_Prostorija;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IdProstorijeColumn {
+                get {
+                    return this.columnIdProstorije;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn StatusColumn {
+                get {
+                    return this.columnStatus;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn TipColumn {
+                get {
+                    return this.columnTip;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ProcesorColumn {
+                get {
+                    return this.columnProcesor;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn GodinaProizvodnjeColumn {
+                get {
+                    return this.columnGodinaProizvodnje;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn NapomeneColumn {
+                get {
+                    return this.columnNapomene;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public RacunariRow this[int index] {
+                get {
+                    return ((RacunariRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event RacunariRowChangeEventHandler RacunariRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event RacunariRowChangeEventHandler RacunariRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event RacunariRowChangeEventHandler RacunariRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event RacunariRowChangeEventHandler RacunariRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void AddRacunariRow(RacunariRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public RacunariRow AddRacunariRow(int IdRacunara, string NazivRacunara, string _Prostorija, ProstorijeRow parentProstorijeRowByProstorije_Racunari, string Status, string Tip, string Procesor, int GodinaProizvodnje, string Napomene) {
+                RacunariRow rowRacunariRow = ((RacunariRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        IdRacunara,
+                        NazivRacunara,
+                        _Prostorija,
+                        null,
+                        Status,
+                        Tip,
+                        Procesor,
+                        GodinaProizvodnje,
+                        Napomene};
+                if ((parentProstorijeRowByProstorije_Racunari != null)) {
+                    columnValuesArray[3] = parentProstorijeRowByProstorije_Racunari[0];
+                }
+                rowRacunariRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowRacunariRow);
+                return rowRacunariRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public RacunariRow AddRacunariRow(int IdRacunara, string NazivRacunara, ProstorijeRow parentProstorijeRowByProstorije_Racunari, string Status, string Tip, string Procesor, int GodinaProizvodnje, string Napomene) {
+                RacunariRow rowRacunariRow = ((RacunariRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        IdRacunara,
+                        NazivRacunara,
+                        null,
+                        null,
+                        Status,
+                        Tip,
+                        Procesor,
+                        GodinaProizvodnje,
+                        Napomene};
+                if ((parentProstorijeRowByProstorije_Racunari != null)) {
+                    columnValuesArray[3] = parentProstorijeRowByProstorije_Racunari[0];
+                }
+                rowRacunariRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowRacunariRow);
+                return rowRacunariRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public RacunariRow FindByIdRacunara(int IdRacunara) {
+                return ((RacunariRow)(this.Rows.Find(new object[] {
+                            IdRacunara})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                RacunariDataTable cln = ((RacunariDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new RacunariDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal void InitVars() {
+                this.columnIdRacunara = base.Columns["IdRacunara"];
+                this.columnNazivRacunara = base.Columns["NazivRacunara"];
+                this.column_Prostorija = base.Columns["_Prostorija"];
+                this.columnIdProstorije = base.Columns["IdProstorije"];
+                this.columnStatus = base.Columns["Status"];
+                this.columnTip = base.Columns["Tip"];
+                this.columnProcesor = base.Columns["Procesor"];
+                this.columnGodinaProizvodnje = base.Columns["GodinaProizvodnje"];
+                this.columnNapomene = base.Columns["Napomene"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            private void InitClass() {
+                this.columnIdRacunara = new global::System.Data.DataColumn("IdRacunara", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdRacunara);
+                this.columnNazivRacunara = new global::System.Data.DataColumn("NazivRacunara", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNazivRacunara);
+                this.column_Prostorija = new global::System.Data.DataColumn("_Prostorija", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.column_Prostorija);
+                this.columnIdProstorije = new global::System.Data.DataColumn("IdProstorije", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdProstorije);
+                this.columnStatus = new global::System.Data.DataColumn("Status", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStatus);
+                this.columnTip = new global::System.Data.DataColumn("Tip", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTip);
+                this.columnProcesor = new global::System.Data.DataColumn("Procesor", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProcesor);
+                this.columnGodinaProizvodnje = new global::System.Data.DataColumn("GodinaProizvodnje", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGodinaProizvodnje);
+                this.columnNapomene = new global::System.Data.DataColumn("Napomene", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNapomene);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnIdRacunara}, true));
+                this.columnIdRacunara.AllowDBNull = false;
+                this.columnIdRacunara.Unique = true;
+                this.columnNazivRacunara.AllowDBNull = false;
+                this.column_Prostorija.AllowDBNull = false;
+                this.column_Prostorija.ReadOnly = true;
+                this.columnIdProstorije.AllowDBNull = false;
+                this.columnStatus.AllowDBNull = false;
+                this.columnTip.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public RacunariRow NewRacunariRow() {
+                return ((RacunariRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new RacunariRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(RacunariRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            private void InitExpressions() {
+                this._ProstorijaColumn.Expression = "parent.NazivProstorije";
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.RacunariRowChanged != null)) {
+                    this.RacunariRowChanged(this, new RacunariRowChangeEvent(((RacunariRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.RacunariRowChanging != null)) {
+                    this.RacunariRowChanging(this, new RacunariRowChangeEvent(((RacunariRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.RacunariRowDeleted != null)) {
+                    this.RacunariRowDeleted(this, new RacunariRowChangeEvent(((RacunariRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.RacunariRowDeleting != null)) {
+                    this.RacunariRowDeleting(this, new RacunariRowChangeEvent(((RacunariRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void RemoveRacunariRow(RacunariRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                Ds ds = new Ds();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "RacunariDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class UceniciRow : global::System.Data.DataRow {
@@ -12029,6 +12488,17 @@ namespace JISP.Data {
             public void SetProstorijaSeKoristiNull() {
                 this[this.tableProstorije.ProstorijaSeKoristiColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public RacunariRow[] GetRacunariRows() {
+                if ((this.Table.ChildRelations["Prostorije_Racunari"] == null)) {
+                    return new RacunariRow[0];
+                }
+                else {
+                    return ((RacunariRow[])(base.GetChildRows(this.Table.ChildRelations["Prostorije_Racunari"])));
+                }
+            }
         }
         
         /// <summary>
@@ -12139,6 +12609,182 @@ namespace JISP.Data {
                 set {
                     this[this.tableSifHladjenja.NazivHladjenjaColumn] = value;
                 }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class RacunariRow : global::System.Data.DataRow {
+            
+            private RacunariDataTable tableRacunari;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal RacunariRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableRacunari = ((RacunariDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int IdRacunara {
+                get {
+                    return ((int)(this[this.tableRacunari.IdRacunaraColumn]));
+                }
+                set {
+                    this[this.tableRacunari.IdRacunaraColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string NazivRacunara {
+                get {
+                    return ((string)(this[this.tableRacunari.NazivRacunaraColumn]));
+                }
+                set {
+                    this[this.tableRacunari.NazivRacunaraColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string _Prostorija {
+                get {
+                    return ((string)(this[this.tableRacunari._ProstorijaColumn]));
+                }
+                set {
+                    this[this.tableRacunari._ProstorijaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int IdProstorije {
+                get {
+                    return ((int)(this[this.tableRacunari.IdProstorijeColumn]));
+                }
+                set {
+                    this[this.tableRacunari.IdProstorijeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Status {
+                get {
+                    return ((string)(this[this.tableRacunari.StatusColumn]));
+                }
+                set {
+                    this[this.tableRacunari.StatusColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Tip {
+                get {
+                    return ((string)(this[this.tableRacunari.TipColumn]));
+                }
+                set {
+                    this[this.tableRacunari.TipColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Procesor {
+                get {
+                    try {
+                        return ((string)(this[this.tableRacunari.ProcesorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Procesor\' in table \'Racunari\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRacunari.ProcesorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int GodinaProizvodnje {
+                get {
+                    try {
+                        return ((int)(this[this.tableRacunari.GodinaProizvodnjeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'GodinaProizvodnje\' in table \'Racunari\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRacunari.GodinaProizvodnjeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Napomene {
+                get {
+                    try {
+                        return ((string)(this[this.tableRacunari.NapomeneColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Napomene\' in table \'Racunari\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRacunari.NapomeneColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public ProstorijeRow ProstorijeRow {
+                get {
+                    return ((ProstorijeRow)(this.GetParentRow(this.Table.ParentRelations["Prostorije_Racunari"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Prostorije_Racunari"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsProcesorNull() {
+                return this.IsNull(this.tableRacunari.ProcesorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetProcesorNull() {
+                this[this.tableRacunari.ProcesorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsGodinaProizvodnjeNull() {
+                return this.IsNull(this.tableRacunari.GodinaProizvodnjeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetGodinaProizvodnjeNull() {
+                this[this.tableRacunari.GodinaProizvodnjeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsNapomeneNull() {
+                return this.IsNull(this.tableRacunari.NapomeneColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetNapomeneNull() {
+                this[this.tableRacunari.NapomeneColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -12706,6 +13352,40 @@ namespace JISP.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public SifHladjenjaRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public class RacunariRowChangeEvent : global::System.EventArgs {
+            
+            private RacunariRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public RacunariRowChangeEvent(RacunariRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public RacunariRow Row {
                 get {
                     return this.eventRow;
                 }

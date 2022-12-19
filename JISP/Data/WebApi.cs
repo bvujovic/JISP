@@ -183,6 +183,8 @@ namespace JISP.Data
             Ustanova_Spratovi,
             Ustanova_Grejanje,
             Ustanova_Hladjenje,
+
+            Ustanova_Racunari,
         }
 
         public static string UrlForReq(ReqEnum reqEnum, string param = null)
@@ -254,6 +256,8 @@ namespace JISP.Data
                 case ReqEnum.Ustanova_Hladjenje:
                     return urlBase + $"sifarnik/naziv/VrstaIzvoraHladjenja";
 
+                case ReqEnum.Ustanova_Racunari:
+                    return urlBase + $"Ustanova/VratiRacunareITablete/{param}";
 
                 default:
                     throw new Exception("Nepostojeci reqEnum: " + reqEnum);

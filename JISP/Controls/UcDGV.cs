@@ -17,6 +17,7 @@ namespace JISP.Controls
         private ToolStripMenuItem tsmiSelCelija;
         private ToolStripMenuItem tsmiPrikazKolona;
         private ToolStripMenuItem tsmiRazliciteVrednosti;
+        private ToolStripMenuItem tsmiKopiranjeNaKlik;
 
         /// <summary>Kolone koje su u dizajneru postavljenje na Visible = true</summary>
         private List<DataGridViewColumn> availableColumns = null;
@@ -29,6 +30,7 @@ namespace JISP.Controls
             tsmiRazliciteVrednosti.Click += TsmiRazliciteVrednosti_Click;
             tsmiSelCeoRed.CheckedChanged += TsmiSelelekcija_CheckedChanged;
             tsmiSelCelija.CheckedChanged += TsmiSelelekcija_CheckedChanged;
+            tsmiKopiranjeNaKlik.CheckedChanged += TsmiKopiranjeNaKlik_CheckedChanged;
 
             DisplayPositionRowCount();
             SelectionChanged += (o, ea) => DisplayPositionRowCount();
@@ -76,10 +78,11 @@ namespace JISP.Controls
             this.ctxMenuDGV = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiPrikazKolona = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSort = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRazliciteVrednosti = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiKopiranjeNaKlik = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSelekcija = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSelCeoRed = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSelCelija = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiRazliciteVrednosti = new System.Windows.Forms.ToolStripMenuItem();
             this.ctxMenuDGV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
@@ -90,9 +93,10 @@ namespace JISP.Controls
             this.tsmiPrikazKolona,
             this.tsmiSort,
             this.tsmiRazliciteVrednosti,
+            this.tsmiKopiranjeNaKlik,
             this.tsmiSelekcija});
             this.ctxMenuDGV.Name = "ctxMenuDGV";
-            this.ctxMenuDGV.Size = new System.Drawing.Size(213, 92);
+            this.ctxMenuDGV.Size = new System.Drawing.Size(213, 114);
             // 
             // tsmiPrikazKolona
             // 
@@ -105,6 +109,19 @@ namespace JISP.Controls
             this.tsmiSort.Name = "tsmiSort";
             this.tsmiSort.Size = new System.Drawing.Size(212, 22);
             this.tsmiSort.Text = "Podrazumevano sortiranje";
+            // 
+            // tsmiRazliciteVrednosti
+            // 
+            this.tsmiRazliciteVrednosti.Name = "tsmiRazliciteVrednosti";
+            this.tsmiRazliciteVrednosti.Size = new System.Drawing.Size(212, 22);
+            this.tsmiRazliciteVrednosti.Text = "Različite vrednosti";
+            // 
+            // tsmiKopiranjeNaKlik
+            // 
+            this.tsmiKopiranjeNaKlik.CheckOnClick = true;
+            this.tsmiKopiranjeNaKlik.Name = "tsmiKopiranjeNaKlik";
+            this.tsmiKopiranjeNaKlik.Size = new System.Drawing.Size(212, 22);
+            this.tsmiKopiranjeNaKlik.Text = "Kopiranje na klik";
             // 
             // tsmiSelekcija
             // 
@@ -130,12 +147,6 @@ namespace JISP.Controls
             this.tsmiSelCelija.Name = "tsmiSelCelija";
             this.tsmiSelCelija.Size = new System.Drawing.Size(115, 22);
             this.tsmiSelCelija.Text = "Ćelija";
-            // 
-            // tsmiRazliciteVrednosti
-            // 
-            this.tsmiRazliciteVrednosti.Name = "tsmiRazliciteVrednosti";
-            this.tsmiRazliciteVrednosti.Size = new System.Drawing.Size(212, 22);
-            this.tsmiRazliciteVrednosti.Text = "Različite vrednosti";
             // 
             // UcDGV
             // 
@@ -178,6 +189,7 @@ namespace JISP.Controls
             tsmiSelCelija.Checked = !selCeoRed;
         }
 
+        /// <summary>Postavljanje nacina selektovanja: true - ceo red, false - celija.</summary>
         public void TsmiSelekcija(bool ceoRed)
         {
             var tsmi = ceoRed ? tsmiSelCeoRed : tsmiSelCelija;
@@ -217,8 +229,25 @@ namespace JISP.Controls
                 return SelectedRows.Cast<DataGridViewRow>().Select(it => DataRow<T>(it)).Reverse();
         }
 
+        private void TsmiKopiranjeNaKlik_CheckedChanged(object sender, EventArgs e)
+        {
+            CopyOnCellClick = tsmiKopiranjeNaKlik.Checked;
+        }
+
+        private bool copyOnCellClick = false;
         /// <summary>Da li se tekst celije kopira u klipbord pri kliku na celiju.</summary>
-        public bool CopyOnCellClick { get; set; } = false;
+        public bool CopyOnCellClick
+        {
+            get => copyOnCellClick;
+            set
+            {
+                if (copyOnCellClick != value)
+                {
+                    copyOnCellClick = value;
+                    tsmiKopiranjeNaKlik.Checked = value;
+                }
+            }
+        }
 
         /// <summary>Niz indeksa kolona/celija ciji ce se podaci kopirati na korisnikov klik.</summary>
         public int[] ColumnsForCopyOnClick { get; set; }

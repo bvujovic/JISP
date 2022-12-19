@@ -28,7 +28,7 @@
     <PublisherName>BV</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.5.6.0</ApplicationVersion>
+    <ApplicationVersion>0.5.7.0</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -161,6 +161,12 @@
     <Compile Include="Forms\FrmProstorije.Designer.cs">
       <DependentUpon>FrmProstorije.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FrmRacunari.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmRacunari.Designer.cs">
+      <DependentUpon>FrmRacunari.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmResenja.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -235,6 +241,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmProstorije.resx">
       <DependentUpon>FrmProstorije.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmRacunari.resx">
+      <DependentUpon>FrmRacunari.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmResenja.resx">
       <DependentUpon>FrmResenja.cs</DependentUpon>

@@ -117,7 +117,8 @@ namespace JISP.Forms
 
         public void FrmChild_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (Application.OpenForms.Cast<Form>().Where(it => it.Name != "FrmSistematizacija")
+            var floatingForms = new[] { nameof(FrmSistematizacija), nameof(FrmRacunari) };
+            if (Application.OpenForms.Cast<Form>().Where(it => !floatingForms.Contains(it.Name))
                 .Count() == 0)
             {
                 ShowInTaskbar = true;

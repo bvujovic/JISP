@@ -50,8 +50,12 @@ namespace JISP.Controls
         protected override void OnTextChanged(EventArgs e)
         {
             base.OnTextChanged(e);
-            BackColor = IsCyrillic ? System.Drawing.Color.White : System.Drawing.Color.Orange;
+            if (ShouldBeCyrillic)
+                BackColor = IsCyrillic ? System.Drawing.Color.White : System.Drawing.Color.Orange;
         }
+
+        /// <summary>Da li treba prebacivati tastaturu na cirilicu.</summary>
+        public bool ShouldBeCyrillic { get; set; }
 
         private static bool IsCyrillic
             => CurrentCultureName.StartsWith("sr-Cyrl");
@@ -61,10 +65,10 @@ namespace JISP.Controls
 
         /// <summary>Postavljanje layout-a tastature na cirilicu generisanjem Alt+Shift signala.</summary>
         /// <see cref="https://stackoverflow.com/questions/37291533/change-keyboard-layout-from-c-sharp-code-with-net-4-5-2"/>
-        public void SetCyrillic()
+        private void SetCyrillic()
         {
-//#if !DEBUG
-            if (IsCyrillic)
+            //#if !DEBUG
+            if (!ShouldBeCyrillic || IsCyrillic)
                 return;
             var firstCulture = CurrentCultureName;
             SendKeys.SendWait("%+");
@@ -74,7 +78,7 @@ namespace JISP.Controls
             while (CurrentCultureName != firstCulture && !IsCyrillic && i-- > 0)
                 SendKeys.SendWait("%+");
             timCyrillic.Tick += Tim_Tick;
-//#endif
+            //#endif
         }
 
         private void Tim_Tick(object sender, EventArgs e)

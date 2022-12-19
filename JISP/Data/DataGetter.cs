@@ -405,6 +405,35 @@ namespace JISP.Data
             }
         }
 
+        /// <summary>Učitava osnovne podatke u tabelu Racunari.</summary>
+        public static async Task GetRacunariOsnovnoAsync(int idProstorije)
+        {
+            var json = await WebApi.GetJson(WebApi.ReqEnum.Ustanova_Racunari, idProstorije.ToString());
+            dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
+            foreach (var item in arr)
+            {
+                Ds.RacunariRow r = AppData.Ds.Racunari.FindByIdRacunara((int)item.id);
+                if (r == null)
+                    r = AppData.Ds.Racunari.NewRacunariRow();
+                r.IdRacunara = item.id;
+                r.NazivRacunara = item.naziv;
+                r.IdProstorije = idProstorije;
+                r.Status = item.statusNaziv;
+                r.Tip = item.tipNaziv;
+                if (item.modelProcesora != null)
+                    r.Procesor = item.modelProcesora;
+                if (item.godinaProizvodnje != null)
+                    r.GodinaProizvodnje = item.godinaProizvodnje;
+                if (r.RowState == System.Data.DataRowState.Detached) // dodavanje novog racunara
+                    AppData.Ds.Racunari.AddRacunariRow(r);
+            }
+        }
+
+        //public static async Task GetRacunariDodatnoAsync(int idRacunara)
+        //{
+        //    var url = "https://jisp.mpn.gov.rs/webapi/api/Ustanova/VratiRacunarITabletZaId/21531"
+        //}
+
         #endregion Lokacije, Objekti, Prostorije
     }
 }
