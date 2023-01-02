@@ -44,7 +44,7 @@
             label1.Location = new System.Drawing.Point(22, 63);
             label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(276, 20);
+            label1.Size = new System.Drawing.Size(233, 17);
             label1.TabIndex = 0;
             label1.Text = "Ukupna norma po RM osim zamena";
             // 
@@ -54,7 +54,7 @@
             label2.Location = new System.Drawing.Point(22, 29);
             label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(252, 20);
+            label2.Size = new System.Drawing.Size(211, 17);
             label2.TabIndex = 0;
             label2.Text = "Ukupna norma po sistematizaciji";
             // 
@@ -68,7 +68,7 @@
             0,
             0});
             this.numUkNormaPoSistem.Name = "numUkNormaPoSistem";
-            this.numUkNormaPoSistem.Size = new System.Drawing.Size(93, 27);
+            this.numUkNormaPoSistem.Size = new System.Drawing.Size(93, 23);
             this.numUkNormaPoSistem.TabIndex = 1;
             // 
             // lblUkNormaPoRM
@@ -77,7 +77,7 @@
             this.lblUkNormaPoRM.Location = new System.Drawing.Point(301, 63);
             this.lblUkNormaPoRM.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUkNormaPoRM.Name = "lblUkNormaPoRM";
-            this.lblUkNormaPoRM.Size = new System.Drawing.Size(14, 20);
+            this.lblUkNormaPoRM.Size = new System.Drawing.Size(12, 17);
             this.lblUkNormaPoRM.TabIndex = 0;
             this.lblUkNormaPoRM.Text = "/";
             // 
@@ -93,7 +93,7 @@
             // 
             // FrmSistematizacijaSacuvajNormu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(441, 155);
             this.Controls.Add(this.btnSacuvaj);
@@ -103,13 +103,13 @@
             this.Controls.Add(label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = global::JISP.Properties.Resources.grb_srb;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmSistematizacijaSacuvajNormu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Izmena norme za radno mesto";
+            this.Load += new System.EventHandler(this.FrmSistematizacijaSacuvajNormu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numUkNormaPoSistem)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

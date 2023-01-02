@@ -40,6 +40,7 @@ namespace JISP.Forms
 
             ttSamoAktivnaZaposlenja.SetToolTip(chkSamoAktivnaZaposlenja
                 , "Da li se učitavaju rešenja samo za aktivna zaposlenja ili za sva.");
+            this.FormStandardSettings();
         }
 
         private const string CmbAkcijaDuplikatiBrojeva = "Pronalaženje duplikata brojeva rešenja";

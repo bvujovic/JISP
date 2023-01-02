@@ -45,6 +45,7 @@ namespace JISP.Forms
                 cmbSkolskaGodina.SelectedItem = AppData.SkolskaGodina;
                 BackupData.CreateBackupIfNeeded();
                 Text = "Naš JISP - " + Utils.GetVersion();
+                Icon = Properties.Resources.grb_srb;
             }
             catch (Exception ex)
             {
@@ -126,7 +127,7 @@ namespace JISP.Forms
             }
         }
 
-        private void LblApiToken_Click(object sender, EventArgs e)
+        private async void LblApiToken_Click(object sender, EventArgs e)
         {
             var clipboard = Clipboard.GetText();
             if (clipboard.Contains(Environment.NewLine))
@@ -134,7 +135,19 @@ namespace JISP.Forms
             else
                 WebApi.Token = clipboard;
             lblApiToken.Text = WebApi.TokenDisplay;
-            AppData.SaveSett(WebApi.TOKEN_CAPTION, WebApi.Token);
+            if (WebApi.IsTokenValid())
+            {
+                AppData.SaveSett(WebApi.TOKEN_CAPTION, WebApi.Token);
+                try { 
+                    await DataGetter.GetSistematizacijaAsync();
+                    var novaPorukaSist = await DataGetter.GetPorukaAsync(Poruke.TipSistematizacija);
+                    await DataGetter.GetCenusAsync();
+                    var novaPorukaCenus = await DataGetter.GetPorukaAsync(Poruke.TipCenus);
+                    if (novaPorukaSist || novaPorukaCenus)
+                        btnPrikaziPoruke.BackColor = System.Drawing.Color.Orange;
+                }
+                catch (Exception ex) { Utils.ShowMbox(ex, lblApiToken.Text); }
+            }
         }
 
         private void LblDataFolder_Click(object sender, EventArgs e)
@@ -152,6 +165,11 @@ namespace JISP.Forms
             AppData.SkolskaGodina = (SkolskaGodina)cmbSkolskaGodina.SelectedItem;
             // ovo pravi gresku na pocetku ucitavanja programa kod ucitavanja podataka iz XMLa
             //?AppData.SaveSett(AppData.SkGodSett, AppData.SkolskaGodina.Start.ToString());
+        }
+
+        private void BtnPrikaziPoruke_Click(object sender, EventArgs e)
+        {
+            new FrmPoruke().ShowDialog();
         }
     }
 }

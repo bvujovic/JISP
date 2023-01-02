@@ -796,7 +796,6 @@
             this.Controls.Add(this.scMain);
             this.Controls.Add(this.pnlLeft);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.Icon = global::JISP.Properties.Resources.grb_srb;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmZaposlenja";
             this.Text = "Zaposlenja";

@@ -19,6 +19,7 @@ namespace JISP.Forms
             {
                 zaposleni = zap;
                 Text = $"Zaposlenja ({zap})";
+                this.FormStandardSettings();
 
                 chkCopyOnClick.Checked = CheckedCopyOnClick;
                 if (CheckStateAktivno.HasValue)

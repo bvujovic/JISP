@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace xUnitTests.Classes
@@ -25,10 +23,26 @@ namespace xUnitTests.Classes
         }
 
         [Fact]
-        public void IsValidTest13digits()
+        public void IsValidTest_YearOutOfRange567()
         {
-            var s = "1234567890123";
-            Assert.True(JMBG.IsValid(s));
+            var s = "0101567890123";
+            Assert.False(JMBG.IsValid(s));
+        }
+
+        [Fact]
+        public void IsValidTest_LastDigitWrong()
+        {
+            var s = "1908982710159";
+            Assert.False(JMBG.IsValid(s));
+        }
+
+        [Fact]
+        public void IsValidTest_Konatarevic()
+        {
+            //var oldJmbg = "2705975271510"; // ovaj JMBG nije ispravan
+            //Assert.False(JMBG.IsValid(oldJmbg));
+            var newJmbg = "2705972715108";
+            Assert.True(JMBG.IsValid(newJmbg));
         }
 
         [Fact]
@@ -58,7 +72,7 @@ namespace xUnitTests.Classes
         [Fact]
         public void DaysToBDayTestYesterday()
         {
-            var dt = new DateTime(2000, DateTime.Today.Month, DateTime.Today.Day - 1);
+            var dt = DateTime.Now.AddDays(-1).AddYears(-45);
             var exp = 364; //* ne valja ako je prestupna godina
             Assert.Equal(exp, JMBG.DaysToBDay(dt));
         }

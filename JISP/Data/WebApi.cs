@@ -25,9 +25,11 @@ namespace JISP.Data
         public const string TOKEN_MISSING = "???";
         public const string TOKEN_CAPTION = "ApiToken";
 
+        public static bool IsTokenValid()
+            => token != null && token.Length >= 100;
+
         public static string TokenDisplay
-            => token == null || token.Length < 100 ? TOKEN_MISSING :
-                token.Substring(0, 10) + "..." + token.Substring(token.Length - 10);
+            => IsTokenValid() ? token.Substring(0, 10) + "..." + token.Substring(token.Length - 10) : TOKEN_MISSING;
 
         /// <summary>Uzimanje API token-a iz request header-a nekog zahteva.</summary>
         public static void TakeApiToken(string clipboard)
@@ -162,6 +164,9 @@ namespace JISP.Data
             Zap_IzvoriFinansiranja,
             Zap_SistematizacijaSacuvajNormu,
 
+            Zap_PorukaOdbijeniCenus,
+            Zap_PorukaOdbijenaSistematizacija,
+
             Uc_DuosSrednjoskolci,
             Uc_DuosSrednjoskolciId,
 
@@ -183,8 +188,8 @@ namespace JISP.Data
             Ustanova_Spratovi,
             Ustanova_Grejanje,
             Ustanova_Hladjenje,
-
             Ustanova_Racunari,
+            Ustanova_Cenus,
         }
 
         public static string UrlForReq(ReqEnum reqEnum, string param = null)
@@ -255,9 +260,15 @@ namespace JISP.Data
                     return urlBase + $"sifarnik/naziv/IzvorGrejanja";
                 case ReqEnum.Ustanova_Hladjenje:
                     return urlBase + $"sifarnik/naziv/VrstaIzvoraHladjenja";
-
                 case ReqEnum.Ustanova_Racunari:
                     return urlBase + $"Ustanova/VratiRacunareITablete/{param}";
+                case ReqEnum.Ustanova_Cenus:
+                    return urlBase + $"Ustanova/VratiCenusZaUstanovu/{param}";
+
+                case ReqEnum.Zap_PorukaOdbijeniCenus:
+                    return urlBase + $"ustanova/VratiPorukuOdVerifikatoraZaOdbijenCenus/{param}";
+                case ReqEnum.Zap_PorukaOdbijenaSistematizacija:
+                    return urlBase + $"zaposleni/VratiPorukuOdVerifikatoraZaOdbijenuSistematizaciju/{param}";
 
                 default:
                     throw new Exception("Nepostojeci reqEnum: " + reqEnum);

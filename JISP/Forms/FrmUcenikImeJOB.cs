@@ -1,4 +1,5 @@
-﻿using JISP.Data;
+﻿using JISP.Classes;
+using JISP.Data;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -21,6 +22,7 @@ namespace JISP.Forms
                     txtPrebivaliste.Text = ucenik.Prebivaliste;
                 this.ucenik = ucenik;
             }
+            this.FormStandardSettings();
         }
 
         private readonly Ds.UceniciRow ucenik = null;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JISP.Classes;
+using System;
 using System.Windows.Forms;
 
 namespace JISP.Forms
@@ -15,5 +16,10 @@ namespace JISP.Forms
         }
 
         public double UkupnaNormaPoSistem => (double)numUkNormaPoSistem.Value;
+
+        private void FrmSistematizacijaSacuvajNormu_Load(object sender, EventArgs e)
+        {
+            this.FormStandardSettings();
+        }
     }
 }

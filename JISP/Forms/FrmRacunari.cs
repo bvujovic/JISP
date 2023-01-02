@@ -28,6 +28,7 @@ namespace JISP.Forms
             dgvRacunari.TsmiSelekcija(false);
             FilterData();
             Height = INIT_HEIGHT;
+            this.FormStandardSettings();
         }
 
         private void FilterData()

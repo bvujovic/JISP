@@ -24,6 +24,7 @@ namespace JISP.Forms
             dgvProstorije.TsmiSelekcija(false);
             PodesiCmbPodaciZaDohvatanje();
             lblStatistika.Text = "";
+            this.FormStandardSettings();
         }
 
         private void PodesiCmbPodaciZaDohvatanje()

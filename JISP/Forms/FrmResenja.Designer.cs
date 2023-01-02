@@ -352,7 +352,6 @@
             this.Controls.Add(this.dgvResenjaSva);
             this.Controls.Add(this.pnlBottomLeftRes);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.Icon = global::JISP.Properties.Resources.grb_srb;
             this.Name = "FrmResenja";
             this.Text = "Rešenja";
             ((System.ComponentModel.ISupportInitialize)(this.bsResenja)).EndInit();

@@ -33,12 +33,6 @@
             this.bsRacunari = new System.Windows.Forms.BindingSource(this.components);
             this.ds = new JISP.Data.Ds();
             this.dgvRacunari = new JISP.Controls.UcDGV();
-            this.lblRowCount = new System.Windows.Forms.Label();
-            this.plnLeft = new JISP.Controls.UcLeftPanel();
-            this.txtFilter = new JISP.Controls.UcFilterTextBox();
-            this.btnDohvatiPodatke = new JISP.Controls.UcButton();
-            this.rbPrikazSvi = new System.Windows.Forms.RadioButton();
-            this.rbPrikazIzProstorije = new System.Windows.Forms.RadioButton();
             this.dgvcProstorija = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tipDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,6 +40,12 @@
             this.dgvcProcesor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcGodinaProizvodnje = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcNapomene = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblRowCount = new System.Windows.Forms.Label();
+            this.plnLeft = new JISP.Controls.UcLeftPanel();
+            this.txtFilter = new JISP.Controls.UcFilterTextBox();
+            this.btnDohvatiPodatke = new JISP.Controls.UcButton();
+            this.rbPrikazSvi = new System.Windows.Forms.RadioButton();
+            this.rbPrikazIzProstorije = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.bsRacunari)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRacunari)).BeginInit();
@@ -90,6 +90,63 @@
             this.dgvRacunari.Size = new System.Drawing.Size(1044, 251);
             this.dgvRacunari.StandardSort = null;
             this.dgvRacunari.TabIndex = 1;
+            // 
+            // dgvcProstorija
+            // 
+            this.dgvcProstorija.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvcProstorija.DataPropertyName = "_Prostorija";
+            this.dgvcProstorija.HeaderText = "Prostorija";
+            this.dgvcProstorija.Name = "dgvcProstorija";
+            this.dgvcProstorija.ReadOnly = true;
+            this.dgvcProstorija.Visible = false;
+            this.dgvcProstorija.Width = 97;
+            // 
+            // statusDataGridViewTextBoxColumn
+            // 
+            this.statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
+            this.statusDataGridViewTextBoxColumn.HeaderText = "Status";
+            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
+            this.statusDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // tipDataGridViewTextBoxColumn
+            // 
+            this.tipDataGridViewTextBoxColumn.DataPropertyName = "Tip";
+            this.tipDataGridViewTextBoxColumn.HeaderText = "Tip";
+            this.tipDataGridViewTextBoxColumn.Name = "tipDataGridViewTextBoxColumn";
+            this.tipDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nazivRacunaraDataGridViewTextBoxColumn
+            // 
+            this.nazivRacunaraDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nazivRacunaraDataGridViewTextBoxColumn.DataPropertyName = "NazivRacunara";
+            this.nazivRacunaraDataGridViewTextBoxColumn.HeaderText = "Računar";
+            this.nazivRacunaraDataGridViewTextBoxColumn.MinimumWidth = 100;
+            this.nazivRacunaraDataGridViewTextBoxColumn.Name = "nazivRacunaraDataGridViewTextBoxColumn";
+            this.nazivRacunaraDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dgvcProcesor
+            // 
+            this.dgvcProcesor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvcProcesor.DataPropertyName = "Procesor";
+            this.dgvcProcesor.HeaderText = "Procesor";
+            this.dgvcProcesor.MinimumWidth = 100;
+            this.dgvcProcesor.Name = "dgvcProcesor";
+            this.dgvcProcesor.ReadOnly = true;
+            // 
+            // dgvcGodinaProizvodnje
+            // 
+            this.dgvcGodinaProizvodnje.DataPropertyName = "GodinaProizvodnje";
+            this.dgvcGodinaProizvodnje.HeaderText = "Godina";
+            this.dgvcGodinaProizvodnje.Name = "dgvcGodinaProizvodnje";
+            this.dgvcGodinaProizvodnje.ReadOnly = true;
+            this.dgvcGodinaProizvodnje.ToolTipText = "Godina proizvodnje";
+            // 
+            // dgvcNapomene
+            // 
+            this.dgvcNapomene.DataPropertyName = "Napomene";
+            this.dgvcNapomene.HeaderText = "Napomene";
+            this.dgvcNapomene.Name = "dgvcNapomene";
+            this.dgvcNapomene.Width = 200;
             // 
             // lblRowCount
             // 
@@ -166,61 +223,6 @@
             this.rbPrikazIzProstorije.UseVisualStyleBackColor = true;
             this.rbPrikazIzProstorije.CheckedChanged += new System.EventHandler(this.RbPrikaz_CheckedChanged);
             // 
-            // dgvcProstorija
-            // 
-            this.dgvcProstorija.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvcProstorija.DataPropertyName = "_Prostorija";
-            this.dgvcProstorija.HeaderText = "Prostorija";
-            this.dgvcProstorija.Name = "dgvcProstorija";
-            this.dgvcProstorija.ReadOnly = true;
-            this.dgvcProstorija.Visible = false;
-            this.dgvcProstorija.Width = 97;
-            // 
-            // statusDataGridViewTextBoxColumn
-            // 
-            this.statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewTextBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
-            this.statusDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // tipDataGridViewTextBoxColumn
-            // 
-            this.tipDataGridViewTextBoxColumn.DataPropertyName = "Tip";
-            this.tipDataGridViewTextBoxColumn.HeaderText = "Tip";
-            this.tipDataGridViewTextBoxColumn.Name = "tipDataGridViewTextBoxColumn";
-            this.tipDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nazivRacunaraDataGridViewTextBoxColumn
-            // 
-            this.nazivRacunaraDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nazivRacunaraDataGridViewTextBoxColumn.DataPropertyName = "NazivRacunara";
-            this.nazivRacunaraDataGridViewTextBoxColumn.HeaderText = "Računar";
-            this.nazivRacunaraDataGridViewTextBoxColumn.Name = "nazivRacunaraDataGridViewTextBoxColumn";
-            this.nazivRacunaraDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dgvcProcesor
-            // 
-            this.dgvcProcesor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgvcProcesor.DataPropertyName = "Procesor";
-            this.dgvcProcesor.HeaderText = "Procesor";
-            this.dgvcProcesor.Name = "dgvcProcesor";
-            this.dgvcProcesor.ReadOnly = true;
-            // 
-            // dgvcGodinaProizvodnje
-            // 
-            this.dgvcGodinaProizvodnje.DataPropertyName = "GodinaProizvodnje";
-            this.dgvcGodinaProizvodnje.HeaderText = "Godina";
-            this.dgvcGodinaProizvodnje.Name = "dgvcGodinaProizvodnje";
-            this.dgvcGodinaProizvodnje.ReadOnly = true;
-            this.dgvcGodinaProizvodnje.ToolTipText = "Godina proizvodnje";
-            // 
-            // dgvcNapomene
-            // 
-            this.dgvcNapomene.DataPropertyName = "Napomene";
-            this.dgvcNapomene.HeaderText = "Napomene";
-            this.dgvcNapomene.Name = "dgvcNapomene";
-            this.dgvcNapomene.Width = 200;
-            // 
             // FrmRacunari
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -229,10 +231,10 @@
             this.Controls.Add(this.dgvRacunari);
             this.Controls.Add(this.plnLeft);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Icon = global::JISP.Properties.Resources.grb_srb;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmRacunari";
             this.Text = "Računari";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.FrmRacunari_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bsRacunari)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).EndInit();

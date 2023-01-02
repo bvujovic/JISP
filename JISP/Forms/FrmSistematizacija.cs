@@ -18,13 +18,13 @@ namespace JISP.Forms
 
         private void FrmSistematizacija_Load(object sender, EventArgs e)
         {
-            btnOsveziPodatke.PerformClick();
-            
+            //B btnOsveziPodatke.PerformClick();            
             dgvSistematizacija.TsmiSelekcija(false);
             dgvSistematizacija.ColumnsForCopyOnClick = new int[] { radnoMestoDgvc.Index, predmetDgvc.Index };
             dgvSistematizacija.CopyOnCellClick = true;
             dgvDetalji.ColumnsForCopyOnClick = new int[] { zaposleniDgvc.Index, tipUgovoraDgvc.Index };
             dgvDetalji.CopyOnCellClick = true;
+            this.FormStandardSettings();
         }
 
         private async void BtnOsveziPodatke_Click(object sender, EventArgs e)

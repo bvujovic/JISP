@@ -199,6 +199,36 @@ namespace JISP.Data
                 sis.UkupnaNormaPoRMOsimZamena = item.ukupnaNormaPoRMOsimZamena;
                 AppData.Ds.Sistematizacija.AddSistematizacijaRow(sis);
             }
+            if (AppData.Ds.Sistematizacija.Count > 0)
+                Poruke.SistematizacijaId = AppData.Ds.Sistematizacija.First().RegUstSisId;
+        }
+
+        /// <summary>Učitava poslednju poruku u vezi sa sistematizacijom ili CENUSom.</summary>
+        /// <returns>Da li je ucitana nova poruka.</returns>
+        public static async Task<bool> GetPorukaAsync(string tipPoruke)
+        {
+            var json = await WebApi.GetJson(
+                tipPoruke == Poruke.TipSistematizacija ? WebApi.ReqEnum.Zap_PorukaOdbijenaSistematizacija : WebApi.ReqEnum.Zap_PorukaOdbijeniCenus
+                , tipPoruke == Poruke.TipSistematizacija ? Poruke.SistematizacijaId.ToString() : Poruke.CenusId.ToString());
+            dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(json);
+            if (obj.poruka != null)
+            {
+                var tekstTekucePoruke = (string)obj.poruka;
+                var poslednjaPoruka = Poruke.PoslednjaPoruka(tipPoruke);
+                if (poslednjaPoruka == null || poslednjaPoruka.Tekst != tekstTekucePoruke)
+                {
+                    AppData.Ds.Poruke.AddPorukeRow(tekstTekucePoruke, tipPoruke, DateTime.Now);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static async Task GetCenusAsync()
+        {
+            var json = await WebApi.GetJson(WebApi.ReqEnum.Ustanova_Cenus, WebApi.SV_SAVA_ID);
+            dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(json);
+            Poruke.CenusId = (int)obj.id;
         }
 
         /// <summary>Učitava podateke u tabelu SistematizacijaDetalji.</summary>

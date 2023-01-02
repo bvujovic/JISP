@@ -106,6 +106,7 @@ namespace JISP.Classes
         public const string DatumVremeFormatFileMin = "yyyy.MM.dd_HH.mm";
         public const string DatumVremeFormatFileSec = "yyyy.MM.dd_HH.mm.ss";
         public const string DatumVremeSveFormat = "yyyy-MM-dd HH:mm:ss.ff";
+        public const string DveObavezneCifreFormat = "0.00";
 
         /// <summary>Vraca trenutno vreme u SamoSitno formatu (min:sec.ms).</summary>
         public static string CurrentTimeMS
@@ -249,6 +250,14 @@ namespace JISP.Classes
                 stavke.Add("просек: " + obj.prosecnaOcenaSrednjegObrazovanja);
 
             return string.Join(", ", stavke);
+        }
+
+        /// <summary>Ovo valja pozvati na kraju Form_Load-a.</summary>
+        /// <remarks>Prebaciti ovaj kôd u baznu klasu za sve forme.</remarks>
+        public static void FormStandardSettings(this Form frm)
+        {
+            frm.Icon = Properties.Resources.grb_srb;
+            frm.Text += " - Naš JISP";
         }
     }
 }

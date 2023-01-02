@@ -37,6 +37,7 @@ namespace JISP.Forms
             PodesiCmbPodaciZaDohvatanje();
             txtFilter.BindingSource = bsUcenikSkGod;
             formLoadStarted = DateTime.Now;
+            this.FormStandardSettings();
         }
 
         private void PodesiCmbPodaciZaDohvatanje()

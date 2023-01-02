@@ -28,6 +28,7 @@ namespace JISP.Forms
             dgvZaposlenja.LoadSettings();
             PodesiCmbPodaciZaDohvatanje();
             txtFilter.BindingSource = bsZaposleni;
+            this.FormStandardSettings();
         }
 
         private void PodesiCmbPodaciZaDohvatanje()
@@ -250,6 +251,44 @@ namespace JISP.Forms
         private void BtnSistematizacija_Click(object sender, EventArgs e)
         {
             new FrmSistematizacija().Show();
+        }
+
+        private void BtnSumaAngazovanja_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var sumUcStandard = 0.0;
+                var sumBudzetStalno = 0.0;
+                var sumBudzetZamena = 0.0;
+                var vrste = new List<string>();
+                foreach (var zaposleni in AppData.Ds.Zaposleni.Where(it => it.Aktivan))
+                    foreach (var ze in zaposleni.GetZaposlenjaRows().Where(it => it.Aktivan))
+                    {
+                        var zaStalno = ze.VrstaAngazovanja == "На неодређено"
+                            || ze.VrstaAngazovanja == "На одређено - до преузимања односно коначности одлуке о избору кандидата по конкурсу";
+
+                        vrste.Add(ze.VrstaAngazovanja);
+                        foreach (var ang in ze.GetAngazovanjaRows()
+                            .Where(it => it.SkolskaGodina == AppData.SkolskaGodina.Naziv))
+                        {
+                            if (ang.IzvorFinansiranja.Contains("стандард"))
+                                sumUcStandard += ang.ProcenatAngazovanja;
+                            if (ang.IzvorFinansiranja.Contains("ОиС образовање"))
+                                if (zaStalno)
+                                    sumBudzetStalno += ang.ProcenatAngazovanja;
+                                else
+                                    sumBudzetZamena += ang.ProcenatAngazovanja;
+                        }
+                    }
+
+                MessageBox.Show(
+                    "Uč. standard:\t" + (sumUcStandard / 100).ToString(Utils.DveObavezneCifreFormat) +
+                    "\r\nOiS stalno:\t" + (sumBudzetStalno / 100).ToString(Utils.DveObavezneCifreFormat) +
+                    "\r\nOiS zamene" +
+                    ":\t" + (sumBudzetZamena / 100).ToString(Utils.DveObavezneCifreFormat)
+                    );
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, btnSumaAngazovanja.Text); }
         }
 
         private async void BtnDohvatiPodatke_Click(object sender, EventArgs e)
