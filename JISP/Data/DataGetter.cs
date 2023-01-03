@@ -205,11 +205,11 @@ namespace JISP.Data
 
         /// <summary>Učitava poslednju poruku u vezi sa sistematizacijom ili CENUSom.</summary>
         /// <returns>Da li je ucitana nova poruka.</returns>
-        public static async Task<bool> GetPorukaAsync(string tipPoruke)
+        public static async Task<bool> GetPorukaAsync(TipPoruke tipPoruke)
         {
             var json = await WebApi.GetJson(
-                tipPoruke == Poruke.TipSistematizacija ? WebApi.ReqEnum.Zap_PorukaOdbijenaSistematizacija : WebApi.ReqEnum.Zap_PorukaOdbijeniCenus
-                , tipPoruke == Poruke.TipSistematizacija ? Poruke.SistematizacijaId.ToString() : Poruke.CenusId.ToString());
+                tipPoruke == TipPoruke.Sistematizacija ? WebApi.ReqEnum.Zap_PorukaOdbijenaSistematizacija : WebApi.ReqEnum.Zap_PorukaOdbijeniCenus
+                , tipPoruke == TipPoruke.Sistematizacija ? Poruke.SistematizacijaId.ToString() : Poruke.CenusId.ToString());
             dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(json);
             if (obj.poruka != null)
             {
@@ -217,7 +217,8 @@ namespace JISP.Data
                 var poslednjaPoruka = Poruke.PoslednjaPoruka(tipPoruke);
                 if (poslednjaPoruka == null || poslednjaPoruka.Tekst != tekstTekucePoruke)
                 {
-                    AppData.Ds.Poruke.AddPorukeRow(tekstTekucePoruke, tipPoruke, DateTime.Now);
+                    AppData.Ds.Poruke.AddPorukeRow
+                        (tekstTekucePoruke, tipPoruke.ToString(), DateTime.Now);
                     return true;
                 }
             }

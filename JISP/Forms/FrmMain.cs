@@ -138,13 +138,18 @@ namespace JISP.Forms
             if (WebApi.IsTokenValid())
             {
                 AppData.SaveSett(WebApi.TOKEN_CAPTION, WebApi.Token);
-                try { 
+                try
+                {
                     await DataGetter.GetSistematizacijaAsync();
-                    var novaPorukaSist = await DataGetter.GetPorukaAsync(Poruke.TipSistematizacija);
+                    var novaPorukaSist = await DataGetter.GetPorukaAsync(TipPoruke.Sistematizacija);
                     await DataGetter.GetCenusAsync();
-                    var novaPorukaCenus = await DataGetter.GetPorukaAsync(Poruke.TipCenus);
-                    if (novaPorukaSist || novaPorukaCenus)
-                        btnPrikaziPoruke.BackColor = System.Drawing.Color.Orange;
+                    var novaPorukaCenus = await DataGetter.GetPorukaAsync(TipPoruke.CENUS);
+                    btnPrikaziPoruke.BackColor = System.Drawing.Color.Orange;
+                    if (!novaPorukaSist && !novaPorukaCenus)
+                    {
+                        await System.Threading.Tasks.Task.Delay(500);
+                        btnPrikaziPoruke.BackColor = System.Drawing.SystemColors.Control;
+                    }
                 }
                 catch (Exception ex) { Utils.ShowMbox(ex, lblApiToken.Text); }
             }

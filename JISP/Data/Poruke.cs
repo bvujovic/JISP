@@ -9,19 +9,22 @@ namespace JISP.Data
     /// </summary>
     public static class Poruke
     {
-        public static string TipSistematizacija => "Sistematizacija";
-        public static string TipCenus => "CENUS";
-
         public static int SistematizacijaId { get; set; }
         public static int CenusId { get; set; }
 
-        public static Ds.PorukeRow PoslednjaPoruka(string tipPoruke)
+        public static Ds.PorukeRow PoslednjaPoruka(TipPoruke tipPoruke)
         {
-            var poruke = AppData.Ds.Poruke.Where(it => it.Tip == tipPoruke);
+            var poruke = AppData.Ds.Poruke.Where(it => it.Tip == tipPoruke.ToString());
             if (!poruke.Any())
                 return null;
             var poslednjeDatumVreme = poruke.Max(it => it.DatumVreme);
             return poruke.First(it => it.DatumVreme == poslednjeDatumVreme);
         }
+    }
+
+    public enum TipPoruke
+    {
+        Sistematizacija,
+        CENUS
     }
 }

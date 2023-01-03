@@ -27,8 +27,8 @@
     <ProductName>Naš JISP</ProductName>
     <PublisherName>BV</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.5.8.0</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>0.5.8.1</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
