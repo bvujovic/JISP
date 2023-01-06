@@ -224,6 +224,8 @@ namespace JISP.Forms
                             (it => !it.IsIdZaposlenjaNull() && it.IdZaposlenja == zap.IdZaposlenja);
                         var poslednji = ObracunZarada.PoslednjiObracuni(ozs.ToArray(), new int[] { zap.IdZaposlenja });
                         var koefOpis = poslednji.FirstOrDefault()?.KoefSveOpis;
+                        if (string.IsNullOrEmpty(koefOpis))
+                            throw new Exception("Ne postoji opis koeficijenta OZ. Proveriti ovaj podatak i da li uopšte postoji OZ za svaki aktivan ugovor.");
 
                         var proc = zap.ProcenatRadnogVremena;
                         var svi = uracunato == "DA" ? proc : 0;
@@ -239,6 +241,7 @@ namespace JISP.Forms
                     }
 
                 Clipboard.SetText(sb.ToString());
+                Utils.ShowMbox("CSV podaci su kopirani u klipbord.", BtnCsvZaposlenja.Text);
             }
             catch (Exception ex) { Utils.ShowMbox(ex, BtnCsvZaposlenja.Text + " - " + tekuciZaposleni); }
         }

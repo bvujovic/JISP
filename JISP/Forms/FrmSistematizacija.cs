@@ -18,7 +18,8 @@ namespace JISP.Forms
 
         private void FrmSistematizacija_Load(object sender, EventArgs e)
         {
-            //B btnOsveziPodatke.PerformClick();            
+            if (AppData.Ds.Sistematizacija.Rows.Count == 0)
+                btnOsveziPodatke.PerformClick();
             dgvSistematizacija.TsmiSelekcija(false);
             dgvSistematizacija.ColumnsForCopyOnClick = new int[] { radnoMestoDgvc.Index, predmetDgvc.Index };
             dgvSistematizacija.CopyOnCellClick = true;

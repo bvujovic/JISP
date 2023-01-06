@@ -36,5 +36,44 @@ namespace xUnitTests.Data
             Assert.StartsWith("eyJhbGci", WebApi.Token);
             Assert.EndsWith("tAlWiPE", WebApi.Token);
         }
+
+        [Fact]
+        public void TakeApiTokenTest_Null()
+        {
+            _ = Assert.Throws<ArgumentNullException>(() => WebApi.TakeApiToken(null));
+        }
+
+        [Fact]
+        public void TakeApiTokenTest_Empty()
+        {
+            _ = Assert.Throws<ArgumentNullException>(() => WebApi.TakeApiToken(string.Empty));
+        }
+
+        [Fact]
+        public void TakeApiTokenTest_BadFormatNoAuthorization()
+        {
+            _ = Assert.Throws<FormatException>(() => WebApi.TakeApiToken("pera"));
+        }
+
+        /// <summary>Token nije u formatu "xxxxx.yyyyy.zzzzz"</summary>
+        [Fact]
+        public void TakeApiTokenTest_BadFormatNoDots1()
+        {
+            _ = Assert.Throws<FormatException>(() => WebApi.TakeApiToken("Authorization: Bearer 123456\r\n"));
+        }
+
+        /// <summary>Token nije u formatu "xxxxx.yyyyy.zzzzz"</summary>
+        [Fact]
+        public void TakeApiTokenTest_BadFormatNoDots2()
+        {
+            _ = Assert.Throws<FormatException>(() => WebApi.TakeApiToken("Authorization: Bearer 123.456\r\n"));
+        }
+
+        /// <summary>Token nije u formatu "xxxxx.yyyyy.zzzzz"</summary>
+        [Fact]
+        public void TakeApiTokenTest_BadFormatNoDots3()
+        {
+            _ = Assert.Throws<FormatException>(() => WebApi.TakeApiToken("Authorization: Bearer .123.456\r\n"));
+        }
     }
 }

@@ -18,7 +18,11 @@ namespace JISP.Data
         public static string Token
         {
             get { return token; }
-            set { token = value; }
+            set
+            {
+                if (value != null && IsTokenFormatOk(value))
+                    token = value;
+            }
         }
 
         public const string SV_SAVA_ID = "18976";
@@ -26,7 +30,7 @@ namespace JISP.Data
         public const string TOKEN_CAPTION = "ApiToken";
 
         public static bool IsTokenValid()
-            => token != null && token.Length >= 100;
+            => token != null && token.Length >= 100 && IsTokenFormatOk(token);
 
         public static string TokenDisplay
             => IsTokenValid() ? token.Substring(0, 10) + "..." + token.Substring(token.Length - 10) : TOKEN_MISSING;
@@ -34,12 +38,26 @@ namespace JISP.Data
         /// <summary>Uzimanje API token-a iz request header-a nekog zahteva.</summary>
         public static void TakeApiToken(string clipboard)
         {
+            if (string.IsNullOrEmpty(clipboard))
+                throw new ArgumentNullException(nameof(clipboard));
             var start = "Authorization: Bearer ";
-            var idxStart = clipboard.IndexOf(start) + start.Length;
+            var idxStart = clipboard.IndexOf(start);
             if (idxStart == -1)
-                throw new Exception($"API token ({start}...) nije pronađen u clipboard-u.");
+                throw new FormatException($"API token ({start}...) nije pronađen u clipboard-u.");
+            idxStart += start.Length;
             var idxEnd = clipboard.IndexOf(Environment.NewLine, idxStart);
             Token = clipboard.Substring(idxStart, idxEnd - idxStart);
+            if (!IsTokenFormatOk(Token))
+                throw new FormatException("Token nije u formatu \"xxxxx.yyyyy.zzzzz\"");
+        }
+
+        private static bool IsTokenFormatOk(string token)
+        {
+            var idxDot = token.IndexOf('.');
+            if (idxDot < 1) return false;
+            idxDot = token.IndexOf(".", idxDot + 1);
+            if (idxDot < 1) return false;
+            return true;
         }
 
         /// <summary>Dohvata listu trazenih objekata od JISP WebAPI-a.</summary>
@@ -215,7 +233,7 @@ namespace JISP.Data
                     return urlBase + $"zaposleni/VratiZaposlenje/{param}/";
                 case ReqEnum.Zap_ObracunZaradaOpis:
                     return urlBase + $"zaposleni/VratiObracunZaradeZaId/{param}";
-                
+
                 case ReqEnum.Zap_Sistematizacija:
                     return urlBase + $"zaposleni/VratiAktivnuSistematizacijuRMZaUstanovu/{SV_SAVA_ID}";
                 case ReqEnum.Zap_SistematizacijaDetalji:
