@@ -124,5 +124,17 @@ namespace JISP.Forms
             else
                 lblStatistika.Text = string.Empty;
         }
+
+        private void TxtProstorijeNaziv_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                bsProstorije.Filter = $"NazivProstorije LIKE '%{txtProstorijeNaziv.Text}%'";
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowMbox(ex, "Filtriranje prostorija");
+            }
+        }
     }
 }

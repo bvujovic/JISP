@@ -39,6 +39,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.Label label1;
+            System.Windows.Forms.Label label2;
+            System.Windows.Forms.Label label3;
             this.bsLokacije = new System.Windows.Forms.BindingSource(this.components);
             this.ds = new JISP.Data.Ds();
             this.bsObjekti = new System.Windows.Forms.BindingSource(this.components);
@@ -55,6 +58,7 @@
             this.izvorHladjenjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.vrstaIzvoraHladjenjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prostorijaSeKoristiDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.lblRowCount = new System.Windows.Forms.Label();
             this.dgvObjekti = new JISP.Controls.UcDGV();
             this.nazivObjektaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcObjGodinaIzgradnje = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,12 +74,18 @@
             this.kucniBrojDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.jeSedisteDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
+            this.lblStatistika = new System.Windows.Forms.Label();
             this.btnRacunari = new JISP.Controls.UcButton();
             this.btnDohvatiPodatke = new JISP.Controls.UcButton();
             this.cmbPodaciZaDohvatanje = new System.Windows.Forms.ComboBox();
             this.ucExitApp1 = new JISP.Controls.UcExitAppButton();
-            this.lblRowCount = new System.Windows.Forms.Label();
-            this.lblStatistika = new System.Windows.Forms.Label();
+            this.cmbSprat = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtProstorijeNaziv = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            label1 = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bsLokacije)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsObjekti)).BeginInit();
@@ -255,6 +265,17 @@
             this.prostorijaSeKoristiDataGridViewCheckBoxColumn.ReadOnly = true;
             this.prostorijaSeKoristiDataGridViewCheckBoxColumn.ThreeState = true;
             this.prostorijaSeKoristiDataGridViewCheckBoxColumn.Width = 76;
+            // 
+            // lblRowCount
+            // 
+            this.lblRowCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblRowCount.AutoSize = true;
+            this.lblRowCount.Location = new System.Drawing.Point(13, 593);
+            this.lblRowCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblRowCount.Name = "lblRowCount";
+            this.lblRowCount.Size = new System.Drawing.Size(59, 18);
+            this.lblRowCount.TabIndex = 18;
+            this.lblRowCount.Text = "Redova";
             // 
             // dgvObjekti
             // 
@@ -448,6 +469,13 @@
             // 
             // pnlLeft
             // 
+            this.pnlLeft.Controls.Add(this.button1);
+            this.pnlLeft.Controls.Add(this.txtProstorijeNaziv);
+            this.pnlLeft.Controls.Add(label3);
+            this.pnlLeft.Controls.Add(this.textBox1);
+            this.pnlLeft.Controls.Add(this.cmbSprat);
+            this.pnlLeft.Controls.Add(label2);
+            this.pnlLeft.Controls.Add(label1);
             this.pnlLeft.Controls.Add(this.lblStatistika);
             this.pnlLeft.Controls.Add(this.lblRowCount);
             this.pnlLeft.Controls.Add(this.btnRacunari);
@@ -461,6 +489,17 @@
             this.pnlLeft.RightWingWidth = 6;
             this.pnlLeft.Size = new System.Drawing.Size(150, 623);
             this.pnlLeft.TabIndex = 0;
+            // 
+            // lblStatistika
+            // 
+            this.lblStatistika.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblStatistika.AutoSize = true;
+            this.lblStatistika.Location = new System.Drawing.Point(13, 525);
+            this.lblStatistika.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblStatistika.Name = "lblStatistika";
+            this.lblStatistika.Size = new System.Drawing.Size(59, 36);
+            this.lblStatistika.TabIndex = 19;
+            this.lblStatistika.Text = "Broj: /\r\nSuma: /";
             // 
             // btnRacunari
             // 
@@ -513,27 +552,65 @@
             this.ucExitApp1.ToolTipText = "Izlaz iz aplikacije";
             this.ucExitApp1.UseVisualStyleBackColor = false;
             // 
-            // lblRowCount
+            // label1
             // 
-            this.lblRowCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblRowCount.AutoSize = true;
-            this.lblRowCount.Location = new System.Drawing.Point(13, 593);
-            this.lblRowCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblRowCount.Name = "lblRowCount";
-            this.lblRowCount.Size = new System.Drawing.Size(59, 18);
-            this.lblRowCount.TabIndex = 18;
-            this.lblRowCount.Text = "Redova";
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(7, 321);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(43, 18);
+            label1.TabIndex = 20;
+            label1.Text = "Sprat";
             // 
-            // lblStatistika
+            // cmbSprat
             // 
-            this.lblStatistika.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblStatistika.AutoSize = true;
-            this.lblStatistika.Location = new System.Drawing.Point(13, 525);
-            this.lblStatistika.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblStatistika.Name = "lblStatistika";
-            this.lblStatistika.Size = new System.Drawing.Size(59, 36);
-            this.lblStatistika.TabIndex = 19;
-            this.lblStatistika.Text = "Broj: /\r\nSuma: /";
+            this.cmbSprat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSprat.FormattingEnabled = true;
+            this.cmbSprat.Location = new System.Drawing.Point(56, 318);
+            this.cmbSprat.Name = "cmbSprat";
+            this.cmbSprat.Size = new System.Drawing.Size(78, 26);
+            this.cmbSprat.TabIndex = 21;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(8, 354);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(28, 18);
+            label2.TabIndex = 20;
+            label2.Text = "Tip";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(57, 351);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(77, 24);
+            this.textBox1.TabIndex = 22;
+            // 
+            // txtProstorijeNaziv
+            // 
+            this.txtProstorijeNaziv.Location = new System.Drawing.Point(57, 381);
+            this.txtProstorijeNaziv.Name = "txtProstorijeNaziv";
+            this.txtProstorijeNaziv.Size = new System.Drawing.Size(77, 24);
+            this.txtProstorijeNaziv.TabIndex = 24;
+            this.txtProstorijeNaziv.TextChanged += new System.EventHandler(this.TxtProstorijeNaziv_TextChanged);
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(8, 384);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(45, 18);
+            label3.TabIndex = 23;
+            label3.Text = "Naziv";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(56, 411);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(78, 25);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "Reset";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // FrmProstorije
             // 
@@ -602,5 +679,9 @@
         private Controls.UcButton btnRacunari;
         private System.Windows.Forms.Label lblRowCount;
         private System.Windows.Forms.Label lblStatistika;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtProstorijeNaziv;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox cmbSprat;
     }
 }
