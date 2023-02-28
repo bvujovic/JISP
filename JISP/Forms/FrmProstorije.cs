@@ -22,9 +22,19 @@ namespace JISP.Forms
             dgvLokacije.TsmiSelekcija(false);
             dgvObjekti.TsmiSelekcija(false);
             dgvProstorije.TsmiSelekcija(false);
+            PodesiCmbProstorijeSprat();
             PodesiCmbPodaciZaDohvatanje();
             lblStatistika.Text = "";
             this.FormStandardSettings();
+        }
+
+        private void PodesiCmbProstorijeSprat()
+        {
+            cmbProstorijeSprat.Items.Clear();
+            //B Where(it => !it.IsSpratNull()).
+            cmbProstorijeSprat.Items.AddRange(AppData.Ds.Prostorije.Select(it => it.Sprat)
+                .Distinct().OrderBy(it => it).ToArray());
+            cmbProstorijeSprat.AdjustWidth();
         }
 
         private void PodesiCmbPodaciZaDohvatanje()
@@ -126,15 +136,91 @@ namespace JISP.Forms
         }
 
         private void TxtProstorijeNaziv_TextChanged(object sender, EventArgs e)
+            => ProstorijeFilter();
+
+        private void TxtProstorijeTip_TextChanged(object sender, EventArgs e)
+            => ProstorijeFilter();
+
+        private void CmbSprat_SelectedIndexChanged(object sender, EventArgs e)
+            => ProstorijeFilter();
+
+        private void ProstorijeFilter()
         {
             try
             {
-                bsProstorije.Filter = $"NazivProstorije LIKE '%{txtProstorijeNaziv.Text}%'";
+                var uslovi = new List<string>();
+                if (txtProstorijeNaziv.Text != "")
+                    uslovi.Add($"NazivProstorije LIKE '%{txtProstorijeNaziv.Text}%'");
+                if (txtProstorijeTip.Text != "")
+                    uslovi.Add($"TipProstorije LIKE '%{txtProstorijeTip.Text}%'");
+                if (cmbProstorijeSprat.SelectedItem != null)
+                    uslovi.Add($"Sprat = '{cmbProstorijeSprat.SelectedItem}'");
+                bsProstorije.Filter = string.Join(" AND ", uslovi);
             }
-            catch (Exception ex)
+            catch (Exception ex) { Utils.ShowMbox(ex, "Filtriranje prostorija"); }
+        }
+
+        private void BtnProstorijeReset_Click(object sender, EventArgs e)
+        {
+            try
             {
-                Utils.ShowMbox(ex, "Filtriranje prostorija");
+                txtProstorijeNaziv.Text = txtProstorijeTip.Text = "";
+                cmbProstorijeSprat.SelectedItem = null;
             }
+            catch (Exception ex) { Utils.ShowMbox(ex, "Filtriranje prostorija"); }
+        }
+
+        private void TxtProstorijeFilter_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+                btnProstorijeReset.PerformClick();
+        }
+
+        private async void DgvProstorije_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == -1 && e.RowIndex != -1)
+                // klik na zaglavlje reda: cuvanje izmenjenih podataka tekucoj prostoriji u JISPu
+                {
+                    var p = dgvProstorije.CurrDataRow<Ds.ProstorijeRow>();
+                    if (p.RowState != DataRowState.Unchanged)
+                    {
+                        var idLokacije = AppData.Ds.Objekti.First(it => it.IdObjekta == p.IdObjekta).IdLokacije;
+                        var body = $@"
+{{
+    ""nazivProstorije"": ""{p.NazivProstorije}"",
+    ""sprat"": {p.IdSprata},
+    ""povrsina"": ""{p.Povrsina}"",
+    ""prosecnaVisinaPlafona"": {p.ProsecnaVisinaPlafona},
+    ""tipProstorije"": {p.IdTipaProstorije},
+    ""dostupnostLicimaSaSpecijalnimPotrebama"": ""{p.DostupLicimaSaSpecPotrebama.ToString().ToLower()}"",
+    ""vrstaIzvoraGrejanja"": {(p.IsIdVrsteIzvoraGrejanjaNull() ? "null" : p.IdVrsteIzvoraGrejanja.ToString())},
+    ""vrstaIzvoraHladjenja"": {(p.IsIdVrsteIzvoraHladjenjaNull() ? "null" : p.IdVrsteIzvoraHladjenja.ToString())},
+    ""idUstanove"": {WebApi.SV_SAVA_ID},
+    ""idLokacije"": {idLokacije},
+    ""mobilniInternet"": ""{p.MobilniInternet}"",
+    ""brzinaBezicnogInterneta"": ""{p.BrzinaBezicnogInterneta}"",
+    ""brzinaLanPrikljucka"": ""{p.BrzinaLanPrikljucka}"",
+    ""napomena"": null,
+    ""nazivSekcije"": ""Општи подаци о просторији"",
+    ""registarId"": 1,
+    ""daLiJeDraft"": false,
+    ""zahtevId"": 0,
+    ""regUstUstanovaId"": {WebApi.SV_SAVA_ID},
+    ""objekatIdDrugi"": {p.IdObjekta},
+    ""prostorijaSeKoristi"": {p.ProstorijaSeKoristi.ToString().ToLower()},
+    ""izvorGrejanja"": {p.IzvorGrejanja.ToString().ToLower()},
+    ""izvorHladjenja"": {p.IzvorHladjenja.ToString().ToLower()},
+    ""idObjekta"": {p.IdObjekta},
+    ""id"": {p.IdProstorije}
+}}";
+                        var x = await WebApi.PostForJson(WebApi.ReqEnum.Ustanova_ProstorijeAzuriraj, body);
+                        Utils.ShowMbox("OK", "Čuvanje podataka o prostoriji");
+                    }
+                }
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, "Čuvanje podataka o prostoriji"); }
         }
     }
 }

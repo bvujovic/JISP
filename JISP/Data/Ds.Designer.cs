@@ -6632,6 +6632,8 @@ namespace JISP.Data {
             
             private global::System.Data.DataColumn columnIdObjekta;
             
+            private global::System.Data.DataColumn columnIdTipaProstorije;
+            
             private global::System.Data.DataColumn columnTipProstorije;
             
             private global::System.Data.DataColumn columnPovrsina;
@@ -6640,17 +6642,29 @@ namespace JISP.Data {
             
             private global::System.Data.DataColumn columnDostupLicimaSaSpecPotrebama;
             
+            private global::System.Data.DataColumn columnIdSprata;
+            
             private global::System.Data.DataColumn columnSprat;
             
             private global::System.Data.DataColumn columnIzvorGrejanja;
+            
+            private global::System.Data.DataColumn columnIdVrsteIzvoraGrejanja;
             
             private global::System.Data.DataColumn columnVrstaIzvoraGrejanja;
             
             private global::System.Data.DataColumn columnIzvorHladjenja;
             
+            private global::System.Data.DataColumn columnIdVrsteIzvoraHladjenja;
+            
             private global::System.Data.DataColumn columnVrstaIzvoraHladjenja;
             
             private global::System.Data.DataColumn columnProstorijaSeKoristi;
+            
+            private global::System.Data.DataColumn columnBrzinaBezicnogInterneta;
+            
+            private global::System.Data.DataColumn columnBrzinaLanPrikljucka;
+            
+            private global::System.Data.DataColumn columnMobilniInternet;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -6711,6 +6725,14 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IdTipaProstorijeColumn {
+                get {
+                    return this.columnIdTipaProstorije;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn TipProstorijeColumn {
                 get {
                     return this.columnTipProstorije;
@@ -6743,6 +6765,14 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IdSprataColumn {
+                get {
+                    return this.columnIdSprata;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn SpratColumn {
                 get {
                     return this.columnSprat;
@@ -6754,6 +6784,14 @@ namespace JISP.Data {
             public global::System.Data.DataColumn IzvorGrejanjaColumn {
                 get {
                     return this.columnIzvorGrejanja;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IdVrsteIzvoraGrejanjaColumn {
+                get {
+                    return this.columnIdVrsteIzvoraGrejanja;
                 }
             }
             
@@ -6775,6 +6813,14 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IdVrsteIzvoraHladjenjaColumn {
+                get {
+                    return this.columnIdVrsteIzvoraHladjenja;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn VrstaIzvoraHladjenjaColumn {
                 get {
                     return this.columnVrstaIzvoraHladjenja;
@@ -6786,6 +6832,30 @@ namespace JISP.Data {
             public global::System.Data.DataColumn ProstorijaSeKoristiColumn {
                 get {
                     return this.columnProstorijaSeKoristi;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn BrzinaBezicnogInternetaColumn {
+                get {
+                    return this.columnBrzinaBezicnogInterneta;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn BrzinaLanPrikljuckaColumn {
+                get {
+                    return this.columnBrzinaLanPrikljucka;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn MobilniInternetColumn {
+                get {
+                    return this.columnMobilniInternet;
                 }
             }
             
@@ -6826,22 +6896,49 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ProstorijeRow AddProstorijeRow(int IdProstorije, string NazivProstorije, ObjektiRow parentObjektiRowByObjekti_Prostorije, string TipProstorije, double Povrsina, double ProsecnaVisinaPlafona, bool DostupLicimaSaSpecPotrebama, string Sprat, bool IzvorGrejanja, string VrstaIzvoraGrejanja, bool IzvorHladjenja, string VrstaIzvoraHladjenja, bool ProstorijaSeKoristi) {
+            public ProstorijeRow AddProstorijeRow(
+                        int IdProstorije, 
+                        string NazivProstorije, 
+                        ObjektiRow parentObjektiRowByObjekti_Prostorije, 
+                        int IdTipaProstorije, 
+                        string TipProstorije, 
+                        double Povrsina, 
+                        double ProsecnaVisinaPlafona, 
+                        bool DostupLicimaSaSpecPotrebama, 
+                        int IdSprata, 
+                        string Sprat, 
+                        bool IzvorGrejanja, 
+                        int IdVrsteIzvoraGrejanja, 
+                        string VrstaIzvoraGrejanja, 
+                        bool IzvorHladjenja, 
+                        int IdVrsteIzvoraHladjenja, 
+                        string VrstaIzvoraHladjenja, 
+                        bool ProstorijaSeKoristi, 
+                        string BrzinaBezicnogInterneta, 
+                        string BrzinaLanPrikljucka, 
+                        string MobilniInternet) {
                 ProstorijeRow rowProstorijeRow = ((ProstorijeRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IdProstorije,
                         NazivProstorije,
                         null,
+                        IdTipaProstorije,
                         TipProstorije,
                         Povrsina,
                         ProsecnaVisinaPlafona,
                         DostupLicimaSaSpecPotrebama,
+                        IdSprata,
                         Sprat,
                         IzvorGrejanja,
+                        IdVrsteIzvoraGrejanja,
                         VrstaIzvoraGrejanja,
                         IzvorHladjenja,
+                        IdVrsteIzvoraHladjenja,
                         VrstaIzvoraHladjenja,
-                        ProstorijaSeKoristi};
+                        ProstorijaSeKoristi,
+                        BrzinaBezicnogInterneta,
+                        BrzinaLanPrikljucka,
+                        MobilniInternet};
                 if ((parentObjektiRowByObjekti_Prostorije != null)) {
                     columnValuesArray[2] = parentObjektiRowByObjekti_Prostorije[0];
                 }
@@ -6877,16 +6974,23 @@ namespace JISP.Data {
                 this.columnIdProstorije = base.Columns["IdProstorije"];
                 this.columnNazivProstorije = base.Columns["NazivProstorije"];
                 this.columnIdObjekta = base.Columns["IdObjekta"];
+                this.columnIdTipaProstorije = base.Columns["IdTipaProstorije"];
                 this.columnTipProstorije = base.Columns["TipProstorije"];
                 this.columnPovrsina = base.Columns["Povrsina"];
                 this.columnProsecnaVisinaPlafona = base.Columns["ProsecnaVisinaPlafona"];
                 this.columnDostupLicimaSaSpecPotrebama = base.Columns["DostupLicimaSaSpecPotrebama"];
+                this.columnIdSprata = base.Columns["IdSprata"];
                 this.columnSprat = base.Columns["Sprat"];
                 this.columnIzvorGrejanja = base.Columns["IzvorGrejanja"];
+                this.columnIdVrsteIzvoraGrejanja = base.Columns["IdVrsteIzvoraGrejanja"];
                 this.columnVrstaIzvoraGrejanja = base.Columns["VrstaIzvoraGrejanja"];
                 this.columnIzvorHladjenja = base.Columns["IzvorHladjenja"];
+                this.columnIdVrsteIzvoraHladjenja = base.Columns["IdVrsteIzvoraHladjenja"];
                 this.columnVrstaIzvoraHladjenja = base.Columns["VrstaIzvoraHladjenja"];
                 this.columnProstorijaSeKoristi = base.Columns["ProstorijaSeKoristi"];
+                this.columnBrzinaBezicnogInterneta = base.Columns["BrzinaBezicnogInterneta"];
+                this.columnBrzinaLanPrikljucka = base.Columns["BrzinaLanPrikljucka"];
+                this.columnMobilniInternet = base.Columns["MobilniInternet"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6898,6 +7002,8 @@ namespace JISP.Data {
                 base.Columns.Add(this.columnNazivProstorije);
                 this.columnIdObjekta = new global::System.Data.DataColumn("IdObjekta", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIdObjekta);
+                this.columnIdTipaProstorije = new global::System.Data.DataColumn("IdTipaProstorije", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdTipaProstorije);
                 this.columnTipProstorije = new global::System.Data.DataColumn("TipProstorije", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTipProstorije);
                 this.columnPovrsina = new global::System.Data.DataColumn("Povrsina", typeof(double), null, global::System.Data.MappingType.Element);
@@ -6906,18 +7012,30 @@ namespace JISP.Data {
                 base.Columns.Add(this.columnProsecnaVisinaPlafona);
                 this.columnDostupLicimaSaSpecPotrebama = new global::System.Data.DataColumn("DostupLicimaSaSpecPotrebama", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDostupLicimaSaSpecPotrebama);
+                this.columnIdSprata = new global::System.Data.DataColumn("IdSprata", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdSprata);
                 this.columnSprat = new global::System.Data.DataColumn("Sprat", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSprat);
                 this.columnIzvorGrejanja = new global::System.Data.DataColumn("IzvorGrejanja", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIzvorGrejanja);
+                this.columnIdVrsteIzvoraGrejanja = new global::System.Data.DataColumn("IdVrsteIzvoraGrejanja", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdVrsteIzvoraGrejanja);
                 this.columnVrstaIzvoraGrejanja = new global::System.Data.DataColumn("VrstaIzvoraGrejanja", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnVrstaIzvoraGrejanja);
                 this.columnIzvorHladjenja = new global::System.Data.DataColumn("IzvorHladjenja", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIzvorHladjenja);
+                this.columnIdVrsteIzvoraHladjenja = new global::System.Data.DataColumn("IdVrsteIzvoraHladjenja", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdVrsteIzvoraHladjenja);
                 this.columnVrstaIzvoraHladjenja = new global::System.Data.DataColumn("VrstaIzvoraHladjenja", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnVrstaIzvoraHladjenja);
                 this.columnProstorijaSeKoristi = new global::System.Data.DataColumn("ProstorijaSeKoristi", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnProstorijaSeKoristi);
+                this.columnBrzinaBezicnogInterneta = new global::System.Data.DataColumn("BrzinaBezicnogInterneta", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBrzinaBezicnogInterneta);
+                this.columnBrzinaLanPrikljucka = new global::System.Data.DataColumn("BrzinaLanPrikljucka", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBrzinaLanPrikljucka);
+                this.columnMobilniInternet = new global::System.Data.DataColumn("MobilniInternet", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMobilniInternet);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIdProstorije}, true));
                 this.columnIdProstorije.AllowDBNull = false;
@@ -12516,6 +12634,22 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int IdTipaProstorije {
+                get {
+                    try {
+                        return ((int)(this[this.tableProstorije.IdTipaProstorijeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IdTipaProstorije\' in table \'Prostorije\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProstorije.IdTipaProstorijeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string TipProstorije {
                 get {
                     try {
@@ -12581,6 +12715,22 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int IdSprata {
+                get {
+                    try {
+                        return ((int)(this[this.tableProstorije.IdSprataColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IdSprata\' in table \'Prostorije\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProstorije.IdSprataColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string Sprat {
                 get {
                     try {
@@ -12608,6 +12758,22 @@ namespace JISP.Data {
                 }
                 set {
                     this[this.tableProstorije.IzvorGrejanjaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int IdVrsteIzvoraGrejanja {
+                get {
+                    try {
+                        return ((int)(this[this.tableProstorije.IdVrsteIzvoraGrejanjaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IdVrsteIzvoraGrejanja\' in table \'Prostorije\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProstorije.IdVrsteIzvoraGrejanjaColumn] = value;
                 }
             }
             
@@ -12645,6 +12811,22 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int IdVrsteIzvoraHladjenja {
+                get {
+                    try {
+                        return ((int)(this[this.tableProstorije.IdVrsteIzvoraHladjenjaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IdVrsteIzvoraHladjenja\' in table \'Prostorije\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProstorije.IdVrsteIzvoraHladjenjaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string VrstaIzvoraHladjenja {
                 get {
                     try {
@@ -12672,6 +12854,54 @@ namespace JISP.Data {
                 }
                 set {
                     this[this.tableProstorije.ProstorijaSeKoristiColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string BrzinaBezicnogInterneta {
+                get {
+                    try {
+                        return ((string)(this[this.tableProstorije.BrzinaBezicnogInternetaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'BrzinaBezicnogInterneta\' in table \'Prostorije\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProstorije.BrzinaBezicnogInternetaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string BrzinaLanPrikljucka {
+                get {
+                    try {
+                        return ((string)(this[this.tableProstorije.BrzinaLanPrikljuckaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'BrzinaLanPrikljucka\' in table \'Prostorije\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProstorije.BrzinaLanPrikljuckaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string MobilniInternet {
+                get {
+                    try {
+                        return ((string)(this[this.tableProstorije.MobilniInternetColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MobilniInternet\' in table \'Prostorije\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProstorije.MobilniInternetColumn] = value;
                 }
             }
             
@@ -12708,6 +12938,18 @@ namespace JISP.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetIdObjektaNull() {
                 this[this.tableProstorije.IdObjektaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsIdTipaProstorijeNull() {
+                return this.IsNull(this.tableProstorije.IdTipaProstorijeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetIdTipaProstorijeNull() {
+                this[this.tableProstorije.IdTipaProstorijeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12760,6 +13002,18 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsIdSprataNull() {
+                return this.IsNull(this.tableProstorije.IdSprataColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetIdSprataNull() {
+                this[this.tableProstorije.IdSprataColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsSpratNull() {
                 return this.IsNull(this.tableProstorije.SpratColumn);
             }
@@ -12780,6 +13034,18 @@ namespace JISP.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetIzvorGrejanjaNull() {
                 this[this.tableProstorije.IzvorGrejanjaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsIdVrsteIzvoraGrejanjaNull() {
+                return this.IsNull(this.tableProstorije.IdVrsteIzvoraGrejanjaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetIdVrsteIzvoraGrejanjaNull() {
+                this[this.tableProstorije.IdVrsteIzvoraGrejanjaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12808,6 +13074,18 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsIdVrsteIzvoraHladjenjaNull() {
+                return this.IsNull(this.tableProstorije.IdVrsteIzvoraHladjenjaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetIdVrsteIzvoraHladjenjaNull() {
+                this[this.tableProstorije.IdVrsteIzvoraHladjenjaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsVrstaIzvoraHladjenjaNull() {
                 return this.IsNull(this.tableProstorije.VrstaIzvoraHladjenjaColumn);
             }
@@ -12828,6 +13106,42 @@ namespace JISP.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetProstorijaSeKoristiNull() {
                 this[this.tableProstorije.ProstorijaSeKoristiColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsBrzinaBezicnogInternetaNull() {
+                return this.IsNull(this.tableProstorije.BrzinaBezicnogInternetaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetBrzinaBezicnogInternetaNull() {
+                this[this.tableProstorije.BrzinaBezicnogInternetaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsBrzinaLanPrikljuckaNull() {
+                return this.IsNull(this.tableProstorije.BrzinaLanPrikljuckaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetBrzinaLanPrikljuckaNull() {
+                this[this.tableProstorije.BrzinaLanPrikljuckaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsMobilniInternetNull() {
+                return this.IsNull(this.tableProstorije.MobilniInternetColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetMobilniInternetNull() {
+                this[this.tableProstorije.MobilniInternetColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

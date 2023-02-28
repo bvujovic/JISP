@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.Label label1;
             System.Windows.Forms.Label label2;
             System.Windows.Forms.Label label3;
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.bsLokacije = new System.Windows.Forms.BindingSource(this.components);
             this.ds = new JISP.Data.Ds();
             this.bsObjekti = new System.Windows.Forms.BindingSource(this.components);
@@ -74,15 +74,16 @@
             this.kucniBrojDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.jeSedisteDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
+            this.btnProstorijeReset = new System.Windows.Forms.Button();
+            this.txtProstorijeNaziv = new System.Windows.Forms.TextBox();
+            this.txtProstorijeTip = new System.Windows.Forms.TextBox();
+            this.cmbProstorijeSprat = new System.Windows.Forms.ComboBox();
             this.lblStatistika = new System.Windows.Forms.Label();
             this.btnRacunari = new JISP.Controls.UcButton();
             this.btnDohvatiPodatke = new JISP.Controls.UcButton();
             this.cmbPodaciZaDohvatanje = new System.Windows.Forms.ComboBox();
             this.ucExitApp1 = new JISP.Controls.UcExitAppButton();
-            this.cmbSprat = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.txtProstorijeNaziv = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.pnlMain = new System.Windows.Forms.Panel();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -94,7 +95,35 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvObjekti)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLokacije)).BeginInit();
             this.pnlLeft.SuspendLayout();
+            this.pnlMain.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(8, 384);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(43, 18);
+            label1.TabIndex = 20;
+            label1.Text = "Sprat";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(8, 354);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(28, 18);
+            label2.TabIndex = 20;
+            label2.Text = "Tip";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(8, 321);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(45, 18);
+            label3.TabIndex = 23;
+            label3.Text = "Naziv";
             // 
             // bsLokacije
             // 
@@ -120,21 +149,21 @@
             // 
             this.dgvProstorije.AllowUserToAddRows = false;
             this.dgvProstorije.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvProstorije.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvProstorije.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
             this.dgvProstorije.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvProstorije.AutoGenerateColumns = false;
             this.dgvProstorije.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvProstorije.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvProstorije.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvProstorije.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProstorije.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nazivProstorijeDataGridViewTextBoxColumn,
@@ -152,13 +181,13 @@
             this.dgvProstorije.CopyOnCellClick = false;
             this.dgvProstorije.CtrlDisplayPositionRowCount = this.lblRowCount;
             this.dgvProstorije.DataSource = this.bsProstorije;
-            this.dgvProstorije.Location = new System.Drawing.Point(156, 248);
+            this.dgvProstorije.Location = new System.Drawing.Point(3, 239);
             this.dgvProstorije.Name = "dgvProstorije";
-            this.dgvProstorije.ReadOnly = true;
             this.dgvProstorije.RowHeadersWidth = 30;
-            this.dgvProstorije.Size = new System.Drawing.Size(1032, 363);
+            this.dgvProstorije.Size = new System.Drawing.Size(1044, 363);
             this.dgvProstorije.StandardSort = null;
             this.dgvProstorije.TabIndex = 2;
+            this.dgvProstorije.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProstorije_CellClick);
             this.dgvProstorije.SelectionChanged += new System.EventHandler(this.DgvProstorije_SelectionChanged);
             // 
             // nazivProstorijeDataGridViewTextBoxColumn
@@ -169,7 +198,6 @@
             this.nazivProstorijeDataGridViewTextBoxColumn.HeaderText = "Prostorija";
             this.nazivProstorijeDataGridViewTextBoxColumn.MinimumWidth = 208;
             this.nazivProstorijeDataGridViewTextBoxColumn.Name = "nazivProstorijeDataGridViewTextBoxColumn";
-            this.nazivProstorijeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // tipProstorijeDataGridViewTextBoxColumn
             // 
@@ -179,7 +207,6 @@
             this.tipProstorijeDataGridViewTextBoxColumn.HeaderText = "Tip";
             this.tipProstorijeDataGridViewTextBoxColumn.MinimumWidth = 131;
             this.tipProstorijeDataGridViewTextBoxColumn.Name = "tipProstorijeDataGridViewTextBoxColumn";
-            this.tipProstorijeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // povrsinaDataGridViewTextBoxColumn
             // 
@@ -187,7 +214,6 @@
             this.povrsinaDataGridViewTextBoxColumn.DataPropertyName = "Povrsina";
             this.povrsinaDataGridViewTextBoxColumn.HeaderText = "Površina";
             this.povrsinaDataGridViewTextBoxColumn.Name = "povrsinaDataGridViewTextBoxColumn";
-            this.povrsinaDataGridViewTextBoxColumn.ReadOnly = true;
             this.povrsinaDataGridViewTextBoxColumn.Width = 91;
             // 
             // prosecnaVisinaPlafonaDataGridViewTextBoxColumn
@@ -196,7 +222,6 @@
             this.prosecnaVisinaPlafonaDataGridViewTextBoxColumn.DataPropertyName = "ProsecnaVisinaPlafona";
             this.prosecnaVisinaPlafonaDataGridViewTextBoxColumn.HeaderText = "Avg h plafona";
             this.prosecnaVisinaPlafonaDataGridViewTextBoxColumn.Name = "prosecnaVisinaPlafonaDataGridViewTextBoxColumn";
-            this.prosecnaVisinaPlafonaDataGridViewTextBoxColumn.ReadOnly = true;
             this.prosecnaVisinaPlafonaDataGridViewTextBoxColumn.Width = 121;
             // 
             // dostupLicimaSaSpecPotrebamaDataGridViewCheckBoxColumn
@@ -205,7 +230,6 @@
             this.dostupLicimaSaSpecPotrebamaDataGridViewCheckBoxColumn.DataPropertyName = "DostupLicimaSaSpecPotrebama";
             this.dostupLicimaSaSpecPotrebamaDataGridViewCheckBoxColumn.HeaderText = "Dostupnost";
             this.dostupLicimaSaSpecPotrebamaDataGridViewCheckBoxColumn.Name = "dostupLicimaSaSpecPotrebamaDataGridViewCheckBoxColumn";
-            this.dostupLicimaSaSpecPotrebamaDataGridViewCheckBoxColumn.ReadOnly = true;
             this.dostupLicimaSaSpecPotrebamaDataGridViewCheckBoxColumn.ToolTipText = "Dostupnost Licima Sa Specijalnim Potrebama";
             this.dostupLicimaSaSpecPotrebamaDataGridViewCheckBoxColumn.Width = 91;
             // 
@@ -215,7 +239,6 @@
             this.spratDataGridViewTextBoxColumn.DataPropertyName = "Sprat";
             this.spratDataGridViewTextBoxColumn.HeaderText = "Sprat";
             this.spratDataGridViewTextBoxColumn.Name = "spratDataGridViewTextBoxColumn";
-            this.spratDataGridViewTextBoxColumn.ReadOnly = true;
             this.spratDataGridViewTextBoxColumn.Width = 68;
             // 
             // izvorGrejanjaDataGridViewTextBoxColumn
@@ -223,7 +246,6 @@
             this.izvorGrejanjaDataGridViewTextBoxColumn.DataPropertyName = "IzvorGrejanja";
             this.izvorGrejanjaDataGridViewTextBoxColumn.HeaderText = "Izvor grejanja";
             this.izvorGrejanjaDataGridViewTextBoxColumn.Name = "izvorGrejanjaDataGridViewTextBoxColumn";
-            this.izvorGrejanjaDataGridViewTextBoxColumn.ReadOnly = true;
             this.izvorGrejanjaDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.izvorGrejanjaDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.izvorGrejanjaDataGridViewTextBoxColumn.ThreeState = true;
@@ -234,7 +256,6 @@
             this.vrstaIzvoraGrejanjaDataGridViewTextBoxColumn.DataPropertyName = "VrstaIzvoraGrejanja";
             this.vrstaIzvoraGrejanjaDataGridViewTextBoxColumn.HeaderText = "Vrsta grejanja";
             this.vrstaIzvoraGrejanjaDataGridViewTextBoxColumn.Name = "vrstaIzvoraGrejanjaDataGridViewTextBoxColumn";
-            this.vrstaIzvoraGrejanjaDataGridViewTextBoxColumn.ReadOnly = true;
             this.vrstaIzvoraGrejanjaDataGridViewTextBoxColumn.Width = 122;
             // 
             // izvorHladjenjaDataGridViewTextBoxColumn
@@ -242,7 +263,6 @@
             this.izvorHladjenjaDataGridViewTextBoxColumn.DataPropertyName = "IzvorHladjenja";
             this.izvorHladjenjaDataGridViewTextBoxColumn.HeaderText = "Izvor hlađenja";
             this.izvorHladjenjaDataGridViewTextBoxColumn.Name = "izvorHladjenjaDataGridViewTextBoxColumn";
-            this.izvorHladjenjaDataGridViewTextBoxColumn.ReadOnly = true;
             this.izvorHladjenjaDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.izvorHladjenjaDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.izvorHladjenjaDataGridViewTextBoxColumn.ThreeState = true;
@@ -253,7 +273,6 @@
             this.vrstaIzvoraHladjenjaDataGridViewTextBoxColumn.DataPropertyName = "VrstaIzvoraHladjenja";
             this.vrstaIzvoraHladjenjaDataGridViewTextBoxColumn.HeaderText = "Vrsta hlađenja";
             this.vrstaIzvoraHladjenjaDataGridViewTextBoxColumn.Name = "vrstaIzvoraHladjenjaDataGridViewTextBoxColumn";
-            this.vrstaIzvoraHladjenjaDataGridViewTextBoxColumn.ReadOnly = true;
             this.vrstaIzvoraHladjenjaDataGridViewTextBoxColumn.Width = 125;
             // 
             // prostorijaSeKoristiDataGridViewCheckBoxColumn
@@ -262,7 +281,6 @@
             this.prostorijaSeKoristiDataGridViewCheckBoxColumn.DataPropertyName = "ProstorijaSeKoristi";
             this.prostorijaSeKoristiDataGridViewCheckBoxColumn.HeaderText = "Koristi se";
             this.prostorijaSeKoristiDataGridViewCheckBoxColumn.Name = "prostorijaSeKoristiDataGridViewCheckBoxColumn";
-            this.prostorijaSeKoristiDataGridViewCheckBoxColumn.ReadOnly = true;
             this.prostorijaSeKoristiDataGridViewCheckBoxColumn.ThreeState = true;
             this.prostorijaSeKoristiDataGridViewCheckBoxColumn.Width = 76;
             // 
@@ -281,20 +299,20 @@
             // 
             this.dgvObjekti.AllowUserToAddRows = false;
             this.dgvObjekti.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvObjekti.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvObjekti.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvObjekti.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvObjekti.AutoGenerateColumns = false;
             this.dgvObjekti.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvObjekti.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvObjekti.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvObjekti.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvObjekti.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nazivObjektaDataGridViewTextBoxColumn,
@@ -307,20 +325,20 @@
             this.dgvObjekti.CopyOnCellClick = false;
             this.dgvObjekti.CtrlDisplayPositionRowCount = null;
             this.dgvObjekti.DataSource = this.bsObjekti;
-            this.dgvObjekti.Location = new System.Drawing.Point(156, 130);
+            this.dgvObjekti.Location = new System.Drawing.Point(3, 121);
             this.dgvObjekti.Name = "dgvObjekti";
             this.dgvObjekti.ReadOnly = true;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvObjekti.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvObjekti.RowHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.dgvObjekti.RowHeadersWidth = 30;
             this.dgvObjekti.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvObjekti.Size = new System.Drawing.Size(1032, 112);
+            this.dgvObjekti.Size = new System.Drawing.Size(1044, 112);
             this.dgvObjekti.StandardSort = null;
             this.dgvObjekti.TabIndex = 2;
             // 
@@ -336,8 +354,8 @@
             // 
             this.dgvcObjGodinaIzgradnje.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.dgvcObjGodinaIzgradnje.DataPropertyName = "GodinaIzgradnje";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dgvcObjGodinaIzgradnje.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dgvcObjGodinaIzgradnje.DefaultCellStyle = dataGridViewCellStyle13;
             this.dgvcObjGodinaIzgradnje.HeaderText = "Izgrađen";
             this.dgvcObjGodinaIzgradnje.Name = "dgvcObjGodinaIzgradnje";
             this.dgvcObjGodinaIzgradnje.ReadOnly = true;
@@ -347,8 +365,8 @@
             // 
             this.GodinaOtvaranja.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.GodinaOtvaranja.DataPropertyName = "GodinaOtvaranja";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.GodinaOtvaranja.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.GodinaOtvaranja.DefaultCellStyle = dataGridViewCellStyle14;
             this.GodinaOtvaranja.HeaderText = "Otvoren";
             this.GodinaOtvaranja.Name = "GodinaOtvaranja";
             this.GodinaOtvaranja.ReadOnly = true;
@@ -358,8 +376,8 @@
             // 
             this.dgvcObjPZaCiscenje.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.dgvcObjPZaCiscenje.DataPropertyName = "UkupnaPovrsinaZaCiscenje";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dgvcObjPZaCiscenje.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dgvcObjPZaCiscenje.DefaultCellStyle = dataGridViewCellStyle15;
             this.dgvcObjPZaCiscenje.HeaderText = "P za čišćenje";
             this.dgvcObjPZaCiscenje.Name = "dgvcObjPZaCiscenje";
             this.dgvcObjPZaCiscenje.ReadOnly = true;
@@ -369,8 +387,8 @@
             // 
             this.dgvcObjPZaGrejanje.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.dgvcObjPZaGrejanje.DataPropertyName = "UkupnaPovrsinaZaGrejanje";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dgvcObjPZaGrejanje.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dgvcObjPZaGrejanje.DefaultCellStyle = dataGridViewCellStyle16;
             this.dgvcObjPZaGrejanje.HeaderText = "P za grejanje";
             this.dgvcObjPZaGrejanje.Name = "dgvcObjPZaGrejanje";
             this.dgvcObjPZaGrejanje.ReadOnly = true;
@@ -388,8 +406,8 @@
             // 
             this.dgvLokacije.AllowUserToAddRows = false;
             this.dgvLokacije.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvLokacije.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvLokacije.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvLokacije.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvLokacije.AutoGenerateColumns = false;
@@ -406,11 +424,11 @@
             this.dgvLokacije.CopyOnCellClick = false;
             this.dgvLokacije.CtrlDisplayPositionRowCount = null;
             this.dgvLokacije.DataSource = this.bsLokacije;
-            this.dgvLokacije.Location = new System.Drawing.Point(156, 12);
+            this.dgvLokacije.Location = new System.Drawing.Point(3, 3);
             this.dgvLokacije.Name = "dgvLokacije";
             this.dgvLokacije.ReadOnly = true;
             this.dgvLokacije.RowHeadersWidth = 30;
-            this.dgvLokacije.Size = new System.Drawing.Size(1032, 112);
+            this.dgvLokacije.Size = new System.Drawing.Size(1044, 112);
             this.dgvLokacije.StandardSort = null;
             this.dgvLokacije.TabIndex = 1;
             // 
@@ -469,11 +487,11 @@
             // 
             // pnlLeft
             // 
-            this.pnlLeft.Controls.Add(this.button1);
+            this.pnlLeft.Controls.Add(this.btnProstorijeReset);
             this.pnlLeft.Controls.Add(this.txtProstorijeNaziv);
             this.pnlLeft.Controls.Add(label3);
-            this.pnlLeft.Controls.Add(this.textBox1);
-            this.pnlLeft.Controls.Add(this.cmbSprat);
+            this.pnlLeft.Controls.Add(this.txtProstorijeTip);
+            this.pnlLeft.Controls.Add(this.cmbProstorijeSprat);
             this.pnlLeft.Controls.Add(label2);
             this.pnlLeft.Controls.Add(label1);
             this.pnlLeft.Controls.Add(this.lblStatistika);
@@ -489,6 +507,44 @@
             this.pnlLeft.RightWingWidth = 6;
             this.pnlLeft.Size = new System.Drawing.Size(150, 623);
             this.pnlLeft.TabIndex = 0;
+            // 
+            // btnProstorijeReset
+            // 
+            this.btnProstorijeReset.Location = new System.Drawing.Point(56, 411);
+            this.btnProstorijeReset.Name = "btnProstorijeReset";
+            this.btnProstorijeReset.Size = new System.Drawing.Size(78, 25);
+            this.btnProstorijeReset.TabIndex = 25;
+            this.btnProstorijeReset.Text = "Reset";
+            this.btnProstorijeReset.UseVisualStyleBackColor = true;
+            this.btnProstorijeReset.Click += new System.EventHandler(this.BtnProstorijeReset_Click);
+            // 
+            // txtProstorijeNaziv
+            // 
+            this.txtProstorijeNaziv.Location = new System.Drawing.Point(56, 318);
+            this.txtProstorijeNaziv.Name = "txtProstorijeNaziv";
+            this.txtProstorijeNaziv.Size = new System.Drawing.Size(77, 24);
+            this.txtProstorijeNaziv.TabIndex = 21;
+            this.txtProstorijeNaziv.TextChanged += new System.EventHandler(this.TxtProstorijeNaziv_TextChanged);
+            this.txtProstorijeNaziv.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProstorijeFilter_KeyDown);
+            // 
+            // txtProstorijeTip
+            // 
+            this.txtProstorijeTip.Location = new System.Drawing.Point(57, 351);
+            this.txtProstorijeTip.Name = "txtProstorijeTip";
+            this.txtProstorijeTip.Size = new System.Drawing.Size(77, 24);
+            this.txtProstorijeTip.TabIndex = 22;
+            this.txtProstorijeTip.TextChanged += new System.EventHandler(this.TxtProstorijeTip_TextChanged);
+            this.txtProstorijeTip.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProstorijeFilter_KeyDown);
+            // 
+            // cmbProstorijeSprat
+            // 
+            this.cmbProstorijeSprat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbProstorijeSprat.FormattingEnabled = true;
+            this.cmbProstorijeSprat.Location = new System.Drawing.Point(56, 381);
+            this.cmbProstorijeSprat.Name = "cmbProstorijeSprat";
+            this.cmbProstorijeSprat.Size = new System.Drawing.Size(78, 26);
+            this.cmbProstorijeSprat.TabIndex = 24;
+            this.cmbProstorijeSprat.SelectedIndexChanged += new System.EventHandler(this.CmbSprat_SelectedIndexChanged);
             // 
             // lblStatistika
             // 
@@ -514,7 +570,7 @@
             // 
             // btnDohvatiPodatke
             // 
-            this.btnDohvatiPodatke.Location = new System.Drawing.Point(7, 94);
+            this.btnDohvatiPodatke.Location = new System.Drawing.Point(7, 120);
             this.btnDohvatiPodatke.Name = "btnDohvatiPodatke";
             this.btnDohvatiPodatke.Size = new System.Drawing.Size(127, 30);
             this.btnDohvatiPodatke.TabIndex = 16;
@@ -534,7 +590,7 @@
             "Smerovi za srednjoškolce",
             "Ocene na polugodištu",
             "Ocene za kraj godine"});
-            this.cmbPodaciZaDohvatanje.Location = new System.Drawing.Point(7, 69);
+            this.cmbPodaciZaDohvatanje.Location = new System.Drawing.Point(7, 88);
             this.cmbPodaciZaDohvatanje.Name = "cmbPodaciZaDohvatanje";
             this.cmbPodaciZaDohvatanje.Size = new System.Drawing.Size(127, 26);
             this.cmbPodaciZaDohvatanje.TabIndex = 15;
@@ -552,74 +608,23 @@
             this.ucExitApp1.ToolTipText = "Izlaz iz aplikacije";
             this.ucExitApp1.UseVisualStyleBackColor = false;
             // 
-            // label1
+            // pnlMain
             // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(7, 321);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(43, 18);
-            label1.TabIndex = 20;
-            label1.Text = "Sprat";
-            // 
-            // cmbSprat
-            // 
-            this.cmbSprat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSprat.FormattingEnabled = true;
-            this.cmbSprat.Location = new System.Drawing.Point(56, 318);
-            this.cmbSprat.Name = "cmbSprat";
-            this.cmbSprat.Size = new System.Drawing.Size(78, 26);
-            this.cmbSprat.TabIndex = 21;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(8, 354);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(28, 18);
-            label2.TabIndex = 20;
-            label2.Text = "Tip";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(57, 351);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(77, 24);
-            this.textBox1.TabIndex = 22;
-            // 
-            // txtProstorijeNaziv
-            // 
-            this.txtProstorijeNaziv.Location = new System.Drawing.Point(57, 381);
-            this.txtProstorijeNaziv.Name = "txtProstorijeNaziv";
-            this.txtProstorijeNaziv.Size = new System.Drawing.Size(77, 24);
-            this.txtProstorijeNaziv.TabIndex = 24;
-            this.txtProstorijeNaziv.TextChanged += new System.EventHandler(this.TxtProstorijeNaziv_TextChanged);
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(8, 384);
-            label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(45, 18);
-            label3.TabIndex = 23;
-            label3.Text = "Naziv";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(56, 411);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(78, 25);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "Reset";
-            this.button1.UseVisualStyleBackColor = true;
+            this.pnlMain.Controls.Add(this.dgvProstorije);
+            this.pnlMain.Controls.Add(this.dgvLokacije);
+            this.pnlMain.Controls.Add(this.dgvObjekti);
+            this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlMain.Location = new System.Drawing.Point(150, 0);
+            this.pnlMain.Name = "pnlMain";
+            this.pnlMain.Size = new System.Drawing.Size(1050, 623);
+            this.pnlMain.TabIndex = 3;
             // 
             // FrmProstorije
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1200, 623);
-            this.Controls.Add(this.dgvProstorije);
-            this.Controls.Add(this.dgvObjekti);
-            this.Controls.Add(this.dgvLokacije);
+            this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.pnlLeft);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -636,6 +641,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvLokacije)).EndInit();
             this.pnlLeft.ResumeLayout(false);
             this.pnlLeft.PerformLayout();
+            this.pnlMain.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -679,9 +685,10 @@
         private Controls.UcButton btnRacunari;
         private System.Windows.Forms.Label lblRowCount;
         private System.Windows.Forms.Label lblStatistika;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnProstorijeReset;
         private System.Windows.Forms.TextBox txtProstorijeNaziv;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox cmbSprat;
+        private System.Windows.Forms.TextBox txtProstorijeTip;
+        private System.Windows.Forms.ComboBox cmbProstorijeSprat;
+        private System.Windows.Forms.Panel pnlMain;
     }
 }

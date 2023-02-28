@@ -203,6 +203,7 @@ namespace JISP.Data
             Ustanova_Objekti,
             Ustanova_ProstorijeOsnovno,
             Ustanova_ProstorijeDodatno,
+            Ustanova_ProstorijeAzuriraj,
             Ustanova_Spratovi,
             Ustanova_Grejanje,
             Ustanova_Hladjenje,
@@ -271,6 +272,8 @@ namespace JISP.Data
                     return urlBase + $"Ustanova/VratiProstorije/{param}";
                 case ReqEnum.Ustanova_ProstorijeDodatno:
                     return urlBase + $"Ustanova/VratiProstorijuZaId/{param}";
+                case ReqEnum.Ustanova_ProstorijeAzuriraj:
+                    return urlBase + $"Ustanova/DodajOpstePodatkeProstorije/";
 
                 case ReqEnum.Ustanova_Spratovi:
                     return urlBase + $"sifarnik/naziv/Sprat";

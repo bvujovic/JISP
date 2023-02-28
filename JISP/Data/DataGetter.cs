@@ -380,14 +380,25 @@ namespace JISP.Data
             var p = AppData.Ds.Prostorije.FindByIdProstorije(idProstorije);
             if (p != null)
             {
-                p.Sprat = AppData.Ds.SifSpratovi.FindByIdSprata((int)obj.sprat).NazivSprata;
+                p.IdTipaProstorije = (int)obj.tipProstorije;
+                p.IdSprata = (int)obj.sprat;
+                p.Sprat = AppData.Ds.SifSpratovi.FindByIdSprata(p.IdSprata).NazivSprata;
                 p.IzvorGrejanja = obj.izvorGrejanja;
                 if (obj.vrstaIzvoraGrejanja != null)
-                    p.VrstaIzvoraGrejanja = AppData.Ds.SifGrejanja.FindByIdGrejanja((int)obj.vrstaIzvoraGrejanja).NazivGrejanja;
+                {
+                    p.IdVrsteIzvoraGrejanja = (int)obj.vrstaIzvoraGrejanja;
+                    p.VrstaIzvoraGrejanja = AppData.Ds.SifGrejanja.FindByIdGrejanja(p.IdVrsteIzvoraGrejanja).NazivGrejanja;
+                }
                 p.IzvorHladjenja = obj.izvorHladjenja;
                 if (obj.vrstaIzvoraHladjenja != null)
+                {
+                    p.IdVrsteIzvoraHladjenja = (int)obj.vrstaIzvoraHladjenja;
                     p.VrstaIzvoraHladjenja = AppData.Ds.SifHladjenja.FindByIdHladjenja((int)obj.vrstaIzvoraHladjenja).NazivHladjenja;
+                }
                 p.ProstorijaSeKoristi = obj.prostorijaSeKoristi;
+                p.MobilniInternet = obj.mobilniInternet;
+                p.BrzinaBezicnogInterneta = obj.brzinaBezicnogInterneta;
+                p.BrzinaLanPrikljucka = obj.brzinaLanPrikljucka;
             }
         }
 
