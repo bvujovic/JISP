@@ -127,8 +127,6 @@ namespace JISP.Data
             Ds.Sistematizacija.Clear();
             Ds.IzvoriFinansiranja.Clear();
             Ds.SifSpratovi.Clear();
-            Ds.SifGrejanja.Clear();
-            Ds.SifHladjenja.Clear();
         }
 
         /// <summary>Cuvanje vrednosti value pod imenom name u Settings tabeli.</summary>

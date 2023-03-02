@@ -18,20 +18,28 @@ namespace JISP.Forms
 
         private void FrmProstorije_Load(object sender, EventArgs e)
         {
-            bsLokacije.DataSource = AppData.Ds.Lokacije;
-            dgvLokacije.TsmiSelekcija(false);
-            dgvObjekti.TsmiSelekcija(false);
-            dgvProstorije.TsmiSelekcija(false);
-            PodesiCmbProstorijeSprat();
-            PodesiCmbPodaciZaDohvatanje();
-            lblStatistika.Text = "";
-            this.FormStandardSettings();
+            try
+            {
+                bsGrejanja.DataSource = AppData.Ds.SifGrejanja;
+                bsHladjenja.DataSource = AppData.Ds.SifHladjenja;
+                bsLokacije.DataSource = AppData.Ds.Lokacije;
+                bsObjekti.DataSource = AppData.Ds.Objekti;
+                bsProstorije.DataSource = AppData.Ds.Prostorije;
+
+                dgvLokacije.TsmiSelekcija(false);
+                dgvObjekti.TsmiSelekcija(false);
+                dgvProstorije.TsmiSelekcija(false);
+                PodesiCmbProstorijeSprat();
+                PodesiCmbPodaciZaDohvatanje();
+                lblStatistika.Text = "";
+                this.FormStandardSettings();
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, Text); }
         }
 
         private void PodesiCmbProstorijeSprat()
         {
             cmbProstorijeSprat.Items.Clear();
-            //B Where(it => !it.IsSpratNull()).
             cmbProstorijeSprat.Items.AddRange(AppData.Ds.Prostorije.Select(it => it.Sprat)
                 .Distinct().OrderBy(it => it).ToArray());
             cmbProstorijeSprat.AdjustWidth();
@@ -43,12 +51,14 @@ namespace JISP.Forms
             cmbPodaciZaDohvatanje.Items.AddRange(new[] {
                 CmbDohvatiOsnovno,
                 CmbDohvatiProstorijeDodatno,
+                CmbDohvatiGrejanjaHladjenja,
             });
             cmbPodaciZaDohvatanje.AdjustWidth();
         }
 
         private const string CmbDohvatiOsnovno = "Osnovno: lokacije, objekti, prostorije";
         private const string CmbDohvatiProstorijeDodatno = "Prostorije dodatno: sprat, grejanje, hlađenje...";
+        private const string CmbDohvatiGrejanjaHladjenja = "Spiskovi vrsta grejanja i hlađenja";
 
         private async void BtnDohvatiPodatke_Click(object sender, EventArgs e)
         {
@@ -67,13 +77,15 @@ namespace JISP.Forms
                 {
                     if (AppData.Ds.SifSpratovi.Count == 0)
                         await DataGetter.GetSpratoviAsync();
-                    if (AppData.Ds.SifGrejanja.Count == 0)
-                        await DataGetter.GetGrejanjaAsync();
-                    if (AppData.Ds.SifHladjenja.Count == 0)
-                        await DataGetter.GetHladjenjaAsync();
-
                     foreach (var p in DgvProstorijeSelectedRows())
                         await DataGetter.GetProstorijeDodatnoAsync(p.IdProstorije);
+                });
+
+            if (selItem == CmbDohvatiGrejanjaHladjenja)
+                await (sender as UcButton).RunAsync(async () =>
+                {
+                    await DataGetter.GetGrejanjaAsync();
+                    await DataGetter.GetHladjenjaAsync();
                 });
         }
 
@@ -176,18 +188,19 @@ namespace JISP.Forms
                 btnProstorijeReset.PerformClick();
         }
 
-        private async void DgvProstorije_CellClick(object sender, DataGridViewCellEventArgs e)
+        private async void BtnSacuvajProstorije_Click(object sender, EventArgs e)
         {
             try
             {
-                if (e.ColumnIndex == -1 && e.RowIndex != -1)
-                // klik na zaglavlje reda: cuvanje izmenjenih podataka tekucoj prostoriji u JISPu
+                foreach (var p in AppData.Ds.Prostorije.Where(it => it.RowState != DataRowState.Unchanged))
                 {
-                    var p = dgvProstorije.CurrDataRow<Ds.ProstorijeRow>();
-                    if (p.RowState != DataRowState.Unchanged)
-                    {
-                        var idLokacije = AppData.Ds.Objekti.First(it => it.IdObjekta == p.IdObjekta).IdLokacije;
-                        var body = $@"
+                    if (!p.IzvorGrejanja)
+                        p.SetIdVrsteIzvoraGrejanjaNull();
+                    if (!p.IzvorHladjenja)
+                        p.SetIdVrsteIzvoraHladjenjaNull();
+                    var idLokacije = AppData.Ds.Objekti.First(it => it.IdObjekta == p.IdObjekta).IdLokacije;
+
+                    var body = $@"
 {{
     ""nazivProstorije"": ""{p.NazivProstorije}"",
     ""sprat"": {p.IdSprata},
@@ -215,12 +228,11 @@ namespace JISP.Forms
     ""idObjekta"": {p.IdObjekta},
     ""id"": {p.IdProstorije}
 }}";
-                        var x = await WebApi.PostForJson(WebApi.ReqEnum.Ustanova_ProstorijeAzuriraj, body);
-                        Utils.ShowMbox("OK", "Čuvanje podataka o prostoriji");
-                    }
+                    await WebApi.PostForJson(WebApi.ReqEnum.Ustanova_ProstorijeAzuriraj, body);
                 }
+                Utils.ShowMbox("Gotovo", btnSacuvajProstorije.ToolTipText);
             }
-            catch (Exception ex) { Utils.ShowMbox(ex, "Čuvanje podataka o prostoriji"); }
+            catch (Exception ex) { Utils.ShowMbox(ex, btnSacuvajProstorije.Text); }
         }
     }
 }
