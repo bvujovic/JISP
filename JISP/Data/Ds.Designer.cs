@@ -2165,6 +2165,8 @@ namespace JISP.Data {
             
             private global::System.Data.DataColumn columnAktivan;
             
+            private global::System.Data.DataColumn columnImaDokument;
+            
             private global::System.Data.DataColumn columnIdZaposlenog;
             
             private global::System.Data.DataColumn columnObracunTemplate;
@@ -2305,6 +2307,14 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ImaDokumentColumn {
+                get {
+                    return this.columnImaDokument;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn IdZaposlenogColumn {
                 get {
                     return this.columnIdZaposlenog;
@@ -2372,7 +2382,7 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ZaposlenjaRow AddZaposlenjaRow(string BrojUgovoraORadu, string RadnoMestoNaziv, System.DateTime DatumUgovora, int ProcenatRadnogVremena, bool MaticnaUstanova, System.DateTime DatumZaposlenOd, System.DateTime DatumZaposlenDo, string NoksNivoNaziv, string VrstaAngazovanja, bool Aktivan, ZaposleniRow parentZaposleniRowByFK_Zaposleni_Zaposlenja, string ObracunTemplate, bool ImaObracunTemplate, string _Zaposleni) {
+            public ZaposlenjaRow AddZaposlenjaRow(string BrojUgovoraORadu, string RadnoMestoNaziv, System.DateTime DatumUgovora, int ProcenatRadnogVremena, bool MaticnaUstanova, System.DateTime DatumZaposlenOd, System.DateTime DatumZaposlenDo, string NoksNivoNaziv, string VrstaAngazovanja, bool Aktivan, bool ImaDokument, ZaposleniRow parentZaposleniRowByFK_Zaposleni_Zaposlenja, string ObracunTemplate, bool ImaObracunTemplate, string _Zaposleni) {
                 ZaposlenjaRow rowZaposlenjaRow = ((ZaposlenjaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -2386,12 +2396,13 @@ namespace JISP.Data {
                         NoksNivoNaziv,
                         VrstaAngazovanja,
                         Aktivan,
+                        ImaDokument,
                         null,
                         ObracunTemplate,
                         ImaObracunTemplate,
                         _Zaposleni};
                 if ((parentZaposleniRowByFK_Zaposleni_Zaposlenja != null)) {
-                    columnValuesArray[11] = parentZaposleniRowByFK_Zaposleni_Zaposlenja[0];
+                    columnValuesArray[12] = parentZaposleniRowByFK_Zaposleni_Zaposlenja[0];
                 }
                 rowZaposlenjaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowZaposlenjaRow);
@@ -2400,7 +2411,7 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ZaposlenjaRow AddZaposlenjaRow(string BrojUgovoraORadu, string RadnoMestoNaziv, System.DateTime DatumUgovora, int ProcenatRadnogVremena, bool MaticnaUstanova, System.DateTime DatumZaposlenOd, System.DateTime DatumZaposlenDo, string NoksNivoNaziv, string VrstaAngazovanja, bool Aktivan, ZaposleniRow parentZaposleniRowByFK_Zaposleni_Zaposlenja, string ObracunTemplate) {
+            public ZaposlenjaRow AddZaposlenjaRow(string BrojUgovoraORadu, string RadnoMestoNaziv, System.DateTime DatumUgovora, int ProcenatRadnogVremena, bool MaticnaUstanova, System.DateTime DatumZaposlenOd, System.DateTime DatumZaposlenDo, string NoksNivoNaziv, string VrstaAngazovanja, bool Aktivan, bool ImaDokument, ZaposleniRow parentZaposleniRowByFK_Zaposleni_Zaposlenja, string ObracunTemplate) {
                 ZaposlenjaRow rowZaposlenjaRow = ((ZaposlenjaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -2414,12 +2425,13 @@ namespace JISP.Data {
                         NoksNivoNaziv,
                         VrstaAngazovanja,
                         Aktivan,
+                        ImaDokument,
                         null,
                         ObracunTemplate,
                         null,
                         null};
                 if ((parentZaposleniRowByFK_Zaposleni_Zaposlenja != null)) {
-                    columnValuesArray[11] = parentZaposleniRowByFK_Zaposleni_Zaposlenja[0];
+                    columnValuesArray[12] = parentZaposleniRowByFK_Zaposleni_Zaposlenja[0];
                 }
                 rowZaposlenjaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowZaposlenjaRow);
@@ -2461,6 +2473,7 @@ namespace JISP.Data {
                 this.columnNoksNivoNaziv = base.Columns["NoksNivoNaziv"];
                 this.columnVrstaAngazovanja = base.Columns["VrstaAngazovanja"];
                 this.columnAktivan = base.Columns["Aktivan"];
+                this.columnImaDokument = base.Columns["ImaDokument"];
                 this.columnIdZaposlenog = base.Columns["IdZaposlenog"];
                 this.columnObracunTemplate = base.Columns["ObracunTemplate"];
                 this.columnImaObracunTemplate = base.Columns["ImaObracunTemplate"];
@@ -2492,6 +2505,8 @@ namespace JISP.Data {
                 base.Columns.Add(this.columnVrstaAngazovanja);
                 this.columnAktivan = new global::System.Data.DataColumn("Aktivan", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAktivan);
+                this.columnImaDokument = new global::System.Data.DataColumn("ImaDokument", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnImaDokument);
                 this.columnIdZaposlenog = new global::System.Data.DataColumn("IdZaposlenog", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIdZaposlenog);
                 this.columnObracunTemplate = new global::System.Data.DataColumn("ObracunTemplate", typeof(string), null, global::System.Data.MappingType.Element);
@@ -10047,6 +10062,22 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool ImaDokument {
+                get {
+                    try {
+                        return ((bool)(this[this.tableZaposlenja.ImaDokumentColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ImaDokument\' in table \'Zaposlenja\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableZaposlenja.ImaDokumentColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public int IdZaposlenog {
                 get {
                     return ((int)(this[this.tableZaposlenja.IdZaposlenogColumn]));
@@ -10216,6 +10247,18 @@ namespace JISP.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetAktivanNull() {
                 this[this.tableZaposlenja.AktivanColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsImaDokumentNull() {
+                return this.IsNull(this.tableZaposlenja.ImaDokumentColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetImaDokumentNull() {
+                this[this.tableZaposlenja.ImaDokumentColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

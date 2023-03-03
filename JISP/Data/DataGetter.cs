@@ -104,6 +104,7 @@ namespace JISP.Data
                 if (obj.noksNivo != null)
                     z.NoksNivoNaziv = obj.noksNivo.naziv;
                 z.Aktivan = obj.statusUgovora != null && obj.statusUgovora == 19292;
+                z.ImaDokument = obj.ugovorORaduDokumentNaziv != null && obj.ugovorORaduDokumentNaziv != "";
                 if (isNew)
                     zaposlenja.AddZaposlenjaRow(z);
             }

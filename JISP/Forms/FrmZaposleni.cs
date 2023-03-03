@@ -377,7 +377,8 @@ namespace JISP.Forms
                         //var ozs = Classes.ObracunZarada.ObracunZarada.PoslednjiObracuni
                         //    (zap.GetObracunZaradaRows(), zap.GetZaposlenjaRows().Where(it => it.Aktivan)
                         //    .Select(it => it.IdZaposlenja));
-                        foreach (var oz in zap.GetObracunZaradaRows().Where(it => it.Godina == AppData.SkolskaGodina.Start))
+                        foreach (var oz in zap.GetObracunZaradaRows()
+                            .Where(it => it.Godina == AppData.SkolskaGodina.Start || it.Godina == AppData.SkolskaGodina.Kraj))
                             await DataGetter.GetOzDodatnoAsync(oz);
                         zap.CalcAngazovanja();
                     });
@@ -419,7 +420,7 @@ namespace JISP.Forms
         {
             if (e.KeyCode == Keys.Enter)
             {
-                DgvZaposleni_CellDoubleClick(this, 
+                DgvZaposleni_CellDoubleClick(this,
                     new DataGridViewCellEventArgs(dgvcIme.Index, dgvZaposleni.CurrentRow.Index));
                 e.SuppressKeyPress = true; // protiv "kling" zvuka
             }

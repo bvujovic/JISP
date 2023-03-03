@@ -23,8 +23,6 @@ namespace JISP.Forms
                 bsGrejanja.DataSource = AppData.Ds.SifGrejanja;
                 bsHladjenja.DataSource = AppData.Ds.SifHladjenja;
                 bsLokacije.DataSource = AppData.Ds.Lokacije;
-                bsObjekti.DataSource = AppData.Ds.Objekti;
-                bsProstorije.DataSource = AppData.Ds.Prostorije;
 
                 dgvLokacije.TsmiSelekcija(false);
                 dgvObjekti.TsmiSelekcija(false);
