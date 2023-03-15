@@ -38,8 +38,8 @@ namespace JISP.Forms
         private void PodesiCmbProstorijeSprat()
         {
             cmbProstorijeSprat.Items.Clear();
-            cmbProstorijeSprat.Items.AddRange(AppData.Ds.Prostorije.Select(it => it.Sprat)
-                .Distinct().OrderBy(it => it).ToArray());
+            cmbProstorijeSprat.Items.AddRange(AppData.Ds.Prostorije.Where(it => !it.IsSpratNull())
+                .Select(it => it.Sprat).Distinct().OrderBy(it => it).ToArray());
             cmbProstorijeSprat.AdjustWidth();
         }
 
@@ -188,9 +188,9 @@ namespace JISP.Forms
 
         private async void BtnSacuvajProstorije_Click(object sender, EventArgs e)
         {
-            try
+            foreach (var p in AppData.Ds.Prostorije.Where(it => it.RowState != DataRowState.Unchanged))
             {
-                foreach (var p in AppData.Ds.Prostorije.Where(it => it.RowState != DataRowState.Unchanged))
+                try
                 {
                     if (!p.IzvorGrejanja)
                         p.SetIdVrsteIzvoraGrejanjaNull();
@@ -228,9 +228,21 @@ namespace JISP.Forms
 }}";
                     await WebApi.PostForJson(WebApi.ReqEnum.Ustanova_ProstorijeAzuriraj, body);
                 }
-                Utils.ShowMbox("Gotovo", btnSacuvajProstorije.ToolTipText);
+                catch (Exception ex)
+                {
+                    var res = Utils.ShowMboxYesNo($"Prostorija: {p.NazivProstorije}\r\nGreška: {ex.Message}\r\n"
+                        + "Da li želite da nastavite sa čuvanjem podataka o preostalim prostorijama?"
+                        , btnSacuvajProstorije.Text);
+                    if (res == DialogResult.No)
+                        break;
+                }
             }
-            catch (Exception ex) { Utils.ShowMbox(ex, btnSacuvajProstorije.Text); }
+            Utils.ShowMbox("Gotovo", btnSacuvajProstorije.ToolTipText);
+        }
+
+        private void DgvProstorije_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            Console.WriteLine(e.Exception?.Message);
         }
     }
 }

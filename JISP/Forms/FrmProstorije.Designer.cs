@@ -49,7 +49,21 @@
             this.bsGrejanja = new System.Windows.Forms.BindingSource(this.components);
             this.pnlMain = new System.Windows.Forms.Panel();
             this.dgvProstorije = new JISP.Controls.UcDGV();
+            this.nazivProstorijeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipProstorijeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.povrsinaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prosecnaVisinaPlafonaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prostorijaSeKoristiDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dostupLicimaSaSpecPotrebamaDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.spratDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.izvorGrejanjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.vrstaIzvoraGrejanjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.izvorHladjenjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.vrstaIzvoraHladjenjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.bsHladjenja = new System.Windows.Forms.BindingSource(this.components);
+            this.dgvcProstBrzinaLanPrikljucka = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcProstBrzinaBezicnogInterneta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcProstMobilniInternet = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblRowCount = new System.Windows.Forms.Label();
             this.dgvLokacije = new JISP.Controls.UcDGV();
             this.nazivLokacijeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,20 +91,6 @@
             this.btnDohvatiPodatke = new JISP.Controls.UcButton();
             this.cmbPodaciZaDohvatanje = new System.Windows.Forms.ComboBox();
             this.ucExitApp1 = new JISP.Controls.UcExitAppButton();
-            this.nazivProstorijeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tipProstorijeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.povrsinaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prosecnaVisinaPlafonaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prostorijaSeKoristiDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dostupLicimaSaSpecPotrebamaDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.spratDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.izvorGrejanjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.vrstaIzvoraGrejanjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.izvorHladjenjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.vrstaIzvoraHladjenjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.dgvcProstBrzinaLanPrikljucka = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcProstBrzinaBezicnogInterneta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcProstMobilniInternet = new System.Windows.Forms.DataGridViewTextBoxColumn();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -216,12 +216,141 @@
             this.dgvProstorije.Size = new System.Drawing.Size(1317, 363);
             this.dgvProstorije.StandardSort = null;
             this.dgvProstorije.TabIndex = 2;
+            this.dgvProstorije.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.DgvProstorije_DataError);
             this.dgvProstorije.SelectionChanged += new System.EventHandler(this.DgvProstorije_SelectionChanged);
+            // 
+            // nazivProstorijeDataGridViewTextBoxColumn
+            // 
+            this.nazivProstorijeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nazivProstorijeDataGridViewTextBoxColumn.DataPropertyName = "NazivProstorije";
+            this.nazivProstorijeDataGridViewTextBoxColumn.FillWeight = 417F;
+            this.nazivProstorijeDataGridViewTextBoxColumn.HeaderText = "Prostorija";
+            this.nazivProstorijeDataGridViewTextBoxColumn.MinimumWidth = 208;
+            this.nazivProstorijeDataGridViewTextBoxColumn.Name = "nazivProstorijeDataGridViewTextBoxColumn";
+            // 
+            // tipProstorijeDataGridViewTextBoxColumn
+            // 
+            this.tipProstorijeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.tipProstorijeDataGridViewTextBoxColumn.DataPropertyName = "TipProstorije";
+            this.tipProstorijeDataGridViewTextBoxColumn.FillWeight = 263F;
+            this.tipProstorijeDataGridViewTextBoxColumn.HeaderText = "Tip";
+            this.tipProstorijeDataGridViewTextBoxColumn.MinimumWidth = 131;
+            this.tipProstorijeDataGridViewTextBoxColumn.Name = "tipProstorijeDataGridViewTextBoxColumn";
+            // 
+            // povrsinaDataGridViewTextBoxColumn
+            // 
+            this.povrsinaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.povrsinaDataGridViewTextBoxColumn.DataPropertyName = "Povrsina";
+            this.povrsinaDataGridViewTextBoxColumn.HeaderText = "Površina";
+            this.povrsinaDataGridViewTextBoxColumn.Name = "povrsinaDataGridViewTextBoxColumn";
+            this.povrsinaDataGridViewTextBoxColumn.Width = 91;
+            // 
+            // prosecnaVisinaPlafonaDataGridViewTextBoxColumn
+            // 
+            this.prosecnaVisinaPlafonaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.prosecnaVisinaPlafonaDataGridViewTextBoxColumn.DataPropertyName = "ProsecnaVisinaPlafona";
+            this.prosecnaVisinaPlafonaDataGridViewTextBoxColumn.HeaderText = "Avg h plafona";
+            this.prosecnaVisinaPlafonaDataGridViewTextBoxColumn.Name = "prosecnaVisinaPlafonaDataGridViewTextBoxColumn";
+            this.prosecnaVisinaPlafonaDataGridViewTextBoxColumn.Width = 121;
+            // 
+            // prostorijaSeKoristiDataGridViewCheckBoxColumn
+            // 
+            this.prostorijaSeKoristiDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.prostorijaSeKoristiDataGridViewCheckBoxColumn.DataPropertyName = "ProstorijaSeKoristi";
+            this.prostorijaSeKoristiDataGridViewCheckBoxColumn.HeaderText = "Koristi se";
+            this.prostorijaSeKoristiDataGridViewCheckBoxColumn.Name = "prostorijaSeKoristiDataGridViewCheckBoxColumn";
+            this.prostorijaSeKoristiDataGridViewCheckBoxColumn.Width = 76;
+            // 
+            // dostupLicimaSaSpecPotrebamaDataGridViewCheckBoxColumn
+            // 
+            this.dostupLicimaSaSpecPotrebamaDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dostupLicimaSaSpecPotrebamaDataGridViewCheckBoxColumn.DataPropertyName = "DostupLicimaSaSpecPotrebama";
+            this.dostupLicimaSaSpecPotrebamaDataGridViewCheckBoxColumn.HeaderText = "Dostupnost";
+            this.dostupLicimaSaSpecPotrebamaDataGridViewCheckBoxColumn.Name = "dostupLicimaSaSpecPotrebamaDataGridViewCheckBoxColumn";
+            this.dostupLicimaSaSpecPotrebamaDataGridViewCheckBoxColumn.ToolTipText = "Dostupnost Licima Sa Specijalnim Potrebama";
+            this.dostupLicimaSaSpecPotrebamaDataGridViewCheckBoxColumn.Width = 91;
+            // 
+            // spratDataGridViewTextBoxColumn
+            // 
+            this.spratDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.spratDataGridViewTextBoxColumn.DataPropertyName = "Sprat";
+            this.spratDataGridViewTextBoxColumn.HeaderText = "Sprat";
+            this.spratDataGridViewTextBoxColumn.Name = "spratDataGridViewTextBoxColumn";
+            this.spratDataGridViewTextBoxColumn.Width = 68;
+            // 
+            // izvorGrejanjaDataGridViewTextBoxColumn
+            // 
+            this.izvorGrejanjaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.izvorGrejanjaDataGridViewTextBoxColumn.DataPropertyName = "IzvorGrejanja";
+            this.izvorGrejanjaDataGridViewTextBoxColumn.HeaderText = "Grejanje";
+            this.izvorGrejanjaDataGridViewTextBoxColumn.Name = "izvorGrejanjaDataGridViewTextBoxColumn";
+            this.izvorGrejanjaDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.izvorGrejanjaDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.izvorGrejanjaDataGridViewTextBoxColumn.Width = 88;
+            // 
+            // vrstaIzvoraGrejanjaDataGridViewTextBoxColumn
+            // 
+            this.vrstaIzvoraGrejanjaDataGridViewTextBoxColumn.DataPropertyName = "IdVrsteIzvoraGrejanja";
+            this.vrstaIzvoraGrejanjaDataGridViewTextBoxColumn.DataSource = this.bsGrejanja;
+            this.vrstaIzvoraGrejanjaDataGridViewTextBoxColumn.DisplayMember = "NazivGrejanja";
+            this.vrstaIzvoraGrejanjaDataGridViewTextBoxColumn.HeaderText = "Vrsta grejanja";
+            this.vrstaIzvoraGrejanjaDataGridViewTextBoxColumn.Name = "vrstaIzvoraGrejanjaDataGridViewTextBoxColumn";
+            this.vrstaIzvoraGrejanjaDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.vrstaIzvoraGrejanjaDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.vrstaIzvoraGrejanjaDataGridViewTextBoxColumn.ValueMember = "IdGrejanja";
+            this.vrstaIzvoraGrejanjaDataGridViewTextBoxColumn.Width = 122;
+            // 
+            // izvorHladjenjaDataGridViewTextBoxColumn
+            // 
+            this.izvorHladjenjaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.izvorHladjenjaDataGridViewTextBoxColumn.DataPropertyName = "IzvorHladjenja";
+            this.izvorHladjenjaDataGridViewTextBoxColumn.HeaderText = "Hlađenje";
+            this.izvorHladjenjaDataGridViewTextBoxColumn.Name = "izvorHladjenjaDataGridViewTextBoxColumn";
+            this.izvorHladjenjaDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.izvorHladjenjaDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.izvorHladjenjaDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // vrstaIzvoraHladjenjaDataGridViewTextBoxColumn
+            // 
+            this.vrstaIzvoraHladjenjaDataGridViewTextBoxColumn.DataPropertyName = "IdVrsteIzvoraHladjenja";
+            this.vrstaIzvoraHladjenjaDataGridViewTextBoxColumn.DataSource = this.bsHladjenja;
+            this.vrstaIzvoraHladjenjaDataGridViewTextBoxColumn.DisplayMember = "NazivHladjenja";
+            this.vrstaIzvoraHladjenjaDataGridViewTextBoxColumn.HeaderText = "Vrsta hlađenja";
+            this.vrstaIzvoraHladjenjaDataGridViewTextBoxColumn.Name = "vrstaIzvoraHladjenjaDataGridViewTextBoxColumn";
+            this.vrstaIzvoraHladjenjaDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.vrstaIzvoraHladjenjaDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.vrstaIzvoraHladjenjaDataGridViewTextBoxColumn.ValueMember = "IdHladjenja";
+            this.vrstaIzvoraHladjenjaDataGridViewTextBoxColumn.Width = 125;
             // 
             // bsHladjenja
             // 
             this.bsHladjenja.DataMember = "SifHladjenja";
             this.bsHladjenja.DataSource = this.ds;
+            // 
+            // dgvcProstBrzinaLanPrikljucka
+            // 
+            this.dgvcProstBrzinaLanPrikljucka.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dgvcProstBrzinaLanPrikljucka.DataPropertyName = "BrzinaLanPrikljucka";
+            this.dgvcProstBrzinaLanPrikljucka.HeaderText = "LAN";
+            this.dgvcProstBrzinaLanPrikljucka.Name = "dgvcProstBrzinaLanPrikljucka";
+            this.dgvcProstBrzinaLanPrikljucka.Width = 61;
+            // 
+            // dgvcProstBrzinaBezicnogInterneta
+            // 
+            this.dgvcProstBrzinaBezicnogInterneta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dgvcProstBrzinaBezicnogInterneta.DataPropertyName = "BrzinaBezicnogInterneta";
+            this.dgvcProstBrzinaBezicnogInterneta.HeaderText = "Wireless";
+            this.dgvcProstBrzinaBezicnogInterneta.Name = "dgvcProstBrzinaBezicnogInterneta";
+            this.dgvcProstBrzinaBezicnogInterneta.Width = 91;
+            // 
+            // dgvcProstMobilniInternet
+            // 
+            this.dgvcProstMobilniInternet.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dgvcProstMobilniInternet.DataPropertyName = "MobilniInternet";
+            this.dgvcProstMobilniInternet.HeaderText = "Mob. net";
+            this.dgvcProstMobilniInternet.Name = "dgvcProstMobilniInternet";
+            this.dgvcProstMobilniInternet.ToolTipText = "Mobilni internet";
+            this.dgvcProstMobilniInternet.Width = 91;
             // 
             // lblRowCount
             // 
@@ -545,12 +674,6 @@
             this.cmbPodaciZaDohvatanje.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPodaciZaDohvatanje.DropDownWidth = 300;
             this.cmbPodaciZaDohvatanje.FormattingEnabled = true;
-            this.cmbPodaciZaDohvatanje.Items.AddRange(new object[] {
-            "Opšti podaci (datum rođenja, pol, ...)",
-            "Razredi i odeljenja",
-            "Smerovi za srednjoškolce",
-            "Ocene na polugodištu",
-            "Ocene za kraj godine"});
             this.cmbPodaciZaDohvatanje.Location = new System.Drawing.Point(7, 88);
             this.cmbPodaciZaDohvatanje.Name = "cmbPodaciZaDohvatanje";
             this.cmbPodaciZaDohvatanje.Size = new System.Drawing.Size(127, 26);
@@ -568,134 +691,6 @@
             this.ucExitApp1.Text = "Izlaz";
             this.ucExitApp1.ToolTipText = "Izlaz iz aplikacije";
             this.ucExitApp1.UseVisualStyleBackColor = false;
-            // 
-            // nazivProstorijeDataGridViewTextBoxColumn
-            // 
-            this.nazivProstorijeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nazivProstorijeDataGridViewTextBoxColumn.DataPropertyName = "NazivProstorije";
-            this.nazivProstorijeDataGridViewTextBoxColumn.FillWeight = 417F;
-            this.nazivProstorijeDataGridViewTextBoxColumn.HeaderText = "Prostorija";
-            this.nazivProstorijeDataGridViewTextBoxColumn.MinimumWidth = 208;
-            this.nazivProstorijeDataGridViewTextBoxColumn.Name = "nazivProstorijeDataGridViewTextBoxColumn";
-            // 
-            // tipProstorijeDataGridViewTextBoxColumn
-            // 
-            this.tipProstorijeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.tipProstorijeDataGridViewTextBoxColumn.DataPropertyName = "TipProstorije";
-            this.tipProstorijeDataGridViewTextBoxColumn.FillWeight = 263F;
-            this.tipProstorijeDataGridViewTextBoxColumn.HeaderText = "Tip";
-            this.tipProstorijeDataGridViewTextBoxColumn.MinimumWidth = 131;
-            this.tipProstorijeDataGridViewTextBoxColumn.Name = "tipProstorijeDataGridViewTextBoxColumn";
-            // 
-            // povrsinaDataGridViewTextBoxColumn
-            // 
-            this.povrsinaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.povrsinaDataGridViewTextBoxColumn.DataPropertyName = "Povrsina";
-            this.povrsinaDataGridViewTextBoxColumn.HeaderText = "Površina";
-            this.povrsinaDataGridViewTextBoxColumn.Name = "povrsinaDataGridViewTextBoxColumn";
-            this.povrsinaDataGridViewTextBoxColumn.Width = 91;
-            // 
-            // prosecnaVisinaPlafonaDataGridViewTextBoxColumn
-            // 
-            this.prosecnaVisinaPlafonaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.prosecnaVisinaPlafonaDataGridViewTextBoxColumn.DataPropertyName = "ProsecnaVisinaPlafona";
-            this.prosecnaVisinaPlafonaDataGridViewTextBoxColumn.HeaderText = "Avg h plafona";
-            this.prosecnaVisinaPlafonaDataGridViewTextBoxColumn.Name = "prosecnaVisinaPlafonaDataGridViewTextBoxColumn";
-            this.prosecnaVisinaPlafonaDataGridViewTextBoxColumn.Width = 121;
-            // 
-            // prostorijaSeKoristiDataGridViewCheckBoxColumn
-            // 
-            this.prostorijaSeKoristiDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.prostorijaSeKoristiDataGridViewCheckBoxColumn.DataPropertyName = "ProstorijaSeKoristi";
-            this.prostorijaSeKoristiDataGridViewCheckBoxColumn.HeaderText = "Koristi se";
-            this.prostorijaSeKoristiDataGridViewCheckBoxColumn.Name = "prostorijaSeKoristiDataGridViewCheckBoxColumn";
-            this.prostorijaSeKoristiDataGridViewCheckBoxColumn.Width = 76;
-            // 
-            // dostupLicimaSaSpecPotrebamaDataGridViewCheckBoxColumn
-            // 
-            this.dostupLicimaSaSpecPotrebamaDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dostupLicimaSaSpecPotrebamaDataGridViewCheckBoxColumn.DataPropertyName = "DostupLicimaSaSpecPotrebama";
-            this.dostupLicimaSaSpecPotrebamaDataGridViewCheckBoxColumn.HeaderText = "Dostupnost";
-            this.dostupLicimaSaSpecPotrebamaDataGridViewCheckBoxColumn.Name = "dostupLicimaSaSpecPotrebamaDataGridViewCheckBoxColumn";
-            this.dostupLicimaSaSpecPotrebamaDataGridViewCheckBoxColumn.ToolTipText = "Dostupnost Licima Sa Specijalnim Potrebama";
-            this.dostupLicimaSaSpecPotrebamaDataGridViewCheckBoxColumn.Width = 91;
-            // 
-            // spratDataGridViewTextBoxColumn
-            // 
-            this.spratDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.spratDataGridViewTextBoxColumn.DataPropertyName = "Sprat";
-            this.spratDataGridViewTextBoxColumn.HeaderText = "Sprat";
-            this.spratDataGridViewTextBoxColumn.Name = "spratDataGridViewTextBoxColumn";
-            this.spratDataGridViewTextBoxColumn.Width = 68;
-            // 
-            // izvorGrejanjaDataGridViewTextBoxColumn
-            // 
-            this.izvorGrejanjaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.izvorGrejanjaDataGridViewTextBoxColumn.DataPropertyName = "IzvorGrejanja";
-            this.izvorGrejanjaDataGridViewTextBoxColumn.HeaderText = "Grejanje";
-            this.izvorGrejanjaDataGridViewTextBoxColumn.Name = "izvorGrejanjaDataGridViewTextBoxColumn";
-            this.izvorGrejanjaDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.izvorGrejanjaDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.izvorGrejanjaDataGridViewTextBoxColumn.Width = 88;
-            // 
-            // vrstaIzvoraGrejanjaDataGridViewTextBoxColumn
-            // 
-            this.vrstaIzvoraGrejanjaDataGridViewTextBoxColumn.DataPropertyName = "IdVrsteIzvoraGrejanja";
-            this.vrstaIzvoraGrejanjaDataGridViewTextBoxColumn.DataSource = this.bsGrejanja;
-            this.vrstaIzvoraGrejanjaDataGridViewTextBoxColumn.DisplayMember = "NazivGrejanja";
-            this.vrstaIzvoraGrejanjaDataGridViewTextBoxColumn.HeaderText = "Vrsta grejanja";
-            this.vrstaIzvoraGrejanjaDataGridViewTextBoxColumn.Name = "vrstaIzvoraGrejanjaDataGridViewTextBoxColumn";
-            this.vrstaIzvoraGrejanjaDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.vrstaIzvoraGrejanjaDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.vrstaIzvoraGrejanjaDataGridViewTextBoxColumn.ValueMember = "IdGrejanja";
-            this.vrstaIzvoraGrejanjaDataGridViewTextBoxColumn.Width = 122;
-            // 
-            // izvorHladjenjaDataGridViewTextBoxColumn
-            // 
-            this.izvorHladjenjaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.izvorHladjenjaDataGridViewTextBoxColumn.DataPropertyName = "IzvorHladjenja";
-            this.izvorHladjenjaDataGridViewTextBoxColumn.HeaderText = "Hlađenje";
-            this.izvorHladjenjaDataGridViewTextBoxColumn.Name = "izvorHladjenjaDataGridViewTextBoxColumn";
-            this.izvorHladjenjaDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.izvorHladjenjaDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.izvorHladjenjaDataGridViewTextBoxColumn.Width = 90;
-            // 
-            // vrstaIzvoraHladjenjaDataGridViewTextBoxColumn
-            // 
-            this.vrstaIzvoraHladjenjaDataGridViewTextBoxColumn.DataPropertyName = "IdVrsteIzvoraHladjenja";
-            this.vrstaIzvoraHladjenjaDataGridViewTextBoxColumn.DataSource = this.bsHladjenja;
-            this.vrstaIzvoraHladjenjaDataGridViewTextBoxColumn.DisplayMember = "NazivHladjenja";
-            this.vrstaIzvoraHladjenjaDataGridViewTextBoxColumn.HeaderText = "Vrsta hlađenja";
-            this.vrstaIzvoraHladjenjaDataGridViewTextBoxColumn.Name = "vrstaIzvoraHladjenjaDataGridViewTextBoxColumn";
-            this.vrstaIzvoraHladjenjaDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.vrstaIzvoraHladjenjaDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.vrstaIzvoraHladjenjaDataGridViewTextBoxColumn.ValueMember = "IdHladjenja";
-            this.vrstaIzvoraHladjenjaDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // dgvcProstBrzinaLanPrikljucka
-            // 
-            this.dgvcProstBrzinaLanPrikljucka.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dgvcProstBrzinaLanPrikljucka.DataPropertyName = "BrzinaLanPrikljucka";
-            this.dgvcProstBrzinaLanPrikljucka.HeaderText = "LAN";
-            this.dgvcProstBrzinaLanPrikljucka.Name = "dgvcProstBrzinaLanPrikljucka";
-            this.dgvcProstBrzinaLanPrikljucka.Width = 61;
-            // 
-            // dgvcProstBrzinaBezicnogInterneta
-            // 
-            this.dgvcProstBrzinaBezicnogInterneta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dgvcProstBrzinaBezicnogInterneta.DataPropertyName = "BrzinaBezicnogInterneta";
-            this.dgvcProstBrzinaBezicnogInterneta.HeaderText = "Wireless";
-            this.dgvcProstBrzinaBezicnogInterneta.Name = "dgvcProstBrzinaBezicnogInterneta";
-            this.dgvcProstBrzinaBezicnogInterneta.Width = 91;
-            // 
-            // dgvcProstMobilniInternet
-            // 
-            this.dgvcProstMobilniInternet.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dgvcProstMobilniInternet.DataPropertyName = "MobilniInternet";
-            this.dgvcProstMobilniInternet.HeaderText = "Mob. net";
-            this.dgvcProstMobilniInternet.Name = "dgvcProstMobilniInternet";
-            this.dgvcProstMobilniInternet.ToolTipText = "Mobilni internet";
-            this.dgvcProstMobilniInternet.Width = 91;
             // 
             // FrmProstorije
             // 
