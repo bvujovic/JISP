@@ -26,12 +26,16 @@ namespace JISP.Forms
             dgvZaposleni.StandardSort = bsZaposleni.Sort = "Ime, Prezime";
             dgvZaposleni.LoadSettings();
             dgvZaposlenja.LoadSettings();
-            PodesiCmbPodaciZaDohvatanje();
+            PodesiComboBoxove();
             txtFilter.BindingSource = bsZaposleni;
             this.FormStandardSettings();
         }
 
-        private void PodesiCmbPodaciZaDohvatanje()
+        /// <summary>
+        /// Podesavanje ComboBox kontrola (cmbPodaciZaDohvatanje i cmbIzracunajStatuse):
+        /// stavke (Items) i sirina (AdjustWidth).
+        /// </summary>
+        private void PodesiComboBoxove()
         {
             cmbPodaciZaDohvatanje.Items.AddRange(new[] {
                 CmbDohvatiOpste,
@@ -39,11 +43,21 @@ namespace JISP.Forms
                 CmbDohvatiSve,
             });
             cmbPodaciZaDohvatanje.AdjustWidth();
+
+            cmbIzracunajStatuse.Items.AddRange(new[] {
+                CmbStatusStaz,
+                CmbStatusBolovanja,
+                CmbStatusDokUgovor,
+            });
+            cmbIzracunajStatuse.AdjustWidth();
         }
 
         private const string CmbDohvatiOpste = "Opšte: ime, prezime, JMBG";
         private const string CmbDohvatiDodatno = "Dodatno: Mejl, tel, adresa, pol, devojačko";
         private const string CmbDohvatiSve = "Sve: zaposlenja, angažovanja i obračuni z.";
+        private const string CmbStatusStaz = "Staž";
+        private const string CmbStatusBolovanja = "Aktivna bolovanja";
+        private const string CmbStatusDokUgovor = "Bez dokumenta-ugovora";
 
         private readonly Ds Ds;
 
@@ -291,12 +305,11 @@ namespace JISP.Forms
                     ":\t" + (sumBudzetZamena / 100).ToString(Utils.DveObavezneCifreFormat)
                     );
             }
-            catch (Exception ex) { Utils.ShowMbox(ex, btnSumaAngazovanja.Text); }
+            catch (Exception ex) { Utils.ShowMbox(ex, Text); }
         }
 
         private async void BtnDohvatiPodatke_Click(object sender, EventArgs e)
         {
-
             var selItem = (string)cmbPodaciZaDohvatanje.SelectedItem;
 
             if (selItem == CmbDohvatiOpste)
@@ -423,7 +436,61 @@ namespace JISP.Forms
                 DgvZaposleni_CellDoubleClick(this,
                     new DataGridViewCellEventArgs(dgvcIme.Index, dgvZaposleni.CurrentRow.Index));
                 e.SuppressKeyPress = true; // protiv "kling" zvuka
+                e.Handled = true; // protiv prelaska u novi red
             }
+        }
+
+        /// <summary>
+        /// Izracunavanje podataka za svakog zaposlenog i postavljanje rezultata u StatusAktivnosti2.
+        /// </summary>
+        private void BtnIzracunajStatuse_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var selItem = (string)cmbIzracunajStatuse.SelectedItem;
+
+                // racunanje staza u prosveti za svakog zaposlenog na osnovu podataka u StazGodine i StazMeseci
+                if (selItem == CmbStatusStaz)
+                {
+                    var frm = new FrmStaz();
+                    if (frm.ShowDialog() != DialogResult.OK)
+                        return;
+                    AppData.SaveSett(AppData.DatumIzvestajaTrezora, frm.DatumIzvestajaTrezora.ToShortDateString());
+                    var krajSkGod = new DateTime(AppData.SkolskaGodina.Kraj, 8, 31);
+                    var meseciOdIzvestaja = Utils.DiffMonths(frm.DatumIzvestajaTrezora, krajSkGod);
+                    foreach (var zap in AppData.Ds.Zaposleni.Where(it => !it.IsStazGodineNull()))
+                    {
+                        var stazMeseci = zap.StazGodine * 12 + zap.StazMeseci + meseciOdIzvestaja;
+                        zap.StatusAktivnosti2 = (stazMeseci / 12) + " / " + (stazMeseci % 12);
+                    }
+                }
+
+                if (selItem == CmbStatusBolovanja)
+                {
+                    foreach (var z in AppData.Ds.Zaposleni)
+                    {
+                        z.StatusAktivnosti2 = "";
+                        foreach (var zap in z.GetZaposlenjaRows().Where(it => it.Aktivan))
+                            foreach (var r in zap.GetResenjaRows()
+                                .Where(it => it.AktivnoResenje && it.TipResenja.Contains("одсуству")))
+                                z.StatusAktivnosti2 += "*";
+                    }
+                }
+
+                if (selItem == CmbStatusDokUgovor)
+                {
+                    foreach (var z in AppData.Ds.Zaposleni)
+                    {
+                        z.StatusAktivnosti2 = "";
+                        foreach (var zap in z.GetZaposlenjaRows()
+                            .Where(it => it.Aktivan && (it.IsImaDokumentNull() || !it.ImaDokument)))
+                            z.StatusAktivnosti2 += "*";
+                    }
+                }
+
+                Utils.ShowMbox("Gotovo", selItem);
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, btnIzracunajStatuse.Text); }
         }
     }
 }

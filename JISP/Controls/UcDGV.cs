@@ -44,8 +44,12 @@ namespace JISP.Controls
             string[] visibleColumns = strVisibleColumns?.Split('|');
             foreach (DataGridViewColumn col in availableColumns)
             {
-                var tsmi = new ToolStripMenuItem { Text = col.HeaderText, CheckOnClick = true };
-                tsmi.Checked = visibleColumns == null || visibleColumns.Contains(col.Name);
+                var tsmi = new ToolStripMenuItem
+                {
+                    Text = col.HeaderText,
+                    CheckOnClick = true,
+                    Checked = visibleColumns == null || visibleColumns.Contains(col.Name)
+                };
                 if (!tsmi.Checked)
                     col.Visible = false;
                 tsmi.CheckedChanged += TsmiPrikazKol_CheckedChanged;

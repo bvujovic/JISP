@@ -3747,6 +3747,8 @@ namespace JISP.Data {
             
             private global::System.Data.DataColumn columnDatumPodnosenja;
             
+            private global::System.Data.DataColumn columnAktivnoResenje;
+            
             private global::System.Data.DataColumn columnDokument;
             
             private global::System.Data.DataColumn columnDokumentId;
@@ -3849,6 +3851,14 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn AktivnoResenjeColumn {
+                get {
+                    return this.columnAktivnoResenje;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn DokumentColumn {
                 get {
                     return this.columnDokument;
@@ -3924,7 +3934,7 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ResenjaRow AddResenjaRow(int IdResenja, string BrojResenja, string SkolskaGodina, string TipResenja, double ProcenatAngPoRes, System.DateTime DatumPodnosenja, string Dokument, string DokumentId, ZaposlenjaRow parentZaposlenjaRowByZaposlenja_Resenja, string _Zaposleni, bool AktivnoZaposlenje) {
+            public ResenjaRow AddResenjaRow(int IdResenja, string BrojResenja, string SkolskaGodina, string TipResenja, double ProcenatAngPoRes, System.DateTime DatumPodnosenja, bool AktivnoResenje, string Dokument, string DokumentId, ZaposlenjaRow parentZaposlenjaRowByZaposlenja_Resenja, string _Zaposleni, bool AktivnoZaposlenje) {
                 ResenjaRow rowResenjaRow = ((ResenjaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IdResenja,
@@ -3933,13 +3943,14 @@ namespace JISP.Data {
                         TipResenja,
                         ProcenatAngPoRes,
                         DatumPodnosenja,
+                        AktivnoResenje,
                         Dokument,
                         DokumentId,
                         null,
                         _Zaposleni,
                         AktivnoZaposlenje};
                 if ((parentZaposlenjaRowByZaposlenja_Resenja != null)) {
-                    columnValuesArray[8] = parentZaposlenjaRowByZaposlenja_Resenja[0];
+                    columnValuesArray[9] = parentZaposlenjaRowByZaposlenja_Resenja[0];
                 }
                 rowResenjaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowResenjaRow);
@@ -3948,7 +3959,7 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ResenjaRow AddResenjaRow(int IdResenja, string BrojResenja, string SkolskaGodina, string TipResenja, double ProcenatAngPoRes, System.DateTime DatumPodnosenja, string Dokument, string DokumentId, ZaposlenjaRow parentZaposlenjaRowByZaposlenja_Resenja) {
+            public ResenjaRow AddResenjaRow(int IdResenja, string BrojResenja, string SkolskaGodina, string TipResenja, double ProcenatAngPoRes, System.DateTime DatumPodnosenja, bool AktivnoResenje, string Dokument, string DokumentId, ZaposlenjaRow parentZaposlenjaRowByZaposlenja_Resenja) {
                 ResenjaRow rowResenjaRow = ((ResenjaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IdResenja,
@@ -3957,13 +3968,14 @@ namespace JISP.Data {
                         TipResenja,
                         ProcenatAngPoRes,
                         DatumPodnosenja,
+                        AktivnoResenje,
                         Dokument,
                         DokumentId,
                         null,
                         null,
                         null};
                 if ((parentZaposlenjaRowByZaposlenja_Resenja != null)) {
-                    columnValuesArray[8] = parentZaposlenjaRowByZaposlenja_Resenja[0];
+                    columnValuesArray[9] = parentZaposlenjaRowByZaposlenja_Resenja[0];
                 }
                 rowResenjaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowResenjaRow);
@@ -4000,6 +4012,7 @@ namespace JISP.Data {
                 this.columnTipResenja = base.Columns["TipResenja"];
                 this.columnProcenatAngPoRes = base.Columns["ProcenatAngPoRes"];
                 this.columnDatumPodnosenja = base.Columns["DatumPodnosenja"];
+                this.columnAktivnoResenje = base.Columns["AktivnoResenje"];
                 this.columnDokument = base.Columns["Dokument"];
                 this.columnDokumentId = base.Columns["DokumentId"];
                 this.columnIdZaposlenja = base.Columns["IdZaposlenja"];
@@ -4022,6 +4035,8 @@ namespace JISP.Data {
                 base.Columns.Add(this.columnProcenatAngPoRes);
                 this.columnDatumPodnosenja = new global::System.Data.DataColumn("DatumPodnosenja", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDatumPodnosenja);
+                this.columnAktivnoResenje = new global::System.Data.DataColumn("AktivnoResenje", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAktivnoResenje);
                 this.columnDokument = new global::System.Data.DataColumn("Dokument", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDokument);
                 this.columnDokumentId = new global::System.Data.DataColumn("DokumentId", typeof(string), null, global::System.Data.MappingType.Element);
@@ -10998,6 +11013,22 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool AktivnoResenje {
+                get {
+                    try {
+                        return ((bool)(this[this.tableResenja.AktivnoResenjeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AktivnoResenje\' in table \'Resenja\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableResenja.AktivnoResenjeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string Dokument {
                 get {
                     try {
@@ -11116,6 +11147,18 @@ namespace JISP.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetDatumPodnosenjaNull() {
                 this[this.tableResenja.DatumPodnosenjaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsAktivnoResenjeNull() {
+                return this.IsNull(this.tableResenja.AktivnoResenjeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetAktivnoResenjeNull() {
+                this[this.tableResenja.AktivnoResenjeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

@@ -166,6 +166,7 @@ namespace JISP.Data
                     if (obj.procenatAngazovanjaPoResenju != null)
                         r.ProcenatAngPoRes = obj.procenatAngazovanjaPoResenju;
                     r.DatumPodnosenja = obj.datumPodnosenjaResenja;
+                    r.AktivnoResenje = obj.statusResenja ?? false;
                     if (obj.resenjeDokumentId != null)
                     {
                         r.DokumentId = obj.resenjeDokumentId;
