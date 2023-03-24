@@ -4224,6 +4224,10 @@ namespace JISP.Data {
             
             private global::System.Data.DataColumn columnUkupnaNormaRazlika;
             
+            private global::System.Data.DataColumn columnGreskaUPlaniranojNormi;
+            
+            private global::System.Data.DataColumn columnGreskaUUgovornomAngazovanju;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public SistematizacijaDataTable() : 
@@ -4380,6 +4384,22 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn GreskaUPlaniranojNormiColumn {
+                get {
+                    return this.columnGreskaUPlaniranojNormi;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn GreskaUUgovornomAngazovanjuColumn {
+                get {
+                    return this.columnGreskaUUgovornomAngazovanju;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4415,7 +4435,23 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public SistematizacijaRow AddSistematizacijaRow(int IdSistematizacije, int SkolskaGodinaId, int RegUstSisId, string IzvorFinansiranja, bool RucniUnos, int RadnoMestoId, string RadnoMesto, int PredmetId, string Predmet, int PodnivoPredmetaId, int JezikNastaveId, double UkupnaNormaPoSistematizaciji, double UkupnaNormaPoRMOsimZamena, double UkupnaNormaRazlika) {
+            public SistematizacijaRow AddSistematizacijaRow(
+                        int IdSistematizacije, 
+                        int SkolskaGodinaId, 
+                        int RegUstSisId, 
+                        string IzvorFinansiranja, 
+                        bool RucniUnos, 
+                        int RadnoMestoId, 
+                        string RadnoMesto, 
+                        int PredmetId, 
+                        string Predmet, 
+                        int PodnivoPredmetaId, 
+                        int JezikNastaveId, 
+                        double UkupnaNormaPoSistematizaciji, 
+                        double UkupnaNormaPoRMOsimZamena, 
+                        double UkupnaNormaRazlika, 
+                        string GreskaUPlaniranojNormi, 
+                        string GreskaUUgovornomAngazovanju) {
                 SistematizacijaRow rowSistematizacijaRow = ((SistematizacijaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IdSistematizacije,
@@ -4431,7 +4467,9 @@ namespace JISP.Data {
                         JezikNastaveId,
                         UkupnaNormaPoSistematizaciji,
                         UkupnaNormaPoRMOsimZamena,
-                        UkupnaNormaRazlika};
+                        UkupnaNormaRazlika,
+                        GreskaUPlaniranojNormi,
+                        GreskaUUgovornomAngazovanju};
                 rowSistematizacijaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSistematizacijaRow);
                 return rowSistematizacijaRow;
@@ -4439,7 +4477,7 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public SistematizacijaRow AddSistematizacijaRow(int IdSistematizacije, int SkolskaGodinaId, int RegUstSisId, string IzvorFinansiranja, bool RucniUnos, int RadnoMestoId, string RadnoMesto, int PredmetId, string Predmet, int PodnivoPredmetaId, int JezikNastaveId, double UkupnaNormaPoSistematizaciji, double UkupnaNormaPoRMOsimZamena) {
+            public SistematizacijaRow AddSistematizacijaRow(int IdSistematizacije, int SkolskaGodinaId, int RegUstSisId, string IzvorFinansiranja, bool RucniUnos, int RadnoMestoId, string RadnoMesto, int PredmetId, string Predmet, int PodnivoPredmetaId, int JezikNastaveId, double UkupnaNormaPoSistematizaciji, double UkupnaNormaPoRMOsimZamena, string GreskaUPlaniranojNormi, string GreskaUUgovornomAngazovanju) {
                 SistematizacijaRow rowSistematizacijaRow = ((SistematizacijaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IdSistematizacije,
@@ -4455,7 +4493,9 @@ namespace JISP.Data {
                         JezikNastaveId,
                         UkupnaNormaPoSistematizaciji,
                         UkupnaNormaPoRMOsimZamena,
-                        null};
+                        null,
+                        GreskaUPlaniranojNormi,
+                        GreskaUUgovornomAngazovanju};
                 rowSistematizacijaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSistematizacijaRow);
                 return rowSistematizacijaRow;
@@ -4499,6 +4539,8 @@ namespace JISP.Data {
                 this.columnUkupnaNormaPoSistematizaciji = base.Columns["UkupnaNormaPoSistematizaciji"];
                 this.columnUkupnaNormaPoRMOsimZamena = base.Columns["UkupnaNormaPoRMOsimZamena"];
                 this.columnUkupnaNormaRazlika = base.Columns["UkupnaNormaRazlika"];
+                this.columnGreskaUPlaniranojNormi = base.Columns["GreskaUPlaniranojNormi"];
+                this.columnGreskaUUgovornomAngazovanju = base.Columns["GreskaUUgovornomAngazovanju"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4532,6 +4574,10 @@ namespace JISP.Data {
                 base.Columns.Add(this.columnUkupnaNormaPoRMOsimZamena);
                 this.columnUkupnaNormaRazlika = new global::System.Data.DataColumn("UkupnaNormaRazlika", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUkupnaNormaRazlika);
+                this.columnGreskaUPlaniranojNormi = new global::System.Data.DataColumn("GreskaUPlaniranojNormi", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGreskaUPlaniranojNormi);
+                this.columnGreskaUUgovornomAngazovanju = new global::System.Data.DataColumn("GreskaUUgovornomAngazovanju", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGreskaUUgovornomAngazovanju);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIdSistematizacije}, true));
                 this.columnIdSistematizacije.AllowDBNull = false;
@@ -11390,6 +11436,40 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string GreskaUPlaniranojNormi {
+                get {
+                    try {
+                        return ((string)(this[this.tableSistematizacija.GreskaUPlaniranojNormiColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'GreskaUPlaniranojNormi\' in table \'Sistematizacija\' is DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tableSistematizacija.GreskaUPlaniranojNormiColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string GreskaUUgovornomAngazovanju {
+                get {
+                    try {
+                        return ((string)(this[this.tableSistematizacija.GreskaUUgovornomAngazovanjuColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'GreskaUUgovornomAngazovanju\' in table \'Sistematizacija\' is " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSistematizacija.GreskaUUgovornomAngazovanjuColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsPredmetNull() {
                 return this.IsNull(this.tableSistematizacija.PredmetColumn);
             }
@@ -11410,6 +11490,30 @@ namespace JISP.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetUkupnaNormaRazlikaNull() {
                 this[this.tableSistematizacija.UkupnaNormaRazlikaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsGreskaUPlaniranojNormiNull() {
+                return this.IsNull(this.tableSistematizacija.GreskaUPlaniranojNormiColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetGreskaUPlaniranojNormiNull() {
+                this[this.tableSistematizacija.GreskaUPlaniranojNormiColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsGreskaUUgovornomAngazovanjuNull() {
+                return this.IsNull(this.tableSistematizacija.GreskaUUgovornomAngazovanjuColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetGreskaUUgovornomAngazovanjuNull() {
+                this[this.tableSistematizacija.GreskaUUgovornomAngazovanjuColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

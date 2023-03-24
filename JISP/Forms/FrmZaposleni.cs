@@ -399,26 +399,6 @@ namespace JISP.Forms
             }
         }
 
-        private void BtnStaz_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new FrmStaz();
-                if (frm.ShowDialog() != DialogResult.OK)
-                    return;
-
-                AppData.SaveSett(AppData.DatumIzvestajaTrezora, frm.DatumIzvestajaTrezora.ToShortDateString());
-                var krajSkGod = new DateTime(AppData.SkolskaGodina.Kraj, 8, 31);
-                var meseciOdIzvestaja = Utils.DiffMonths(frm.DatumIzvestajaTrezora, krajSkGod);
-                foreach (var zap in AppData.Ds.Zaposleni.Where(it => !it.IsStazGodineNull()))
-                {
-                    var stazMeseci = zap.StazGodine * 12 + zap.StazMeseci + meseciOdIzvestaja;
-                    zap.StatusAktivnosti1 = (stazMeseci / 12) + " / " + (stazMeseci % 12);
-                }
-            }
-            catch (Exception ex) { Utils.ShowMbox(ex, btnStaz.Text); }
-        }
-
         private void FrmZaposleni_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F && e.Control)

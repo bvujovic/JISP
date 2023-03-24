@@ -199,7 +199,10 @@ namespace JISP.Data
                 sis.JezikNastaveId = item.jezikNastaveId != null ? (int)item.jezikNastaveId : 0;
                 sis.UkupnaNormaPoSistematizaciji = item.ukupnaNormaPoSistematizaciji;
                 sis.UkupnaNormaPoRMOsimZamena = item.ukupnaNormaPoRMOsimZamena;
+                sis.GreskaUPlaniranojNormi = item.greskaUPlaniranojNormi;
+                sis.GreskaUUgovornomAngazovanju = item.greskaUUgovornomAngazovanju;
                 AppData.Ds.Sistematizacija.AddSistematizacijaRow(sis);
+
             }
             if (AppData.Ds.Sistematizacija.Count > 0)
                 Poruke.SistematizacijaId = AppData.Ds.Sistematizacija.First().RegUstSisId;

@@ -42,6 +42,8 @@
             this.ukupnaNormaPoSistematizacijiDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ukupnaNormaPoRMOsimZamenaDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcRazlika = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcGreskaUPlaniranojNormi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcGreskaUUgovornomAngazovanju = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblRedovi = new System.Windows.Forms.Label();
             this.bsSistematizacija = new System.Windows.Forms.BindingSource(this.components);
             this.ds = new JISP.Data.Ds();
@@ -49,12 +51,12 @@
             this.txtFilter = new JISP.Controls.UcFilterTextBox();
             this.btnOsveziPodatke = new JISP.Controls.UcButton();
             this.dgvDetalji = new JISP.Controls.UcDGV();
-            this.lblBrojRedova = new System.Windows.Forms.Label();
-            this.bsDetalji = new System.Windows.Forms.BindingSource(this.components);
-            this.pnlLeft = new JISP.Controls.UcLeftPanel();
             this.zaposleniDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tipUgovoraDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.procenatAngazovanjaDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblBrojRedova = new System.Windows.Forms.Label();
+            this.bsDetalji = new System.Windows.Forms.BindingSource(this.components);
+            this.pnlLeft = new JISP.Controls.UcLeftPanel();
             lblFilterCaption = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.scMain)).BeginInit();
             this.scMain.Panel1.SuspendLayout();
@@ -123,7 +125,9 @@
             this.predmetDgvc,
             this.ukupnaNormaPoSistematizacijiDgvc,
             this.ukupnaNormaPoRMOsimZamenaDgvc,
-            this.dgvcRazlika});
+            this.dgvcRazlika,
+            this.dgvcGreskaUPlaniranojNormi,
+            this.dgvcGreskaUUgovornomAngazovanju});
             this.dgvSistematizacija.ColumnsForCopyOnClick = null;
             this.dgvSistematizacija.CopyOnCellClick = false;
             this.dgvSistematizacija.CtrlDisplayPositionRowCount = this.lblRedovi;
@@ -195,6 +199,20 @@
             this.dgvcRazlika.Name = "dgvcRazlika";
             this.dgvcRazlika.ReadOnly = true;
             // 
+            // dgvcGreskaUPlaniranojNormi
+            // 
+            this.dgvcGreskaUPlaniranojNormi.DataPropertyName = "GreskaUPlaniranojNormi";
+            this.dgvcGreskaUPlaniranojNormi.HeaderText = "Greška Plan";
+            this.dgvcGreskaUPlaniranojNormi.Name = "dgvcGreskaUPlaniranojNormi";
+            this.dgvcGreskaUPlaniranojNormi.ReadOnly = true;
+            // 
+            // dgvcGreskaUUgovornomAngazovanju
+            // 
+            this.dgvcGreskaUUgovornomAngazovanju.DataPropertyName = "GreskaUUgovornomAngazovanju";
+            this.dgvcGreskaUUgovornomAngazovanju.HeaderText = "Greška Ang";
+            this.dgvcGreskaUUgovornomAngazovanju.Name = "dgvcGreskaUUgovornomAngazovanju";
+            this.dgvcGreskaUUgovornomAngazovanju.ReadOnly = true;
+            // 
             // lblRedovi
             // 
             this.lblRedovi.AutoSize = true;
@@ -208,7 +226,8 @@
             // 
             this.bsSistematizacija.DataMember = "Sistematizacija";
             this.bsSistematizacija.DataSource = this.ds;
-            this.bsSistematizacija.Sort = "UkupnaNormaRazlika DESC";
+            this.bsSistematizacija.Sort = "UkupnaNormaRazlika DESC, GreskaUPlaniranojNormi DESC, GreskaUUgovornomAngazovanju" +
+    " DESC";
             // 
             // ds
             // 
@@ -232,6 +251,7 @@
             this.txtFilter.BindingSource = null;
             this.txtFilter.Location = new System.Drawing.Point(374, 7);
             this.txtFilter.Name = "txtFilter";
+            this.txtFilter.ShouldBeCyrillic = false;
             this.txtFilter.Size = new System.Drawing.Size(209, 23);
             this.txtFilter.TabIndex = 1;
             this.txtFilter.TextChanged += new System.EventHandler(this.TxtFilter_TextChanged);
@@ -283,33 +303,6 @@
             this.dgvDetalji.StandardSort = null;
             this.dgvDetalji.TabIndex = 0;
             // 
-            // lblBrojRedova
-            // 
-            this.lblBrojRedova.AutoSize = true;
-            this.lblBrojRedova.Location = new System.Drawing.Point(12, 9);
-            this.lblBrojRedova.Name = "lblBrojRedova";
-            this.lblBrojRedova.Size = new System.Drawing.Size(57, 17);
-            this.lblBrojRedova.TabIndex = 1;
-            this.lblBrojRedova.Text = "Redova";
-            // 
-            // bsDetalji
-            // 
-            this.bsDetalji.AllowNew = false;
-            this.bsDetalji.DataMember = "FK_Sistematizacija_SistematizacijaDetalji";
-            this.bsDetalji.DataSource = this.bsSistematizacija;
-            this.bsDetalji.Sort = "";
-            // 
-            // pnlLeft
-            // 
-            this.pnlLeft.Controls.Add(this.lblBrojRedova);
-            this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlLeft.Location = new System.Drawing.Point(0, 0);
-            this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
-            this.pnlLeft.RightWingWidth = 6;
-            this.pnlLeft.Size = new System.Drawing.Size(146, 168);
-            this.pnlLeft.TabIndex = 1;
-            // 
             // zaposleniDgvc
             // 
             this.zaposleniDgvc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -338,6 +331,33 @@
             this.procenatAngazovanjaDgvc.Name = "procenatAngazovanjaDgvc";
             this.procenatAngazovanjaDgvc.ReadOnly = true;
             this.procenatAngazovanjaDgvc.Width = 176;
+            // 
+            // lblBrojRedova
+            // 
+            this.lblBrojRedova.AutoSize = true;
+            this.lblBrojRedova.Location = new System.Drawing.Point(12, 9);
+            this.lblBrojRedova.Name = "lblBrojRedova";
+            this.lblBrojRedova.Size = new System.Drawing.Size(57, 17);
+            this.lblBrojRedova.TabIndex = 1;
+            this.lblBrojRedova.Text = "Redova";
+            // 
+            // bsDetalji
+            // 
+            this.bsDetalji.AllowNew = false;
+            this.bsDetalji.DataMember = "FK_Sistematizacija_SistematizacijaDetalji";
+            this.bsDetalji.DataSource = this.bsSistematizacija;
+            this.bsDetalji.Sort = "";
+            // 
+            // pnlLeft
+            // 
+            this.pnlLeft.Controls.Add(this.lblBrojRedova);
+            this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlLeft.Location = new System.Drawing.Point(0, 0);
+            this.pnlLeft.Name = "pnlLeft";
+            this.pnlLeft.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
+            this.pnlLeft.RightWingWidth = 6;
+            this.pnlLeft.Size = new System.Drawing.Size(146, 168);
+            this.pnlLeft.TabIndex = 1;
             // 
             // FrmSistematizacija
             // 
@@ -388,5 +408,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn zaposleniDgvc;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipUgovoraDgvc;
         private System.Windows.Forms.DataGridViewTextBoxColumn procenatAngazovanjaDgvc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcGreskaUPlaniranojNormi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcGreskaUUgovornomAngazovanju;
     }
 }

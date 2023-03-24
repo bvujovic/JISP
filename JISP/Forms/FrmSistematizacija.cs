@@ -54,12 +54,19 @@ namespace JISP.Forms
             // bojenje redova kod kojih se razlikuju ukupne norme
             var idxSistemat = ukupnaNormaPoSistematizacijiDgvc.Index;
             var idxPoRM = ukupnaNormaPoRMOsimZamenaDgvc.Index;
+            var idxGreskaPlan = dgvcGreskaUPlaniranojNormi.Index;
             foreach (DataGridViewRow row in dgvSistematizacija.Rows)
             {
                 if ((double)row.Cells[idxSistemat].Value != (double)row.Cells[idxPoRM].Value)
-                    row.DefaultCellStyle.ForeColor = Color.Red;
+                    row.DefaultCellStyle.ForeColor = Color.Blue;
                 else
-                    row.DefaultCellStyle.ForeColor = Color.Black;
+                {
+                    // if (string.IsNullOrEmpty((string)row.Cells[idxGreskaPlan].Value))
+                    if (row.Cells[idxGreskaPlan].Value != DBNull.Value)
+                        row.DefaultCellStyle.ForeColor = Color.Red;
+                    else
+                        row.DefaultCellStyle.ForeColor = Color.Black;
+                }
             }
         }
 
