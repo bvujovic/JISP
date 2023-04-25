@@ -70,6 +70,7 @@
             this.oceneKrajBrojDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ocenePoluJSONDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.oceneKrajJSONDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcIspisan = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ZavrsObrazovanjaRezimeDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.napomeneDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.bsUcenici)).BeginInit();
@@ -264,6 +265,7 @@
             this.txtFilter.Location = new System.Drawing.Point(7, 96);
             this.txtFilter.Margin = new System.Windows.Forms.Padding(4);
             this.txtFilter.Name = "txtFilter";
+            this.txtFilter.ShouldBeCyrillic = false;
             this.txtFilter.Size = new System.Drawing.Size(127, 22);
             this.txtFilter.TabIndex = 2;
             this.txtFilter.TextChanged += new System.EventHandler(this.TxtFilter_TextChanged);
@@ -306,6 +308,7 @@
             this.oceneKrajBrojDataGridViewTextBoxColumn,
             this.ocenePoluJSONDgvc,
             this.oceneKrajJSONDgvc,
+            this.dgvcIspisan,
             this.ZavrsObrazovanjaRezimeDgvc,
             this.napomeneDgvc});
             this.dgvUcenikSkGod.ColumnsForCopyOnClick = null;
@@ -482,6 +485,15 @@
             this.oceneKrajJSONDgvc.ReadOnly = true;
             this.oceneKrajJSONDgvc.Width = 137;
             // 
+            // dgvcIspisan
+            // 
+            this.dgvcIspisan.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dgvcIspisan.DataPropertyName = "Ispisan";
+            this.dgvcIspisan.HeaderText = "Ispisan";
+            this.dgvcIspisan.Name = "dgvcIspisan";
+            this.dgvcIspisan.ReadOnly = true;
+            this.dgvcIspisan.Width = 56;
+            // 
             // ZavrsObrazovanjaRezimeDgvc
             // 
             this.ZavrsObrazovanjaRezimeDgvc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
@@ -570,6 +582,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn oceneKrajBrojDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ocenePoluJSONDgvc;
         private System.Windows.Forms.DataGridViewTextBoxColumn oceneKrajJSONDgvc;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dgvcIspisan;
         private System.Windows.Forms.DataGridViewTextBoxColumn ZavrsObrazovanjaRezimeDgvc;
         private System.Windows.Forms.DataGridViewTextBoxColumn napomeneDgvc;
     }

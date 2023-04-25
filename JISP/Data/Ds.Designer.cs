@@ -5350,6 +5350,8 @@ namespace JISP.Data {
             
             private global::System.Data.DataColumn columnOceneKrajJSON;
             
+            private global::System.Data.DataColumn columnIspisan;
+            
             private global::System.Data.DataColumn columnZavrsObrazovanjaJSON;
             
             private global::System.Data.DataColumn columnZavrsObrazovanjaRezime;
@@ -5568,6 +5570,14 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IspisanColumn {
+                get {
+                    return this.columnIspisan;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn ZavrsObrazovanjaJSONColumn {
                 get {
                     return this.columnZavrsObrazovanjaJSON;
@@ -5649,6 +5659,7 @@ namespace JISP.Data {
                         int OceneKrajBroj, 
                         string OcenePoluJSON, 
                         string OceneKrajJSON, 
+                        bool Ispisan, 
                         string ZavrsObrazovanjaJSON, 
                         string ZavrsObrazovanjaRezime, 
                         string DomGrupa) {
@@ -5675,6 +5686,7 @@ namespace JISP.Data {
                         OceneKrajBroj,
                         OcenePoluJSON,
                         OceneKrajJSON,
+                        Ispisan,
                         ZavrsObrazovanjaJSON,
                         ZavrsObrazovanjaRezime,
                         DomGrupa};
@@ -5702,6 +5714,7 @@ namespace JISP.Data {
                         int OceneKrajBroj, 
                         string OcenePoluJSON, 
                         string OceneKrajJSON, 
+                        bool Ispisan, 
                         string ZavrsObrazovanjaJSON, 
                         string ZavrsObrazovanjaRezime, 
                         string DomGrupa) {
@@ -5728,6 +5741,7 @@ namespace JISP.Data {
                         OceneKrajBroj,
                         OcenePoluJSON,
                         OceneKrajJSON,
+                        Ispisan,
                         ZavrsObrazovanjaJSON,
                         ZavrsObrazovanjaRezime,
                         DomGrupa};
@@ -5784,6 +5798,7 @@ namespace JISP.Data {
                 this.columnOceneKrajBroj = base.Columns["OceneKrajBroj"];
                 this.columnOcenePoluJSON = base.Columns["OcenePoluJSON"];
                 this.columnOceneKrajJSON = base.Columns["OceneKrajJSON"];
+                this.columnIspisan = base.Columns["Ispisan"];
                 this.columnZavrsObrazovanjaJSON = base.Columns["ZavrsObrazovanjaJSON"];
                 this.columnZavrsObrazovanjaRezime = base.Columns["ZavrsObrazovanjaRezime"];
                 this.columnDomGrupa = base.Columns["DomGrupa"];
@@ -5834,6 +5849,8 @@ namespace JISP.Data {
                 base.Columns.Add(this.columnOcenePoluJSON);
                 this.columnOceneKrajJSON = new global::System.Data.DataColumn("OceneKrajJSON", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOceneKrajJSON);
+                this.columnIspisan = new global::System.Data.DataColumn("Ispisan", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIspisan);
                 this.columnZavrsObrazovanjaJSON = new global::System.Data.DataColumn("ZavrsObrazovanjaJSON", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnZavrsObrazovanjaJSON);
                 this.columnZavrsObrazovanjaRezime = new global::System.Data.DataColumn("ZavrsObrazovanjaRezime", typeof(string), null, global::System.Data.MappingType.Element);
@@ -11982,6 +11999,22 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool Ispisan {
+                get {
+                    try {
+                        return ((bool)(this[this.tableUcenikSkGod.IspisanColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Ispisan\' in table \'UcenikSkGod\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableUcenikSkGod.IspisanColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string ZavrsObrazovanjaJSON {
                 get {
                     try {
@@ -12277,6 +12310,18 @@ namespace JISP.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetOceneKrajJSONNull() {
                 this[this.tableUcenikSkGod.OceneKrajJSONColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsIspisanNull() {
+                return this.IsNull(this.tableUcenikSkGod.IspisanColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetIspisanNull() {
+                this[this.tableUcenikSkGod.IspisanColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

@@ -20,10 +20,6 @@ namespace JISP.Forms
 
         private void FrmUcenici_Load(object sender, EventArgs e)
         {
-            //B
-            //dgvUcenikSkGod.ColumnsForCopyOnClick = new int[] 
-            //    { jobDgvc.Index, ocenePoluJSONDgvc.Index, oceneKrajJSONDgvc.Index, ZavrsObrazovanjaRezimeDgvc.Index };
-            // dgvUcenikSkGod.CopyOnCellClick = true;
             bsUcenikSkGod.DataSource = AppData.Ds;
             dgvUcenikSkGod.StandardSort = bsUcenici.Sort;
             dgvUcenikSkGod.CellTextCopied += Dgv_CellTextCopied;
@@ -62,7 +58,7 @@ namespace JISP.Forms
         private const string CmbDohvatiDomGrupe = "Vaspitne grupe za dom učenika";
         private const string CmbDohvatiSmer = "Smerovi za srednjoškolce";
         private const string CmbDohvatiOcenePG = "Ocene na polugodištu";
-        private const string CmbDohvatiOceneKraj = "Ocene za kraj godine";
+        private const string CmbDohvatiOceneKraj = "Ocene za kraj godine (ispisan)";
         private const string CmbDohvatiZavrsObraz = "Završetak obrazovanja";
 
         private void Dgv_CellTextCopied(object sender, EventArgs e)
@@ -433,6 +429,12 @@ namespace JISP.Forms
                         var nivo = u.JeOsnovac ? "Osnovno" : "Srednje";
                         var url = $"https://jisp.mpn.gov.rs/webapi/api/ucenik/Vrati{nivo}ObrazovanjeZavrsetakRazredaById/" + u.Id;
                         var json = await WebApi.GetJson(url);
+                        dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(json);
+                        if (obj.ispraveZavrsetak != null && obj.ispraveZavrsetak.Count > 0)
+                        {
+                            var ispravaNaziv = obj.ispraveZavrsetak[0].ispravaNaziv;
+                            u.Ispisan = ispravaNaziv == "исписница";
+                        }
                         var ocene = Newtonsoft.Json.JsonConvert.DeserializeObject<OceneUcenika>(json);
                         if (ocene.UkupanBrojOcena == 0)
                         {

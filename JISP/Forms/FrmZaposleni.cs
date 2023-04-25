@@ -47,6 +47,7 @@ namespace JISP.Forms
             cmbIzracunajStatuse.Items.AddRange(new[] {
                 CmbStatusStaz,
                 CmbStatusBolovanja,
+                CmbStatus40cNedelja,
                 CmbStatusDokUgovor,
             });
             cmbIzracunajStatuse.AdjustWidth();
@@ -57,6 +58,7 @@ namespace JISP.Forms
         private const string CmbDohvatiSve = "Sve: zaposlenja, angažovanja i obračuni z.";
         private const string CmbStatusStaz = "Staž";
         private const string CmbStatusBolovanja = "Aktivna bolovanja";
+        private const string CmbStatus40cNedelja = "Bez 40-čas nedelje";
         private const string CmbStatusDokUgovor = "Bez dokumenta-ugovora";
 
         private readonly Ds Ds;
@@ -85,6 +87,12 @@ namespace JISP.Forms
             try
             {
                 var s = txtFilter.Text;
+                // filtriranje statusa aktivnosti - izdvajanje redova koji imaju * ili ** ili ***
+                if (s != "" && s.StartsWith("*"))
+                {
+                    bsZaposleni.Filter = $"StatusAktivnosti2 = '*' OR StatusAktivnosti2 = '**' OR StatusAktivnosti2 = '***'";
+                    return;
+                }
                 var aktivnoZap = !s.StartsWith("-");
                 if (!aktivnoZap)
                     s = s.Substring(1);
@@ -425,6 +433,7 @@ namespace JISP.Forms
         /// </summary>
         private void BtnIzracunajStatuse_Click(object sender, EventArgs e)
         {
+            Ds.ZaposleniRow zapProblem = null;
             try
             {
                 var selItem = (string)cmbIzracunajStatuse.SelectedItem;
@@ -440,6 +449,7 @@ namespace JISP.Forms
                     var meseciOdIzvestaja = Utils.DiffMonths(frm.DatumIzvestajaTrezora, krajSkGod);
                     foreach (var zap in AppData.Ds.Zaposleni.Where(it => !it.IsStazGodineNull()))
                     {
+                        zapProblem = zap;
                         var stazMeseci = zap.StazGodine * 12 + zap.StazMeseci + meseciOdIzvestaja;
                         zap.StatusAktivnosti2 = (stazMeseci / 12) + " / " + (stazMeseci % 12);
                     }
@@ -449,6 +459,7 @@ namespace JISP.Forms
                 {
                     foreach (var z in AppData.Ds.Zaposleni)
                     {
+                        zapProblem = z;
                         z.StatusAktivnosti2 = "";
                         foreach (var zap in z.GetZaposlenjaRows().Where(it => it.Aktivan))
                             foreach (var r in zap.GetResenjaRows()
@@ -457,10 +468,26 @@ namespace JISP.Forms
                     }
                 }
 
+                if (selItem == CmbStatus40cNedelja)
+                {
+                    foreach (var z in AppData.Ds.Zaposleni)
+                    {
+                        zapProblem = z;
+                        z.StatusAktivnosti2 = "";
+                        foreach (var zap in z.GetZaposlenjaRows().Where(it => it.Aktivan))
+                        {
+                            var imaResenje = zap.GetResenjaRows().Where(it => it.SkolskaGodina == AppData.SkolskaGodina.Naziv && it.TipResenja.Contains("40")).Any();
+                            if (!imaResenje)
+                                z.StatusAktivnosti2 += "*";
+                        }
+                    }
+                }
+
                 if (selItem == CmbStatusDokUgovor)
                 {
                     foreach (var z in AppData.Ds.Zaposleni)
                     {
+                        zapProblem = z;
                         z.StatusAktivnosti2 = "";
                         foreach (var zap in z.GetZaposlenjaRows()
                             .Where(it => it.Aktivan && (it.IsImaDokumentNull() || !it.ImaDokument)))
@@ -468,9 +495,11 @@ namespace JISP.Forms
                     }
                 }
 
+                bsZaposleni.Sort = "StatusAktivnosti2 DESC, " + dgvZaposleni.StandardSort;
+
                 Utils.ShowMbox("Gotovo", selItem);
             }
-            catch (Exception ex) { Utils.ShowMbox(ex, btnIzracunajStatuse.Text); }
+            catch (Exception ex) { Utils.ShowMbox(ex, btnIzracunajStatuse.Text + " - " + zapProblem); }
         }
     }
 }
