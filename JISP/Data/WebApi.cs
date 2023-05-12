@@ -201,6 +201,7 @@ namespace JISP.Data
 
             Ustanova_Lokacije,
             Ustanova_Objekti,
+            Ustanova_ObjektiDodatno,
             Ustanova_ProstorijeOsnovno,
             Ustanova_ProstorijeDodatno,
             Ustanova_ProstorijeAzuriraj,
@@ -268,6 +269,8 @@ namespace JISP.Data
                     return urlBase + $"Ustanova/VratiLokacijeUstanove/" + SV_SAVA_ID;
                 case ReqEnum.Ustanova_Objekti:
                     return urlBase + $"Ustanova/VratiObjektePoIdLokacije/{param}";
+                case ReqEnum.Ustanova_ObjektiDodatno:
+                    return urlBase + $"Ustanova/VratiPosebneBrojcanePodatke/{param}";
                 case ReqEnum.Ustanova_ProstorijeOsnovno:
                     return urlBase + $"Ustanova/VratiProstorije/{param}";
                 case ReqEnum.Ustanova_ProstorijeDodatno:

@@ -497,7 +497,7 @@ namespace JISP.Forms
 
                 bsZaposleni.Sort = "StatusAktivnosti2 DESC, " + dgvZaposleni.StandardSort;
 
-                Utils.ShowMbox("Gotovo", selItem);
+                //B Utils.ShowMbox("Gotovo", selItem);
             }
             catch (Exception ex) { Utils.ShowMbox(ex, btnIzracunajStatuse.Text + " - " + zapProblem); }
         }

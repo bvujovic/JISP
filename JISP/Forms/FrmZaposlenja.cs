@@ -139,7 +139,7 @@ namespace JISP.Forms
 
         private void ChkCopyOnClick_CheckedChanged(object sender, EventArgs e)
             => dgvZaposlenjaSve.CopyOnCellClick = dgvAngazovanja.CopyOnCellClick
-            = dgvObracunZarada.CopyOnCellClick = chkCopyOnClick.Checked;
+            = dgvObracunZarada.CopyOnCellClick = dgvResenja.CopyOnCellClick = chkCopyOnClick.Checked;
 
         private async void BtnUcitajOzOpis_Click(object sender, EventArgs e)
         {

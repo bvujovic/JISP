@@ -67,6 +67,9 @@ namespace JISP.Forms
                 {
                     await DataGetter.GetLokacijeAsync();
                     await DataGetter.GetObjektiAsync();
+                    foreach (var o in AppData.Ds.Objekti)
+                        await DataGetter.GetObjektiDodatnoAsync(o.IdObjekta);
+                    //await DataGetter.GetObjektiDodatnoAsync(29194);
                     await DataGetter.GetProstorijeOsnovnoAsync();
                 });
 
@@ -188,8 +191,11 @@ namespace JISP.Forms
 
         private async void BtnSacuvajProstorije_Click(object sender, EventArgs e)
         {
+            var cnt = 0;
             foreach (var p in AppData.Ds.Prostorije.Where(it => it.RowState != DataRowState.Unchanged))
             {
+                if (p.IsSpratNull()) // azuriraju se samo prostorije za koje su ucitani dodatni podaci (sprat...)
+                    continue;
                 try
                 {
                     if (!p.IzvorGrejanja)
@@ -227,6 +233,7 @@ namespace JISP.Forms
     ""id"": {p.IdProstorije}
 }}";
                     await WebApi.PostForJson(WebApi.ReqEnum.Ustanova_ProstorijeAzuriraj, body);
+                    cnt++;
                 }
                 catch (Exception ex)
                 {
@@ -237,7 +244,7 @@ namespace JISP.Forms
                         break;
                 }
             }
-            Utils.ShowMbox("Gotovo", btnSacuvajProstorije.ToolTipText);
+            Utils.ShowMbox($"Gotovo\r\nAžurirano: {cnt} prostorija.", btnSacuvajProstorije.ToolTipText);
         }
 
         private void DgvProstorije_DataError(object sender, DataGridViewDataErrorEventArgs e)

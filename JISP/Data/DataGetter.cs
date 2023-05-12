@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using JISP.Classes;
+using System.Diagnostics;
 
 namespace JISP.Data
 {
@@ -351,6 +352,23 @@ namespace JISP.Data
                     obj.Namena = string.Join(", ", item.listaNamena);
                     AppData.Ds.Objekti.AddObjektiRow(obj);
                 }
+            }
+        }
+
+        /// <summary>Dodaje posebne brojcane podatke u tabelu Objekti.</summary>
+        public static async Task GetObjektiDodatnoAsync(int idObjekta)
+        {
+            var json = await WebApi.GetJson(WebApi.ReqEnum.Ustanova_ObjektiDodatno, idObjekta.ToString());
+            dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(json);
+            var o = AppData.Ds.Objekti.FindByIdObjekta(idObjekta);
+            if (o != null)
+            {
+                o.PovrsinaObjekta = obj.povrsinaObjekta;
+                o.KorisnaPovrsinaObjekta = obj.korisnaPovrsinaObjekta;
+                o.BrojRadnihDanaUNedelji = obj.brojRadnihDanaUNedelji;
+                o.BrojRadnihSmena = obj.brojRadnihSmena;
+                o.BrojProstorijaUObjektu = obj.brojProstorijaUObjektu;
+                o.KapacitetObjekta = obj.kapacitetObjekta;
             }
         }
 
