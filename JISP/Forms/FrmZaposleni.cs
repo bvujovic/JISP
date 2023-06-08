@@ -5,6 +5,7 @@ using JISP.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace JISP.Forms
@@ -49,6 +50,7 @@ namespace JISP.Forms
                 CmbStatusBolovanja,
                 CmbStatus40cNedelja,
                 CmbStatusDokUgovor,
+                CmbStatusDo60DanaIsteklo,
             });
             cmbIzracunajStatuse.AdjustWidth();
         }
@@ -60,6 +62,7 @@ namespace JISP.Forms
         private const string CmbStatusBolovanja = "Aktivna bolovanja";
         private const string CmbStatus40cNedelja = "Bez 40-čas nedelje";
         private const string CmbStatusDokUgovor = "Bez dokumenta-ugovora";
+        private const string CmbStatusDo60DanaIsteklo = "Istekao ugovor do 60 dana";
 
         private readonly Ds Ds;
 
@@ -495,9 +498,28 @@ namespace JISP.Forms
                     }
                 }
 
-                bsZaposleni.Sort = "StatusAktivnosti2 DESC, " + dgvZaposleni.StandardSort;
+                if (selItem == CmbStatusDo60DanaIsteklo)
+                {
+                    //TODO ovo da se automatski pokrene svake nedelje (ili jednom dnevno ili sl) uz mbox obavestenje
+                    //TODO mozda bi se mogli izuzeti zaposleni na odsustvu (porodiljsko npr.)
+                    var zaps = new HashSet<string>();
+                    foreach (var z in AppData.Ds.Zaposleni.Where(it => it.Aktivan))
+                    {
+                        var nja = z.GetZaposlenjaRows().Where(it => it.Aktivan
+                            && !it.IsVrstaAngazovanjaNull() && it.VrstaAngazovanja.Contains("до 60 дана")
+                            && !it.IsDatumZaposlenOdNull() && (DateTime.Now - it.DatumZaposlenOd).TotalDays >= 60);
+                        z.StatusAktivnosti2 = nja.Any() ? "*" : "";
+                    }
+                }
 
-                //B Utils.ShowMbox("Gotovo", selItem);
+                // Sva zaposlenja u skoli
+                //var zaps = new HashSet<string>();
+                //foreach (var z in AppData.Ds.Zaposleni.Where(it => it.Aktivan))
+                //    foreach (var nja in z.GetZaposlenjaRows().Where(it => it.Aktivan))
+                //        zaps.Add(nja.RadnoMestoNaziv);
+                //Clipboard.SetText(string.Join(Environment.NewLine, zaps));
+
+                bsZaposleni.Sort = "StatusAktivnosti2 DESC, " + dgvZaposleni.StandardSort;
             }
             catch (Exception ex) { Utils.ShowMbox(ex, btnIzracunajStatuse.Text + " - " + zapProblem); }
         }

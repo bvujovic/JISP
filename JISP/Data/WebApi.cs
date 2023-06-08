@@ -171,6 +171,7 @@ namespace JISP.Data
             /// <summary>Telefon, Mejl, Adresa</summary>
             Zap_Dodatno,
             Zap_Zaposlenja,
+            Zap_ZaposlenjaRazloziPrestanka,
             Zap_ObracunZarada,
             Zap_ObracunZaradaKreiraj,
             Zap_ObracunZaradaObrisi,
@@ -223,6 +224,8 @@ namespace JISP.Data
                     return urlBase + $"Zaposleni/VratiPodatkeZaposlenogZaId/{param}/";
                 case ReqEnum.Zap_Zaposlenja:
                     return urlBase + "zaposleni/VratiZaposlenja";
+                case ReqEnum.Zap_ZaposlenjaRazloziPrestanka:
+                    return urlBase + "sifarnik/naziv/RazloziPrestankaZaposlenja";
                 case ReqEnum.Zap_ObracunZarada:
                     return urlBase + $"zaposleni/VratiObracuneZradeZaZaposlenog/{param}/" + SV_SAVA_ID;
                 case ReqEnum.Zap_ObracunZaradaKreiraj:

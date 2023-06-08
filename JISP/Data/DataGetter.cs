@@ -72,6 +72,9 @@ namespace JISP.Data
 
         public static async Task GetZaposlenjaAsync(Ds.ZaposleniRow zaposleni)
         {
+            if (AppData.Ds.SifRazloziPrestankaZap.Count == 0)
+                await GetRazloziPrestankaZapAsync();
+
             var body = $"{{'regUstUstanovaId':{WebApi.SV_SAVA_ID},'regZapZaposleniId':{zaposleni.IdZaposlenog}}}";
             var json = await WebApi.PostForJson(WebApi.ReqEnum.Zap_Zaposlenja, body);
             var IDsToRemove = zaposleni.GetZaposlenjaRows().Select(it => it.IdZaposlenja).ToList();
@@ -106,11 +109,32 @@ namespace JISP.Data
                     z.NoksNivoNaziv = obj.noksNivo.naziv;
                 z.Aktivan = obj.statusUgovora != null && obj.statusUgovora == 19292;
                 z.ImaDokument = obj.ugovorORaduDokumentNaziv != null && obj.ugovorORaduDokumentNaziv != "";
+                if (obj.razlogPrestankaZaposlenjaId != null)
+                {
+                    var r = AppData.Ds.SifRazloziPrestankaZap.FindByIdRazloga((int)obj.razlogPrestankaZaposlenjaId);
+                    if (r != null)
+                        z.RazlogPrestankaZaposlenja = r.NazivRazloga;
+                }
                 if (isNew)
                     zaposlenja.AddZaposlenjaRow(z);
             }
             foreach (var id in IDsToRemove)
                 zaposlenja.RemoveZaposlenjaRow(zaposlenja.FindByIdZaposlenja(id));
+        }
+
+        /// <summary>Učitava podatke u tabelu SifRazloziPrestankaZap.</summary>
+        public static async Task GetRazloziPrestankaZapAsync()
+        {
+            AppData.Ds.SifRazloziPrestankaZap.Clear();
+            var json = await WebApi.GetJson(WebApi.ReqEnum.Zap_ZaposlenjaRazloziPrestanka);
+            dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
+            foreach (var item in arr)
+            {
+                var r = AppData.Ds.SifRazloziPrestankaZap.NewSifRazloziPrestankaZapRow();
+                r.IdRazloga = item.id;
+                r.NazivRazloga = item.naziv;
+                AppData.Ds.SifRazloziPrestankaZap.AddSifRazloziPrestankaZapRow(r);
+            }
         }
 
         private class Koef
