@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security.Policy;
 using System.Threading.Tasks;
+using static JISP.Data.WebApi;
 
 namespace JISP.Data
 {
@@ -102,13 +104,11 @@ namespace JISP.Data
             return await GetJson(UrlForReq(reqEnum, param));
         }
 
-        /// <summary>Dohvata (POST) JSON podatke od JISP WebAPI-a.</summary>
-        public static async Task<string> PostForJson(ReqEnum reqEnum, string body, string param = null)
+        public static async Task<string> PostForJson(string url, string body)
         {
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
-                var url = UrlForReq(reqEnum, param);
                 var content = new StringContent(body, System.Text.Encoding.UTF8, "application/json");
                 var res = await client.PostAsync(url, content);
 
@@ -119,6 +119,12 @@ namespace JISP.Data
             }
         }
 
+        /// <summary>Dohvata (POST) JSON podatke od JISP WebAPI-a.</summary>
+        public static async Task<string> PostForJson(ReqEnum reqEnum, string body, string param = null)
+        {
+            return await PostForJson(UrlForReq(reqEnum, param), body);
+        }
+
         /// <summary>Dohvata (POST) trazeni objekat od JISP WebAPI-a.</summary>
         public async static Task<T> PostForObject<T>(ReqEnum reqEnum, string param = null)
         {
@@ -126,10 +132,17 @@ namespace JISP.Data
             return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(json);
         }
 
+        ///// <summary>Dohvata (POST) listu trazenih objekata od JISP WebAPI-a.</summary>
+        //public async static Task<List<T>> PostForList<T>(ReqEnum reqEnum, string body, string param = null)
+        //{
+        //    var json = await PostForJson(reqEnum, body, param);
+        //    return DeserializeList<T>(json);
+        //}
+
         /// <summary>Dohvata (POST) listu trazenih objekata od JISP WebAPI-a.</summary>
-        public async static Task<List<T>> PostForList<T>(ReqEnum reqEnum, string body, string param = null)
+        public async static Task<List<T>> PostForList<T>(string url, string body)
         {
-            var json = await PostForJson(reqEnum, body, param);
+            var json = await PostForJson(url, body);
             return DeserializeList<T>(json);
         }
 
