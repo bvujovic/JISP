@@ -276,6 +276,11 @@ namespace JISP.Forms
             new FrmResenja().ShowDialog();
         }
 
+        private void BtnObrazovanje_Click(object sender, EventArgs e)
+        {
+            new FrmObrazovanje().ShowDialog();
+        }
+
         private void BtnSistematizacija_Click(object sender, EventArgs e)
         {
             new FrmSistematizacija().Show();

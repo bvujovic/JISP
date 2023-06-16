@@ -108,7 +108,7 @@ namespace JISP.Forms
         private async void DgvResenjaSva_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == dgvcDokument.Index)
-                await Utils.PreuzmiDokumentResenja(dgvResenjaSva, e);
+                await Utils.PreuzmiDokument(dgvResenjaSva, e);
         }
 
         private void FiltriranjeResenja()

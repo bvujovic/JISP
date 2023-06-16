@@ -8,6 +8,10 @@ namespace JISP.Data
 {
     partial class Ds
     {
+        partial class ObrazovanjaDataTable
+        {
+        }
+
         partial class ObracunZaradaRow
         {
             /// <summary>Ukupan broj meseci po formuli: 12*Godina + MesecBroj</summary>

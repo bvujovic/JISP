@@ -28,7 +28,7 @@
     <PublisherName>BV</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.5.12.0</ApplicationVersion>
+    <ApplicationVersion>0.5.14.0</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -156,6 +156,12 @@
     <Compile Include="Forms\FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FrmObrazovanje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmObrazovanje.Designer.cs">
+      <DependentUpon>FrmObrazovanje.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmPoruke.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -245,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmObrazovanje.resx">
+      <DependentUpon>FrmObrazovanje.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmPoruke.resx">
       <DependentUpon>FrmPoruke.cs</DependentUpon>
