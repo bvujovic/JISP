@@ -206,10 +206,11 @@ namespace JISP.Classes
             cmb.DropDownWidth = (int)maxWidth + 5;
         }
 
-        public static async System.Threading.Tasks.Task PreuzmiDokumentResenja(Controls.UcDGV dgv, DataGridViewCellEventArgs e)
+        public static async System.Threading.Tasks.Task PreuzmiDokument(Controls.UcDGV dgv, DataGridViewCellEventArgs e)
         {
-            var res = dgv.CurrDataRow<Data.Ds.ResenjaRow>();
-            if (res.IsDokumentNull())
+            var docIdColName = "DokumentId";
+            var row = (dgv.CurrentRow.DataBoundItem as System.Data.DataRowView).Row;
+            if (row == null || row.IsNull(docIdColName))
                 return;
             var cell = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex];
             var originalText = (string)cell.Value;
@@ -218,7 +219,7 @@ namespace JISP.Classes
             {
                 var filePath = GetDownloadsFolder(originalText);
                 await Data.WebApi.PostForFile(filePath, "Upload/PreuzmiDokument"
-                    , $"{{'documentId':'{res.DokumentId}'}}", true);
+                    , $"{{'documentId':'{row[docIdColName]}'}}", true);
             }
             catch (Exception ex) { ShowMbox(ex, "Preuzimanje rešenja"); }
             cell.Value = originalText;

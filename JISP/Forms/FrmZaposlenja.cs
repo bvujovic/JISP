@@ -159,7 +159,7 @@ namespace JISP.Forms
         private async void DgvResenja_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == dgvcResDokument.Index)
-                await Utils.PreuzmiDokumentResenja(dgvResenja, e);
+                await Utils.PreuzmiDokument(dgvResenja, e);
         }
     }
 }

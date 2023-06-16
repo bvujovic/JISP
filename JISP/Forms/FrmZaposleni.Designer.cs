@@ -31,15 +31,15 @@ namespace JISP.Forms
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label lblFilterCaption;
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblRowCount = new System.Windows.Forms.Label();
             this.bsZaposleni = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer = new System.Windows.Forms.SplitContainer();
@@ -88,6 +88,7 @@ namespace JISP.Forms
             this.chkCopyOnClick = new System.Windows.Forms.CheckBox();
             this.btnSaveData = new JISP.Controls.UcButton();
             this.btnExit = new JISP.Controls.UcExitAppButton();
+            this.btnObrazovanje = new JISP.Controls.UcButton();
             lblFilterCaption = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bsZaposleni)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
@@ -149,18 +150,18 @@ namespace JISP.Forms
             // 
             this.dgvZaposleni.AllowUserToAddRows = false;
             this.dgvZaposleni.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dgvZaposleni.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
+            this.dgvZaposleni.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvZaposleni.AutoGenerateColumns = false;
             this.dgvZaposleni.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvZaposleni.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvZaposleni.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dgvZaposleni.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvZaposleni.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgvcIme,
@@ -229,10 +230,10 @@ namespace JISP.Forms
             // dgvcGodine
             // 
             this.dgvcGodine.DataPropertyName = "Godine";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N1";
-            dataGridViewCellStyle3.NullValue = null;
-            this.dgvcGodine.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle12.Format = "N1";
+            dataGridViewCellStyle12.NullValue = null;
+            this.dgvcGodine.DefaultCellStyle = dataGridViewCellStyle12;
             this.dgvcGodine.HeaderText = "Godine";
             this.dgvcGodine.MinimumWidth = 6;
             this.dgvcGodine.Name = "dgvcGodine";
@@ -242,8 +243,8 @@ namespace JISP.Forms
             // dgvcDanaDoRodj
             // 
             this.dgvcDanaDoRodj.DataPropertyName = "DanaDoRodj";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dgvcDanaDoRodj.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dgvcDanaDoRodj.DefaultCellStyle = dataGridViewCellStyle13;
             this.dgvcDanaDoRodj.HeaderText = "Do Rođ.";
             this.dgvcDanaDoRodj.MinimumWidth = 6;
             this.dgvcDanaDoRodj.Name = "dgvcDanaDoRodj";
@@ -253,8 +254,8 @@ namespace JISP.Forms
             // dgvcPol
             // 
             this.dgvcPol.DataPropertyName = "Pol";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgvcPol.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvcPol.DefaultCellStyle = dataGridViewCellStyle14;
             this.dgvcPol.HeaderText = "Pol";
             this.dgvcPol.MinimumWidth = 6;
             this.dgvcPol.Name = "dgvcPol";
@@ -345,8 +346,8 @@ namespace JISP.Forms
             // dgvcStazGodine
             // 
             this.dgvcStazGodine.DataPropertyName = "StazGodine";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dgvcStazGodine.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dgvcStazGodine.DefaultCellStyle = dataGridViewCellStyle15;
             this.dgvcStazGodine.HeaderText = "god";
             this.dgvcStazGodine.MinimumWidth = 6;
             this.dgvcStazGodine.Name = "dgvcStazGodine";
@@ -356,8 +357,8 @@ namespace JISP.Forms
             // dgvcStazMeseci
             // 
             this.dgvcStazMeseci.DataPropertyName = "StazMeseci";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dgvcStazMeseci.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dgvcStazMeseci.DefaultCellStyle = dataGridViewCellStyle16;
             this.dgvcStazMeseci.HeaderText = "mes";
             this.dgvcStazMeseci.MinimumWidth = 6;
             this.dgvcStazMeseci.Name = "dgvcStazMeseci";
@@ -415,18 +416,18 @@ namespace JISP.Forms
             this.dgvZaposlenja.AllowUserToAddRows = false;
             this.dgvZaposlenja.AllowUserToDeleteRows = false;
             this.dgvZaposlenja.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            this.dgvZaposlenja.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dgvZaposlenja.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvZaposlenja.AutoGenerateColumns = false;
             this.dgvZaposlenja.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvZaposlenja.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvZaposlenja.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvZaposlenja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvZaposlenja.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgvcNjaAktivan,
@@ -512,6 +513,7 @@ namespace JISP.Forms
             // 
             // pnlLeft
             // 
+            this.pnlLeft.Controls.Add(this.btnObrazovanje);
             this.pnlLeft.Controls.Add(this.cmbIzracunajStatuse);
             this.pnlLeft.Controls.Add(this.btnIzracunajStatuse);
             this.pnlLeft.Controls.Add(this.gbIzvestaji);
@@ -556,7 +558,7 @@ namespace JISP.Forms
             this.gbIzvestaji.Controls.Add(this.btnSistematizacija);
             this.gbIzvestaji.Controls.Add(this.btnKvalifStruktura);
             this.gbIzvestaji.Controls.Add(this.BtnCsvZaposlenja);
-            this.gbIzvestaji.Location = new System.Drawing.Point(3, 342);
+            this.gbIzvestaji.Location = new System.Drawing.Point(3, 375);
             this.gbIzvestaji.Name = "gbIzvestaji";
             this.gbIzvestaji.Size = new System.Drawing.Size(136, 150);
             this.gbIzvestaji.TabIndex = 8;
@@ -672,6 +674,17 @@ namespace JISP.Forms
             this.btnExit.ToolTipText = "Izlaz iz aplikacije";
             this.btnExit.UseVisualStyleBackColor = false;
             // 
+            // btnObrazovanje
+            // 
+            this.btnObrazovanje.Location = new System.Drawing.Point(8, 324);
+            this.btnObrazovanje.Name = "btnObrazovanje";
+            this.btnObrazovanje.Size = new System.Drawing.Size(128, 40);
+            this.btnObrazovanje.TabIndex = 9;
+            this.btnObrazovanje.Text = "Obrazovanje";
+            this.btnObrazovanje.ToolTipText = "Obrazovanje zaposlenih";
+            this.btnObrazovanje.UseVisualStyleBackColor = true;
+            this.btnObrazovanje.Click += new System.EventHandler(this.BtnObrazovanje_Click);
+            // 
             // FrmZaposleni
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -754,5 +767,6 @@ namespace JISP.Forms
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcNapomene;
         private System.Windows.Forms.ComboBox cmbIzracunajStatuse;
         private Controls.UcButton btnIzracunajStatuse;
+        private Controls.UcButton btnObrazovanje;
     }
 }
