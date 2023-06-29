@@ -34,6 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
+            this.btnNedostajucaObrazovanja = new JISP.Controls.UcButton();
             this.lblIzvorSelZaposlenih = new System.Windows.Forms.Label();
             this.cmbPodaciZaDohvatanje = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -43,8 +44,6 @@
             this.txtFilterZaposleni = new JISP.Controls.UcFilterTextBox();
             this.btnDohvatiPodatke = new JISP.Controls.UcButton();
             this.dgvObrazovanja = new JISP.Controls.UcDGV();
-            this.bsObrazovanja = new System.Windows.Forms.BindingSource(this.components);
-            this.ds = new JISP.Data.Ds();
             this.zaposleniDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noksNivoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvcKlasnoks = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -57,6 +56,8 @@
             this.NazivSkole = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.JezikNaKomJeStecenoObrazovanje = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvcDokument = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.bsObrazovanja = new System.Windows.Forms.BindingSource(this.components);
+            this.ds = new JISP.Data.Ds();
             lblFilterZaposleni = new System.Windows.Forms.Label();
             this.pnlLeft.SuspendLayout();
             this.gbFilter.SuspendLayout();
@@ -76,6 +77,7 @@
             // 
             // pnlLeft
             // 
+            this.pnlLeft.Controls.Add(this.btnNedostajucaObrazovanja);
             this.pnlLeft.Controls.Add(this.lblIzvorSelZaposlenih);
             this.pnlLeft.Controls.Add(this.cmbPodaciZaDohvatanje);
             this.pnlLeft.Controls.Add(this.lblStatus);
@@ -89,8 +91,20 @@
             this.pnlLeft.Name = "pnlLeft";
             this.pnlLeft.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
             this.pnlLeft.RightWingWidth = 9;
-            this.pnlLeft.Size = new System.Drawing.Size(150, 347);
+            this.pnlLeft.Size = new System.Drawing.Size(150, 399);
             this.pnlLeft.TabIndex = 0;
+            // 
+            // btnNedostajucaObrazovanja
+            // 
+            this.btnNedostajucaObrazovanja.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNedostajucaObrazovanja.Location = new System.Drawing.Point(6, 285);
+            this.btnNedostajucaObrazovanja.Name = "btnNedostajucaObrazovanja";
+            this.btnNedostajucaObrazovanja.Size = new System.Drawing.Size(126, 30);
+            this.btnNedostajucaObrazovanja.TabIndex = 22;
+            this.btnNedostajucaObrazovanja.Text = "Bez diplome";
+            this.btnNedostajucaObrazovanja.ToolTipText = "Prikaz spiska aktivnih zaposlenih bez unetih diploma/dokumenata";
+            this.btnNedostajucaObrazovanja.UseVisualStyleBackColor = true;
+            this.btnNedostajucaObrazovanja.Click += new System.EventHandler(this.BtnNedostajucaObrazovanja_Click);
             // 
             // lblIzvorSelZaposlenih
             // 
@@ -115,7 +129,7 @@
             // 
             this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(8, 318);
+            this.lblStatus.Location = new System.Drawing.Point(8, 370);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(0, 18);
             this.lblStatus.TabIndex = 19;
@@ -214,21 +228,10 @@
             this.dgvObrazovanja.ReadOnly = true;
             this.dgvObrazovanja.RowHeadersWidth = 30;
             this.dgvObrazovanja.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvObrazovanja.Size = new System.Drawing.Size(1310, 347);
+            this.dgvObrazovanja.Size = new System.Drawing.Size(1310, 399);
             this.dgvObrazovanja.StandardSort = null;
             this.dgvObrazovanja.TabIndex = 1;
             this.dgvObrazovanja.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvObrazovanja_CellClick);
-            // 
-            // bsObrazovanja
-            // 
-            this.bsObrazovanja.DataMember = "Obrazovanja";
-            this.bsObrazovanja.DataSource = this.ds;
-            this.bsObrazovanja.Sort = "_Zaposleni";
-            // 
-            // ds
-            // 
-            this.ds.DataSetName = "Ds";
-            this.ds.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // zaposleniDataGridViewTextBoxColumn
             // 
@@ -336,11 +339,22 @@
             this.dgvcDokument.Name = "dgvcDokument";
             this.dgvcDokument.ReadOnly = true;
             // 
+            // bsObrazovanja
+            // 
+            this.bsObrazovanja.DataMember = "Obrazovanja";
+            this.bsObrazovanja.DataSource = this.ds;
+            this.bsObrazovanja.Sort = "_Zaposleni";
+            // 
+            // ds
+            // 
+            this.ds.DataSetName = "Ds";
+            this.ds.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // FrmObrazovanje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1460, 347);
+            this.ClientSize = new System.Drawing.Size(1460, 399);
             this.Controls.Add(this.dgvObrazovanja);
             this.Controls.Add(this.pnlLeft);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -388,5 +402,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NazivSkole;
         private System.Windows.Forms.DataGridViewCheckBoxColumn JezikNaKomJeStecenoObrazovanje;
         private System.Windows.Forms.DataGridViewButtonColumn dgvcDokument;
+        private Controls.UcButton btnNedostajucaObrazovanja;
     }
 }

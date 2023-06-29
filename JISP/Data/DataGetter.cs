@@ -208,6 +208,7 @@ namespace JISP.Data
             var url = "https://jisp.mpn.gov.rs/webapi/api/Zaposleni/VratiStecenaObrazovanjaZaposlenog";
             var json = await WebApi.PostForJson(url, $"{{\"regZapZaposleniId\":{idZaposlenog}}}");
             dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
+            var ids = new List<int>();
             foreach (var obj in arr)
             {
                 Ds.ObrazovanjaRow o = AppData.Ds.Obrazovanja.FindByIdObrazovanja((int)obj.id);
@@ -217,6 +218,7 @@ namespace JISP.Data
 
                 o.IdZaposlenog = idZaposlenog;
                 o.IdObrazovanja = obj.id;
+                ids.Add(o.IdObrazovanja);
                 o.NoksNivo = obj.noksNivo != null;
                 o.Klasnoks = obj.klasnoks != null;
                 o.Stepen = obj.stepen != null;
@@ -233,7 +235,12 @@ namespace JISP.Data
                 if (novo)
                     AppData.Ds.Obrazovanja.AddObrazovanjaRow(o);
             }
+            // brisanje redova koji su ukinuti u JISPu - ako takvih ima
+            var zaBrisanje = AppData.Ds.Obrazovanja.Where(it => it.IdZaposlenog == idZaposlenog && !ids.Contains(it.IdObrazovanja)).ToArray();
+            foreach (var obr in zaBrisanje)
+                AppData.Ds.Obrazovanja.RemoveObrazovanjaRow(obr);
         }
+
 
         /// <summary>Učitava podatke u tabelu Sistematizacija.</summary>
         public static async Task GetSistematizacijaAsync()

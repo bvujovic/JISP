@@ -15,32 +15,38 @@ namespace JISP.Forms
         {
             InitializeComponent();
 
-            bsResenja.DataSource = AppData.Ds;
-            dgvResenjaSva.StandardSort = bsResenja.Sort;
+            try
+            {
+                bsResenja.DataSource = AppData.Ds;
+                dgvResenjaSva.StandardSort = bsResenja.Sort;
 
-            var skGodine = AppData.Ds.Resenja.Select(it => it.SkolskaGodina).Distinct();
-            cmbSkGod.Items.Add("Sve");
-            foreach (var skgod in skGodine.OrderByDescending(it => it))
-                cmbSkGod.Items.Add(skgod);
-            cmbSkGod.SelectedIndex = 0;
+                var skGodine = AppData.Ds.Resenja.Select(it => it.SkolskaGodina).Distinct();
+                cmbSkGod.Items.Add("Sve");
+                foreach (var skgod in skGodine.OrderByDescending(it => it))
+                    cmbSkGod.Items.Add(skgod);
+                //B cmbSkGod.SelectedIndex = 0;
+                //B cmbSkGod.SelectedItem = AppData.SkolskaGodina.Naziv;
+                cmbSkGod.SelectedItem = AppData.LoadSett("FrmResenja_cmbSkGod", (string)cmbSkGod.Items[0]);
 
-            var tipoviResenja = AppData.Ds.Resenja.Select(it => it.TipResenja).Distinct();
-            cmbTipoviResenja.Items.Add("Svi");
-            foreach (var tipRes in tipoviResenja)
-                cmbTipoviResenja.Items.Add(tipRes);
-            cmbTipoviResenja.SelectedIndex = 0;
-            cmbTipoviResenja.AdjustWidth();
+                var tipoviResenja = AppData.Ds.Resenja.Select(it => it.TipResenja).Distinct();
+                cmbTipoviResenja.Items.Add("Svi");
+                foreach (var tipRes in tipoviResenja)
+                    cmbTipoviResenja.Items.Add(tipRes);
+                cmbTipoviResenja.SelectedIndex = 0;
+                cmbTipoviResenja.AdjustWidth();
 
-            cmbAkcije.Items.AddRange(new[] {
+                cmbAkcije.Items.AddRange(new[] {
                 CmbAkcijaDuplikatiBrojeva,
                 CmbAkcijaDuplikatiZaposlenih,
                 CmbAkcijaNedostajuciZaposleni,
             });
-            cmbAkcije.AdjustWidth();
+                cmbAkcije.AdjustWidth();
 
-            ttSamoAktivnaZaposlenja.SetToolTip(chkSamoAktivnaZaposlenja
-                , "Da li se učitavaju rešenja samo za aktivna zaposlenja ili za sva.");
-            this.FormStandardSettings();
+                ttSamoAktivnaZaposlenja.SetToolTip(chkSamoAktivnaZaposlenja
+                    , "Da li se učitavaju rešenja samo za aktivna zaposlenja ili za sva.");
+                this.FormStandardSettings();
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, Text); }
         }
 
         private const string CmbAkcijaDuplikatiBrojeva = "Pronalaženje duplikata brojeva rešenja";
@@ -58,6 +64,7 @@ namespace JISP.Forms
                 await (sender as Controls.UcButton).RunAsync(async () =>
                 {
                     lblStatus.Text = zaposleni.ToString();
+
                     var zaposlenja = zaposleni.GetZaposlenjaRows().Where
                         (it => chkSamoAktivnaZaposlenja.Checked ? it.Aktivan : true);
                     await DataGetter.GetResenjaAsync(zaposlenja);
@@ -97,7 +104,7 @@ namespace JISP.Forms
                         zapIDs.RemoveAll(it => it == res.ZaposlenjaRow.IdZaposlenog);
                     var zaps = AppData.Ds.Zaposleni
                         .Where(it => it.Aktivan && zapIDs.Contains(it.IdZaposlenog))
-                        .Select(it => it.ToString());
+                        .Select(it => it.ToString()).OrderBy(it => it);
                     Utils.ShowMbox($"Broj zaposlenih: {zaps.Count()}\r\n\r\n" +
                         string.Join(Environment.NewLine, zaps), selItem);
                 }
@@ -135,5 +142,16 @@ namespace JISP.Forms
 
         private void ChkAktivniUgovori_CheckedChanged(object sender, EventArgs e)
             => FiltriranjeResenja();
+
+        private void FrmResenja_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //AppData.SaveSett("FrmResenja_cmbSkGod", (string)cmbSkGod.SelectedItem);
+        }
+
+        private void FrmResenja_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            AppData.SaveSett("FrmResenja_cmbSkGod", (string)cmbSkGod.SelectedItem);
+
+        }
     }
 }

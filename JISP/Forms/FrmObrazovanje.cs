@@ -69,5 +69,32 @@ namespace JISP.Forms
             if (e.RowIndex >= 0 && e.ColumnIndex == dgvcDokument.Index)
                 await Utils.PreuzmiDokument(dgvObrazovanja, e);
         }
+
+        private void BtnNedostajucaObrazovanja_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var zaps = new List<string>();
+                //? mozda bi sa ovog spiska trebalo izbaciti zaposlene kojima ova skola nije maticna
+                foreach (var z in AppData.Ds.Zaposleni.Where(it => it.Aktivan))
+                {
+                    var obs = z.GetObrazovanjaRows();
+                    if (obs.Length > 0)
+                    {
+                        var maxDatum = obs.Max(it => it.DatumSticanjaDiplome);
+                        if (obs.Where(it => it.DatumSticanjaDiplome == maxDatum && it.IsDokumentIdNull()).Any())
+                            // zaposleni za koje su najsvezije diplome bez unetih dokumenata (slike diplome)
+                            zaps.Add(z.ToString());
+                    }
+                    else
+                        // zaposleni bez ijednog unetog obrazovanja (nema ih na ovoj formi)
+                        zaps.Add(z.ToString());
+                }
+                var caption = btnNedostajucaObrazovanja.Text + $" (broj zaposlenih: {zaps.Count})";
+                var sortedZaps = zaps.OrderBy(it => it);
+                Utils.ShowMbox(string.Join(Environment.NewLine, sortedZaps), caption, true);
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, btnNedostajucaObrazovanja.ToolTipText); }
+        }
     }
 }
