@@ -202,40 +202,7 @@ namespace JISP.Data
             }
         }
 
-        /// <summary>Dohvatanje dela podataka u tabelu Obrazovanja.</summary>
-        public static async Task GetObrazovanjaAsync(int idZaposlenog)
-        {
-            var url = "https://jisp.mpn.gov.rs/webapi/api/Zaposleni/VratiStecenaObrazovanjaZaposlenog";
-            var json = await WebApi.PostForJson(url, $"{{\"regZapZaposleniId\":{idZaposlenog}}}");
-            dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
-            foreach (var obj in arr)
-            {
-                Ds.ObrazovanjaRow o = AppData.Ds.Obrazovanja.FindByIdObrazovanja((int)obj.id);
-                bool novo;
-                if (novo = o == null)
-                    o = AppData.Ds.Obrazovanja.NewObrazovanjaRow();
-
-                o.IdZaposlenog = idZaposlenog;
-                o.IdObrazovanja = obj.id;
-                o.NoksNivo = obj.noksNivo != null;
-                o.Klasnoks = obj.klasnoks != null;
-                o.Stepen = obj.stepen != null;
-                o.NazivSteceneKvalifikacije = obj.nazivSteceneKvalifikacije;
-                o.StrucniAkademskiNazivIzDiplome = obj.strucniAkademskiNazivIzDiplome;
-                o.DatumSticanjaDiplome = obj.datumSticanjaDiplome;
-                o.DrzavaZavrseneSkole = obj.drzavaZavrseneSkole;
-                o.MestoZavrseneSkoleNaziv = obj.mestoZavrseneSkoleSlobodanUnos;
-                o.NazivSkole = obj.nazivSkole;
-                o.JezikNaKomJeStecenoObrazovanje = obj.jezikNaKomJeStecenoObrazovanje != null;
-                o.DokumentId = obj.dokumentId;
-                o.DokumentNaziv = obj.dokumentNaziv;
-
-                if (novo)
-                    AppData.Ds.Obrazovanja.AddObrazovanjaRow(o);
-            }
-        }
-
-        /// <summary>Učitava podatke u tabelu Sistematizacija.</summary>
+        /// <summary>Učitava podateke u tabelu Sistematizacija.</summary>
         public static async Task GetSistematizacijaAsync()
         {
             var json = await WebApi.GetJson(WebApi.ReqEnum.Zap_Sistematizacija);

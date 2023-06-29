@@ -167,7 +167,7 @@ namespace JISP.Controls
         private void TsmiSort_Click(object sender, EventArgs e)
         {
             try { (DataSource as BindingSource).Sort = StandardSort; }
-            catch (Exception ex) { Classes.Utils.ShowMbox(ex, "Sortiranje"); }
+            catch (Exception ex) { Utils.ShowMbox(ex, "Sortiranje"); }
         }
 
         private void TsmiRazliciteVrednosti_Click(object sender, EventArgs e)
@@ -177,7 +177,7 @@ namespace JISP.Controls
                 var idxColumn = SelectedCells[0].ColumnIndex;
                 var values = ValuesCount(idxColumn);
                 Utils.ShowMbox(string.Join(Environment.NewLine, values.Select(it => it.Value + "\t" + it.Key))
-                    , tsmiRazliciteVrednosti.Text, true);
+                    , tsmiRazliciteVrednosti.Text + $" ({values.Count})", true);
             }
             catch (Exception ex) { Utils.ShowMbox(ex, tsmiRazliciteVrednosti.Text); }
         }

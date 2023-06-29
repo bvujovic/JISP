@@ -34,6 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
+            this.btnNedostajucaObrazovanja = new JISP.Controls.UcButton();
             this.lblIzvorSelZaposlenih = new System.Windows.Forms.Label();
             this.cmbPodaciZaDohvatanje = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -57,6 +58,8 @@
             this.NazivSkole = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.JezikNaKomJeStecenoObrazovanje = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvcDokument = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.bsObrazovanja = new System.Windows.Forms.BindingSource(this.components);
+            this.ds = new JISP.Data.Ds();
             lblFilterZaposleni = new System.Windows.Forms.Label();
             this.pnlLeft.SuspendLayout();
             this.gbFilter.SuspendLayout();
@@ -76,6 +79,7 @@
             // 
             // pnlLeft
             // 
+            this.pnlLeft.Controls.Add(this.btnNedostajucaObrazovanja);
             this.pnlLeft.Controls.Add(this.lblIzvorSelZaposlenih);
             this.pnlLeft.Controls.Add(this.cmbPodaciZaDohvatanje);
             this.pnlLeft.Controls.Add(this.lblStatus);
@@ -89,8 +93,20 @@
             this.pnlLeft.Name = "pnlLeft";
             this.pnlLeft.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
             this.pnlLeft.RightWingWidth = 9;
-            this.pnlLeft.Size = new System.Drawing.Size(150, 347);
+            this.pnlLeft.Size = new System.Drawing.Size(150, 399);
             this.pnlLeft.TabIndex = 0;
+            // 
+            // btnNedostajucaObrazovanja
+            // 
+            this.btnNedostajucaObrazovanja.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNedostajucaObrazovanja.Location = new System.Drawing.Point(6, 285);
+            this.btnNedostajucaObrazovanja.Name = "btnNedostajucaObrazovanja";
+            this.btnNedostajucaObrazovanja.Size = new System.Drawing.Size(126, 30);
+            this.btnNedostajucaObrazovanja.TabIndex = 22;
+            this.btnNedostajucaObrazovanja.Text = "Bez diplome";
+            this.btnNedostajucaObrazovanja.ToolTipText = "Prikaz spiska aktivnih zaposlenih bez unetih diploma/dokumenata";
+            this.btnNedostajucaObrazovanja.UseVisualStyleBackColor = true;
+            this.btnNedostajucaObrazovanja.Click += new System.EventHandler(this.BtnNedostajucaObrazovanja_Click);
             // 
             // lblIzvorSelZaposlenih
             // 
@@ -336,6 +352,17 @@
             this.dgvcDokument.Name = "dgvcDokument";
             this.dgvcDokument.ReadOnly = true;
             // 
+            // bsObrazovanja
+            // 
+            this.bsObrazovanja.DataMember = "Obrazovanja";
+            this.bsObrazovanja.DataSource = this.ds;
+            this.bsObrazovanja.Sort = "_Zaposleni";
+            // 
+            // ds
+            // 
+            this.ds.DataSetName = "Ds";
+            this.ds.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // FrmObrazovanje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -388,5 +415,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NazivSkole;
         private System.Windows.Forms.DataGridViewCheckBoxColumn JezikNaKomJeStecenoObrazovanje;
         private System.Windows.Forms.DataGridViewButtonColumn dgvcDokument;
+        private Controls.UcButton btnNedostajucaObrazovanja;
     }
 }

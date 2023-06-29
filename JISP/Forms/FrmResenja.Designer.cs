@@ -366,6 +366,8 @@
             this.Name = "FrmResenja";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rešenja";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmResenja_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmResenja_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.bsResenja)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResenjaSva)).EndInit();

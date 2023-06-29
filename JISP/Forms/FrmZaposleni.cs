@@ -524,9 +524,30 @@ namespace JISP.Forms
                 //        zaps.Add(nja.RadnoMestoNaziv);
                 //Clipboard.SetText(string.Join(Environment.NewLine, zaps));
 
+                var l = new List<string>();
+                foreach (var z in AppData.Ds.Zaposleni.Where(it => it.Aktivan))
+                    foreach (var nja in z.GetZaposlenjaRows().Where
+                        (it => DatumOko1Nov(it.DatumZaposlenOd) ||
+                        !it.IsDatumZaposlenDoNull() && DatumOko1Nov(it.DatumZaposlenDo)))
+                    {
+                        if (!nja.IsRazlogPrestankaZaposlenjaNull())
+                            Console.WriteLine(nja.RazlogPrestankaZaposlenja);
+                        l.Add(z.ToString());
+                        l.Add($"\t{nja.DatumZaposlenOd.ToShortDateString()} - {(nja.IsDatumZaposlenDoNull() ? "/\t" : nja.DatumZaposlenDo.ToShortDateString())}"
+                            + $"\t{nja.VrstaAngazovanja}\t{nja.ProcenatRadnogVremena} %");
+                    }
+                Clipboard.SetText(string.Join(Environment.NewLine, l));
+
                 bsZaposleni.Sort = "StatusAktivnosti2 DESC, " + dgvZaposleni.StandardSort;
             }
             catch (Exception ex) { Utils.ShowMbox(ex, btnIzracunajStatuse.Text + " - " + zapProblem); }
+        }
+
+        /// <summary>Da li je prosledjeni datum +/-5 dana oko 1. nov 2022</summary>
+        static bool DatumOko1Nov(DateTime dt)
+        {
+            var target = new DateTime(2022, 11, 1);
+            return target.AddDays(-5) <= dt && dt <= target.AddDays(5);
         }
     }
 }
