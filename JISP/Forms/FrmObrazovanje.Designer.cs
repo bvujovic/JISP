@@ -44,6 +44,8 @@
             this.txtFilterZaposleni = new JISP.Controls.UcFilterTextBox();
             this.btnDohvatiPodatke = new JISP.Controls.UcButton();
             this.dgvObrazovanja = new JISP.Controls.UcDGV();
+            this.bsObrazovanja = new System.Windows.Forms.BindingSource(this.components);
+            this.ds = new JISP.Data.Ds();
             this.zaposleniDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noksNivoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvcKlasnoks = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -129,7 +131,6 @@
             // 
             this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(8, 370);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(0, 18);
             this.lblStatus.TabIndex = 19;
@@ -228,10 +229,20 @@
             this.dgvObrazovanja.ReadOnly = true;
             this.dgvObrazovanja.RowHeadersWidth = 30;
             this.dgvObrazovanja.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvObrazovanja.Size = new System.Drawing.Size(1310, 399);
             this.dgvObrazovanja.StandardSort = null;
             this.dgvObrazovanja.TabIndex = 1;
             this.dgvObrazovanja.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvObrazovanja_CellClick);
+            // 
+            // bsObrazovanja
+            // 
+            this.bsObrazovanja.DataMember = "Obrazovanja";
+            this.bsObrazovanja.DataSource = this.ds;
+            this.bsObrazovanja.Sort = "_Zaposleni";
+            // 
+            // ds
+            // 
+            this.ds.DataSetName = "Ds";
+            this.ds.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // zaposleniDataGridViewTextBoxColumn
             // 
@@ -354,7 +365,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1460, 399);
             this.Controls.Add(this.dgvObrazovanja);
             this.Controls.Add(this.pnlLeft);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
