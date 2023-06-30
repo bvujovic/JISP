@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Policy;
+using System.Threading;
 using System.Threading.Tasks;
 using static JISP.Data.WebApi;
 
@@ -90,11 +91,18 @@ namespace JISP.Data
         /// <see cref="https://stackoverflow.com/questions/14627399/setting-authorization-header-of-httpclient"/>
         public static async Task<string> GetJson(string url)
         {
-            using (var client = new HttpClient())
+            using (var client = CreateHttpClient())
             {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
+                //B client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
                 return await client.GetStringAsync(url);
             }
+        }
+
+        private static HttpClient CreateHttpClient()
+        {
+            var client = new HttpClient() { Timeout = TimeSpan.FromSeconds(5) };
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
+            return client;
         }
 
         /// <summary>Dohvata (GET) JSON podatke od JISP WebAPI-a.</summary>
@@ -106,9 +114,9 @@ namespace JISP.Data
 
         public static async Task<string> PostForJson(string url, string body)
         {
-            using (var client = new HttpClient())
+            using (var client = CreateHttpClient())
             {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
+                //B client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
                 var content = new StringContent(body, System.Text.Encoding.UTF8, "application/json");
                 var res = await client.PostAsync(url, content);
 
@@ -149,9 +157,9 @@ namespace JISP.Data
         /// <summary>Preuzimanje fajla od JISPa u Downloads i njegovo pokretanje.</summary>
         public static async Task PostForFile(string filePath, string url, string content, bool isJson)
         {
-            using (var client = new HttpClient())
+            using (var client = CreateHttpClient())
             {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
+                //B client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
                 url = "https://jisp.mpn.gov.rs/webapi/api/" + url;
                 var jsonContent = new StringContent(content, System.Text.Encoding.UTF8, "application/json");
                 var res = await client.PostAsync(url, jsonContent);

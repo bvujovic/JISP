@@ -31,18 +31,22 @@ namespace JISP.Forms
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label lblFilterCaption;
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblRowCount = new System.Windows.Forms.Label();
             this.bsZaposleni = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer = new System.Windows.Forms.SplitContainer();
+            this.pnlZaposleniTop = new System.Windows.Forms.Panel();
+            this.chkAktivniZap = new System.Windows.Forms.CheckBox();
+            this.bsZaposlenja = new System.Windows.Forms.BindingSource(this.components);
+            this.ofdZapSlika = new System.Windows.Forms.OpenFileDialog();
             this.dgvZaposleni = new JISP.Controls.UcDGV();
             this.dgvcIme = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcPrezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,8 +66,6 @@ namespace JISP.Forms
             this.dgvcStazGodine = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcStazMeseci = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcNapomene = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pnlZaposleniTop = new System.Windows.Forms.Panel();
-            this.chkAktivniZap = new System.Windows.Forms.CheckBox();
             this.txtFilter = new JISP.Controls.UcFilterTextBox();
             this.dgvZaposlenja = new JISP.Controls.UcDGV();
             this.dgvcNjaAktivan = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -72,9 +74,8 @@ namespace JISP.Forms
             this.dgvcNjaRMNaziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcNjaNoksNivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcNjaVrstaAng = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bsZaposlenja = new System.Windows.Forms.BindingSource(this.components);
-            this.ofdZapSlika = new System.Windows.Forms.OpenFileDialog();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
+            this.btnObrazovanje = new JISP.Controls.UcButton();
             this.cmbIzracunajStatuse = new System.Windows.Forms.ComboBox();
             this.btnIzracunajStatuse = new JISP.Controls.UcButton();
             this.gbIzvestaji = new System.Windows.Forms.GroupBox();
@@ -88,17 +89,16 @@ namespace JISP.Forms
             this.chkCopyOnClick = new System.Windows.Forms.CheckBox();
             this.btnSaveData = new JISP.Controls.UcButton();
             this.btnExit = new JISP.Controls.UcExitAppButton();
-            this.btnObrazovanje = new JISP.Controls.UcButton();
             lblFilterCaption = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bsZaposleni)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvZaposleni)).BeginInit();
             this.pnlZaposleniTop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvZaposlenja)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsZaposlenja)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvZaposleni)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvZaposlenja)).BeginInit();
             this.pnlLeft.SuspendLayout();
             this.gbIzvestaji.SuspendLayout();
             this.SuspendLayout();
@@ -146,22 +146,59 @@ namespace JISP.Forms
             this.splitContainer.SplitterDistance = 484;
             this.splitContainer.TabIndex = 0;
             // 
+            // pnlZaposleniTop
+            // 
+            this.pnlZaposleniTop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlZaposleniTop.Controls.Add(lblFilterCaption);
+            this.pnlZaposleniTop.Controls.Add(this.chkAktivniZap);
+            this.pnlZaposleniTop.Controls.Add(this.txtFilter);
+            this.pnlZaposleniTop.Controls.Add(this.lblRowCount);
+            this.pnlZaposleniTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlZaposleniTop.Location = new System.Drawing.Point(0, 0);
+            this.pnlZaposleniTop.Name = "pnlZaposleniTop";
+            this.pnlZaposleniTop.Size = new System.Drawing.Size(838, 30);
+            this.pnlZaposleniTop.TabIndex = 0;
+            // 
+            // chkAktivniZap
+            // 
+            this.chkAktivniZap.AutoSize = true;
+            this.chkAktivniZap.Checked = true;
+            this.chkAktivniZap.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+            this.chkAktivniZap.Location = new System.Drawing.Point(509, 4);
+            this.chkAktivniZap.Name = "chkAktivniZap";
+            this.chkAktivniZap.Size = new System.Drawing.Size(69, 22);
+            this.chkAktivniZap.TabIndex = 1;
+            this.chkAktivniZap.Text = "Aktivni";
+            this.chkAktivniZap.ThreeState = true;
+            this.chkAktivniZap.UseVisualStyleBackColor = true;
+            this.chkAktivniZap.CheckStateChanged += new System.EventHandler(this.FilterChanged);
+            // 
+            // bsZaposlenja
+            // 
+            this.bsZaposlenja.DataSource = this.bsZaposleni;
+            this.bsZaposlenja.Sort = "";
+            // 
+            // ofdZapSlika
+            // 
+            this.ofdZapSlika.Filter = "Image files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
+            this.ofdZapSlika.Title = "Odabir slike za zaposlenog";
+            // 
             // dgvZaposleni
             // 
             this.dgvZaposleni.AllowUserToAddRows = false;
             this.dgvZaposleni.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
-            this.dgvZaposleni.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dgvZaposleni.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvZaposleni.AutoGenerateColumns = false;
             this.dgvZaposleni.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvZaposleni.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvZaposleni.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvZaposleni.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvZaposleni.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgvcIme,
@@ -230,10 +267,10 @@ namespace JISP.Forms
             // dgvcGodine
             // 
             this.dgvcGodine.DataPropertyName = "Godine";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle12.Format = "N1";
-            dataGridViewCellStyle12.NullValue = null;
-            this.dgvcGodine.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N1";
+            dataGridViewCellStyle3.NullValue = null;
+            this.dgvcGodine.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvcGodine.HeaderText = "Godine";
             this.dgvcGodine.MinimumWidth = 6;
             this.dgvcGodine.Name = "dgvcGodine";
@@ -243,8 +280,8 @@ namespace JISP.Forms
             // dgvcDanaDoRodj
             // 
             this.dgvcDanaDoRodj.DataPropertyName = "DanaDoRodj";
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dgvcDanaDoRodj.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dgvcDanaDoRodj.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvcDanaDoRodj.HeaderText = "Do Rođ.";
             this.dgvcDanaDoRodj.MinimumWidth = 6;
             this.dgvcDanaDoRodj.Name = "dgvcDanaDoRodj";
@@ -254,8 +291,8 @@ namespace JISP.Forms
             // dgvcPol
             // 
             this.dgvcPol.DataPropertyName = "Pol";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgvcPol.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvcPol.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvcPol.HeaderText = "Pol";
             this.dgvcPol.MinimumWidth = 6;
             this.dgvcPol.Name = "dgvcPol";
@@ -346,8 +383,8 @@ namespace JISP.Forms
             // dgvcStazGodine
             // 
             this.dgvcStazGodine.DataPropertyName = "StazGodine";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dgvcStazGodine.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dgvcStazGodine.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvcStazGodine.HeaderText = "god";
             this.dgvcStazGodine.MinimumWidth = 6;
             this.dgvcStazGodine.Name = "dgvcStazGodine";
@@ -357,8 +394,8 @@ namespace JISP.Forms
             // dgvcStazMeseci
             // 
             this.dgvcStazMeseci.DataPropertyName = "StazMeseci";
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dgvcStazMeseci.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dgvcStazMeseci.DefaultCellStyle = dataGridViewCellStyle7;
             this.dgvcStazMeseci.HeaderText = "mes";
             this.dgvcStazMeseci.MinimumWidth = 6;
             this.dgvcStazMeseci.Name = "dgvcStazMeseci";
@@ -372,33 +409,6 @@ namespace JISP.Forms
             this.dgvcNapomene.HeaderText = "Napomene";
             this.dgvcNapomene.MinimumWidth = 88;
             this.dgvcNapomene.Name = "dgvcNapomene";
-            // 
-            // pnlZaposleniTop
-            // 
-            this.pnlZaposleniTop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlZaposleniTop.Controls.Add(lblFilterCaption);
-            this.pnlZaposleniTop.Controls.Add(this.chkAktivniZap);
-            this.pnlZaposleniTop.Controls.Add(this.txtFilter);
-            this.pnlZaposleniTop.Controls.Add(this.lblRowCount);
-            this.pnlZaposleniTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlZaposleniTop.Location = new System.Drawing.Point(0, 0);
-            this.pnlZaposleniTop.Name = "pnlZaposleniTop";
-            this.pnlZaposleniTop.Size = new System.Drawing.Size(838, 30);
-            this.pnlZaposleniTop.TabIndex = 0;
-            // 
-            // chkAktivniZap
-            // 
-            this.chkAktivniZap.AutoSize = true;
-            this.chkAktivniZap.Checked = true;
-            this.chkAktivniZap.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.chkAktivniZap.Location = new System.Drawing.Point(509, 4);
-            this.chkAktivniZap.Name = "chkAktivniZap";
-            this.chkAktivniZap.Size = new System.Drawing.Size(69, 22);
-            this.chkAktivniZap.TabIndex = 1;
-            this.chkAktivniZap.Text = "Aktivni";
-            this.chkAktivniZap.ThreeState = true;
-            this.chkAktivniZap.UseVisualStyleBackColor = true;
-            this.chkAktivniZap.CheckStateChanged += new System.EventHandler(this.FilterChanged);
             // 
             // txtFilter
             // 
@@ -416,18 +426,18 @@ namespace JISP.Forms
             this.dgvZaposlenja.AllowUserToAddRows = false;
             this.dgvZaposlenja.AllowUserToDeleteRows = false;
             this.dgvZaposlenja.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dgvZaposlenja.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            this.dgvZaposlenja.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvZaposlenja.AutoGenerateColumns = false;
             this.dgvZaposlenja.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvZaposlenja.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvZaposlenja.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvZaposlenja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvZaposlenja.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgvcNjaAktivan,
@@ -443,6 +453,7 @@ namespace JISP.Forms
             this.dgvZaposlenja.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvZaposlenja.Location = new System.Drawing.Point(0, 0);
             this.dgvZaposlenja.Name = "dgvZaposlenja";
+            this.dgvZaposlenja.ReadOnly = true;
             this.dgvZaposlenja.RowHeadersWidth = 51;
             this.dgvZaposlenja.Size = new System.Drawing.Size(838, 117);
             this.dgvZaposlenja.StandardSort = null;
@@ -463,6 +474,7 @@ namespace JISP.Forms
             this.dgvcNjaProcenat.HeaderText = "Procenat";
             this.dgvcNjaProcenat.MinimumWidth = 6;
             this.dgvcNjaProcenat.Name = "dgvcNjaProcenat";
+            this.dgvcNjaProcenat.ReadOnly = true;
             this.dgvcNjaProcenat.Width = 80;
             // 
             // dgvcNjaZaposlenOd
@@ -471,6 +483,7 @@ namespace JISP.Forms
             this.dgvcNjaZaposlenOd.HeaderText = "Zaposlen od";
             this.dgvcNjaZaposlenOd.MinimumWidth = 6;
             this.dgvcNjaZaposlenOd.Name = "dgvcNjaZaposlenOd";
+            this.dgvcNjaZaposlenOd.ReadOnly = true;
             this.dgvcNjaZaposlenOd.Width = 125;
             // 
             // dgvcNjaRMNaziv
@@ -501,16 +514,6 @@ namespace JISP.Forms
             this.dgvcNjaVrstaAng.Name = "dgvcNjaVrstaAng";
             this.dgvcNjaVrstaAng.ReadOnly = true;
             // 
-            // bsZaposlenja
-            // 
-            this.bsZaposlenja.DataSource = this.bsZaposleni;
-            this.bsZaposlenja.Sort = "";
-            // 
-            // ofdZapSlika
-            // 
-            this.ofdZapSlika.Filter = "Image files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
-            this.ofdZapSlika.Title = "Odabir slike za zaposlenog";
-            // 
             // pnlLeft
             // 
             this.pnlLeft.Controls.Add(this.btnObrazovanje);
@@ -531,6 +534,17 @@ namespace JISP.Forms
             this.pnlLeft.RightWingWidth = 6;
             this.pnlLeft.Size = new System.Drawing.Size(146, 605);
             this.pnlLeft.TabIndex = 1;
+            // 
+            // btnObrazovanje
+            // 
+            this.btnObrazovanje.Location = new System.Drawing.Point(8, 324);
+            this.btnObrazovanje.Name = "btnObrazovanje";
+            this.btnObrazovanje.Size = new System.Drawing.Size(128, 40);
+            this.btnObrazovanje.TabIndex = 9;
+            this.btnObrazovanje.Text = "Obrazovanje";
+            this.btnObrazovanje.ToolTipText = "Obrazovanje zaposlenih";
+            this.btnObrazovanje.UseVisualStyleBackColor = true;
+            this.btnObrazovanje.Click += new System.EventHandler(this.BtnObrazovanje_Click);
             // 
             // cmbIzracunajStatuse
             // 
@@ -674,17 +688,6 @@ namespace JISP.Forms
             this.btnExit.ToolTipText = "Izlaz iz aplikacije";
             this.btnExit.UseVisualStyleBackColor = false;
             // 
-            // btnObrazovanje
-            // 
-            this.btnObrazovanje.Location = new System.Drawing.Point(8, 324);
-            this.btnObrazovanje.Name = "btnObrazovanje";
-            this.btnObrazovanje.Size = new System.Drawing.Size(128, 40);
-            this.btnObrazovanje.TabIndex = 9;
-            this.btnObrazovanje.Text = "Obrazovanje";
-            this.btnObrazovanje.ToolTipText = "Obrazovanje zaposlenih";
-            this.btnObrazovanje.UseVisualStyleBackColor = true;
-            this.btnObrazovanje.Click += new System.EventHandler(this.BtnObrazovanje_Click);
-            // 
             // FrmZaposleni
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -705,11 +708,11 @@ namespace JISP.Forms
             this.splitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvZaposleni)).EndInit();
             this.pnlZaposleniTop.ResumeLayout(false);
             this.pnlZaposleniTop.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvZaposlenja)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsZaposlenja)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvZaposleni)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvZaposlenja)).EndInit();
             this.pnlLeft.ResumeLayout(false);
             this.pnlLeft.PerformLayout();
             this.gbIzvestaji.ResumeLayout(false);

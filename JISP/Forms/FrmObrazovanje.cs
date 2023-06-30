@@ -27,6 +27,7 @@ namespace JISP.Forms
             cmbPodaciZaDohvatanje.AdjustWidth();
 
             bsObrazovanja.DataSource = AppData.Ds.Obrazovanja;
+            bsObrazovanja.Filter = "1=1";
             dgvObrazovanja.StandardSort = bsObrazovanja.Sort;
             this.FormStandardSettings();
         }

@@ -22,7 +22,7 @@ namespace JISP.Forms
         {
             bsZaposleni.DataSource = Ds;
             bsZaposlenja.DataMember = "FK_Zaposleni_Zaposlenja";
-            bsZaposlenja.Sort = "Aktivan DESC";
+            bsZaposlenja.Sort = "Aktivan DESC, DatumZaposlenOd DESC, DatumZaposlenDo DESC";
             chkAktivniZap.CheckState = CheckState.Checked;
             dgvZaposleni.StandardSort = bsZaposleni.Sort = "Ime, Prezime";
             dgvZaposleni.LoadSettings();
