@@ -51,6 +51,7 @@ namespace JISP.Forms
                 CmbStatus40cNedelja,
                 CmbStatusDokUgovor,
                 CmbStatusDo60DanaIsteklo,
+                CmbStatusBezZamenjenih,
             });
             cmbIzracunajStatuse.AdjustWidth();
         }
@@ -63,6 +64,7 @@ namespace JISP.Forms
         private const string CmbStatus40cNedelja = "Bez 40-čas nedelje";
         private const string CmbStatusDokUgovor = "Bez dokumenta-ugovora";
         private const string CmbStatusDo60DanaIsteklo = "Istekao ugovor do 60 dana";
+        private const string CmbStatusBezZamenjenih = "Zaposlenja bez unetih zamenjenih zaposlenih";
 
         private readonly Ds Ds;
 
@@ -74,7 +76,7 @@ namespace JISP.Forms
 
         /// <summary>Za dati naziv radnog mesta ili njegov deo,
         /// vraca skup IDeva zaposlenih sa tim radim mestom.</summary>
-        private static IEnumerable<int> FilterZaposleniIDs(string s, bool aktivnoZap)
+        private static IEnumerable<int> FilterRadnoMesto(string s, bool aktivnoZap)
         {
             s = s.ToLower();
             var ids = new HashSet<int>();
@@ -85,11 +87,22 @@ namespace JISP.Forms
             return ids;
         }
 
+        private static IEnumerable<int> FilterZamenjeni(string s, bool aktivnoZap)
+        {
+            s = s.ToLower();
+            var ids = new HashSet<int>();
+            foreach (var zap in AppData.Ds.Zaposlenja.Where
+                (it => (!aktivnoZap || (aktivnoZap && it.Aktivan))
+                && !it.IsIdZamenjenogZaposlenogNull() && it._ZamenjeniZaposleni.ToLower().Contains(s)))
+                ids.Add(zap.IdZaposlenog);
+            return ids;
+        }
+
         private void FilterChanged(object sender, EventArgs e)
         {
             try
             {
-                var s = txtFilter.Text;
+                var s = LatinicaCirilica.Lat2Cir(txtFilter.Text);
                 // filtriranje statusa aktivnosti - izdvajanje redova koji imaju * ili ** ili ***
                 if (s != "" && s.StartsWith("*"))
                 {
@@ -99,10 +112,14 @@ namespace JISP.Forms
                 var aktivnoZap = !s.StartsWith("-");
                 if (!aktivnoZap)
                     s = s.Substring(1);
-                // osnovna pretraga: ime, prezime, devPrezime, jmbg
+                // osnovna pretraga: ime, prezime, angazovanja, jmbg
                 var filter = $"Ime LIKE '%{s}%' OR Prezime LIKE '%{s}%' OR Angazovanja LIKE '%{s}%' OR JMBG LIKE '%{s}%' ";
                 // pretraga po zaposlenjima (radna mesta)
-                var ids = FilterZaposleniIDs(s, aktivnoZap);
+                var ids = FilterRadnoMesto(s, aktivnoZap);
+                if (ids.Count() > 0)
+                    filter += $" OR IdZaposlenog IN ({string.Join(", ", ids)})";
+                // pretraga po zamenjenim zaposlenima
+                ids = FilterZamenjeni(s, aktivnoZap);
                 if (ids.Count() > 0)
                     filter += $" OR IdZaposlenog IN ({string.Join(", ", ids)})";
                 // da li je zaposleni aktivan ili ne
@@ -395,23 +412,26 @@ namespace JISP.Forms
 
             if (selItem == CmbDohvatiSve)
             {
+                var brojeviUgovoraZaNedostajuceZamenjene = new List<string>();
                 var zaposleni = dgvZaposleni.SelectedDataRows<Ds.ZaposleniRow>();
                 foreach (var zap in zaposleni)
                     await (sender as UcButton).RunAsync(async () =>
                     {
-                        lblStatus.Text = zap.ToString();
-                        await DataGetter.GetZaposlenjaAsync(zap);
+                        lblStatus.Text = zap.ZaposleniString;
+                        var l = await DataGetter.GetZaposlenjaAsync(zap);
+                        if (l.Any())
+                            brojeviUgovoraZaNedostajuceZamenjene.Add("   " + zap + "\r\n" + string.Join(", ", l));
                         await DataGetter.GetAngazovanjaAsync(zap.GetZaposlenjaRows().Where(it => it.Aktivan));
                         await DataGetter.GetObracuniZaradaAsync(zap);
-                        //var ozs = Classes.ObracunZarada.ObracunZarada.PoslednjiObracuni
-                        //    (zap.GetObracunZaradaRows(), zap.GetZaposlenjaRows().Where(it => it.Aktivan)
-                        //    .Select(it => it.IdZaposlenja));
                         foreach (var oz in zap.GetObracunZaradaRows()
                             .Where(it => it.Godina == AppData.SkolskaGodina.Start || it.Godina == AppData.SkolskaGodina.Kraj))
                             await DataGetter.GetOzDodatnoAsync(oz);
                         zap.CalcAngazovanja();
                     });
                 lblStatus.Text = "";
+                if (brojeviUgovoraZaNedostajuceZamenjene.Any())
+                    Utils.ShowMbox(string.Join("\r\n\r\n", brojeviUgovoraZaNedostajuceZamenjene)
+                        , "Zaposleni sa ugovorima za zamenu bez zaposlenog koji je zamenjen", true);
             }
         }
 
@@ -498,7 +518,7 @@ namespace JISP.Forms
                         zapProblem = z;
                         z.StatusAktivnosti2 = "";
                         foreach (var zap in z.GetZaposlenjaRows()
-                            .Where(it => it.Aktivan && (it.IsImaDokumentNull() || !it.ImaDokument)))
+                            .Where(it => it.Aktivan && it.IsDokumentIdNull()))
                             z.StatusAktivnosti2 += "*";
                     }
                 }
@@ -514,6 +534,19 @@ namespace JISP.Forms
                             && !it.IsVrstaAngazovanjaNull() && it.VrstaAngazovanja.Contains("до 60 дана")
                             && !it.IsDatumZaposlenOdNull() && (DateTime.Now - it.DatumZaposlenOd).TotalDays >= 60);
                         z.StatusAktivnosti2 = nja.Any() ? "*" : "";
+                    }
+                }
+
+                // prikazati ugovore za zamene koji nemaju unete podatke o zamenjenom zaposlenom
+                // i to za odabranu skolsku godinu
+                if (selItem == CmbStatusBezZamenjenih)
+                {
+                    foreach (var z in AppData.Ds.Zaposleni)
+                    {
+                        var nja = z.GetZaposlenjaRows().Where(it =>
+                            !it.IsVrstaAngazovanjaNull() && it.NedostajeZamenjeni
+                            && AppData.SkolskaGodina.PripadaDatum(it.DatumZaposlenOd));
+                        z.StatusAktivnosti2 = nja.Any() ? string.Join(", ", nja.Select(it => it.BrojUgovoraORadu)) : "";
                     }
                 }
 

@@ -3,6 +3,7 @@ using JISP.Classes.ObracunZarada;
 using JISP.Controls;
 using JISP.Data;
 using System;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -33,6 +34,8 @@ namespace JISP.Forms
                 if (LastSize != Size.Empty)
                     Size = LastSize;
 
+                bsZaposleni.DataSource = AppData.Ds;
+
                 bsZaposlenja.DataSource = AppData.Ds;
                 dgvZaposlenjaSve.StandardSort = bsZaposlenja.Sort;
                 dgvZaposlenjaSve.LoadSettings();
@@ -52,7 +55,12 @@ namespace JISP.Forms
         private async void BtnUcitajZaposlenja_Click(object sender, EventArgs e)
         {
             await (sender as UcButton).RunAsync(async () =>
-                await DataGetter.GetZaposlenjaAsync(zaposleni)
+                {
+                    var l = await DataGetter.GetZaposlenjaAsync(zaposleni);
+                    if (l.Any())
+                        Utils.ShowMbox(string.Join(Environment.NewLine, l)
+                            , "Ugovori za zamene bez podatka o zaposlenom koji je zamenjen", true);
+                }
             );
             zaposleni.CalcAngazovanja();
         }
@@ -123,18 +131,14 @@ namespace JISP.Forms
             zaposleni.CalcAngazovanja();
         }
 
-        /// <summary>Klik na checkBox celiju ImaObracunTemplate -> kopiranje OZ template-a u clipboard.</summary>
-        private void DgvZaposlenjaSve_CellClick(object sender, DataGridViewCellEventArgs e)
+        private async void DgvZaposlenjaSve_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                if (e.RowIndex == -1)
-                    return;
-                var zap = dgvZaposlenjaSve.CurrDataRow<Ds.ZaposlenjaRow>();
-                if (zap.ImaObracunTemplate)
-                    Clipboard.SetText(zap.ObracunTemplate);
+                if (e.RowIndex >= 0 && e.ColumnIndex == dgvcZapDokument.Index)
+                    await Utils.PreuzmiDokument(dgvZaposlenjaSve, e);
             }
-            catch (Exception ex) { Utils.ShowMbox(ex, this.Text); }
+            catch (Exception ex) { Utils.ShowMbox(ex, Text); }
         }
 
         private void ChkCopyOnClick_CheckedChanged(object sender, EventArgs e)
@@ -160,6 +164,48 @@ namespace JISP.Forms
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == dgvcResDokument.Index)
                 await Utils.PreuzmiDokument(dgvResenja, e);
+        }
+
+        private void DgvZaposlenjaSve_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var comboVisible = false;
+                if (dgvZaposlenjaSve.CurrentRow != null)
+                {
+                    var z = dgvZaposlenjaSve.CurrDataRow<Ds.ZaposlenjaRow>();
+                    if (!z.IsVrstaAngazovanjaNull() && z.VrstaAngazovanja.Contains("замена"))
+                    {
+                        comboVisible = true;
+                        if (!z.IsIdZamenjenogZaposlenogNull())
+                            cmbZamenjeni.SelectedValue = z.IdZamenjenogZaposlenog;
+                        else
+                            cmbZamenjeni.SelectedIndex = -1;
+                    }
+                }
+                cmbZamenjeni.Visible = lblZamenjeni.Visible = btnZamenjeniBrisi.Visible = comboVisible;
+            }
+            catch { }
+        }
+
+        private void CmbZamenjeni_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbZamenjeni.SelectedItem != null)
+                try
+                {
+                    var z = dgvZaposlenjaSve.CurrDataRow<Ds.ZaposlenjaRow>();
+                    var zap = (cmbZamenjeni.SelectedItem as DataRowView).Row as Ds.ZaposleniRow;
+                    if (z.IsIdZamenjenogZaposlenogNull() || z.IdZamenjenogZaposlenog != zap.IdZaposlenog)
+                        z.IdZamenjenogZaposlenog = zap.IdZaposlenog;
+                }
+                catch { }
+        }
+
+        private void BtnZamenjeniBrisi_Click(object sender, EventArgs e)
+        {
+            var nje = dgvZaposlenjaSve.CurrDataRow<Ds.ZaposlenjaRow>();
+            nje.SetIdZamenjenogZaposlenogNull();
+            cmbZamenjeni.SelectedIndex = -1;
         }
     }
 }

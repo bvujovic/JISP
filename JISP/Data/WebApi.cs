@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Security.Policy;
-using System.Threading;
 using System.Threading.Tasks;
-using static JISP.Data.WebApi;
 
 namespace JISP.Data
 {
@@ -93,14 +90,13 @@ namespace JISP.Data
         {
             using (var client = CreateHttpClient())
             {
-                //B client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
                 return await client.GetStringAsync(url);
             }
         }
 
         private static HttpClient CreateHttpClient()
         {
-            var client = new HttpClient() { Timeout = TimeSpan.FromSeconds(5) };
+            var client = new HttpClient() { Timeout = TimeSpan.FromSeconds(8) };
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
             return client;
         }
@@ -116,7 +112,6 @@ namespace JISP.Data
         {
             using (var client = CreateHttpClient())
             {
-                //B client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
                 var content = new StringContent(body, System.Text.Encoding.UTF8, "application/json");
                 var res = await client.PostAsync(url, content);
 
@@ -159,7 +154,7 @@ namespace JISP.Data
         {
             using (var client = CreateHttpClient())
             {
-                //B client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
+                client.Timeout = TimeSpan.FromSeconds(25);
                 url = "https://jisp.mpn.gov.rs/webapi/api/" + url;
                 var jsonContent = new StringContent(content, System.Text.Encoding.UTF8, "application/json");
                 var res = await client.PostAsync(url, jsonContent);

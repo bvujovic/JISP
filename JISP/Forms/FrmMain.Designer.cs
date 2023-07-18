@@ -45,6 +45,7 @@
             this.cmbSkolskaGodina = new System.Windows.Forms.ComboBox();
             this.btnProstorije = new JISP.Controls.UcButton();
             this.btnPrikaziPoruke = new System.Windows.Forms.Button();
+            this.btnTest = new JISP.Controls.UcButton();
             label2 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -196,11 +197,24 @@
             this.btnPrikaziPoruke.UseVisualStyleBackColor = true;
             this.btnPrikaziPoruke.Click += new System.EventHandler(this.BtnPrikaziPoruke_Click);
             // 
+            // btnTest
+            // 
+            this.btnTest.Location = new System.Drawing.Point(413, 144);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(135, 29);
+            this.btnTest.TabIndex = 12;
+            this.btnTest.Text = "Test";
+            this.btnTest.ToolTipText = "Čuvanje podataka iz DataSet-a u posebnom XML fajlu.";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Visible = false;
+            this.btnTest.Click += new System.EventHandler(this.BtnTest_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(617, 340);
+            this.Controls.Add(this.btnTest);
             this.Controls.Add(this.btnPrikaziPoruke);
             this.Controls.Add(this.btnProstorije);
             this.Controls.Add(this.cmbSkolskaGodina);
@@ -242,6 +256,7 @@
         private System.Windows.Forms.ComboBox cmbSkolskaGodina;
         private Controls.UcButton btnProstorije;
         private System.Windows.Forms.Button btnPrikaziPoruke;
+        private Controls.UcButton btnTest;
     }
 }
 

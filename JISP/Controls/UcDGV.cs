@@ -285,7 +285,7 @@ namespace JISP.Controls
                     if (prevBsSort == bs.Sort)
                         bs.Sort = colName + $" DESC, {StandardSort}";
                 }
-                catch (Exception ex) { Classes.Utils.ShowMbox(ex, "Sortiranje"); }
+                catch (Exception ex) { Utils.ShowMbox(ex, "Sortiranje"); }
             }
         }
 
@@ -308,7 +308,7 @@ namespace JISP.Controls
                     CellTextCopied?.Invoke(dgvc, EventArgs.Empty);
                 }
             }
-            catch (Exception ex) { Classes.Utils.ShowMbox(ex, "CopyCellText"); }
+            catch (Exception ex) { Utils.ShowMbox(ex, "CopyCellText"); }
         }
 
         public event EventHandler CellTextCopied;

@@ -150,13 +150,24 @@ namespace JISP.Classes
             frm.WindowState = FormWindowState.Normal;
         }
 
-        public static string GetVersion()
+        private static Version appVersion = null;
+
+        /// <summary>Popunjava se polje appVersion. Ima vrednost samo ako je instalirana aplikacija. null - app pokrenuta iz VS.</summary>
+        public static void CalcVersion()
         {
             try
             {
-                return System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion.ToStringNoZeros();
+#if !DEBUG
+                    appVersion = System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion;
+#endif
             }
-            catch { return "DEBUG verzija"; }
+            catch { }
+        }
+
+        public static string GetVersionName()
+        {
+            CalcVersion();
+            return appVersion == null ? "DEBUG verzija" : appVersion.ToStringNoZeros();
         }
 
         /// <summary>String formatiranje verzije (aplikacije) bez kranjih nula.</summary>
@@ -221,7 +232,7 @@ namespace JISP.Classes
                 await Data.WebApi.PostForFile(filePath, "Upload/PreuzmiDokument"
                     , $"{{'documentId':'{row[docIdColName]}'}}", true);
             }
-            catch (Exception ex) { ShowMbox(ex, "Preuzimanje rešenja"); }
+            catch (Exception ex) { ShowMbox(ex, "Preuzimanje dokumenta"); }
             cell.Value = originalText;
         }
 

@@ -135,7 +135,15 @@ namespace JISP.Data
             }
 
             public override string ToString()
-                => $"{Ime} {Prezime}";
+                //B => $"{Ime} {Prezime}";
+                => ZaposleniString;
+        }
+
+        partial class ZaposlenjaRow
+        {
+            /// <summary>true - VrstaAngazovanja je neka zamena, a nije unet zamenjeni zaposleni.</summary>
+            public bool NedostajeZamenjeni
+                => VrstaAngazovanja.Contains("замена") && IsIdZamenjenogZaposlenogNull();
         }
 
         //partial class ZaposlenjaDataTable

@@ -42,5 +42,10 @@ namespace JISP.Classes
 
         public override int GetHashCode()
             => start.GetHashCode();
+
+        public bool PripadaDatum(DateTime dt)
+        {
+            return new DateTime(Start, 09, 01) <= dt && dt <= new DateTime(Kraj, 08, 31);
+        }
     }
 }

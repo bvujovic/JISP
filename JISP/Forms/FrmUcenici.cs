@@ -110,7 +110,7 @@ namespace JISP.Forms
             try
             {
                 var filter = "";
-                var s = txtFilter.Text;
+                var s = LatinicaCirilica.Lat2Cir(txtFilter.Text);
                 // pretraga razreda i odeljenja
                 if (s.StartsWith("I") || s.StartsWith("V"))
                     filter = $"Razred LIKE '{s}%' OR Odeljenje LIKE '{s}%'";

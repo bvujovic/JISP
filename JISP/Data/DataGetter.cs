@@ -70,7 +70,7 @@ namespace JISP.Data
             }
         }
 
-        public static async Task GetZaposlenjaAsync(Ds.ZaposleniRow zaposleni)
+        public static async Task<List<string>> GetZaposlenjaAsync(Ds.ZaposleniRow zaposleni)
         {
             if (AppData.Ds.SifRazloziPrestankaZap.Count == 0)
                 await GetRazloziPrestankaZapAsync();
@@ -79,6 +79,7 @@ namespace JISP.Data
             var json = await WebApi.PostForJson(WebApi.ReqEnum.Zap_Zaposlenja, body);
             var IDsToRemove = zaposleni.GetZaposlenjaRows().Select(it => it.IdZaposlenja).ToList();
             var zaposlenja = AppData.Ds.Zaposlenja;
+            var brojeviUgovoraZaNedostajuceZamenjene = new List<string>();
             dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
             foreach (var obj in arr)
             {
@@ -108,18 +109,25 @@ namespace JISP.Data
                 if (obj.noksNivo != null)
                     z.NoksNivoNaziv = obj.noksNivo.naziv;
                 z.Aktivan = obj.statusUgovora != null && obj.statusUgovora == 19292;
-                z.ImaDokument = obj.ugovorORaduDokumentNaziv != null && obj.ugovorORaduDokumentNaziv != "";
                 if (obj.razlogPrestankaZaposlenjaId != null)
                 {
                     var r = AppData.Ds.SifRazloziPrestankaZap.FindByIdRazloga((int)obj.razlogPrestankaZaposlenjaId);
                     if (r != null)
                         z.RazlogPrestankaZaposlenja = r.NazivRazloga;
                 }
+                if (z.NedostajeZamenjeni)
+                    brojeviUgovoraZaNedostajuceZamenjene.Add(z.BrojUgovoraORadu);
+                if (obj.ugovorORaduDokumentId != null)
+                {
+                    z.DokumentId = obj.ugovorORaduDokumentId;
+                    z.Dokument = obj.ugovorORaduDokumentNaziv;
+                }
                 if (isNew)
                     zaposlenja.AddZaposlenjaRow(z);
             }
             foreach (var id in IDsToRemove)
                 zaposlenja.RemoveZaposlenjaRow(zaposlenja.FindByIdZaposlenja(id));
+            return brojeviUgovoraZaNedostajuceZamenjene;
         }
 
         /// <summary>Učitava podatke u tabelu SifRazloziPrestankaZap.</summary>
