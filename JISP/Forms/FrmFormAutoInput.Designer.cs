@@ -35,11 +35,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tim = new System.Windows.Forms.Timer(this.components);
-            this.btnSnimanjeStartStop = new System.Windows.Forms.Button();
-            this.btnPustanjeStartStop = new System.Windows.Forms.Button();
+            this.btnSnimanjeStartStop = new JISP.Controls.UcButton();
+            this.btnPustanjeStartStop = new JISP.Controls.UcButton();
             this.numDelay = new System.Windows.Forms.NumericUpDown();
             this.dgvFAFs = new JISP.Controls.UcDGV();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcFafComment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsFormAutoFills = new System.Windows.Forms.BindingSource(this.components);
             this.ds = new JISP.Data.Ds();
             this.dgvItems = new JISP.Controls.UcDGV();
@@ -48,12 +49,14 @@
             this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsFAFItems = new System.Windows.Forms.BindingSource(this.components);
             this.ucExitApp1 = new JISP.Controls.UcExitAppButton();
-            this.btnObrisiStavku = new System.Windows.Forms.Button();
+            this.btnObrisiStavku = new JISP.Controls.UcButton();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
-            this.btnPomeriStavkuNagore = new System.Windows.Forms.Button();
-            this.btnPomeriStavkuNadole = new System.Windows.Forms.Button();
+            this.chkPrikaziKursor = new System.Windows.Forms.CheckBox();
+            this.btnPomeriStavkuNagore = new JISP.Controls.UcButton();
+            this.btnPomeriStavkuNadole = new JISP.Controls.UcButton();
             this.gbPustanje = new System.Windows.Forms.GroupBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.ttPrikaziKursor = new System.Windows.Forms.ToolTip(this.components);
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -74,7 +77,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(13, 113);
+            label1.Location = new System.Drawing.Point(13, 69);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(69, 18);
             label1.TabIndex = 7;
@@ -105,11 +108,13 @@
             // 
             // btnSnimanjeStartStop
             // 
-            this.btnSnimanjeStartStop.Location = new System.Drawing.Point(8, 134);
+            this.btnSnimanjeStartStop.Location = new System.Drawing.Point(8, 90);
             this.btnSnimanjeStartStop.Name = "btnSnimanjeStartStop";
             this.btnSnimanjeStartStop.Size = new System.Drawing.Size(127, 34);
             this.btnSnimanjeStartStop.TabIndex = 0;
             this.btnSnimanjeStartStop.Text = "Start";
+            this.btnSnimanjeStartStop.ToolTipText = "Zaustavljanje ili pokretanje procesa snimanja tj. dodavanja stavki (klikovi) u ru" +
+    "tinu tj. listu";
             this.btnSnimanjeStartStop.UseVisualStyleBackColor = true;
             this.btnSnimanjeStartStop.Click += new System.EventHandler(this.BtnSnimanjeStartStop_Click);
             // 
@@ -120,11 +125,18 @@
             this.btnPustanjeStartStop.Size = new System.Drawing.Size(117, 34);
             this.btnPustanjeStartStop.TabIndex = 1;
             this.btnPustanjeStartStop.Text = "Start";
+            this.btnPustanjeStartStop.ToolTipText = "Zaustavljanje ili pokretanje procesa izvršavanja rutine: izvršavaju se sve stavke" +
+    " do kraja liste počevši od tekuće";
             this.btnPustanjeStartStop.UseVisualStyleBackColor = true;
             this.btnPustanjeStartStop.Click += new System.EventHandler(this.BtnPustanjeStartStop_Click);
             // 
             // numDelay
             // 
+            this.numDelay.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             this.numDelay.Location = new System.Drawing.Point(4, 83);
             this.numDelay.Maximum = new decimal(new int[] {
             5000,
@@ -144,6 +156,7 @@
             0,
             0,
             0});
+            this.numDelay.ValueChanged += new System.EventHandler(this.NumDelay_ValueChanged);
             // 
             // dgvFAFs
             // 
@@ -153,7 +166,8 @@
             this.dgvFAFs.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvFAFs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvFAFs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nameDataGridViewTextBoxColumn});
+            this.nameDataGridViewTextBoxColumn,
+            this.dgvcFafComment});
             this.dgvFAFs.ColumnsForCopyOnClick = null;
             this.dgvFAFs.CopyOnCellClick = false;
             this.dgvFAFs.CtrlDisplayPositionRowCount = null;
@@ -168,10 +182,19 @@
             // 
             // nameDataGridViewTextBoxColumn
             // 
-            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             this.nameDataGridViewTextBoxColumn.HeaderText = "Rutina";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Width = 75;
+            // 
+            // dgvcFafComment
+            // 
+            this.dgvcFafComment.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvcFafComment.DataPropertyName = "Comment";
+            this.dgvcFafComment.HeaderText = "Komentar";
+            this.dgvcFafComment.MinimumWidth = 100;
+            this.dgvcFafComment.Name = "dgvcFafComment";
             // 
             // bsFormAutoFills
             // 
@@ -206,6 +229,7 @@
             this.dgvItems.StandardSort = null;
             this.dgvItems.TabIndex = 4;
             this.dgvItems.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvItems_CellDoubleClick);
+            this.dgvItems.SelectionChanged += new System.EventHandler(this.DgvItems_SelectionChanged);
             // 
             // itemTypeDataGridViewTextBoxColumn
             // 
@@ -256,11 +280,13 @@
             this.btnObrisiStavku.Size = new System.Drawing.Size(127, 34);
             this.btnObrisiStavku.TabIndex = 6;
             this.btnObrisiStavku.Text = "Obriši stavku";
+            this.btnObrisiStavku.ToolTipText = "Brisanje selektovanih stavki";
             this.btnObrisiStavku.UseVisualStyleBackColor = true;
             this.btnObrisiStavku.Click += new System.EventHandler(this.BtnObrisiStavku_Click);
             // 
             // pnlLeft
             // 
+            this.pnlLeft.Controls.Add(this.chkPrikaziKursor);
             this.pnlLeft.Controls.Add(this.btnPomeriStavkuNagore);
             this.pnlLeft.Controls.Add(this.btnPomeriStavkuNadole);
             this.pnlLeft.Controls.Add(this.gbPustanje);
@@ -276,6 +302,16 @@
             this.pnlLeft.Size = new System.Drawing.Size(146, 442);
             this.pnlLeft.TabIndex = 7;
             // 
+            // chkPrikaziKursor
+            // 
+            this.chkPrikaziKursor.AutoSize = true;
+            this.chkPrikaziKursor.Location = new System.Drawing.Point(8, 264);
+            this.chkPrikaziKursor.Name = "chkPrikaziKursor";
+            this.chkPrikaziKursor.Size = new System.Drawing.Size(119, 22);
+            this.chkPrikaziKursor.TabIndex = 12;
+            this.chkPrikaziKursor.Text = "Prikaži kursor";
+            this.chkPrikaziKursor.UseVisualStyleBackColor = true;
+            // 
             // btnPomeriStavkuNagore
             // 
             this.btnPomeriStavkuNagore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -284,6 +320,7 @@
             this.btnPomeriStavkuNagore.Size = new System.Drawing.Size(127, 34);
             this.btnPomeriStavkuNagore.TabIndex = 11;
             this.btnPomeriStavkuNagore.Text = "Pomeri stavku ↑";
+            this.btnPomeriStavkuNagore.ToolTipText = "Pomeranje selektovane stavke u listi za 1 poziciju nagore";
             this.btnPomeriStavkuNagore.UseVisualStyleBackColor = true;
             this.btnPomeriStavkuNagore.Click += new System.EventHandler(this.BtnPomeriStavkuNagore_Click);
             // 
@@ -295,6 +332,7 @@
             this.btnPomeriStavkuNadole.Size = new System.Drawing.Size(127, 34);
             this.btnPomeriStavkuNadole.TabIndex = 10;
             this.btnPomeriStavkuNadole.Text = "Pomeri stavku ↓";
+            this.btnPomeriStavkuNadole.ToolTipText = "Pomeranje selektovane stavke u listi za 1 poziciju nadole";
             this.btnPomeriStavkuNadole.UseVisualStyleBackColor = true;
             this.btnPomeriStavkuNadole.Click += new System.EventHandler(this.BtnPomeriStavkuNadole_Click);
             // 
@@ -304,7 +342,7 @@
             this.gbPustanje.Controls.Add(label2);
             this.gbPustanje.Controls.Add(this.btnPustanjeStartStop);
             this.gbPustanje.Controls.Add(this.numDelay);
-            this.gbPustanje.Location = new System.Drawing.Point(8, 186);
+            this.gbPustanje.Location = new System.Drawing.Point(8, 142);
             this.gbPustanje.Name = "gbPustanje";
             this.gbPustanje.Size = new System.Drawing.Size(127, 116);
             this.gbPustanje.TabIndex = 9;
@@ -329,6 +367,10 @@
             this.splitContainer1.Size = new System.Drawing.Size(392, 442);
             this.splitContainer1.SplitterDistance = 168;
             this.splitContainer1.TabIndex = 8;
+            // 
+            // ttPrikaziKursor
+            // 
+            this.ttPrikaziKursor.ToolTipTitle = "Prikazivanje kursora";
             // 
             // FrmFormAutoInput
             // 
@@ -365,24 +407,27 @@
         #endregion
 
         private System.Windows.Forms.Timer tim;
-        private System.Windows.Forms.Button btnSnimanjeStartStop;
-        private System.Windows.Forms.Button btnPustanjeStartStop;
+        private Controls.UcButton btnSnimanjeStartStop;
+        private Controls.UcButton btnPustanjeStartStop;
         private System.Windows.Forms.NumericUpDown numDelay;
         private Controls.UcDGV dgvFAFs;
         private System.Windows.Forms.BindingSource bsFormAutoFills;
         private Data.Ds ds;
         private Controls.UcDGV dgvItems;
         private System.Windows.Forms.BindingSource bsFAFItems;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private Controls.UcExitAppButton ucExitApp1;
-        private System.Windows.Forms.Button btnObrisiStavku;
+        private Controls.UcButton btnObrisiStavku;
         private Controls.UcLeftPanel pnlLeft;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.DataGridViewTextBoxColumn itemTypeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn contentDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Comment;
         private System.Windows.Forms.GroupBox gbPustanje;
-        private System.Windows.Forms.Button btnPomeriStavkuNagore;
-        private System.Windows.Forms.Button btnPomeriStavkuNadole;
+        private Controls.UcButton btnPomeriStavkuNagore;
+        private Controls.UcButton btnPomeriStavkuNadole;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcFafComment;
+        private System.Windows.Forms.CheckBox chkPrikaziKursor;
+        private System.Windows.Forms.ToolTip ttPrikaziKursor;
     }
 }

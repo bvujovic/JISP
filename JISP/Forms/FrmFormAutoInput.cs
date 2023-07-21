@@ -17,11 +17,15 @@ namespace JISP.Forms
 
         private void FrmFormAutoInput_Load(object sender, EventArgs e)
         {
-            // PromenaSnimanje();
-
-            bsFormAutoFills.DataSource = AppData.Ds;
-            dgvFAFs.SelectionMode = dgvItems.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            this.FormStandardSettings();
+            try
+            {
+                numDelay.Value = int.Parse(AppData.LoadSett(string.Join(":", Name, numDelay.Name), "1000"));
+                bsFormAutoFills.DataSource = AppData.Ds;
+                dgvFAFs.SelectionMode = dgvItems.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                ttPrikaziKursor.SetToolTip(chkPrikaziKursor, "Prikazivanje kursora na zadatoj poziciji za Klik stavke u fazi čekanja (ne snimanja ili puštanja).");
+                this.FormStandardSettings();
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, Text); }
         }
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
@@ -96,6 +100,8 @@ namespace JISP.Forms
 
         private void NamestiKursor(Ds.FAF_ItemsRow item, bool uradiKlik)
         {
+            if (item.ItemType != AkcijaTip.Klik.ToString())
+                return;
             var koordinate = item.Content.Split(new char[] { ',' });
             if (koordinate.Length != 2)
                 throw new Exception("Tacka na ekranu na koju treba kliknuti mora da sadrži 2 koordinate.");
@@ -163,17 +169,15 @@ namespace JISP.Forms
 
         private void BtnPustanjeStartStop_Click(object sender, EventArgs e)
         {
-            PromenaPustanje();
-            //if (tekuciProces == Proces.Pustanje)
-            //{
-            //    tim.Interval = (int)numDelay.Value;
-            //    tim.Start();
-            //}
+            var idx = bsFAFItems.Position;
+            if (pustanje == ProcesKomanda.Stop ||
+                (idx == 0 || Utils.ShowMboxYesNo($"Selektovana stavka je {idx + 1} po redu. Da li ste sigurni da želite da pokrenete rutinu od te stavke?"
+                , "Pokretanje rutine (početna pozicija)") == DialogResult.Yes))
+                PromenaPustanje();
         }
 
         private void DgvItems_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            //B if (e.RowIndex != -1 && bsFAFItems.Position < bsFAFItems.Count - 1)
             if (e.RowIndex != -1 && !dgvItems.SelectedRows[0].IsNewRow)
                 try
                 {
@@ -205,9 +209,9 @@ namespace JISP.Forms
         private void BtnPomeriStavkuNagore_Click(object sender, EventArgs e)
         {
             var idxRow = bsFAFItems.Position;
-            if (dgvItems.SelectedRows[0].IsNewRow)
-                return;
             if (idxRow == 0)
+                return;
+            if (dgvItems.SelectedRows.Count != 1 || dgvItems.SelectedRows[0].IsNewRow)
                 return;
             for (int i = 0; i <= 2; i++)
                 ZameniVrednostiCelija(i, -1);
@@ -224,13 +228,27 @@ namespace JISP.Forms
 
         private void BtnPomeriStavkuNadole_Click(object sender, EventArgs e)
         {
-            if (dgvItems.SelectedRows[0].IsNewRow)
-                return;
             if (bsFAFItems.Position == bsFAFItems.Count - 1)
+                return;
+            if (dgvItems.SelectedRows.Count != 1 || dgvItems.SelectedRows[0].IsNewRow)
                 return;
             for (int i = 0; i <= 2; i++)
                 ZameniVrednostiCelija(i, +1);
             bsFAFItems.MoveNext();
+        }
+
+        private void DgvItems_SelectionChanged(object sender, EventArgs e)
+        {
+            if (tekuciProces != Proces.Cekanje || dgvItems.CurrentRow == null || !chkPrikaziKursor.Checked)
+                return;
+            var item = dgvItems.CurrDataRow<Ds.FAF_ItemsRow>();
+            if (item.ItemType == AkcijaTip.Klik.ToString())
+                NamestiKursor(item, false);
+        }
+
+        private void NumDelay_ValueChanged(object sender, EventArgs e)
+        {
+            AppData.SaveSett(string.Join(":", Name, numDelay.Name), numDelay.Value.ToString());
         }
     }
 }

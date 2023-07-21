@@ -46,6 +46,7 @@
             this.btnProstorije = new JISP.Controls.UcButton();
             this.btnPrikaziPoruke = new System.Windows.Forms.Button();
             this.btnTest = new JISP.Controls.UcButton();
+            this.btnFormAutoInput = new JISP.Controls.UcButton();
             label2 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -55,7 +56,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(69, 205);
+            label2.Location = new System.Drawing.Point(69, 227);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(143, 18);
             label2.TabIndex = 6;
@@ -64,7 +65,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(69, 259);
+            label1.Location = new System.Drawing.Point(69, 281);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(120, 18);
             label1.TabIndex = 8;
@@ -73,7 +74,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(69, 286);
+            label3.Location = new System.Drawing.Point(69, 308);
             label3.Name = "label3";
             label3.Size = new System.Drawing.Size(118, 18);
             label3.TabIndex = 10;
@@ -82,7 +83,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new System.Drawing.Point(69, 232);
+            label4.Location = new System.Drawing.Point(69, 254);
             label4.Name = "label4";
             label4.Size = new System.Drawing.Size(60, 18);
             label4.TabIndex = 6;
@@ -91,7 +92,7 @@
             // lblApiTokenCaption
             // 
             this.lblApiTokenCaption.AutoSize = true;
-            this.lblApiTokenCaption.Location = new System.Drawing.Point(69, 179);
+            this.lblApiTokenCaption.Location = new System.Drawing.Point(69, 201);
             this.lblApiTokenCaption.Name = "lblApiTokenCaption";
             this.lblApiTokenCaption.Size = new System.Drawing.Size(80, 18);
             this.lblApiTokenCaption.TabIndex = 4;
@@ -101,20 +102,20 @@
             // 
             this.lblApiToken.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblApiToken.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblApiToken.Location = new System.Drawing.Point(210, 176);
+            this.lblApiToken.Location = new System.Drawing.Point(210, 198);
             this.lblApiToken.Name = "lblApiToken";
             this.lblApiToken.Size = new System.Drawing.Size(338, 24);
-            this.lblApiToken.TabIndex = 4;
+            this.lblApiToken.TabIndex = 6;
             this.lblApiToken.Click += new System.EventHandler(this.LblApiToken_Click);
             // 
             // lblDataFolder
             // 
             this.lblDataFolder.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblDataFolder.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblDataFolder.Location = new System.Drawing.Point(210, 202);
+            this.lblDataFolder.Location = new System.Drawing.Point(210, 224);
             this.lblDataFolder.Name = "lblDataFolder";
             this.lblDataFolder.Size = new System.Drawing.Size(338, 24);
-            this.lblDataFolder.TabIndex = 5;
+            this.lblDataFolder.TabIndex = 7;
             this.lblDataFolder.Click += new System.EventHandler(this.LblDataFolder_Click);
             // 
             // cmbBrowser
@@ -124,18 +125,18 @@
             this.cmbBrowser.Items.AddRange(new object[] {
             "Chrome",
             "MS Edge"});
-            this.cmbBrowser.Location = new System.Drawing.Point(210, 256);
+            this.cmbBrowser.Location = new System.Drawing.Point(210, 278);
             this.cmbBrowser.Name = "cmbBrowser";
             this.cmbBrowser.Size = new System.Drawing.Size(121, 25);
-            this.cmbBrowser.TabIndex = 6;
+            this.cmbBrowser.TabIndex = 9;
             this.cmbBrowser.SelectedIndexChanged += new System.EventHandler(this.CmbBrowser_SelectedIndexChanged);
             // 
             // btnBackup
             // 
-            this.btnBackup.Location = new System.Drawing.Point(413, 90);
+            this.btnBackup.Location = new System.Drawing.Point(413, 36);
             this.btnBackup.Name = "btnBackup";
             this.btnBackup.Size = new System.Drawing.Size(135, 48);
-            this.btnBackup.TabIndex = 3;
+            this.btnBackup.TabIndex = 4;
             this.btnBackup.Text = "BackUp";
             this.btnBackup.ToolTipText = "Čuvanje podataka iz DataSet-a u posebnom XML fajlu.";
             this.btnBackup.UseVisualStyleBackColor = true;
@@ -143,10 +144,10 @@
             // 
             // btnZaposleni
             // 
-            this.btnZaposleni.Location = new System.Drawing.Point(69, 90);
+            this.btnZaposleni.Location = new System.Drawing.Point(69, 36);
             this.btnZaposleni.Name = "btnZaposleni";
             this.btnZaposleni.Size = new System.Drawing.Size(135, 48);
-            this.btnZaposleni.TabIndex = 1;
+            this.btnZaposleni.TabIndex = 0;
             this.btnZaposleni.Text = "&Zaposleni";
             this.btnZaposleni.ToolTipText = null;
             this.btnZaposleni.UseVisualStyleBackColor = true;
@@ -154,10 +155,10 @@
             // 
             // btnUcenici
             // 
-            this.btnUcenici.Location = new System.Drawing.Point(69, 36);
+            this.btnUcenici.Location = new System.Drawing.Point(69, 90);
             this.btnUcenici.Name = "btnUcenici";
             this.btnUcenici.Size = new System.Drawing.Size(135, 48);
-            this.btnUcenici.TabIndex = 0;
+            this.btnUcenici.TabIndex = 1;
             this.btnUcenici.Text = "&Učenici";
             this.btnUcenici.ToolTipText = null;
             this.btnUcenici.UseVisualStyleBackColor = true;
@@ -170,15 +171,15 @@
             this.cmbSkolskaGodina.Items.AddRange(new object[] {
             "Chrome",
             "MS Edge"});
-            this.cmbSkolskaGodina.Location = new System.Drawing.Point(210, 283);
+            this.cmbSkolskaGodina.Location = new System.Drawing.Point(210, 305);
             this.cmbSkolskaGodina.Name = "cmbSkolskaGodina";
             this.cmbSkolskaGodina.Size = new System.Drawing.Size(121, 25);
-            this.cmbSkolskaGodina.TabIndex = 7;
+            this.cmbSkolskaGodina.TabIndex = 10;
             this.cmbSkolskaGodina.SelectedIndexChanged += new System.EventHandler(this.CmbSkolskaGodina_SelectedIndexChanged);
             // 
             // btnProstorije
             // 
-            this.btnProstorije.Location = new System.Drawing.Point(413, 36);
+            this.btnProstorije.Location = new System.Drawing.Point(241, 36);
             this.btnProstorije.Name = "btnProstorije";
             this.btnProstorije.Size = new System.Drawing.Size(135, 48);
             this.btnProstorije.TabIndex = 2;
@@ -189,31 +190,43 @@
             // 
             // btnPrikaziPoruke
             // 
-            this.btnPrikaziPoruke.Location = new System.Drawing.Point(209, 228);
+            this.btnPrikaziPoruke.Location = new System.Drawing.Point(209, 250);
             this.btnPrikaziPoruke.Name = "btnPrikaziPoruke";
             this.btnPrikaziPoruke.Size = new System.Drawing.Size(121, 26);
-            this.btnPrikaziPoruke.TabIndex = 11;
+            this.btnPrikaziPoruke.TabIndex = 8;
             this.btnPrikaziPoruke.Text = "Prikaži poruke";
             this.btnPrikaziPoruke.UseVisualStyleBackColor = true;
             this.btnPrikaziPoruke.Click += new System.EventHandler(this.BtnPrikaziPoruke_Click);
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(413, 144);
+            this.btnTest.Location = new System.Drawing.Point(413, 109);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(135, 29);
-            this.btnTest.TabIndex = 12;
+            this.btnTest.TabIndex = 5;
             this.btnTest.Text = "Test";
             this.btnTest.ToolTipText = "Čuvanje podataka iz DataSet-a u posebnom XML fajlu.";
             this.btnTest.UseVisualStyleBackColor = true;
             this.btnTest.Visible = false;
             this.btnTest.Click += new System.EventHandler(this.BtnTest_Click);
             // 
+            // btnFormAutoInput
+            // 
+            this.btnFormAutoInput.Location = new System.Drawing.Point(241, 90);
+            this.btnFormAutoInput.Name = "btnFormAutoInput";
+            this.btnFormAutoInput.Size = new System.Drawing.Size(135, 48);
+            this.btnFormAutoInput.TabIndex = 3;
+            this.btnFormAutoInput.Text = "&Form Auto Input";
+            this.btnFormAutoInput.ToolTipText = "Automatsko, šablonsko popunjavanje formi\r\n";
+            this.btnFormAutoInput.UseVisualStyleBackColor = true;
+            this.btnFormAutoInput.Click += new System.EventHandler(this.BtnFormAutoInput_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(617, 340);
+            this.ClientSize = new System.Drawing.Size(617, 364);
+            this.Controls.Add(this.btnFormAutoInput);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.btnPrikaziPoruke);
             this.Controls.Add(this.btnProstorije);
@@ -257,6 +270,7 @@
         private Controls.UcButton btnProstorije;
         private System.Windows.Forms.Button btnPrikaziPoruke;
         private Controls.UcButton btnTest;
+        private Controls.UcButton btnFormAutoInput;
     }
 }
 

@@ -56,7 +56,6 @@ namespace JISP.Forms
                 Utils.ShowMbox(ex, "Učitavanje podataka iz XMLa");
                 Close();
             }
-
             ttDataFolder.SetToolTip(lblDataFolder, "Klik za otvaranje foldera sa podacima");
             ttApiToken.SetToolTip(lblApiToken, "Klik za paste Web API Token-a (Copy request headers)");
             lblApiToken.Text = WebApi.TokenDisplay;
@@ -118,6 +117,11 @@ namespace JISP.Forms
         private void BtnBackup_Click(object sender, EventArgs e)
         {
             BackupData.CreateBackup();
+        }
+
+        private void BtnFormAutoInput_Click(object sender, EventArgs e)
+        {
+            Utils.ShowForm(typeof(FrmFormAutoInput));
         }
 
         public void FrmChild_FormClosed(object sender, FormClosedEventArgs e)
@@ -185,8 +189,6 @@ namespace JISP.Forms
         {
             try
             {
-                Utils.ShowForm(typeof(FrmFormAutoInput));
-
                 //                var sb = new StringBuilder();
                 //                foreach (var z in AppData.Ds.Zaposleni)
                 //                {
