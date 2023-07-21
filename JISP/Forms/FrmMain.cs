@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
@@ -182,43 +181,11 @@ namespace JISP.Forms
             new FrmPoruke().ShowDialog();
         }
 
-        [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
-        public static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint cButtons, uint dwExtraInfo);
-        //Mouse actions
-        private const int MOUSEEVENTF_LEFTDOWN = 0x02;
-        private const int MOUSEEVENTF_LEFTUP = 0x04;
-        private const int MOUSEEVENTF_RIGHTDOWN = 0x08;
-        private const int MOUSEEVENTF_RIGHTUP = 0x10;
-
-        public void DoMouseClick()
-        {
-            //Call the imported function with the cursor's current position
-            uint x = (uint)Cursor.Position.X;
-            uint y = (uint)Cursor.Position.Y;
-            mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, x, y, 0, 0);
-        }
-
         private void BtnTest_Click(object sender, EventArgs e)
         {
             try
             {
-                // gde se nalazi kursor misa na ekranu
-                //Console.WriteLine(Cursor.Position);
-
-                // postaviti kursor misa na datu poziciju
-                //Cursor.Position = new System.Drawing.Point(0, 0);
-                //System.Threading.Thread.Sleep(1000);
-                //var bounds = Screen.PrimaryScreen.Bounds;
-                //Cursor.Position = new System.Drawing.Point(bounds.Width / 2, bounds.Height / 2);
-
-                // klik na datu poziciju
-                //Cursor.Position = new System.Drawing.Point(0, 0);
-                //DoMouseClick();
-
-                // upisati dati tekst u aktivnu aplikaciju
-                //System.Threading.Thread.Sleep(1000);
-                //SendKeys.SendWait("{F5}");
-                //SendKeys.SendWait("Pera");
+                Utils.ShowForm(typeof(FrmFormAutoInput));
 
                 //                var sb = new StringBuilder();
                 //                foreach (var z in AppData.Ds.Zaposleni)

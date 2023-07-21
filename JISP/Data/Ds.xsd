@@ -110,8 +110,8 @@
               <xs:element name="RazlogPrestankaZaposlenja" msprop:Generator_ColumnPropNameInTable="RazlogPrestankaZaposlenjaColumn" msprop:Generator_ColumnPropNameInRow="RazlogPrestankaZaposlenja" msprop:Generator_UserColumnName="RazlogPrestankaZaposlenja" msprop:Generator_ColumnVarNameInTable="columnRazlogPrestankaZaposlenja" type="xs:string" minOccurs="0" />
               <xs:element name="IdZamenjenogZaposlenog" msprop:Generator_ColumnPropNameInTable="IdZamenjenogZaposlenogColumn" msprop:Generator_ColumnPropNameInRow="IdZamenjenogZaposlenog" msprop:Generator_UserColumnName="IdZamenjenogZaposlenog" msprop:Generator_ColumnVarNameInTable="columnIdZamenjenogZaposlenog" type="xs:int" minOccurs="0" />
               <xs:element name="_ZamenjeniZaposleni" msdata:ReadOnly="true" msdata:Expression="parent(Zamenjeni_Zaposleni).ZaposleniString" msprop:Generator_ColumnPropNameInTable="_ZamenjeniZaposleniColumn" msprop:Generator_ColumnPropNameInRow="_ZamenjeniZaposleni" msprop:Generator_UserColumnName="_ZamenjeniZaposleni" msprop:Generator_ColumnVarNameInTable="column_ZamenjeniZaposleni" type="xs:string" minOccurs="0" />
-              <xs:element name="Dokument" msprop:Generator_UserColumnName="Dokument" msprop:Generator_ColumnPropNameInTable="DokumentColumn" msprop:Generator_ColumnPropNameInRow="Dokument" msprop:Generator_ColumnVarNameInTable="columnDokument" type="xs:string" minOccurs="0" />
-              <xs:element name="DokumentId" msprop:Generator_UserColumnName="DokumentId" msprop:Generator_ColumnPropNameInTable="DokumentIdColumn" msprop:Generator_ColumnPropNameInRow="DokumentId" msprop:Generator_ColumnVarNameInTable="columnDokumentId" type="xs:string" minOccurs="0" />
+              <xs:element name="Dokument" msprop:Generator_ColumnPropNameInTable="DokumentColumn" msprop:Generator_ColumnPropNameInRow="Dokument" msprop:Generator_UserColumnName="Dokument" msprop:Generator_ColumnVarNameInTable="columnDokument" type="xs:string" minOccurs="0" />
+              <xs:element name="DokumentId" msprop:Generator_ColumnPropNameInTable="DokumentIdColumn" msprop:Generator_ColumnPropNameInRow="DokumentId" msprop:Generator_UserColumnName="DokumentId" msprop:Generator_ColumnVarNameInTable="columnDokumentId" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -388,6 +388,25 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="FormAutoFills" msprop:Generator_RowClassName="FormAutoFillsRow" msprop:Generator_RowEvHandlerName="FormAutoFillsRowChangeEventHandler" msprop:Generator_RowDeletedName="FormAutoFillsRowDeleted" msprop:Generator_RowDeletingName="FormAutoFillsRowDeleting" msprop:Generator_RowEvArgName="FormAutoFillsRowChangeEvent" msprop:Generator_TablePropName="FormAutoFills" msprop:Generator_RowChangedName="FormAutoFillsRowChanged" msprop:Generator_UserTableName="FormAutoFills" msprop:Generator_RowChangingName="FormAutoFillsRowChanging" msprop:Generator_TableClassName="FormAutoFillsDataTable" msprop:Generator_TableVarName="tableFormAutoFills">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdFormAutoFill" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="IdFormAutoFill" msprop:Generator_ColumnPropNameInTable="IdFormAutoFillColumn" msprop:Generator_ColumnPropNameInRow="IdFormAutoFill" msprop:Generator_ColumnVarNameInTable="columnIdFormAutoFill" type="xs:int" />
+              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnVarNameInTable="columnName" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="FAF_Items" msprop:Generator_RowClassName="FAF_ItemsRow" msprop:Generator_RowEvHandlerName="FAF_ItemsRowChangeEventHandler" msprop:Generator_RowDeletedName="FAF_ItemsRowDeleted" msprop:Generator_RowDeletingName="FAF_ItemsRowDeleting" msprop:Generator_RowEvArgName="FAF_ItemsRowChangeEvent" msprop:Generator_TablePropName="FAF_Items" msprop:Generator_RowChangedName="FAF_ItemsRowChanged" msprop:Generator_UserTableName="FAF_Items" msprop:Generator_RowChangingName="FAF_ItemsRowChanging" msprop:Generator_TableClassName="FAF_ItemsDataTable" msprop:Generator_TableVarName="tableFAF_Items">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdItem" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="IdItem" msprop:Generator_ColumnPropNameInTable="IdItemColumn" msprop:Generator_ColumnPropNameInRow="IdItem" msprop:Generator_ColumnVarNameInTable="columnIdItem" type="xs:int" />
+              <xs:element name="ItemType" msprop:Generator_UserColumnName="ItemType" msprop:Generator_ColumnPropNameInTable="ItemTypeColumn" msprop:Generator_ColumnPropNameInRow="ItemType" msprop:Generator_ColumnVarNameInTable="columnItemType" type="xs:string" />
+              <xs:element name="Content" msprop:Generator_UserColumnName="Content" msprop:Generator_ColumnPropNameInTable="ContentColumn" msprop:Generator_ColumnPropNameInRow="Content" msprop:Generator_ColumnVarNameInTable="columnContent" type="xs:string" />
+              <xs:element name="Comment" msprop:Generator_ColumnPropNameInRow="Comment" msprop:Generator_ColumnPropNameInTable="CommentColumn" msprop:Generator_ColumnVarNameInTable="columnComment" msprop:Generator_UserColumnName="Comment" type="xs:string" minOccurs="0" />
+              <xs:element name="IdFormAutoFill" msprop:Generator_UserColumnName="IdFormAutoFill" msprop:Generator_ColumnPropNameInTable="IdFormAutoFillColumn" msprop:Generator_ColumnPropNameInRow="IdFormAutoFill" msprop:Generator_ColumnVarNameInTable="columnIdFormAutoFill" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint2" msdata:PrimaryKey="true">
@@ -474,6 +493,18 @@
       <xs:selector xpath=".//mstns:Obrazovanja" />
       <xs:field xpath="mstns:IdObrazovanja" />
     </xs:unique>
+    <xs:unique name="FormAutoFills_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:FormAutoFills" />
+      <xs:field xpath="mstns:IdFormAutoFill" />
+    </xs:unique>
+    <xs:unique name="FormAutoFills_Constraint2" msdata:ConstraintName="Constraint2">
+      <xs:selector xpath=".//mstns:FormAutoFills" />
+      <xs:field xpath="mstns:Name" />
+    </xs:unique>
+    <xs:unique name="FAF_Items_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:FAF_Items" />
+      <xs:field xpath="mstns:IdItem" />
+    </xs:unique>
     <xs:keyref name="Zaposleni_ObracunZarada" refer="Constraint1" msprop:rel_Generator_UserParentTable="Zaposleni" msprop:rel_Generator_UserChildTable="ObracunZarada" msprop:rel_Generator_RelationVarName="relationZaposleni_ObracunZarada" msprop:rel_Generator_ChildPropName="GetObracunZaradaRows" msprop:rel_Generator_ParentPropName="ZaposleniRow" msprop:rel_Generator_UserRelationName="Zaposleni_ObracunZarada" msdata:DeleteRule="None">
       <xs:selector xpath=".//mstns:ObracunZarada" />
       <xs:field xpath="mstns:IdZaposlenog" />
@@ -494,6 +525,7 @@
       <msdata:Relationship name="Prostorije_Racunari" msdata:parent="Prostorije" msdata:child="Racunari" msdata:parentkey="IdProstorije" msdata:childkey="IdProstorije" msprop:Generator_UserParentTable="Prostorije" msprop:Generator_UserChildTable="Racunari" msprop:Generator_RelationVarName="relationProstorije_Racunari" msprop:Generator_ChildPropName="GetRacunariRows" msprop:Generator_UserRelationName="Prostorije_Racunari" msprop:Generator_ParentPropName="ProstorijeRow" />
       <msdata:Relationship name="Zaposleni_Obrazovanja" msdata:parent="Zaposleni" msdata:child="Obrazovanja" msdata:parentkey="IdZaposlenog" msdata:childkey="IdZaposlenog" msprop:Generator_UserParentTable="Zaposleni" msprop:Generator_UserChildTable="Obrazovanja" msprop:Generator_RelationVarName="relationZaposleni_Obrazovanja" msprop:Generator_ChildPropName="GetObrazovanjaRows" msprop:Generator_UserRelationName="Zaposleni_Obrazovanja" msprop:Generator_ParentPropName="ZaposleniRow" />
       <msdata:Relationship name="Zamenjeni_Zaposleni" msdata:parent="Zaposleni" msdata:child="Zaposlenja" msdata:parentkey="IdZaposlenog" msdata:childkey="IdZamenjenogZaposlenog" msprop:Generator_UserParentTable="Zaposleni" msprop:Generator_UserChildTable="Zaposlenja" msprop:Generator_RelationVarName="relationZamenjeni_Zaposleni" msprop:Generator_ChildPropName="GetZaposlenjaRowsByZamenjeni_Zaposleni" msprop:Generator_ParentPropName="ZaposleniRowByZamenjeni_Zaposleni" msprop:Generator_UserRelationName="Zamenjeni_Zaposleni" />
+      <msdata:Relationship name="FormAutoFills_FAF_Items" msdata:parent="FormAutoFills" msdata:child="FAF_Items" msdata:parentkey="IdFormAutoFill" msdata:childkey="IdFormAutoFill" msprop:Generator_UserParentTable="FormAutoFills" msprop:Generator_UserChildTable="FAF_Items" msprop:Generator_RelationVarName="relationFormAutoFills_FAF_Items" msprop:Generator_ChildPropName="GetFAF_ItemsRows" msprop:Generator_UserRelationName="FormAutoFills_FAF_Items" msprop:Generator_ParentPropName="FormAutoFillsRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

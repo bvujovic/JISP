@@ -139,6 +139,8 @@ namespace JISP.Classes
                     frm = new FrmUcenici();
                 if (typForm == typeof(FrmProstorije))
                     frm = new FrmProstorije();
+                if (typForm == typeof(FrmFormAutoInput))
+                    frm = new FrmFormAutoInput();
 
                 frm.StartPosition = FormStartPosition.CenterScreen;
                 frm.FormClosed += frmMain.FrmChild_FormClosed;

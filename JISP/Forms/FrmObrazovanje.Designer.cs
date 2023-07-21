@@ -58,8 +58,6 @@
             this.NazivSkole = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.JezikNaKomJeStecenoObrazovanje = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvcDokument = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.bsObrazovanja = new System.Windows.Forms.BindingSource(this.components);
-            this.ds = new JISP.Data.Ds();
             lblFilterZaposleni = new System.Windows.Forms.Label();
             this.pnlLeft.SuspendLayout();
             this.gbFilter.SuspendLayout();
