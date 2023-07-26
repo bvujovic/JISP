@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using JISP.Classes;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Data;
 
 namespace JISP.Data
 {
@@ -210,6 +212,32 @@ namespace JISP.Data
             }
         }
 
+        /// <summary>Dohvatanje taberle-sifarnika (Drzave, NoksNivoi...) potrebnih za podatke o obrazovanju.</summary>
+        public static async Task GetObrazovanjaTempAsync()
+        {
+            var ds = AppData.DsTemp;
+            var tabele = new[] { "Drzava", "Jezici", "KLASNOKS", "NoksNivoi", "StepenStrucneSpreme" };
+            foreach (var tbl in tabele)
+            {
+                if (ds.Tables[tbl].Rows.Count == 0)
+                {
+                    var url = tbl != "NoksNivoi"
+                        ? "https://jisp.mpn.gov.rs/webapi/api/sifarnik/naziv/"
+                        : "https://jisp.mpn.gov.rs/webapi/api/sifarnik/sa-ekstenzijom-po-nazivu-tipa/";
+                    var json = await WebApi.GetJson(url + tbl);
+                    dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
+                    foreach (var obj in arr)
+                        ds.Tables[tbl].Rows.Add((int)obj.id, (string)obj.naziv);
+                }
+            }
+            var j = ds.Jezici.FirstOrDefault(it => it.naziv == "Српски језик");
+            if (j != null)
+                j.naziv = "Српски";
+            var d = ds.Drzava.FirstOrDefault(it => it.naziv == "Република Србија");
+            if (d != null)
+                d.naziv = "Србија";
+        }
+
         /// <summary>Dohvatanje dela podataka u tabelu Obrazovanja.</summary>
         public static async Task GetObrazovanjaAsync(int idZaposlenog)
         {
@@ -227,16 +255,16 @@ namespace JISP.Data
                 o.IdZaposlenog = idZaposlenog;
                 o.IdObrazovanja = obj.id;
                 ids.Add(o.IdObrazovanja);
-                o.NoksNivo = obj.noksNivo != null;
-                o.Klasnoks = obj.klasnoks != null;
-                o.Stepen = obj.stepen != null;
+                PostaviVrednostZaSifru(obj, o, "NoksNivo", "NoksNivoi");
+                PostaviVrednostZaSifru(obj, o, "Klasnoks", "KLASNOKS");
+                PostaviVrednostZaSifru(obj, o, "Stepen", "StepenStrucneSpreme");
                 o.NazivSteceneKvalifikacije = obj.nazivSteceneKvalifikacije;
                 o.StrucniAkademskiNazivIzDiplome = obj.strucniAkademskiNazivIzDiplome;
                 o.DatumSticanjaDiplome = obj.datumSticanjaDiplome;
-                o.DrzavaZavrseneSkole = obj.drzavaZavrseneSkole;
+                PostaviVrednostZaSifru(obj, o, "DrzavaZavrseneSkole", "Drzava");
                 o.MestoZavrseneSkoleNaziv = obj.mestoZavrseneSkoleSlobodanUnos;
                 o.NazivSkole = obj.nazivSkole;
-                o.JezikNaKomJeStecenoObrazovanje = obj.jezikNaKomJeStecenoObrazovanje != null;
+                PostaviVrednostZaSifru(obj, o, "JezikNaKomJeStecenoObrazovanje", "Jezici");
                 o.DokumentId = obj.dokumentId;
                 o.DokumentNaziv = obj.dokumentNaziv;
                 if (novo)
@@ -246,6 +274,21 @@ namespace JISP.Data
             var zaBrisanje = AppData.Ds.Obrazovanja.Where(it => it.IdZaposlenog == idZaposlenog && !ids.Contains(it.IdObrazovanja)).ToArray();
             foreach (var obr in zaBrisanje)
                 AppData.Ds.Obrazovanja.RemoveObrazovanjaRow(obr);
+        }
+
+        private static void PostaviVrednostZaSifru(dynamic obj, Ds.ObrazovanjaRow o, string kolona, string tabela)
+        {
+            var objCol = char.ToLower(kolona[0]) + kolona.Substring(1);
+            if (obj[objCol] != null)
+            {
+                var row = AppData.DsTemp.Tables[tabela].Rows.Find((int)obj[objCol]);
+                if (row == null)
+                    o[kolona] = DBNull.Value;
+                else
+                    o[kolona] = row["naziv"];
+            }
+            else
+                o[kolona] = DBNull.Value;
         }
 
         /// <summary>Učitava podateke u tabelu Sistematizacija.</summary>

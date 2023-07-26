@@ -29,6 +29,7 @@ namespace JISP.Forms
             bsObrazovanja.DataSource = AppData.Ds.Obrazovanja;
             bsObrazovanja.Filter = "1=1";
             dgvObrazovanja.StandardSort = bsObrazovanja.Sort;
+            dgvObrazovanja.LoadSettings();
             this.FormStandardSettings();
         }
 
@@ -48,6 +49,7 @@ namespace JISP.Forms
                 foreach (var zaposleni in selZaposleni)
                     await (sender as Controls.UcButton).RunAsync(async () =>
                 {
+                    await DataGetter.GetObrazovanjaTempAsync();
                     lblStatus.Text = zaposleni.ToString();
                     await DataGetter.GetObrazovanjaAsync(zaposleni.IdZaposlenog);
                 });
@@ -60,9 +62,10 @@ namespace JISP.Forms
         {
             try
             {
-                bsObrazovanja.Filter = $"_Zaposleni LIKE '%{txtFilterZaposleni.Text}%'";
+                var s = LatinicaCirilica.Lat2Cir(txtFilterZaposleni.Text);
+                bsObrazovanja.Filter = $"_Zaposleni LIKE '%{s}%'";
             }
-            catch (Exception ex) { Utils.ShowMbox(ex, this.Text); }
+            catch (Exception ex) { Utils.ShowMbox(ex, Text); }
         }
 
         private async void DgvObrazovanja_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -96,6 +99,11 @@ namespace JISP.Forms
                 Utils.ShowMbox(string.Join(Environment.NewLine, sortedZaps), caption, true);
             }
             catch (Exception ex) { Utils.ShowMbox(ex, btnNedostajucaObrazovanja.ToolTipText); }
+        }
+
+        private void FrmObrazovanje_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            dgvObrazovanja.SaveSettings();
         }
     }
 }

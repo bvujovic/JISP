@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsTemp" targetNamespace="http://tempuri.org/DsTemp.xsd" xmlns:mstns="http://tempuri.org/DsTemp.xsd" xmlns="http://tempuri.org/DsTemp.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DsTemp" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DsTemp" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DsTemp">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Drzava" msprop:Generator_RowEvHandlerName="DrzavaRowChangeEventHandler" msprop:Generator_RowDeletedName="DrzavaRowDeleted" msprop:Generator_RowDeletingName="DrzavaRowDeleting" msprop:Generator_RowEvArgName="DrzavaRowChangeEvent" msprop:Generator_TablePropName="Drzava" msprop:Generator_RowChangedName="DrzavaRowChanged" msprop:Generator_UserTableName="Drzava" msprop:Generator_RowChangingName="DrzavaRowChanging" msprop:Generator_RowClassName="DrzavaRow" msprop:Generator_TableClassName="DrzavaDataTable" msprop:Generator_TableVarName="tableDrzava">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnVarNameInTable="columnid" type="xs:int" />
+              <xs:element name="naziv" msprop:Generator_ColumnPropNameInTable="nazivColumn" msprop:Generator_ColumnPropNameInRow="naziv" msprop:Generator_UserColumnName="naziv" msprop:Generator_ColumnVarNameInTable="columnnaziv" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Jezici" msprop:Generator_RowEvHandlerName="JeziciRowChangeEventHandler" msprop:Generator_RowDeletedName="JeziciRowDeleted" msprop:Generator_RowDeletingName="JeziciRowDeleting" msprop:Generator_RowEvArgName="JeziciRowChangeEvent" msprop:Generator_TablePropName="Jezici" msprop:Generator_RowChangedName="JeziciRowChanged" msprop:Generator_UserTableName="Jezici" msprop:Generator_RowChangingName="JeziciRowChanging" msprop:Generator_RowClassName="JeziciRow" msprop:Generator_TableClassName="JeziciDataTable" msprop:Generator_TableVarName="tableJezici">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnVarNameInTable="columnid" type="xs:int" />
+              <xs:element name="naziv" msprop:Generator_ColumnPropNameInTable="nazivColumn" msprop:Generator_ColumnPropNameInRow="naziv" msprop:Generator_UserColumnName="naziv" msprop:Generator_ColumnVarNameInTable="columnnaziv" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="KLASNOKS" msprop:Generator_RowClassName="KLASNOKSRow" msprop:Generator_RowEvHandlerName="KLASNOKSRowChangeEventHandler" msprop:Generator_RowDeletedName="KLASNOKSRowDeleted" msprop:Generator_RowDeletingName="KLASNOKSRowDeleting" msprop:Generator_RowEvArgName="KLASNOKSRowChangeEvent" msprop:Generator_TablePropName="KLASNOKS" msprop:Generator_RowChangedName="KLASNOKSRowChanged" msprop:Generator_UserTableName="KLASNOKS" msprop:Generator_RowChangingName="KLASNOKSRowChanging" msprop:Generator_TableClassName="KLASNOKSDataTable" msprop:Generator_TableVarName="tableKLASNOKS">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnVarNameInTable="columnid" type="xs:int" />
+              <xs:element name="naziv" msprop:Generator_UserColumnName="naziv" msprop:Generator_ColumnPropNameInTable="nazivColumn" msprop:Generator_ColumnPropNameInRow="naziv" msprop:Generator_ColumnVarNameInTable="columnnaziv" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="NoksNivoi" msprop:Generator_RowEvHandlerName="NoksNivoiRowChangeEventHandler" msprop:Generator_RowDeletedName="NoksNivoiRowDeleted" msprop:Generator_RowDeletingName="NoksNivoiRowDeleting" msprop:Generator_RowEvArgName="NoksNivoiRowChangeEvent" msprop:Generator_TablePropName="NoksNivoi" msprop:Generator_RowChangedName="NoksNivoiRowChanged" msprop:Generator_RowChangingName="NoksNivoiRowChanging" msprop:Generator_TableClassName="NoksNivoiDataTable" msprop:Generator_RowClassName="NoksNivoiRow" msprop:Generator_TableVarName="tableNoksNivoi" msprop:Generator_UserTableName="NoksNivoi">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_UserColumnName="id" type="xs:int" />
+              <xs:element name="naziv" msprop:Generator_ColumnPropNameInRow="naziv" msprop:Generator_ColumnPropNameInTable="nazivColumn" msprop:Generator_ColumnVarNameInTable="columnnaziv" msprop:Generator_UserColumnName="naziv" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="StepenStrucneSpreme" msprop:Generator_RowEvHandlerName="StepenStrucneSpremeRowChangeEventHandler" msprop:Generator_RowDeletedName="StepenStrucneSpremeRowDeleted" msprop:Generator_RowDeletingName="StepenStrucneSpremeRowDeleting" msprop:Generator_RowEvArgName="StepenStrucneSpremeRowChangeEvent" msprop:Generator_TablePropName="StepenStrucneSpreme" msprop:Generator_RowChangedName="StepenStrucneSpremeRowChanged" msprop:Generator_RowChangingName="StepenStrucneSpremeRowChanging" msprop:Generator_TableClassName="StepenStrucneSpremeDataTable" msprop:Generator_RowClassName="StepenStrucneSpremeRow" msprop:Generator_TableVarName="tableStepenStrucneSpreme" msprop:Generator_UserTableName="StepenStrucneSpreme">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_UserColumnName="id" type="xs:int" />
+              <xs:element name="naziv" msprop:Generator_ColumnPropNameInRow="naziv" msprop:Generator_ColumnPropNameInTable="nazivColumn" msprop:Generator_ColumnVarNameInTable="columnnaziv" msprop:Generator_UserColumnName="naziv" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Drzava" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="Jezici_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Jezici" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="KLASNOKS_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:KLASNOKS" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="NoksNivoi_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:NoksNivoi" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="StepenStrucneSpreme_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:StepenStrucneSpreme" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

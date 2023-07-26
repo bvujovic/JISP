@@ -9692,7 +9692,7 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ObrazovanjaRow AddObrazovanjaRow(int IdObrazovanja, ZaposleniRow parentZaposleniRowByZaposleni_Obrazovanja, string _Zaposleni, bool NoksNivo, bool Klasnoks, bool Stepen, string NazivSteceneKvalifikacije, string StrucniAkademskiNazivIzDiplome, System.DateTime DatumSticanjaDiplome, bool DrzavaZavrseneSkole, string MestoZavrseneSkoleNaziv, string NazivSkole, bool JezikNaKomJeStecenoObrazovanje, string DokumentId, string DokumentNaziv) {
+            public ObrazovanjaRow AddObrazovanjaRow(int IdObrazovanja, ZaposleniRow parentZaposleniRowByZaposleni_Obrazovanja, string _Zaposleni, string NoksNivo, string Klasnoks, string Stepen, string NazivSteceneKvalifikacije, string StrucniAkademskiNazivIzDiplome, System.DateTime DatumSticanjaDiplome, string DrzavaZavrseneSkole, string MestoZavrseneSkoleNaziv, string NazivSkole, string JezikNaKomJeStecenoObrazovanje, string DokumentId, string DokumentNaziv) {
                 ObrazovanjaRow rowObrazovanjaRow = ((ObrazovanjaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IdObrazovanja,
@@ -9720,7 +9720,7 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ObrazovanjaRow AddObrazovanjaRow(int IdObrazovanja, ZaposleniRow parentZaposleniRowByZaposleni_Obrazovanja, bool NoksNivo, bool Klasnoks, bool Stepen, string NazivSteceneKvalifikacije, string StrucniAkademskiNazivIzDiplome, System.DateTime DatumSticanjaDiplome, bool DrzavaZavrseneSkole, string MestoZavrseneSkoleNaziv, string NazivSkole, bool JezikNaKomJeStecenoObrazovanje, string DokumentId, string DokumentNaziv) {
+            public ObrazovanjaRow AddObrazovanjaRow(int IdObrazovanja, ZaposleniRow parentZaposleniRowByZaposleni_Obrazovanja, string NoksNivo, string Klasnoks, string Stepen, string NazivSteceneKvalifikacije, string StrucniAkademskiNazivIzDiplome, System.DateTime DatumSticanjaDiplome, string DrzavaZavrseneSkole, string MestoZavrseneSkoleNaziv, string NazivSkole, string JezikNaKomJeStecenoObrazovanje, string DokumentId, string DokumentNaziv) {
                 ObrazovanjaRow rowObrazovanjaRow = ((ObrazovanjaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IdObrazovanja,
@@ -9796,11 +9796,11 @@ namespace JISP.Data {
                 base.Columns.Add(this.columnIdZaposlenog);
                 this.column_Zaposleni = new global::System.Data.DataColumn("_Zaposleni", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.column_Zaposleni);
-                this.columnNoksNivo = new global::System.Data.DataColumn("NoksNivo", typeof(bool), null, global::System.Data.MappingType.Element);
+                this.columnNoksNivo = new global::System.Data.DataColumn("NoksNivo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNoksNivo);
-                this.columnKlasnoks = new global::System.Data.DataColumn("Klasnoks", typeof(bool), null, global::System.Data.MappingType.Element);
+                this.columnKlasnoks = new global::System.Data.DataColumn("Klasnoks", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnKlasnoks);
-                this.columnStepen = new global::System.Data.DataColumn("Stepen", typeof(bool), null, global::System.Data.MappingType.Element);
+                this.columnStepen = new global::System.Data.DataColumn("Stepen", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnStepen);
                 this.columnNazivSteceneKvalifikacije = new global::System.Data.DataColumn("NazivSteceneKvalifikacije", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNazivSteceneKvalifikacije);
@@ -9808,13 +9808,13 @@ namespace JISP.Data {
                 base.Columns.Add(this.columnStrucniAkademskiNazivIzDiplome);
                 this.columnDatumSticanjaDiplome = new global::System.Data.DataColumn("DatumSticanjaDiplome", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDatumSticanjaDiplome);
-                this.columnDrzavaZavrseneSkole = new global::System.Data.DataColumn("DrzavaZavrseneSkole", typeof(bool), null, global::System.Data.MappingType.Element);
+                this.columnDrzavaZavrseneSkole = new global::System.Data.DataColumn("DrzavaZavrseneSkole", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDrzavaZavrseneSkole);
                 this.columnMestoZavrseneSkoleNaziv = new global::System.Data.DataColumn("MestoZavrseneSkoleNaziv", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMestoZavrseneSkoleNaziv);
                 this.columnNazivSkole = new global::System.Data.DataColumn("NazivSkole", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNazivSkole);
-                this.columnJezikNaKomJeStecenoObrazovanje = new global::System.Data.DataColumn("JezikNaKomJeStecenoObrazovanje", typeof(bool), null, global::System.Data.MappingType.Element);
+                this.columnJezikNaKomJeStecenoObrazovanje = new global::System.Data.DataColumn("JezikNaKomJeStecenoObrazovanje", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnJezikNaKomJeStecenoObrazovanje);
                 this.columnDokumentId = new global::System.Data.DataColumn("DokumentId", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDokumentId);
@@ -15904,10 +15904,10 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool NoksNivo {
+            public string NoksNivo {
                 get {
                     try {
-                        return ((bool)(this[this.tableObrazovanja.NoksNivoColumn]));
+                        return ((string)(this[this.tableObrazovanja.NoksNivoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NoksNivo\' in table \'Obrazovanja\' is DBNull.", e);
@@ -15920,10 +15920,10 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool Klasnoks {
+            public string Klasnoks {
                 get {
                     try {
-                        return ((bool)(this[this.tableObrazovanja.KlasnoksColumn]));
+                        return ((string)(this[this.tableObrazovanja.KlasnoksColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Klasnoks\' in table \'Obrazovanja\' is DBNull.", e);
@@ -15936,10 +15936,10 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool Stepen {
+            public string Stepen {
                 get {
                     try {
-                        return ((bool)(this[this.tableObrazovanja.StepenColumn]));
+                        return ((string)(this[this.tableObrazovanja.StepenColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Stepen\' in table \'Obrazovanja\' is DBNull.", e);
@@ -16002,10 +16002,10 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool DrzavaZavrseneSkole {
+            public string DrzavaZavrseneSkole {
                 get {
                     try {
-                        return ((bool)(this[this.tableObrazovanja.DrzavaZavrseneSkoleColumn]));
+                        return ((string)(this[this.tableObrazovanja.DrzavaZavrseneSkoleColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'DrzavaZavrseneSkole\' in table \'Obrazovanja\' is DBNull.", e);
@@ -16050,10 +16050,10 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool JezikNaKomJeStecenoObrazovanje {
+            public string JezikNaKomJeStecenoObrazovanje {
                 get {
                     try {
-                        return ((bool)(this[this.tableObrazovanja.JezikNaKomJeStecenoObrazovanjeColumn]));
+                        return ((string)(this[this.tableObrazovanja.JezikNaKomJeStecenoObrazovanjeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'JezikNaKomJeStecenoObrazovanje\' in table \'Obrazovanja\' is D" +

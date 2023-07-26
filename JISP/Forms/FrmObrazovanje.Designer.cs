@@ -47,16 +47,16 @@
             this.bsObrazovanja = new System.Windows.Forms.BindingSource(this.components);
             this.ds = new JISP.Data.Ds();
             this.zaposleniDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.noksNivoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dgvcKlasnoks = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.stepenDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.noksNivoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcKlasnoks = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stepenDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NazivSteceneKvalifikacije = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StrucniAkademskiNazivIzDiplome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcDatumSticanjaDiplome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DrzavaZavrseneSkole = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.DrzavaZavrseneSkole = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MestoZavrseneSkoleNaziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NazivSkole = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.JezikNaKomJeStecenoObrazovanje = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.JezikNaKomJeStecenoObrazovanje = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcDokument = new System.Windows.Forms.DataGridViewButtonColumn();
             lblFilterZaposleni = new System.Windows.Forms.Label();
             this.pnlLeft.SuspendLayout();
@@ -91,7 +91,7 @@
             this.pnlLeft.Name = "pnlLeft";
             this.pnlLeft.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
             this.pnlLeft.RightWingWidth = 9;
-            this.pnlLeft.Size = new System.Drawing.Size(150, 399);
+            this.pnlLeft.Size = new System.Drawing.Size(150, 375);
             this.pnlLeft.TabIndex = 0;
             // 
             // btnNedostajucaObrazovanja
@@ -129,7 +129,7 @@
             // 
             this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(8, 318);
+            this.lblStatus.Location = new System.Drawing.Point(8, 344);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(0, 18);
             this.lblStatus.TabIndex = 19;
@@ -192,6 +192,7 @@
             // 
             this.dgvObrazovanja.AllowUserToAddRows = false;
             this.dgvObrazovanja.AllowUserToDeleteRows = false;
+            this.dgvObrazovanja.AllowUserToOrderColumns = true;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.dgvObrazovanja.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvObrazovanja.AutoGenerateColumns = false;
@@ -228,7 +229,7 @@
             this.dgvObrazovanja.ReadOnly = true;
             this.dgvObrazovanja.RowHeadersWidth = 30;
             this.dgvObrazovanja.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvObrazovanja.Size = new System.Drawing.Size(1310, 347);
+            this.dgvObrazovanja.Size = new System.Drawing.Size(1310, 375);
             this.dgvObrazovanja.StandardSort = null;
             this.dgvObrazovanja.TabIndex = 1;
             this.dgvObrazovanja.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvObrazovanja_CellClick);
@@ -258,24 +259,27 @@
             this.noksNivoDataGridViewCheckBoxColumn.HeaderText = "NOKS nivo";
             this.noksNivoDataGridViewCheckBoxColumn.Name = "noksNivoDataGridViewCheckBoxColumn";
             this.noksNivoDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.noksNivoDataGridViewCheckBoxColumn.ToolTipText = "Unet NOKS nivo";
+            this.noksNivoDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // dgvcKlasnoks
             // 
+            this.dgvcKlasnoks.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dgvcKlasnoks.DataPropertyName = "Klasnoks";
             this.dgvcKlasnoks.HeaderText = "Klasa NOKS";
+            this.dgvcKlasnoks.MinimumWidth = 100;
             this.dgvcKlasnoks.Name = "dgvcKlasnoks";
             this.dgvcKlasnoks.ReadOnly = true;
             this.dgvcKlasnoks.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvcKlasnoks.ToolTipText = "Uneta Klasa NOKS";
             // 
             // stepenDataGridViewCheckBoxColumn
             // 
+            this.stepenDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.stepenDataGridViewCheckBoxColumn.DataPropertyName = "Stepen";
             this.stepenDataGridViewCheckBoxColumn.HeaderText = "Stepen";
             this.stepenDataGridViewCheckBoxColumn.Name = "stepenDataGridViewCheckBoxColumn";
             this.stepenDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.stepenDataGridViewCheckBoxColumn.ToolTipText = "Unet Stepen";
+            this.stepenDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.stepenDataGridViewCheckBoxColumn.Width = 79;
             // 
             // NazivSteceneKvalifikacije
             // 
@@ -308,7 +312,7 @@
             this.DrzavaZavrseneSkole.HeaderText = "Država";
             this.DrzavaZavrseneSkole.Name = "DrzavaZavrseneSkole";
             this.DrzavaZavrseneSkole.ReadOnly = true;
-            this.DrzavaZavrseneSkole.ToolTipText = "Uneta Država";
+            this.DrzavaZavrseneSkole.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // MestoZavrseneSkoleNaziv
             // 
@@ -335,8 +339,6 @@
             this.JezikNaKomJeStecenoObrazovanje.Name = "JezikNaKomJeStecenoObrazovanje";
             this.JezikNaKomJeStecenoObrazovanje.ReadOnly = true;
             this.JezikNaKomJeStecenoObrazovanje.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.JezikNaKomJeStecenoObrazovanje.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.JezikNaKomJeStecenoObrazovanje.ToolTipText = "Unet Jezik";
             this.JezikNaKomJeStecenoObrazovanje.Width = 68;
             // 
             // dgvcDokument
@@ -350,22 +352,11 @@
             this.dgvcDokument.Name = "dgvcDokument";
             this.dgvcDokument.ReadOnly = true;
             // 
-            // bsObrazovanja
-            // 
-            this.bsObrazovanja.DataMember = "Obrazovanja";
-            this.bsObrazovanja.DataSource = this.ds;
-            this.bsObrazovanja.Sort = "_Zaposleni";
-            // 
-            // ds
-            // 
-            this.ds.DataSetName = "Ds";
-            this.ds.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // FrmObrazovanje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1460, 347);
+            this.ClientSize = new System.Drawing.Size(1460, 375);
             this.Controls.Add(this.dgvObrazovanja);
             this.Controls.Add(this.pnlLeft);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -373,6 +364,7 @@
             this.Name = "FrmObrazovanje";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Obrazovanje";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmObrazovanje_FormClosed);
             this.Load += new System.EventHandler(this.FrmObrazovanje_Load);
             this.pnlLeft.ResumeLayout(false);
             this.pnlLeft.PerformLayout();
@@ -401,18 +393,18 @@
         private Controls.UcFilterTextBox txtFilterZaposleni;
         private System.Windows.Forms.ComboBox cmbPodaciZaDohvatanje;
         private System.Windows.Forms.Label lblIzvorSelZaposlenih;
+        private Controls.UcButton btnNedostajucaObrazovanja;
         private System.Windows.Forms.DataGridViewTextBoxColumn zaposleniDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn noksNivoDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dgvcKlasnoks;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn stepenDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn noksNivoDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcKlasnoks;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stepenDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn NazivSteceneKvalifikacije;
         private System.Windows.Forms.DataGridViewTextBoxColumn StrucniAkademskiNazivIzDiplome;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcDatumSticanjaDiplome;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn DrzavaZavrseneSkole;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DrzavaZavrseneSkole;
         private System.Windows.Forms.DataGridViewTextBoxColumn MestoZavrseneSkoleNaziv;
         private System.Windows.Forms.DataGridViewTextBoxColumn NazivSkole;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn JezikNaKomJeStecenoObrazovanje;
+        private System.Windows.Forms.DataGridViewTextBoxColumn JezikNaKomJeStecenoObrazovanje;
         private System.Windows.Forms.DataGridViewButtonColumn dgvcDokument;
-        private Controls.UcButton btnNedostajucaObrazovanja;
     }
 }

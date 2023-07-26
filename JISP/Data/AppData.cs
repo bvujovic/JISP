@@ -10,6 +10,9 @@ namespace JISP.Data
     {
         public static Ds Ds { get; private set; } = new Ds();
 
+        /// <summary>DataSet za tabele sifarnike (id, naziv) koje se ne pamte trajno.</summary>
+        public static DsTemp DsTemp { get; private set; } = new DsTemp();
+
         /// <summary>Kratko ime aplikacije bez razmaka i nasih slova.</summary>
         public static string AppNameMachine { get => "NasJISP"; }
 

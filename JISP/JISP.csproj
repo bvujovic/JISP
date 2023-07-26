@@ -28,7 +28,7 @@
     <PublisherName>BV</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.6.1.0</ApplicationVersion>
+    <ApplicationVersion>0.6.2.0</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -138,6 +138,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Ds.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\DsTemp.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsTemp.xsd</DependentUpon>
     </Compile>
     <Compile Include="Data\Model\DUOS.cs" />
     <Compile Include="Data\Model\DUOS_SS.cs" />
@@ -321,6 +326,17 @@
     </None>
     <None Include="Data\Ds.xss">
       <DependentUpon>Ds.xsd</DependentUpon>
+    </None>
+    <None Include="Data\DsTemp.xsc">
+      <DependentUpon>DsTemp.xsd</DependentUpon>
+    </None>
+    <None Include="Data\DsTemp.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsTemp.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Data\DsTemp.xss">
+      <DependentUpon>DsTemp.xsd</DependentUpon>
     </None>
     <None Include="JISP_TemporaryKey.pfx" />
     <None Include="packages.config" />
