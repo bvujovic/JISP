@@ -411,28 +411,30 @@ namespace JISP.Forms
                 });
 
             if (selItem == CmbDohvatiSve)
-            {
-                var brojeviUgovoraZaNedostajuceZamenjene = new List<string>();
-                var zaposleni = dgvZaposleni.SelectedDataRows<Ds.ZaposleniRow>();
-                foreach (var zap in zaposleni)
-                    await (sender as UcButton).RunAsync(async () =>
-                    {
-                        lblStatus.Text = zap.ZaposleniString;
-                        var l = await DataGetter.GetZaposlenjaAsync(zap);
-                        if (l.Any())
-                            brojeviUgovoraZaNedostajuceZamenjene.Add("   " + zap + "\r\n" + string.Join(", ", l));
-                        await DataGetter.GetAngazovanjaAsync(zap.GetZaposlenjaRows().Where(it => it.Aktivan));
-                        await DataGetter.GetObracuniZaradaAsync(zap);
-                        foreach (var oz in zap.GetObracunZaradaRows()
-                            .Where(it => it.Godina == AppData.SkolskaGodina.Start || it.Godina == AppData.SkolskaGodina.Kraj))
-                            await DataGetter.GetOzDodatnoAsync(oz);
-                        zap.CalcAngazovanja();
-                    });
-                lblStatus.Text = "";
-                if (brojeviUgovoraZaNedostajuceZamenjene.Any())
-                    Utils.ShowMbox(string.Join("\r\n\r\n", brojeviUgovoraZaNedostajuceZamenjene)
-                        , "Zaposleni sa ugovorima za zamenu bez zaposlenog koji je zamenjen", true);
-            }
+                try
+                {
+                    var brojeviUgovoraZaNedostajuceZamenjene = new List<string>();
+                    foreach (var zap in SelektovaniZaposleni)
+                        await (sender as UcButton).RunAsync(async () =>
+                        {
+                            lblStatus.Text = zap.ZaposleniString;
+                            var l = await DataGetter.GetZaposlenjaAsync(zap);
+                            if (l.Any())
+                                brojeviUgovoraZaNedostajuceZamenjene.Add("   " + zap + "\r\n" + string.Join(", ", l));
+                            await DataGetter.GetAngazovanjaAsync(zap.GetZaposlenjaRows().Where(it => it.Aktivan));
+                            await DataGetter.GetObracuniZaradaAsync(zap);
+                            foreach (var oz in zap.GetObracunZaradaRows()
+                                .Where(it => it.Godina == AppData.SkolskaGodina.Start || it.Godina == AppData.SkolskaGodina.Kraj))
+                                await DataGetter.GetOzDodatnoAsync(oz);
+                            zap.CalcAngazovanja();
+                        });
+                    lblStatus.Text = "";
+                    if (brojeviUgovoraZaNedostajuceZamenjene.Any())
+                        Utils.ShowMbox(string.Join("\r\n\r\n", brojeviUgovoraZaNedostajuceZamenjene)
+                            , "Zaposleni sa ugovorima za zamenu bez zaposlenog koji je zamenjen", true);
+
+                }
+                catch (Exception ex) { Utils.ShowMbox(ex, Text); }
         }
 
         private void FrmZaposleni_KeyDown(object sender, KeyEventArgs e)
@@ -544,8 +546,7 @@ namespace JISP.Forms
                     foreach (var z in AppData.Ds.Zaposleni)
                     {
                         var nja = z.GetZaposlenjaRows().Where(it =>
-                            !it.IsVrstaAngazovanjaNull() && it.NedostajeZamenjeni
-                            && AppData.SkolskaGodina.PripadaDatum(it.DatumZaposlenOd));
+                            !it.IsVrstaAngazovanjaNull() && it.NedostajeZamenjeni);
                         z.StatusAktivnosti2 = nja.Any() ? string.Join(", ", nja.Select(it => it.BrojUgovoraORadu)) : "";
                     }
                 }

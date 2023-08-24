@@ -135,15 +135,16 @@ namespace JISP.Data
             }
 
             public override string ToString()
-                //B => $"{Ime} {Prezime}";
                 => ZaposleniString;
         }
 
         partial class ZaposlenjaRow
         {
             /// <summary>true - VrstaAngazovanja je neka zamena, a nije unet zamenjeni zaposleni.</summary>
+            /// <remarks>Ispitivanje postojanja unosa zamenjenog zaposlenog se vrši samo za tekuću šk. god.</remarks>
             public bool NedostajeZamenjeni
-                => VrstaAngazovanja.Contains("замена") && IsIdZamenjenogZaposlenogNull();
+                => AppData.SkolskaGodina.PripadaDatum(DatumZaposlenOd) &&
+                    VrstaAngazovanja.Contains("замена") && IsIdZamenjenogZaposlenogNull();
         }
 
         //partial class ZaposlenjaDataTable

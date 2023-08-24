@@ -43,7 +43,7 @@ namespace JISP.Forms
         {
             try
             {
-                var s = txtFilter.Text;
+                var s = LatinicaCirilica.Lat2Cir(txtFilter.Text);
                 bsSistematizacija.Filter = $"RadnoMesto LIKE '%{s}%' OR Predmet LIKE '%{s}%'";
             }
             catch (Exception ex) { Utils.ShowMbox(ex, Text); }

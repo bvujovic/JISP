@@ -121,7 +121,7 @@ namespace JISP.Forms
 
         private void BtnFormAutoInput_Click(object sender, EventArgs e)
         {
-            Utils.ShowForm(typeof(FrmFormAutoInput));
+            new FrmFormAutoInput().Show();
         }
 
         public void FrmChild_FormClosed(object sender, FormClosedEventArgs e)

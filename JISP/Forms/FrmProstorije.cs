@@ -162,10 +162,10 @@ namespace JISP.Forms
             try
             {
                 var uslovi = new List<string>();
-                if (txtProstorijeNaziv.Text != "")
-                    uslovi.Add($"NazivProstorije LIKE '%{txtProstorijeNaziv.Text}%'");
-                if (txtProstorijeTip.Text != "")
-                    uslovi.Add($"TipProstorije LIKE '%{txtProstorijeTip.Text}%'");
+                if (txtProstorijeNaziv.Text.Trim() != "")
+                    uslovi.Add($"NazivProstorije LIKE '%{LatinicaCirilica.Lat2Cir(txtProstorijeNaziv.Text.Trim())}%'");
+                if (txtProstorijeTip.Text.Trim() != "")
+                    uslovi.Add($"TipProstorije LIKE '%{LatinicaCirilica.Lat2Cir(txtProstorijeTip.Text.Trim())}%'");
                 if (cmbProstorijeSprat.SelectedItem != null)
                     uslovi.Add($"Sprat = '{cmbProstorijeSprat.SelectedItem}'");
                 bsProstorije.Filter = string.Join(" AND ", uslovi);
