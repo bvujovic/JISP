@@ -88,17 +88,18 @@ namespace JISP.Data
         /// <see cref="https://stackoverflow.com/questions/14627399/setting-authorization-header-of-httpclient"/>
         public static async Task<string> GetJson(string url)
         {
-            using (var client = CreateHttpClient())
-            {
-                return await client.GetStringAsync(url);
-            }
+            return await GetHttpClient().GetStringAsync(url);
         }
 
-        private static HttpClient CreateHttpClient()
+        private static HttpClient httpClient = null;
+
+        private static HttpClient GetHttpClient()
         {
-            var client = new HttpClient() { Timeout = TimeSpan.FromSeconds(8) };
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
-            return client;
+            if (httpClient != null)
+                return httpClient;
+            httpClient = new HttpClient() { Timeout = TimeSpan.FromSeconds(8) };
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
+            return httpClient;
         }
 
         /// <summary>Dohvata (GET) JSON podatke od JISP WebAPI-a.</summary>
@@ -110,16 +111,13 @@ namespace JISP.Data
 
         public static async Task<string> PostForJson(string url, string body)
         {
-            using (var client = CreateHttpClient())
-            {
-                var content = new StringContent(body, System.Text.Encoding.UTF8, "application/json");
-                var res = await client.PostAsync(url, content);
+            var content = new StringContent(body, System.Text.Encoding.UTF8, "application/json");
+            var res = await GetHttpClient().PostAsync(url, content);
 
-                if (res.IsSuccessStatusCode)
-                    return await res.Content.ReadAsStringAsync();
-                else
-                    throw new Exception($"POST response error: {res.ReasonPhrase}");
-            }
+            if (res.IsSuccessStatusCode)
+                return await res.Content.ReadAsStringAsync();
+            else
+                throw new Exception($"POST response error: {res.ReasonPhrase}");
         }
 
         /// <summary>Dohvata (POST) JSON podatke od JISP WebAPI-a.</summary>
@@ -135,13 +133,6 @@ namespace JISP.Data
             return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(json);
         }
 
-        ///// <summary>Dohvata (POST) listu trazenih objekata od JISP WebAPI-a.</summary>
-        //public async static Task<List<T>> PostForList<T>(ReqEnum reqEnum, string body, string param = null)
-        //{
-        //    var json = await PostForJson(reqEnum, body, param);
-        //    return DeserializeList<T>(json);
-        //}
-
         /// <summary>Dohvata (POST) listu trazenih objekata od JISP WebAPI-a.</summary>
         public async static Task<List<T>> PostForList<T>(string url, string body)
         {
@@ -152,9 +143,9 @@ namespace JISP.Data
         /// <summary>Preuzimanje fajla od JISPa u Downloads i njegovo pokretanje.</summary>
         public static async Task PostForFile(string filePath, string url, string content, bool isJson)
         {
-            using (var client = CreateHttpClient())
+            using (var client = new HttpClient() { Timeout = TimeSpan.FromSeconds(25) })
             {
-                client.Timeout = TimeSpan.FromSeconds(25);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
                 url = "https://jisp.mpn.gov.rs/webapi/api/" + url;
                 var jsonContent = new StringContent(content, System.Text.Encoding.UTF8, "application/json");
                 var res = await client.PostAsync(url, jsonContent);
@@ -179,6 +170,7 @@ namespace JISP.Data
                     throw new Exception($"POST response error: {res.ReasonPhrase}");
             }
         }
+
 
         public enum ReqEnum
         {
