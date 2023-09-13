@@ -109,5 +109,10 @@ namespace JISP.Forms
 
         private static string NZ(int x)
             => x == 0 ? "null" : x.ToString();
+
+        private void DgvSistematizacija_NumbersSelectionChanged(object sender, string e)
+        {
+            lblBrojeviStat.Text = e;
+        }
     }
 }

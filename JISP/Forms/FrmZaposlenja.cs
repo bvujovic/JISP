@@ -22,6 +22,7 @@ namespace JISP.Forms
                 Text = $"Zaposlenja ({zap})";
                 this.FormStandardSettings();
 
+                chkBezTehnGresaka.Checked = CheckedBezTehnGresaka;
                 chkCopyOnClick.Checked = CheckedCopyOnClick;
                 if (CheckStateAktivno.HasValue)
                     chkAktivno.CheckState = CheckStateAktivno.Value;
@@ -39,7 +40,7 @@ namespace JISP.Forms
                 bsZaposlenja.DataSource = AppData.Ds;
                 dgvZaposlenjaSve.StandardSort = bsZaposlenja.Sort;
                 dgvZaposlenjaSve.LoadSettings();
-                SetBsFilter();
+                SetBsZaposlenjaFilter();
 
                 dgvAngazovanja.LoadSettings();
 
@@ -65,16 +66,21 @@ namespace JISP.Forms
             zaposleni.CalcAngazovanja();
         }
 
-        private void SetBsFilter()
+        private void SetBsZaposlenjaFilter()
         {
             var s = $"IdZaposlenog = {zaposleni.IdZaposlenog}";
             if (chkAktivno.CheckState != CheckState.Indeterminate)
                 s += $" AND Aktivan = {chkAktivno.Checked}";
+            if (chkBezTehnGresaka.Checked)
+                s += " AND (RazlogPrestankaZaposlenja IS NULL OR RazlogPrestankaZaposlenja NOT LIKE '%Техничка грешка%')";
             bsZaposlenja.Filter = s;
         }
 
         private void ChkAktivno_CheckStateChanged(object sender, EventArgs e)
-            => SetBsFilter();
+            => SetBsZaposlenjaFilter();
+
+        private void ChkBezTehnGresaka_CheckedChanged(object sender, EventArgs e)
+            => SetBsZaposlenjaFilter();
 
         private async void BtnUcitajObracunZarada_Click(object sender, EventArgs e)
         {
@@ -102,6 +108,7 @@ namespace JISP.Forms
             btnUcitajObracunZarada.PerformClick();
         }
 
+        private static bool CheckedBezTehnGresaka = true;
         private static bool CheckedCopyOnClick = false;
         private static CheckState? CheckStateAktivno = null;
         private static int TcBottomSelectedIndex = 0;
@@ -110,6 +117,7 @@ namespace JISP.Forms
 
         private void FrmZaposlenja_FormClosed(object sender, FormClosedEventArgs e)
         {
+            CheckedBezTehnGresaka = chkBezTehnGresaka.Checked;
             CheckedCopyOnClick = chkCopyOnClick.Checked;
             CheckStateAktivno = chkAktivno.CheckState;
             TcBottomSelectedIndex = tcBottom.SelectedIndex;

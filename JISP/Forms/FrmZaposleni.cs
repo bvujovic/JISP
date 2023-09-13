@@ -515,13 +515,20 @@ namespace JISP.Forms
 
                 if (selItem == CmbStatusDokUgovor)
                 {
-                    foreach (var z in AppData.Ds.Zaposleni)
+                    foreach (var z in AppData.Ds.Zaposleni.Where(it => it.Aktivan))
                     {
                         zapProblem = z;
                         z.StatusAktivnosti2 = "";
                         foreach (var zap in z.GetZaposlenjaRows()
-                            .Where(it => it.Aktivan && it.IsDokumentIdNull()))
-                            z.StatusAktivnosti2 += "*";
+                            .Where(it => it.Aktivan && (it.IsDokumentIdNull() || string.IsNullOrEmpty(it.DokumentId))))
+                        {
+                            // da li za ovo aktvino zaposlenje bez dokumenta, dokument moze pronaci
+                            // u nekom drugom zaposlenju (sa istim BrojUgovoraORadu)
+                            var imaDokument = z.GetZaposlenjaRows().Where(it => it.BrojUgovoraORadu == zap.BrojUgovoraORadu
+                                && !it.IsDokumentIdNull() && !string.IsNullOrEmpty(it.DokumentId)).Any();
+                            if (!imaDokument)
+                                z.StatusAktivnosti2 += "*";
+                        }
                     }
                 }
 

@@ -313,6 +313,9 @@ namespace JISP.Controls
 
         public event EventHandler CellTextCopied;
 
+        /// <summary>Reakcija na promenu selektovanih ćelija u kojima su brojevi.</summary>
+        public event EventHandler<string> NumbersSelectionChanged;
+
         /// <summary>Spisak razlicitih vrednosti i broja njihovih pojavljivanja u koloni.</summary>
         public IDictionary<string, int> ValuesCount(int colIdx)
         {
@@ -352,6 +355,28 @@ namespace JISP.Controls
                     CtrlDisplayPositionRowCount.Text = $"Red {bs.Position + 1} / {bs.Count}";
                 else
                     CtrlDisplayPositionRowCount.Text = $"Redova {SelectedRows.Count}";
+
+            if (NumbersSelectionChanged != null)
+            {
+                var imaPosla = true;
+                if (SelectedCells.Count <= 1)
+                    imaPosla = false;
+                var cells = SelectedCells.Cast<DataGridViewCell>();
+                var cols = cells.Select(it => it.ColumnIndex).Distinct();
+                if (cols.Count() == 0 || cols.Count() > 1)
+                    imaPosla = false;
+                var numTypes = new Type[] { typeof(int), typeof(float), typeof(double) };
+                if (imaPosla && !numTypes.Contains(Columns[cols.First()].ValueType))
+                    imaPosla = false;
+
+                if (imaPosla)
+                {
+                    var sum = cells.Sum(it => (double)it.Value);
+                    NumbersSelectionChanged.Invoke(this, $"Broj: {cells.Count()}\r\nSuma: {sum}");
+                }
+                else
+                    NumbersSelectionChanged.Invoke(this, string.Empty);
+            }
         }
     }
 }

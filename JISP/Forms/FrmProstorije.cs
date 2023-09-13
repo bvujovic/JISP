@@ -126,26 +126,9 @@ namespace JISP.Forms
             }
         }
 
-        private void DgvProstorije_SelectionChanged(object sender, EventArgs e)
+        private void DgvProstorije_NumbersSelectionChanged(object sender, string e)
         {
-            var imaPosla = true;
-            if (dgvProstorije.SelectedCells.Count <= 1)
-                imaPosla = false;
-            var cells = dgvProstorije.SelectedCells.Cast<DataGridViewCell>();
-            var cols = cells.Select(it => it.ColumnIndex).Distinct();
-            if (cols.Count() == 0 || cols.Count() > 1)
-                imaPosla = false;
-            var numTypes = new Type[] { typeof(int), typeof(float), typeof(double) };
-            if (imaPosla && !numTypes.Contains(dgvProstorije.Columns[cols.First()].ValueType))
-                imaPosla = false;
-
-            if (imaPosla)
-            {
-                var sum = cells.Sum(it => (double)it.Value);
-                lblStatistika.Text = $"Broj: {cells.Count()}\r\nSuma: {sum}";
-            }
-            else
-                lblStatistika.Text = string.Empty;
+            lblStatistika.Text = e;
         }
 
         private void TxtProstorijeNaziv_TextChanged(object sender, EventArgs e)

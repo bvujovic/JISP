@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -39,7 +40,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
             this.chkCopyOnClick = new System.Windows.Forms.CheckBox();
             this.btnUcitajZaposlenja = new JISP.Controls.UcButton();
@@ -49,11 +49,23 @@
             this.ds = new JISP.Data.Ds();
             this.btnUcitajAngazovanja = new JISP.Controls.UcButton();
             this.pnlZaposleniTop = new System.Windows.Forms.Panel();
+            this.chkBezTehnGresaka = new System.Windows.Forms.CheckBox();
             this.btnZamenjeniBrisi = new System.Windows.Forms.Button();
             this.lblZamenjeni = new System.Windows.Forms.Label();
             this.chkAktivno = new System.Windows.Forms.CheckBox();
             this.lblBrojRedovaZaposlenja = new System.Windows.Forms.Label();
             this.dgvZaposlenjaSve = new JISP.Controls.UcDGV();
+            this.aktivanDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.brojUgovoraORaduDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.radnoMestoNazivDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.procenatRadnogVremenaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.datumZaposlenOdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.datumZaposlenDoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcZapRazlogPrestanka = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.noksNivoNazivDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vrstaAngazovanjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcZapZamenjeni = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcZapDokument = new System.Windows.Forms.DataGridViewButtonColumn();
             this.bsZaposlenja = new System.Windows.Forms.BindingSource(this.components);
             this.scMain = new System.Windows.Forms.SplitContainer();
             this.tcBottom = new System.Windows.Forms.TabControl();
@@ -95,17 +107,6 @@
             this.bsResenja = new System.Windows.Forms.BindingSource(this.components);
             this.pnlBottomLeftRes = new JISP.Controls.UcLeftPanel();
             this.btnUcitajResenja = new JISP.Controls.UcButton();
-            this.aktivanDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.brojUgovoraORaduDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.radnoMestoNazivDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.procenatRadnogVremenaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.datumZaposlenOdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.datumZaposlenDoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcZapRazlogPrestanka = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.noksNivoNazivDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vrstaAngazovanjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcZapZamenjeni = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcZapDokument = new System.Windows.Forms.DataGridViewButtonColumn();
             this.pnlLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsZaposleni)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
@@ -184,7 +185,7 @@
             this.cmbZamenjeni.DisplayMember = "ZaposleniString";
             this.cmbZamenjeni.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbZamenjeni.FormattingEnabled = true;
-            this.cmbZamenjeni.Location = new System.Drawing.Point(444, 1);
+            this.cmbZamenjeni.Location = new System.Drawing.Point(526, 1);
             this.cmbZamenjeni.Name = "cmbZamenjeni";
             this.cmbZamenjeni.Size = new System.Drawing.Size(255, 26);
             this.cmbZamenjeni.TabIndex = 7;
@@ -218,6 +219,7 @@
             // pnlZaposleniTop
             // 
             this.pnlZaposleniTop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlZaposleniTop.Controls.Add(this.chkBezTehnGresaka);
             this.pnlZaposleniTop.Controls.Add(this.btnZamenjeniBrisi);
             this.pnlZaposleniTop.Controls.Add(this.lblZamenjeni);
             this.pnlZaposleniTop.Controls.Add(this.chkAktivno);
@@ -226,12 +228,25 @@
             this.pnlZaposleniTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlZaposleniTop.Location = new System.Drawing.Point(0, 0);
             this.pnlZaposleniTop.Name = "pnlZaposleniTop";
-            this.pnlZaposleniTop.Size = new System.Drawing.Size(1064, 30);
+            this.pnlZaposleniTop.Size = new System.Drawing.Size(1149, 30);
             this.pnlZaposleniTop.TabIndex = 3;
+            // 
+            // chkBezTehnGresaka
+            // 
+            this.chkBezTehnGresaka.AutoSize = true;
+            this.chkBezTehnGresaka.Checked = true;
+            this.chkBezTehnGresaka.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkBezTehnGresaka.Location = new System.Drawing.Point(279, 4);
+            this.chkBezTehnGresaka.Name = "chkBezTehnGresaka";
+            this.chkBezTehnGresaka.Size = new System.Drawing.Size(146, 22);
+            this.chkBezTehnGresaka.TabIndex = 10;
+            this.chkBezTehnGresaka.Text = "Bez tehn. grešaka";
+            this.chkBezTehnGresaka.UseVisualStyleBackColor = true;
+            this.chkBezTehnGresaka.CheckedChanged += new System.EventHandler(this.ChkBezTehnGresaka_CheckedChanged);
             // 
             // btnZamenjeniBrisi
             // 
-            this.btnZamenjeniBrisi.Location = new System.Drawing.Point(698, 0);
+            this.btnZamenjeniBrisi.Location = new System.Drawing.Point(780, 0);
             this.btnZamenjeniBrisi.Name = "btnZamenjeniBrisi";
             this.btnZamenjeniBrisi.Size = new System.Drawing.Size(28, 28);
             this.btnZamenjeniBrisi.TabIndex = 9;
@@ -244,7 +259,7 @@
             // lblZamenjeni
             // 
             this.lblZamenjeni.AutoSize = true;
-            this.lblZamenjeni.Location = new System.Drawing.Point(360, 5);
+            this.lblZamenjeni.Location = new System.Drawing.Point(442, 5);
             this.lblZamenjeni.Name = "lblZamenjeni";
             this.lblZamenjeni.Size = new System.Drawing.Size(82, 18);
             this.lblZamenjeni.TabIndex = 8;
@@ -321,11 +336,103 @@
             this.dgvZaposlenjaSve.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvZaposlenjaSve.RowHeadersWidth = 30;
             this.dgvZaposlenjaSve.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvZaposlenjaSve.Size = new System.Drawing.Size(1064, 211);
+            this.dgvZaposlenjaSve.Size = new System.Drawing.Size(1149, 211);
             this.dgvZaposlenjaSve.StandardSort = null;
             this.dgvZaposlenjaSve.TabIndex = 4;
             this.dgvZaposlenjaSve.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvZaposlenjaSve_CellClick);
             this.dgvZaposlenjaSve.SelectionChanged += new System.EventHandler(this.DgvZaposlenjaSve_SelectionChanged);
+            // 
+            // aktivanDataGridViewCheckBoxColumn
+            // 
+            this.aktivanDataGridViewCheckBoxColumn.DataPropertyName = "Aktivan";
+            this.aktivanDataGridViewCheckBoxColumn.HeaderText = "Aktivan";
+            this.aktivanDataGridViewCheckBoxColumn.Name = "aktivanDataGridViewCheckBoxColumn";
+            this.aktivanDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.aktivanDataGridViewCheckBoxColumn.Width = 65;
+            // 
+            // brojUgovoraORaduDataGridViewTextBoxColumn
+            // 
+            this.brojUgovoraORaduDataGridViewTextBoxColumn.DataPropertyName = "BrojUgovoraORadu";
+            this.brojUgovoraORaduDataGridViewTextBoxColumn.HeaderText = "Broj ugovora";
+            this.brojUgovoraORaduDataGridViewTextBoxColumn.Name = "brojUgovoraORaduDataGridViewTextBoxColumn";
+            this.brojUgovoraORaduDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // radnoMestoNazivDataGridViewTextBoxColumn
+            // 
+            this.radnoMestoNazivDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.radnoMestoNazivDataGridViewTextBoxColumn.DataPropertyName = "RadnoMestoNaziv";
+            this.radnoMestoNazivDataGridViewTextBoxColumn.FillWeight = 200F;
+            this.radnoMestoNazivDataGridViewTextBoxColumn.HeaderText = "Radno mesto";
+            this.radnoMestoNazivDataGridViewTextBoxColumn.MinimumWidth = 150;
+            this.radnoMestoNazivDataGridViewTextBoxColumn.Name = "radnoMestoNazivDataGridViewTextBoxColumn";
+            this.radnoMestoNazivDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // procenatRadnogVremenaDataGridViewTextBoxColumn
+            // 
+            this.procenatRadnogVremenaDataGridViewTextBoxColumn.DataPropertyName = "ProcenatRadnogVremena";
+            this.procenatRadnogVremenaDataGridViewTextBoxColumn.HeaderText = "Procenat";
+            this.procenatRadnogVremenaDataGridViewTextBoxColumn.Name = "procenatRadnogVremenaDataGridViewTextBoxColumn";
+            this.procenatRadnogVremenaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.procenatRadnogVremenaDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // datumZaposlenOdDataGridViewTextBoxColumn
+            // 
+            this.datumZaposlenOdDataGridViewTextBoxColumn.DataPropertyName = "DatumZaposlenOd";
+            this.datumZaposlenOdDataGridViewTextBoxColumn.HeaderText = "Zaposlen od";
+            this.datumZaposlenOdDataGridViewTextBoxColumn.Name = "datumZaposlenOdDataGridViewTextBoxColumn";
+            this.datumZaposlenOdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // datumZaposlenDoDataGridViewTextBoxColumn
+            // 
+            this.datumZaposlenDoDataGridViewTextBoxColumn.DataPropertyName = "DatumZaposlenDo";
+            this.datumZaposlenDoDataGridViewTextBoxColumn.HeaderText = "Zaposlen do";
+            this.datumZaposlenDoDataGridViewTextBoxColumn.Name = "datumZaposlenDoDataGridViewTextBoxColumn";
+            this.datumZaposlenDoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dgvcZapRazlogPrestanka
+            // 
+            this.dgvcZapRazlogPrestanka.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dgvcZapRazlogPrestanka.DataPropertyName = "RazlogPrestankaZaposlenja";
+            this.dgvcZapRazlogPrestanka.HeaderText = "Razlog Prestanka";
+            this.dgvcZapRazlogPrestanka.Name = "dgvcZapRazlogPrestanka";
+            this.dgvcZapRazlogPrestanka.ReadOnly = true;
+            this.dgvcZapRazlogPrestanka.Width = 151;
+            // 
+            // noksNivoNazivDataGridViewTextBoxColumn
+            // 
+            this.noksNivoNazivDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.noksNivoNazivDataGridViewTextBoxColumn.DataPropertyName = "NoksNivoNaziv";
+            this.noksNivoNazivDataGridViewTextBoxColumn.HeaderText = "NOKS";
+            this.noksNivoNazivDataGridViewTextBoxColumn.MinimumWidth = 75;
+            this.noksNivoNazivDataGridViewTextBoxColumn.Name = "noksNivoNazivDataGridViewTextBoxColumn";
+            this.noksNivoNazivDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // vrstaAngazovanjaDataGridViewTextBoxColumn
+            // 
+            this.vrstaAngazovanjaDataGridViewTextBoxColumn.DataPropertyName = "VrstaAngazovanja";
+            this.vrstaAngazovanjaDataGridViewTextBoxColumn.HeaderText = "Vrsta angažovanja";
+            this.vrstaAngazovanjaDataGridViewTextBoxColumn.Name = "vrstaAngazovanjaDataGridViewTextBoxColumn";
+            this.vrstaAngazovanjaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.vrstaAngazovanjaDataGridViewTextBoxColumn.Width = 135;
+            // 
+            // dgvcZapZamenjeni
+            // 
+            this.dgvcZapZamenjeni.DataPropertyName = "_ZamenjeniZaposleni";
+            this.dgvcZapZamenjeni.HeaderText = "Zamena za";
+            this.dgvcZapZamenjeni.Name = "dgvcZapZamenjeni";
+            this.dgvcZapZamenjeni.ReadOnly = true;
+            this.dgvcZapZamenjeni.Width = 125;
+            // 
+            // dgvcZapDokument
+            // 
+            this.dgvcZapDokument.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dgvcZapDokument.DataPropertyName = "Dokument";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.dgvcZapDokument.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvcZapDokument.HeaderText = "Dokument";
+            this.dgvcZapDokument.Name = "dgvcZapDokument";
+            this.dgvcZapDokument.ReadOnly = true;
+            this.dgvcZapDokument.Width = 83;
             // 
             // bsZaposlenja
             // 
@@ -336,7 +443,7 @@
             // scMain
             // 
             this.scMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.scMain.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.scMain.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.scMain.Location = new System.Drawing.Point(146, 0);
             this.scMain.Name = "scMain";
             this.scMain.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -349,7 +456,7 @@
             // scMain.Panel2
             // 
             this.scMain.Panel2.Controls.Add(this.tcBottom);
-            this.scMain.Size = new System.Drawing.Size(1064, 569);
+            this.scMain.Size = new System.Drawing.Size(1149, 569);
             this.scMain.SplitterDistance = 241;
             this.scMain.TabIndex = 5;
             // 
@@ -362,7 +469,7 @@
             this.tcBottom.Location = new System.Drawing.Point(0, 0);
             this.tcBottom.Name = "tcBottom";
             this.tcBottom.SelectedIndex = 0;
-            this.tcBottom.Size = new System.Drawing.Size(1064, 324);
+            this.tcBottom.Size = new System.Drawing.Size(1149, 324);
             this.tcBottom.TabIndex = 0;
             // 
             // tpObracunZarada
@@ -373,7 +480,7 @@
             this.tpObracunZarada.Location = new System.Drawing.Point(4, 27);
             this.tpObracunZarada.Name = "tpObracunZarada";
             this.tpObracunZarada.Padding = new System.Windows.Forms.Padding(3);
-            this.tpObracunZarada.Size = new System.Drawing.Size(1056, 293);
+            this.tpObracunZarada.Size = new System.Drawing.Size(1141, 293);
             this.tpObracunZarada.TabIndex = 0;
             this.tpObracunZarada.Text = "Obračun zarada";
             // 
@@ -415,7 +522,7 @@
             this.dgvObracunZarada.ReadOnly = true;
             this.dgvObracunZarada.RowHeadersWidth = 30;
             this.dgvObracunZarada.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvObracunZarada.Size = new System.Drawing.Size(904, 287);
+            this.dgvObracunZarada.Size = new System.Drawing.Size(989, 287);
             this.dgvObracunZarada.StandardSort = null;
             this.dgvObracunZarada.TabIndex = 1;
             // 
@@ -560,7 +667,7 @@
             this.tpAngazovanja.Location = new System.Drawing.Point(4, 22);
             this.tpAngazovanja.Name = "tpAngazovanja";
             this.tpAngazovanja.Padding = new System.Windows.Forms.Padding(3);
-            this.tpAngazovanja.Size = new System.Drawing.Size(1056, 298);
+            this.tpAngazovanja.Size = new System.Drawing.Size(1141, 298);
             this.tpAngazovanja.TabIndex = 1;
             this.tpAngazovanja.Text = "Angažovanja";
             // 
@@ -597,7 +704,7 @@
             this.dgvAngazovanja.Name = "dgvAngazovanja";
             this.dgvAngazovanja.ReadOnly = true;
             this.dgvAngazovanja.RowHeadersWidth = 30;
-            this.dgvAngazovanja.Size = new System.Drawing.Size(904, 292);
+            this.dgvAngazovanja.Size = new System.Drawing.Size(989, 292);
             this.dgvAngazovanja.StandardSort = null;
             this.dgvAngazovanja.TabIndex = 0;
             // 
@@ -668,7 +775,7 @@
             this.tpResenja.Location = new System.Drawing.Point(4, 22);
             this.tpResenja.Name = "tpResenja";
             this.tpResenja.Padding = new System.Windows.Forms.Padding(3);
-            this.tpResenja.Size = new System.Drawing.Size(1056, 298);
+            this.tpResenja.Size = new System.Drawing.Size(1141, 298);
             this.tpResenja.TabIndex = 2;
             this.tpResenja.Text = "Rešenja";
             // 
@@ -706,7 +813,7 @@
             this.dgvResenja.Name = "dgvResenja";
             this.dgvResenja.ReadOnly = true;
             this.dgvResenja.RowHeadersWidth = 30;
-            this.dgvResenja.Size = new System.Drawing.Size(904, 292);
+            this.dgvResenja.Size = new System.Drawing.Size(989, 292);
             this.dgvResenja.StandardSort = null;
             this.dgvResenja.TabIndex = 1;
             this.dgvResenja.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvResenja_CellClick);
@@ -796,103 +903,11 @@
             this.btnUcitajResenja.UseVisualStyleBackColor = true;
             this.btnUcitajResenja.Click += new System.EventHandler(this.BtnUcitajResenja_Click);
             // 
-            // aktivanDataGridViewCheckBoxColumn
-            // 
-            this.aktivanDataGridViewCheckBoxColumn.DataPropertyName = "Aktivan";
-            this.aktivanDataGridViewCheckBoxColumn.HeaderText = "Aktivan";
-            this.aktivanDataGridViewCheckBoxColumn.Name = "aktivanDataGridViewCheckBoxColumn";
-            this.aktivanDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.aktivanDataGridViewCheckBoxColumn.Width = 65;
-            // 
-            // brojUgovoraORaduDataGridViewTextBoxColumn
-            // 
-            this.brojUgovoraORaduDataGridViewTextBoxColumn.DataPropertyName = "BrojUgovoraORadu";
-            this.brojUgovoraORaduDataGridViewTextBoxColumn.HeaderText = "Broj ugovora";
-            this.brojUgovoraORaduDataGridViewTextBoxColumn.Name = "brojUgovoraORaduDataGridViewTextBoxColumn";
-            this.brojUgovoraORaduDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // radnoMestoNazivDataGridViewTextBoxColumn
-            // 
-            this.radnoMestoNazivDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.radnoMestoNazivDataGridViewTextBoxColumn.DataPropertyName = "RadnoMestoNaziv";
-            this.radnoMestoNazivDataGridViewTextBoxColumn.FillWeight = 200F;
-            this.radnoMestoNazivDataGridViewTextBoxColumn.HeaderText = "Radno mesto";
-            this.radnoMestoNazivDataGridViewTextBoxColumn.MinimumWidth = 150;
-            this.radnoMestoNazivDataGridViewTextBoxColumn.Name = "radnoMestoNazivDataGridViewTextBoxColumn";
-            this.radnoMestoNazivDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // procenatRadnogVremenaDataGridViewTextBoxColumn
-            // 
-            this.procenatRadnogVremenaDataGridViewTextBoxColumn.DataPropertyName = "ProcenatRadnogVremena";
-            this.procenatRadnogVremenaDataGridViewTextBoxColumn.HeaderText = "Procenat";
-            this.procenatRadnogVremenaDataGridViewTextBoxColumn.Name = "procenatRadnogVremenaDataGridViewTextBoxColumn";
-            this.procenatRadnogVremenaDataGridViewTextBoxColumn.ReadOnly = true;
-            this.procenatRadnogVremenaDataGridViewTextBoxColumn.Width = 80;
-            // 
-            // datumZaposlenOdDataGridViewTextBoxColumn
-            // 
-            this.datumZaposlenOdDataGridViewTextBoxColumn.DataPropertyName = "DatumZaposlenOd";
-            this.datumZaposlenOdDataGridViewTextBoxColumn.HeaderText = "Zaposlen od";
-            this.datumZaposlenOdDataGridViewTextBoxColumn.Name = "datumZaposlenOdDataGridViewTextBoxColumn";
-            this.datumZaposlenOdDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // datumZaposlenDoDataGridViewTextBoxColumn
-            // 
-            this.datumZaposlenDoDataGridViewTextBoxColumn.DataPropertyName = "DatumZaposlenDo";
-            this.datumZaposlenDoDataGridViewTextBoxColumn.HeaderText = "Zaposlen do";
-            this.datumZaposlenDoDataGridViewTextBoxColumn.Name = "datumZaposlenDoDataGridViewTextBoxColumn";
-            this.datumZaposlenDoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dgvcZapRazlogPrestanka
-            // 
-            this.dgvcZapRazlogPrestanka.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dgvcZapRazlogPrestanka.DataPropertyName = "RazlogPrestankaZaposlenja";
-            this.dgvcZapRazlogPrestanka.HeaderText = "Razlog Prestanka";
-            this.dgvcZapRazlogPrestanka.Name = "dgvcZapRazlogPrestanka";
-            this.dgvcZapRazlogPrestanka.ReadOnly = true;
-            this.dgvcZapRazlogPrestanka.Width = 151;
-            // 
-            // noksNivoNazivDataGridViewTextBoxColumn
-            // 
-            this.noksNivoNazivDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.noksNivoNazivDataGridViewTextBoxColumn.DataPropertyName = "NoksNivoNaziv";
-            this.noksNivoNazivDataGridViewTextBoxColumn.HeaderText = "NOKS";
-            this.noksNivoNazivDataGridViewTextBoxColumn.MinimumWidth = 75;
-            this.noksNivoNazivDataGridViewTextBoxColumn.Name = "noksNivoNazivDataGridViewTextBoxColumn";
-            this.noksNivoNazivDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // vrstaAngazovanjaDataGridViewTextBoxColumn
-            // 
-            this.vrstaAngazovanjaDataGridViewTextBoxColumn.DataPropertyName = "VrstaAngazovanja";
-            this.vrstaAngazovanjaDataGridViewTextBoxColumn.HeaderText = "Vrsta angažovanja";
-            this.vrstaAngazovanjaDataGridViewTextBoxColumn.Name = "vrstaAngazovanjaDataGridViewTextBoxColumn";
-            this.vrstaAngazovanjaDataGridViewTextBoxColumn.ReadOnly = true;
-            this.vrstaAngazovanjaDataGridViewTextBoxColumn.Width = 135;
-            // 
-            // dgvcZapZamenjeni
-            // 
-            this.dgvcZapZamenjeni.DataPropertyName = "_ZamenjeniZaposleni";
-            this.dgvcZapZamenjeni.HeaderText = "Zamena za";
-            this.dgvcZapZamenjeni.Name = "dgvcZapZamenjeni";
-            this.dgvcZapZamenjeni.ReadOnly = true;
-            this.dgvcZapZamenjeni.Width = 125;
-            // 
-            // dgvcZapDokument
-            // 
-            this.dgvcZapDokument.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dgvcZapDokument.DataPropertyName = "Dokument";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.dgvcZapDokument.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvcZapDokument.HeaderText = "Dokument";
-            this.dgvcZapDokument.Name = "dgvcZapDokument";
-            this.dgvcZapDokument.ReadOnly = true;
-            this.dgvcZapDokument.Width = 83;
-            // 
             // FrmZaposlenja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1210, 569);
+            this.ClientSize = new System.Drawing.Size(1295, 569);
             this.Controls.Add(this.scMain);
             this.Controls.Add(this.pnlLeft);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
@@ -999,5 +1014,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn vrstaAngazovanjaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcZapZamenjeni;
         private System.Windows.Forms.DataGridViewButtonColumn dgvcZapDokument;
+        private System.Windows.Forms.CheckBox chkBezTehnGresaka;
     }
 }

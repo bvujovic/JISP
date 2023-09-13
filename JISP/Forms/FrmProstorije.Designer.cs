@@ -73,18 +73,6 @@
             this.kucniBrojDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.jeSedisteDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvObjekti = new JISP.Controls.UcDGV();
-            this.pnlLeft = new JISP.Controls.UcLeftPanel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtProstorijeNaziv = new System.Windows.Forms.TextBox();
-            this.btnProstorijeReset = new System.Windows.Forms.Button();
-            this.cmbProstorijeSprat = new System.Windows.Forms.ComboBox();
-            this.txtProstorijeTip = new System.Windows.Forms.TextBox();
-            this.btnSacuvajProstorije = new JISP.Controls.UcButton();
-            this.lblStatistika = new System.Windows.Forms.Label();
-            this.btnRacunari = new JISP.Controls.UcButton();
-            this.btnDohvatiPodatke = new JISP.Controls.UcButton();
-            this.cmbPodaciZaDohvatanje = new System.Windows.Forms.ComboBox();
-            this.ucExitApp1 = new JISP.Controls.UcExitAppButton();
             this.nazivObjektaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcObjGodinaIzgradnje = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GodinaOtvaranja = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -97,6 +85,18 @@
             this.dgvcObjBrojRadnihSmena = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcObjBrojProstorijaUObjektu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcObjKapacitetObjekta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pnlLeft = new JISP.Controls.UcLeftPanel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtProstorijeNaziv = new System.Windows.Forms.TextBox();
+            this.btnProstorijeReset = new System.Windows.Forms.Button();
+            this.cmbProstorijeSprat = new System.Windows.Forms.ComboBox();
+            this.txtProstorijeTip = new System.Windows.Forms.TextBox();
+            this.btnSacuvajProstorije = new JISP.Controls.UcButton();
+            this.lblStatistika = new System.Windows.Forms.Label();
+            this.btnRacunari = new JISP.Controls.UcButton();
+            this.btnDohvatiPodatke = new JISP.Controls.UcButton();
+            this.cmbPodaciZaDohvatanje = new System.Windows.Forms.ComboBox();
+            this.ucExitApp1 = new JISP.Controls.UcExitAppButton();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -222,8 +222,8 @@
             this.dgvProstorije.Size = new System.Drawing.Size(1317, 363);
             this.dgvProstorije.StandardSort = null;
             this.dgvProstorije.TabIndex = 2;
+            this.dgvProstorije.NumbersSelectionChanged += new System.EventHandler<string>(this.DgvProstorije_NumbersSelectionChanged);
             this.dgvProstorije.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.DgvProstorije_DataError);
-            this.dgvProstorije.SelectionChanged += new System.EventHandler(this.DgvProstorije_SelectionChanged);
             // 
             // nazivProstorijeDataGridViewTextBoxColumn
             // 
@@ -505,6 +505,123 @@
             this.dgvObjekti.StandardSort = null;
             this.dgvObjekti.TabIndex = 2;
             // 
+            // nazivObjektaDataGridViewTextBoxColumn
+            // 
+            this.nazivObjektaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nazivObjektaDataGridViewTextBoxColumn.DataPropertyName = "NazivObjekta";
+            this.nazivObjektaDataGridViewTextBoxColumn.HeaderText = "Objekat";
+            this.nazivObjektaDataGridViewTextBoxColumn.Name = "nazivObjektaDataGridViewTextBoxColumn";
+            this.nazivObjektaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dgvcObjGodinaIzgradnje
+            // 
+            this.dgvcObjGodinaIzgradnje.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dgvcObjGodinaIzgradnje.DataPropertyName = "GodinaIzgradnje";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dgvcObjGodinaIzgradnje.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvcObjGodinaIzgradnje.HeaderText = "Izgrađen";
+            this.dgvcObjGodinaIzgradnje.Name = "dgvcObjGodinaIzgradnje";
+            this.dgvcObjGodinaIzgradnje.ReadOnly = true;
+            this.dgvcObjGodinaIzgradnje.Width = 89;
+            // 
+            // GodinaOtvaranja
+            // 
+            this.GodinaOtvaranja.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.GodinaOtvaranja.DataPropertyName = "GodinaOtvaranja";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.GodinaOtvaranja.DefaultCellStyle = dataGridViewCellStyle7;
+            this.GodinaOtvaranja.HeaderText = "Otvoren";
+            this.GodinaOtvaranja.Name = "GodinaOtvaranja";
+            this.GodinaOtvaranja.ReadOnly = true;
+            this.GodinaOtvaranja.Width = 86;
+            // 
+            // dgvcObjPZaCiscenje
+            // 
+            this.dgvcObjPZaCiscenje.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dgvcObjPZaCiscenje.DataPropertyName = "UkupnaPovrsinaZaCiscenje";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dgvcObjPZaCiscenje.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dgvcObjPZaCiscenje.HeaderText = "P za čišćenje";
+            this.dgvcObjPZaCiscenje.Name = "dgvcObjPZaCiscenje";
+            this.dgvcObjPZaCiscenje.ReadOnly = true;
+            this.dgvcObjPZaCiscenje.Width = 121;
+            // 
+            // dgvcObjPZaGrejanje
+            // 
+            this.dgvcObjPZaGrejanje.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dgvcObjPZaGrejanje.DataPropertyName = "UkupnaPovrsinaZaGrejanje";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dgvcObjPZaGrejanje.DefaultCellStyle = dataGridViewCellStyle9;
+            this.dgvcObjPZaGrejanje.HeaderText = "P za grejanje";
+            this.dgvcObjPZaGrejanje.Name = "dgvcObjPZaGrejanje";
+            this.dgvcObjPZaGrejanje.ReadOnly = true;
+            this.dgvcObjPZaGrejanje.Width = 118;
+            // 
+            // dgvcObjNamena
+            // 
+            this.dgvcObjNamena.DataPropertyName = "Namena";
+            this.dgvcObjNamena.HeaderText = "Namena";
+            this.dgvcObjNamena.Name = "dgvcObjNamena";
+            this.dgvcObjNamena.ReadOnly = true;
+            this.dgvcObjNamena.Width = 172;
+            // 
+            // dgvcObjPovrsinaObjekta
+            // 
+            this.dgvcObjPovrsinaObjekta.DataPropertyName = "PovrsinaObjekta";
+            this.dgvcObjPovrsinaObjekta.HeaderText = "P";
+            this.dgvcObjPovrsinaObjekta.Name = "dgvcObjPovrsinaObjekta";
+            this.dgvcObjPovrsinaObjekta.ReadOnly = true;
+            this.dgvcObjPovrsinaObjekta.ToolTipText = "Površina objekta";
+            this.dgvcObjPovrsinaObjekta.Width = 85;
+            // 
+            // dgvcObjKorisnaPovrsinaObjekta
+            // 
+            this.dgvcObjKorisnaPovrsinaObjekta.DataPropertyName = "KorisnaPovrsinaObjekta";
+            this.dgvcObjKorisnaPovrsinaObjekta.HeaderText = "Korisna P";
+            this.dgvcObjKorisnaPovrsinaObjekta.Name = "dgvcObjKorisnaPovrsinaObjekta";
+            this.dgvcObjKorisnaPovrsinaObjekta.ReadOnly = true;
+            this.dgvcObjKorisnaPovrsinaObjekta.ToolTipText = "Korisna površina objekta";
+            this.dgvcObjKorisnaPovrsinaObjekta.Width = 85;
+            // 
+            // dgvcObjBrojRadnihDanaUNedelji
+            // 
+            this.dgvcObjBrojRadnihDanaUNedelji.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dgvcObjBrojRadnihDanaUNedelji.DataPropertyName = "BrojRadnihDanaUNedelji";
+            this.dgvcObjBrojRadnihDanaUNedelji.HeaderText = "R. dana";
+            this.dgvcObjBrojRadnihDanaUNedelji.Name = "dgvcObjBrojRadnihDanaUNedelji";
+            this.dgvcObjBrojRadnihDanaUNedelji.ReadOnly = true;
+            this.dgvcObjBrojRadnihDanaUNedelji.ToolTipText = "Broj radnih dana u nedelji";
+            this.dgvcObjBrojRadnihDanaUNedelji.Width = 84;
+            // 
+            // dgvcObjBrojRadnihSmena
+            // 
+            this.dgvcObjBrojRadnihSmena.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dgvcObjBrojRadnihSmena.DataPropertyName = "BrojRadnihSmena";
+            this.dgvcObjBrojRadnihSmena.HeaderText = "Smena";
+            this.dgvcObjBrojRadnihSmena.Name = "dgvcObjBrojRadnihSmena";
+            this.dgvcObjBrojRadnihSmena.ReadOnly = true;
+            this.dgvcObjBrojRadnihSmena.ToolTipText = "Broj radnih smena";
+            this.dgvcObjBrojRadnihSmena.Width = 80;
+            // 
+            // dgvcObjBrojProstorijaUObjektu
+            // 
+            this.dgvcObjBrojProstorijaUObjektu.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dgvcObjBrojProstorijaUObjektu.DataPropertyName = "BrojProstorijaUObjektu";
+            this.dgvcObjBrojProstorijaUObjektu.HeaderText = "Prostorija";
+            this.dgvcObjBrojProstorijaUObjektu.Name = "dgvcObjBrojProstorijaUObjektu";
+            this.dgvcObjBrojProstorijaUObjektu.ReadOnly = true;
+            this.dgvcObjBrojProstorijaUObjektu.ToolTipText = "Broj prostorija u objektu";
+            this.dgvcObjBrojProstorijaUObjektu.Width = 97;
+            // 
+            // dgvcObjKapacitetObjekta
+            // 
+            this.dgvcObjKapacitetObjekta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dgvcObjKapacitetObjekta.DataPropertyName = "KapacitetObjekta";
+            this.dgvcObjKapacitetObjekta.HeaderText = "Kapacitet";
+            this.dgvcObjKapacitetObjekta.Name = "dgvcObjKapacitetObjekta";
+            this.dgvcObjKapacitetObjekta.ReadOnly = true;
+            this.dgvcObjKapacitetObjekta.Width = 94;
+            // 
             // pnlLeft
             // 
             this.pnlLeft.Controls.Add(this.groupBox1);
@@ -643,123 +760,6 @@
             this.ucExitApp1.Text = "Izlaz";
             this.ucExitApp1.ToolTipText = "Izlaz iz aplikacije";
             this.ucExitApp1.UseVisualStyleBackColor = false;
-            // 
-            // nazivObjektaDataGridViewTextBoxColumn
-            // 
-            this.nazivObjektaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nazivObjektaDataGridViewTextBoxColumn.DataPropertyName = "NazivObjekta";
-            this.nazivObjektaDataGridViewTextBoxColumn.HeaderText = "Objekat";
-            this.nazivObjektaDataGridViewTextBoxColumn.Name = "nazivObjektaDataGridViewTextBoxColumn";
-            this.nazivObjektaDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dgvcObjGodinaIzgradnje
-            // 
-            this.dgvcObjGodinaIzgradnje.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dgvcObjGodinaIzgradnje.DataPropertyName = "GodinaIzgradnje";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dgvcObjGodinaIzgradnje.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dgvcObjGodinaIzgradnje.HeaderText = "Izgrađen";
-            this.dgvcObjGodinaIzgradnje.Name = "dgvcObjGodinaIzgradnje";
-            this.dgvcObjGodinaIzgradnje.ReadOnly = true;
-            this.dgvcObjGodinaIzgradnje.Width = 89;
-            // 
-            // GodinaOtvaranja
-            // 
-            this.GodinaOtvaranja.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.GodinaOtvaranja.DataPropertyName = "GodinaOtvaranja";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.GodinaOtvaranja.DefaultCellStyle = dataGridViewCellStyle7;
-            this.GodinaOtvaranja.HeaderText = "Otvoren";
-            this.GodinaOtvaranja.Name = "GodinaOtvaranja";
-            this.GodinaOtvaranja.ReadOnly = true;
-            this.GodinaOtvaranja.Width = 86;
-            // 
-            // dgvcObjPZaCiscenje
-            // 
-            this.dgvcObjPZaCiscenje.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dgvcObjPZaCiscenje.DataPropertyName = "UkupnaPovrsinaZaCiscenje";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dgvcObjPZaCiscenje.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dgvcObjPZaCiscenje.HeaderText = "P za čišćenje";
-            this.dgvcObjPZaCiscenje.Name = "dgvcObjPZaCiscenje";
-            this.dgvcObjPZaCiscenje.ReadOnly = true;
-            this.dgvcObjPZaCiscenje.Width = 121;
-            // 
-            // dgvcObjPZaGrejanje
-            // 
-            this.dgvcObjPZaGrejanje.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dgvcObjPZaGrejanje.DataPropertyName = "UkupnaPovrsinaZaGrejanje";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dgvcObjPZaGrejanje.DefaultCellStyle = dataGridViewCellStyle9;
-            this.dgvcObjPZaGrejanje.HeaderText = "P za grejanje";
-            this.dgvcObjPZaGrejanje.Name = "dgvcObjPZaGrejanje";
-            this.dgvcObjPZaGrejanje.ReadOnly = true;
-            this.dgvcObjPZaGrejanje.Width = 118;
-            // 
-            // dgvcObjNamena
-            // 
-            this.dgvcObjNamena.DataPropertyName = "Namena";
-            this.dgvcObjNamena.HeaderText = "Namena";
-            this.dgvcObjNamena.Name = "dgvcObjNamena";
-            this.dgvcObjNamena.ReadOnly = true;
-            this.dgvcObjNamena.Width = 172;
-            // 
-            // dgvcObjPovrsinaObjekta
-            // 
-            this.dgvcObjPovrsinaObjekta.DataPropertyName = "PovrsinaObjekta";
-            this.dgvcObjPovrsinaObjekta.HeaderText = "P";
-            this.dgvcObjPovrsinaObjekta.Name = "dgvcObjPovrsinaObjekta";
-            this.dgvcObjPovrsinaObjekta.ReadOnly = true;
-            this.dgvcObjPovrsinaObjekta.ToolTipText = "Površina objekta";
-            this.dgvcObjPovrsinaObjekta.Width = 85;
-            // 
-            // dgvcObjKorisnaPovrsinaObjekta
-            // 
-            this.dgvcObjKorisnaPovrsinaObjekta.DataPropertyName = "KorisnaPovrsinaObjekta";
-            this.dgvcObjKorisnaPovrsinaObjekta.HeaderText = "Korisna P";
-            this.dgvcObjKorisnaPovrsinaObjekta.Name = "dgvcObjKorisnaPovrsinaObjekta";
-            this.dgvcObjKorisnaPovrsinaObjekta.ReadOnly = true;
-            this.dgvcObjKorisnaPovrsinaObjekta.ToolTipText = "Korisna površina objekta";
-            this.dgvcObjKorisnaPovrsinaObjekta.Width = 85;
-            // 
-            // dgvcObjBrojRadnihDanaUNedelji
-            // 
-            this.dgvcObjBrojRadnihDanaUNedelji.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dgvcObjBrojRadnihDanaUNedelji.DataPropertyName = "BrojRadnihDanaUNedelji";
-            this.dgvcObjBrojRadnihDanaUNedelji.HeaderText = "R. dana";
-            this.dgvcObjBrojRadnihDanaUNedelji.Name = "dgvcObjBrojRadnihDanaUNedelji";
-            this.dgvcObjBrojRadnihDanaUNedelji.ReadOnly = true;
-            this.dgvcObjBrojRadnihDanaUNedelji.ToolTipText = "Broj radnih dana u nedelji";
-            this.dgvcObjBrojRadnihDanaUNedelji.Width = 84;
-            // 
-            // dgvcObjBrojRadnihSmena
-            // 
-            this.dgvcObjBrojRadnihSmena.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dgvcObjBrojRadnihSmena.DataPropertyName = "BrojRadnihSmena";
-            this.dgvcObjBrojRadnihSmena.HeaderText = "Smena";
-            this.dgvcObjBrojRadnihSmena.Name = "dgvcObjBrojRadnihSmena";
-            this.dgvcObjBrojRadnihSmena.ReadOnly = true;
-            this.dgvcObjBrojRadnihSmena.ToolTipText = "Broj radnih smena";
-            this.dgvcObjBrojRadnihSmena.Width = 80;
-            // 
-            // dgvcObjBrojProstorijaUObjektu
-            // 
-            this.dgvcObjBrojProstorijaUObjektu.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dgvcObjBrojProstorijaUObjektu.DataPropertyName = "BrojProstorijaUObjektu";
-            this.dgvcObjBrojProstorijaUObjektu.HeaderText = "Prostorija";
-            this.dgvcObjBrojProstorijaUObjektu.Name = "dgvcObjBrojProstorijaUObjektu";
-            this.dgvcObjBrojProstorijaUObjektu.ReadOnly = true;
-            this.dgvcObjBrojProstorijaUObjektu.ToolTipText = "Broj prostorija u objektu";
-            this.dgvcObjBrojProstorijaUObjektu.Width = 97;
-            // 
-            // dgvcObjKapacitetObjekta
-            // 
-            this.dgvcObjKapacitetObjekta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dgvcObjKapacitetObjekta.DataPropertyName = "KapacitetObjekta";
-            this.dgvcObjKapacitetObjekta.HeaderText = "Kapacitet";
-            this.dgvcObjKapacitetObjekta.Name = "dgvcObjKapacitetObjekta";
-            this.dgvcObjKapacitetObjekta.ReadOnly = true;
-            this.dgvcObjKapacitetObjekta.Width = 94;
             // 
             // FrmProstorije
             // 
