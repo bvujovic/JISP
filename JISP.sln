@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ScreenShots", "ScreenShots"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "xUnitTests", "xUnitTests\xUnitTests.csproj", "{AECC121D-0660-4E41-81BB-7234E49DA564}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinControlsTests", "WinControlsTests\WinControlsTests.csproj", "{E186D4B6-4922-4528-8EA8-4D7BD42F2AE1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{AECC121D-0660-4E41-81BB-7234E49DA564}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AECC121D-0660-4E41-81BB-7234E49DA564}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AECC121D-0660-4E41-81BB-7234E49DA564}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E186D4B6-4922-4528-8EA8-4D7BD42F2AE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E186D4B6-4922-4528-8EA8-4D7BD42F2AE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E186D4B6-4922-4528-8EA8-4D7BD42F2AE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E186D4B6-4922-4528-8EA8-4D7BD42F2AE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

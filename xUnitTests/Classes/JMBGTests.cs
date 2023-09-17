@@ -73,7 +73,11 @@ namespace xUnitTests.Classes
         public void DaysToBDayTestYesterday()
         {
             var dt = DateTime.Now.AddDays(-1).AddYears(-45);
-            var exp = 364; //* ne valja ako je prestupna godina
+            var exp = 364;
+            // dodavanje jednog dana za slucaj prestupne godine
+            if (dt.Month <= 2 && DateTime.IsLeapYear(DateTime.Today.Year)
+                || dt.Month > 2 && DateTime.IsLeapYear(DateTime.Today.Year + 1))
+                exp++;
             Assert.Equal(exp, JMBG.DaysToBDay(dt));
         }
     }

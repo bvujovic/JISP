@@ -215,5 +215,11 @@ namespace JISP.Forms
             nje.SetIdZamenjenogZaposlenogNull();
             cmbZamenjeni.SelectedIndex = -1;
         }
+
+        private void FrmZaposlenja_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+                Close();
+        }
     }
 }

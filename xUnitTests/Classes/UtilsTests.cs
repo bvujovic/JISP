@@ -1,4 +1,5 @@
 ﻿using JISP.Classes;
+using JISP.Controls;
 using System;
 using System.Collections.Generic;
 using Xunit;
@@ -41,6 +42,15 @@ namespace xUnitTests.Classes
         {
             var res = Utils.RezimeZavrsetkaObrazovanja(json);
             Assert.Equal(rezime, res);
+        }
+
+        [Theory]
+        [InlineData("abc", "abc")]
+        [InlineData("abc&123", "(abc) AND (123)")]
+        public void FilterAndOr_Test(string s, string expected)
+        {
+            var res = Utils.FilterAndOr(s, s => s);
+            Assert.Equal(expected, res);
         }
     }
 }

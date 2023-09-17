@@ -1,7 +1,9 @@
-﻿using System;
+﻿using JISP.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Text;
 using System.Windows.Forms;
 
 namespace JISP.Controls
@@ -9,7 +11,7 @@ namespace JISP.Controls
     public partial class UcFilterTextBox : TextBox
     {
         /// <summary>
-        /// Nadklasa za TextBox kontrole koje sluze za filtriranje podataka.
+        /// Potklasa za TextBox kontrole koje sluze za filtriranje podataka.
         /// </summary>
         /// <remarks>Potrebno je postaviti svojstvo BindingSource na odgovarajuci bs.</remarks>
         public UcFilterTextBox()
@@ -93,6 +95,67 @@ namespace JISP.Controls
         {
             base.OnEnter(e);
             SetCyrillic();
+        }
+
+        public delegate string M(string s);
+
+        public string FilterAndOr(M filterMethod, bool lat2cir = false)
+        {
+            //? ako Text sadrzi ', |, & izbaciti izuzetak
+            var sb = new StringBuilder();
+            var s = Text.Trim();
+            int idxStart = -1;
+            for (int i = 0; i < s.Length; i++)
+            {
+                var ch = s[i];
+                if (ch == '(' || ch == ')')
+                {
+                    AppendCondition(filterMethod, lat2cir, sb, s, ref idxStart, i);
+                    sb.Append(ch);
+                }
+                else if (ch == ' ')
+                {
+                    var operators = new[] { " AND ", " OR " };
+                    foreach (var op in operators)
+                        if (s.IndexOf(op, i, StringComparison.OrdinalIgnoreCase) == i)
+                        {
+                            AppendCondition(filterMethod, lat2cir, sb, s, ref idxStart, i);
+                            sb.Append(op);
+                            i += op.Length - 1;
+                            break;
+                        }
+                }
+                //if (ch == ' ' && s.IndexOf(" and ", i, StringComparison.OrdinalIgnoreCase) == i)
+                //{
+                //    AppendCondition(filterMethod, lat2cir, sb, s, ref idxStart, i);
+                //    sb.Append(" AND ");
+                //    i += 4;
+                //    continue;
+                //}
+                //if (ch == ' ' && s.IndexOf(" or ", i, StringComparison.OrdinalIgnoreCase) == i)
+                //{
+                //    AppendCondition(filterMethod, lat2cir, sb, s, ref idxStart, i);
+                //    sb.Append(" OR ");
+                //    i += 3;
+                //    continue;
+                //}
+                else if (idxStart == -1)
+                    idxStart = i;
+            }
+            AppendCondition(filterMethod, lat2cir, sb, s, ref idxStart, s.Length);
+            return sb.ToString();
+        }
+
+        private static void AppendCondition(M filterMethod, bool lat2cir, StringBuilder sb, string s, ref int idxStart, int i)
+        {
+            if (idxStart != -1)
+            {
+                var str = s.Substring(idxStart, i - idxStart);
+                if (lat2cir)
+                    str = LatinicaCirilica.Lat2Cir(str);
+                sb.Append('(' + filterMethod(str) + ')');
+                idxStart = -1;
+            }
         }
     }
 }

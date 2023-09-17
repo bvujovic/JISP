@@ -406,7 +406,7 @@ namespace JISP.Forms
             this.txtFilter.Location = new System.Drawing.Point(193, 1);
             this.txtFilter.Name = "txtFilter";
             this.txtFilter.ShouldBeCyrillic = false;
-            this.txtFilter.Size = new System.Drawing.Size(128, 24);
+            this.txtFilter.Size = new System.Drawing.Size(252, 24);
             this.txtFilter.TabIndex = 0;
             this.txtFilter.TextChanged += new System.EventHandler(this.FilterChanged);
             this.txtFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtFilter_KeyDown);

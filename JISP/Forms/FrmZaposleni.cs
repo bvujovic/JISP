@@ -102,32 +102,40 @@ namespace JISP.Forms
         {
             try
             {
-                var s = LatinicaCirilica.Lat2Cir(txtFilter.Text);
                 // filtriranje statusa aktivnosti - izdvajanje redova koji imaju * ili ** ili ***
-                if (s != "" && s.StartsWith("*"))
+                if (txtFilter.Text.StartsWith("*"))
                 {
                     bsZaposleni.Filter = $"StatusAktivnosti2 = '*' OR StatusAktivnosti2 = '**' OR StatusAktivnosti2 = '***'";
                     return;
                 }
-                var aktivnoZap = !s.StartsWith("-");
-                if (!aktivnoZap)
-                    s = s.Substring(1);
-                // osnovna pretraga: ime, prezime, angazovanja, jmbg
-                var filter = $"Ime LIKE '%{s}%' OR Prezime LIKE '%{s}%' OR Angazovanja LIKE '%{s}%' OR JMBG LIKE '%{s}%' ";
-                // pretraga po zaposlenjima (radna mesta)
-                var ids = FilterRadnoMesto(s, aktivnoZap);
-                if (ids.Count() > 0)
-                    filter += $" OR IdZaposlenog IN ({string.Join(", ", ids)})";
-                // pretraga po zamenjenim zaposlenima
-                ids = FilterZamenjeni(s, aktivnoZap);
-                if (ids.Count() > 0)
-                    filter += $" OR IdZaposlenog IN ({string.Join(", ", ids)})";
-                // da li je zaposleni aktivan ili ne
-                if (chkAktivniZap.CheckState != CheckState.Indeterminate)
-                    filter = $"({filter}) AND Aktivan = {chkAktivniZap.Checked}";
-                bsZaposleni.Filter = filter;
+                bsZaposleni.Filter = txtFilter.FilterAndOr(FilterBs, true);
             }
-            catch (Exception ex) { Utils.ShowMbox(ex, "Pretraga zaposlenih"); }
+            catch (Exception ex)
+            {
+                if (!ex.Message.Contains("parenthesis"))
+                    Utils.ShowMbox(ex, "Pretraga zaposlenih");
+            }
+        }
+
+        private string FilterBs(string s)
+        {
+            var aktivnoZap = !s.StartsWith("-");
+            if (!aktivnoZap)
+                s = s.Substring(1);
+            // osnovna pretraga: ime, prezime, angazovanja, jmbg
+            var filter = $"ZaposleniString LIKE '%{s}%' OR Angazovanja LIKE '%{s}%' OR JMBG LIKE '%{s}%' ";
+            // pretraga po zaposlenjima (radna mesta)
+            var ids = FilterRadnoMesto(s, aktivnoZap);
+            if (ids.Count() > 0)
+                filter += $" OR IdZaposlenog IN ({string.Join(", ", ids)})";
+            // pretraga po zamenjenim zaposlenima
+            ids = FilterZamenjeni(s, aktivnoZap);
+            if (ids.Count() > 0)
+                filter += $" OR IdZaposlenog IN ({string.Join(", ", ids)})";
+            // da li je zaposleni aktivan ili ne
+            if (chkAktivniZap.CheckState != CheckState.Indeterminate)
+                filter = $"({filter}) AND Aktivan = {chkAktivniZap.Checked}";
+            return filter;
         }
 
         private void DgvZaposleni_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -175,8 +183,24 @@ namespace JISP.Forms
 
         private void DgvZaposleni_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Return)
-                new FrmZaposlenja(dgvZaposleni.CurrDataRow<Ds.ZaposleniRow>()).ShowDialog();
+            PokreniFrmZaposlenjaNaEnter(e);
+            //B
+            //if (e.KeyCode == Keys.Enter)
+            //{
+            //    new FrmZaposlenja(dgvZaposleni.CurrDataRow<Ds.ZaposleniRow>()).ShowDialog();
+            //    e.Handled = true; // protiv prelaska u novi red
+            //}
+        }
+
+        private void PokreniFrmZaposlenjaNaEnter(KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                DgvZaposleni_CellDoubleClick(this,
+                    new DataGridViewCellEventArgs(dgvcIme.Index, dgvZaposleni.CurrentRow.Index));
+                //B e.SuppressKeyPress = true; // protiv "kling" zvuka
+                e.Handled = true; // protiv prelaska u novi red
+            }
         }
 
         public IEnumerable<Ds.ZaposleniRow> SelektovaniZaposleni
@@ -449,13 +473,14 @@ namespace JISP.Forms
 
         private void TxtFilter_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                DgvZaposleni_CellDoubleClick(this,
-                    new DataGridViewCellEventArgs(dgvcIme.Index, dgvZaposleni.CurrentRow.Index));
-                e.SuppressKeyPress = true; // protiv "kling" zvuka
-                e.Handled = true; // protiv prelaska u novi red
-            }
+            PokreniFrmZaposlenjaNaEnter(e);
+            //if (e.KeyCode == Keys.Enter)
+            //{
+            //    DgvZaposleni_CellDoubleClick(this,
+            //        new DataGridViewCellEventArgs(dgvcIme.Index, dgvZaposleni.CurrentRow.Index));
+            //    //B e.SuppressKeyPress = true; // protiv "kling" zvuka
+            //    e.Handled = true; // protiv prelaska u novi red
+            //}
         }
 
         /// <summary>

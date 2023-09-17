@@ -158,7 +158,7 @@ namespace JISP.Classes
             try
             {
 #if !DEBUG
-                    appVersion = System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion;
+                appVersion = System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion;
 #endif
             }
             catch { }
@@ -270,6 +270,20 @@ namespace JISP.Classes
         {
             frm.Icon = Properties.Resources.grb_srb;
             frm.Text += " - Naš JISP";
+        }
+
+        public delegate string M(string s);
+
+        public static string FilterAndOr(string s, M filterMethod)
+        {
+            var parts = s.Split(new char[] { '&', '|' }, StringSplitOptions.RemoveEmptyEntries);
+            if (parts.Length < 2)
+                return filterMethod(s.Trim());
+            //* mozda bi trebalo omoguciti vise operatora, eventualno i zagrade
+            if (parts.Length > 2)
+                throw new Exception("Dozvoljen je samo jedan & ili | operator.");
+            char ch = s[parts[0].Length];
+            return $"({filterMethod(parts[0].Trim())}) {(ch=='&' ? "AND" : "OR")} ({filterMethod(parts[1].Trim())})";
         }
     }
 }

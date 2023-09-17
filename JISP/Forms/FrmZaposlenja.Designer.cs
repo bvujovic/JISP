@@ -911,10 +911,12 @@
             this.Controls.Add(this.scMain);
             this.Controls.Add(this.pnlLeft);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmZaposlenja";
             this.Text = "Zaposlenja";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmZaposlenja_FormClosed);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmZaposlenja_KeyDown);
             this.pnlLeft.ResumeLayout(false);
             this.pnlLeft.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsZaposleni)).EndInit();
