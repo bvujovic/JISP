@@ -33,6 +33,8 @@
             System.Windows.Forms.Label label1;
             System.Windows.Forms.Label label3;
             System.Windows.Forms.Label label4;
+            System.Windows.Forms.Label label5;
+            System.Windows.Forms.Label label6;
             this.lblApiTokenCaption = new System.Windows.Forms.Label();
             this.lblApiToken = new System.Windows.Forms.Label();
             this.ttApiToken = new System.Windows.Forms.ToolTip(this.components);
@@ -47,10 +49,16 @@
             this.btnPrikaziPoruke = new System.Windows.Forms.Button();
             this.btnTest = new JISP.Controls.UcButton();
             this.btnFormAutoInput = new JISP.Controls.UcButton();
+            this.numHttpTimeoutShort = new System.Windows.Forms.NumericUpDown();
+            this.numHttpTimeoutLong = new System.Windows.Forms.NumericUpDown();
             label2 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
+            label5 = new System.Windows.Forms.Label();
+            label6 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.numHttpTimeoutShort)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numHttpTimeoutLong)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -88,6 +96,24 @@
             label4.Size = new System.Drawing.Size(60, 18);
             label4.TabIndex = 6;
             label4.Text = "Poruke:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(347, 281);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(158, 18);
+            label5.TabIndex = 11;
+            label5.Text = "HTTP tajmaut (kratak):";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new System.Drawing.Point(347, 309);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(141, 18);
+            label6.TabIndex = 13;
+            label6.Text = "HTTP tajmaut (dug):";
             // 
             // lblApiTokenCaption
             // 
@@ -221,11 +247,53 @@
             this.btnFormAutoInput.UseVisualStyleBackColor = true;
             this.btnFormAutoInput.Click += new System.EventHandler(this.BtnFormAutoInput_Click);
             // 
+            // numHttpTimeoutShort
+            // 
+            this.numHttpTimeoutShort.Location = new System.Drawing.Point(508, 279);
+            this.numHttpTimeoutShort.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.numHttpTimeoutShort.Name = "numHttpTimeoutShort";
+            this.numHttpTimeoutShort.Size = new System.Drawing.Size(40, 24);
+            this.numHttpTimeoutShort.TabIndex = 12;
+            this.numHttpTimeoutShort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numHttpTimeoutShort.Value = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.numHttpTimeoutShort.ValueChanged += new System.EventHandler(this.NumHttpTimeoutShort_ValueChanged);
+            // 
+            // numHttpTimeoutLong
+            // 
+            this.numHttpTimeoutLong.Location = new System.Drawing.Point(508, 307);
+            this.numHttpTimeoutLong.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.numHttpTimeoutLong.Name = "numHttpTimeoutLong";
+            this.numHttpTimeoutLong.Size = new System.Drawing.Size(40, 24);
+            this.numHttpTimeoutLong.TabIndex = 14;
+            this.numHttpTimeoutLong.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numHttpTimeoutLong.Value = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
+            this.numHttpTimeoutLong.ValueChanged += new System.EventHandler(this.NumHttpTimeoutLong_ValueChanged);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(617, 364);
+            this.Controls.Add(this.numHttpTimeoutLong);
+            this.Controls.Add(label6);
+            this.Controls.Add(this.numHttpTimeoutShort);
+            this.Controls.Add(label5);
             this.Controls.Add(this.btnFormAutoInput);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.btnPrikaziPoruke);
@@ -250,6 +318,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "JISP";
             this.Load += new System.EventHandler(this.FrmMain_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.numHttpTimeoutShort)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numHttpTimeoutLong)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -271,6 +341,8 @@
         private System.Windows.Forms.Button btnPrikaziPoruke;
         private Controls.UcButton btnTest;
         private Controls.UcButton btnFormAutoInput;
+        private System.Windows.Forms.NumericUpDown numHttpTimeoutShort;
+        private System.Windows.Forms.NumericUpDown numHttpTimeoutLong;
     }
 }
 

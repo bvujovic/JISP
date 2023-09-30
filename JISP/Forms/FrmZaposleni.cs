@@ -5,7 +5,6 @@ using JISP.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace JISP.Forms
@@ -23,6 +22,7 @@ namespace JISP.Forms
             bsZaposleni.DataSource = Ds;
             bsZaposlenja.DataMember = "FK_Zaposleni_Zaposlenja";
             bsZaposlenja.Sort = "Aktivan DESC, DatumZaposlenOd DESC, DatumZaposlenDo DESC";
+            bsZaposlenja.Filter = "Aktivan = TRUE";
             chkAktivniZap.CheckState = CheckState.Checked;
             dgvZaposleni.StandardSort = bsZaposleni.Sort = "Ime, Prezime";
             dgvZaposleni.LoadSettings();
@@ -184,12 +184,6 @@ namespace JISP.Forms
         private void DgvZaposleni_KeyDown(object sender, KeyEventArgs e)
         {
             PokreniFrmZaposlenjaNaEnter(e);
-            //B
-            //if (e.KeyCode == Keys.Enter)
-            //{
-            //    new FrmZaposlenja(dgvZaposleni.CurrDataRow<Ds.ZaposleniRow>()).ShowDialog();
-            //    e.Handled = true; // protiv prelaska u novi red
-            //}
         }
 
         private void PokreniFrmZaposlenjaNaEnter(KeyEventArgs e)

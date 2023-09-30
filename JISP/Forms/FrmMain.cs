@@ -26,6 +26,7 @@ namespace JISP.Forms
 #if DEBUG
                 btnTest.Visible = true;
 #endif
+
                 var godine = new List<SkolskaGodina>();
                 for (int i = 2020; i <= DateTime.Today.Year; i++)
                     godine.Add(new SkolskaGodina(i));
@@ -47,6 +48,8 @@ namespace JISP.Forms
                 AppData.LoadDsData();
                 cmbBrowser.SelectedItem = AppData.Browser;
                 cmbSkolskaGodina.SelectedItem = AppData.SkolskaGodina;
+                numHttpTimeoutShort.Value = AppData.HttpTimeoutShort;
+                numHttpTimeoutLong.Value = AppData.HttpTimeoutLong;
                 BackupData.CreateBackupIfNeeded();
                 Text = "Naš JISP - " + Utils.GetVersionName();
                 Icon = Properties.Resources.grb_srb;
@@ -169,8 +172,18 @@ namespace JISP.Forms
         }
 
         private void CmbBrowser_SelectedIndexChanged(object sender, EventArgs e)
+            => AppData.Browser = cmbBrowser.SelectedItem.ToString();
+
+        private void NumHttpTimeoutShort_ValueChanged(object sender, EventArgs e)
         {
-            AppData.Browser = cmbBrowser.SelectedItem.ToString();
+            AppData.HttpTimeoutShort = (int)numHttpTimeoutShort.Value;
+            AppData.SaveSett(AppData.HttpTimeoutShortSett, AppData.HttpTimeoutShort.ToString());
+        }
+
+        private void NumHttpTimeoutLong_ValueChanged(object sender, EventArgs e)
+        {
+            AppData.HttpTimeoutLong = (int)numHttpTimeoutLong.Value;
+            AppData.SaveSett(AppData.HttpTimeoutLongSett, AppData.HttpTimeoutLong.ToString());
         }
 
         private void CmbSkolskaGodina_SelectedIndexChanged(object sender, EventArgs e)
@@ -189,6 +202,23 @@ namespace JISP.Forms
         {
             try
             {
+                //// https://www.c-sharpcorner.com/article/ocr-using-tesseract-in-C-Sharp/
+                //// https://ironsoftware.com/csharp/ocr/examples/intl-languages/
+                //// https://www.youtube.com/watch?v=X0wW4KyLvJ4
+                //var ocr = new IronOcr.IronTesseract { Language = IronOcr.OcrLanguage.Serbian };
+                //var dialog = new OpenFileDialog();
+                //if (dialog.ShowDialog() != DialogResult.OK)
+                //    return;
+
+                //using (var ocrInput = new IronOcr.OcrInput())
+                //{
+                //    ocrInput.AddImage(dialog.FileName);
+                //    // ocrInput.AddPdf("document.pdf");
+                //    var ocrResult = ocr.Read(ocrInput);
+                //    Console.WriteLine(ocrResult.Text);
+                //    Utils.ShowMbox(ocrResult.Text, "OCR");
+                //}
+
                 //                var sb = new StringBuilder();
                 //                foreach (var z in AppData.Ds.Zaposleni)
                 //                {

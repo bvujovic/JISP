@@ -21,7 +21,10 @@ namespace JISP.Data
             set
             {
                 if (value != null && IsTokenFormatOk(value))
+                {
                     token = value;
+                    httpClient = null;
+                }
             }
         }
 
@@ -97,7 +100,7 @@ namespace JISP.Data
         {
             if (httpClient != null)
                 return httpClient;
-            httpClient = new HttpClient() { Timeout = TimeSpan.FromSeconds(8) };
+            httpClient = new HttpClient() { Timeout = TimeSpan.FromSeconds(AppData.HttpTimeoutShort) };
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
             return httpClient;
         }
@@ -143,7 +146,7 @@ namespace JISP.Data
         /// <summary>Preuzimanje fajla od JISPa u Downloads i njegovo pokretanje.</summary>
         public static async Task PostForFile(string filePath, string url, string content, bool isJson)
         {
-            using (var client = new HttpClient() { Timeout = TimeSpan.FromSeconds(25) })
+            using (var client = new HttpClient() { Timeout = TimeSpan.FromSeconds(AppData.HttpTimeoutLong) })
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
                 url = "https://jisp.mpn.gov.rs/webapi/api/" + url;

@@ -102,8 +102,10 @@ namespace JISP.Controls
         public string FilterAndOr(M filterMethod, bool lat2cir = false)
         {
             //? ako Text sadrzi ', |, & izbaciti izuzetak
-            var sb = new StringBuilder();
             var s = Text.Trim();
+            if (s == "")
+                return filterMethod(s);
+            var sb = new StringBuilder();
             int idxStart = -1;
             for (int i = 0; i < s.Length; i++)
             {

@@ -29,134 +29,93 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Label label1;
-            System.Windows.Forms.Label label2;
-            System.Windows.Forms.Label label3;
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.Label label3;
+            System.Windows.Forms.Label label2;
+            System.Windows.Forms.Label label1;
             this.tim = new System.Windows.Forms.Timer(this.components);
-            this.btnSnimanjeStartStop = new JISP.Controls.UcButton();
-            this.btnPustanjeStartStop = new JISP.Controls.UcButton();
-            this.numDelay = new System.Windows.Forms.NumericUpDown();
+            this.bsFormAutoFills = new System.Windows.Forms.BindingSource(this.components);
+            this.ds = new JISP.Data.Ds();
+            this.bsFAFItems = new System.Windows.Forms.BindingSource(this.components);
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.ttPrikaziKursor = new System.Windows.Forms.ToolTip(this.components);
             this.dgvFAFs = new JISP.Controls.UcDGV();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcFafComment = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bsFormAutoFills = new System.Windows.Forms.BindingSource(this.components);
-            this.ds = new JISP.Data.Ds();
             this.dgvItems = new JISP.Controls.UcDGV();
-            this.itemTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.itemTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.contentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bsFAFItems = new System.Windows.Forms.BindingSource(this.components);
-            this.ucExitApp1 = new JISP.Controls.UcExitAppButton();
-            this.btnObrisiStavku = new JISP.Controls.UcButton();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
             this.chkPrikaziKursor = new System.Windows.Forms.CheckBox();
             this.btnPomeriStavkuNagore = new JISP.Controls.UcButton();
             this.btnPomeriStavkuNadole = new JISP.Controls.UcButton();
             this.gbPustanje = new System.Windows.Forms.GroupBox();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.ttPrikaziKursor = new System.Windows.Forms.ToolTip(this.components);
-            label1 = new System.Windows.Forms.Label();
-            label2 = new System.Windows.Forms.Label();
+            this.btnPustanjeStartStop = new JISP.Controls.UcButton();
+            this.numDelay = new System.Windows.Forms.NumericUpDown();
+            this.btnObrisiStavku = new JISP.Controls.UcButton();
+            this.ucExitApp1 = new JISP.Controls.UcExitAppButton();
+            this.btnSnimanjeStartStop = new JISP.Controls.UcButton();
             label3 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.numDelay)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvFAFs)).BeginInit();
+            label2 = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bsFormAutoFills)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsFAFItems)).BeginInit();
-            this.pnlLeft.SuspendLayout();
-            this.gbPustanje.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFAFs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
+            this.pnlLeft.SuspendLayout();
+            this.gbPustanje.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numDelay)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(13, 69);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(69, 18);
-            label1.TabIndex = 7;
-            label1.Text = "Snimanje";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(1, 62);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(107, 18);
-            label2.TabIndex = 10;
-            label2.Text = "Trajanje stavke";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(76, 85);
-            label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(29, 18);
-            label3.TabIndex = 11;
-            label3.Text = "ms";
             // 
             // tim
             // 
             this.tim.Interval = 1000;
             this.tim.Tick += new System.EventHandler(this.Tim_Tick);
             // 
-            // btnSnimanjeStartStop
+            // bsFormAutoFills
             // 
-            this.btnSnimanjeStartStop.Location = new System.Drawing.Point(8, 90);
-            this.btnSnimanjeStartStop.Name = "btnSnimanjeStartStop";
-            this.btnSnimanjeStartStop.Size = new System.Drawing.Size(127, 34);
-            this.btnSnimanjeStartStop.TabIndex = 0;
-            this.btnSnimanjeStartStop.Text = "Start";
-            this.btnSnimanjeStartStop.ToolTipText = "Zaustavljanje ili pokretanje procesa snimanja tj. dodavanja stavki (klikovi) u ru" +
-    "tinu tj. listu";
-            this.btnSnimanjeStartStop.UseVisualStyleBackColor = true;
-            this.btnSnimanjeStartStop.Click += new System.EventHandler(this.BtnSnimanjeStartStop_Click);
+            this.bsFormAutoFills.DataMember = "FormAutoFills";
+            this.bsFormAutoFills.DataSource = this.ds;
             // 
-            // btnPustanjeStartStop
+            // ds
             // 
-            this.btnPustanjeStartStop.Location = new System.Drawing.Point(4, 23);
-            this.btnPustanjeStartStop.Name = "btnPustanjeStartStop";
-            this.btnPustanjeStartStop.Size = new System.Drawing.Size(117, 34);
-            this.btnPustanjeStartStop.TabIndex = 1;
-            this.btnPustanjeStartStop.Text = "Start";
-            this.btnPustanjeStartStop.ToolTipText = "Zaustavljanje ili pokretanje procesa izvršavanja rutine: izvršavaju se sve stavke" +
-    " do kraja liste počevši od tekuće";
-            this.btnPustanjeStartStop.UseVisualStyleBackColor = true;
-            this.btnPustanjeStartStop.Click += new System.EventHandler(this.BtnPustanjeStartStop_Click);
+            this.ds.DataSetName = "Ds";
+            this.ds.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // numDelay
+            // bsFAFItems
             // 
-            this.numDelay.Increment = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.numDelay.Location = new System.Drawing.Point(4, 83);
-            this.numDelay.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.numDelay.Minimum = new decimal(new int[] {
-            200,
-            0,
-            0,
-            0});
-            this.numDelay.Name = "numDelay";
-            this.numDelay.Size = new System.Drawing.Size(70, 24);
-            this.numDelay.TabIndex = 2;
-            this.numDelay.Value = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            this.numDelay.ValueChanged += new System.EventHandler(this.NumDelay_ValueChanged);
+            this.bsFAFItems.DataMember = "FormAutoFills_FAF_Items";
+            this.bsFAFItems.DataSource = this.bsFormAutoFills;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.Location = new System.Drawing.Point(146, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.dgvFAFs);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.dgvItems);
+            this.splitContainer1.Size = new System.Drawing.Size(392, 442);
+            this.splitContainer1.SplitterDistance = 168;
+            this.splitContainer1.TabIndex = 8;
+            // 
+            // ttPrikaziKursor
+            // 
+            this.ttPrikaziKursor.ToolTipTitle = "Prikazivanje kursora";
             // 
             // dgvFAFs
             // 
@@ -196,16 +155,6 @@
             this.dgvcFafComment.MinimumWidth = 100;
             this.dgvcFafComment.Name = "dgvcFafComment";
             // 
-            // bsFormAutoFills
-            // 
-            this.bsFormAutoFills.DataMember = "FormAutoFills";
-            this.bsFormAutoFills.DataSource = this.ds;
-            // 
-            // ds
-            // 
-            this.ds.DataSetName = "Ds";
-            this.ds.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // dgvItems
             // 
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -235,7 +184,13 @@
             // 
             this.itemTypeDataGridViewTextBoxColumn.DataPropertyName = "ItemType";
             this.itemTypeDataGridViewTextBoxColumn.HeaderText = "Tip";
+            this.itemTypeDataGridViewTextBoxColumn.Items.AddRange(new object[] {
+            "Tekst",
+            "Klik",
+            "DKlik"});
             this.itemTypeDataGridViewTextBoxColumn.Name = "itemTypeDataGridViewTextBoxColumn";
+            this.itemTypeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.itemTypeDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // contentDataGridViewTextBoxColumn
             // 
@@ -253,36 +208,6 @@
             this.Comment.HeaderText = "Komentar";
             this.Comment.Name = "Comment";
             this.Comment.ToolTipText = "Objašnjenje stavke, npr: Dugme Izračunaj";
-            // 
-            // bsFAFItems
-            // 
-            this.bsFAFItems.DataMember = "FormAutoFills_FAF_Items";
-            this.bsFAFItems.DataSource = this.bsFormAutoFills;
-            // 
-            // ucExitApp1
-            // 
-            this.ucExitApp1.BackColor = System.Drawing.Color.Red;
-            this.ucExitApp1.ForeColor = System.Drawing.Color.White;
-            this.ucExitApp1.Location = new System.Drawing.Point(8, 12);
-            this.ucExitApp1.Margin = new System.Windows.Forms.Padding(4);
-            this.ucExitApp1.Name = "ucExitApp1";
-            this.ucExitApp1.Size = new System.Drawing.Size(127, 34);
-            this.ucExitApp1.TabIndex = 5;
-            this.ucExitApp1.Text = "Izlaz";
-            this.ucExitApp1.ToolTipText = "Izlaz iz aplikacije";
-            this.ucExitApp1.UseVisualStyleBackColor = false;
-            // 
-            // btnObrisiStavku
-            // 
-            this.btnObrisiStavku.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnObrisiStavku.Location = new System.Drawing.Point(8, 396);
-            this.btnObrisiStavku.Name = "btnObrisiStavku";
-            this.btnObrisiStavku.Size = new System.Drawing.Size(127, 34);
-            this.btnObrisiStavku.TabIndex = 6;
-            this.btnObrisiStavku.Text = "Obriši stavku";
-            this.btnObrisiStavku.ToolTipText = "Brisanje selektovanih stavki";
-            this.btnObrisiStavku.UseVisualStyleBackColor = true;
-            this.btnObrisiStavku.Click += new System.EventHandler(this.BtnObrisiStavku_Click);
             // 
             // pnlLeft
             // 
@@ -349,28 +274,109 @@
             this.gbPustanje.TabStop = false;
             this.gbPustanje.Text = "Puštanje";
             // 
-            // splitContainer1
+            // label3
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer1.Location = new System.Drawing.Point(146, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(76, 85);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(29, 18);
+            label3.TabIndex = 11;
+            label3.Text = "ms";
             // 
-            // splitContainer1.Panel1
+            // label2
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.dgvFAFs);
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(1, 62);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(107, 18);
+            label2.TabIndex = 10;
+            label2.Text = "Trajanje stavke";
             // 
-            // splitContainer1.Panel2
+            // btnPustanjeStartStop
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.dgvItems);
-            this.splitContainer1.Size = new System.Drawing.Size(392, 442);
-            this.splitContainer1.SplitterDistance = 168;
-            this.splitContainer1.TabIndex = 8;
+            this.btnPustanjeStartStop.Location = new System.Drawing.Point(4, 23);
+            this.btnPustanjeStartStop.Name = "btnPustanjeStartStop";
+            this.btnPustanjeStartStop.Size = new System.Drawing.Size(117, 34);
+            this.btnPustanjeStartStop.TabIndex = 1;
+            this.btnPustanjeStartStop.Text = "Start Play";
+            this.btnPustanjeStartStop.ToolTipText = "Zaustavljanje ili pokretanje procesa izvršavanja rutine: izvršavaju se sve stavke" +
+    " do kraja liste počevši od tekuće";
+            this.btnPustanjeStartStop.UseVisualStyleBackColor = true;
+            this.btnPustanjeStartStop.Click += new System.EventHandler(this.BtnPustanjeStartStop_Click);
             // 
-            // ttPrikaziKursor
+            // numDelay
             // 
-            this.ttPrikaziKursor.ToolTipTitle = "Prikazivanje kursora";
+            this.numDelay.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numDelay.Location = new System.Drawing.Point(4, 83);
+            this.numDelay.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.numDelay.Minimum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.numDelay.Name = "numDelay";
+            this.numDelay.Size = new System.Drawing.Size(70, 24);
+            this.numDelay.TabIndex = 2;
+            this.numDelay.Value = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.numDelay.ValueChanged += new System.EventHandler(this.NumDelay_ValueChanged);
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(13, 69);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(69, 18);
+            label1.TabIndex = 7;
+            label1.Text = "Snimanje";
+            // 
+            // btnObrisiStavku
+            // 
+            this.btnObrisiStavku.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnObrisiStavku.Location = new System.Drawing.Point(8, 396);
+            this.btnObrisiStavku.Name = "btnObrisiStavku";
+            this.btnObrisiStavku.Size = new System.Drawing.Size(127, 34);
+            this.btnObrisiStavku.TabIndex = 6;
+            this.btnObrisiStavku.Text = "Obriši stavku";
+            this.btnObrisiStavku.ToolTipText = "Brisanje selektovanih stavki";
+            this.btnObrisiStavku.UseVisualStyleBackColor = true;
+            this.btnObrisiStavku.Click += new System.EventHandler(this.BtnObrisiStavku_Click);
+            // 
+            // ucExitApp1
+            // 
+            this.ucExitApp1.BackColor = System.Drawing.Color.Red;
+            this.ucExitApp1.ForeColor = System.Drawing.Color.White;
+            this.ucExitApp1.Location = new System.Drawing.Point(8, 12);
+            this.ucExitApp1.Margin = new System.Windows.Forms.Padding(4);
+            this.ucExitApp1.Name = "ucExitApp1";
+            this.ucExitApp1.Size = new System.Drawing.Size(127, 34);
+            this.ucExitApp1.TabIndex = 5;
+            this.ucExitApp1.Text = "Izlaz";
+            this.ucExitApp1.ToolTipText = "Izlaz iz aplikacije";
+            this.ucExitApp1.UseVisualStyleBackColor = false;
+            // 
+            // btnSnimanjeStartStop
+            // 
+            this.btnSnimanjeStartStop.Location = new System.Drawing.Point(8, 90);
+            this.btnSnimanjeStartStop.Name = "btnSnimanjeStartStop";
+            this.btnSnimanjeStartStop.Size = new System.Drawing.Size(127, 34);
+            this.btnSnimanjeStartStop.TabIndex = 0;
+            this.btnSnimanjeStartStop.Text = "Start Rec";
+            this.btnSnimanjeStartStop.ToolTipText = "Zaustavljanje ili pokretanje procesa snimanja tj. dodavanja stavki (klikovi) u ru" +
+    "tinu tj. listu";
+            this.btnSnimanjeStartStop.UseVisualStyleBackColor = true;
+            this.btnSnimanjeStartStop.Click += new System.EventHandler(this.BtnSnimanjeStartStop_Click);
             // 
             // FrmFormAutoInput
             // 
@@ -380,26 +386,28 @@
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.pnlLeft);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmFormAutoInput";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form Auto Input";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.FrmFormAutoInput_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numDelay)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvFAFs)).EndInit();
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmFormAutoInput_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.bsFormAutoFills)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsFAFItems)).EndInit();
-            this.pnlLeft.ResumeLayout(false);
-            this.pnlLeft.PerformLayout();
-            this.gbPustanje.ResumeLayout(false);
-            this.gbPustanje.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFAFs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).EndInit();
+            this.pnlLeft.ResumeLayout(false);
+            this.pnlLeft.PerformLayout();
+            this.gbPustanje.ResumeLayout(false);
+            this.gbPustanje.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numDelay)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -419,9 +427,6 @@
         private Controls.UcButton btnObrisiStavku;
         private Controls.UcLeftPanel pnlLeft;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itemTypeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn contentDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Comment;
         private System.Windows.Forms.GroupBox gbPustanje;
         private Controls.UcButton btnPomeriStavkuNagore;
         private Controls.UcButton btnPomeriStavkuNadole;
@@ -429,5 +434,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcFafComment;
         private System.Windows.Forms.CheckBox chkPrikaziKursor;
         private System.Windows.Forms.ToolTip ttPrikaziKursor;
+        private System.Windows.Forms.DataGridViewComboBoxColumn itemTypeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn contentDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Comment;
     }
 }

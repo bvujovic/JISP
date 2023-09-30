@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace JISP.Forms
@@ -33,11 +34,16 @@ namespace JISP.Forms
         private const int MOUSEEVENTF_LEFTDOWN = 0x02;
         private const int MOUSEEVENTF_LEFTUP = 0x04;
 
-        public void DoMouseClick()
+        public void DoMouseClick(string tip)
         {
             uint x = (uint)Cursor.Position.X;
             uint y = (uint)Cursor.Position.Y;
             mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, x, y, 0, 0);
+            if (tip == AkcijaTip.DKlik.ToString())
+            {
+                Thread.Sleep(50);
+                mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, x, y, 0, 0);
+            }
         }
 
         private Point ptCursor;
@@ -77,7 +83,7 @@ namespace JISP.Forms
                     var item = dgvItems.CurrDataRow<Ds.FAF_ItemsRow>();
                     if (item.ItemType == AkcijaTip.Tekst.ToString())
                         SendKeys.Send(item.Content);
-                    if (item.ItemType == AkcijaTip.Klik.ToString())
+                    if (JeKlik(item.ItemType))
                         NamestiKursor(item, true);
 
                     // prelazak na sledecu ili prvu (na kraju)
@@ -100,7 +106,8 @@ namespace JISP.Forms
 
         private void NamestiKursor(Ds.FAF_ItemsRow item, bool uradiKlik)
         {
-            if (item.ItemType != AkcijaTip.Klik.ToString())
+            //B if (item.ItemType != AkcijaTip.Klik.ToString())
+            if (!JeKlik(item.ItemType))
                 return;
             var koordinate = item.Content.Split(new char[] { ',' });
             if (koordinate.Length != 2)
@@ -110,7 +117,7 @@ namespace JISP.Forms
             {
                 Cursor.Position = new Point(x, y);
                 if (uradiKlik)
-                    DoMouseClick();
+                    DoMouseClick(item.ItemType);
             }
             else
                 throw new Exception("Koordinate tačke na ekranu na koju treba kliknuti moraju biti zadate u formatu \"100, 200\".");
@@ -118,8 +125,9 @@ namespace JISP.Forms
 
         private enum AkcijaTip
         {
+            Tekst,
             Klik,
-            Tekst
+            DKlik
         }
 
         private enum ProcesKomanda
@@ -182,7 +190,8 @@ namespace JISP.Forms
                 try
                 {
                     var item = dgvItems.CurrDataRow<Ds.FAF_ItemsRow>();
-                    if (item.ItemType == AkcijaTip.Klik.ToString())
+                    //B if (item.ItemType == AkcijaTip.Klik.ToString())
+                    if (JeKlik(item.ItemType))
                         NamestiKursor(item, false);
                 }
                 catch (Exception ex) { Utils.ShowMbox(ex, Text); }
@@ -242,13 +251,28 @@ namespace JISP.Forms
             if (tekuciProces != Proces.Cekanje || dgvItems.CurrentRow == null || !chkPrikaziKursor.Checked)
                 return;
             var item = dgvItems.CurrDataRow<Ds.FAF_ItemsRow>();
-            if (item.ItemType == AkcijaTip.Klik.ToString())
+            //B if (item.ItemType == AkcijaTip.Klik.ToString())
+            if (JeKlik(item.ItemType))
                 NamestiKursor(item, false);
         }
+
+        /// <summary>Da li je tip akcije klik ili dupli klik.</summary>
+        private static bool JeKlik(string tip)
+            => tip == AkcijaTip.Klik.ToString() || tip == AkcijaTip.DKlik.ToString();
 
         private void NumDelay_ValueChanged(object sender, EventArgs e)
         {
             AppData.SaveSett(string.Join(":", Name, numDelay.Name), numDelay.Value.ToString());
+        }
+
+        private void FrmFormAutoInput_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.Control || e.Alt) && e.KeyCode == Keys.P)
+            {
+                PromenaPustanje();
+                e.SuppressKeyPress = true;
+                e.Handled = true;
+            }
         }
     }
 }

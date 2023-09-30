@@ -27,6 +27,12 @@ namespace JISP.Data
         /// <summary>Internet browser koji se koristi za JISP.</summary>
         public static string Browser { get; set; }
 
+        /// <summary>Vreme u sekundama koliko se ceka odgovor od servera za obicne zahteve (za podatke).</summary>
+        public static int HttpTimeoutShort { get; set; }
+        
+        /// <summary>Vreme u sekundama koliko se ceka odgovor od servera za zahteve za fajlovima (dokumenta).</summary>
+        public static int HttpTimeoutLong { get; set; }
+
         //TODO Sa dodatkom cuvanja DataFolder-a u rigistry-u verovatno je bolje da se napusti cuvanje toga u Settings.
         /// <summary>Folder u kojem ce se cuvati podaci: txt, xml...</summary>
         public static string DataFolder => Properties.Settings.Default.DataFolder;
@@ -96,6 +102,8 @@ namespace JISP.Data
             Browser = LoadSett(BrowserSett, "Chrome");
             var strSkGod = LoadSett(SkGodSett, DateTime.Today.Year.ToString());
             SkolskaGodina = new SkolskaGodina(int.Parse(strSkGod));
+            HttpTimeoutShort = int.Parse(LoadSett(HttpTimeoutShortSett, "10"));
+            HttpTimeoutLong = int.Parse(LoadSett(HttpTimeoutLongSett, "30"));
         }
 
         /// <summary>Naziv podesavanja za izabrani internet browser.</summary>
@@ -103,6 +111,10 @@ namespace JISP.Data
 
         /// <summary>Naziv podesavanja za izabranu skolsku godinu. Cuva se godina pocetka (int).</summary>
         public static string SkGodSett => "skGod";
+
+        public static string HttpTimeoutShortSett => "HttpTimeoutShort";
+
+        public static string HttpTimeoutLongSett => "HttpTimeoutLong";
 
         /// <summary>Datum izvestaja trezora u kojem pisu staz i ostali finansijski podaci.</summary>
         public static string DatumIzvestajaTrezora => nameof(DatumIzvestajaTrezora);

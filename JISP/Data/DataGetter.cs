@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using JISP.Classes;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using System.Data;
 
 namespace JISP.Data
 {

@@ -69,7 +69,6 @@ namespace JISP.Forms
                     await DataGetter.GetObjektiAsync();
                     foreach (var o in AppData.Ds.Objekti)
                         await DataGetter.GetObjektiDodatnoAsync(o.IdObjekta);
-                    //await DataGetter.GetObjektiDodatnoAsync(29194);
                     await DataGetter.GetProstorijeOsnovnoAsync();
                 });
 

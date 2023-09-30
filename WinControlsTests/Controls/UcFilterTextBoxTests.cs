@@ -20,7 +20,7 @@ namespace JISP.Controls.Tests
         }
 
         [DataTestMethod()]
-        [DataRow("", "")]
+        [DataRow("", "x = ''")]
         [DataRow("abc", "(x = 'abc')")]
         [DataRow("abc AND 123", "(x = 'abc') AND (x = '123')")]
         public void FilterAndOrTest_WithFilterMethod(string s, string expected)
@@ -31,7 +31,7 @@ namespace JISP.Controls.Tests
         }
 
         [DataTestMethod()]
-        [DataRow("", "")]
+        [DataRow("", "x = ''")]
         [DataRow("abc", "(x = 'абц')")]
         [DataRow("abc AND 123", "(x = 'абц') AND (x = '123')")]
         public void FilterAndOrTest_WithFilterMethod_Cir2Lat(string s, string expected)
