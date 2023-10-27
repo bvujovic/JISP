@@ -112,7 +112,7 @@ namespace JISP.Forms
             }
             catch (Exception ex)
             {
-                if (!ex.Message.Contains("parenthesis"))
+                if (!ex.Message.Contains("parenthes") && !ex.Message.Contains("Syntax error"))
                     Utils.ShowMbox(ex, "Pretraga zaposlenih");
             }
         }
@@ -599,6 +599,7 @@ namespace JISP.Forms
                 Clipboard.SetText(string.Join(Environment.NewLine, l));
 
                 bsZaposleni.Sort = "StatusAktivnosti2 DESC, " + dgvZaposleni.StandardSort;
+                bsZaposleni.MoveFirst();
             }
             catch (Exception ex) { Utils.ShowMbox(ex, btnIzracunajStatuse.Text + " - " + zapProblem); }
         }

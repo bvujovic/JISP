@@ -274,6 +274,7 @@ namespace JISP.Forms
 
         private static void AcceptDuosData(List<DUOS> duoses, WebApi.ReqEnum reqEnum)
         {
+            var skola = WebApi.ReqEnumToSkola(reqEnum);
             foreach (var duos in duoses)
             {
                 var u = AppData.Ds.Ucenici.FirstOrDefault(it => it.JOB == duos.JOB);
@@ -286,9 +287,6 @@ namespace JISP.Forms
                     (it => it.IdUcenika == u.IdUcenika && it.SkGod == duos.SkolskaGodina);
                 var regUceLiceObrazovanjeId = reqEnum == WebApi.ReqEnum.Uc_DuosOS
                         ? duos.RegUceLiceOsnovnoObrazovanjeId : duos.RegUceLiceSrednjeObrazovanjeId;
-                var skola = reqEnum == WebApi.ReqEnum.Uc_DuosDeca ? "Вртић" :
-                    reqEnum == WebApi.ReqEnum.Uc_DuosOS ? "Основна"
-                    : "Средња";
                 if (exUsk == null)
                 {
                     var usk = AppData.Ds.UcenikSkGod.NewUcenikSkGodRow();
@@ -320,7 +318,37 @@ namespace JISP.Forms
                     if (usk.Odeljenje != duos.Odeljenje)
                         usk.Odeljenje = duos.Odeljenje;
                 }
+
+                //var x = duoses.Where(it => it.JOB == exUsk._JOB);
+                //var y = duoses.Where(it => it.JOB == exUsk._JOB
+                //    && it.SkolskaGodina == AppData.SkolskaGodina.ToString());
+                //;
+                //var x = AppData.Ds.UcenikSkGod.Where(it =>
+                //    it.SkGod == AppData.SkolskaGodina.ToString()
+                //    && it.Skola == WebApi.ReqEnumToSkola(reqEnum)
+                //    && it._JOB == exUsk._JOB);
+                //    // && !duoses.Any(d => d.JOB == it._JOB));
+                //if (x.Any())
+                //    Console.WriteLine();
+
+                //foreach (var usk in AppData.Ds.UcenikSkGod.Where(it => it.SkGod == AppData.SkolskaGodina.ToString()))
+                //{
+                //}
             }
+
+            var zaBrisanje = new List<Ds.UcenikSkGodRow>();
+            var skGod = AppData.SkolskaGodina.ToString();
+            foreach (var usk in AppData.Ds.UcenikSkGod.Where(it => it.SkGod == skGod && it.Skola == skola))
+                if (!duoses.Where(it => it.JOB == usk._JOB && it.SkolskaGodina == skGod).Any())
+                    zaBrisanje.Add(usk);
+
+            if (zaBrisanje.Any() && Utils.ShowMboxYesNo(string.Join(Environment.NewLine, zaBrisanje)
+                    , $"Brisanje unosa učenika za školsku godinu {skGod} - {skola}")
+                    == DialogResult.Yes)
+                {
+                    foreach (var usk in zaBrisanje)
+                        AppData.Ds.UcenikSkGod.RemoveUcenikSkGodRow(usk);
+                }
         }
 
         private async void BtnDohvatiPodatke_Click(object sender, EventArgs e)

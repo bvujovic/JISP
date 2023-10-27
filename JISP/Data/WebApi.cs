@@ -312,5 +312,30 @@ namespace JISP.Data
                     throw new Exception("Nepostojeci reqEnum: " + reqEnum);
             }
         }
+
+        public static string ReqEnumToSkola(ReqEnum reqEnum)
+        {
+            //B
+            //return reqEnum == ReqEnum.Uc_DuosDeca ? "Вртић" :
+            //        reqEnum == ReqEnum.Uc_DuosOS ? "Основна"
+            //        : "Средња";
+
+            //return reqEnum == ReqEnum.Uc_DuosDeca ? "Вртић" :
+            //        reqEnum == ReqEnum.Uc_DuosOS ? "Основна" :
+            //        reqEnum == ReqEnum.Uc_DuosSS ? "Средња" :
+            //        "";
+
+            switch (reqEnum)
+            {
+                case ReqEnum.Uc_DuosDeca:
+                    return "Вртић";
+                case ReqEnum.Uc_DuosOS:
+                    return "Основна";
+                case ReqEnum.Uc_DuosSS:
+                    return "Средња";
+                default:
+                    return "";
+            }
+        }
     }
 }

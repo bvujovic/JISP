@@ -63,7 +63,7 @@ namespace JISP.Forms
             try
             {
                 var s = LatinicaCirilica.Lat2Cir(txtFilterZaposleni.Text);
-                bsObrazovanja.Filter = $"_Zaposleni LIKE '%{s}%'";
+                bsObrazovanja.Filter = $"_Zaposleni LIKE '%{s}%' OR NazivSkole LIKE '%{s}%' OR Klasnoks LIKE '%{s}%' OR NazivSteceneKvalifikacije LIKE '%{s}%' OR StrucniAkademskiNazivIzDiplome LIKE '%{s}%'";
             }
             catch (Exception ex) { Utils.ShowMbox(ex, Text); }
         }
