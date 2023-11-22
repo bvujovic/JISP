@@ -160,6 +160,7 @@
             // 
             this.bsProstorije.DataMember = "Objekti_Prostorije";
             this.bsProstorije.DataSource = this.bsObjekti;
+            this.bsProstorije.Sort = "IdSprata, NazivProstorije";
             // 
             // bsGrejanja
             // 

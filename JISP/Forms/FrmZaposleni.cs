@@ -190,10 +190,10 @@ namespace JISP.Forms
         {
             if (e.KeyCode == Keys.Enter)
             {
+                e.SuppressKeyPress = true; // protiv "kling" zvuka
+                e.Handled = true; // protiv prelaska u novi red
                 DgvZaposleni_CellDoubleClick(this,
                     new DataGridViewCellEventArgs(dgvcIme.Index, dgvZaposleni.CurrentRow.Index));
-                //B e.SuppressKeyPress = true; // protiv "kling" zvuka
-                e.Handled = true; // protiv prelaska u novi red
             }
         }
 
@@ -465,16 +465,9 @@ namespace JISP.Forms
             }
         }
 
-        private void TxtFilter_KeyDown(object sender, KeyEventArgs e)
+        private void TxtFilter_KeyUp(object sender, KeyEventArgs e)
         {
             PokreniFrmZaposlenjaNaEnter(e);
-            //if (e.KeyCode == Keys.Enter)
-            //{
-            //    DgvZaposleni_CellDoubleClick(this,
-            //        new DataGridViewCellEventArgs(dgvcIme.Index, dgvZaposleni.CurrentRow.Index));
-            //    //B e.SuppressKeyPress = true; // protiv "kling" zvuka
-            //    e.Handled = true; // protiv prelaska u novi red
-            //}
         }
 
         /// <summary>

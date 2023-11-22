@@ -30,13 +30,16 @@ namespace JISP.Forms
 
         private async void BtnOsveziPodatke_Click(object sender, EventArgs e)
         {
-            await (sender as Controls.UcButton).RunAsync(async () =>
+            try
             {
-                await DataGetter.GetSistematizacijaAsync();
-            });
-            dgvSistematizacija.DisplayPositionRowCount();
-            //bsSistematizacija.MoveLast();
-            bsSistematizacija.MoveFirst();
+                await (sender as Controls.UcButton).RunAsync(async () =>
+                {
+                    await DataGetter.GetSistematizacijaAsync();
+                });
+                dgvSistematizacija.DisplayPositionRowCount();
+                bsSistematizacija.MoveFirst();
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, Text); }
         }
 
         private void TxtFilter_TextChanged(object sender, EventArgs e)

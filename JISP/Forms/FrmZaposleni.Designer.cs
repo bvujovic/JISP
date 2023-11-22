@@ -408,7 +408,7 @@ namespace JISP.Forms
             this.txtFilter.Size = new System.Drawing.Size(252, 24);
             this.txtFilter.TabIndex = 0;
             this.txtFilter.TextChanged += new System.EventHandler(this.FilterChanged);
-            this.txtFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtFilter_KeyDown);
+            this.txtFilter.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtFilter_KeyUp);
             // 
             // dgvZaposlenja
             // 

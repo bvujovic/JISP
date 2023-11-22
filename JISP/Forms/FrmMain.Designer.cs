@@ -51,6 +51,8 @@
             this.btnFormAutoInput = new JISP.Controls.UcButton();
             this.numHttpTimeoutShort = new System.Windows.Forms.NumericUpDown();
             this.numHttpTimeoutLong = new System.Windows.Forms.NumericUpDown();
+            this.btnCir2Lat = new JISP.Controls.UcButton();
+            this.btnLat2Cir = new JISP.Controls.UcButton();
             label2 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -226,7 +228,7 @@
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(413, 109);
+            this.btnTest.Location = new System.Drawing.Point(69, 144);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(135, 29);
             this.btnTest.TabIndex = 5;
@@ -285,11 +287,37 @@
             0});
             this.numHttpTimeoutLong.ValueChanged += new System.EventHandler(this.NumHttpTimeoutLong_ValueChanged);
             // 
+            // btnCir2Lat
+            // 
+            this.btnCir2Lat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCir2Lat.Location = new System.Drawing.Point(413, 90);
+            this.btnCir2Lat.Name = "btnCir2Lat";
+            this.btnCir2Lat.Size = new System.Drawing.Size(135, 24);
+            this.btnCir2Lat.TabIndex = 15;
+            this.btnCir2Lat.Text = "Ćirilica -> Latinica";
+            this.btnCir2Lat.ToolTipText = "";
+            this.btnCir2Lat.UseVisualStyleBackColor = true;
+            this.btnCir2Lat.Click += new System.EventHandler(this.BtnCir2Lat_Click);
+            // 
+            // btnLat2Cir
+            // 
+            this.btnLat2Cir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLat2Cir.Location = new System.Drawing.Point(413, 113);
+            this.btnLat2Cir.Name = "btnLat2Cir";
+            this.btnLat2Cir.Size = new System.Drawing.Size(135, 24);
+            this.btnLat2Cir.TabIndex = 16;
+            this.btnLat2Cir.Text = "Latinica -> Ćirilica";
+            this.btnLat2Cir.ToolTipText = "Automatsko, šablonsko popunjavanje formi\r\n";
+            this.btnLat2Cir.UseVisualStyleBackColor = true;
+            this.btnLat2Cir.Click += new System.EventHandler(this.BtnLat2Cir_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(617, 364);
+            this.Controls.Add(this.btnLat2Cir);
+            this.Controls.Add(this.btnCir2Lat);
             this.Controls.Add(this.numHttpTimeoutLong);
             this.Controls.Add(label6);
             this.Controls.Add(this.numHttpTimeoutShort);
@@ -343,6 +371,8 @@
         private Controls.UcButton btnFormAutoInput;
         private System.Windows.Forms.NumericUpDown numHttpTimeoutShort;
         private System.Windows.Forms.NumericUpDown numHttpTimeoutLong;
+        private Controls.UcButton btnCir2Lat;
+        private Controls.UcButton btnLat2Cir;
     }
 }
 

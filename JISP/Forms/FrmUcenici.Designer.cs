@@ -51,7 +51,6 @@
             this.btnSaveData = new JISP.Controls.UcButton();
             this.txtFilter = new JISP.Controls.UcFilterTextBox();
             this.dgvUcenikSkGod = new JISP.Controls.UcDGV();
-            this.bsUcenikSkGod = new System.Windows.Forms.BindingSource(this.components);
             this.imeDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.jobDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcJMBG = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,6 +72,7 @@
             this.dgvcIspisan = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ZavrsObrazovanjaRezimeDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.napomeneDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsUcenikSkGod = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bsUcenici)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
             this.statusStrip.SuspendLayout();
@@ -101,7 +101,7 @@
             this.statusStrip.Location = new System.Drawing.Point(0, 490);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(1297, 22);
-            this.statusStrip.TabIndex = 2;
+            this.statusStrip.TabIndex = 1;
             this.statusStrip.Text = "statusStrip1";
             // 
             // lblStatus
@@ -156,7 +156,7 @@
             this.btnDohvatiPodatke.Location = new System.Drawing.Point(7, 245);
             this.btnDohvatiPodatke.Name = "btnDohvatiPodatke";
             this.btnDohvatiPodatke.Size = new System.Drawing.Size(127, 30);
-            this.btnDohvatiPodatke.TabIndex = 12;
+            this.btnDohvatiPodatke.TabIndex = 4;
             this.btnDohvatiPodatke.Text = "Dohvati podatke";
             this.btnDohvatiPodatke.ToolTipText = null;
             this.btnDohvatiPodatke.UseVisualStyleBackColor = true;
@@ -176,7 +176,7 @@
             this.cmbPodaciZaDohvatanje.Location = new System.Drawing.Point(7, 220);
             this.cmbPodaciZaDohvatanje.Name = "cmbPodaciZaDohvatanje";
             this.cmbPodaciZaDohvatanje.Size = new System.Drawing.Size(127, 24);
-            this.cmbPodaciZaDohvatanje.TabIndex = 11;
+            this.cmbPodaciZaDohvatanje.TabIndex = 3;
             // 
             // gbOceneUnos
             // 
@@ -227,7 +227,7 @@
             this.btnNoviUcenici.Margin = new System.Windows.Forms.Padding(4);
             this.btnNoviUcenici.Name = "btnNoviUcenici";
             this.btnNoviUcenici.Size = new System.Drawing.Size(127, 38);
-            this.btnNoviUcenici.TabIndex = 5;
+            this.btnNoviUcenici.TabIndex = 2;
             this.btnNoviUcenici.Text = "Novi učenik/ci ...";
             this.btnNoviUcenici.ToolTipText = "Dodavanje jednog ili više učenika.";
             this.btnNoviUcenici.UseVisualStyleBackColor = false;
@@ -241,7 +241,7 @@
             this.ucExitApp1.Margin = new System.Windows.Forms.Padding(4);
             this.ucExitApp1.Name = "ucExitApp1";
             this.ucExitApp1.Size = new System.Drawing.Size(127, 34);
-            this.ucExitApp1.TabIndex = 0;
+            this.ucExitApp1.TabIndex = 6;
             this.ucExitApp1.Text = "Izlaz";
             this.ucExitApp1.ToolTipText = "Izlaz iz aplikacije";
             this.ucExitApp1.UseVisualStyleBackColor = false;
@@ -253,7 +253,7 @@
             this.btnSaveData.Margin = new System.Windows.Forms.Padding(4);
             this.btnSaveData.Name = "btnSaveData";
             this.btnSaveData.Size = new System.Drawing.Size(127, 38);
-            this.btnSaveData.TabIndex = 10;
+            this.btnSaveData.TabIndex = 5;
             this.btnSaveData.Text = "Sačuvaj podatke";
             this.btnSaveData.ToolTipText = null;
             this.btnSaveData.UseVisualStyleBackColor = false;
@@ -267,7 +267,7 @@
             this.txtFilter.Name = "txtFilter";
             this.txtFilter.ShouldBeCyrillic = false;
             this.txtFilter.Size = new System.Drawing.Size(127, 22);
-            this.txtFilter.TabIndex = 2;
+            this.txtFilter.TabIndex = 0;
             this.txtFilter.TextChanged += new System.EventHandler(this.TxtFilter_TextChanged);
             this.txtFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtFilter_KeyDown);
             // 
@@ -322,14 +322,8 @@
             this.dgvUcenikSkGod.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvUcenikSkGod.Size = new System.Drawing.Size(1147, 490);
             this.dgvUcenikSkGod.StandardSort = null;
-            this.dgvUcenikSkGod.TabIndex = 3;
+            this.dgvUcenikSkGod.TabIndex = 2;
             this.dgvUcenikSkGod.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvUcenikSkGod_CellDoubleClick);
-            // 
-            // bsUcenikSkGod
-            // 
-            this.bsUcenikSkGod.DataMember = "UcenikSkGod";
-            this.bsUcenikSkGod.DataSource = this.ds;
-            this.bsUcenikSkGod.Sort = "Skola, Razred, Odeljenje";
             // 
             // imeDgvc
             // 
@@ -510,6 +504,12 @@
             this.napomeneDgvc.HeaderText = "Napomene";
             this.napomeneDgvc.MinimumWidth = 100;
             this.napomeneDgvc.Name = "napomeneDgvc";
+            // 
+            // bsUcenikSkGod
+            // 
+            this.bsUcenikSkGod.DataMember = "UcenikSkGod";
+            this.bsUcenikSkGod.DataSource = this.ds;
+            this.bsUcenikSkGod.Sort = "Skola, Razred, Odeljenje";
             // 
             // FrmUcenici
             // 

@@ -4517,6 +4517,8 @@ namespace JISP.Data {
             
             private global::System.Data.DataColumn columnUkupnaNormaPoRMOsimZamena;
             
+            private global::System.Data.DataColumn columnUkupnaNormaPoPravilniku;
+            
             private global::System.Data.DataColumn columnUkupnaNormaRazlika;
             
             private global::System.Data.DataColumn columnGreskaUPlaniranojNormi;
@@ -4671,6 +4673,14 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn UkupnaNormaPoPravilnikuColumn {
+                get {
+                    return this.columnUkupnaNormaPoPravilniku;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn UkupnaNormaRazlikaColumn {
                 get {
                     return this.columnUkupnaNormaRazlika;
@@ -4744,6 +4754,7 @@ namespace JISP.Data {
                         int JezikNastaveId, 
                         double UkupnaNormaPoSistematizaciji, 
                         double UkupnaNormaPoRMOsimZamena, 
+                        double UkupnaNormaPoPravilniku, 
                         double UkupnaNormaRazlika, 
                         string GreskaUPlaniranojNormi, 
                         string GreskaUUgovornomAngazovanju) {
@@ -4762,6 +4773,7 @@ namespace JISP.Data {
                         JezikNastaveId,
                         UkupnaNormaPoSistematizaciji,
                         UkupnaNormaPoRMOsimZamena,
+                        UkupnaNormaPoPravilniku,
                         UkupnaNormaRazlika,
                         GreskaUPlaniranojNormi,
                         GreskaUUgovornomAngazovanju};
@@ -4772,7 +4784,23 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public SistematizacijaRow AddSistematizacijaRow(int IdSistematizacije, int SkolskaGodinaId, int RegUstSisId, string IzvorFinansiranja, bool RucniUnos, int RadnoMestoId, string RadnoMesto, int PredmetId, string Predmet, int PodnivoPredmetaId, int JezikNastaveId, double UkupnaNormaPoSistematizaciji, double UkupnaNormaPoRMOsimZamena, string GreskaUPlaniranojNormi, string GreskaUUgovornomAngazovanju) {
+            public SistematizacijaRow AddSistematizacijaRow(
+                        int IdSistematizacije, 
+                        int SkolskaGodinaId, 
+                        int RegUstSisId, 
+                        string IzvorFinansiranja, 
+                        bool RucniUnos, 
+                        int RadnoMestoId, 
+                        string RadnoMesto, 
+                        int PredmetId, 
+                        string Predmet, 
+                        int PodnivoPredmetaId, 
+                        int JezikNastaveId, 
+                        double UkupnaNormaPoSistematizaciji, 
+                        double UkupnaNormaPoRMOsimZamena, 
+                        double UkupnaNormaPoPravilniku, 
+                        string GreskaUPlaniranojNormi, 
+                        string GreskaUUgovornomAngazovanju) {
                 SistematizacijaRow rowSistematizacijaRow = ((SistematizacijaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IdSistematizacije,
@@ -4788,6 +4816,7 @@ namespace JISP.Data {
                         JezikNastaveId,
                         UkupnaNormaPoSistematizaciji,
                         UkupnaNormaPoRMOsimZamena,
+                        UkupnaNormaPoPravilniku,
                         null,
                         GreskaUPlaniranojNormi,
                         GreskaUUgovornomAngazovanju};
@@ -4833,6 +4862,7 @@ namespace JISP.Data {
                 this.columnJezikNastaveId = base.Columns["JezikNastaveId"];
                 this.columnUkupnaNormaPoSistematizaciji = base.Columns["UkupnaNormaPoSistematizaciji"];
                 this.columnUkupnaNormaPoRMOsimZamena = base.Columns["UkupnaNormaPoRMOsimZamena"];
+                this.columnUkupnaNormaPoPravilniku = base.Columns["UkupnaNormaPoPravilniku"];
                 this.columnUkupnaNormaRazlika = base.Columns["UkupnaNormaRazlika"];
                 this.columnGreskaUPlaniranojNormi = base.Columns["GreskaUPlaniranojNormi"];
                 this.columnGreskaUUgovornomAngazovanju = base.Columns["GreskaUUgovornomAngazovanju"];
@@ -4867,6 +4897,8 @@ namespace JISP.Data {
                 base.Columns.Add(this.columnUkupnaNormaPoSistematizaciji);
                 this.columnUkupnaNormaPoRMOsimZamena = new global::System.Data.DataColumn("UkupnaNormaPoRMOsimZamena", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUkupnaNormaPoRMOsimZamena);
+                this.columnUkupnaNormaPoPravilniku = new global::System.Data.DataColumn("UkupnaNormaPoPravilniku", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUkupnaNormaPoPravilniku);
                 this.columnUkupnaNormaRazlika = new global::System.Data.DataColumn("UkupnaNormaRazlika", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUkupnaNormaRazlika);
                 this.columnGreskaUPlaniranojNormi = new global::System.Data.DataColumn("GreskaUPlaniranojNormi", typeof(string), null, global::System.Data.MappingType.Element);
@@ -4889,6 +4921,7 @@ namespace JISP.Data {
                 this.columnUkupnaNormaPoSistematizaciji.AllowDBNull = false;
                 this.columnUkupnaNormaPoSistematizaciji.ReadOnly = true;
                 this.columnUkupnaNormaPoRMOsimZamena.AllowDBNull = false;
+                this.columnUkupnaNormaPoPravilniku.AllowDBNull = false;
                 this.columnUkupnaNormaRazlika.ReadOnly = true;
             }
             
@@ -13335,6 +13368,17 @@ namespace JISP.Data {
                 }
                 set {
                     this[this.tableSistematizacija.UkupnaNormaPoRMOsimZamenaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public double UkupnaNormaPoPravilniku {
+                get {
+                    return ((double)(this[this.tableSistematizacija.UkupnaNormaPoPravilnikuColumn]));
+                }
+                set {
+                    this[this.tableSistematizacija.UkupnaNormaPoPravilnikuColumn] = value;
                 }
             }
             

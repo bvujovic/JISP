@@ -42,6 +42,7 @@
             this.dgvcNapomene = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblRowCount = new System.Windows.Forms.Label();
             this.plnLeft = new JISP.Controls.UcLeftPanel();
+            this.chkFloatingForma = new System.Windows.Forms.CheckBox();
             this.txtFilter = new JISP.Controls.UcFilterTextBox();
             this.btnDohvatiPodatke = new JISP.Controls.UcButton();
             this.rbPrikazSvi = new System.Windows.Forms.RadioButton();
@@ -56,6 +57,7 @@
             // 
             this.bsRacunari.DataMember = "Racunari";
             this.bsRacunari.DataSource = this.ds;
+            this.bsRacunari.Sort = "NazivRacunara";
             // 
             // ds
             // 
@@ -99,7 +101,6 @@
             this.dgvcProstorija.Name = "dgvcProstorija";
             this.dgvcProstorija.ReadOnly = true;
             this.dgvcProstorija.Visible = false;
-            this.dgvcProstorija.Width = 97;
             // 
             // statusDataGridViewTextBoxColumn
             // 
@@ -161,6 +162,7 @@
             // 
             // plnLeft
             // 
+            this.plnLeft.Controls.Add(this.chkFloatingForma);
             this.plnLeft.Controls.Add(this.txtFilter);
             this.plnLeft.Controls.Add(this.lblRowCount);
             this.plnLeft.Controls.Add(this.btnDohvatiPodatke);
@@ -173,6 +175,17 @@
             this.plnLeft.RightWingWidth = 6;
             this.plnLeft.Size = new System.Drawing.Size(150, 251);
             this.plnLeft.TabIndex = 0;
+            // 
+            // chkFloatingForma
+            // 
+            this.chkFloatingForma.AutoSize = true;
+            this.chkFloatingForma.Location = new System.Drawing.Point(12, 70);
+            this.chkFloatingForma.Name = "chkFloatingForma";
+            this.chkFloatingForma.Size = new System.Drawing.Size(122, 22);
+            this.chkFloatingForma.TabIndex = 19;
+            this.chkFloatingForma.Text = "Floating forma";
+            this.chkFloatingForma.UseVisualStyleBackColor = true;
+            this.chkFloatingForma.CheckedChanged += new System.EventHandler(this.ChkFloatingForma_CheckedChanged);
             // 
             // txtFilter
             // 
@@ -187,7 +200,7 @@
             // 
             // btnDohvatiPodatke
             // 
-            this.btnDohvatiPodatke.Location = new System.Drawing.Point(12, 94);
+            this.btnDohvatiPodatke.Location = new System.Drawing.Point(12, 95);
             this.btnDohvatiPodatke.Name = "btnDohvatiPodatke";
             this.btnDohvatiPodatke.Size = new System.Drawing.Size(127, 30);
             this.btnDohvatiPodatke.TabIndex = 17;
@@ -234,7 +247,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmRacunari";
             this.Text = "Računari";
-            this.TopMost = true;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmRacunari_FormClosed);
             this.Load += new System.EventHandler(this.FrmRacunari_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bsRacunari)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).EndInit();
@@ -263,5 +276,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcProcesor;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcGodinaProizvodnje;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcNapomene;
+        private System.Windows.Forms.CheckBox chkFloatingForma;
     }
 }

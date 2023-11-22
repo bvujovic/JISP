@@ -316,6 +316,7 @@ namespace JISP.Data
                 sis.UkupnaNormaPoRMOsimZamena = item.ukupnaNormaPoRMOsimZamena;
                 sis.GreskaUPlaniranojNormi = item.greskaUPlaniranojNormi;
                 sis.GreskaUUgovornomAngazovanju = item.greskaUUgovornomAngazovanju;
+                sis.UkupnaNormaPoPravilniku = item.ukupnaNormaPoPravilniku;
                 AppData.Ds.Sistematizacija.AddSistematizacijaRow(sis);
 
             }
@@ -636,12 +637,12 @@ namespace JISP.Data
         {
             var json = await WebApi.GetJson(WebApi.ReqEnum.Ustanova_Racunari, idProstorije.ToString());
             dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
+            var ids = new List<int>();
             foreach (var item in arr)
             {
-                Ds.RacunariRow r = AppData.Ds.Racunari.FindByIdRacunara((int)item.id);
-                if (r == null)
-                    r = AppData.Ds.Racunari.NewRacunariRow();
+                var r = AppData.Ds.Racunari.FindByIdRacunara((int)item.id) ?? AppData.Ds.Racunari.NewRacunariRow();
                 r.IdRacunara = item.id;
+                ids.Add(r.IdRacunara);
                 r.NazivRacunara = item.naziv;
                 r.IdProstorije = idProstorije;
                 r.Status = item.statusNaziv;
@@ -653,6 +654,9 @@ namespace JISP.Data
                 if (r.RowState == System.Data.DataRowState.Detached) // dodavanje novog racunara
                     AppData.Ds.Racunari.AddRacunariRow(r);
             }
+            var zaBrisanje = AppData.Ds.Racunari.Where(it => it.IdProstorije == idProstorije && !ids.Contains(it.IdRacunara)).ToArray();
+            foreach (var r in zaBrisanje)
+                AppData.Ds.Racunari.RemoveRacunariRow(r);
         }
 
         //public static async Task GetRacunariDodatnoAsync(int idRacunara)

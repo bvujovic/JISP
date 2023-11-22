@@ -23,8 +23,6 @@ namespace JISP.Controls
 
         protected override void OnKeyDown(KeyEventArgs e)
         {
-            base.OnKeyDown(e);
-
             if (BindingSource != null)
             {
                 if (e.KeyCode == Keys.Down)
@@ -44,6 +42,9 @@ namespace JISP.Controls
                 e.SuppressKeyPress = true; // protiv "kling" zvuka
                 FilterCleared?.Invoke(this, EventArgs.Empty);
             }
+            if (e.KeyCode == Keys.Enter)
+                e.SuppressKeyPress = true; // protiv "kling" zvuka
+            base.OnKeyDown(e);
         }
 
         /// <summary>Esc taster -> brisanje sadrzaja text box-a.</summary>

@@ -23,7 +23,9 @@ namespace JISP.Forms
                 bsGrejanja.DataSource = AppData.Ds.SifGrejanja;
                 bsHladjenja.DataSource = AppData.Ds.SifHladjenja;
                 bsLokacije.DataSource = AppData.Ds.Lokacije;
-
+                dgvProstorije.StandardSort = bsProstorije.Sort;
+                dgvProstorije.LoadSettings();
+                dgvObjekti.LoadSettings();
                 dgvLokacije.TsmiSelekcija(false);
                 dgvObjekti.TsmiSelekcija(false);
                 dgvProstorije.TsmiSelekcija(false);
@@ -123,6 +125,8 @@ namespace JISP.Forms
                 dgvProstorije.CurrentCellChanged -= frmRacunari.ProstorijeCurrentRowChanged;
                 frmRacunari.Close();
             }
+            dgvProstorije.SaveSettings();
+            dgvObjekti.SaveSettings();
         }
 
         private void DgvProstorije_NumbersSelectionChanged(object sender, string e)

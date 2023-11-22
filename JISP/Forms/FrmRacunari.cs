@@ -28,6 +28,8 @@ namespace JISP.Forms
             dgvRacunari.TsmiSelekcija(false);
             FilterData();
             Height = INIT_HEIGHT;
+            chkFloatingForma.Checked = FormaJeTopMost;
+            dgvRacunari.StandardSort = bsRacunari.Sort;
             this.FormStandardSettings();
         }
 
@@ -82,5 +84,15 @@ namespace JISP.Forms
 
         private void TxtFilter_TextChanged(object sender, EventArgs e)
             => FilterData();
+
+        private void ChkFloatingForma_CheckedChanged(object sender, EventArgs e)
+            => TopMost = chkFloatingForma.Checked;
+
+        private static bool FormaJeTopMost = false;
+
+        private void FrmRacunari_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            FormaJeTopMost = chkFloatingForma.Checked;
+        }
     }
 }

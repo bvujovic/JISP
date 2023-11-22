@@ -234,5 +234,27 @@ namespace JISP.Forms
             }
             catch (Exception ex) { Utils.ShowMbox(ex, btnTest.Text); }
         }
+
+        private void BtnCir2Lat_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var s = Clipboard.GetText();
+                Clipboard.SetText(LatinicaCirilica.Cir2Lat(s));
+                Utils.ShowMbox("Tekst iz clipboard-a je prebačen u latinicu.", btnCir2Lat.Text);
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, btnCir2Lat.Text); }
+        }
+
+        private void BtnLat2Cir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var s = Clipboard.GetText();
+                Clipboard.SetText(LatinicaCirilica.Lat2Cir(s));
+                Utils.ShowMbox("Tekst iz clipboard-a je prebačen u ćirilicu.", btnLat2Cir.Text);
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, btnLat2Cir.Text); }
+        }
     }
 }
