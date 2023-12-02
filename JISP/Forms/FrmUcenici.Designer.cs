@@ -51,7 +51,11 @@
             this.btnSaveData = new JISP.Controls.UcButton();
             this.txtFilter = new JISP.Controls.UcFilterTextBox();
             this.dgvUcenikSkGod = new JISP.Controls.UcDGV();
+            this.bsUcenikSkGod = new System.Windows.Forms.BindingSource(this.components);
+            this.ImePrezimeDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.imeDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrezimeDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ImeRoditeljaDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.jobDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcJMBG = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcPrebivaliste = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,7 +76,6 @@
             this.dgvcIspisan = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ZavrsObrazovanjaRezimeDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.napomeneDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bsUcenikSkGod = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bsUcenici)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
             this.statusStrip.SuspendLayout();
@@ -290,7 +293,10 @@
             this.dgvUcenikSkGod.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvUcenikSkGod.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUcenikSkGod.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ImePrezimeDgvc,
             this.imeDgvc,
+            this.PrezimeDgvc,
+            this.ImeRoditeljaDgvc,
             this.jobDgvc,
             this.dgvcJMBG,
             this.dgvcPrebivaliste,
@@ -325,13 +331,41 @@
             this.dgvUcenikSkGod.TabIndex = 2;
             this.dgvUcenikSkGod.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvUcenikSkGod_CellDoubleClick);
             // 
+            // bsUcenikSkGod
+            // 
+            this.bsUcenikSkGod.DataMember = "UcenikSkGod";
+            this.bsUcenikSkGod.DataSource = this.ds;
+            this.bsUcenikSkGod.Sort = "Skola, Razred, Odeljenje";
+            // 
+            // ImePrezimeDgvc
+            // 
+            this.ImePrezimeDgvc.DataPropertyName = "_UcenikString";
+            this.ImePrezimeDgvc.HeaderText = "Ime i prezime";
+            this.ImePrezimeDgvc.Name = "ImePrezimeDgvc";
+            this.ImePrezimeDgvc.ReadOnly = true;
+            this.ImePrezimeDgvc.Width = 180;
+            // 
             // imeDgvc
             // 
             this.imeDgvc.DataPropertyName = "_Ime";
             this.imeDgvc.HeaderText = "Ime";
             this.imeDgvc.Name = "imeDgvc";
             this.imeDgvc.ReadOnly = true;
-            this.imeDgvc.Width = 225;
+            this.imeDgvc.Width = 105;
+            // 
+            // PrezimeDgvc
+            // 
+            this.PrezimeDgvc.DataPropertyName = "_Prezime";
+            this.PrezimeDgvc.HeaderText = "Prezime";
+            this.PrezimeDgvc.Name = "PrezimeDgvc";
+            this.PrezimeDgvc.ReadOnly = true;
+            // 
+            // ImeRoditeljaDgvc
+            // 
+            this.ImeRoditeljaDgvc.DataPropertyName = "_ImeRoditelja";
+            this.ImeRoditeljaDgvc.HeaderText = "Roditelj";
+            this.ImeRoditeljaDgvc.Name = "ImeRoditeljaDgvc";
+            this.ImeRoditeljaDgvc.ReadOnly = true;
             // 
             // jobDgvc
             // 
@@ -505,12 +539,6 @@
             this.napomeneDgvc.MinimumWidth = 100;
             this.napomeneDgvc.Name = "napomeneDgvc";
             // 
-            // bsUcenikSkGod
-            // 
-            this.bsUcenikSkGod.DataMember = "UcenikSkGod";
-            this.bsUcenikSkGod.DataSource = this.ds;
-            this.bsUcenikSkGod.Sort = "Skola, Razred, Odeljenje";
-            // 
             // FrmUcenici
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -564,7 +592,10 @@
         private Controls.UcDGV dgvUcenikSkGod;
         private System.Windows.Forms.BindingSource bsUcenikSkGod;
         private System.Windows.Forms.CheckBox chkCopyOnClick;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ImePrezimeDgvc;
         private System.Windows.Forms.DataGridViewTextBoxColumn imeDgvc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrezimeDgvc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ImeRoditeljaDgvc;
         private System.Windows.Forms.DataGridViewTextBoxColumn jobDgvc;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcJMBG;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcPrebivaliste;

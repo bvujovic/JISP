@@ -66,5 +66,18 @@ namespace JISP.Classes
             cir = cir.Replace("Нј", "Њ");
             return cir;
         }
+
+        /// <summary>Automatska konverzija: svako kopiranje u clipboard povlaci i konverziju u cir/lat.</summary>
+        public static LatCirKonverzija AutoKonverzija { get; set; }
+    }
+
+    public enum LatCirKonverzija
+    {
+        /// <summary>Nema konverzije</summary>
+        Nista,
+        /// <summary>Latinica -> Cirilica</summary>
+        Lat2Cir,
+        /// <summary>Cirilica -> Latinica</summary>
+        Cir2Lat,
     }
 }

@@ -3,6 +3,7 @@ using JISP.Data;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -241,7 +242,6 @@ namespace JISP.Forms
             {
                 var s = Clipboard.GetText();
                 Clipboard.SetText(LatinicaCirilica.Cir2Lat(s));
-                Utils.ShowMbox("Tekst iz clipboard-a je prebačen u latinicu.", btnCir2Lat.Text);
             }
             catch (Exception ex) { Utils.ShowMbox(ex, btnCir2Lat.Text); }
         }
@@ -252,9 +252,37 @@ namespace JISP.Forms
             {
                 var s = Clipboard.GetText();
                 Clipboard.SetText(LatinicaCirilica.Lat2Cir(s));
-                Utils.ShowMbox("Tekst iz clipboard-a je prebačen u ćirilicu.", btnLat2Cir.Text);
             }
             catch (Exception ex) { Utils.ShowMbox(ex, btnLat2Cir.Text); }
+        }
+
+        private void IstaknutaKontrola(Control ctrl, bool istaknuta)
+            => ctrl.BackColor = istaknuta ? Color.Orange : SystemColors.Control;
+
+        private void BtnCir2Lat_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                ToggleKonverzija(LatCirKonverzija.Cir2Lat);
+                IstaknutaKontrola(btnCir2Lat, LatinicaCirilica.AutoKonverzija == LatCirKonverzija.Cir2Lat);
+                IstaknutaKontrola(btnLat2Cir, LatinicaCirilica.AutoKonverzija == LatCirKonverzija.Lat2Cir);
+            }
+        }
+
+        private void ToggleKonverzija(LatCirKonverzija konverzija)
+        {
+            LatinicaCirilica.AutoKonverzija = LatinicaCirilica.AutoKonverzija == konverzija
+                    ? LatCirKonverzija.Nista : konverzija;
+        }
+
+        private void BtnLat2Cir_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                ToggleKonverzija(LatCirKonverzija.Lat2Cir);
+                IstaknutaKontrola(btnLat2Cir, LatinicaCirilica.AutoKonverzija == LatCirKonverzija.Lat2Cir);
+                IstaknutaKontrola(btnCir2Lat, LatinicaCirilica.AutoKonverzija == LatCirKonverzija.Cir2Lat);
+            }
         }
     }
 }

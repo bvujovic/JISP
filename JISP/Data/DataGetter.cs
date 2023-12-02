@@ -399,20 +399,27 @@ namespace JISP.Data
                 var body = $"{{\"tipZahteva\":0,\"statusZahteva\":0,\"datumOd\":\"\",\"datumDo\":\"\",\"pageIndex\":{i},\"pageSize\":50,\"idUstanove\":{WebApi.SV_SAVA_ID}}}";
                 var json = await WebApi.PostForJson(WebApi.ReqEnum.Job_PreuzmiListuZahteva, body);
                 dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(json);
+                var jobs = new List<string>();
                 foreach (var z in obj.zahtevi)
                 {
                     if (z.lice != null && z.lice.job != null && (z.lice.jePrivremeniJOB == null || !(bool)z.lice.jePrivremeniJOB)
                         && (z.lice.jeOpozvanJOB == null || !(bool)z.lice.jeOpozvanJOB))
                     {
-                        var uc = AppData.Ds.Ucenici.FirstOrDefault(it => it.JOB == (string)z.lice.job);
+                        var job = (string)z.lice.job;
+                        if (jobs.Contains(job))
+                            continue;
+                        else
+                            jobs.Add(job);
+
+                        var uc = AppData.Ds.Ucenici.FirstOrDefault(it => it.JOB == job);
                         if (uc != null)
                         {
                             uc.JMBG = z.lice.jmbg;
                             if (!uc.IsDatumRodjenjaNull() && JMBG.GetBirthDate(uc.JMBG) != uc.DatumRodjenja)
                                 ucsDatRodj.Add(uc.ToString());
-                            //? Ovde je moguce ucitati posebno ime, prezime i ime roditelja za svakog ucenika
-                            //Console.WriteLine(z.lice.ime);
-                            //Console.WriteLine(z.lice.prezime);
+                            uc.Ime = z.lice.ime;
+                            uc.Prezime = z.lice.prezime;
+                            uc.ImeRoditelja = z.lice.imeRoditelja;
                         }
                     }
                 }

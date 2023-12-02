@@ -62,7 +62,7 @@ namespace JISP.Data
             }
 
             public override string ToString()
-                => $"{Ime}, JOB: {JOB}";
+                => $"{(!IsUcenikStringNull() ? UcenikString : "/")}, JOB: {JOB}";
         }
 
         partial class ZaposleniDataTable

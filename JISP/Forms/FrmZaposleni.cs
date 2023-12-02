@@ -174,11 +174,8 @@ namespace JISP.Forms
 
         private void DgvZaposleni_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex != -1
-                && new int[] { dgvcIme.Index, dgvcPrezime.Index, dgvcJMBG.Index }.Contains(e.ColumnIndex))
-            {
+            if (e.RowIndex != -1)
                 new FrmZaposlenja(dgvZaposleni.CurrDataRow<Ds.ZaposleniRow>()).ShowDialog();
-            }
         }
 
         private void DgvZaposleni_KeyDown(object sender, KeyEventArgs e)

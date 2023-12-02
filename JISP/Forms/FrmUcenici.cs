@@ -53,7 +53,7 @@ namespace JISP.Forms
         }
 
         private const string CmbDohvatiOpste = "Opšte: pol, datum rođenja...";
-        private const string CmbDohvatiJmbg = "Lista zahteva (JOB): JMBG...";
+        private const string CmbDohvatiJmbg = "Lista zahteva: JMBG, ime, prezime, roditelj";
         private const string CmbDohvatiOdRaz = "Razredi, odeljenja i vrtić-grupe";
         private const string CmbDohvatiDomGrupe = "Vaspitne grupe za dom učenika";
         private const string CmbDohvatiSmer = "Smerovi za srednjoškolce";
@@ -87,9 +87,9 @@ namespace JISP.Forms
         {
             var ss = str.ToLower().Split();
             var ids = new List<int>();
-            foreach (var uc in AppData.Ds.Ucenici)
+            foreach (var uc in AppData.Ds.Ucenici.Where(it => !it.IsUcenikStringNull()))
             {
-                var deloviIme = uc.Ime.Split();
+                var deloviIme = uc.UcenikString.Split();
                 var hits = 0;
                 foreach (var s in ss)
                     if (deloviIme.Any(it => it.ToLower().StartsWith(s)))
@@ -225,7 +225,10 @@ namespace JISP.Forms
 
         private void DgvUcenikSkGod_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == -1 || e.ColumnIndex == imeDgvc.Index || e.ColumnIndex == jobDgvc.Index || e.ColumnIndex == dgvcPrebivaliste.Index)
+            var ci = e.ColumnIndex;
+            if (e.RowIndex != -1 &&
+                (ci == -1 || ci == imeDgvc.Index || ci == PrezimeDgvc.Index || ci == ImeRoditeljaDgvc.Index
+                || ci == ImePrezimeDgvc.Index || ci == jobDgvc.Index || ci == dgvcPrebivaliste.Index))
             {
                 var ucSkGod = dgvUcenikSkGod.CurrDataRow<Ds.UcenikSkGodRow>();
                 new FrmUcenikImeJOB(ucSkGod.UceniciRow).ShowDialog();
@@ -345,10 +348,10 @@ namespace JISP.Forms
             if (zaBrisanje.Any() && Utils.ShowMboxYesNo(string.Join(Environment.NewLine, zaBrisanje)
                     , $"Brisanje unosa učenika za školsku godinu {skGod} - {skola}")
                     == DialogResult.Yes)
-                {
-                    foreach (var usk in zaBrisanje)
-                        AppData.Ds.UcenikSkGod.RemoveUcenikSkGodRow(usk);
-                }
+            {
+                foreach (var usk in zaBrisanje)
+                    AppData.Ds.UcenikSkGod.RemoveUcenikSkGodRow(usk);
+            }
         }
 
         private async void BtnDohvatiPodatke_Click(object sender, EventArgs e)
@@ -474,6 +477,13 @@ namespace JISP.Forms
                             u.OceneKrajJSON = json;
                             u.OceneKrajBroj = ocene.UkupanBrojOcena;
                         }
+                    }
+                    foreach (var u in dgvUcenikSkGod.SelectedDataRows<Ds.UcenikSkGodRow>().Where(it => it.JePredskolac))
+                    {
+                        var url = $"https://jisp.mpn.gov.rs/webapi/api/ucenik/DeteUPredskolskojZavrsetak?id=" + u.Id;
+                        var json = await WebApi.GetJson(url);
+                        dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(json);
+                        u.Ispisan = obj.datumZavrsetkaPPP != null;
                     }
                 });
 

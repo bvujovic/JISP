@@ -305,6 +305,10 @@ namespace JISP.Controls
                 if (!string.IsNullOrEmpty(val))
                 {
                     Clipboard.SetDataObject(val, false, 3, 200); // obican SetText je ponekad fejlovao
+                    if (LatinicaCirilica.AutoKonverzija == LatCirKonverzija.Cir2Lat)
+                        Clipboard.SetText(LatinicaCirilica.Cir2Lat(Clipboard.GetText()));
+                    if (LatinicaCirilica.AutoKonverzija == LatCirKonverzija.Lat2Cir)
+                        Clipboard.SetText(LatinicaCirilica.Lat2Cir(Clipboard.GetText()));
                     CellTextCopied?.Invoke(dgvc, EventArgs.Empty);
                 }
             }

@@ -664,10 +664,10 @@
             this.tpAngazovanja.BackColor = System.Drawing.SystemColors.Control;
             this.tpAngazovanja.Controls.Add(this.dgvAngazovanja);
             this.tpAngazovanja.Controls.Add(this.pnlBottomLeftAng);
-            this.tpAngazovanja.Location = new System.Drawing.Point(4, 22);
+            this.tpAngazovanja.Location = new System.Drawing.Point(4, 27);
             this.tpAngazovanja.Name = "tpAngazovanja";
             this.tpAngazovanja.Padding = new System.Windows.Forms.Padding(3);
-            this.tpAngazovanja.Size = new System.Drawing.Size(1141, 298);
+            this.tpAngazovanja.Size = new System.Drawing.Size(1141, 293);
             this.tpAngazovanja.TabIndex = 1;
             this.tpAngazovanja.Text = "Angažovanja";
             // 
@@ -704,7 +704,7 @@
             this.dgvAngazovanja.Name = "dgvAngazovanja";
             this.dgvAngazovanja.ReadOnly = true;
             this.dgvAngazovanja.RowHeadersWidth = 30;
-            this.dgvAngazovanja.Size = new System.Drawing.Size(989, 292);
+            this.dgvAngazovanja.Size = new System.Drawing.Size(989, 287);
             this.dgvAngazovanja.StandardSort = null;
             this.dgvAngazovanja.TabIndex = 0;
             // 
@@ -764,7 +764,7 @@
             this.pnlBottomLeftAng.Name = "pnlBottomLeftAng";
             this.pnlBottomLeftAng.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
             this.pnlBottomLeftAng.RightWingWidth = 6;
-            this.pnlBottomLeftAng.Size = new System.Drawing.Size(146, 292);
+            this.pnlBottomLeftAng.Size = new System.Drawing.Size(146, 287);
             this.pnlBottomLeftAng.TabIndex = 1;
             // 
             // tpResenja

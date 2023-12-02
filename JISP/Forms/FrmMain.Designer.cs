@@ -298,6 +298,7 @@
             this.btnCir2Lat.ToolTipText = "";
             this.btnCir2Lat.UseVisualStyleBackColor = true;
             this.btnCir2Lat.Click += new System.EventHandler(this.BtnCir2Lat_Click);
+            this.btnCir2Lat.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnCir2Lat_MouseUp);
             // 
             // btnLat2Cir
             // 
@@ -310,6 +311,7 @@
             this.btnLat2Cir.ToolTipText = "Automatsko, šablonsko popunjavanje formi\r\n";
             this.btnLat2Cir.UseVisualStyleBackColor = true;
             this.btnLat2Cir.Click += new System.EventHandler(this.BtnLat2Cir_Click);
+            this.btnLat2Cir.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnLat2Cir_MouseUp);
             // 
             // FrmMain
             // 
