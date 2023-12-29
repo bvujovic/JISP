@@ -105,6 +105,11 @@ namespace JISP.Forms
             FilterData();
         }
 
+        private void ChkAktivni_CheckStateChanged(object sender, EventArgs e)
+        {
+            FilterData();
+        }
+
         private void FilterData()
         {
             try
@@ -123,6 +128,8 @@ namespace JISP.Forms
                            + $" OR Skola LIKE '%{s}%' OR Razred LIKE '%{s}%' OR Odeljenje LIKE '%{s}%'";
                 }
                 filter = $"({filter}) AND SkGod = '{AppData.SkolskaGodina}'";
+                if (chkAktivni.CheckState != CheckState.Indeterminate)
+                    filter += " AND Ispisan = " + !chkAktivni.Checked;
                 bsUcenikSkGod.Filter = filter;
             }
             catch (Exception ex) { Utils.ShowMbox(ex, "Greška pri filtriranju podataka"); }
@@ -466,6 +473,8 @@ namespace JISP.Forms
                             var ispravaNaziv = obj.ispraveZavrsetak[0].ispravaNaziv;
                             u.Ispisan = ispravaNaziv == "исписница";
                         }
+                        else
+                            u.Ispisan = false;
                         var ocene = Newtonsoft.Json.JsonConvert.DeserializeObject<OceneUcenika>(json);
                         if (ocene.UkupanBrojOcena == 0)
                         {

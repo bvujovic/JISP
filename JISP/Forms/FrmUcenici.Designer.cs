@@ -39,6 +39,7 @@
             this.ttOceneProvera = new System.Windows.Forms.ToolTip(this.components);
             this.lblRowCount = new System.Windows.Forms.Label();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
+            this.chkAktivni = new System.Windows.Forms.CheckBox();
             this.chkCopyOnClick = new System.Windows.Forms.CheckBox();
             this.btnDohvatiPodatke = new JISP.Controls.UcButton();
             this.cmbPodaciZaDohvatanje = new System.Windows.Forms.ComboBox();
@@ -51,7 +52,6 @@
             this.btnSaveData = new JISP.Controls.UcButton();
             this.txtFilter = new JISP.Controls.UcFilterTextBox();
             this.dgvUcenikSkGod = new JISP.Controls.UcDGV();
-            this.bsUcenikSkGod = new System.Windows.Forms.BindingSource(this.components);
             this.ImePrezimeDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.imeDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrezimeDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,6 +76,7 @@
             this.dgvcIspisan = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ZavrsObrazovanjaRezimeDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.napomeneDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsUcenikSkGod = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bsUcenici)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
             this.statusStrip.SuspendLayout();
@@ -125,6 +126,7 @@
             // 
             // pnlLeft
             // 
+            this.pnlLeft.Controls.Add(this.chkAktivni);
             this.pnlLeft.Controls.Add(this.chkCopyOnClick);
             this.pnlLeft.Controls.Add(this.btnDohvatiPodatke);
             this.pnlLeft.Controls.Add(this.cmbPodaciZaDohvatanje);
@@ -143,6 +145,20 @@
             this.pnlLeft.Size = new System.Drawing.Size(150, 490);
             this.pnlLeft.TabIndex = 0;
             // 
+            // chkAktivni
+            // 
+            this.chkAktivni.AutoSize = true;
+            this.chkAktivni.Checked = true;
+            this.chkAktivni.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAktivni.Location = new System.Drawing.Point(7, 141);
+            this.chkAktivni.Name = "chkAktivni";
+            this.chkAktivni.Size = new System.Drawing.Size(65, 20);
+            this.chkAktivni.TabIndex = 14;
+            this.chkAktivni.Text = "Aktivni";
+            this.chkAktivni.ThreeState = true;
+            this.chkAktivni.UseVisualStyleBackColor = true;
+            this.chkAktivni.CheckStateChanged += new System.EventHandler(this.ChkAktivni_CheckStateChanged);
+            // 
             // chkCopyOnClick
             // 
             this.chkCopyOnClick.AutoSize = true;
@@ -156,7 +172,7 @@
             // 
             // btnDohvatiPodatke
             // 
-            this.btnDohvatiPodatke.Location = new System.Drawing.Point(7, 245);
+            this.btnDohvatiPodatke.Location = new System.Drawing.Point(7, 261);
             this.btnDohvatiPodatke.Name = "btnDohvatiPodatke";
             this.btnDohvatiPodatke.Size = new System.Drawing.Size(127, 30);
             this.btnDohvatiPodatke.TabIndex = 4;
@@ -176,7 +192,7 @@
             "Smerovi za srednjoškolce",
             "Ocene na polugodištu",
             "Ocene za kraj godine"});
-            this.cmbPodaciZaDohvatanje.Location = new System.Drawing.Point(7, 220);
+            this.cmbPodaciZaDohvatanje.Location = new System.Drawing.Point(7, 236);
             this.cmbPodaciZaDohvatanje.Name = "cmbPodaciZaDohvatanje";
             this.cmbPodaciZaDohvatanje.Size = new System.Drawing.Size(127, 24);
             this.cmbPodaciZaDohvatanje.TabIndex = 3;
@@ -226,7 +242,7 @@
             // 
             // btnNoviUcenici
             // 
-            this.btnNoviUcenici.Location = new System.Drawing.Point(7, 163);
+            this.btnNoviUcenici.Location = new System.Drawing.Point(7, 179);
             this.btnNoviUcenici.Margin = new System.Windows.Forms.Padding(4);
             this.btnNoviUcenici.Name = "btnNoviUcenici";
             this.btnNoviUcenici.Size = new System.Drawing.Size(127, 38);
@@ -330,12 +346,6 @@
             this.dgvUcenikSkGod.StandardSort = null;
             this.dgvUcenikSkGod.TabIndex = 2;
             this.dgvUcenikSkGod.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvUcenikSkGod_CellDoubleClick);
-            // 
-            // bsUcenikSkGod
-            // 
-            this.bsUcenikSkGod.DataMember = "UcenikSkGod";
-            this.bsUcenikSkGod.DataSource = this.ds;
-            this.bsUcenikSkGod.Sort = "Skola, Razred, Odeljenje";
             // 
             // ImePrezimeDgvc
             // 
@@ -539,6 +549,12 @@
             this.napomeneDgvc.MinimumWidth = 100;
             this.napomeneDgvc.Name = "napomeneDgvc";
             // 
+            // bsUcenikSkGod
+            // 
+            this.bsUcenikSkGod.DataMember = "UcenikSkGod";
+            this.bsUcenikSkGod.DataSource = this.ds;
+            this.bsUcenikSkGod.Sort = "Skola, Razred, Odeljenje";
+            // 
             // FrmUcenici
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -616,5 +632,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgvcIspisan;
         private System.Windows.Forms.DataGridViewTextBoxColumn ZavrsObrazovanjaRezimeDgvc;
         private System.Windows.Forms.DataGridViewTextBoxColumn napomeneDgvc;
+        private System.Windows.Forms.CheckBox chkAktivni;
     }
 }

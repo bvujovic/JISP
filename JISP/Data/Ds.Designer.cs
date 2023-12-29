@@ -6376,6 +6376,7 @@ namespace JISP.Data {
                 this.column_DatumRodjenja.ReadOnly = true;
                 this.column_Godine.ReadOnly = true;
                 this.column_DanaDoRodj.ReadOnly = true;
+                this.columnIspisan.DefaultValue = ((bool)(false));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
