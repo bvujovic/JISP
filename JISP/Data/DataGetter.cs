@@ -498,9 +498,9 @@ namespace JISP.Data
         public static async Task GetProstorijeOsnovnoAsync()
         {
             var ids = new List<int>();
-            foreach (var lok in AppData.Ds.Objekti)
+            foreach (var o in AppData.Ds.Objekti)
             {
-                var json = await WebApi.GetJson(WebApi.ReqEnum.Ustanova_ProstorijeOsnovno, lok.IdObjekta.ToString());
+                var json = await WebApi.GetJson(WebApi.ReqEnum.Ustanova_ProstorijeOsnovno, o.IdObjekta.ToString());
                 dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
                 foreach (var obj in arr)
                 {
@@ -510,20 +510,20 @@ namespace JISP.Data
                         p = AppData.Ds.Prostorije.NewProstorijeRow();
 
                     //B var p = AppData.Ds.Prostorije.NewProstorijeRow();
-                    if (p.IdProstorije != (int)obj.id)
+                    if (novo || p.IdProstorije != (int)obj.id)
                         p.IdProstorije = obj.id;
                     ids.Add(p.IdProstorije);
-                    if (p.NazivProstorije != (string)obj.nazivProstorije)
+                    if (novo || p.NazivProstorije != (string)obj.nazivProstorije)
                         p.NazivProstorije = obj.nazivProstorije;
-                    if (p.IdObjekta != (int)obj.idObjekta)
+                    if (novo || p.IdObjekta != (int)obj.idObjekta)
                         p.IdObjekta = obj.idObjekta;
-                    if (p.TipProstorije != (string)obj.tipProstorijeNaziv)
+                    if (novo || p.TipProstorije != (string)obj.tipProstorijeNaziv)
                         p.TipProstorije = obj.tipProstorijeNaziv;
-                    if (p.Povrsina != (double)obj.povrsina)
+                    if (novo || p.Povrsina != (double)obj.povrsina)
                         p.Povrsina = obj.povrsina;
-                    if (p.ProsecnaVisinaPlafona != (double)obj.prosecnaVisinaPlafona)
+                    if (novo || p.ProsecnaVisinaPlafona != (double)obj.prosecnaVisinaPlafona)
                         p.ProsecnaVisinaPlafona = obj.prosecnaVisinaPlafona;
-                    if (p.DostupLicimaSaSpecPotrebama != (bool)obj.dostupnostLicimaSaSpecijalnimPotrebamaNaziv)
+                    if (novo || p.DostupLicimaSaSpecPotrebama != (bool)obj.dostupnostLicimaSaSpecijalnimPotrebamaNaziv)
                         p.DostupLicimaSaSpecPotrebama = obj.dostupnostLicimaSaSpecijalnimPotrebamaNaziv;
                     if (novo)
                         AppData.Ds.Prostorije.AddProstorijeRow(p);
@@ -543,19 +543,19 @@ namespace JISP.Data
             var p = AppData.Ds.Prostorije.FindByIdProstorije(idProstorije);
             if (p != null)
             {
-                if (p.IdTipaProstorije != (int)obj.tipProstorije)
+                if (p.IsIdTipaProstorijeNull() || p.IdTipaProstorije != (int)obj.tipProstorije)
                     p.IdTipaProstorije = (int)obj.tipProstorije;
-                if (p.IdSprata != (int)obj.sprat)
+                if (p.IsIdSprataNull() || p.IdSprata != (int)obj.sprat)
                 {
                     p.IdSprata = (int)obj.sprat;
                     p.Sprat = AppData.Ds.SifSpratovi.FindByIdSprata(p.IdSprata).NazivSprata;
                 }
 
-                if (p.IzvorGrejanja != (bool)obj.izvorGrejanja)
+                if (p.IsIzvorGrejanjaNull() || p.IzvorGrejanja != (bool)obj.izvorGrejanja)
                     p.IzvorGrejanja = obj.izvorGrejanja;
                 if (obj.vrstaIzvoraGrejanja != null)
                 {
-                    if (p.IdVrsteIzvoraGrejanja != (int)obj.vrstaIzvoraGrejanja)
+                    if (p.IsIdVrsteIzvoraGrejanjaNull() || p.IdVrsteIzvoraGrejanja != (int)obj.vrstaIzvoraGrejanja)
                     {
                         p.IdVrsteIzvoraGrejanja = (int)obj.vrstaIzvoraGrejanja;
                         p.VrstaIzvoraGrejanja = AppData.Ds.SifGrejanja.FindByIdGrejanja(p.IdVrsteIzvoraGrejanja).NazivGrejanja;
@@ -567,11 +567,11 @@ namespace JISP.Data
                     p.SetVrstaIzvoraGrejanjaNull();
                 }
 
-                if (p.IzvorHladjenja != (bool)obj.izvorHladjenja)
+                if (p.IsIzvorHladjenjaNull() || p.IzvorHladjenja != (bool)obj.izvorHladjenja)
                     p.IzvorHladjenja = obj.izvorHladjenja;
                 if (obj.vrstaIzvoraHladjenja != null)
                 {
-                    if (p.IdVrsteIzvoraHladjenja != (int)obj.vrstaIzvoraHladjenja)
+                    if (p.IsIdVrsteIzvoraHladjenjaNull() || p.IdVrsteIzvoraHladjenja != (int)obj.vrstaIzvoraHladjenja)
                     {
                         p.IdVrsteIzvoraHladjenja = (int)obj.vrstaIzvoraHladjenja;
                         p.VrstaIzvoraHladjenja = AppData.Ds.SifHladjenja.FindByIdHladjenja((int)obj.vrstaIzvoraHladjenja).NazivHladjenja;
@@ -583,13 +583,13 @@ namespace JISP.Data
                     p.SetVrstaIzvoraHladjenjaNull();
                 }
 
-                if (p.ProstorijaSeKoristi != (bool)obj.prostorijaSeKoristi)
+                if (p.IsProstorijaSeKoristiNull() || p.ProstorijaSeKoristi != (bool)obj.prostorijaSeKoristi)
                     p.ProstorijaSeKoristi = obj.prostorijaSeKoristi;
-                if (p.MobilniInternet != (string)obj.mobilniInternet)
+                if (p.IsMobilniInternetNull() || p.MobilniInternet != (string)obj.mobilniInternet)
                     p.MobilniInternet = obj.mobilniInternet;
-                if (p.BrzinaBezicnogInterneta != (string)obj.brzinaBezicnogInterneta)
+                if (p.IsBrzinaBezicnogInternetaNull() || p.BrzinaBezicnogInterneta != (string)obj.brzinaBezicnogInterneta)
                     p.BrzinaBezicnogInterneta = obj.brzinaBezicnogInterneta;
-                if (p.BrzinaLanPrikljucka != (string)obj.brzinaLanPrikljucka)
+                if (p.IsBrzinaLanPrikljuckaNull() || p.BrzinaLanPrikljucka != (string)obj.brzinaLanPrikljucka)
                     p.BrzinaLanPrikljucka = obj.brzinaLanPrikljucka;
             }
         }

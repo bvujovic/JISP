@@ -175,7 +175,7 @@
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(150, 0);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(1323, 623);
+            this.pnlMain.Size = new System.Drawing.Size(1323, 654);
             this.pnlMain.TabIndex = 3;
             // 
             // dgvProstorije
@@ -217,10 +217,10 @@
             this.dgvProstorije.CopyOnCellClick = false;
             this.dgvProstorije.CtrlDisplayPositionRowCount = this.lblRowCount;
             this.dgvProstorije.DataSource = this.bsProstorije;
-            this.dgvProstorije.Location = new System.Drawing.Point(3, 239);
+            this.dgvProstorije.Location = new System.Drawing.Point(3, 251);
             this.dgvProstorije.Name = "dgvProstorije";
             this.dgvProstorije.RowHeadersWidth = 30;
-            this.dgvProstorije.Size = new System.Drawing.Size(1317, 363);
+            this.dgvProstorije.Size = new System.Drawing.Size(1317, 382);
             this.dgvProstorije.StandardSort = null;
             this.dgvProstorije.TabIndex = 2;
             this.dgvProstorije.NumbersSelectionChanged += new System.EventHandler<string>(this.DgvProstorije_NumbersSelectionChanged);
@@ -363,7 +363,7 @@
             // 
             this.lblRowCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblRowCount.AutoSize = true;
-            this.lblRowCount.Location = new System.Drawing.Point(13, 593);
+            this.lblRowCount.Location = new System.Drawing.Point(13, 624);
             this.lblRowCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRowCount.Name = "lblRowCount";
             this.lblRowCount.Size = new System.Drawing.Size(59, 18);
@@ -502,7 +502,7 @@
             this.dgvObjekti.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvObjekti.RowHeadersWidth = 30;
             this.dgvObjekti.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvObjekti.Size = new System.Drawing.Size(1317, 112);
+            this.dgvObjekti.Size = new System.Drawing.Size(1317, 124);
             this.dgvObjekti.StandardSort = null;
             this.dgvObjekti.TabIndex = 2;
             // 
@@ -638,7 +638,7 @@
             this.pnlLeft.Name = "pnlLeft";
             this.pnlLeft.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
             this.pnlLeft.RightWingWidth = 6;
-            this.pnlLeft.Size = new System.Drawing.Size(150, 623);
+            this.pnlLeft.Size = new System.Drawing.Size(150, 654);
             this.pnlLeft.TabIndex = 0;
             // 
             // groupBox1
@@ -710,7 +710,7 @@
             // 
             this.lblStatistika.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblStatistika.AutoSize = true;
-            this.lblStatistika.Location = new System.Drawing.Point(13, 525);
+            this.lblStatistika.Location = new System.Drawing.Point(13, 556);
             this.lblStatistika.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatistika.Name = "lblStatistika";
             this.lblStatistika.Size = new System.Drawing.Size(59, 36);
@@ -766,7 +766,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1473, 623);
+            this.ClientSize = new System.Drawing.Size(1473, 654);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.pnlLeft);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

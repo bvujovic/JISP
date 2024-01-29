@@ -82,17 +82,17 @@ namespace JISP.Data {
         
         private global::System.Data.DataRelation relationUcenici_UcenikSkGod;
         
-        private global::System.Data.DataRelation relationLokacije_Objekti;
-        
-        private global::System.Data.DataRelation relationObjekti_Prostorije;
-        
-        private global::System.Data.DataRelation relationProstorije_Racunari;
-        
         private global::System.Data.DataRelation relationZaposleni_Obrazovanja;
         
         private global::System.Data.DataRelation relationZamenjeni_Zaposleni;
         
         private global::System.Data.DataRelation relationFormAutoFills_FAF_Items;
+        
+        private global::System.Data.DataRelation relationLokacije_Objekti;
+        
+        private global::System.Data.DataRelation relationObjekti_Prostorije;
+        
+        private global::System.Data.DataRelation relationProstorije_Racunari;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -758,12 +758,12 @@ namespace JISP.Data {
             this.relationZaposlenja_Resenja = this.Relations["Zaposlenja_Resenja"];
             this.relationFK_Sistematizacija_SistematizacijaDetalji = this.Relations["FK_Sistematizacija_SistematizacijaDetalji"];
             this.relationUcenici_UcenikSkGod = this.Relations["Ucenici_UcenikSkGod"];
-            this.relationLokacije_Objekti = this.Relations["Lokacije_Objekti"];
-            this.relationObjekti_Prostorije = this.Relations["Objekti_Prostorije"];
-            this.relationProstorije_Racunari = this.Relations["Prostorije_Racunari"];
             this.relationZaposleni_Obrazovanja = this.Relations["Zaposleni_Obrazovanja"];
             this.relationZamenjeni_Zaposleni = this.Relations["Zamenjeni_Zaposleni"];
             this.relationFormAutoFills_FAF_Items = this.Relations["FormAutoFills_FAF_Items"];
+            this.relationLokacije_Objekti = this.Relations["Lokacije_Objekti"];
+            this.relationObjekti_Prostorije = this.Relations["Objekti_Prostorije"];
+            this.relationProstorije_Racunari = this.Relations["Prostorije_Racunari"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -859,18 +859,6 @@ namespace JISP.Data {
                         this.tableUcenici.IdUcenikaColumn}, new global::System.Data.DataColumn[] {
                         this.tableUcenikSkGod.IdUcenikaColumn}, false);
             this.Relations.Add(this.relationUcenici_UcenikSkGod);
-            this.relationLokacije_Objekti = new global::System.Data.DataRelation("Lokacije_Objekti", new global::System.Data.DataColumn[] {
-                        this.tableLokacije.IdLokacijeColumn}, new global::System.Data.DataColumn[] {
-                        this.tableObjekti.IdLokacijeColumn}, false);
-            this.Relations.Add(this.relationLokacije_Objekti);
-            this.relationObjekti_Prostorije = new global::System.Data.DataRelation("Objekti_Prostorije", new global::System.Data.DataColumn[] {
-                        this.tableObjekti.IdObjektaColumn}, new global::System.Data.DataColumn[] {
-                        this.tableProstorije.IdObjektaColumn}, false);
-            this.Relations.Add(this.relationObjekti_Prostorije);
-            this.relationProstorije_Racunari = new global::System.Data.DataRelation("Prostorije_Racunari", new global::System.Data.DataColumn[] {
-                        this.tableProstorije.IdProstorijeColumn}, new global::System.Data.DataColumn[] {
-                        this.tableRacunari.IdProstorijeColumn}, false);
-            this.Relations.Add(this.relationProstorije_Racunari);
             this.relationZaposleni_Obrazovanja = new global::System.Data.DataRelation("Zaposleni_Obrazovanja", new global::System.Data.DataColumn[] {
                         this.tableZaposleni.IdZaposlenogColumn}, new global::System.Data.DataColumn[] {
                         this.tableObrazovanja.IdZaposlenogColumn}, false);
@@ -883,6 +871,18 @@ namespace JISP.Data {
                         this.tableFormAutoFills.IdFormAutoFillColumn}, new global::System.Data.DataColumn[] {
                         this.tableFAF_Items.IdFormAutoFillColumn}, false);
             this.Relations.Add(this.relationFormAutoFills_FAF_Items);
+            this.relationLokacije_Objekti = new global::System.Data.DataRelation("Lokacije_Objekti", new global::System.Data.DataColumn[] {
+                        this.tableLokacije.IdLokacijeColumn}, new global::System.Data.DataColumn[] {
+                        this.tableObjekti.IdLokacijeColumn}, false);
+            this.Relations.Add(this.relationLokacije_Objekti);
+            this.relationObjekti_Prostorije = new global::System.Data.DataRelation("Objekti_Prostorije", new global::System.Data.DataColumn[] {
+                        this.tableObjekti.IdObjektaColumn}, new global::System.Data.DataColumn[] {
+                        this.tableProstorije.IdObjektaColumn}, false);
+            this.Relations.Add(this.relationObjekti_Prostorije);
+            this.relationProstorije_Racunari = new global::System.Data.DataRelation("Prostorije_Racunari", new global::System.Data.DataColumn[] {
+                        this.tableProstorije.IdProstorijeColumn}, new global::System.Data.DataColumn[] {
+                        this.tableRacunari.IdProstorijeColumn}, false);
+            this.Relations.Add(this.relationProstorije_Racunari);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

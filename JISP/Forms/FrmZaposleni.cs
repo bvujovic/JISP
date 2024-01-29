@@ -476,6 +476,7 @@ namespace JISP.Forms
             try
             {
                 var selItem = (string)cmbIzracunajStatuse.SelectedItem;
+                var sortPoStatus2 = true;
 
                 // racunanje staza u prosveti za svakog zaposlenog na osnovu podataka u StazGodine i StazMeseci
                 if (selItem == CmbStatusStaz)
@@ -483,6 +484,8 @@ namespace JISP.Forms
                     var frm = new FrmStaz();
                     if (frm.ShowDialog() != DialogResult.OK)
                         return;
+                    Utils.ShowMbox("U Status 1 će biti upisan staž iz obračuna zarada, " +
+                        "a u Status 2 izračunati staž na osnovu kolona god i mes.", "Staž");
                     AppData.SaveSett(AppData.DatumIzvestajaTrezora, frm.DatumIzvestajaTrezora.ToShortDateString());
                     var krajSkGod = new DateTime(AppData.SkolskaGodina.Kraj, 8, 31);
                     var meseciOdIzvestaja = Utils.DiffMonths(frm.DatumIzvestajaTrezora, krajSkGod);
@@ -492,6 +495,17 @@ namespace JISP.Forms
                         var stazMeseci = zap.StazGodine * 12 + zap.StazMeseci + meseciOdIzvestaja;
                         zap.StatusAktivnosti2 = (stazMeseci / 12) + " / " + (stazMeseci % 12);
                     }
+                    foreach (var zap in AppData.Ds.Zaposleni)
+                    {
+                        var oz = zap.GetObracunZaradaRows().LastOrDefault();
+                        if (oz == null || oz.IsStazNull())
+                            zap.StatusAktivnosti1 = "";
+                        else
+                            zap.StatusAktivnosti1 = oz.Staz.ToString();
+                    }
+                    dgvcStatusAktivnosti.Visible = dgvcStatusAktivnosti2.Visible 
+                        = dgvcStazGodine.Visible = dgvcStazMeseci.Visible = true;
+                    sortPoStatus2 = false;
                 }
 
                 if (selItem == CmbStatusBolovanja)
@@ -574,21 +588,22 @@ namespace JISP.Forms
                 //        zaps.Add(nja.RadnoMestoNaziv);
                 //Clipboard.SetText(string.Join(Environment.NewLine, zaps));
 
-                var l = new List<string>();
-                foreach (var z in AppData.Ds.Zaposleni.Where(it => it.Aktivan))
-                    foreach (var nja in z.GetZaposlenjaRows().Where
-                        (it => DatumOko1Nov(it.DatumZaposlenOd) ||
-                        !it.IsDatumZaposlenDoNull() && DatumOko1Nov(it.DatumZaposlenDo)))
-                    {
-                        if (!nja.IsRazlogPrestankaZaposlenjaNull())
-                            Console.WriteLine(nja.RazlogPrestankaZaposlenja);
-                        l.Add(z.ToString());
-                        l.Add($"\t{nja.DatumZaposlenOd.ToShortDateString()} - {(nja.IsDatumZaposlenDoNull() ? "/\t" : nja.DatumZaposlenDo.ToShortDateString())}"
-                            + $"\t{nja.VrstaAngazovanja}\t{nja.ProcenatRadnogVremena} %");
-                    }
-                Clipboard.SetText(string.Join(Environment.NewLine, l));
+                //var l = new List<string>();
+                //foreach (var z in AppData.Ds.Zaposleni.Where(it => it.Aktivan))
+                //    foreach (var nja in z.GetZaposlenjaRows().Where
+                //        (it => DatumOko1Nov(it.DatumZaposlenOd) ||
+                //        !it.IsDatumZaposlenDoNull() && DatumOko1Nov(it.DatumZaposlenDo)))
+                //    {
+                //        if (!nja.IsRazlogPrestankaZaposlenjaNull())
+                //            Console.WriteLine(nja.RazlogPrestankaZaposlenja);
+                //        l.Add(z.ToString());
+                //        l.Add($"\t{nja.DatumZaposlenOd.ToShortDateString()} - {(nja.IsDatumZaposlenDoNull() ? "/\t" : nja.DatumZaposlenDo.ToShortDateString())}"
+                //            + $"\t{nja.VrstaAngazovanja}\t{nja.ProcenatRadnogVremena} %");
+                //    }
+                //Clipboard.SetText(string.Join(Environment.NewLine, l));
 
-                bsZaposleni.Sort = "StatusAktivnosti2 DESC, " + dgvZaposleni.StandardSort;
+                if (sortPoStatus2)
+                    bsZaposleni.Sort = "StatusAktivnosti2 DESC, " + dgvZaposleni.StandardSort;
                 bsZaposleni.MoveFirst();
             }
             catch (Exception ex) { Utils.ShowMbox(ex, btnIzracunajStatuse.Text + " - " + zapProblem); }
