@@ -28,6 +28,17 @@ namespace JISP.Forms
                 btnTest.Visible = true;
 #endif
 
+                //T
+                //var str = Clipboard.GetText();
+                //if (str != null)
+                //{
+                //    var ss = str.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                //    var staz = new Datum();
+                //    foreach (var s in ss)
+                //        staz = Staz.Zbir(staz, Datum.IzStringa(s));
+                //    Console.WriteLine(staz);
+                //}
+
                 var godine = new List<SkolskaGodina>();
                 for (int i = 2020; i <= DateTime.Today.Year; i++)
                     godine.Add(new SkolskaGodina(i));

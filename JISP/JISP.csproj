@@ -30,7 +30,7 @@
     <PublisherName>BV</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.6.10.0</ApplicationVersion>
+    <ApplicationVersion>0.7.0.0</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -115,6 +115,7 @@
     <Compile Include="Classes\Ocene.cs" />
     <Compile Include="Classes\SkolskaGodina.cs" />
     <Compile Include="Classes\SlikeZaposlenih.cs" />
+    <Compile Include="Classes\Staz.cs" />
     <Compile Include="Classes\Utils.cs" />
     <Compile Include="Controls\UcButton.cs">
       <SubType>Component</SubType>
