@@ -92,5 +92,16 @@ namespace xUnitTests.Classes
             var datum = Staz.Zbir(Datum.IzStringa(poc), Datum.IzStringa(kraj));
             Assert.Equal(Datum.IzStringa(zbir), datum);
         }
+
+        [Fact]
+        public void Staz_BojanV()
+        {
+            var datum = Staz.Razlika("2021-09-06", "2022-08-31");
+            Assert.Equal(Datum.IzStringa("00-11-25"), datum);
+            //var datum = Staz.Razlika("2022-09-01", "2023-08-31");
+            //Assert.Equal(Datum.IzStringa("01-00-00"), datum);
+            //var datum = Staz.Razlika("2023-09-01", "2023-12-31");
+            //Assert.Equal(Datum.IzStringa("00-04-00"), datum);
+        }
     }
 }

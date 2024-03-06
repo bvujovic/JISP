@@ -104,6 +104,8 @@ namespace JISP.Data
                 z.DatumZaposlenOd = obj.datumZaposlenOd;
                 if (obj.datumZaposlenDo != null)
                     z.DatumZaposlenDo = obj.datumZaposlenDo;
+                else
+                    z.SetDatumZaposlenDoNull();
                 z.ProcenatRadnogVremena = obj.procenatRadnogVremena;
                 z.RadnoMestoNaziv = obj.radnoMestoNaziv;
                 z.VrstaAngazovanja = obj.vrstaAngazovanjaNaziv;

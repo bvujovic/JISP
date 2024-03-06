@@ -80,6 +80,9 @@ namespace JISP.Classes
 
     public static class Staz
     {
+        public static Datum Razlika(string poc, string kraj)
+            => Razlika(Datum.IzStringa(poc), Datum.IzStringa(kraj));
+
         public static Datum Razlika(Datum poc, Datum kraj)
         {
             var god = kraj.God - poc.God;
@@ -108,6 +111,9 @@ namespace JISP.Classes
             }
             return new Datum(god, mes, dan);
         }
+
+        public static Datum Zbir(string d1, string d2)
+            => Zbir(Datum.IzStringa(d1), Datum.IzStringa(d2));
 
         public static Datum Zbir(Datum d1, Datum d2)
         {

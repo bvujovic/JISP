@@ -28,7 +28,15 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="KLASNOKS" msprop:Generator_RowClassName="KLASNOKSRow" msprop:Generator_RowEvHandlerName="KLASNOKSRowChangeEventHandler" msprop:Generator_RowDeletedName="KLASNOKSRowDeleted" msprop:Generator_RowDeletingName="KLASNOKSRowDeleting" msprop:Generator_RowEvArgName="KLASNOKSRowChangeEvent" msprop:Generator_TablePropName="KLASNOKS" msprop:Generator_RowChangedName="KLASNOKSRowChanged" msprop:Generator_UserTableName="KLASNOKS" msprop:Generator_RowChangingName="KLASNOKSRowChanging" msprop:Generator_TableClassName="KLASNOKSDataTable" msprop:Generator_TableVarName="tableKLASNOKS">
+        <xs:element name="KLASNOKS" msprop:Generator_RowEvHandlerName="KLASNOKSRowChangeEventHandler" msprop:Generator_RowDeletedName="KLASNOKSRowDeleted" msprop:Generator_RowDeletingName="KLASNOKSRowDeleting" msprop:Generator_RowEvArgName="KLASNOKSRowChangeEvent" msprop:Generator_TablePropName="KLASNOKS" msprop:Generator_RowChangedName="KLASNOKSRowChanged" msprop:Generator_UserTableName="KLASNOKS" msprop:Generator_RowChangingName="KLASNOKSRowChanging" msprop:Generator_RowClassName="KLASNOKSRow" msprop:Generator_TableClassName="KLASNOKSDataTable" msprop:Generator_TableVarName="tableKLASNOKS">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnVarNameInTable="columnid" type="xs:int" />
+              <xs:element name="naziv" msprop:Generator_ColumnPropNameInTable="nazivColumn" msprop:Generator_ColumnPropNameInRow="naziv" msprop:Generator_UserColumnName="naziv" msprop:Generator_ColumnVarNameInTable="columnnaziv" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="NoksNivoi" msprop:Generator_RowClassName="NoksNivoiRow" msprop:Generator_RowEvHandlerName="NoksNivoiRowChangeEventHandler" msprop:Generator_RowDeletedName="NoksNivoiRowDeleted" msprop:Generator_RowDeletingName="NoksNivoiRowDeleting" msprop:Generator_RowEvArgName="NoksNivoiRowChangeEvent" msprop:Generator_TablePropName="NoksNivoi" msprop:Generator_RowChangedName="NoksNivoiRowChanged" msprop:Generator_UserTableName="NoksNivoi" msprop:Generator_RowChangingName="NoksNivoiRowChanging" msprop:Generator_TableClassName="NoksNivoiDataTable" msprop:Generator_TableVarName="tableNoksNivoi">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnVarNameInTable="columnid" type="xs:int" />
@@ -36,19 +44,34 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="NoksNivoi" msprop:Generator_RowEvHandlerName="NoksNivoiRowChangeEventHandler" msprop:Generator_RowDeletedName="NoksNivoiRowDeleted" msprop:Generator_RowDeletingName="NoksNivoiRowDeleting" msprop:Generator_RowEvArgName="NoksNivoiRowChangeEvent" msprop:Generator_TablePropName="NoksNivoi" msprop:Generator_RowChangedName="NoksNivoiRowChanged" msprop:Generator_RowChangingName="NoksNivoiRowChanging" msprop:Generator_TableClassName="NoksNivoiDataTable" msprop:Generator_RowClassName="NoksNivoiRow" msprop:Generator_TableVarName="tableNoksNivoi" msprop:Generator_UserTableName="NoksNivoi">
+        <xs:element name="StepenStrucneSpreme" msprop:Generator_RowClassName="StepenStrucneSpremeRow" msprop:Generator_RowEvHandlerName="StepenStrucneSpremeRowChangeEventHandler" msprop:Generator_RowDeletedName="StepenStrucneSpremeRowDeleted" msprop:Generator_RowDeletingName="StepenStrucneSpremeRowDeleting" msprop:Generator_RowEvArgName="StepenStrucneSpremeRowChangeEvent" msprop:Generator_TablePropName="StepenStrucneSpreme" msprop:Generator_RowChangedName="StepenStrucneSpremeRowChanged" msprop:Generator_UserTableName="StepenStrucneSpreme" msprop:Generator_RowChangingName="StepenStrucneSpremeRowChanging" msprop:Generator_TableClassName="StepenStrucneSpremeDataTable" msprop:Generator_TableVarName="tableStepenStrucneSpreme">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="id" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_UserColumnName="id" type="xs:int" />
-              <xs:element name="naziv" msprop:Generator_ColumnPropNameInRow="naziv" msprop:Generator_ColumnPropNameInTable="nazivColumn" msprop:Generator_ColumnVarNameInTable="columnnaziv" msprop:Generator_UserColumnName="naziv" type="xs:string" />
+              <xs:element name="id" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnVarNameInTable="columnid" type="xs:int" />
+              <xs:element name="naziv" msprop:Generator_UserColumnName="naziv" msprop:Generator_ColumnPropNameInTable="nazivColumn" msprop:Generator_ColumnPropNameInRow="naziv" msprop:Generator_ColumnVarNameInTable="columnnaziv" type="xs:string" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="StepenStrucneSpreme" msprop:Generator_RowEvHandlerName="StepenStrucneSpremeRowChangeEventHandler" msprop:Generator_RowDeletedName="StepenStrucneSpremeRowDeleted" msprop:Generator_RowDeletingName="StepenStrucneSpremeRowDeleting" msprop:Generator_RowEvArgName="StepenStrucneSpremeRowChangeEvent" msprop:Generator_TablePropName="StepenStrucneSpreme" msprop:Generator_RowChangedName="StepenStrucneSpremeRowChanged" msprop:Generator_RowChangingName="StepenStrucneSpremeRowChanging" msprop:Generator_TableClassName="StepenStrucneSpremeDataTable" msprop:Generator_RowClassName="StepenStrucneSpremeRow" msprop:Generator_TableVarName="tableStepenStrucneSpreme" msprop:Generator_UserTableName="StepenStrucneSpreme">
+        <xs:element name="SumZaposlenja" msprop:Generator_RowEvHandlerName="SumZaposlenjaRowChangeEventHandler" msprop:Generator_RowDeletedName="SumZaposlenjaRowDeleted" msprop:Generator_RowDeletingName="SumZaposlenjaRowDeleting" msprop:Generator_RowEvArgName="SumZaposlenjaRowChangeEvent" msprop:Generator_TablePropName="SumZaposlenja" msprop:Generator_RowChangedName="SumZaposlenjaRowChanged" msprop:Generator_RowChangingName="SumZaposlenjaRowChanging" msprop:Generator_TableClassName="SumZaposlenjaDataTable" msprop:Generator_RowClassName="SumZaposlenjaRow" msprop:Generator_TableVarName="tableSumZaposlenja" msprop:Generator_UserTableName="SumZaposlenja">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="id" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_UserColumnName="id" type="xs:int" />
-              <xs:element name="naziv" msprop:Generator_ColumnPropNameInRow="naziv" msprop:Generator_ColumnPropNameInTable="nazivColumn" msprop:Generator_ColumnVarNameInTable="columnnaziv" msprop:Generator_UserColumnName="naziv" type="xs:string" />
+              <xs:element name="IdSumZaposlenja" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="IdSumZaposlenja" msprop:Generator_ColumnPropNameInTable="IdSumZaposlenjaColumn" msprop:Generator_ColumnVarNameInTable="columnIdSumZaposlenja" msprop:Generator_UserColumnName="IdSumZaposlenja" type="xs:int" />
+              <xs:element name="IdZaposlenog" msprop:Generator_ColumnPropNameInRow="IdZaposlenog" msprop:Generator_ColumnPropNameInTable="IdZaposlenogColumn" msprop:Generator_ColumnVarNameInTable="columnIdZaposlenog" msprop:Generator_UserColumnName="IdZaposlenog" type="xs:int" />
+              <xs:element name="ProcenatAngazovanja" msprop:Generator_ColumnPropNameInRow="ProcenatAngazovanja" msprop:Generator_ColumnPropNameInTable="ProcenatAngazovanjaColumn" msprop:Generator_ColumnVarNameInTable="columnProcenatAngazovanja" msprop:Generator_UserColumnName="ProcenatAngazovanja" type="xs:double" />
+              <xs:element name="DatumOd" msprop:Generator_ColumnPropNameInRow="DatumOd" msprop:Generator_ColumnPropNameInTable="DatumOdColumn" msprop:Generator_ColumnVarNameInTable="columnDatumOd" msprop:Generator_UserColumnName="DatumOd" type="xs:dateTime" />
+              <xs:element name="DatumDo" msprop:Generator_ColumnPropNameInRow="DatumDo" msprop:Generator_ColumnPropNameInTable="DatumDoColumn" msprop:Generator_ColumnVarNameInTable="columnDatumDo" msprop:Generator_UserColumnName="DatumDo" type="xs:dateTime" />
+              <xs:element name="Staz" msprop:Generator_ColumnPropNameInRow="Staz" msprop:Generator_ColumnPropNameInTable="StazColumn" msprop:Generator_ColumnVarNameInTable="columnStaz" msprop:Generator_UserColumnName="Staz" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SumZapDetalji" msprop:Generator_RowEvHandlerName="SumZapDetaljiRowChangeEventHandler" msprop:Generator_RowDeletedName="SumZapDetaljiRowDeleted" msprop:Generator_RowDeletingName="SumZapDetaljiRowDeleting" msprop:Generator_RowEvArgName="SumZapDetaljiRowChangeEvent" msprop:Generator_TablePropName="SumZapDetalji" msprop:Generator_RowChangedName="SumZapDetaljiRowChanged" msprop:Generator_RowChangingName="SumZapDetaljiRowChanging" msprop:Generator_TableClassName="SumZapDetaljiDataTable" msprop:Generator_RowClassName="SumZapDetaljiRow" msprop:Generator_TableVarName="tableSumZapDetalji" msprop:Generator_UserTableName="SumZapDetalji">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdSumZapDetalja" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="IdSumZapDetalja" msprop:Generator_ColumnPropNameInTable="IdSumZapDetaljaColumn" msprop:Generator_ColumnVarNameInTable="columnIdSumZapDetalja" msprop:Generator_UserColumnName="IdSumZapDetalja" type="xs:int" />
+              <xs:element name="IdSumZaposlenja" msprop:Generator_ColumnPropNameInRow="IdSumZaposlenja" msprop:Generator_ColumnPropNameInTable="IdSumZaposlenjaColumn" msprop:Generator_ColumnVarNameInTable="columnIdSumZaposlenja" msprop:Generator_UserColumnName="IdSumZaposlenja" type="xs:int" minOccurs="0" />
+              <xs:element name="IdZaposlenja" msprop:Generator_ColumnPropNameInRow="IdZaposlenja" msprop:Generator_ColumnPropNameInTable="IdZaposlenjaColumn" msprop:Generator_ColumnVarNameInTable="columnIdZaposlenja" msprop:Generator_UserColumnName="IdZaposlenja" type="xs:int" minOccurs="0" />
+              <xs:element name="RadnoMesto" msprop:Generator_ColumnPropNameInRow="RadnoMesto" msprop:Generator_ColumnPropNameInTable="RadnoMestoColumn" msprop:Generator_ColumnVarNameInTable="columnRadnoMesto" msprop:Generator_UserColumnName="RadnoMesto" type="xs:string" minOccurs="0" />
+              <xs:element name="ProcenatAngazovanja" msprop:Generator_ColumnPropNameInRow="ProcenatAngazovanja" msprop:Generator_ColumnPropNameInTable="ProcenatAngazovanjaColumn" msprop:Generator_ColumnVarNameInTable="columnProcenatAngazovanja" msprop:Generator_UserColumnName="ProcenatAngazovanja" type="xs:double" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -74,5 +97,18 @@
       <xs:selector xpath=".//mstns:StepenStrucneSpreme" />
       <xs:field xpath="mstns:id" />
     </xs:unique>
+    <xs:unique name="SumZaposlenja_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:SumZaposlenja" />
+      <xs:field xpath="mstns:IdSumZaposlenja" />
+    </xs:unique>
+    <xs:unique name="SumZapDetalji_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:SumZapDetalji" />
+      <xs:field xpath="mstns:IdSumZapDetalja" />
+    </xs:unique>
   </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="SumZaposlenja_SumZapDetalji" msdata:parent="SumZaposlenja" msdata:child="SumZapDetalji" msdata:parentkey="IdSumZaposlenja" msdata:childkey="IdSumZaposlenja" msprop:Generator_UserParentTable="SumZaposlenja" msprop:Generator_UserChildTable="SumZapDetalji" msprop:Generator_RelationVarName="relationSumZaposlenja_SumZapDetalji" msprop:Generator_ChildPropName="GetSumZapDetaljiRows" msprop:Generator_ParentPropName="SumZaposlenjaRow" msprop:Generator_UserRelationName="SumZaposlenja_SumZapDetalji" />
+    </xs:appinfo>
+  </xs:annotation>
 </xs:schema>
