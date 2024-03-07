@@ -81,6 +81,7 @@ namespace JISP.Forms
         {
             AppData.SaveToRegistry();
             AppData.ClearTempTables();
+            AppData.Ds.SumZaposlenja.ObrisiZaSosoSvetiSava();
             if (AppData.Ds.HasChanges())
             {
                 var sb = new StringBuilder();

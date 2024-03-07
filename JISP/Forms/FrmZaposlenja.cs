@@ -38,9 +38,18 @@ namespace JISP.Forms
                 bsZaposleni.DataSource = AppData.Ds;
 
                 bsZaposlenja.DataSource = AppData.Ds;
-                dgvZaposlenjaSve.StandardSort = bsZaposlenja.Sort;
-                dgvZaposlenjaSve.LoadSettings();
+                dgvZaposlenjaSvSava.StandardSort = bsZaposlenja.Sort;
+                dgvZaposlenjaSvSava.LoadSettings();
                 SetBsZaposlenjaFilter();
+
+                // Sumirana tj. sva zaposlenja, staz
+                AppData.Ds.TipoviPoslodavaca.DataInit();
+                bsTipoviPoslodavaca.DataSource = AppData.Ds;
+                bsSvaZaposlenja.DataSource = AppData.Ds;
+                dgvSvaZaposlenja.StandardSort = bsSvaZaposlenja.Sort;
+                dgvSvaZaposlenja.LoadSettings();
+                bsSvaZaposlenja.Filter = $"IdZaposlenog = {zaposleni.IdZaposlenog}";
+                AppData.Ds.SumZaposlenja.SumZaposlenjaUSkoli(zap);
 
                 dgvAngazovanja.LoadSettings();
 
@@ -126,7 +135,8 @@ namespace JISP.Forms
                 LastLocation = Location;
                 LastSize = Size;
             }
-            dgvZaposlenjaSve.SaveSettings();
+            dgvZaposlenjaSvSava.SaveSettings();
+            dgvSvaZaposlenja.SaveSettings();
             dgvAngazovanja.SaveSettings();
             dgvObracunZarada.SaveSettings();
         }
@@ -134,7 +144,7 @@ namespace JISP.Forms
         private async void BtnUcitajAngazovanja_Click(object sender, EventArgs e)
         {
             await (sender as UcButton).RunAsync(async () =>
-                await DataGetter.GetAngazovanjaAsync(dgvZaposlenjaSve.SelectedDataRows<Ds.ZaposlenjaRow>())
+                await DataGetter.GetAngazovanjaAsync(dgvZaposlenjaSvSava.SelectedDataRows<Ds.ZaposlenjaRow>())
             );
             zaposleni.CalcAngazovanja();
         }
@@ -144,14 +154,15 @@ namespace JISP.Forms
             try
             {
                 if (e.RowIndex >= 0 && e.ColumnIndex == dgvcZapDokument.Index)
-                    await Utils.PreuzmiDokument(dgvZaposlenjaSve, e);
+                    await Utils.PreuzmiDokument(dgvZaposlenjaSvSava, e);
             }
             catch (Exception ex) { Utils.ShowMbox(ex, Text); }
         }
 
         private void ChkCopyOnClick_CheckedChanged(object sender, EventArgs e)
-            => dgvZaposlenjaSve.CopyOnCellClick = dgvAngazovanja.CopyOnCellClick
-            = dgvObracunZarada.CopyOnCellClick = dgvResenja.CopyOnCellClick = chkCopyOnClick.Checked;
+            => dgvZaposlenjaSvSava.CopyOnCellClick = dgvSvaZaposlenja.CopyOnCellClick
+            = dgvAngazovanja.CopyOnCellClick = dgvObracunZarada.CopyOnCellClick = dgvResenja.CopyOnCellClick
+            = chkCopyOnClick.Checked;
 
         private async void BtnUcitajOzOpis_Click(object sender, EventArgs e)
         {
@@ -164,7 +175,7 @@ namespace JISP.Forms
         private async void BtnUcitajResenja_Click(object sender, EventArgs e)
         {
             await (sender as UcButton).RunAsync(async () =>
-                await DataGetter.GetResenjaAsync(dgvZaposlenjaSve.SelectedDataRows<Ds.ZaposlenjaRow>())
+                await DataGetter.GetResenjaAsync(dgvZaposlenjaSvSava.SelectedDataRows<Ds.ZaposlenjaRow>())
             );
         }
 
@@ -179,9 +190,9 @@ namespace JISP.Forms
             try
             {
                 var comboVisible = false;
-                if (dgvZaposlenjaSve.CurrentRow != null)
+                if (dgvZaposlenjaSvSava.CurrentRow != null)
                 {
-                    var z = dgvZaposlenjaSve.CurrDataRow<Ds.ZaposlenjaRow>();
+                    var z = dgvZaposlenjaSvSava.CurrDataRow<Ds.ZaposlenjaRow>();
                     if (!z.IsVrstaAngazovanjaNull() && z.VrstaAngazovanja.Contains("замена"))
                     {
                         comboVisible = true;
@@ -201,7 +212,7 @@ namespace JISP.Forms
             if (cmbZamenjeni.SelectedItem != null)
                 try
                 {
-                    var z = dgvZaposlenjaSve.CurrDataRow<Ds.ZaposlenjaRow>();
+                    var z = dgvZaposlenjaSvSava.CurrDataRow<Ds.ZaposlenjaRow>();
                     var zap = (cmbZamenjeni.SelectedItem as DataRowView).Row as Ds.ZaposleniRow;
                     if (z.IsIdZamenjenogZaposlenogNull() || z.IdZamenjenogZaposlenog != zap.IdZaposlenog)
                         z.IdZamenjenogZaposlenog = zap.IdZaposlenog;
@@ -211,7 +222,7 @@ namespace JISP.Forms
 
         private void BtnZamenjeniBrisi_Click(object sender, EventArgs e)
         {
-            var nje = dgvZaposlenjaSve.CurrDataRow<Ds.ZaposlenjaRow>();
+            var nje = dgvZaposlenjaSvSava.CurrDataRow<Ds.ZaposlenjaRow>();
             nje.SetIdZamenjenogZaposlenogNull();
             cmbZamenjeni.SelectedIndex = -1;
         }
@@ -220,6 +231,21 @@ namespace JISP.Forms
         {
             if (e.KeyCode == Keys.Escape)
                 Close();
+        }
+
+        private void DgvSvaZaposlenja_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var ukStaz = new Datum();
+                if (dgvSvaZaposlenja.SelectedRows.Count > 0)
+                {
+                    foreach (var z in dgvSvaZaposlenja.SelectedDataRows<Ds.SumZaposlenjaRow>())
+                        ukStaz = Staz.Zbir(ukStaz, Datum.IzStringa(z.Staz));
+                }
+                lblUkupanStaz.Text = "Ukupan staž: " + ukStaz;
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, "Sva Zaposlenja"); }
         }
     }
 }

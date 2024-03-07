@@ -70,6 +70,12 @@ namespace JISP.Data {
         
         private FAF_ItemsDataTable tableFAF_Items;
         
+        private SumZaposlenjaDataTable tableSumZaposlenja;
+        
+        private SumZapDetaljiDataTable tableSumZapDetalji;
+        
+        private TipoviPoslodavacaDataTable tableTipoviPoslodavaca;
+        
         private global::System.Data.DataRelation relationFK_Zaposleni_Zaposlenja;
         
         private global::System.Data.DataRelation relationZaposleni_ObracunZarada;
@@ -93,6 +99,14 @@ namespace JISP.Data {
         private global::System.Data.DataRelation relationObjekti_Prostorije;
         
         private global::System.Data.DataRelation relationProstorije_Racunari;
+        
+        private global::System.Data.DataRelation relationSumZaposlenja_SumZapDetalji;
+        
+        private global::System.Data.DataRelation relationTipoviPoslodavaca_SumZaposlenja;
+        
+        private global::System.Data.DataRelation relationZaposleni_SumZaposlenja;
+        
+        private global::System.Data.DataRelation relationZaposlenja_SumZapDetalji;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -194,6 +208,15 @@ namespace JISP.Data {
                 }
                 if ((ds.Tables["FAF_Items"] != null)) {
                     base.Tables.Add(new FAF_ItemsDataTable(ds.Tables["FAF_Items"]));
+                }
+                if ((ds.Tables["SumZaposlenja"] != null)) {
+                    base.Tables.Add(new SumZaposlenjaDataTable(ds.Tables["SumZaposlenja"]));
+                }
+                if ((ds.Tables["SumZapDetalji"] != null)) {
+                    base.Tables.Add(new SumZapDetaljiDataTable(ds.Tables["SumZapDetalji"]));
+                }
+                if ((ds.Tables["TipoviPoslodavaca"] != null)) {
+                    base.Tables.Add(new TipoviPoslodavacaDataTable(ds.Tables["TipoviPoslodavaca"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -446,6 +469,36 @@ namespace JISP.Data {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public SumZaposlenjaDataTable SumZaposlenja {
+            get {
+                return this.tableSumZaposlenja;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public SumZapDetaljiDataTable SumZapDetalji {
+            get {
+                return this.tableSumZapDetalji;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public TipoviPoslodavacaDataTable TipoviPoslodavaca {
+            get {
+                return this.tableTipoviPoslodavaca;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -580,6 +633,15 @@ namespace JISP.Data {
                 }
                 if ((ds.Tables["FAF_Items"] != null)) {
                     base.Tables.Add(new FAF_ItemsDataTable(ds.Tables["FAF_Items"]));
+                }
+                if ((ds.Tables["SumZaposlenja"] != null)) {
+                    base.Tables.Add(new SumZaposlenjaDataTable(ds.Tables["SumZaposlenja"]));
+                }
+                if ((ds.Tables["SumZapDetalji"] != null)) {
+                    base.Tables.Add(new SumZapDetaljiDataTable(ds.Tables["SumZapDetalji"]));
+                }
+                if ((ds.Tables["TipoviPoslodavaca"] != null)) {
+                    base.Tables.Add(new TipoviPoslodavacaDataTable(ds.Tables["TipoviPoslodavaca"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -752,6 +814,24 @@ namespace JISP.Data {
                     this.tableFAF_Items.InitVars();
                 }
             }
+            this.tableSumZaposlenja = ((SumZaposlenjaDataTable)(base.Tables["SumZaposlenja"]));
+            if ((initTable == true)) {
+                if ((this.tableSumZaposlenja != null)) {
+                    this.tableSumZaposlenja.InitVars();
+                }
+            }
+            this.tableSumZapDetalji = ((SumZapDetaljiDataTable)(base.Tables["SumZapDetalji"]));
+            if ((initTable == true)) {
+                if ((this.tableSumZapDetalji != null)) {
+                    this.tableSumZapDetalji.InitVars();
+                }
+            }
+            this.tableTipoviPoslodavaca = ((TipoviPoslodavacaDataTable)(base.Tables["TipoviPoslodavaca"]));
+            if ((initTable == true)) {
+                if ((this.tableTipoviPoslodavaca != null)) {
+                    this.tableTipoviPoslodavaca.InitVars();
+                }
+            }
             this.relationFK_Zaposleni_Zaposlenja = this.Relations["FK_Zaposleni_Zaposlenja"];
             this.relationZaposleni_ObracunZarada = this.Relations["Zaposleni_ObracunZarada"];
             this.relationZaposlenja_Angazovanja = this.Relations["Zaposlenja_Angazovanja"];
@@ -764,6 +844,10 @@ namespace JISP.Data {
             this.relationLokacije_Objekti = this.Relations["Lokacije_Objekti"];
             this.relationObjekti_Prostorije = this.Relations["Objekti_Prostorije"];
             this.relationProstorije_Racunari = this.Relations["Prostorije_Racunari"];
+            this.relationSumZaposlenja_SumZapDetalji = this.Relations["SumZaposlenja_SumZapDetalji"];
+            this.relationTipoviPoslodavaca_SumZaposlenja = this.Relations["TipoviPoslodavaca_SumZaposlenja"];
+            this.relationZaposleni_SumZaposlenja = this.Relations["Zaposleni_SumZaposlenja"];
+            this.relationZaposlenja_SumZapDetalji = this.Relations["Zaposlenja_SumZapDetalji"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -820,6 +904,12 @@ namespace JISP.Data {
             base.Tables.Add(this.tableFormAutoFills);
             this.tableFAF_Items = new FAF_ItemsDataTable();
             base.Tables.Add(this.tableFAF_Items);
+            this.tableSumZaposlenja = new SumZaposlenjaDataTable();
+            base.Tables.Add(this.tableSumZaposlenja);
+            this.tableSumZapDetalji = new SumZapDetaljiDataTable();
+            base.Tables.Add(this.tableSumZapDetalji);
+            this.tableTipoviPoslodavaca = new TipoviPoslodavacaDataTable();
+            base.Tables.Add(this.tableTipoviPoslodavaca);
             global::System.Data.ForeignKeyConstraint fkc;
             fkc = new global::System.Data.ForeignKeyConstraint("FK_Zaposleni_Zaposlenja", new global::System.Data.DataColumn[] {
                         this.tableZaposleni.IdZaposlenogColumn}, new global::System.Data.DataColumn[] {
@@ -883,6 +973,22 @@ namespace JISP.Data {
                         this.tableProstorije.IdProstorijeColumn}, new global::System.Data.DataColumn[] {
                         this.tableRacunari.IdProstorijeColumn}, false);
             this.Relations.Add(this.relationProstorije_Racunari);
+            this.relationSumZaposlenja_SumZapDetalji = new global::System.Data.DataRelation("SumZaposlenja_SumZapDetalji", new global::System.Data.DataColumn[] {
+                        this.tableSumZaposlenja.IdSumZaposlenjaColumn}, new global::System.Data.DataColumn[] {
+                        this.tableSumZapDetalji.IdSumZaposlenjaColumn}, false);
+            this.Relations.Add(this.relationSumZaposlenja_SumZapDetalji);
+            this.relationTipoviPoslodavaca_SumZaposlenja = new global::System.Data.DataRelation("TipoviPoslodavaca_SumZaposlenja", new global::System.Data.DataColumn[] {
+                        this.tableTipoviPoslodavaca.IdTipaPoslColumn}, new global::System.Data.DataColumn[] {
+                        this.tableSumZaposlenja.IdTipaPoslodavcaColumn}, false);
+            this.Relations.Add(this.relationTipoviPoslodavaca_SumZaposlenja);
+            this.relationZaposleni_SumZaposlenja = new global::System.Data.DataRelation("Zaposleni_SumZaposlenja", new global::System.Data.DataColumn[] {
+                        this.tableZaposleni.IdZaposlenogColumn}, new global::System.Data.DataColumn[] {
+                        this.tableSumZaposlenja.IdZaposlenogColumn}, false);
+            this.Relations.Add(this.relationZaposleni_SumZaposlenja);
+            this.relationZaposlenja_SumZapDetalji = new global::System.Data.DataRelation("Zaposlenja_SumZapDetalji", new global::System.Data.DataColumn[] {
+                        this.tableZaposlenja.IdZaposlenjaColumn}, new global::System.Data.DataColumn[] {
+                        this.tableSumZapDetalji.IdZaposlenjaColumn}, false);
+            this.Relations.Add(this.relationZaposlenja_SumZapDetalji);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1020,6 +1126,24 @@ namespace JISP.Data {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private bool ShouldSerializeFAF_Items() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private bool ShouldSerializeSumZaposlenja() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private bool ShouldSerializeSumZapDetalji() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private bool ShouldSerializeTipoviPoslodavaca() {
             return false;
         }
         
@@ -1173,6 +1297,15 @@ namespace JISP.Data {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void FAF_ItemsRowChangeEventHandler(object sender, FAF_ItemsRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public delegate void SumZaposlenjaRowChangeEventHandler(object sender, SumZaposlenjaRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public delegate void SumZapDetaljiRowChangeEventHandler(object sender, SumZapDetaljiRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public delegate void TipoviPoslodavacaRowChangeEventHandler(object sender, TipoviPoslodavacaRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -10786,6 +10919,993 @@ namespace JISP.Data {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SumZaposlenjaDataTable : global::System.Data.TypedTableBase<SumZaposlenjaRow> {
+            
+            private global::System.Data.DataColumn columnIdSumZaposlenja;
+            
+            private global::System.Data.DataColumn columnIdZaposlenog;
+            
+            private global::System.Data.DataColumn columnProcenatAngazovanja;
+            
+            private global::System.Data.DataColumn columnDatumOd;
+            
+            private global::System.Data.DataColumn columnDatumDo;
+            
+            private global::System.Data.DataColumn columnStaz;
+            
+            private global::System.Data.DataColumn columnIdTipaPoslodavca;
+            
+            private global::System.Data.DataColumn columnNazivPoslodavca;
+            
+            private global::System.Data.DataColumn columnNapomene;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SumZaposlenjaDataTable() {
+                this.TableName = "SumZaposlenja";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal SumZaposlenjaDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected SumZaposlenjaDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IdSumZaposlenjaColumn {
+                get {
+                    return this.columnIdSumZaposlenja;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IdZaposlenogColumn {
+                get {
+                    return this.columnIdZaposlenog;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ProcenatAngazovanjaColumn {
+                get {
+                    return this.columnProcenatAngazovanja;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DatumOdColumn {
+                get {
+                    return this.columnDatumOd;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DatumDoColumn {
+                get {
+                    return this.columnDatumDo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn StazColumn {
+                get {
+                    return this.columnStaz;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IdTipaPoslodavcaColumn {
+                get {
+                    return this.columnIdTipaPoslodavca;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn NazivPoslodavcaColumn {
+                get {
+                    return this.columnNazivPoslodavca;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn NapomeneColumn {
+                get {
+                    return this.columnNapomene;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SumZaposlenjaRow this[int index] {
+                get {
+                    return ((SumZaposlenjaRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event SumZaposlenjaRowChangeEventHandler SumZaposlenjaRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event SumZaposlenjaRowChangeEventHandler SumZaposlenjaRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event SumZaposlenjaRowChangeEventHandler SumZaposlenjaRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event SumZaposlenjaRowChangeEventHandler SumZaposlenjaRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void AddSumZaposlenjaRow(SumZaposlenjaRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SumZaposlenjaRow AddSumZaposlenjaRow(ZaposleniRow parentZaposleniRowByZaposleni_SumZaposlenja, double ProcenatAngazovanja, System.DateTime DatumOd, System.DateTime DatumDo, string Staz, TipoviPoslodavacaRow parentTipoviPoslodavacaRowByTipoviPoslodavaca_SumZaposlenja, string NazivPoslodavca, string Napomene) {
+                SumZaposlenjaRow rowSumZaposlenjaRow = ((SumZaposlenjaRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        null,
+                        ProcenatAngazovanja,
+                        DatumOd,
+                        DatumDo,
+                        Staz,
+                        null,
+                        NazivPoslodavca,
+                        Napomene};
+                if ((parentZaposleniRowByZaposleni_SumZaposlenja != null)) {
+                    columnValuesArray[1] = parentZaposleniRowByZaposleni_SumZaposlenja[0];
+                }
+                if ((parentTipoviPoslodavacaRowByTipoviPoslodavaca_SumZaposlenja != null)) {
+                    columnValuesArray[6] = parentTipoviPoslodavacaRowByTipoviPoslodavaca_SumZaposlenja[0];
+                }
+                rowSumZaposlenjaRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSumZaposlenjaRow);
+                return rowSumZaposlenjaRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SumZaposlenjaRow FindByIdSumZaposlenja(int IdSumZaposlenja) {
+                return ((SumZaposlenjaRow)(this.Rows.Find(new object[] {
+                            IdSumZaposlenja})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                SumZaposlenjaDataTable cln = ((SumZaposlenjaDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SumZaposlenjaDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal void InitVars() {
+                this.columnIdSumZaposlenja = base.Columns["IdSumZaposlenja"];
+                this.columnIdZaposlenog = base.Columns["IdZaposlenog"];
+                this.columnProcenatAngazovanja = base.Columns["ProcenatAngazovanja"];
+                this.columnDatumOd = base.Columns["DatumOd"];
+                this.columnDatumDo = base.Columns["DatumDo"];
+                this.columnStaz = base.Columns["Staz"];
+                this.columnIdTipaPoslodavca = base.Columns["IdTipaPoslodavca"];
+                this.columnNazivPoslodavca = base.Columns["NazivPoslodavca"];
+                this.columnNapomene = base.Columns["Napomene"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            private void InitClass() {
+                this.columnIdSumZaposlenja = new global::System.Data.DataColumn("IdSumZaposlenja", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdSumZaposlenja);
+                this.columnIdZaposlenog = new global::System.Data.DataColumn("IdZaposlenog", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdZaposlenog);
+                this.columnProcenatAngazovanja = new global::System.Data.DataColumn("ProcenatAngazovanja", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProcenatAngazovanja);
+                this.columnDatumOd = new global::System.Data.DataColumn("DatumOd", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDatumOd);
+                this.columnDatumDo = new global::System.Data.DataColumn("DatumDo", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDatumDo);
+                this.columnStaz = new global::System.Data.DataColumn("Staz", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStaz);
+                this.columnIdTipaPoslodavca = new global::System.Data.DataColumn("IdTipaPoslodavca", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdTipaPoslodavca);
+                this.columnNazivPoslodavca = new global::System.Data.DataColumn("NazivPoslodavca", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNazivPoslodavca);
+                this.columnNapomene = new global::System.Data.DataColumn("Napomene", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNapomene);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnIdSumZaposlenja}, true));
+                this.columnIdSumZaposlenja.AutoIncrement = true;
+                this.columnIdSumZaposlenja.AutoIncrementSeed = -1;
+                this.columnIdSumZaposlenja.AutoIncrementStep = -1;
+                this.columnIdSumZaposlenja.AllowDBNull = false;
+                this.columnIdSumZaposlenja.Unique = true;
+                this.columnIdZaposlenog.AllowDBNull = false;
+                this.columnProcenatAngazovanja.AllowDBNull = false;
+                this.columnDatumOd.AllowDBNull = false;
+                this.columnDatumDo.AllowDBNull = false;
+                this.columnStaz.AllowDBNull = false;
+                this.columnIdTipaPoslodavca.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SumZaposlenjaRow NewSumZaposlenjaRow() {
+                return ((SumZaposlenjaRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SumZaposlenjaRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(SumZaposlenjaRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SumZaposlenjaRowChanged != null)) {
+                    this.SumZaposlenjaRowChanged(this, new SumZaposlenjaRowChangeEvent(((SumZaposlenjaRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SumZaposlenjaRowChanging != null)) {
+                    this.SumZaposlenjaRowChanging(this, new SumZaposlenjaRowChangeEvent(((SumZaposlenjaRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SumZaposlenjaRowDeleted != null)) {
+                    this.SumZaposlenjaRowDeleted(this, new SumZaposlenjaRowChangeEvent(((SumZaposlenjaRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SumZaposlenjaRowDeleting != null)) {
+                    this.SumZaposlenjaRowDeleting(this, new SumZaposlenjaRowChangeEvent(((SumZaposlenjaRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void RemoveSumZaposlenjaRow(SumZaposlenjaRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                Ds ds = new Ds();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SumZaposlenjaDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SumZapDetaljiDataTable : global::System.Data.TypedTableBase<SumZapDetaljiRow> {
+            
+            private global::System.Data.DataColumn columnIdSumZapDetalja;
+            
+            private global::System.Data.DataColumn columnIdSumZaposlenja;
+            
+            private global::System.Data.DataColumn columnIdZaposlenja;
+            
+            private global::System.Data.DataColumn columnRadnoMesto;
+            
+            private global::System.Data.DataColumn columnProcenatAngazovanja;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SumZapDetaljiDataTable() {
+                this.TableName = "SumZapDetalji";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal SumZapDetaljiDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected SumZapDetaljiDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IdSumZapDetaljaColumn {
+                get {
+                    return this.columnIdSumZapDetalja;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IdSumZaposlenjaColumn {
+                get {
+                    return this.columnIdSumZaposlenja;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IdZaposlenjaColumn {
+                get {
+                    return this.columnIdZaposlenja;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn RadnoMestoColumn {
+                get {
+                    return this.columnRadnoMesto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ProcenatAngazovanjaColumn {
+                get {
+                    return this.columnProcenatAngazovanja;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SumZapDetaljiRow this[int index] {
+                get {
+                    return ((SumZapDetaljiRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event SumZapDetaljiRowChangeEventHandler SumZapDetaljiRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event SumZapDetaljiRowChangeEventHandler SumZapDetaljiRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event SumZapDetaljiRowChangeEventHandler SumZapDetaljiRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event SumZapDetaljiRowChangeEventHandler SumZapDetaljiRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void AddSumZapDetaljiRow(SumZapDetaljiRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SumZapDetaljiRow AddSumZapDetaljiRow(SumZaposlenjaRow parentSumZaposlenjaRowBySumZaposlenja_SumZapDetalji, ZaposlenjaRow parentZaposlenjaRowByZaposlenja_SumZapDetalji, string RadnoMesto, double ProcenatAngazovanja) {
+                SumZapDetaljiRow rowSumZapDetaljiRow = ((SumZapDetaljiRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        null,
+                        null,
+                        RadnoMesto,
+                        ProcenatAngazovanja};
+                if ((parentSumZaposlenjaRowBySumZaposlenja_SumZapDetalji != null)) {
+                    columnValuesArray[1] = parentSumZaposlenjaRowBySumZaposlenja_SumZapDetalji[0];
+                }
+                if ((parentZaposlenjaRowByZaposlenja_SumZapDetalji != null)) {
+                    columnValuesArray[2] = parentZaposlenjaRowByZaposlenja_SumZapDetalji[0];
+                }
+                rowSumZapDetaljiRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSumZapDetaljiRow);
+                return rowSumZapDetaljiRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SumZapDetaljiRow FindByIdSumZapDetalja(int IdSumZapDetalja) {
+                return ((SumZapDetaljiRow)(this.Rows.Find(new object[] {
+                            IdSumZapDetalja})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                SumZapDetaljiDataTable cln = ((SumZapDetaljiDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SumZapDetaljiDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal void InitVars() {
+                this.columnIdSumZapDetalja = base.Columns["IdSumZapDetalja"];
+                this.columnIdSumZaposlenja = base.Columns["IdSumZaposlenja"];
+                this.columnIdZaposlenja = base.Columns["IdZaposlenja"];
+                this.columnRadnoMesto = base.Columns["RadnoMesto"];
+                this.columnProcenatAngazovanja = base.Columns["ProcenatAngazovanja"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            private void InitClass() {
+                this.columnIdSumZapDetalja = new global::System.Data.DataColumn("IdSumZapDetalja", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdSumZapDetalja);
+                this.columnIdSumZaposlenja = new global::System.Data.DataColumn("IdSumZaposlenja", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdSumZaposlenja);
+                this.columnIdZaposlenja = new global::System.Data.DataColumn("IdZaposlenja", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdZaposlenja);
+                this.columnRadnoMesto = new global::System.Data.DataColumn("RadnoMesto", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRadnoMesto);
+                this.columnProcenatAngazovanja = new global::System.Data.DataColumn("ProcenatAngazovanja", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProcenatAngazovanja);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnIdSumZapDetalja}, true));
+                this.columnIdSumZapDetalja.AutoIncrement = true;
+                this.columnIdSumZapDetalja.AutoIncrementSeed = -1;
+                this.columnIdSumZapDetalja.AutoIncrementStep = -1;
+                this.columnIdSumZapDetalja.AllowDBNull = false;
+                this.columnIdSumZapDetalja.Unique = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SumZapDetaljiRow NewSumZapDetaljiRow() {
+                return ((SumZapDetaljiRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SumZapDetaljiRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(SumZapDetaljiRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SumZapDetaljiRowChanged != null)) {
+                    this.SumZapDetaljiRowChanged(this, new SumZapDetaljiRowChangeEvent(((SumZapDetaljiRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SumZapDetaljiRowChanging != null)) {
+                    this.SumZapDetaljiRowChanging(this, new SumZapDetaljiRowChangeEvent(((SumZapDetaljiRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SumZapDetaljiRowDeleted != null)) {
+                    this.SumZapDetaljiRowDeleted(this, new SumZapDetaljiRowChangeEvent(((SumZapDetaljiRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SumZapDetaljiRowDeleting != null)) {
+                    this.SumZapDetaljiRowDeleting(this, new SumZapDetaljiRowChangeEvent(((SumZapDetaljiRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void RemoveSumZapDetaljiRow(SumZapDetaljiRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                Ds ds = new Ds();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SumZapDetaljiDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class TipoviPoslodavacaDataTable : global::System.Data.TypedTableBase<TipoviPoslodavacaRow> {
+            
+            private global::System.Data.DataColumn columnIdTipaPosl;
+            
+            private global::System.Data.DataColumn columnNazivTipaPosl;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public TipoviPoslodavacaDataTable() {
+                this.TableName = "TipoviPoslodavaca";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal TipoviPoslodavacaDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected TipoviPoslodavacaDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IdTipaPoslColumn {
+                get {
+                    return this.columnIdTipaPosl;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn NazivTipaPoslColumn {
+                get {
+                    return this.columnNazivTipaPosl;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public TipoviPoslodavacaRow this[int index] {
+                get {
+                    return ((TipoviPoslodavacaRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event TipoviPoslodavacaRowChangeEventHandler TipoviPoslodavacaRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event TipoviPoslodavacaRowChangeEventHandler TipoviPoslodavacaRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event TipoviPoslodavacaRowChangeEventHandler TipoviPoslodavacaRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event TipoviPoslodavacaRowChangeEventHandler TipoviPoslodavacaRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void AddTipoviPoslodavacaRow(TipoviPoslodavacaRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public TipoviPoslodavacaRow AddTipoviPoslodavacaRow(string NazivTipaPosl) {
+                TipoviPoslodavacaRow rowTipoviPoslodavacaRow = ((TipoviPoslodavacaRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        NazivTipaPosl};
+                rowTipoviPoslodavacaRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowTipoviPoslodavacaRow);
+                return rowTipoviPoslodavacaRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public TipoviPoslodavacaRow FindByIdTipaPosl(int IdTipaPosl) {
+                return ((TipoviPoslodavacaRow)(this.Rows.Find(new object[] {
+                            IdTipaPosl})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                TipoviPoslodavacaDataTable cln = ((TipoviPoslodavacaDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new TipoviPoslodavacaDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal void InitVars() {
+                this.columnIdTipaPosl = base.Columns["IdTipaPosl"];
+                this.columnNazivTipaPosl = base.Columns["NazivTipaPosl"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            private void InitClass() {
+                this.columnIdTipaPosl = new global::System.Data.DataColumn("IdTipaPosl", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdTipaPosl);
+                this.columnNazivTipaPosl = new global::System.Data.DataColumn("NazivTipaPosl", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNazivTipaPosl);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnIdTipaPosl}, true));
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint2", new global::System.Data.DataColumn[] {
+                                this.columnNazivTipaPosl}, false));
+                this.columnIdTipaPosl.AutoIncrement = true;
+                this.columnIdTipaPosl.AutoIncrementSeed = -1;
+                this.columnIdTipaPosl.AutoIncrementStep = -1;
+                this.columnIdTipaPosl.AllowDBNull = false;
+                this.columnIdTipaPosl.Unique = true;
+                this.columnNazivTipaPosl.AllowDBNull = false;
+                this.columnNazivTipaPosl.Unique = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public TipoviPoslodavacaRow NewTipoviPoslodavacaRow() {
+                return ((TipoviPoslodavacaRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new TipoviPoslodavacaRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(TipoviPoslodavacaRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.TipoviPoslodavacaRowChanged != null)) {
+                    this.TipoviPoslodavacaRowChanged(this, new TipoviPoslodavacaRowChangeEvent(((TipoviPoslodavacaRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.TipoviPoslodavacaRowChanging != null)) {
+                    this.TipoviPoslodavacaRowChanging(this, new TipoviPoslodavacaRowChangeEvent(((TipoviPoslodavacaRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.TipoviPoslodavacaRowDeleted != null)) {
+                    this.TipoviPoslodavacaRowDeleted(this, new TipoviPoslodavacaRowChangeEvent(((TipoviPoslodavacaRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.TipoviPoslodavacaRowDeleting != null)) {
+                    this.TipoviPoslodavacaRowDeleting(this, new TipoviPoslodavacaRowChangeEvent(((TipoviPoslodavacaRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void RemoveTipoviPoslodavacaRow(TipoviPoslodavacaRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                Ds ds = new Ds();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "TipoviPoslodavacaDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class UceniciRow : global::System.Data.DataRow {
@@ -12071,6 +13191,17 @@ namespace JISP.Data {
                     return ((ZaposlenjaRow[])(base.GetChildRows(this.Table.ChildRelations["Zamenjeni_Zaposleni"])));
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SumZaposlenjaRow[] GetSumZaposlenjaRows() {
+                if ((this.Table.ChildRelations["Zaposleni_SumZaposlenja"] == null)) {
+                    return new SumZaposlenjaRow[0];
+                }
+                else {
+                    return ((SumZaposlenjaRow[])(base.GetChildRows(this.Table.ChildRelations["Zaposleni_SumZaposlenja"])));
+                }
+            }
         }
         
         /// <summary>
@@ -12582,6 +13713,17 @@ namespace JISP.Data {
                 }
                 else {
                     return ((ResenjaRow[])(base.GetChildRows(this.Table.ChildRelations["Zaposlenja_Resenja"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SumZapDetaljiRow[] GetSumZapDetaljiRows() {
+                if ((this.Table.ChildRelations["Zaposlenja_SumZapDetalji"] == null)) {
+                    return new SumZapDetaljiRow[0];
+                }
+                else {
+                    return ((SumZapDetaljiRow[])(base.GetChildRows(this.Table.ChildRelations["Zaposlenja_SumZapDetalji"])));
                 }
             }
         }
@@ -16861,6 +18003,395 @@ namespace JISP.Data {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class SumZaposlenjaRow : global::System.Data.DataRow {
+            
+            private SumZaposlenjaDataTable tableSumZaposlenja;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal SumZaposlenjaRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSumZaposlenja = ((SumZaposlenjaDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int IdSumZaposlenja {
+                get {
+                    return ((int)(this[this.tableSumZaposlenja.IdSumZaposlenjaColumn]));
+                }
+                set {
+                    this[this.tableSumZaposlenja.IdSumZaposlenjaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int IdZaposlenog {
+                get {
+                    return ((int)(this[this.tableSumZaposlenja.IdZaposlenogColumn]));
+                }
+                set {
+                    this[this.tableSumZaposlenja.IdZaposlenogColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public double ProcenatAngazovanja {
+                get {
+                    return ((double)(this[this.tableSumZaposlenja.ProcenatAngazovanjaColumn]));
+                }
+                set {
+                    this[this.tableSumZaposlenja.ProcenatAngazovanjaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime DatumOd {
+                get {
+                    return ((global::System.DateTime)(this[this.tableSumZaposlenja.DatumOdColumn]));
+                }
+                set {
+                    this[this.tableSumZaposlenja.DatumOdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime DatumDo {
+                get {
+                    return ((global::System.DateTime)(this[this.tableSumZaposlenja.DatumDoColumn]));
+                }
+                set {
+                    this[this.tableSumZaposlenja.DatumDoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Staz {
+                get {
+                    return ((string)(this[this.tableSumZaposlenja.StazColumn]));
+                }
+                set {
+                    this[this.tableSumZaposlenja.StazColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int IdTipaPoslodavca {
+                get {
+                    return ((int)(this[this.tableSumZaposlenja.IdTipaPoslodavcaColumn]));
+                }
+                set {
+                    this[this.tableSumZaposlenja.IdTipaPoslodavcaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string NazivPoslodavca {
+                get {
+                    try {
+                        return ((string)(this[this.tableSumZaposlenja.NazivPoslodavcaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NazivPoslodavca\' in table \'SumZaposlenja\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSumZaposlenja.NazivPoslodavcaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Napomene {
+                get {
+                    try {
+                        return ((string)(this[this.tableSumZaposlenja.NapomeneColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Napomene\' in table \'SumZaposlenja\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSumZaposlenja.NapomeneColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public TipoviPoslodavacaRow TipoviPoslodavacaRow {
+                get {
+                    return ((TipoviPoslodavacaRow)(this.GetParentRow(this.Table.ParentRelations["TipoviPoslodavaca_SumZaposlenja"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["TipoviPoslodavaca_SumZaposlenja"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public ZaposleniRow ZaposleniRow {
+                get {
+                    return ((ZaposleniRow)(this.GetParentRow(this.Table.ParentRelations["Zaposleni_SumZaposlenja"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Zaposleni_SumZaposlenja"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsNazivPoslodavcaNull() {
+                return this.IsNull(this.tableSumZaposlenja.NazivPoslodavcaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetNazivPoslodavcaNull() {
+                this[this.tableSumZaposlenja.NazivPoslodavcaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsNapomeneNull() {
+                return this.IsNull(this.tableSumZaposlenja.NapomeneColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetNapomeneNull() {
+                this[this.tableSumZaposlenja.NapomeneColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SumZapDetaljiRow[] GetSumZapDetaljiRows() {
+                if ((this.Table.ChildRelations["SumZaposlenja_SumZapDetalji"] == null)) {
+                    return new SumZapDetaljiRow[0];
+                }
+                else {
+                    return ((SumZapDetaljiRow[])(base.GetChildRows(this.Table.ChildRelations["SumZaposlenja_SumZapDetalji"])));
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class SumZapDetaljiRow : global::System.Data.DataRow {
+            
+            private SumZapDetaljiDataTable tableSumZapDetalji;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal SumZapDetaljiRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSumZapDetalji = ((SumZapDetaljiDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int IdSumZapDetalja {
+                get {
+                    return ((int)(this[this.tableSumZapDetalji.IdSumZapDetaljaColumn]));
+                }
+                set {
+                    this[this.tableSumZapDetalji.IdSumZapDetaljaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int IdSumZaposlenja {
+                get {
+                    try {
+                        return ((int)(this[this.tableSumZapDetalji.IdSumZaposlenjaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IdSumZaposlenja\' in table \'SumZapDetalji\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSumZapDetalji.IdSumZaposlenjaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int IdZaposlenja {
+                get {
+                    try {
+                        return ((int)(this[this.tableSumZapDetalji.IdZaposlenjaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IdZaposlenja\' in table \'SumZapDetalji\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSumZapDetalji.IdZaposlenjaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string RadnoMesto {
+                get {
+                    try {
+                        return ((string)(this[this.tableSumZapDetalji.RadnoMestoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RadnoMesto\' in table \'SumZapDetalji\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSumZapDetalji.RadnoMestoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public double ProcenatAngazovanja {
+                get {
+                    try {
+                        return ((double)(this[this.tableSumZapDetalji.ProcenatAngazovanjaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ProcenatAngazovanja\' in table \'SumZapDetalji\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSumZapDetalji.ProcenatAngazovanjaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SumZaposlenjaRow SumZaposlenjaRow {
+                get {
+                    return ((SumZaposlenjaRow)(this.GetParentRow(this.Table.ParentRelations["SumZaposlenja_SumZapDetalji"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["SumZaposlenja_SumZapDetalji"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public ZaposlenjaRow ZaposlenjaRow {
+                get {
+                    return ((ZaposlenjaRow)(this.GetParentRow(this.Table.ParentRelations["Zaposlenja_SumZapDetalji"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Zaposlenja_SumZapDetalji"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsIdSumZaposlenjaNull() {
+                return this.IsNull(this.tableSumZapDetalji.IdSumZaposlenjaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetIdSumZaposlenjaNull() {
+                this[this.tableSumZapDetalji.IdSumZaposlenjaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsIdZaposlenjaNull() {
+                return this.IsNull(this.tableSumZapDetalji.IdZaposlenjaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetIdZaposlenjaNull() {
+                this[this.tableSumZapDetalji.IdZaposlenjaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsRadnoMestoNull() {
+                return this.IsNull(this.tableSumZapDetalji.RadnoMestoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetRadnoMestoNull() {
+                this[this.tableSumZapDetalji.RadnoMestoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsProcenatAngazovanjaNull() {
+                return this.IsNull(this.tableSumZapDetalji.ProcenatAngazovanjaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetProcenatAngazovanjaNull() {
+                this[this.tableSumZapDetalji.ProcenatAngazovanjaColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class TipoviPoslodavacaRow : global::System.Data.DataRow {
+            
+            private TipoviPoslodavacaDataTable tableTipoviPoslodavaca;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal TipoviPoslodavacaRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableTipoviPoslodavaca = ((TipoviPoslodavacaDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int IdTipaPosl {
+                get {
+                    return ((int)(this[this.tableTipoviPoslodavaca.IdTipaPoslColumn]));
+                }
+                set {
+                    this[this.tableTipoviPoslodavaca.IdTipaPoslColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string NazivTipaPosl {
+                get {
+                    return ((string)(this[this.tableTipoviPoslodavaca.NazivTipaPoslColumn]));
+                }
+                set {
+                    this[this.tableTipoviPoslodavaca.NazivTipaPoslColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SumZaposlenjaRow[] GetSumZaposlenjaRows() {
+                if ((this.Table.ChildRelations["TipoviPoslodavaca_SumZaposlenja"] == null)) {
+                    return new SumZaposlenjaRow[0];
+                }
+                else {
+                    return ((SumZaposlenjaRow[])(base.GetChildRows(this.Table.ChildRelations["TipoviPoslodavaca_SumZaposlenja"])));
+                }
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -17628,6 +19159,108 @@ namespace JISP.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public FAF_ItemsRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public class SumZaposlenjaRowChangeEvent : global::System.EventArgs {
+            
+            private SumZaposlenjaRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SumZaposlenjaRowChangeEvent(SumZaposlenjaRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SumZaposlenjaRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public class SumZapDetaljiRowChangeEvent : global::System.EventArgs {
+            
+            private SumZapDetaljiRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SumZapDetaljiRowChangeEvent(SumZapDetaljiRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SumZapDetaljiRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public class TipoviPoslodavacaRowChangeEvent : global::System.EventArgs {
+            
+            private TipoviPoslodavacaRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public TipoviPoslodavacaRowChangeEvent(TipoviPoslodavacaRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public TipoviPoslodavacaRow Row {
                 get {
                     return this.eventRow;
                 }

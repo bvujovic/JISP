@@ -40,6 +40,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
             this.chkCopyOnClick = new System.Windows.Forms.CheckBox();
             this.btnUcitajZaposlenja = new JISP.Controls.UcButton();
@@ -54,7 +56,7 @@
             this.lblZamenjeni = new System.Windows.Forms.Label();
             this.chkAktivno = new System.Windows.Forms.CheckBox();
             this.lblBrojRedovaZaposlenja = new System.Windows.Forms.Label();
-            this.dgvZaposlenjaSve = new JISP.Controls.UcDGV();
+            this.dgvZaposlenjaSvSava = new JISP.Controls.UcDGV();
             this.aktivanDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.brojUgovoraORaduDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.radnoMestoNazivDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,6 +70,22 @@
             this.dgvcZapDokument = new System.Windows.Forms.DataGridViewButtonColumn();
             this.bsZaposlenja = new System.Windows.Forms.BindingSource(this.components);
             this.scMain = new System.Windows.Forms.SplitContainer();
+            this.tcZaposlenja = new System.Windows.Forms.TabControl();
+            this.tpZaposSvetiSava = new System.Windows.Forms.TabPage();
+            this.tpZaposSva = new System.Windows.Forms.TabPage();
+            this.dgvSvaZaposlenja = new JISP.Controls.UcDGV();
+            this.procenatAngazovanjaDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.datumOdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.datumDoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stazDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idTipaPoslodavcaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.bsTipoviPoslodavaca = new System.Windows.Forms.BindingSource(this.components);
+            this.nazivPoslodavcaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcZaposSvaNapomene = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblZaposSvaBrojRedova = new System.Windows.Forms.Label();
+            this.bsSvaZaposlenja = new System.Windows.Forms.BindingSource(this.components);
+            this.pnlZaposSvaTop = new System.Windows.Forms.Panel();
+            this.lblUkupanStaz = new System.Windows.Forms.Label();
             this.tcBottom = new System.Windows.Forms.TabControl();
             this.tpObracunZarada = new System.Windows.Forms.TabPage();
             this.dgvObracunZarada = new JISP.Controls.UcDGV();
@@ -111,12 +129,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.bsZaposleni)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
             this.pnlZaposleniTop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvZaposlenjaSve)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvZaposlenjaSvSava)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsZaposlenja)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scMain)).BeginInit();
             this.scMain.Panel1.SuspendLayout();
             this.scMain.Panel2.SuspendLayout();
             this.scMain.SuspendLayout();
+            this.tcZaposlenja.SuspendLayout();
+            this.tpZaposSvetiSava.SuspendLayout();
+            this.tpZaposSva.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSvaZaposlenja)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTipoviPoslodavaca)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsSvaZaposlenja)).BeginInit();
+            this.pnlZaposSvaTop.SuspendLayout();
             this.tcBottom.SuspendLayout();
             this.tpObracunZarada.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvObracunZarada)).BeginInit();
@@ -142,7 +167,7 @@
             this.pnlLeft.Name = "pnlLeft";
             this.pnlLeft.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
             this.pnlLeft.RightWingWidth = 6;
-            this.pnlLeft.Size = new System.Drawing.Size(146, 569);
+            this.pnlLeft.Size = new System.Drawing.Size(146, 652);
             this.pnlLeft.TabIndex = 2;
             // 
             // chkCopyOnClick
@@ -226,9 +251,9 @@
             this.pnlZaposleniTop.Controls.Add(this.cmbZamenjeni);
             this.pnlZaposleniTop.Controls.Add(this.lblBrojRedovaZaposlenja);
             this.pnlZaposleniTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlZaposleniTop.Location = new System.Drawing.Point(0, 0);
+            this.pnlZaposleniTop.Location = new System.Drawing.Point(3, 3);
             this.pnlZaposleniTop.Name = "pnlZaposleniTop";
-            this.pnlZaposleniTop.Size = new System.Drawing.Size(1149, 30);
+            this.pnlZaposleniTop.Size = new System.Drawing.Size(1135, 30);
             this.pnlZaposleniTop.TabIndex = 3;
             // 
             // chkBezTehnGresaka
@@ -289,15 +314,15 @@
             this.lblBrojRedovaZaposlenja.TabIndex = 6;
             this.lblBrojRedovaZaposlenja.Text = "Redova";
             // 
-            // dgvZaposlenjaSve
+            // dgvZaposlenjaSvSava
             // 
-            this.dgvZaposlenjaSve.AllowUserToAddRows = false;
-            this.dgvZaposlenjaSve.AllowUserToDeleteRows = false;
-            this.dgvZaposlenjaSve.AllowUserToOrderColumns = true;
+            this.dgvZaposlenjaSvSava.AllowUserToAddRows = false;
+            this.dgvZaposlenjaSvSava.AllowUserToDeleteRows = false;
+            this.dgvZaposlenjaSvSava.AllowUserToOrderColumns = true;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvZaposlenjaSve.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvZaposlenjaSve.AutoGenerateColumns = false;
-            this.dgvZaposlenjaSve.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvZaposlenjaSvSava.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvZaposlenjaSvSava.AutoGenerateColumns = false;
+            this.dgvZaposlenjaSvSava.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
@@ -305,9 +330,9 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvZaposlenjaSve.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvZaposlenjaSve.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvZaposlenjaSve.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvZaposlenjaSvSava.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvZaposlenjaSvSava.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvZaposlenjaSvSava.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.aktivanDataGridViewCheckBoxColumn,
             this.brojUgovoraORaduDataGridViewTextBoxColumn,
             this.radnoMestoNazivDataGridViewTextBoxColumn,
@@ -319,28 +344,28 @@
             this.vrstaAngazovanjaDataGridViewTextBoxColumn,
             this.dgvcZapZamenjeni,
             this.dgvcZapDokument});
-            this.dgvZaposlenjaSve.ColumnsForCopyOnClick = null;
-            this.dgvZaposlenjaSve.CopyOnCellClick = false;
-            this.dgvZaposlenjaSve.CtrlDisplayPositionRowCount = this.lblBrojRedovaZaposlenja;
-            this.dgvZaposlenjaSve.DataSource = this.bsZaposlenja;
-            this.dgvZaposlenjaSve.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvZaposlenjaSve.Location = new System.Drawing.Point(0, 30);
-            this.dgvZaposlenjaSve.Name = "dgvZaposlenjaSve";
-            this.dgvZaposlenjaSve.ReadOnly = true;
+            this.dgvZaposlenjaSvSava.ColumnsForCopyOnClick = null;
+            this.dgvZaposlenjaSvSava.CopyOnCellClick = false;
+            this.dgvZaposlenjaSvSava.CtrlDisplayPositionRowCount = this.lblBrojRedovaZaposlenja;
+            this.dgvZaposlenjaSvSava.DataSource = this.bsZaposlenja;
+            this.dgvZaposlenjaSvSava.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvZaposlenjaSvSava.Location = new System.Drawing.Point(3, 33);
+            this.dgvZaposlenjaSvSava.Name = "dgvZaposlenjaSvSava";
+            this.dgvZaposlenjaSvSava.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.dgvZaposlenjaSve.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvZaposlenjaSve.RowHeadersWidth = 30;
-            this.dgvZaposlenjaSve.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvZaposlenjaSve.Size = new System.Drawing.Size(1149, 211);
-            this.dgvZaposlenjaSve.StandardSort = null;
-            this.dgvZaposlenjaSve.TabIndex = 4;
-            this.dgvZaposlenjaSve.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvZaposlenjaSve_CellClick);
-            this.dgvZaposlenjaSve.SelectionChanged += new System.EventHandler(this.DgvZaposlenjaSve_SelectionChanged);
+            this.dgvZaposlenjaSvSava.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvZaposlenjaSvSava.RowHeadersWidth = 30;
+            this.dgvZaposlenjaSvSava.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvZaposlenjaSvSava.Size = new System.Drawing.Size(1135, 257);
+            this.dgvZaposlenjaSvSava.StandardSort = null;
+            this.dgvZaposlenjaSvSava.TabIndex = 4;
+            this.dgvZaposlenjaSvSava.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvZaposlenjaSve_CellClick);
+            this.dgvZaposlenjaSvSava.SelectionChanged += new System.EventHandler(this.DgvZaposlenjaSve_SelectionChanged);
             // 
             // aktivanDataGridViewCheckBoxColumn
             // 
@@ -450,15 +475,183 @@
             // 
             // scMain.Panel1
             // 
-            this.scMain.Panel1.Controls.Add(this.dgvZaposlenjaSve);
-            this.scMain.Panel1.Controls.Add(this.pnlZaposleniTop);
+            this.scMain.Panel1.Controls.Add(this.tcZaposlenja);
             // 
             // scMain.Panel2
             // 
             this.scMain.Panel2.Controls.Add(this.tcBottom);
-            this.scMain.Size = new System.Drawing.Size(1149, 569);
-            this.scMain.SplitterDistance = 241;
+            this.scMain.Size = new System.Drawing.Size(1149, 652);
+            this.scMain.SplitterDistance = 324;
             this.scMain.TabIndex = 5;
+            // 
+            // tcZaposlenja
+            // 
+            this.tcZaposlenja.Controls.Add(this.tpZaposSvetiSava);
+            this.tcZaposlenja.Controls.Add(this.tpZaposSva);
+            this.tcZaposlenja.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tcZaposlenja.Location = new System.Drawing.Point(0, 0);
+            this.tcZaposlenja.Name = "tcZaposlenja";
+            this.tcZaposlenja.SelectedIndex = 0;
+            this.tcZaposlenja.Size = new System.Drawing.Size(1149, 324);
+            this.tcZaposlenja.TabIndex = 5;
+            // 
+            // tpZaposSvetiSava
+            // 
+            this.tpZaposSvetiSava.BackColor = System.Drawing.SystemColors.Control;
+            this.tpZaposSvetiSava.Controls.Add(this.dgvZaposlenjaSvSava);
+            this.tpZaposSvetiSava.Controls.Add(this.pnlZaposleniTop);
+            this.tpZaposSvetiSava.Location = new System.Drawing.Point(4, 27);
+            this.tpZaposSvetiSava.Name = "tpZaposSvetiSava";
+            this.tpZaposSvetiSava.Padding = new System.Windows.Forms.Padding(3);
+            this.tpZaposSvetiSava.Size = new System.Drawing.Size(1141, 293);
+            this.tpZaposSvetiSava.TabIndex = 0;
+            this.tpZaposSvetiSava.Text = "ŠOSO Sveti Sava";
+            // 
+            // tpZaposSva
+            // 
+            this.tpZaposSva.BackColor = System.Drawing.SystemColors.Control;
+            this.tpZaposSva.Controls.Add(this.dgvSvaZaposlenja);
+            this.tpZaposSva.Controls.Add(this.pnlZaposSvaTop);
+            this.tpZaposSva.Location = new System.Drawing.Point(4, 27);
+            this.tpZaposSva.Name = "tpZaposSva";
+            this.tpZaposSva.Padding = new System.Windows.Forms.Padding(3);
+            this.tpZaposSva.Size = new System.Drawing.Size(1141, 293);
+            this.tpZaposSva.TabIndex = 1;
+            this.tpZaposSva.Text = "Sva Zaposlenja";
+            // 
+            // dgvSvaZaposlenja
+            // 
+            this.dgvSvaZaposlenja.AllowUserToAddRows = false;
+            this.dgvSvaZaposlenja.AllowUserToDeleteRows = false;
+            this.dgvSvaZaposlenja.AllowUserToOrderColumns = true;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvSvaZaposlenja.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvSvaZaposlenja.AutoGenerateColumns = false;
+            this.dgvSvaZaposlenja.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvSvaZaposlenja.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvSvaZaposlenja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSvaZaposlenja.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.procenatAngazovanjaDataGridViewTextBoxColumn1,
+            this.datumOdDataGridViewTextBoxColumn,
+            this.datumDoDataGridViewTextBoxColumn,
+            this.stazDataGridViewTextBoxColumn,
+            this.idTipaPoslodavcaDataGridViewTextBoxColumn,
+            this.nazivPoslodavcaDataGridViewTextBoxColumn,
+            this.dgvcZaposSvaNapomene});
+            this.dgvSvaZaposlenja.ColumnsForCopyOnClick = null;
+            this.dgvSvaZaposlenja.CopyOnCellClick = false;
+            this.dgvSvaZaposlenja.CtrlDisplayPositionRowCount = this.lblZaposSvaBrojRedova;
+            this.dgvSvaZaposlenja.DataSource = this.bsSvaZaposlenja;
+            this.dgvSvaZaposlenja.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvSvaZaposlenja.Location = new System.Drawing.Point(3, 33);
+            this.dgvSvaZaposlenja.Name = "dgvSvaZaposlenja";
+            this.dgvSvaZaposlenja.RowHeadersWidth = 30;
+            this.dgvSvaZaposlenja.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvSvaZaposlenja.Size = new System.Drawing.Size(1135, 257);
+            this.dgvSvaZaposlenja.StandardSort = null;
+            this.dgvSvaZaposlenja.TabIndex = 1;
+            this.dgvSvaZaposlenja.SelectionChanged += new System.EventHandler(this.DgvSvaZaposlenja_SelectionChanged);
+            // 
+            // procenatAngazovanjaDataGridViewTextBoxColumn1
+            // 
+            this.procenatAngazovanjaDataGridViewTextBoxColumn1.DataPropertyName = "ProcenatAngazovanja";
+            this.procenatAngazovanjaDataGridViewTextBoxColumn1.HeaderText = "Procenat";
+            this.procenatAngazovanjaDataGridViewTextBoxColumn1.Name = "procenatAngazovanjaDataGridViewTextBoxColumn1";
+            // 
+            // datumOdDataGridViewTextBoxColumn
+            // 
+            this.datumOdDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.datumOdDataGridViewTextBoxColumn.DataPropertyName = "DatumOd";
+            this.datumOdDataGridViewTextBoxColumn.HeaderText = "Zaposlen Od";
+            this.datumOdDataGridViewTextBoxColumn.Name = "datumOdDataGridViewTextBoxColumn";
+            this.datumOdDataGridViewTextBoxColumn.Width = 118;
+            // 
+            // datumDoDataGridViewTextBoxColumn
+            // 
+            this.datumDoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.datumDoDataGridViewTextBoxColumn.DataPropertyName = "DatumDo";
+            this.datumDoDataGridViewTextBoxColumn.HeaderText = "Zaposlen Do";
+            this.datumDoDataGridViewTextBoxColumn.Name = "datumDoDataGridViewTextBoxColumn";
+            this.datumDoDataGridViewTextBoxColumn.Width = 118;
+            // 
+            // stazDataGridViewTextBoxColumn
+            // 
+            this.stazDataGridViewTextBoxColumn.DataPropertyName = "Staz";
+            this.stazDataGridViewTextBoxColumn.HeaderText = "Staz";
+            this.stazDataGridViewTextBoxColumn.Name = "stazDataGridViewTextBoxColumn";
+            // 
+            // idTipaPoslodavcaDataGridViewTextBoxColumn
+            // 
+            this.idTipaPoslodavcaDataGridViewTextBoxColumn.DataPropertyName = "IdTipaPoslodavca";
+            this.idTipaPoslodavcaDataGridViewTextBoxColumn.DataSource = this.bsTipoviPoslodavaca;
+            this.idTipaPoslodavcaDataGridViewTextBoxColumn.DisplayMember = "NazivTipaPosl";
+            this.idTipaPoslodavcaDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.idTipaPoslodavcaDataGridViewTextBoxColumn.HeaderText = "Tip Poslodavca";
+            this.idTipaPoslodavcaDataGridViewTextBoxColumn.Name = "idTipaPoslodavcaDataGridViewTextBoxColumn";
+            this.idTipaPoslodavcaDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.idTipaPoslodavcaDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.idTipaPoslodavcaDataGridViewTextBoxColumn.ValueMember = "IdTipaPosl";
+            this.idTipaPoslodavcaDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // bsTipoviPoslodavaca
+            // 
+            this.bsTipoviPoslodavaca.DataMember = "TipoviPoslodavaca";
+            this.bsTipoviPoslodavaca.DataSource = this.ds;
+            // 
+            // nazivPoslodavcaDataGridViewTextBoxColumn
+            // 
+            this.nazivPoslodavcaDataGridViewTextBoxColumn.DataPropertyName = "NazivPoslodavca";
+            this.nazivPoslodavcaDataGridViewTextBoxColumn.HeaderText = "Naziv Poslodavca";
+            this.nazivPoslodavcaDataGridViewTextBoxColumn.Name = "nazivPoslodavcaDataGridViewTextBoxColumn";
+            this.nazivPoslodavcaDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // dgvcZaposSvaNapomene
+            // 
+            this.dgvcZaposSvaNapomene.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvcZaposSvaNapomene.DataPropertyName = "Napomene";
+            this.dgvcZaposSvaNapomene.HeaderText = "Napomene";
+            this.dgvcZaposSvaNapomene.Name = "dgvcZaposSvaNapomene";
+            // 
+            // lblZaposSvaBrojRedova
+            // 
+            this.lblZaposSvaBrojRedova.AutoSize = true;
+            this.lblZaposSvaBrojRedova.Location = new System.Drawing.Point(3, 5);
+            this.lblZaposSvaBrojRedova.Name = "lblZaposSvaBrojRedova";
+            this.lblZaposSvaBrojRedova.Size = new System.Drawing.Size(59, 18);
+            this.lblZaposSvaBrojRedova.TabIndex = 7;
+            this.lblZaposSvaBrojRedova.Text = "Redova";
+            // 
+            // bsSvaZaposlenja
+            // 
+            this.bsSvaZaposlenja.DataMember = "SumZaposlenja";
+            this.bsSvaZaposlenja.DataSource = this.ds;
+            this.bsSvaZaposlenja.Sort = "DatumOd DESC, DatumDo DESC, ProcenatAngazovanja";
+            // 
+            // pnlZaposSvaTop
+            // 
+            this.pnlZaposSvaTop.Controls.Add(this.lblUkupanStaz);
+            this.pnlZaposSvaTop.Controls.Add(this.lblZaposSvaBrojRedova);
+            this.pnlZaposSvaTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlZaposSvaTop.Location = new System.Drawing.Point(3, 3);
+            this.pnlZaposSvaTop.Name = "pnlZaposSvaTop";
+            this.pnlZaposSvaTop.Size = new System.Drawing.Size(1135, 30);
+            this.pnlZaposSvaTop.TabIndex = 0;
+            // 
+            // lblUkupanStaz
+            // 
+            this.lblUkupanStaz.AutoSize = true;
+            this.lblUkupanStaz.Location = new System.Drawing.Point(239, 5);
+            this.lblUkupanStaz.Name = "lblUkupanStaz";
+            this.lblUkupanStaz.Size = new System.Drawing.Size(93, 18);
+            this.lblUkupanStaz.TabIndex = 8;
+            this.lblUkupanStaz.Text = "Ukupan Staž";
             // 
             // tcBottom
             // 
@@ -489,18 +682,18 @@
             this.dgvObracunZarada.AllowUserToAddRows = false;
             this.dgvObracunZarada.AllowUserToDeleteRows = false;
             this.dgvObracunZarada.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvObracunZarada.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvObracunZarada.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvObracunZarada.AutoGenerateColumns = false;
             this.dgvObracunZarada.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvObracunZarada.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvObracunZarada.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvObracunZarada.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvObracunZarada.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.brojUgovoraDataGridViewTextBoxColumn,
@@ -664,10 +857,10 @@
             this.tpAngazovanja.BackColor = System.Drawing.SystemColors.Control;
             this.tpAngazovanja.Controls.Add(this.dgvAngazovanja);
             this.tpAngazovanja.Controls.Add(this.pnlBottomLeftAng);
-            this.tpAngazovanja.Location = new System.Drawing.Point(4, 27);
+            this.tpAngazovanja.Location = new System.Drawing.Point(4, 22);
             this.tpAngazovanja.Name = "tpAngazovanja";
             this.tpAngazovanja.Padding = new System.Windows.Forms.Padding(3);
-            this.tpAngazovanja.Size = new System.Drawing.Size(1141, 293);
+            this.tpAngazovanja.Size = new System.Drawing.Size(1141, 298);
             this.tpAngazovanja.TabIndex = 1;
             this.tpAngazovanja.Text = "Angažovanja";
             // 
@@ -676,18 +869,18 @@
             this.dgvAngazovanja.AllowUserToAddRows = false;
             this.dgvAngazovanja.AllowUserToDeleteRows = false;
             this.dgvAngazovanja.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvAngazovanja.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvAngazovanja.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvAngazovanja.AutoGenerateColumns = false;
             this.dgvAngazovanja.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvAngazovanja.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAngazovanja.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvAngazovanja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAngazovanja.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.skolskaGodinaDataGridViewTextBoxColumn,
@@ -704,7 +897,7 @@
             this.dgvAngazovanja.Name = "dgvAngazovanja";
             this.dgvAngazovanja.ReadOnly = true;
             this.dgvAngazovanja.RowHeadersWidth = 30;
-            this.dgvAngazovanja.Size = new System.Drawing.Size(989, 287);
+            this.dgvAngazovanja.Size = new System.Drawing.Size(989, 292);
             this.dgvAngazovanja.StandardSort = null;
             this.dgvAngazovanja.TabIndex = 0;
             // 
@@ -764,7 +957,7 @@
             this.pnlBottomLeftAng.Name = "pnlBottomLeftAng";
             this.pnlBottomLeftAng.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
             this.pnlBottomLeftAng.RightWingWidth = 6;
-            this.pnlBottomLeftAng.Size = new System.Drawing.Size(146, 287);
+            this.pnlBottomLeftAng.Size = new System.Drawing.Size(146, 292);
             this.pnlBottomLeftAng.TabIndex = 1;
             // 
             // tpResenja
@@ -783,18 +976,18 @@
             // 
             this.dgvResenja.AllowUserToAddRows = false;
             this.dgvResenja.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvResenja.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvResenja.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
             this.dgvResenja.AutoGenerateColumns = false;
             this.dgvResenja.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvResenja.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvResenja.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvResenja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvResenja.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.brojResenjaDataGridViewTextBoxColumn,
@@ -858,8 +1051,8 @@
             // 
             this.dgvcResDokument.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.dgvcResDokument.DataPropertyName = "Dokument";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.dgvcResDokument.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.dgvcResDokument.DefaultCellStyle = dataGridViewCellStyle13;
             this.dgvcResDokument.HeaderText = "Dokument";
             this.dgvcResDokument.Name = "dgvcResDokument";
             this.dgvcResDokument.ReadOnly = true;
@@ -907,7 +1100,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1295, 569);
+            this.ClientSize = new System.Drawing.Size(1295, 652);
             this.Controls.Add(this.scMain);
             this.Controls.Add(this.pnlLeft);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
@@ -923,12 +1116,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.ds)).EndInit();
             this.pnlZaposleniTop.ResumeLayout(false);
             this.pnlZaposleniTop.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvZaposlenjaSve)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvZaposlenjaSvSava)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsZaposlenja)).EndInit();
             this.scMain.Panel1.ResumeLayout(false);
             this.scMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.scMain)).EndInit();
             this.scMain.ResumeLayout(false);
+            this.tcZaposlenja.ResumeLayout(false);
+            this.tpZaposSvetiSava.ResumeLayout(false);
+            this.tpZaposSva.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSvaZaposlenja)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTipoviPoslodavaca)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsSvaZaposlenja)).EndInit();
+            this.pnlZaposSvaTop.ResumeLayout(false);
+            this.pnlZaposSvaTop.PerformLayout();
             this.tcBottom.ResumeLayout(false);
             this.tpObracunZarada.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvObracunZarada)).EndInit();
@@ -955,7 +1156,7 @@
         private System.Windows.Forms.Panel pnlZaposleniTop;
         private System.Windows.Forms.CheckBox chkAktivno;
         private System.Windows.Forms.Label lblBrojRedovaZaposlenja;
-        private Controls.UcDGV dgvZaposlenjaSve;
+        private Controls.UcDGV dgvZaposlenjaSvSava;
         private System.Windows.Forms.BindingSource bsZaposlenja;
         private Data.Ds ds;
         private System.Windows.Forms.SplitContainer scMain;
@@ -1017,5 +1218,21 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcZapZamenjeni;
         private System.Windows.Forms.DataGridViewButtonColumn dgvcZapDokument;
         private System.Windows.Forms.CheckBox chkBezTehnGresaka;
+        private System.Windows.Forms.TabControl tcZaposlenja;
+        private System.Windows.Forms.TabPage tpZaposSvetiSava;
+        private System.Windows.Forms.TabPage tpZaposSva;
+        private System.Windows.Forms.Panel pnlZaposSvaTop;
+        private System.Windows.Forms.Label lblZaposSvaBrojRedova;
+        private Controls.UcDGV dgvSvaZaposlenja;
+        private System.Windows.Forms.BindingSource bsSvaZaposlenja;
+        private System.Windows.Forms.BindingSource bsTipoviPoslodavaca;
+        private System.Windows.Forms.DataGridViewTextBoxColumn procenatAngazovanjaDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn datumOdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn datumDoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stazDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn idTipaPoslodavcaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nazivPoslodavcaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcZaposSvaNapomene;
+        private System.Windows.Forms.Label lblUkupanStaz;
     }
 }

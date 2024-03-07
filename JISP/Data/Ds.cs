@@ -8,8 +8,82 @@ namespace JISP.Data
 {
     partial class Ds
     {
-        partial class ObrazovanjaDataTable
+        partial class SumZaposlenjaDataTable
         {
+            /// <summary>Sumiranje/grupisanje zaposlenja u ŠOSO Sv. Sava</summary>
+            public void SumZaposlenjaUSkoli(ZaposleniRow zap)
+            {
+                // uklanjanje prethodno izračunatih sum-zaposlenja u ŠOSO Sv. Sava
+                var ds = this.DataSet as Ds;
+                var sumNja = this.Where(it => it.IdZaposlenog == zap.IdZaposlenog
+                    && it.IdTipaPoslodavca == TipoviPoslodavacaDataTable.SvetiSava.IdTipaPosl).ToList();
+                foreach (var it in sumNja)
+                    ds.SumZaposlenja.RemoveSumZaposlenjaRow(it);
+
+                foreach (var nje in zap.GetZaposlenjaRows())
+                {
+                    var sz = NewSumZaposlenjaRow();
+                    sz.ZaposleniRow = zap;
+                    sz.ProcenatAngazovanja = nje.ProcenatRadnogVremena;
+                    sz.DatumOd = nje.DatumZaposlenOd;
+                    if (nje.IsDatumZaposlenDoNull())
+                        sz.DatumDo = new DateTime(2023, 12, 31);
+                    else
+                        sz.DatumDo = nje.DatumZaposlenDo;
+                    try
+                    {
+                        sz.Staz = Staz.Razlika(sz.DatumOd, sz.DatumDo).ToString();
+                    }
+                    catch (Exception ex)
+                    {
+                        sz.Staz = "/";
+                        sz.Napomene = ex.Message;
+                    }
+                    //B sz.Staz = Staz.RazlikaToString(Datum.IzDateTime(sz.DatumOd), Datum.IzDateTime(sz.DatumDo));
+                    sz.TipoviPoslodavacaRow = TipoviPoslodavacaDataTable.SvetiSava;
+                    AddSumZaposlenjaRow(sz);
+                }
+            }
+
+            /// <summary>Uklanjanje prethodno izračunatih sum-zaposlenja u ŠOSO Sv. Sava.</summary>
+            public void ObrisiZaSosoSvetiSava()
+            {
+                var c = this.Where(it => it.IdTipaPoslodavca == TipoviPoslodavacaDataTable.SvetiSava.IdTipaPosl)
+                    .ToList();
+                foreach (var it in c)
+                    (DataSet as Ds).SumZaposlenja.RemoveSumZaposlenjaRow(it);
+            }
+        }
+
+        partial class TipoviPoslodavacaDataTable
+        {
+            /// <summary>Naša škola.</summary>
+            public readonly static string TipSosoSvetiSava = "ŠOSO Sveti Sava";
+            /// <summary>Sve škole osim ŠOSO Sveti Sava.</summary>
+            public readonly static string TipObrazovanje = "Obrazovanje";
+            /// <summary>Svi poslodavci van obrazovnog sistema.</summary>
+            public readonly static string TipVanObrazovanja = "Van obrazovanja";
+
+            /// <summary>Naša škola.</summary>
+            public static TipoviPoslodavacaRow SvetiSava;
+            /// <summary>Sve škole osim ŠOSO Sveti Sava.</summary>
+            public static TipoviPoslodavacaRow Obrazovanje;
+            /// <summary>Svi poslodavci van obrazovnog sistema.</summary>
+            public static TipoviPoslodavacaRow VanObrazovanja;
+
+            /// <summary>Unos svih neophodnih tipova poslodavaca za zaposlene.</summary>
+            public void DataInit()
+            {
+                if (Count == 0)
+                {
+                    AddTipoviPoslodavacaRow(TipSosoSvetiSava);
+                    AddTipoviPoslodavacaRow(TipObrazovanje);
+                    AddTipoviPoslodavacaRow(TipVanObrazovanja);
+                }
+                SvetiSava = this.FirstOrDefault(it => it.NazivTipaPosl == TipSosoSvetiSava);
+                Obrazovanje = this.FirstOrDefault(it => it.NazivTipaPosl == TipObrazovanje);
+                VanObrazovanja = this.FirstOrDefault(it => it.NazivTipaPosl == TipVanObrazovanja);
+            }
         }
 
         partial class ObracunZaradaRow
