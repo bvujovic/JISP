@@ -49,7 +49,8 @@ namespace JISP.Forms
                 dgvSvaZaposlenja.StandardSort = bsSvaZaposlenja.Sort;
                 dgvSvaZaposlenja.LoadSettings();
                 bsSvaZaposlenja.Filter = $"IdZaposlenog = {zaposleni.IdZaposlenog}";
-                AppData.Ds.SumZaposlenja.SumZaposlenjaUSkoli(zap);
+                dtpStazDatumDo.Value = StazDatumDo;
+                dgvSvaZaposlenja.SelectAll();
 
                 dgvAngazovanja.LoadSettings();
 
@@ -117,6 +118,7 @@ namespace JISP.Forms
             btnUcitajObracunZarada.PerformClick();
         }
 
+        private static DateTime StazDatumDo = DateTime.Today;
         private static bool CheckedBezTehnGresaka = true;
         private static bool CheckedCopyOnClick = false;
         private static CheckState? CheckStateAktivno = null;
@@ -126,6 +128,7 @@ namespace JISP.Forms
 
         private void FrmZaposlenja_FormClosed(object sender, FormClosedEventArgs e)
         {
+            StazDatumDo = dtpStazDatumDo.Value;
             CheckedBezTehnGresaka = chkBezTehnGresaka.Checked;
             CheckedCopyOnClick = chkCopyOnClick.Checked;
             CheckStateAktivno = chkAktivno.CheckState;
@@ -246,6 +249,37 @@ namespace JISP.Forms
                 lblUkupanStaz.Text = "Ukupan staž: " + ukStaz;
             }
             catch (Exception ex) { Utils.ShowMbox(ex, "Sva Zaposlenja"); }
+        }
+
+        private void DtpStazDatumDo_ValueChanged(object sender, EventArgs e)
+        {
+            AppData.Ds.SumZaposlenja.SumZaposlenjaUSkoli(zaposleni, dtpStazDatumDo.Value);
+            dgvSvaZaposlenja.SelectAll();
+        }
+
+        private void BtnNovoEkstZaposlenje_Click(object sender, EventArgs e)
+        {
+            var frm = new FrmNovoEksternoZaposlenje();
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    var z = AppData.Ds.SumZaposlenja.NewSumZaposlenjaRow();
+                    z.ZaposleniRow = zaposleni;
+                    z.ProcenatAngazovanja = frm.Procenat;
+                    z.DatumOd = frm.DatumOd;
+                    z.DatumDo = frm.DatumDo;
+                    z.Staz = frm.Staz;
+                    z.IdTipaPoslodavca = frm.IdTipaPoslodavca;
+                    if (!string.IsNullOrEmpty(frm.NazivPoslodavca))
+                        z.NazivPoslodavca = frm.NazivPoslodavca;
+                    if (!string.IsNullOrEmpty(frm.Napomene))
+                        z.Napomene = frm.Napomene;
+                    AppData.Ds.SumZaposlenja.AddSumZaposlenjaRow(z);
+                    dgvSvaZaposlenja.SelectAll();
+                }
+                catch (Exception ex) { Utils.ShowMbox(ex, frm.Text); }
+            }
         }
     }
 }

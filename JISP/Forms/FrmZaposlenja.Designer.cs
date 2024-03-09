@@ -85,6 +85,9 @@
             this.lblZaposSvaBrojRedova = new System.Windows.Forms.Label();
             this.bsSvaZaposlenja = new System.Windows.Forms.BindingSource(this.components);
             this.pnlZaposSvaTop = new System.Windows.Forms.Panel();
+            this.btnNovoEkstZaposlenje = new JISP.Controls.UcButton();
+            this.dtpStazDatumDo = new System.Windows.Forms.DateTimePicker();
+            this.lblStazDatumDo = new System.Windows.Forms.Label();
             this.lblUkupanStaz = new System.Windows.Forms.Label();
             this.tcBottom = new System.Windows.Forms.TabControl();
             this.tpObracunZarada = new System.Windows.Forms.TabPage();
@@ -512,17 +515,16 @@
             this.tpZaposSva.BackColor = System.Drawing.SystemColors.Control;
             this.tpZaposSva.Controls.Add(this.dgvSvaZaposlenja);
             this.tpZaposSva.Controls.Add(this.pnlZaposSvaTop);
-            this.tpZaposSva.Location = new System.Drawing.Point(4, 27);
+            this.tpZaposSva.Location = new System.Drawing.Point(4, 22);
             this.tpZaposSva.Name = "tpZaposSva";
             this.tpZaposSva.Padding = new System.Windows.Forms.Padding(3);
-            this.tpZaposSva.Size = new System.Drawing.Size(1141, 293);
+            this.tpZaposSva.Size = new System.Drawing.Size(1141, 298);
             this.tpZaposSva.TabIndex = 1;
             this.tpZaposSva.Text = "Sva Zaposlenja";
             // 
             // dgvSvaZaposlenja
             // 
             this.dgvSvaZaposlenja.AllowUserToAddRows = false;
-            this.dgvSvaZaposlenja.AllowUserToDeleteRows = false;
             this.dgvSvaZaposlenja.AllowUserToOrderColumns = true;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
             this.dgvSvaZaposlenja.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
@@ -554,7 +556,7 @@
             this.dgvSvaZaposlenja.Name = "dgvSvaZaposlenja";
             this.dgvSvaZaposlenja.RowHeadersWidth = 30;
             this.dgvSvaZaposlenja.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSvaZaposlenja.Size = new System.Drawing.Size(1135, 257);
+            this.dgvSvaZaposlenja.Size = new System.Drawing.Size(1135, 262);
             this.dgvSvaZaposlenja.StandardSort = null;
             this.dgvSvaZaposlenja.TabIndex = 1;
             this.dgvSvaZaposlenja.SelectionChanged += new System.EventHandler(this.DgvSvaZaposlenja_SelectionChanged);
@@ -584,7 +586,7 @@
             // stazDataGridViewTextBoxColumn
             // 
             this.stazDataGridViewTextBoxColumn.DataPropertyName = "Staz";
-            this.stazDataGridViewTextBoxColumn.HeaderText = "Staz";
+            this.stazDataGridViewTextBoxColumn.HeaderText = "Staž";
             this.stazDataGridViewTextBoxColumn.Name = "stazDataGridViewTextBoxColumn";
             // 
             // idTipaPoslodavcaDataGridViewTextBoxColumn
@@ -636,6 +638,9 @@
             // 
             // pnlZaposSvaTop
             // 
+            this.pnlZaposSvaTop.Controls.Add(this.btnNovoEkstZaposlenje);
+            this.pnlZaposSvaTop.Controls.Add(this.dtpStazDatumDo);
+            this.pnlZaposSvaTop.Controls.Add(this.lblStazDatumDo);
             this.pnlZaposSvaTop.Controls.Add(this.lblUkupanStaz);
             this.pnlZaposSvaTop.Controls.Add(this.lblZaposSvaBrojRedova);
             this.pnlZaposSvaTop.Dock = System.Windows.Forms.DockStyle.Top;
@@ -644,14 +649,44 @@
             this.pnlZaposSvaTop.Size = new System.Drawing.Size(1135, 30);
             this.pnlZaposSvaTop.TabIndex = 0;
             // 
+            // btnNovoEkstZaposlenje
+            // 
+            this.btnNovoEkstZaposlenje.Location = new System.Drawing.Point(796, 2);
+            this.btnNovoEkstZaposlenje.Name = "btnNovoEkstZaposlenje";
+            this.btnNovoEkstZaposlenje.Size = new System.Drawing.Size(163, 26);
+            this.btnNovoEkstZaposlenje.TabIndex = 11;
+            this.btnNovoEkstZaposlenje.Text = "Novo ekst. zaposlenje";
+            this.btnNovoEkstZaposlenje.ToolTipText = "Novo Eksterno Zaposlenje";
+            this.btnNovoEkstZaposlenje.UseVisualStyleBackColor = true;
+            this.btnNovoEkstZaposlenje.Click += new System.EventHandler(this.BtnNovoEkstZaposlenje_Click);
+            // 
+            // dtpStazDatumDo
+            // 
+            this.dtpStazDatumDo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpStazDatumDo.Location = new System.Drawing.Point(624, 3);
+            this.dtpStazDatumDo.Name = "dtpStazDatumDo";
+            this.dtpStazDatumDo.Size = new System.Drawing.Size(122, 24);
+            this.dtpStazDatumDo.TabIndex = 10;
+            this.dtpStazDatumDo.Value = new System.DateTime(2023, 12, 31, 0, 0, 0, 0);
+            this.dtpStazDatumDo.ValueChanged += new System.EventHandler(this.DtpStazDatumDo_ValueChanged);
+            // 
+            // lblStazDatumDo
+            // 
+            this.lblStazDatumDo.AutoSize = true;
+            this.lblStazDatumDo.Location = new System.Drawing.Point(521, 6);
+            this.lblStazDatumDo.Name = "lblStazDatumDo";
+            this.lblStazDatumDo.Size = new System.Drawing.Size(99, 18);
+            this.lblStazDatumDo.TabIndex = 9;
+            this.lblStazDatumDo.Text = "Presek staža:";
+            // 
             // lblUkupanStaz
             // 
             this.lblUkupanStaz.AutoSize = true;
             this.lblUkupanStaz.Location = new System.Drawing.Point(239, 5);
             this.lblUkupanStaz.Name = "lblUkupanStaz";
-            this.lblUkupanStaz.Size = new System.Drawing.Size(93, 18);
+            this.lblUkupanStaz.Size = new System.Drawing.Size(91, 18);
             this.lblUkupanStaz.TabIndex = 8;
-            this.lblUkupanStaz.Text = "Ukupan Staž";
+            this.lblUkupanStaz.Text = "Ukupan staž";
             // 
             // tcBottom
             // 
@@ -1107,6 +1142,7 @@
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmZaposlenja";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Zaposlenja";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmZaposlenja_FormClosed);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmZaposlenja_KeyDown);
@@ -1226,6 +1262,9 @@
         private Controls.UcDGV dgvSvaZaposlenja;
         private System.Windows.Forms.BindingSource bsSvaZaposlenja;
         private System.Windows.Forms.BindingSource bsTipoviPoslodavaca;
+        private System.Windows.Forms.Label lblUkupanStaz;
+        private System.Windows.Forms.Label lblStazDatumDo;
+        private System.Windows.Forms.DateTimePicker dtpStazDatumDo;
         private System.Windows.Forms.DataGridViewTextBoxColumn procenatAngazovanjaDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn datumOdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn datumDoDataGridViewTextBoxColumn;
@@ -1233,6 +1272,6 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn idTipaPoslodavcaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nazivPoslodavcaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcZaposSvaNapomene;
-        private System.Windows.Forms.Label lblUkupanStaz;
+        private Controls.UcButton btnNovoEkstZaposlenje;
     }
 }

@@ -1,4 +1,5 @@
-﻿using JISP.Classes;
+﻿
+using JISP.Classes;
 using System;
 using Xunit;
 
@@ -94,8 +95,9 @@ namespace xUnitTests.Classes
         }
 
         [Theory]
-        [InlineData("0-2-26", "0-1-0", "0-3-26")]
-        [InlineData("0-2-26", "0-0-5", "0-3-1")]
+        [InlineData("0-02-26", "0-01-0", "0-03-26")]
+        [InlineData("0-02-26", "0-00-5", "0-03-01")]
+        [InlineData("0-06-01", "0-06-0", "1-00-01")]
         public void Staz_Zbir(string poc, string kraj, string zbir)
         {
             var datum = Staz.Zbir(Datum.IzStringa(poc), Datum.IzStringa(kraj));

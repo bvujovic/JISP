@@ -214,12 +214,12 @@ namespace JISP.Classes
             var god = d1.God + d2.God;
             var mes = d1.Mes + d2.Mes;
             var dan = d1.Dan + d2.Dan;
-            if (dan > 30)
+            if (dan >= 30)
             {
                 dan -= 30;
                 mes++;
             }
-            if (mes > 12)
+            if (mes >= 12)
             {
                 mes -= 12;
                 god++;

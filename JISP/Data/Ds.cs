@@ -11,7 +11,7 @@ namespace JISP.Data
         partial class SumZaposlenjaDataTable
         {
             /// <summary>Sumiranje/grupisanje zaposlenja u ŠOSO Sv. Sava</summary>
-            public void SumZaposlenjaUSkoli(ZaposleniRow zap)
+            public void SumZaposlenjaUSkoli(ZaposleniRow zap, DateTime datumDo)
             {
                 // uklanjanje prethodno izračunatih sum-zaposlenja u ŠOSO Sv. Sava
                 var ds = this.DataSet as Ds;
@@ -20,14 +20,15 @@ namespace JISP.Data
                 foreach (var it in sumNja)
                     ds.SumZaposlenja.RemoveSumZaposlenjaRow(it);
 
-                foreach (var nje in zap.GetZaposlenjaRows())
+                foreach (var nje in zap.GetZaposlenjaRows().Where(it => it.DatumZaposlenOd < datumDo &&
+                    (it.IsRazlogPrestankaZaposlenjaNull() || !it.RazlogPrestankaZaposlenja.Contains("Техничка грешка"))))
                 {
                     var sz = NewSumZaposlenjaRow();
                     sz.ZaposleniRow = zap;
                     sz.ProcenatAngazovanja = nje.ProcenatRadnogVremena;
                     sz.DatumOd = nje.DatumZaposlenOd;
                     if (nje.IsDatumZaposlenDoNull())
-                        sz.DatumDo = new DateTime(2023, 12, 31);
+                        sz.DatumDo = datumDo;
                     else
                         sz.DatumDo = nje.DatumZaposlenDo;
                     try
@@ -39,7 +40,6 @@ namespace JISP.Data
                         sz.Staz = "/";
                         sz.Napomene = ex.Message;
                     }
-                    //B sz.Staz = Staz.RazlikaToString(Datum.IzDateTime(sz.DatumOd), Datum.IzDateTime(sz.DatumDo));
                     sz.TipoviPoslodavacaRow = TipoviPoslodavacaDataTable.SvetiSava;
                     AddSumZaposlenjaRow(sz);
                 }
@@ -58,11 +58,11 @@ namespace JISP.Data
         partial class TipoviPoslodavacaDataTable
         {
             /// <summary>Naša škola.</summary>
-            public readonly static string TipSosoSvetiSava = "ŠOSO Sveti Sava";
+            private readonly static string TipSosoSvetiSava = "ŠOSO Sveti Sava";
             /// <summary>Sve škole osim ŠOSO Sveti Sava.</summary>
-            public readonly static string TipObrazovanje = "Obrazovanje";
+            private readonly static string TipObrazovanje = "Obrazovanje";
             /// <summary>Svi poslodavci van obrazovnog sistema.</summary>
-            public readonly static string TipVanObrazovanja = "Van obrazovanja";
+            private readonly static string TipVanObrazovanja = "Van obrazovanja";
 
             /// <summary>Naša škola.</summary>
             public static TipoviPoslodavacaRow SvetiSava;
