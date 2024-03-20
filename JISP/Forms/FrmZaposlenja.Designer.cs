@@ -515,10 +515,10 @@
             this.tpZaposSva.BackColor = System.Drawing.SystemColors.Control;
             this.tpZaposSva.Controls.Add(this.dgvSvaZaposlenja);
             this.tpZaposSva.Controls.Add(this.pnlZaposSvaTop);
-            this.tpZaposSva.Location = new System.Drawing.Point(4, 22);
+            this.tpZaposSva.Location = new System.Drawing.Point(4, 27);
             this.tpZaposSva.Name = "tpZaposSva";
             this.tpZaposSva.Padding = new System.Windows.Forms.Padding(3);
-            this.tpZaposSva.Size = new System.Drawing.Size(1141, 298);
+            this.tpZaposSva.Size = new System.Drawing.Size(1141, 293);
             this.tpZaposSva.TabIndex = 1;
             this.tpZaposSva.Text = "Sva Zaposlenja";
             // 
@@ -556,7 +556,7 @@
             this.dgvSvaZaposlenja.Name = "dgvSvaZaposlenja";
             this.dgvSvaZaposlenja.RowHeadersWidth = 30;
             this.dgvSvaZaposlenja.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSvaZaposlenja.Size = new System.Drawing.Size(1135, 262);
+            this.dgvSvaZaposlenja.Size = new System.Drawing.Size(1135, 257);
             this.dgvSvaZaposlenja.StandardSort = null;
             this.dgvSvaZaposlenja.TabIndex = 1;
             this.dgvSvaZaposlenja.SelectionChanged += new System.EventHandler(this.DgvSvaZaposlenja_SelectionChanged);

@@ -413,7 +413,7 @@ namespace JISP.Forms
                         {
                             var ucSkGod = AppData.Ds.UcenikSkGod.FirstOrDefault
                                 (it => it._JOB == (string)obj.job && it.SkGod == AppData.SkolskaGodina.Naziv);
-                            if (ucSkGod != null)
+                            if (ucSkGod != null && obj.datumNapustanjaUstanove == null)
                             {
                                 ucSkGod.DomGrupa = obj.vaspitnaGrupaNaziv;
                                 jobs.Remove(ucSkGod._JOB);
