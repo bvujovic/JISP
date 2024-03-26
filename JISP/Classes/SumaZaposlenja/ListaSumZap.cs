@@ -21,7 +21,7 @@ namespace JISP.Classes.SumaZaposlenja
             {
                 foreach (var sz in sumZaps)
                 {
-                    var res = sz.Presek(novo);
+                    var res = sz.Dodaj(novo);
                     foreach (var r in res.Where(it => !sumZaps.Contains(it)))
                         sumZaps.Add(r); // KOLEKCIJA SE NE MOZE MENJATI U FOREACH
                 }

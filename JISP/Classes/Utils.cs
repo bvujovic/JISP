@@ -254,9 +254,14 @@ namespace JISP.Classes
             if (obj.zavrsniIspiti != null)
                 foreach (var ispit in obj.zavrsniIspiti)
                 {
-                    string naziv = ispit.testNaziv;
-                    naziv = naziv.Contains("комб") ? "комбиновани" : naziv.Contains("матем") ? "математика" : naziv.Contains("српск") ? "српски" : "";
-                    stavke.Add(naziv + ": " + ispit.brojBodova);
+                    if (ispit.testNaziv != null)
+                    {
+                        string naziv = ispit.testNaziv;
+                        naziv = naziv.Contains("комб") ? "комбиновани" : naziv.Contains("матем") ? "математика" : naziv.Contains("српск") ? "српски" : "";
+                        stavke.Add(naziv + ": " + ispit.brojBodova);
+                    }
+                    else if (ispit.predmetRadNaziv != null && ispit.ocenaNaziv != null)
+                        stavke.Add((string)ispit.predmetRadNaziv + ": " + ispit.ocenaNaziv);
                 }
             if (obj.prosecnaOcenaSrednjegObrazovanja != null)
                 stavke.Add("просек: " + obj.prosecnaOcenaSrednjegObrazovanja);
@@ -283,7 +288,7 @@ namespace JISP.Classes
             if (parts.Length > 2)
                 throw new Exception("Dozvoljen je samo jedan & ili | operator.");
             char ch = s[parts[0].Length];
-            return $"({filterMethod(parts[0].Trim())}) {(ch=='&' ? "AND" : "OR")} ({filterMethod(parts[1].Trim())})";
+            return $"({filterMethod(parts[0].Trim())}) {(ch == '&' ? "AND" : "OR")} ({filterMethod(parts[1].Trim())})";
         }
     }
 }

@@ -21,13 +21,15 @@ namespace JISP.Classes.SumaZaposlenja
 
         public SumZap(int idZaposlenja, DateTime datumOd, DateTime datumDo, double procenatAng)
         {
+            if (DatumOd > datumDo)
+                throw new Exception("SumZap: početni datum zaposlenja dolazi posle krajnjeg.");
             IDs.Add(idZaposlenja);
             DatumOd = datumOd;
             DatumDo = datumDo;
             ProcenatAng = procenatAng;
         }
 
-        public List<SumZap> Presek(SumZap that)
+        public List<SumZap> Dodaj(SumZap that)
         {
             var tackePreseka = new List<DateTime>();
             if (this.DatumOd < that.DatumOd && that.DatumOd < this.DatumDo)

@@ -52,6 +52,7 @@
             this.btnSaveData = new JISP.Controls.UcButton();
             this.txtFilter = new JISP.Controls.UcFilterTextBox();
             this.dgvUcenikSkGod = new JISP.Controls.UcDGV();
+            this.bsUcenikSkGod = new System.Windows.Forms.BindingSource(this.components);
             this.ImePrezimeDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.imeDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrezimeDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,7 +77,6 @@
             this.dgvcIspisan = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ZavrsObrazovanjaRezimeDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.napomeneDgvc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bsUcenikSkGod = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bsUcenici)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
             this.statusStrip.SuspendLayout();
@@ -347,6 +347,12 @@
             this.dgvUcenikSkGod.TabIndex = 2;
             this.dgvUcenikSkGod.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvUcenikSkGod_CellDoubleClick);
             // 
+            // bsUcenikSkGod
+            // 
+            this.bsUcenikSkGod.DataMember = "UcenikSkGod";
+            this.bsUcenikSkGod.DataSource = this.ds;
+            this.bsUcenikSkGod.Sort = "Skola, Razred, Odeljenje";
+            // 
             // ImePrezimeDgvc
             // 
             this.ImePrezimeDgvc.DataPropertyName = "_UcenikString";
@@ -534,12 +540,11 @@
             // 
             // ZavrsObrazovanjaRezimeDgvc
             // 
-            this.ZavrsObrazovanjaRezimeDgvc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.ZavrsObrazovanjaRezimeDgvc.DataPropertyName = "ZavrsObrazovanjaRezime";
             this.ZavrsObrazovanjaRezimeDgvc.HeaderText = "Zavrsetak Obraz.";
             this.ZavrsObrazovanjaRezimeDgvc.Name = "ZavrsObrazovanjaRezimeDgvc";
             this.ZavrsObrazovanjaRezimeDgvc.ReadOnly = true;
-            this.ZavrsObrazovanjaRezimeDgvc.Width = 134;
+            this.ZavrsObrazovanjaRezimeDgvc.Width = 135;
             // 
             // napomeneDgvc
             // 
@@ -548,12 +553,6 @@
             this.napomeneDgvc.HeaderText = "Napomene";
             this.napomeneDgvc.MinimumWidth = 100;
             this.napomeneDgvc.Name = "napomeneDgvc";
-            // 
-            // bsUcenikSkGod
-            // 
-            this.bsUcenikSkGod.DataMember = "UcenikSkGod";
-            this.bsUcenikSkGod.DataSource = this.ds;
-            this.bsUcenikSkGod.Sort = "Skola, Razred, Odeljenje";
             // 
             // FrmUcenici
             // 
@@ -608,6 +607,7 @@
         private Controls.UcDGV dgvUcenikSkGod;
         private System.Windows.Forms.BindingSource bsUcenikSkGod;
         private System.Windows.Forms.CheckBox chkCopyOnClick;
+        private System.Windows.Forms.CheckBox chkAktivni;
         private System.Windows.Forms.DataGridViewTextBoxColumn ImePrezimeDgvc;
         private System.Windows.Forms.DataGridViewTextBoxColumn imeDgvc;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrezimeDgvc;
@@ -632,6 +632,5 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgvcIspisan;
         private System.Windows.Forms.DataGridViewTextBoxColumn ZavrsObrazovanjaRezimeDgvc;
         private System.Windows.Forms.DataGridViewTextBoxColumn napomeneDgvc;
-        private System.Windows.Forms.CheckBox chkAktivni;
     }
 }
