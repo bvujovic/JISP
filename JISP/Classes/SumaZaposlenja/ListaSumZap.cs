@@ -9,9 +9,9 @@ namespace JISP.Classes.SumaZaposlenja
     /// </summary>
     public class ListaSumZap
     {
-        private readonly List<SumZap> sumZaps = new List<SumZap>();
+        private List<SumZap> sumZaps = new List<SumZap>();
 
-        public List<SumZap> SumZaps { get {  return sumZaps; } }
+        public List<SumZap> SumZaps { get { return sumZaps; } }
 
         public void Dodaj(SumZap novo)
         {
@@ -19,12 +19,14 @@ namespace JISP.Classes.SumaZaposlenja
                 sumZaps.Add(novo);
             else
             {
+                var novi = new List<SumZap>();
                 foreach (var sz in sumZaps)
                 {
                     var res = sz.Dodaj(novo);
-                    foreach (var r in res.Where(it => !sumZaps.Contains(it)))
-                        sumZaps.Add(r); // KOLEKCIJA SE NE MOZE MENJATI U FOREACH
+                    foreach (var x in res.Where(it => !novi.Contains(it)))
+                        novi.Add(x);
                 }
+                sumZaps = novi;
             }
         }
     }

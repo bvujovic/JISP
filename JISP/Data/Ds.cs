@@ -1,4 +1,5 @@
 ﻿using JISP.Classes;
+using JISP.Classes.SumaZaposlenja;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -20,17 +21,28 @@ namespace JISP.Data
                 foreach (var it in sumNja)
                     ds.SumZaposlenja.RemoveSumZaposlenjaRow(it);
 
+                var l = new ListaSumZap();
                 foreach (var nje in zap.GetZaposlenjaRows().Where(it => it.DatumZaposlenOd < datumDo &&
                     (it.IsRazlogPrestankaZaposlenjaNull() || !it.RazlogPrestankaZaposlenja.Contains("Техничка грешка"))))
                 {
-                    var sz = NewSumZaposlenjaRow();
-                    sz.ZaposleniRow = zap;
-                    sz.ProcenatAngazovanja = nje.ProcenatRadnogVremena;
+                    var sz = new SumZap();
+                    sz.IDs.Add(nje.IdZaposlenja);
                     sz.DatumOd = nje.DatumZaposlenOd;
                     if (nje.IsDatumZaposlenDoNull())
                         sz.DatumDo = datumDo;
                     else
                         sz.DatumDo = nje.DatumZaposlenDo;
+                    sz.ProcenatAng = nje.ProcenatRadnogVremena;
+                    l.Dodaj(sz);
+                }
+
+                foreach (var x in l.SumZaps)
+                {
+                    var sz = NewSumZaposlenjaRow();
+                    sz.ZaposleniRow = zap;
+                    sz.DatumOd = x.DatumOd;
+                    sz.DatumDo = x.DatumDo;
+                    sz.ProcenatAngazovanja = x.ProcenatAng;
                     try
                     {
                         sz.Staz = Staz.Razlika(sz.DatumOd, sz.DatumDo).ToString();
@@ -41,6 +53,7 @@ namespace JISP.Data
                         sz.Napomene = ex.Message;
                     }
                     sz.TipoviPoslodavacaRow = TipoviPoslodavacaDataTable.SvetiSava;
+                    //TODO dodati redove u SumZapDetalji i prikazati ih u dgvSumZapDetalji
                     AddSumZaposlenjaRow(sz);
                 }
             }
