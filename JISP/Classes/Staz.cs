@@ -46,17 +46,12 @@ namespace JISP.Classes
             return true;
         }
 
+        private static readonly Datum jedanDan = new Datum(0, 0, 1);
+        public static Datum JedanDan => jedanDan;
+
         public int God { get; set; }
         public int Mes { get; set; }
         public int Dan { get; set; }
-
-        //public void Dodaj(Datum d)
-        //{
-        //    var zbir = Staz.Zbir(this, d);
-        //    this.God = zbir.God;
-        //    this.Mes = zbir.Mes;
-        //    this.Dan = zbir.Dan;
-        //}
 
         public override string ToString()
         {

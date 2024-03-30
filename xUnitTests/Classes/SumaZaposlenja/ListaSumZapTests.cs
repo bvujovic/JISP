@@ -13,6 +13,8 @@ namespace xUnitTests.Classes.SumaZaposlenja
         {
             var x = new ListaSumZap();
             x.Dodaj(new SumZap(1, new DateTime(2021, 9, 6), new DateTime(2022, 8, 31), 100));
+            x.Sumiraj();
+
             var sz = Assert.Single(x.SumZaps);
             Assert.Equal(new List<int> { 1 }, sz.IDs);
             Assert.Equal(100, sz.ProcenatAng);
@@ -24,6 +26,8 @@ namespace xUnitTests.Classes.SumaZaposlenja
             var x = new ListaSumZap();
             x.Dodaj(new SumZap(1, new DateTime(2021, 9, 6), new DateTime(2022, 8, 31), 100));
             x.Dodaj(new SumZap(2, new DateTime(2022, 9, 1), new DateTime(2023, 8, 31), 100));
+            x.Sumiraj();
+
             Assert.Equal(2, x.SumZaps.Count);
             Assert.Single(x.SumZaps[0].IDs);
             Assert.Single(x.SumZaps[1].IDs);
@@ -43,6 +47,7 @@ namespace xUnitTests.Classes.SumaZaposlenja
             var x = new ListaSumZap();
             x.Dodaj(new SumZap(1, poc1, kraj1, 100));
             x.Dodaj(new SumZap(2, poc2, kraj2, 100));
+            x.Sumiraj();
 
             Assert.Equal(3, x.SumZaps.Count);
             var rep1 = x.SumZaps.FirstOrDefault(it => it.DatumOd == poc1);
@@ -59,6 +64,48 @@ namespace xUnitTests.Classes.SumaZaposlenja
             Assert.Equivalent(new List<int>() { 2 }, rep2.IDs);
             Assert.Equal(kraj2, rep2.DatumDo);
             Assert.Equal(100, rep2.ProcenatAng);
+        }
+
+        [Fact]
+        public void SumZap_Vaspitaci()
+        {
+            var poc = DateTime.Parse("2018-09-01");
+            var kraj1 = DateTime.Parse("2020-02-27");
+            var kraj2 = DateTime.Parse("2020-07-29");
+            var z0 = new SumZap(0, DateTime.Parse("2017-09-01"), DateTime.Parse("2018-08-31"), 100);
+            var z1 = new SumZap(1, poc, kraj1, 100);
+            var z2 = new SumZap(2, poc, kraj2, 100);
+            var x = new ListaSumZap();
+            x.Dodaj(z0);
+            x.Dodaj(z1);
+            x.Dodaj(z2);
+            x.Sumiraj();
+
+            Assert.Equal(3, x.SumZaps.Count);
+
+            var zaj = x.SumZaps.FirstOrDefault(it => it.DatumOd == poc);
+            Assert.NotNull(zaj);
+            Assert.Equivalent(new List<int> { 1, 2 }, zaj.IDs);
+            Assert.Equal(kraj1, zaj.DatumDo);
+            Assert.Equal(200, zaj.ProcenatAng);
+
+            var rep = x.SumZaps.FirstOrDefault(it => it.DatumDo == kraj2);
+            Assert.NotNull(rep);
+            Assert.Equivalent(new List<int> { 2 }, rep.IDs);
+            Assert.Equal(kraj1.AddDays(1), rep.DatumOd);
+            Assert.Equal(100, rep.ProcenatAng);
+        }
+
+        [Fact]
+        public void SumZap_Piramida()
+        {
+            var x = new ListaSumZap();
+            x.Dodaj(new SumZap(1, DateTime.Parse("2017-01-01"), DateTime.Parse("2022-01-01"), 100));
+            x.Dodaj(new SumZap(2, DateTime.Parse("2018-01-01"), DateTime.Parse("2021-01-01"), 100));
+            x.Dodaj(new SumZap(3, DateTime.Parse("2019-01-01"), DateTime.Parse("2020-01-01"), 100));
+            x.Sumiraj();
+
+            Assert.Equal(5, x.SumZaps.Count);
         }
     }
 }

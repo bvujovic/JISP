@@ -171,5 +171,78 @@ namespace xUnitTests.Classes.SumaZaposlenja
             Assert.Equal(kraj1, rep2.DatumDo);
             Assert.Equal(20, rep2.ProcenatAng);
         }
+
+        [Fact]
+        public void SumZap_PreklapanjeUSrednjojTacki()
+        {
+            var poc = new DateTime(2021, 9, 1);
+            var presek = new DateTime(2022, 1, 1);
+            var kraj = new DateTime(2022, 8, 31);
+            var a = new SumZap(1, poc, presek, 100);
+            var b = new SumZap(2, presek, kraj, 100);
+            var res = a.Dodaj(b);
+
+            Assert.Equal(3, res.Count);
+
+            var zaj = res.FirstOrDefault(it => it.DatumOd == presek);
+            Assert.NotNull(zaj);
+            Assert.Equivalent(new List<int>() { 1, 2 }, zaj.IDs);
+            Assert.Equal(presek, zaj.DatumDo);
+            Assert.Equal(200, zaj.ProcenatAng);
+
+            var rep2 = res.FirstOrDefault(it => it.DatumDo == kraj);
+            Assert.NotNull(rep2);
+            Assert.Equivalent(new List<int>() { 2 }, rep2.IDs);
+            Assert.Equal(presek.AddDays(1), rep2.DatumOd);
+            Assert.Equal(100, rep2.ProcenatAng);
+        }
+
+        [Fact]
+        public void SumZap_PreklapanjeUPocetnojTacki()
+        {
+            var poc = DateTime.Parse("2020-07-29");
+            var kraj = DateTime.Parse("2021-08-31");
+            var a = new SumZap(1, poc, kraj, 100);
+            var b = new SumZap(2, poc, poc, 100); // zap traje samo jedan dan 2020-07-29
+            var res = a.Dodaj(b);
+            //var res = b.Dodaj(a);
+
+            Assert.Equal(2, res.Count);
+
+            var zaj = res.Single(it => it.ProcenatAng == 200);
+            Assert.Equivalent(new List<int>() { 1, 2 }, zaj.IDs);
+            Assert.Equal(poc, zaj.DatumOd);
+            Assert.Equal(poc, zaj.DatumDo);
+
+            var rep = res.Single(it => it.IDs.Count == 1);
+            Assert.Equivalent(new List<int>() { 1 }, zaj.IDs);
+            Assert.Equal(poc.AddDays(1), rep.DatumOd);
+            Assert.Equal(kraj, rep.DatumDo);
+            Assert.Equal(100, rep.ProcenatAng);
+        }
+
+        [Fact]
+        public void SumZap_PreklapanjeUKrajnjojTacki()
+        {
+            var poc = DateTime.Parse("2020-07-29");
+            var kraj = DateTime.Parse("2021-08-31");
+            var a = new SumZap(1, poc, kraj, 100);
+            var b = new SumZap(2, kraj, kraj, 100); // zap traje samo jedan dan 2021-08-31
+            //var res = a.Dodaj(b);
+            var res = b.Dodaj(a);
+
+            Assert.Equal(2, res.Count);
+
+            var zaj = res.Single(it => it.ProcenatAng == 200);
+            Assert.Equivalent(new List<int>() { 1, 2 }, zaj.IDs);
+            Assert.Equal(kraj, zaj.DatumOd);
+            Assert.Equal(kraj, zaj.DatumDo);
+
+            var rep = res.Single(it => it.IDs.Count == 1);
+            Assert.Equivalent(new List<int>() { 1 }, zaj.IDs);
+            Assert.Equal(poc, rep.DatumOd);
+            Assert.Equal(kraj.AddDays(-1), rep.DatumDo);
+            Assert.Equal(100, rep.ProcenatAng);
+        }
     }
 }

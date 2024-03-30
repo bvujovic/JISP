@@ -46,9 +46,8 @@ namespace JISP.Classes.SumaZaposlenja
         }
 
         public override string ToString()
-        {
-            return $"IDs: {IDs}, {DatumOd} - {DatumDo}, ang: {ProcenatAng}";
-        }
+            //=> $"IDs: [{string.Join(", ", IDs)}], {DatumOd:yyyy-MM-dd} - {DatumDo:yyyy-MM-dd}, ang: {ProcenatAng}";
+            => $"{ProcenatAng:000}%, {DatumOd:yyyy-MM-dd} - {DatumDo:yyyy-MM-dd}, IDs: [{string.Join(", ", IDs)}]";
 
         public override bool Equals(object obj)
         {
@@ -85,6 +84,43 @@ namespace JISP.Classes.SumaZaposlenja
 
             if (tackePreseka.Count == 0) // nema tacaka preseka
             {
+                // intervali imaju zajednicku tacku tj. datum
+                if (this.DatumDo == that.DatumOd || this.DatumOd == that.DatumDo)
+                {
+                    //var prvi = this.DatumOd < that.DatumOd ? this : that;
+                    var prvi = this.DatumOd < that.DatumOd ? this :
+                        (this.DatumDo < that.DatumDo ? this : that);
+                    var drugi = prvi == this ? that : this;
+                    var a = new SumZap()
+                    {
+                        IDs = prvi.IDs,
+                        DatumOd = prvi.DatumOd,
+                        DatumDo = drugi.DatumOd.AddDays(-1),
+                        ProcenatAng = this.ProcenatAng
+                    };
+                    var zaj = new SumZap()
+                    {
+                        DatumOd = prvi.DatumDo,
+                        DatumDo = prvi.DatumDo,
+                        ProcenatAng = prvi.ProcenatAng + drugi.ProcenatAng
+                    };
+                    zaj.AddIDs(prvi.IDs);
+                    zaj.AddIDs(drugi.IDs);
+                    var b = new SumZap()
+                    {
+                        IDs = drugi.IDs,
+                        DatumOd = drugi.DatumOd.AddDays(1),
+                        DatumDo = drugi.DatumDo,
+                        ProcenatAng = drugi.ProcenatAng
+                    };
+                    var res = new List<SumZap> { a, zaj, b };
+                    if (a.DatumOd > a.DatumDo)
+                        res.Remove(a);
+                    if (b.DatumOd > b.DatumDo)
+                        res.Remove(b);
+                    return res;
+                }
+
                 // oba datuma su jednaka
                 if (this.DatumOd == that.DatumOd && this.DatumDo == that.DatumDo)
                 {
@@ -184,6 +220,42 @@ namespace JISP.Classes.SumaZaposlenja
                     return new List<SumZap> { a, b, c };
                 }
             }
+        }
+
+        //public bool ImaPreseka(List<SumZap> sumZaps)
+        //{
+        //    if (sumZaps == null)
+        //        return false;
+        //    foreach (var that in sumZaps)
+        //    {
+        //        if (this.DatumOd <= that.DatumOd && that.DatumOd <= this.DatumDo
+        //            || this.DatumOd <= that.DatumDo && that.DatumDo <= this.DatumDo)
+        //            return true;
+        //    }
+        //    return false;
+        //}
+
+        private bool Pripada(DateTime dt)
+            => DatumOd <= dt && dt <= DatumDo;
+
+        public static bool ImaPreseka(SumZap a, SumZap b)
+        {
+            return a.Pripada(b.DatumOd) || a.Pripada(b.DatumDo)
+                || b.Pripada(a.DatumOd) || b.Pripada(a.DatumDo);
+        }
+
+        public static List<SumZap> IzdvojPreklopljene(List<SumZap> sumZaps)
+        {
+            if (sumZaps == null)
+                return null;
+            // ispitivanje da li ima preseka svakog elementa sa svakim
+            for (int i = 0; i < sumZaps.Count - 1; i++)
+                for (int j = i + 1; j < sumZaps.Count; j++)
+                {
+                    if (ImaPreseka(sumZaps[i], sumZaps[j]))
+                        return new List<SumZap>() { sumZaps[i], sumZaps[j] };
+                }
+            return null;
         }
     }
 }

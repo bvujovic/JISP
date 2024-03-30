@@ -35,6 +35,7 @@ namespace JISP.Data
                     sz.ProcenatAng = nje.ProcenatRadnogVremena;
                     l.Dodaj(sz);
                 }
+                l.Sumiraj();
 
                 foreach (var x in l.SumZaps)
                 {
@@ -45,7 +46,10 @@ namespace JISP.Data
                     sz.ProcenatAngazovanja = x.ProcenatAng;
                     try
                     {
-                        sz.Staz = Staz.Razlika(sz.DatumOd, sz.DatumDo).ToString();
+                        var staz = Staz.Razlika(sz.DatumOd, sz.DatumDo);
+                        sz.Staz = staz.ToString();
+                        if (staz.Equals(Datum.JedanDan))
+                            sz.Napomene = "Staz od samo jednog dana.";
                     }
                     catch (Exception ex)
                     {
