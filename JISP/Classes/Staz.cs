@@ -55,7 +55,7 @@ namespace JISP.Classes
 
         public override string ToString()
         {
-            return $"{God}-{Mes:00}-{Dan:00}";
+            return $"{God:00}-{Mes:00}-{Dan:00}";
         }
 
         public override bool Equals(object obj)

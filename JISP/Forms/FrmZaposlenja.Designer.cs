@@ -128,6 +128,7 @@
             this.bsResenja = new System.Windows.Forms.BindingSource(this.components);
             this.pnlBottomLeftRes = new JISP.Controls.UcLeftPanel();
             this.btnUcitajResenja = new JISP.Controls.UcButton();
+            this.timSvaZapSelectAll = new System.Windows.Forms.Timer(this.components);
             this.pnlLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsZaposleni)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
@@ -497,6 +498,7 @@
             this.tcZaposlenja.SelectedIndex = 0;
             this.tcZaposlenja.Size = new System.Drawing.Size(1149, 324);
             this.tcZaposlenja.TabIndex = 5;
+            this.tcZaposlenja.SelectedIndexChanged += new System.EventHandler(this.TcZaposlenja_SelectedIndexChanged);
             // 
             // tpZaposSvetiSava
             // 
@@ -520,7 +522,7 @@
             this.tpZaposSva.Padding = new System.Windows.Forms.Padding(3);
             this.tpZaposSva.Size = new System.Drawing.Size(1141, 293);
             this.tpZaposSva.TabIndex = 1;
-            this.tpZaposSva.Text = "Sva Zaposlenja";
+            this.tpZaposSva.Text = "Sumarna Zaposlenja";
             // 
             // dgvSvaZaposlenja
             // 
@@ -559,6 +561,7 @@
             this.dgvSvaZaposlenja.Size = new System.Drawing.Size(1135, 257);
             this.dgvSvaZaposlenja.StandardSort = null;
             this.dgvSvaZaposlenja.TabIndex = 1;
+            this.dgvSvaZaposlenja.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvSvaZaposlenja_CellDoubleClick);
             this.dgvSvaZaposlenja.SelectionChanged += new System.EventHandler(this.DgvSvaZaposlenja_SelectionChanged);
             // 
             // procenatAngazovanjaDataGridViewTextBoxColumn1
@@ -566,6 +569,7 @@
             this.procenatAngazovanjaDataGridViewTextBoxColumn1.DataPropertyName = "ProcenatAngazovanja";
             this.procenatAngazovanjaDataGridViewTextBoxColumn1.HeaderText = "Procenat";
             this.procenatAngazovanjaDataGridViewTextBoxColumn1.Name = "procenatAngazovanjaDataGridViewTextBoxColumn1";
+            this.procenatAngazovanjaDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // datumOdDataGridViewTextBoxColumn
             // 
@@ -573,6 +577,7 @@
             this.datumOdDataGridViewTextBoxColumn.DataPropertyName = "DatumOd";
             this.datumOdDataGridViewTextBoxColumn.HeaderText = "Zaposlen Od";
             this.datumOdDataGridViewTextBoxColumn.Name = "datumOdDataGridViewTextBoxColumn";
+            this.datumOdDataGridViewTextBoxColumn.ReadOnly = true;
             this.datumOdDataGridViewTextBoxColumn.Width = 118;
             // 
             // datumDoDataGridViewTextBoxColumn
@@ -581,6 +586,7 @@
             this.datumDoDataGridViewTextBoxColumn.DataPropertyName = "DatumDo";
             this.datumDoDataGridViewTextBoxColumn.HeaderText = "Zaposlen Do";
             this.datumDoDataGridViewTextBoxColumn.Name = "datumDoDataGridViewTextBoxColumn";
+            this.datumDoDataGridViewTextBoxColumn.ReadOnly = true;
             this.datumDoDataGridViewTextBoxColumn.Width = 118;
             // 
             // stazDataGridViewTextBoxColumn
@@ -588,6 +594,7 @@
             this.stazDataGridViewTextBoxColumn.DataPropertyName = "Staz";
             this.stazDataGridViewTextBoxColumn.HeaderText = "Staž";
             this.stazDataGridViewTextBoxColumn.Name = "stazDataGridViewTextBoxColumn";
+            this.stazDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // idTipaPoslodavcaDataGridViewTextBoxColumn
             // 
@@ -597,6 +604,7 @@
             this.idTipaPoslodavcaDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
             this.idTipaPoslodavcaDataGridViewTextBoxColumn.HeaderText = "Tip Poslodavca";
             this.idTipaPoslodavcaDataGridViewTextBoxColumn.Name = "idTipaPoslodavcaDataGridViewTextBoxColumn";
+            this.idTipaPoslodavcaDataGridViewTextBoxColumn.ReadOnly = true;
             this.idTipaPoslodavcaDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.idTipaPoslodavcaDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.idTipaPoslodavcaDataGridViewTextBoxColumn.ValueMember = "IdTipaPosl";
@@ -1131,6 +1139,11 @@
             this.btnUcitajResenja.UseVisualStyleBackColor = true;
             this.btnUcitajResenja.Click += new System.EventHandler(this.BtnUcitajResenja_Click);
             // 
+            // timSvaZapSelectAll
+            // 
+            this.timSvaZapSelectAll.Interval = 500;
+            this.timSvaZapSelectAll.Tick += new System.EventHandler(this.TimSvaZapSelectAll_Tick);
+            // 
             // FrmZaposlenja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -1265,6 +1278,7 @@
         private System.Windows.Forms.Label lblUkupanStaz;
         private System.Windows.Forms.Label lblStazDatumDo;
         private System.Windows.Forms.DateTimePicker dtpStazDatumDo;
+        private Controls.UcButton btnNovoEkstZaposlenje;
         private System.Windows.Forms.DataGridViewTextBoxColumn procenatAngazovanjaDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn datumOdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn datumDoDataGridViewTextBoxColumn;
@@ -1272,6 +1286,6 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn idTipaPoslodavcaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nazivPoslodavcaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcZaposSvaNapomene;
-        private Controls.UcButton btnNovoEkstZaposlenje;
+        private System.Windows.Forms.Timer timSvaZapSelectAll;
     }
 }

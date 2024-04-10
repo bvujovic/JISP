@@ -102,7 +102,7 @@ namespace JISP.Classes.SumaZaposlenja
                     {
                         DatumOd = prvi.DatumDo,
                         DatumDo = prvi.DatumDo,
-                        ProcenatAng = prvi.ProcenatAng + drugi.ProcenatAng
+                        ProcenatAng = Math.Round(prvi.ProcenatAng + drugi.ProcenatAng, 2)
                     };
                     zaj.AddIDs(prvi.IDs);
                     zaj.AddIDs(drugi.IDs);
@@ -128,7 +128,7 @@ namespace JISP.Classes.SumaZaposlenja
                     {
                         DatumDo = this.DatumDo,
                         DatumOd = this.DatumOd,
-                        ProcenatAng = this.ProcenatAng + that.ProcenatAng
+                        ProcenatAng = Math.Round(this.ProcenatAng + that.ProcenatAng, 2)
                     };
                     x.AddIDs(this.IDs);
                     x.AddIDs(that.IDs);
@@ -150,7 +150,7 @@ namespace JISP.Classes.SumaZaposlenja
                         {
                             DatumOd = this.DatumOd,
                             DatumDo = kraci.DatumDo,
-                            ProcenatAng = this.ProcenatAng + that.ProcenatAng
+                            ProcenatAng = Math.Round(this.ProcenatAng + that.ProcenatAng, 2)
                         };
                         zaj.AddIDs(this.IDs);
                         zaj.AddIDs(that.IDs);
@@ -179,7 +179,7 @@ namespace JISP.Classes.SumaZaposlenja
                         {
                             DatumOd = drugi.DatumOd,
                             DatumDo = this.DatumDo,
-                            ProcenatAng = this.ProcenatAng + that.ProcenatAng
+                            ProcenatAng = Math.Round(this.ProcenatAng + that.ProcenatAng, 2)
                         };
                         b.AddIDs(this.IDs);
                         b.AddIDs(that.IDs);
@@ -203,7 +203,7 @@ namespace JISP.Classes.SumaZaposlenja
                     {
                         DatumOd = drugi.DatumOd,
                         DatumDo = prvi.DatumDo < drugi.DatumDo ? prvi.DatumDo.AddDays(-1) : drugi.DatumDo.AddDays(-1),
-                        ProcenatAng = prvi.ProcenatAng + drugi.ProcenatAng
+                        ProcenatAng = Math.Round(prvi.ProcenatAng + drugi.ProcenatAng, 2)
                     };
                     b.AddIDs(prvi.IDs);
                     b.AddIDs(drugi.IDs);

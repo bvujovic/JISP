@@ -57,8 +57,16 @@ namespace JISP.Data
                         sz.Napomene = ex.Message;
                     }
                     sz.TipoviPoslodavacaRow = TipoviPoslodavacaDataTable.SvetiSava;
-                    //TODO dodati redove u SumZapDetalji i prikazati ih u dgvSumZapDetalji
+                    // dodavanje redova u SumZapDetalji
                     AddSumZaposlenjaRow(sz);
+                    foreach (var id in x.IDs)
+                    {
+                        var det = ds.SumZapDetalji.NewSumZapDetaljiRow();
+                        det.SumZaposlenjaRow = sz;
+                        det.ZaposlenjaRow = ds.Zaposlenja.FindByIdZaposlenja(id);
+                        // proc ang, radno mesto
+                        ds.SumZapDetalji.AddSumZapDetaljiRow(det);
+                    }
                 }
             }
 

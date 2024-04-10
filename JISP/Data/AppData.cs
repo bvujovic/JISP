@@ -97,6 +97,7 @@ namespace JISP.Data
             Ds.Zaposleni.CalcAktivan();
             Ds.Ucenici.CalcDatRodjBasedCols();
             SlikeZaposlenih.PostaviKoImaSliku();
+            Ds.TipoviPoslodavaca.DataInit();
             Ds.AcceptChanges();
             WebApi.Token = LoadSett(WebApi.TOKEN_CAPTION);
             Browser = LoadSett(BrowserSett, "Chrome");

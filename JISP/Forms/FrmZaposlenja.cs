@@ -43,13 +43,12 @@ namespace JISP.Forms
                 SetBsZaposlenjaFilter();
 
                 // Sumirana tj. sva zaposlenja, staz
-                AppData.Ds.TipoviPoslodavaca.DataInit();
                 bsTipoviPoslodavaca.DataSource = AppData.Ds;
                 bsSvaZaposlenja.DataSource = AppData.Ds;
                 dgvSvaZaposlenja.StandardSort = bsSvaZaposlenja.Sort;
                 dgvSvaZaposlenja.LoadSettings();
                 bsSvaZaposlenja.Filter = $"IdZaposlenog = {zaposleni.IdZaposlenog}";
-                dtpStazDatumDo.Value = StazDatumDo;
+                dtpStazDatumDo.Value = stazDatumDo;
                 dgvSvaZaposlenja.SelectAll();
 
                 dgvAngazovanja.LoadSettings();
@@ -118,7 +117,10 @@ namespace JISP.Forms
             btnUcitajObracunZarada.PerformClick();
         }
 
-        private static DateTime StazDatumDo = DateTime.Today;
+        private static DateTime stazDatumDo = DateTime.Today;
+        /// <summary>Datum do kog se sumiraju zaposlenja i racuna staz u FrmZaposlenja, tab Sum. Zaposlenja.</summary>
+        public static DateTime StazDatumDo => stazDatumDo;
+
         private static bool CheckedBezTehnGresaka = true;
         private static bool CheckedCopyOnClick = false;
         private static CheckState? CheckStateAktivno = null;
@@ -128,7 +130,7 @@ namespace JISP.Forms
 
         private void FrmZaposlenja_FormClosed(object sender, FormClosedEventArgs e)
         {
-            StazDatumDo = dtpStazDatumDo.Value;
+            stazDatumDo = dtpStazDatumDo.Value;
             CheckedBezTehnGresaka = chkBezTehnGresaka.Checked;
             CheckedCopyOnClick = chkCopyOnClick.Checked;
             CheckStateAktivno = chkAktivno.CheckState;
@@ -254,7 +256,25 @@ namespace JISP.Forms
         private void DtpStazDatumDo_ValueChanged(object sender, EventArgs e)
         {
             AppData.Ds.SumZaposlenja.SumZaposlenjaUSkoli(zaposleni, dtpStazDatumDo.Value);
+            if (tcZaposlenja.SelectedTab == tpZaposSva)
+            {
+                timSvaZapSelectAll.Stop();
+                timSvaZapSelectAll.Start();
+            }
+        }
+
+        private void TimSvaZapSelectAll_Tick(object sender, EventArgs e)
+        {
+            timSvaZapSelectAll.Stop();
             dgvSvaZaposlenja.SelectAll();
+        }
+
+        private bool prvoPrebacivanjeNaTpZaposSva = true;
+        private void TcZaposlenja_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (prvoPrebacivanjeNaTpZaposSva && tcZaposlenja.SelectedTab == tpZaposSva)
+                timSvaZapSelectAll.Start();
+            prvoPrebacivanjeNaTpZaposSva = false;
         }
 
         private void BtnNovoEkstZaposlenje_Click(object sender, EventArgs e)
@@ -280,6 +300,20 @@ namespace JISP.Forms
                 }
                 catch (Exception ex) { Utils.ShowMbox(ex, frm.Text); }
             }
+        }
+
+        private void DgvSvaZaposlenja_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                var sz = dgvSvaZaposlenja.CurrDataRow<Ds.SumZaposlenjaRow>();
+                chkAktivno.CheckState = CheckState.Indeterminate;
+                tcZaposlenja.SelectedTab = tpZaposSvetiSava;
+                var zapIDs = sz.GetSumZapDetaljiRows().Select(it => it.IdZaposlenja);
+                foreach (DataGridViewRow row in dgvZaposlenjaSvSava.Rows)
+                    row.Selected = zapIDs.Contains(dgvZaposlenjaSvSava.DataRow<Ds.ZaposlenjaRow>(row.Index).IdZaposlenja);
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, "Sumarno zaposlenje"); }
         }
     }
 }

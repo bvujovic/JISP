@@ -52,6 +52,7 @@ namespace JISP.Forms
                 CmbStatusDokUgovor,
                 CmbStatusDo60DanaIsteklo,
                 CmbStatusBezZamenjenih,
+                CmbStatusSumZap,
             });
             cmbIzracunajStatuse.AdjustWidth();
         }
@@ -65,6 +66,7 @@ namespace JISP.Forms
         private const string CmbStatusDokUgovor = "Bez dokumenta-ugovora";
         private const string CmbStatusDo60DanaIsteklo = "Istekao ugovor do 60 dana";
         private const string CmbStatusBezZamenjenih = "Zaposlenja bez unetih zamenjenih zaposlenih";
+        private const string CmbStatusSumZap = "Sumarna zaposlenja, računanje staža";
 
         private readonly Ds Ds;
 
@@ -503,7 +505,7 @@ namespace JISP.Forms
                         else
                             zap.StatusAktivnosti1 = oz.Staz.ToString();
                     }
-                    dgvcStatusAktivnosti.Visible = dgvcStatusAktivnosti2.Visible 
+                    dgvcStatusAktivnosti.Visible = dgvcStatusAktivnosti2.Visible
                         = dgvcStazGodine.Visible = dgvcStazMeseci.Visible = true;
                     sortPoStatus2 = false;
                 }
@@ -581,6 +583,20 @@ namespace JISP.Forms
                     }
                 }
 
+                if (selItem == CmbStatusSumZap)
+                {
+                    var stazDatumDo = FrmZaposlenja.StazDatumDo;
+                    foreach (var z in AppData.Ds.Zaposleni.Where(it => it.Aktivan))
+                    {
+                        AppData.Ds.SumZaposlenja.SumZaposlenjaUSkoli(z, stazDatumDo);
+                        var ukStaz = new Datum();
+                        //foreach (var sz in dgvSvaZaposlenja.SelectedDataRows<Ds.SumZaposlenjaRow>())
+                        foreach (var sz in z.GetSumZaposlenjaRows())
+                            ukStaz = Staz.Zbir(ukStaz, Datum.IzStringa(sz.Staz));
+                        z.StatusAktivnosti2 = ukStaz.ToString();
+                    }
+                }
+
                 // Sva zaposlenja u skoli
                 //var zaps = new HashSet<string>();
                 //foreach (var z in AppData.Ds.Zaposleni.Where(it => it.Aktivan))
@@ -603,7 +619,10 @@ namespace JISP.Forms
                 //Clipboard.SetText(string.Join(Environment.NewLine, l));
 
                 if (sortPoStatus2)
+                {
                     bsZaposleni.Sort = "StatusAktivnosti2 DESC, " + dgvZaposleni.StandardSort;
+                    dgvcStatusAktivnosti2.Visible = true;
+                }
                 bsZaposleni.MoveFirst();
             }
             catch (Exception ex) { Utils.ShowMbox(ex, btnIzracunajStatuse.Text + " - " + zapProblem); }

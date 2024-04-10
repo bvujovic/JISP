@@ -80,6 +80,8 @@ namespace JISP.Data {
         
         private global::System.Data.DataRelation relationZaposleni_ObracunZarada;
         
+        private global::System.Data.DataRelation relationSumZaposlenja_SumZapDetalji;
+        
         private global::System.Data.DataRelation relationZaposlenja_Angazovanja;
         
         private global::System.Data.DataRelation relationZaposlenja_Resenja;
@@ -99,8 +101,6 @@ namespace JISP.Data {
         private global::System.Data.DataRelation relationObjekti_Prostorije;
         
         private global::System.Data.DataRelation relationProstorije_Racunari;
-        
-        private global::System.Data.DataRelation relationSumZaposlenja_SumZapDetalji;
         
         private global::System.Data.DataRelation relationTipoviPoslodavaca_SumZaposlenja;
         
@@ -834,6 +834,7 @@ namespace JISP.Data {
             }
             this.relationFK_Zaposleni_Zaposlenja = this.Relations["FK_Zaposleni_Zaposlenja"];
             this.relationZaposleni_ObracunZarada = this.Relations["Zaposleni_ObracunZarada"];
+            this.relationSumZaposlenja_SumZapDetalji = this.Relations["SumZaposlenja_SumZapDetalji"];
             this.relationZaposlenja_Angazovanja = this.Relations["Zaposlenja_Angazovanja"];
             this.relationZaposlenja_Resenja = this.Relations["Zaposlenja_Resenja"];
             this.relationFK_Sistematizacija_SistematizacijaDetalji = this.Relations["FK_Sistematizacija_SistematizacijaDetalji"];
@@ -844,7 +845,6 @@ namespace JISP.Data {
             this.relationLokacije_Objekti = this.Relations["Lokacije_Objekti"];
             this.relationObjekti_Prostorije = this.Relations["Objekti_Prostorije"];
             this.relationProstorije_Racunari = this.Relations["Prostorije_Racunari"];
-            this.relationSumZaposlenja_SumZapDetalji = this.Relations["SumZaposlenja_SumZapDetalji"];
             this.relationTipoviPoslodavaca_SumZaposlenja = this.Relations["TipoviPoslodavaca_SumZaposlenja"];
             this.relationZaposleni_SumZaposlenja = this.Relations["Zaposleni_SumZaposlenja"];
             this.relationZaposlenja_SumZapDetalji = this.Relations["Zaposlenja_SumZapDetalji"];
@@ -925,6 +925,13 @@ namespace JISP.Data {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.None;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
+            fkc = new global::System.Data.ForeignKeyConstraint("SumZaposlenja_SumZapDetalji", new global::System.Data.DataColumn[] {
+                        this.tableSumZaposlenja.IdSumZaposlenjaColumn}, new global::System.Data.DataColumn[] {
+                        this.tableSumZapDetalji.IdSumZaposlenjaColumn});
+            this.tableSumZapDetalji.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
+            fkc.DeleteRule = global::System.Data.Rule.Cascade;
+            fkc.UpdateRule = global::System.Data.Rule.None;
             this.relationFK_Zaposleni_Zaposlenja = new global::System.Data.DataRelation("FK_Zaposleni_Zaposlenja", new global::System.Data.DataColumn[] {
                         this.tableZaposleni.IdZaposlenogColumn}, new global::System.Data.DataColumn[] {
                         this.tableZaposlenja.IdZaposlenogColumn}, false);
@@ -933,6 +940,10 @@ namespace JISP.Data {
                         this.tableZaposleni.IdZaposlenogColumn}, new global::System.Data.DataColumn[] {
                         this.tableObracunZarada.IdZaposlenogColumn}, false);
             this.Relations.Add(this.relationZaposleni_ObracunZarada);
+            this.relationSumZaposlenja_SumZapDetalji = new global::System.Data.DataRelation("SumZaposlenja_SumZapDetalji", new global::System.Data.DataColumn[] {
+                        this.tableSumZaposlenja.IdSumZaposlenjaColumn}, new global::System.Data.DataColumn[] {
+                        this.tableSumZapDetalji.IdSumZaposlenjaColumn}, false);
+            this.Relations.Add(this.relationSumZaposlenja_SumZapDetalji);
             this.relationZaposlenja_Angazovanja = new global::System.Data.DataRelation("Zaposlenja_Angazovanja", new global::System.Data.DataColumn[] {
                         this.tableZaposlenja.IdZaposlenjaColumn}, new global::System.Data.DataColumn[] {
                         this.tableAngazovanja.IdZaposlenjaColumn}, false);
@@ -973,10 +984,6 @@ namespace JISP.Data {
                         this.tableProstorije.IdProstorijeColumn}, new global::System.Data.DataColumn[] {
                         this.tableRacunari.IdProstorijeColumn}, false);
             this.Relations.Add(this.relationProstorije_Racunari);
-            this.relationSumZaposlenja_SumZapDetalji = new global::System.Data.DataRelation("SumZaposlenja_SumZapDetalji", new global::System.Data.DataColumn[] {
-                        this.tableSumZaposlenja.IdSumZaposlenjaColumn}, new global::System.Data.DataColumn[] {
-                        this.tableSumZapDetalji.IdSumZaposlenjaColumn}, false);
-            this.Relations.Add(this.relationSumZaposlenja_SumZapDetalji);
             this.relationTipoviPoslodavaca_SumZaposlenja = new global::System.Data.DataRelation("TipoviPoslodavaca_SumZaposlenja", new global::System.Data.DataColumn[] {
                         this.tableTipoviPoslodavaca.IdTipaPoslColumn}, new global::System.Data.DataColumn[] {
                         this.tableSumZaposlenja.IdTipaPoslodavcaColumn}, false);
