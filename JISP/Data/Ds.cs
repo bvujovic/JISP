@@ -12,62 +12,153 @@ namespace JISP.Data
         partial class SumZaposlenjaDataTable
         {
             /// <summary>Sumiranje/grupisanje zaposlenja u ŠOSO Sv. Sava</summary>
+            //public void SumZaposlenjaUSkoli(ZaposleniRow zap, DateTime datumDo)
+            //{
+            //    // uklanjanje prethodno izračunatih sum-zaposlenja u ŠOSO Sv. Sava
+            //    var ds = this.DataSet as Ds;
+            //    var sumNja = this.Where(it => it.IdZaposlenog == zap.IdZaposlenog
+            //        && it.IdTipaPoslodavca == TipoviPoslodavacaDataTable.SvetiSava.IdTipaPosl).ToList();
+            //    foreach (var it in sumNja)
+            //        ds.SumZaposlenja.RemoveSumZaposlenjaRow(it);
+
+            //    var l = new ListaSumZap();
+            //    foreach (var nje in zap.GetZaposlenjaRows().Where(it => it.DatumZaposlenOd < datumDo &&
+            //        (it.IsRazlogPrestankaZaposlenjaNull() || !it.RazlogPrestankaZaposlenja.Contains("Техничка грешка"))))
+            //    {
+            //        var sz = new SumZap();
+            //        sz.IDs.Add(nje.IdZaposlenja);
+            //        sz.DatumOd = nje.DatumZaposlenOd;
+            //        if (nje.IsDatumZaposlenDoNull())
+            //            sz.DatumDo = datumDo;
+            //        else
+            //            sz.DatumDo = nje.DatumZaposlenDo;
+            //        sz.ProcenatAng = nje.ProcenatRadnogVremena;
+            //        l.Dodaj(sz);
+            //    }
+            //    l.Sumiraj();
+
+            //    foreach (var x in l.SumZaps)
+            //    {
+            //        var sz = NewSumZaposlenjaRow();
+            //        sz.ZaposleniRow = zap;
+            //        sz.DatumOd = x.DatumOd;
+            //        sz.DatumDo = x.DatumDo;
+            //        sz.ProcenatAngazovanja = x.ProcenatAng;
+            //        try
+            //        {
+            //            var staz = Staz.Razlika(sz.DatumOd, sz.DatumDo);
+            //            sz.Staz = staz.ToString();
+            //            if (staz.Equals(Datum.JedanDan))
+            //                sz.Napomene = "Staz od samo jednog dana.";
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            sz.Staz = "/";
+            //            sz.Napomene = ex.Message;
+            //        }
+            //        sz.TipoviPoslodavacaRow = TipoviPoslodavacaDataTable.SvetiSava;
+            //        // dodavanje redova u SumZapDetalji
+            //        AddSumZaposlenjaRow(sz);
+            //        foreach (var id in x.IDs)
+            //        {
+            //            var det = ds.SumZapDetalji.NewSumZapDetaljiRow();
+            //            det.SumZaposlenjaRow = sz;
+            //            det.ZaposlenjaRow = ds.Zaposlenja.FindByIdZaposlenja(id);
+            //            // proc ang, radno mesto
+            //            ds.SumZapDetalji.AddSumZapDetaljiRow(det);
+            //        }
+            //    }
+            //}
+
             public void SumZaposlenjaUSkoli(ZaposleniRow zap, DateTime datumDo)
             {
-                // uklanjanje prethodno izračunatih sum-zaposlenja u ŠOSO Sv. Sava
+                ObrisiZaSosoSvetiSava();
                 var ds = this.DataSet as Ds;
-                var sumNja = this.Where(it => it.IdZaposlenog == zap.IdZaposlenog
-                    && it.IdTipaPoslodavca == TipoviPoslodavacaDataTable.SvetiSava.IdTipaPosl).ToList();
-                foreach (var it in sumNja)
-                    ds.SumZaposlenja.RemoveSumZaposlenjaRow(it);
-
-                var l = new ListaSumZap();
-                foreach (var nje in zap.GetZaposlenjaRows().Where(it => it.DatumZaposlenOd < datumDo &&
-                    (it.IsRazlogPrestankaZaposlenjaNull() || !it.RazlogPrestankaZaposlenja.Contains("Техничка грешка"))))
+                // odredjivanje opsega datuma svih validnih zaposlenja
+                var nja = zap.GetZaposlenjaRows().Where(it => it.DatumZaposlenOd < datumDo &&
+                    (it.IsRazlogPrestankaZaposlenjaNull() || !it.RazlogPrestankaZaposlenja.Contains("Техничка грешка")))
+                    .ToList();
+                var datumOd = nja.Where(it => !it.IsDatumZaposlenOdNull()).Min(it => it.DatumZaposlenOd);
+                if (!nja.Any(it => it.Aktivan))
                 {
-                    var sz = new SumZap();
-                    sz.IDs.Add(nje.IdZaposlenja);
-                    sz.DatumOd = nje.DatumZaposlenOd;
-                    if (nje.IsDatumZaposlenDoNull())
-                        sz.DatumDo = datumDo;
-                    else
-                        sz.DatumDo = nje.DatumZaposlenDo;
-                    sz.ProcenatAng = nje.ProcenatRadnogVremena;
-                    l.Dodaj(sz);
+                    var ddo = nja.Where(it => !it.Aktivan).Max(it => it.DatumZaposlenDo);
+                    if (ddo < datumDo)
+                        datumDo = ddo;
                 }
-                l.Sumiraj();
-
-                foreach (var x in l.SumZaps)
+                // prolazak kroz sve datume u opsegu i odredjivanje sum zaposlenja
+                var szPrev = SumZapNaDan(datumOd, nja);
+                for (var d = datumOd.AddDays(1); d <= datumDo; d = d.AddDays(1))
                 {
-                    var sz = NewSumZaposlenjaRow();
-                    sz.ZaposleniRow = zap;
-                    sz.DatumOd = x.DatumOd;
-                    sz.DatumDo = x.DatumDo;
-                    sz.ProcenatAngazovanja = x.ProcenatAng;
-                    try
+                    var szCurr = SumZapNaDan(d, nja);
+                    if (!SumZapMin.Isti(szCurr, szPrev))
                     {
-                        var staz = Staz.Razlika(sz.DatumOd, sz.DatumDo);
-                        sz.Staz = staz.ToString();
-                        if (staz.Equals(Datum.JedanDan))
-                            sz.Napomene = "Staz od samo jednog dana.";
-                    }
-                    catch (Exception ex)
-                    {
-                        sz.Staz = "/";
-                        sz.Napomene = ex.Message;
-                    }
-                    sz.TipoviPoslodavacaRow = TipoviPoslodavacaDataTable.SvetiSava;
-                    // dodavanje redova u SumZapDetalji
-                    AddSumZaposlenjaRow(sz);
-                    foreach (var id in x.IDs)
-                    {
-                        var det = ds.SumZapDetalji.NewSumZapDetaljiRow();
-                        det.SumZaposlenjaRow = sz;
-                        det.ZaposlenjaRow = ds.Zaposlenja.FindByIdZaposlenja(id);
-                        // proc ang, radno mesto
-                        ds.SumZapDetalji.AddSumZapDetaljiRow(det);
+                        if (szPrev.ProcenatAng > 0)
+                            AddSumZap(zap, szPrev, d.AddDays(-1));
+                        szPrev = szCurr;
                     }
                 }
+                AddSumZap(zap, szPrev, datumDo);
+            }
+
+            private void AddSumZap(ZaposleniRow zap, SumZapMin sz, DateTime datumDo)
+            {
+                var ds = this.DataSet as Ds;
+                var sumZap = ds.SumZaposlenja.NewSumZaposlenjaRow();
+                sumZap.ZaposleniRow = zap;
+                sumZap.ProcenatAngazovanja = sz.ProcenatAng;
+                sumZap.DatumOd = sz.DatumOd;
+                sumZap.DatumDo = datumDo;
+                var staz = Staz.Razlika(sumZap.DatumOd, sumZap.DatumDo);
+                sumZap.Staz = staz.ToString();
+                if (staz.Equals(Datum.JedanDan))
+                    sumZap.Napomene = "Staz od samo jednog dana.";
+                sumZap.TipoviPoslodavacaRow = TipoviPoslodavacaDataTable.SvetiSava;
+                ds.SumZaposlenja.AddSumZaposlenjaRow(sumZap);
+
+                foreach (var id in sz.IDs)
+                {
+                    var det = ds.SumZapDetalji.NewSumZapDetaljiRow();
+                    det.SumZaposlenjaRow = sumZap;
+                    det.ZaposlenjaRow = ds.Zaposlenja.FindByIdZaposlenja(id);
+                    ds.SumZapDetalji.AddSumZapDetaljiRow(det);
+                }
+            }
+
+            class SumZapMin
+            {
+                public DateTime DatumOd { get; set; }
+                public HashSet<int> IDs { get; set; } = new HashSet<int>();
+                public double ProcenatAng { get; set; }
+                public SumZapMin(DateTime datumOd, List<int> ids, double procAng)
+                {
+                    DatumOd = datumOd;
+                    foreach (var id in ids)
+                        IDs.Add(id);
+                    //IDs = ids;
+                    ProcenatAng = procAng;
+                }
+                public static bool Isti(SumZapMin a, SumZapMin b)
+                {
+                    //B return a.ProcenatAng == b.ProcenatAng && a.IDs.Equals(b.IDs);
+                    if (a.ProcenatAng != b.ProcenatAng)
+                        return false;
+                    if (a.IDs.Count != b.IDs.Count)
+                        return false;
+                    foreach (var id in a.IDs)
+                        if (!b.IDs.Contains(id))
+                            return false;
+                    return true;
+                }
+                public override string ToString()
+                    => $"{ProcenatAng:000}%, {DatumOd:yyyy-MM-dd}, IDs: [{string.Join(", ", IDs)}]";
+            }
+
+            private SumZapMin SumZapNaDan(DateTime dt, IEnumerable<ZaposlenjaRow> nja)
+            {
+                var njaNaDan = nja.Where(it => it.DatumZaposlenOd <= dt
+                    && (it.IsDatumZaposlenDoNull() || dt <= it.DatumZaposlenDo));
+                return new SumZapMin(dt, njaNaDan.Select(it => it.IdZaposlenja).ToList(),
+                    njaNaDan.Sum(it => it.ProcenatRadnogVremena));
             }
 
             /// <summary>Uklanjanje prethodno izračunatih sum-zaposlenja u ŠOSO Sv. Sava.</summary>
