@@ -151,7 +151,6 @@ namespace JISP.Forms
         private void FrmResenja_FormClosing(object sender, FormClosingEventArgs e)
         {
             AppData.SaveSett("FrmResenja_cmbSkGod", (string)cmbSkGod.SelectedItem);
-
         }
     }
 }

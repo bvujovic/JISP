@@ -224,89 +224,91 @@ namespace JISP.Data
             Ustanova_Cenus,
         }
 
+        public static string UrlBase => "https://jisp.mpn.gov.rs/webapi/api/";
+
         public static string UrlForReq(ReqEnum reqEnum, string param = null)
         {
-            var urlBase = "https://jisp.mpn.gov.rs/webapi/api/";
+            //B var urlBase = "https://jisp.mpn.gov.rs/webapi/api/";
             switch (reqEnum)
             {
                 case ReqEnum.Zap_Opste:
-                    return urlBase + "zaposleni/VratiOpstePodatkeOZaposlenima/" + SV_SAVA_ID;
+                    return UrlBase + "zaposleni/VratiOpstePodatkeOZaposlenima/" + SV_SAVA_ID;
                 case ReqEnum.Zap_Dodatno:
-                    return urlBase + $"Zaposleni/VratiPodatkeZaposlenogZaId/{param}/";
+                    return UrlBase + $"Zaposleni/VratiPodatkeZaposlenogZaId/{param}/";
                 case ReqEnum.Zap_Zaposlenja:
-                    return urlBase + "zaposleni/VratiZaposlenja";
+                    return UrlBase + "zaposleni/VratiZaposlenja";
                 case ReqEnum.Zap_ZaposlenjaRazloziPrestanka:
-                    return urlBase + "sifarnik/naziv/RazloziPrestankaZaposlenja";
+                    return UrlBase + "sifarnik/naziv/RazloziPrestankaZaposlenja";
                 case ReqEnum.Zap_ObracunZarada:
-                    return urlBase + $"zaposleni/VratiObracuneZradeZaZaposlenog/{param}/" + SV_SAVA_ID;
+                    return UrlBase + $"zaposleni/VratiObracuneZradeZaZaposlenog/{param}/" + SV_SAVA_ID;
                 case ReqEnum.Zap_ObracunZaradaKreiraj:
-                    return urlBase + $"zaposleni/SacuvajObracunZarade/";
+                    return UrlBase + $"zaposleni/SacuvajObracunZarade/";
                 case ReqEnum.Zap_ObracunZaradaObrisi:
-                    return urlBase + $"zaposleni/ObrisiObracunZarade/";
+                    return UrlBase + $"zaposleni/ObrisiObracunZarade/";
                 case ReqEnum.Zap_Angazovanja:
-                    return urlBase + $"zaposleni/VratiAngazovanjaPoUgovoruNastavnoOsoblje/{param}/0/";
+                    return UrlBase + $"zaposleni/VratiAngazovanjaPoUgovoruNastavnoOsoblje/{param}/0/";
                 case ReqEnum.Zap_Resenja:
-                    return urlBase + $"zaposleni/VratiZaposlenje/{param}/";
+                    return UrlBase + $"zaposleni/VratiZaposlenje/{param}/";
                 case ReqEnum.Zap_ObracunZaradaOpis:
-                    return urlBase + $"zaposleni/VratiObracunZaradeZaId/{param}";
+                    return UrlBase + $"zaposleni/VratiObracunZaradeZaId/{param}";
 
                 case ReqEnum.Zap_Sistematizacija:
-                    return urlBase + $"zaposleni/VratiAktivnuSistematizacijuRMZaUstanovu/{SV_SAVA_ID}";
+                    return UrlBase + $"zaposleni/VratiAktivnuSistematizacijuRMZaUstanovu/{SV_SAVA_ID}";
                 case ReqEnum.Zap_SistematizacijaDetalji:
-                    return urlBase + $"zaposleni/VratiUgovornaAngazovanjaNaRadnomMestu/";
+                    return UrlBase + $"zaposleni/VratiUgovornaAngazovanjaNaRadnomMestu/";
                 case ReqEnum.Zap_IzvoriFinansiranja:
-                    return urlBase + $"sifarnik/naziv/IzvoriFinansiranja/";
+                    return UrlBase + $"sifarnik/naziv/IzvoriFinansiranja/";
                 case ReqEnum.Zap_SistematizacijaSacuvajNormu:
-                    return urlBase + $"zaposleni/SacuvajSistematizacijuZaRadnoMesto/";
+                    return UrlBase + $"zaposleni/SacuvajSistematizacijuZaRadnoMesto/";
 
                 case ReqEnum.Uc_DuosSrednjoskolci:
-                    return urlBase + "ucenik/VratiUpisSrednjeByUstanovaId/" + SV_SAVA_ID;
+                    return UrlBase + "ucenik/VratiUpisSrednjeByUstanovaId/" + SV_SAVA_ID;
                 case ReqEnum.Uc_DuosSrednjoskolciId:
-                    return urlBase + $"ucenik/VratiUpisSrednjeObrazovanjeById/{param}";
+                    return UrlBase + $"ucenik/VratiUpisSrednjeObrazovanjeById/{param}";
 
                 case ReqEnum.Uc_DuosDeca:
-                    return urlBase + "ucenik/vratiPregledDecePredskolsko";
+                    return UrlBase + "ucenik/vratiPregledDecePredskolsko";
                 case ReqEnum.Uc_DuosOS:
-                    return urlBase + "ucenik/VratiUpisOsnovnoByUstanovaId/" + SV_SAVA_ID;
+                    return UrlBase + "ucenik/VratiUpisOsnovnoByUstanovaId/" + SV_SAVA_ID;
                 case ReqEnum.Uc_DuosSS:
-                    return urlBase + "ucenik/VratiUpisSrednjeByUstanovaId";
+                    return UrlBase + "ucenik/VratiUpisSrednjeByUstanovaId";
                 case ReqEnum.Uc_DuosDomGrupe:
-                    return urlBase + "ucenik/VratiUpisUcenickiStandardByUstanovaId/" + SV_SAVA_ID;
+                    return UrlBase + "ucenik/VratiUpisUcenickiStandardByUstanovaId/" + SV_SAVA_ID;
 
                 case ReqEnum.Uc_OpstiPodaci:
-                    return urlBase + $"ucenik/OpstiPodaci?Id={param}";
+                    return UrlBase + $"ucenik/OpstiPodaci?Id={param}";
 
                 case ReqEnum.Job_PreuzmiListuZahteva:
-                    return urlBase + $"job/PreuzmiListuZahteva";
+                    return UrlBase + $"job/PreuzmiListuZahteva";
 
                 case ReqEnum.Ustanova_Lokacije:
-                    return urlBase + $"Ustanova/VratiLokacijeUstanove/" + SV_SAVA_ID;
+                    return UrlBase + $"Ustanova/VratiLokacijeUstanove/" + SV_SAVA_ID;
                 case ReqEnum.Ustanova_Objekti:
-                    return urlBase + $"Ustanova/VratiObjektePoIdLokacije/{param}";
+                    return UrlBase + $"Ustanova/VratiObjektePoIdLokacije/{param}";
                 case ReqEnum.Ustanova_ObjektiDodatno:
-                    return urlBase + $"Ustanova/VratiPosebneBrojcanePodatke/{param}";
+                    return UrlBase + $"Ustanova/VratiPosebneBrojcanePodatke/{param}";
                 case ReqEnum.Ustanova_ProstorijeOsnovno:
-                    return urlBase + $"Ustanova/VratiProstorije/{param}";
+                    return UrlBase + $"Ustanova/VratiProstorije/{param}";
                 case ReqEnum.Ustanova_ProstorijeDodatno:
-                    return urlBase + $"Ustanova/VratiProstorijuZaId/{param}";
+                    return UrlBase + $"Ustanova/VratiProstorijuZaId/{param}";
                 case ReqEnum.Ustanova_ProstorijeAzuriraj:
-                    return urlBase + $"Ustanova/DodajOpstePodatkeProstorije/";
+                    return UrlBase + $"Ustanova/DodajOpstePodatkeProstorije/";
 
                 case ReqEnum.Ustanova_Spratovi:
-                    return urlBase + $"sifarnik/naziv/Sprat";
+                    return UrlBase + $"sifarnik/naziv/Sprat";
                 case ReqEnum.Ustanova_Grejanje:
-                    return urlBase + $"sifarnik/naziv/IzvorGrejanja";
+                    return UrlBase + $"sifarnik/naziv/IzvorGrejanja";
                 case ReqEnum.Ustanova_Hladjenje:
-                    return urlBase + $"sifarnik/naziv/VrstaIzvoraHladjenja";
+                    return UrlBase + $"sifarnik/naziv/VrstaIzvoraHladjenja";
                 case ReqEnum.Ustanova_Racunari:
-                    return urlBase + $"Ustanova/VratiRacunareITablete/{param}";
+                    return UrlBase + $"Ustanova/VratiRacunareITablete/{param}";
                 case ReqEnum.Ustanova_Cenus:
-                    return urlBase + $"Ustanova/VratiCenusZaUstanovu/{param}";
+                    return UrlBase + $"Ustanova/VratiCenusZaUstanovu/{param}";
 
                 case ReqEnum.Zap_PorukaOdbijeniCenus:
-                    return urlBase + $"ustanova/VratiPorukuOdVerifikatoraZaOdbijenCenus/{param}";
+                    return UrlBase + $"ustanova/VratiPorukuOdVerifikatoraZaOdbijenCenus/{param}";
                 case ReqEnum.Zap_PorukaOdbijenaSistematizacija:
-                    return urlBase + $"zaposleni/VratiPorukuOdVerifikatoraZaOdbijenuSistematizaciju/{param}";
+                    return UrlBase + $"zaposleni/VratiPorukuOdVerifikatoraZaOdbijenuSistematizaciju/{param}";
 
                 default:
                     throw new Exception("Nepostojeci reqEnum: " + reqEnum);

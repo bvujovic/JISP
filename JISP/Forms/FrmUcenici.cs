@@ -287,6 +287,7 @@ namespace JISP.Forms
             var skola = WebApi.ReqEnumToSkola(reqEnum);
             foreach (var duos in duoses)
             {
+                duos.Razred = Utils.SkratiRazredSS(duos.Razred);
                 var u = AppData.Ds.Ucenici.FirstOrDefault(it => it.JOB == duos.JOB);
                 if (u == null)
                     continue;
@@ -521,5 +522,10 @@ namespace JISP.Forms
 
         private void ChkCopyOnClick_CheckedChanged(object sender, EventArgs e)
             => dgvUcenikSkGod.CopyOnCellClick = dgvUcenikSkGod.CopyOnCellClick = chkCopyOnClick.Checked;
+
+        private void BtnOdRaz_Click(object sender, EventArgs e)
+        {
+            new FrmRazrediOdeljenja().ShowDialog();
+        }
     }
 }

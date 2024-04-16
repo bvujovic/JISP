@@ -19,6 +19,10 @@ namespace JISP.Classes
             );
         }
 
+        /// <summary>Skracuje naziv razreda srednje skole: umesto "СШ – више нивоа образовања" => "СШ"</summary>
+        public static string SkratiRazredSS(string s)
+            => s?.Replace("СШ – више нивоа образовања", "СШ");
+
         public static string SkratiIzvorFin(string s)
         {
             s = s.Replace("Буџет Републике Србије - МПНТР - ", KratakBudzet);

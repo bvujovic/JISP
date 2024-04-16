@@ -39,6 +39,7 @@
             this.ttOceneProvera = new System.Windows.Forms.ToolTip(this.components);
             this.lblRowCount = new System.Windows.Forms.Label();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
+            this.btnOdRaz = new JISP.Controls.UcButton();
             this.chkAktivni = new System.Windows.Forms.CheckBox();
             this.chkCopyOnClick = new System.Windows.Forms.CheckBox();
             this.btnDohvatiPodatke = new JISP.Controls.UcButton();
@@ -64,6 +65,7 @@
             this.skolaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.razredDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.odeljenjeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcStaresina = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.smerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcDomGrupa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._Pol = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -126,6 +128,7 @@
             // 
             // pnlLeft
             // 
+            this.pnlLeft.Controls.Add(this.btnOdRaz);
             this.pnlLeft.Controls.Add(this.chkAktivni);
             this.pnlLeft.Controls.Add(this.chkCopyOnClick);
             this.pnlLeft.Controls.Add(this.btnDohvatiPodatke);
@@ -144,6 +147,18 @@
             this.pnlLeft.RightWingWidth = 8;
             this.pnlLeft.Size = new System.Drawing.Size(150, 490);
             this.pnlLeft.TabIndex = 0;
+            // 
+            // btnOdRaz
+            // 
+            this.btnOdRaz.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnOdRaz.Location = new System.Drawing.Point(7, 346);
+            this.btnOdRaz.Name = "btnOdRaz";
+            this.btnOdRaz.Size = new System.Drawing.Size(127, 30);
+            this.btnOdRaz.TabIndex = 15;
+            this.btnOdRaz.Text = "Razredi, odeljenja";
+            this.btnOdRaz.ToolTipText = null;
+            this.btnOdRaz.UseVisualStyleBackColor = true;
+            this.btnOdRaz.Click += new System.EventHandler(this.BtnOdRaz_Click);
             // 
             // chkAktivni
             // 
@@ -320,6 +335,7 @@
             this.skolaDataGridViewTextBoxColumn,
             this.razredDataGridViewTextBoxColumn,
             this.odeljenjeDataGridViewTextBoxColumn,
+            this.dgvcStaresina,
             this.smerDataGridViewTextBoxColumn,
             this.dgvcDomGrupa,
             this._Pol,
@@ -429,7 +445,7 @@
             this.razredDataGridViewTextBoxColumn.HeaderText = "Razred";
             this.razredDataGridViewTextBoxColumn.Name = "razredDataGridViewTextBoxColumn";
             this.razredDataGridViewTextBoxColumn.ReadOnly = true;
-            this.razredDataGridViewTextBoxColumn.Width = 85;
+            this.razredDataGridViewTextBoxColumn.Width = 105;
             // 
             // odeljenjeDataGridViewTextBoxColumn
             // 
@@ -438,6 +454,14 @@
             this.odeljenjeDataGridViewTextBoxColumn.Name = "odeljenjeDataGridViewTextBoxColumn";
             this.odeljenjeDataGridViewTextBoxColumn.ReadOnly = true;
             this.odeljenjeDataGridViewTextBoxColumn.Width = 95;
+            // 
+            // dgvcStaresina
+            // 
+            this.dgvcStaresina.DataPropertyName = "_Staresina";
+            this.dgvcStaresina.HeaderText = "Staresina";
+            this.dgvcStaresina.Name = "dgvcStaresina";
+            this.dgvcStaresina.ReadOnly = true;
+            this.dgvcStaresina.Width = 150;
             // 
             // smerDataGridViewTextBoxColumn
             // 
@@ -608,6 +632,7 @@
         private System.Windows.Forms.BindingSource bsUcenikSkGod;
         private System.Windows.Forms.CheckBox chkCopyOnClick;
         private System.Windows.Forms.CheckBox chkAktivni;
+        private Controls.UcButton btnOdRaz;
         private System.Windows.Forms.DataGridViewTextBoxColumn ImePrezimeDgvc;
         private System.Windows.Forms.DataGridViewTextBoxColumn imeDgvc;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrezimeDgvc;
@@ -619,6 +644,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn skolaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn razredDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn odeljenjeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcStaresina;
         private System.Windows.Forms.DataGridViewTextBoxColumn smerDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcDomGrupa;
         private System.Windows.Forms.DataGridViewTextBoxColumn _Pol;

@@ -294,7 +294,7 @@ namespace JISP.Data
                 o[kolona] = DBNull.Value;
         }
 
-        /// <summary>Učitava podateke u tabelu Sistematizacija.</summary>
+        /// <summary>Učitava podatke u tabelu Sistematizacija.</summary>
         public static async Task GetSistematizacijaAsync()
         {
             var json = await WebApi.GetJson(WebApi.ReqEnum.Zap_Sistematizacija);
@@ -431,6 +431,83 @@ namespace JISP.Data
             if (ucsDatRodj.Count > 0)
                 Utils.ShowMbox(string.Join(Environment.NewLine, ucsDatRodj)
                     , "Spisak učenika čiji se datum rođenja i JMBG se ne slažu");
+        }
+
+        /// <summary>Učitava podatke u tabelu Razredi.</summary>
+        public static async Task GetRazredi()
+        {
+            var json = await WebApi.GetJson(WebApi.UrlBase + "Ustanova/VratiSveRazredeUstanove/" + WebApi.SV_SAVA_ID);
+            dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
+            var tbl = AppData.Ds.Razredi;
+            var ids = new List<int>();
+            foreach (var it in arr)
+            {
+                var id = (int)it.id;
+                ids.Add(id);
+                var razred = tbl.FindByIdRazreda(id);
+                if (razred == null)
+                {
+                    razred = tbl.NewRazrediRow();
+                    razred.IdRazreda = id;
+                    razred.NazivRazreda = Utils.SkratiRazredSS((string)it.razredNaziv);
+                    razred.SkolskaGodina = it.skolskaGodinaNaziv;
+                    tbl.AddRazrediRow(razred);
+                }
+                else
+                {
+                    if (it.razredNaziv != null)
+                        razred.NazivRazreda = Utils.SkratiRazredSS((string)it.razredNaziv);
+                    if (it.skolskaGodina != null)
+                        razred.SkolskaGodina = it.skolskaGodinaNaziv;
+                }
+            }
+            var zaBrisanje = AppData.Ds.Razredi.Where(it => !ids.Contains(it.IdRazreda)).ToArray();
+            foreach (var r in zaBrisanje)
+                AppData.Ds.Razredi.RemoveRazrediRow(r);
+        }
+
+        /// <summary>Učitava podatke u tabelu Odeljenja za dati razred.</summary>
+        public static async Task GetOdeljenja(int idRazreda)
+        {
+            var razred = AppData.Ds.Razredi.FindByIdRazreda(idRazreda);
+            if (razred == null)
+                throw new Exception($"Razred sa IDem {idRazreda} nije pronadjen.");
+
+            var json = await WebApi.GetJson(WebApi.UrlBase + "Ustanova/VratiOdeljenjaUstanovePoRazredu/" + idRazreda);
+            dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
+            var tbl = AppData.Ds.Odeljenja;
+            var ids = new List<int>();
+            foreach (var it in arr)
+            {
+                var id = (int)it.id;
+                ids.Add(id);
+                var od = tbl.FindByIdOdeljenja(id);
+                if (od == null)
+                {
+                    od = tbl.NewOdeljenjaRow();
+                    od.IdOdeljenja = id;
+                    od.NazivOdeljenja = it.nazivOdeljenja;
+                    od.Staresina = it.odeljenskiStaresinaNaziv;
+                    tbl.AddOdeljenjaRow(od);
+                    AppData.Ds.OdRaz.AddOdRazRow(razred, od);
+                }
+                else
+                {
+                    if (it.nazivOdeljenja != null && od.NazivOdeljenja != (string)it.nazivOdeljenja)
+                        od.NazivOdeljenja = it.nazivOdeljenja;
+                    if (it.odeljenskiStaresinaNaziv != null && od.Staresina != (string)it.odeljenskiStaresinaNaziv)
+                        od.Staresina = it.odeljenskiStaresinaNaziv;
+                    var odraz = AppData.Ds.OdRaz.FindByIdRazredaIdOdeljenja(idRazreda, id);
+                    if (odraz == null)
+                        AppData.Ds.OdRaz.AddOdRazRow(razred, od);
+                }
+            }
+            var odeljenjaRazreda = AppData.Ds.OdRaz.Where(it => it.IdRazreda == idRazreda)
+                .Select(it => it.IdOdeljenja).ToList();
+            var zaBrisanje = AppData.Ds.Odeljenja.Where(it => odeljenjaRazreda.Contains(it.IdOdeljenja)
+               && !ids.Contains(it.IdOdeljenja));
+            foreach (var o in zaBrisanje)
+                AppData.Ds.Odeljenja.RemoveOdeljenjaRow(o);
         }
 
         #region Lokacije, Objekti, Prostorije
