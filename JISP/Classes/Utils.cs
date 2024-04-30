@@ -71,6 +71,54 @@ namespace JISP.Classes
             }
         }
 
+        private static int RomanDigit(char r)
+        {
+            if (r == 'I')
+                return 1;
+            if (r == 'V')
+                return 5;
+            if (r == 'X')
+                return 10;
+            return -1;
+        }
+
+        /// <see cref="https://www.geeksforgeeks.org/converting-roman-numerals-decimal-lying-1-3999/"/>
+        private static int RomanToDecimal(string str)
+        {
+            int res = 0;
+            for (int i = 0; i < str.Length; i++)
+            {
+                int s1 = RomanDigit(str[i]);
+                if (i + 1 < str.Length)
+                {
+                    int s2 = RomanDigit(str[i + 1]);
+                    if (s1 >= s2)
+                        res += s1;
+                    else
+                    {
+                        res = res + s2 - s1;
+                        i++;
+                    }
+                }
+                else
+                {
+                    res += s1;
+                    i++;
+                }
+            }
+            return res;
+        }
+
+        /// <summary>Na osnovu naziva razreda racuna se broj preko kojeg se razredi mogu sortirati.</summary>
+        public static int RazredSortBroj(string razred)
+        {
+            if (string.IsNullOrEmpty(razred))
+                return -1;
+            var x = razred.Contains("СШ") ? 20 : 10;
+            var rimski = razred.Substring(0, razred.IndexOf(' '));
+            return x + RomanToDecimal(rimski);
+        }
+
         public static DialogResult ShowMbox(Exception ex, string title)
         {
             var msg = ex.Message;

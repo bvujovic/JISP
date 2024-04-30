@@ -1,5 +1,4 @@
 ﻿using JISP.Classes;
-using JISP.Classes.SumaZaposlenja;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,67 +8,30 @@ namespace JISP.Data
 {
     partial class Ds
     {
+        partial class RazrediDataTable
+        {
+            protected override void OnColumnChanged(DataColumnChangeEventArgs e)
+            {
+                base.OnColumnChanged(e);
+                if (e.Column.Ordinal == NazivRazredaColumn.Ordinal)
+                    (e.Row as RazrediRow).SortBroj = Utils.RazredSortBroj((string)e.ProposedValue);
+            }
+        }
+
+        partial class RazrediRow
+        {
+            public override string ToString()
+                => $"{NazivRazreda}, {SkolskaGodina}";
+        }
+
+        partial class OdeljenjaRow
+        {
+            public override string ToString()
+                => $"{NazivOdeljenja}, {Staresina}";
+        }
+
         partial class SumZaposlenjaDataTable
         {
-            /// <summary>Sumiranje/grupisanje zaposlenja u ŠOSO Sv. Sava</summary>
-            //public void SumZaposlenjaUSkoli(ZaposleniRow zap, DateTime datumDo)
-            //{
-            //    // uklanjanje prethodno izračunatih sum-zaposlenja u ŠOSO Sv. Sava
-            //    var ds = this.DataSet as Ds;
-            //    var sumNja = this.Where(it => it.IdZaposlenog == zap.IdZaposlenog
-            //        && it.IdTipaPoslodavca == TipoviPoslodavacaDataTable.SvetiSava.IdTipaPosl).ToList();
-            //    foreach (var it in sumNja)
-            //        ds.SumZaposlenja.RemoveSumZaposlenjaRow(it);
-
-            //    var l = new ListaSumZap();
-            //    foreach (var nje in zap.GetZaposlenjaRows().Where(it => it.DatumZaposlenOd < datumDo &&
-            //        (it.IsRazlogPrestankaZaposlenjaNull() || !it.RazlogPrestankaZaposlenja.Contains("Техничка грешка"))))
-            //    {
-            //        var sz = new SumZap();
-            //        sz.IDs.Add(nje.IdZaposlenja);
-            //        sz.DatumOd = nje.DatumZaposlenOd;
-            //        if (nje.IsDatumZaposlenDoNull())
-            //            sz.DatumDo = datumDo;
-            //        else
-            //            sz.DatumDo = nje.DatumZaposlenDo;
-            //        sz.ProcenatAng = nje.ProcenatRadnogVremena;
-            //        l.Dodaj(sz);
-            //    }
-            //    l.Sumiraj();
-
-            //    foreach (var x in l.SumZaps)
-            //    {
-            //        var sz = NewSumZaposlenjaRow();
-            //        sz.ZaposleniRow = zap;
-            //        sz.DatumOd = x.DatumOd;
-            //        sz.DatumDo = x.DatumDo;
-            //        sz.ProcenatAngazovanja = x.ProcenatAng;
-            //        try
-            //        {
-            //            var staz = Staz.Razlika(sz.DatumOd, sz.DatumDo);
-            //            sz.Staz = staz.ToString();
-            //            if (staz.Equals(Datum.JedanDan))
-            //                sz.Napomene = "Staz od samo jednog dana.";
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            sz.Staz = "/";
-            //            sz.Napomene = ex.Message;
-            //        }
-            //        sz.TipoviPoslodavacaRow = TipoviPoslodavacaDataTable.SvetiSava;
-            //        // dodavanje redova u SumZapDetalji
-            //        AddSumZaposlenjaRow(sz);
-            //        foreach (var id in x.IDs)
-            //        {
-            //            var det = ds.SumZapDetalji.NewSumZapDetaljiRow();
-            //            det.SumZaposlenjaRow = sz;
-            //            det.ZaposlenjaRow = ds.Zaposlenja.FindByIdZaposlenja(id);
-            //            // proc ang, radno mesto
-            //            ds.SumZapDetalji.AddSumZapDetaljiRow(det);
-            //        }
-            //    }
-            //}
-
             public void SumZaposlenjaUSkoli(ZaposleniRow zap, DateTime datumDo)
             {
                 ObrisiZaSosoSvetiSava();

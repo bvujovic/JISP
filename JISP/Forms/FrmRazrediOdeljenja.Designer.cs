@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Label label1;
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lstSkGod = new System.Windows.Forms.ListBox();
             this.ds = new JISP.Data.Ds();
             this.bsRazredi = new System.Windows.Forms.BindingSource(this.components);
@@ -39,43 +39,46 @@
             this.lblOdeljenjaRowCount = new System.Windows.Forms.Label();
             this.bsOdeljenja = new System.Windows.Forms.BindingSource(this.components);
             this.dgvOdeljenja = new JISP.Controls.UcDGV();
+            this.nazivOdeljenjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.staresinaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcOdeljenjaSmer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcOdeljenjaBrUcenika = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcOdeljenjaBrUcenikaIOP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcOdeljenjaBrOcenjenih = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcOdeljenjaBrKrajObrazovanja = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnGetOdeljenja = new JISP.Controls.UcButton();
             this.dgvRazredi = new JISP.Controls.UcDGV();
-            this.nazivRazredaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.skolskaGodinaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nazivRazredaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnGetRazredi = new JISP.Controls.UcButton();
             this.btnPovezi = new JISP.Controls.UcButton();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
+            this.btnSmerovi = new JISP.Controls.UcButton();
             this.ucExitAppButton1 = new JISP.Controls.UcExitAppButton();
-            this.nazivOdeljenjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.staresinaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            label1 = new System.Windows.Forms.Label();
+            this.scMain = new System.Windows.Forms.SplitContainer();
+            this.Razred = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SortBroj = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRazredi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsOdeljenja)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOdeljenja)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRazredi)).BeginInit();
             this.pnlLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.scMain)).BeginInit();
+            this.scMain.Panel1.SuspendLayout();
+            this.scMain.Panel2.SuspendLayout();
+            this.scMain.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(165, 12);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(110, 18);
-            label1.TabIndex = 7;
-            label1.Text = "Školske godine";
             // 
             // lstSkGod
             // 
             this.lstSkGod.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lstSkGod.FormattingEnabled = true;
             this.lstSkGod.ItemHeight = 18;
-            this.lstSkGod.Location = new System.Drawing.Point(165, 31);
+            this.lstSkGod.Location = new System.Drawing.Point(963, 3);
             this.lstSkGod.Name = "lstSkGod";
-            this.lstSkGod.Size = new System.Drawing.Size(118, 202);
+            this.lstSkGod.Size = new System.Drawing.Size(109, 184);
             this.lstSkGod.TabIndex = 1;
             this.lstSkGod.SelectedIndexChanged += new System.EventHandler(this.LstSkGod_SelectedIndexChanged);
             // 
@@ -88,12 +91,12 @@
             // 
             this.bsRazredi.DataMember = "Razredi";
             this.bsRazredi.DataSource = this.ds;
-            this.bsRazredi.Sort = "SkolskaGodina DESC";
+            this.bsRazredi.Sort = "SkolskaGodina DESC, SortBroj";
             // 
             // lblRazrediRowCount
             // 
             this.lblRazrediRowCount.AutoSize = true;
-            this.lblRazrediRowCount.Location = new System.Drawing.Point(529, 236);
+            this.lblRazrediRowCount.Location = new System.Drawing.Point(6, 190);
             this.lblRazrediRowCount.Name = "lblRazrediRowCount";
             this.lblRazrediRowCount.Size = new System.Drawing.Size(12, 18);
             this.lblRazrediRowCount.TabIndex = 8;
@@ -101,8 +104,9 @@
             // 
             // lblOdeljenjaRowCount
             // 
+            this.lblOdeljenjaRowCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblOdeljenjaRowCount.AutoSize = true;
-            this.lblOdeljenjaRowCount.Location = new System.Drawing.Point(529, 460);
+            this.lblOdeljenjaRowCount.Location = new System.Drawing.Point(6, 243);
             this.lblOdeljenjaRowCount.Name = "lblOdeljenjaRowCount";
             this.lblOdeljenjaRowCount.Size = new System.Drawing.Size(12, 18);
             this.lblOdeljenjaRowCount.TabIndex = 8;
@@ -112,6 +116,7 @@
             // 
             this.bsOdeljenja.DataMember = "Odeljenja";
             this.bsOdeljenja.DataSource = this.ds;
+            this.bsOdeljenja.Sort = "SortBroj, NazivOdeljenja";
             // 
             // dgvOdeljenja
             // 
@@ -124,22 +129,99 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvOdeljenja.AutoGenerateColumns = false;
             this.dgvOdeljenja.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvOdeljenja.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvOdeljenja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOdeljenja.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nazivOdeljenjaDataGridViewTextBoxColumn,
-            this.staresinaDataGridViewTextBoxColumn});
+            this.staresinaDataGridViewTextBoxColumn,
+            this.dgvcOdeljenjaSmer,
+            this.dgvcOdeljenjaBrUcenika,
+            this.dgvcOdeljenjaBrUcenikaIOP,
+            this.dgvcOdeljenjaBrOcenjenih,
+            this.dgvcOdeljenjaBrKrajObrazovanja,
+            this.Razred,
+            this.SortBroj});
             this.dgvOdeljenja.ColumnsForCopyOnClick = null;
             this.dgvOdeljenja.CopyOnCellClick = false;
             this.dgvOdeljenja.CtrlDisplayPositionRowCount = this.lblOdeljenjaRowCount;
             this.dgvOdeljenja.DataSource = this.bsOdeljenja;
-            this.dgvOdeljenja.Location = new System.Drawing.Point(532, 267);
+            this.dgvOdeljenja.Location = new System.Drawing.Point(9, 3);
             this.dgvOdeljenja.Name = "dgvOdeljenja";
             this.dgvOdeljenja.ReadOnly = true;
             this.dgvOdeljenja.RowHeadersWidth = 30;
             this.dgvOdeljenja.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvOdeljenja.Size = new System.Drawing.Size(559, 190);
+            this.dgvOdeljenja.Size = new System.Drawing.Size(1063, 237);
             this.dgvOdeljenja.StandardSort = null;
             this.dgvOdeljenja.TabIndex = 6;
+            // 
+            // nazivOdeljenjaDataGridViewTextBoxColumn
+            // 
+            this.nazivOdeljenjaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.nazivOdeljenjaDataGridViewTextBoxColumn.DataPropertyName = "NazivOdeljenja";
+            this.nazivOdeljenjaDataGridViewTextBoxColumn.HeaderText = "Odeljenje";
+            this.nazivOdeljenjaDataGridViewTextBoxColumn.Name = "nazivOdeljenjaDataGridViewTextBoxColumn";
+            this.nazivOdeljenjaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nazivOdeljenjaDataGridViewTextBoxColumn.Width = 94;
+            // 
+            // staresinaDataGridViewTextBoxColumn
+            // 
+            this.staresinaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.staresinaDataGridViewTextBoxColumn.DataPropertyName = "Staresina";
+            this.staresinaDataGridViewTextBoxColumn.HeaderText = "Odelj. starešina";
+            this.staresinaDataGridViewTextBoxColumn.Name = "staresinaDataGridViewTextBoxColumn";
+            this.staresinaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dgvcOdeljenjaSmer
+            // 
+            this.dgvcOdeljenjaSmer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvcOdeljenjaSmer.DataPropertyName = "Smer";
+            this.dgvcOdeljenjaSmer.HeaderText = "Smer";
+            this.dgvcOdeljenjaSmer.Name = "dgvcOdeljenjaSmer";
+            this.dgvcOdeljenjaSmer.ReadOnly = true;
+            this.dgvcOdeljenjaSmer.Width = 69;
+            // 
+            // dgvcOdeljenjaBrUcenika
+            // 
+            this.dgvcOdeljenjaBrUcenika.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dgvcOdeljenjaBrUcenika.DataPropertyName = "BrUcenika";
+            this.dgvcOdeljenjaBrUcenika.HeaderText = "Učenika";
+            this.dgvcOdeljenjaBrUcenika.Name = "dgvcOdeljenjaBrUcenika";
+            this.dgvcOdeljenjaBrUcenika.ReadOnly = true;
+            this.dgvcOdeljenjaBrUcenika.Width = 87;
+            // 
+            // dgvcOdeljenjaBrUcenikaIOP
+            // 
+            this.dgvcOdeljenjaBrUcenikaIOP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dgvcOdeljenjaBrUcenikaIOP.DataPropertyName = "BrUcenikaIOP";
+            this.dgvcOdeljenjaBrUcenikaIOP.HeaderText = "IOP2 Učenika";
+            this.dgvcOdeljenjaBrUcenikaIOP.Name = "dgvcOdeljenjaBrUcenikaIOP";
+            this.dgvcOdeljenjaBrUcenikaIOP.ReadOnly = true;
+            this.dgvcOdeljenjaBrUcenikaIOP.Width = 124;
+            // 
+            // dgvcOdeljenjaBrOcenjenih
+            // 
+            this.dgvcOdeljenjaBrOcenjenih.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dgvcOdeljenjaBrOcenjenih.DataPropertyName = "BrOcenjenih";
+            this.dgvcOdeljenjaBrOcenjenih.HeaderText = "Ocenjenih";
+            this.dgvcOdeljenjaBrOcenjenih.Name = "dgvcOdeljenjaBrOcenjenih";
+            this.dgvcOdeljenjaBrOcenjenih.ReadOnly = true;
+            this.dgvcOdeljenjaBrOcenjenih.Width = 99;
+            // 
+            // dgvcOdeljenjaBrKrajObrazovanja
+            // 
+            this.dgvcOdeljenjaBrKrajObrazovanja.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dgvcOdeljenjaBrKrajObrazovanja.DataPropertyName = "BrKrajObrazovanja";
+            this.dgvcOdeljenjaBrKrajObrazovanja.HeaderText = "Kraj Obraz.";
+            this.dgvcOdeljenjaBrKrajObrazovanja.Name = "dgvcOdeljenjaBrKrajObrazovanja";
+            this.dgvcOdeljenjaBrKrajObrazovanja.ReadOnly = true;
+            this.dgvcOdeljenjaBrKrajObrazovanja.Width = 108;
             // 
             // btnGetOdeljenja
             // 
@@ -148,7 +230,7 @@
             this.btnGetOdeljenja.Size = new System.Drawing.Size(127, 34);
             this.btnGetOdeljenja.TabIndex = 5;
             this.btnGetOdeljenja.Text = "Odeljenja";
-            this.btnGetOdeljenja.ToolTipText = null;
+            this.btnGetOdeljenja.ToolTipText = "Preuzmi podatke o odeljenjima za selektovane razrede";
             this.btnGetOdeljenja.UseVisualStyleBackColor = true;
             this.btnGetOdeljenja.Click += new System.EventHandler(this.BtnGetOdeljenja_Click);
             // 
@@ -156,36 +238,30 @@
             // 
             this.dgvRazredi.AllowUserToAddRows = false;
             this.dgvRazredi.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvRazredi.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvRazredi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvRazredi.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvRazredi.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvRazredi.AutoGenerateColumns = false;
             this.dgvRazredi.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvRazredi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRazredi.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nazivRazredaDataGridViewTextBoxColumn,
-            this.skolskaGodinaDataGridViewTextBoxColumn});
+            this.skolskaGodinaDataGridViewTextBoxColumn,
+            this.nazivRazredaDataGridViewTextBoxColumn});
             this.dgvRazredi.ColumnsForCopyOnClick = null;
             this.dgvRazredi.CopyOnCellClick = false;
             this.dgvRazredi.CtrlDisplayPositionRowCount = this.lblRazrediRowCount;
             this.dgvRazredi.DataSource = this.bsRazredi;
-            this.dgvRazredi.Location = new System.Drawing.Point(532, 12);
+            this.dgvRazredi.Location = new System.Drawing.Point(6, 3);
             this.dgvRazredi.Name = "dgvRazredi";
             this.dgvRazredi.ReadOnly = true;
             this.dgvRazredi.RowHeadersWidth = 30;
             this.dgvRazredi.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRazredi.Size = new System.Drawing.Size(559, 221);
+            this.dgvRazredi.Size = new System.Drawing.Size(951, 184);
             this.dgvRazredi.StandardSort = null;
             this.dgvRazredi.TabIndex = 4;
-            // 
-            // nazivRazredaDataGridViewTextBoxColumn
-            // 
-            this.nazivRazredaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nazivRazredaDataGridViewTextBoxColumn.DataPropertyName = "NazivRazreda";
-            this.nazivRazredaDataGridViewTextBoxColumn.HeaderText = "Razred";
-            this.nazivRazredaDataGridViewTextBoxColumn.Name = "nazivRazredaDataGridViewTextBoxColumn";
-            this.nazivRazredaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dgvRazredi.SelectionChanged += new System.EventHandler(this.DgvRazredi_SelectionChanged);
             // 
             // skolskaGodinaDataGridViewTextBoxColumn
             // 
@@ -196,6 +272,14 @@
             this.skolskaGodinaDataGridViewTextBoxColumn.ReadOnly = true;
             this.skolskaGodinaDataGridViewTextBoxColumn.Width = 88;
             // 
+            // nazivRazredaDataGridViewTextBoxColumn
+            // 
+            this.nazivRazredaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nazivRazredaDataGridViewTextBoxColumn.DataPropertyName = "NazivRazreda";
+            this.nazivRazredaDataGridViewTextBoxColumn.HeaderText = "Razred";
+            this.nazivRazredaDataGridViewTextBoxColumn.Name = "nazivRazredaDataGridViewTextBoxColumn";
+            this.nazivRazredaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // btnGetRazredi
             // 
             this.btnGetRazredi.Location = new System.Drawing.Point(7, 93);
@@ -203,7 +287,7 @@
             this.btnGetRazredi.Size = new System.Drawing.Size(127, 34);
             this.btnGetRazredi.TabIndex = 3;
             this.btnGetRazredi.Text = "Razredi";
-            this.btnGetRazredi.ToolTipText = null;
+            this.btnGetRazredi.ToolTipText = "Preuzmi podatke o svim razredima za sve školske godine";
             this.btnGetRazredi.UseVisualStyleBackColor = true;
             this.btnGetRazredi.Click += new System.EventHandler(this.BtnGetRazredi_Click);
             // 
@@ -211,15 +295,16 @@
             // 
             this.btnPovezi.Location = new System.Drawing.Point(7, 177);
             this.btnPovezi.Name = "btnPovezi";
-            this.btnPovezi.Size = new System.Drawing.Size(127, 34);
+            this.btnPovezi.Size = new System.Drawing.Size(127, 56);
             this.btnPovezi.TabIndex = 9;
-            this.btnPovezi.Text = "Poveži od i uč";
-            this.btnPovezi.ToolTipText = null;
+            this.btnPovezi.Text = "Poveži odeljenja i učenike";
+            this.btnPovezi.ToolTipText = "Poveži odeljenja i učenike";
             this.btnPovezi.UseVisualStyleBackColor = true;
             this.btnPovezi.Click += new System.EventHandler(this.BtnPovezi_Click);
             // 
             // pnlLeft
             // 
+            this.pnlLeft.Controls.Add(this.btnSmerovi);
             this.pnlLeft.Controls.Add(this.ucExitAppButton1);
             this.pnlLeft.Controls.Add(this.btnPovezi);
             this.pnlLeft.Controls.Add(this.btnGetRazredi);
@@ -231,6 +316,17 @@
             this.pnlLeft.RightWingWidth = 6;
             this.pnlLeft.Size = new System.Drawing.Size(150, 482);
             this.pnlLeft.TabIndex = 10;
+            // 
+            // btnSmerovi
+            // 
+            this.btnSmerovi.Location = new System.Drawing.Point(7, 239);
+            this.btnSmerovi.Name = "btnSmerovi";
+            this.btnSmerovi.Size = new System.Drawing.Size(127, 34);
+            this.btnSmerovi.TabIndex = 10;
+            this.btnSmerovi.Text = "Smerovi";
+            this.btnSmerovi.ToolTipText = "Preuzmi podatke o odeljenjima za selektovane razrede";
+            this.btnSmerovi.UseVisualStyleBackColor = true;
+            this.btnSmerovi.Click += new System.EventHandler(this.BtnSmerovi_Click);
             // 
             // ucExitAppButton1
             // 
@@ -244,34 +340,49 @@
             this.ucExitAppButton1.ToolTipText = "Izlaz iz aplikacije";
             this.ucExitAppButton1.UseVisualStyleBackColor = false;
             // 
-            // nazivOdeljenjaDataGridViewTextBoxColumn
+            // scMain
             // 
-            this.nazivOdeljenjaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nazivOdeljenjaDataGridViewTextBoxColumn.DataPropertyName = "NazivOdeljenja";
-            this.nazivOdeljenjaDataGridViewTextBoxColumn.HeaderText = "Odeljenje";
-            this.nazivOdeljenjaDataGridViewTextBoxColumn.Name = "nazivOdeljenjaDataGridViewTextBoxColumn";
-            this.nazivOdeljenjaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.scMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.scMain.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.scMain.Location = new System.Drawing.Point(150, 0);
+            this.scMain.Name = "scMain";
+            this.scMain.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // staresinaDataGridViewTextBoxColumn
+            // scMain.Panel1
             // 
-            this.staresinaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.staresinaDataGridViewTextBoxColumn.DataPropertyName = "Staresina";
-            this.staresinaDataGridViewTextBoxColumn.HeaderText = "Odelj. starešina";
-            this.staresinaDataGridViewTextBoxColumn.Name = "staresinaDataGridViewTextBoxColumn";
-            this.staresinaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.scMain.Panel1.Controls.Add(this.lstSkGod);
+            this.scMain.Panel1.Controls.Add(this.dgvRazredi);
+            this.scMain.Panel1.Controls.Add(this.lblRazrediRowCount);
+            // 
+            // scMain.Panel2
+            // 
+            this.scMain.Panel2.Controls.Add(this.dgvOdeljenja);
+            this.scMain.Panel2.Controls.Add(this.lblOdeljenjaRowCount);
+            this.scMain.Size = new System.Drawing.Size(1075, 482);
+            this.scMain.SplitterDistance = 213;
+            this.scMain.TabIndex = 11;
+            // 
+            // Razred
+            // 
+            this.Razred.DataPropertyName = "Razred";
+            this.Razred.HeaderText = "Razred";
+            this.Razred.Name = "Razred";
+            this.Razred.ReadOnly = true;
+            // 
+            // SortBroj
+            // 
+            this.SortBroj.DataPropertyName = "SortBroj";
+            this.SortBroj.HeaderText = "SortBroj";
+            this.SortBroj.Name = "SortBroj";
+            this.SortBroj.ReadOnly = true;
             // 
             // FrmRazrediOdeljenja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1103, 482);
+            this.ClientSize = new System.Drawing.Size(1225, 482);
+            this.Controls.Add(this.scMain);
             this.Controls.Add(this.pnlLeft);
-            this.Controls.Add(this.lblOdeljenjaRowCount);
-            this.Controls.Add(this.lblRazrediRowCount);
-            this.Controls.Add(label1);
-            this.Controls.Add(this.lstSkGod);
-            this.Controls.Add(this.dgvOdeljenja);
-            this.Controls.Add(this.dgvRazredi);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmRazrediOdeljenja";
@@ -283,8 +394,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvOdeljenja)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRazredi)).EndInit();
             this.pnlLeft.ResumeLayout(false);
+            this.scMain.Panel1.ResumeLayout(false);
+            this.scMain.Panel1.PerformLayout();
+            this.scMain.Panel2.ResumeLayout(false);
+            this.scMain.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.scMain)).EndInit();
+            this.scMain.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -294,8 +410,6 @@
         private Controls.UcDGV dgvRazredi;
         private System.Windows.Forms.BindingSource bsRazredi;
         private Data.Ds ds;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nazivRazredaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn skolskaGodinaDataGridViewTextBoxColumn;
         private Controls.UcButton btnGetOdeljenja;
         private Controls.UcDGV dgvOdeljenja;
         private System.Windows.Forms.BindingSource bsOdeljenja;
@@ -304,7 +418,18 @@
         private Controls.UcButton btnPovezi;
         private Controls.UcLeftPanel pnlLeft;
         private Controls.UcExitAppButton ucExitAppButton1;
+        private Controls.UcButton btnSmerovi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn skolskaGodinaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nazivRazredaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.SplitContainer scMain;
         private System.Windows.Forms.DataGridViewTextBoxColumn nazivOdeljenjaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn staresinaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcOdeljenjaSmer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcOdeljenjaBrUcenika;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcOdeljenjaBrUcenikaIOP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcOdeljenjaBrOcenjenih;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcOdeljenjaBrKrajObrazovanja;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Razred;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SortBroj;
     }
 }

@@ -52,5 +52,18 @@ namespace xUnitTests.Classes
             var res = Utils.FilterAndOr(s, s => s);
             Assert.Equal(expected, res);
         }
+
+        [Theory]
+        [InlineData("I разред", 11)]
+        [InlineData("III разред", 13)]
+        [InlineData("IV разред", 14)]
+        [InlineData("VIII разред", 18)]
+        [InlineData("III разред - СШ", 23)]
+        [InlineData("I разред - СШ", 21)]
+        public void RazredSortBroj_Test(string razred, int sortBroj)
+        {
+            var res = Utils.RazredSortBroj(razred);
+            Assert.Equal(sortBroj, res);
+        }
     }
 }

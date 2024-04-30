@@ -29,8 +29,8 @@
     <ProductName>Naš JISP</ProductName>
     <PublisherName>BV</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.7.2.0</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>0.7.2.1</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -116,8 +116,6 @@
     <Compile Include="Classes\SkolskaGodina.cs" />
     <Compile Include="Classes\SlikeZaposlenih.cs" />
     <Compile Include="Classes\Staz.cs" />
-    <Compile Include="Classes\SumaZaposlenja\ListaSumZap.cs" />
-    <Compile Include="Classes\SumaZaposlenja\SumZap.cs" />
     <Compile Include="Classes\Utils.cs" />
     <Compile Include="Controls\UcButton.cs">
       <SubType>Component</SubType>
