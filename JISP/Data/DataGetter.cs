@@ -470,6 +470,8 @@ namespace JISP.Data
         public static async Task GetOdeljenja(int idRazreda)
         {
             var razred = AppData.Ds.Razredi.FindByIdRazreda(idRazreda);
+            if (razred.NazivRazreda == AppData.NazivPppRazreda)
+                return;
             if (razred == null)
                 throw new Exception($"Razred sa IDem {idRazreda} nije pronadjen.");
 
@@ -480,8 +482,8 @@ namespace JISP.Data
             foreach (var it in arr)
             {
                 var id = (int)it.id;
-                ids.Add(id);
                 var od = tbl.FindByIdOdeljenja(id);
+                ids.Add(id);
                 if (od == null)
                 {
                     od = tbl.NewOdeljenjaRow();
@@ -503,11 +505,78 @@ namespace JISP.Data
                 }
             }
             var odeljenjaRazreda = AppData.Ds.OdRaz.Where(it => it.IdRazreda == idRazreda)
-                .Select(it => it.IdOdeljenja).ToList();
+                .Select(it => it.IdOdeljenja);
             var zaBrisanje = AppData.Ds.Odeljenja.Where(it => odeljenjaRazreda.Contains(it.IdOdeljenja)
-               && !ids.Contains(it.IdOdeljenja));
+               && !ids.Contains(it.IdOdeljenja)).ToList();
             foreach (var o in zaBrisanje)
                 AppData.Ds.Odeljenja.RemoveOdeljenjaRow(o);
+        }
+
+        /// <summary>Dohvata razrede (PPP) i odeljenja (vaspitne grupe) za predskolsko.</summary>
+        /// <remarks>
+        /// Vaspitne grupe se upisuju kao odeljenja, a PPP razred svake godine za koju postoji
+        /// predskolski program dobija sledeci negativan broj od strane aplikacije Nas JISP.
+        /// </remarks>
+        public static async Task GetVaspitneGrupe(string skGod)
+        {
+            var PPP = AppData.NazivPppRazreda;
+            var json = await WebApi.PostForJson(WebApi.UrlBase + "Ustanova/VratiVaspitneGrupe",
+                "{\"radnaGodinaId\":\"\",\"regUstObjekatId\":\"\",\"regUstUstanovaId\":" + WebApi.SV_SAVA_ID
+                + ",\"regUstLokacijaId\":\"\",\"regUstVaspitnaGrupaVrstaId\":1}");
+            dynamic arr = Newtonsoft.Json.Linq.JArray.Parse(json);
+            Ds.RazrediRow pppRazred = null;
+            var tblOd = AppData.Ds.Odeljenja;
+            var ids = new List<int>();
+            foreach (var it in arr)
+            {
+                if ((string)it.radnaGodinaNaziv != skGod)
+                    continue;
+                pppRazred = AppData.Ds.Razredi.FirstOrDefault(r => r.NazivRazreda == PPP
+                    && r.SkolskaGodina == skGod);
+                if (pppRazred == null) // dodavanje PPP razreda ako u toj skGod ima PPP grupa
+                {
+                    int idPPP;
+                    var pretRazredi = AppData.Ds.Razredi.Where(r => r.NazivRazreda == PPP);
+                    if (pretRazredi.Any())
+                        idPPP = pretRazredi.Min(r => r.IdRazreda) - 1;
+                    else
+                        idPPP = -1;
+                    pppRazred = AppData.Ds.Razredi.AddRazrediRow(idPPP, PPP, skGod, Utils.RazredSortBroj(PPP));
+                }
+
+                json = await WebApi.GetJson(WebApi.UrlBase + "Ustanova/VratiVaspitnuGrupu/" + it.id);
+                dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(json);
+
+                var id = (int)it.id;
+                ids.Add(id);
+                var od = tblOd.FindByIdOdeljenja(id);
+                string vaspitacica = (obj.vaspitaci != null && obj.vaspitaci.Count > 0) ?
+                    obj.vaspitaci[0].ime + " " + obj.vaspitaci[0].prezime : "/";
+                if (od == null) // dodavanje nove PPP grupe kao odeljenja
+                {
+                    od = tblOd.NewOdeljenjaRow();
+                    od.IdOdeljenja = id;
+                    od.NazivOdeljenja = obj.nazivGrupe;
+                    od.Staresina = vaspitacica;
+                    od.SortBroj = Utils.RazredSortBroj(pppRazred.NazivRazreda);
+                    tblOd.AddOdeljenjaRow(od);
+                    AppData.Ds.OdRaz.AddOdRazRow(pppRazred, od);
+                }
+                else // izmena podataka: naziv grupe (odeljenja, vaspitacica (od. staresina)
+                {
+                    if (obj.nazivGrupe != null && od.NazivOdeljenja != (string)obj.nazivGrupe)
+                        od.NazivOdeljenja = it.nazivOdeljenja;
+                    if (od.Staresina != vaspitacica)
+                        od.Staresina = vaspitacica;
+                }
+            }
+            // brisanje PPP grupa koje su uklonjene iz JISPa
+            var odeljenjaRazreda = AppData.Ds.OdRaz.Where(it => it.IdRazreda == pppRazred.IdRazreda)
+                .Select(it => it.IdOdeljenja);
+            var zaBrisanje = tblOd.Where(it => odeljenjaRazreda.Contains(it.IdOdeljenja)
+               && !ids.Contains(it.IdOdeljenja)).ToList();
+            foreach (var o in zaBrisanje)
+                tblOd.RemoveOdeljenjaRow(o);
         }
 
         #region Lokacije, Objekti, Prostorije

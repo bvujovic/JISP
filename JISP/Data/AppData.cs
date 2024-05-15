@@ -18,6 +18,10 @@ namespace JISP.Data
 
         /// <summary>Tekuca/aktivna skolska godina - izabrana na FrmMain.</summary>
         public static SkolskaGodina SkolskaGodina { get; set; }
+
+        /// <summary>Naziv razreda koji obuhvata predskolske grupe u jednoj skolskoj godini.</summary>
+        public static string NazivPppRazreda { get => "ППП"; }
+
         //B
         ///// <summary>Tekuća školska godina. Npr: 2021/2022</summary>
         //public static string TekucaSkGodStr => $"{TekucaSkGodStart}/{TekucaSkGodStart + 1}";
@@ -29,7 +33,7 @@ namespace JISP.Data
 
         /// <summary>Vreme u sekundama koliko se ceka odgovor od servera za obicne zahteve (za podatke).</summary>
         public static int HttpTimeoutShort { get; set; }
-        
+
         /// <summary>Vreme u sekundama koliko se ceka odgovor od servera za zahteve za fajlovima (dokumenta).</summary>
         public static int HttpTimeoutLong { get; set; }
 

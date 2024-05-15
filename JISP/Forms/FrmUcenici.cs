@@ -275,6 +275,7 @@ namespace JISP.Forms
                             RegUceLiceId = it.regUceLiceId,
                             JOB = it.job,
                             SkolskaGodina = it.radnaGodina,
+                            Razred = AppData.NazivPppRazreda,
                             Odeljenje = it.vaspitnaGrupa,
                             Id = it.id,
                         });

@@ -18,9 +18,10 @@ namespace JISP.Forms
                 foreach (var od in AppData.Ds.Odeljenja.Where(it => !it.IsRazredNull()))
                 {
                     var sb = Utils.RazredSortBroj(od.Razred);
-                    if (od.SortBroj != sb)
+                    if (od.IsSortBrojNull() || od.SortBroj != sb)
                         od.SortBroj = sb;
                 }
+
                 bsRazredi.DataSource = AppData.Ds;
                 dgvRazredi.StandardSort = bsRazredi.Sort;
                 bsOdeljenja.DataSource = AppData.Ds;
@@ -51,7 +52,10 @@ namespace JISP.Forms
             foreach (var r in dgvRazredi.SelectedDataRows<Ds.RazrediRow>())
                 await (sender as UcButton).RunAsync(async () =>
                 {
-                    await DataGetter.GetOdeljenja(r.IdRazreda);
+                    if (r.NazivRazreda != AppData.NazivPppRazreda)
+                        await DataGetter.GetOdeljenja(r.IdRazreda);
+                    else
+                        await DataGetter.GetVaspitneGrupe(r.SkolskaGodina);
                 });
         }
 

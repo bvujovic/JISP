@@ -114,6 +114,8 @@ namespace JISP.Classes
         {
             if (string.IsNullOrEmpty(razred))
                 return -1;
+            if (razred == "ППП")
+                return 1;
             var x = razred.Contains("СШ") ? 20 : 10;
             var rimski = razred.Substring(0, razred.IndexOf(' '));
             return x + RomanToDecimal(rimski);
