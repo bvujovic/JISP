@@ -15,6 +15,13 @@ namespace JISP.Forms
 
             try
             {
+                // dodela SorBroj-eva razredima i odeljenjima, ako im vec nisu dodeljeni
+                foreach (var r in AppData.Ds.Razredi)
+                {
+                    var sb = Utils.RazredSortBroj(r.NazivRazreda);
+                    if (r.IsSortBrojNull() || r.SortBroj != sb)
+                        r.SortBroj = sb;
+                }
                 foreach (var od in AppData.Ds.Odeljenja.Where(it => !it.IsRazredNull()))
                 {
                     var sb = Utils.RazredSortBroj(od.Razred);
@@ -89,7 +96,7 @@ namespace JISP.Forms
                 {
                     var ucenici = od.GetUcenikSkGodRows().Where(it => !it.Ispisan);
                     od.BrUcenika = ucenici.Count();
-                    // od.BrUcenikaIOP = ...
+                    od.BrUcenikaIOP = ucenici.Count(it => !it.IsIOPNull());
                     od.BrOcenjenih = ucenici.Count(it => !it.IsOceneKrajBrojNull());
                     od.BrKrajObrazovanja = ucenici.Count(it => !it.IsZavrsObrazovanjaRezimeNull());
                 }

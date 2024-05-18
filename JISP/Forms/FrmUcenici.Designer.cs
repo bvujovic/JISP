@@ -66,6 +66,7 @@
             this.razredDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.odeljenjeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcStaresina = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcIOP = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.smerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcDomGrupa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._Pol = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -336,6 +337,7 @@
             this.razredDataGridViewTextBoxColumn,
             this.odeljenjeDataGridViewTextBoxColumn,
             this.dgvcStaresina,
+            this.dgvcIOP,
             this.smerDataGridViewTextBoxColumn,
             this.dgvcDomGrupa,
             this._Pol,
@@ -462,6 +464,15 @@
             this.dgvcStaresina.Name = "dgvcStaresina";
             this.dgvcStaresina.ReadOnly = true;
             this.dgvcStaresina.Width = 150;
+            // 
+            // dgvcIOP
+            // 
+            this.dgvcIOP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dgvcIOP.DataPropertyName = "IOP";
+            this.dgvcIOP.HeaderText = "IOP";
+            this.dgvcIOP.Name = "dgvcIOP";
+            this.dgvcIOP.ReadOnly = true;
+            this.dgvcIOP.Width = 35;
             // 
             // smerDataGridViewTextBoxColumn
             // 
@@ -645,6 +656,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn razredDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn odeljenjeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcStaresina;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dgvcIOP;
         private System.Windows.Forms.DataGridViewTextBoxColumn smerDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcDomGrupa;
         private System.Windows.Forms.DataGridViewTextBoxColumn _Pol;

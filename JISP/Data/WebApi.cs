@@ -261,10 +261,10 @@ namespace JISP.Data
                 case ReqEnum.Zap_SistematizacijaSacuvajNormu:
                     return UrlBase + $"zaposleni/SacuvajSistematizacijuZaRadnoMesto/";
 
-                case ReqEnum.Uc_DuosSrednjoskolci:
-                    return UrlBase + "ucenik/VratiUpisSrednjeByUstanovaId/" + SV_SAVA_ID;
-                case ReqEnum.Uc_DuosSrednjoskolciId:
-                    return UrlBase + $"ucenik/VratiUpisSrednjeObrazovanjeById/{param}";
+                //case ReqEnum.Uc_DuosSrednjoskolci:
+                //    return UrlBase + "ucenik/VratiUpisSrednjeByUstanovaId/" + SV_SAVA_ID;
+                //case ReqEnum.Uc_DuosSrednjoskolciId:
+                //    return UrlBase + $"ucenik/VratiUpisSrednjeObrazovanjeById/{param}";
 
                 case ReqEnum.Uc_DuosDeca:
                     return UrlBase + "ucenik/vratiPregledDecePredskolsko";

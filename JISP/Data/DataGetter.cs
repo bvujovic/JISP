@@ -3,8 +3,6 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using JISP.Classes;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
 
 namespace JISP.Data
 {

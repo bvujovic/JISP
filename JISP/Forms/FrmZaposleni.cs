@@ -232,6 +232,7 @@ namespace JISP.Forms
                 var uracunataAngazovanja = new[] {
                     "На неодређено",
                     "На одређено - до преузимања односно коначности одлуке о избору кандидата по конкурсу",
+                    "На одређено - до избора кандидата на конкурсу",
                     "На одређено - верска настава",
                     "На одређено - директор установе",
                 };
@@ -264,7 +265,7 @@ namespace JISP.Forms
                             || zap.RadnoMestoNaziv.Contains("Шеф рачуноводства")
                             || zap.RadnoMestoNaziv.Contains("Домар")
                             || zap.RadnoMestoNaziv.Contains("Референт")
-                            || zap.RadnoMestoNaziv.Contains("Економ")
+                            || zap.RadnoMestoNaziv.Contains("Магационер")
                             || zap.RadnoMestoNaziv.Contains("Техничар")
                             || zap.RadnoMestoNaziv.Contains("Медицин")
                             || zap.RadnoMestoNaziv.Contains("Радник")
@@ -604,19 +605,19 @@ namespace JISP.Forms
                 //        zaps.Add(nja.RadnoMestoNaziv);
                 //Clipboard.SetText(string.Join(Environment.NewLine, zaps));
 
-                //var l = new List<string>();
-                //foreach (var z in AppData.Ds.Zaposleni.Where(it => it.Aktivan))
-                //    foreach (var nja in z.GetZaposlenjaRows().Where
-                //        (it => DatumOko1Nov(it.DatumZaposlenOd) ||
-                //        !it.IsDatumZaposlenDoNull() && DatumOko1Nov(it.DatumZaposlenDo)))
-                //    {
-                //        if (!nja.IsRazlogPrestankaZaposlenjaNull())
-                //            Console.WriteLine(nja.RazlogPrestankaZaposlenja);
-                //        l.Add(z.ToString());
-                //        l.Add($"\t{nja.DatumZaposlenOd.ToShortDateString()} - {(nja.IsDatumZaposlenDoNull() ? "/\t" : nja.DatumZaposlenDo.ToShortDateString())}"
-                //            + $"\t{nja.VrstaAngazovanja}\t{nja.ProcenatRadnogVremena} %");
-                //    }
-                //Clipboard.SetText(string.Join(Environment.NewLine, l));
+                var l = new List<string>();
+                foreach (var z in AppData.Ds.Zaposleni.Where(it => it.Aktivan))
+                    foreach (var nja in z.GetZaposlenjaRows().Where
+                        (it => UIntervalu(it.DatumZaposlenOd) ||
+                        !it.IsDatumZaposlenDoNull() && UIntervalu(it.DatumZaposlenDo)))
+                    {
+                        if (!nja.IsRazlogPrestankaZaposlenjaNull())
+                            Console.WriteLine(nja.RazlogPrestankaZaposlenja);
+                        l.Add(z.ToString());
+                        l.Add($"\t{nja.DatumZaposlenOd.ToShortDateString()} - {(nja.IsDatumZaposlenDoNull() ? "/\t" : nja.DatumZaposlenDo.ToShortDateString())}"
+                            + $"\t{nja.VrstaAngazovanja}\t{nja.ProcenatRadnogVremena} %");
+                    }
+                Clipboard.SetText(string.Join(Environment.NewLine, l));
 
                 if (sortPoStatus2)
                 {
@@ -633,6 +634,13 @@ namespace JISP.Forms
         {
             var target = new DateTime(2022, 11, 1);
             return target.AddDays(-5) <= dt && dt <= target.AddDays(5);
+        }
+
+        static bool UIntervalu(DateTime dt)
+        {
+            var datumOd = new DateTime(2023, 10, 10);
+            var datumDo = new DateTime(2024, 05, 15);
+            return datumOd <= dt && dt <= datumDo;
         }
     }
 }

@@ -43,6 +43,7 @@ namespace JISP.Forms
                 CmbDohvatiOpste,
                 CmbDohvatiJmbg,
                 CmbDohvatiOdRaz,
+                CmbDohvatiIOP,
                 CmbDohvatiDomGrupe,
                 CmbDohvatiSmer,
                 CmbDohvatiOcenePG,
@@ -55,6 +56,7 @@ namespace JISP.Forms
         private const string CmbDohvatiOpste = "Opšte: pol, datum rođenja...";
         private const string CmbDohvatiJmbg = "Lista zahteva: JMBG, ime, prezime, roditelj";
         private const string CmbDohvatiOdRaz = "Razredi, odeljenja i vrtić-grupe";
+        private const string CmbDohvatiIOP = "Rad po IOP-u";
         private const string CmbDohvatiDomGrupe = "Vaspitne grupe za dom učenika";
         private const string CmbDohvatiSmer = "Smerovi za srednjoškolce";
         private const string CmbDohvatiOcenePG = "Ocene na polugodištu";
@@ -400,6 +402,30 @@ namespace JISP.Forms
                     await PostForDuosData(WebApi.ReqEnum.Uc_DuosDeca);
                     await GetDuosData(WebApi.ReqEnum.Uc_DuosOS);
                     await PostForDuosData(WebApi.ReqEnum.Uc_DuosSS);
+                });
+
+
+            if (selItem == CmbDohvatiIOP)
+                await (sender as UcButton).RunAsync(async () =>
+                {
+                    foreach (var u in dgvUcenikSkGod.SelectedDataRows<Ds.UcenikSkGodRow>())
+                        if (u.JeOsnovac || u.JeSrednjoskolac)
+                        {
+                            var obrazovanje = u.JeOsnovac ? "Osnovno" : "Srednje";
+                            var url = WebApi.UrlBase + $"ucenik/Vrati{obrazovanje}ObrazovanjeObrazovanjeById/{u.Id}";
+                            var json = await WebApi.GetJson(url);
+                            dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(json);
+                            const int IOP2 = 19348;
+                            if (obj.iopId != null)
+                            {
+                                if (u.IsIOPNull() || (int)obj.iopId == IOP2 != u.IOP)
+                                    u.IOP = (int)obj.iopId == IOP2;
+                            }
+                            else
+                                u.SetIOPNull();
+                        }
+                        else // deca (predskolsko)
+                            u.IOP = true;
                 });
 
             if (selItem == CmbDohvatiDomGrupe)
