@@ -124,7 +124,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            label5.Location = new System.Drawing.Point(0, 27);
+            label5.Location = new System.Drawing.Point(14, 20);
             label5.Name = "label5";
             label5.Size = new System.Drawing.Size(21, 16);
             label5.TabIndex = 12;
@@ -134,7 +134,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            label6.Location = new System.Drawing.Point(48, 27);
+            label6.Location = new System.Drawing.Point(62, 20);
             label6.Name = "label6";
             label6.Size = new System.Drawing.Size(22, 16);
             label6.TabIndex = 15;
@@ -155,7 +155,7 @@
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlLeft.Location = new System.Drawing.Point(0, 0);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.Size = new System.Drawing.Size(146, 461);
+            this.pnlLeft.Size = new System.Drawing.Size(146, 475);
             this.pnlLeft.TabIndex = 0;
             // 
             // gbAdjPositions
@@ -168,7 +168,7 @@
             this.gbAdjPositions.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.gbAdjPositions.Location = new System.Drawing.Point(7, 273);
             this.gbAdjPositions.Name = "gbAdjPositions";
-            this.gbAdjPositions.Size = new System.Drawing.Size(127, 55);
+            this.gbAdjPositions.Size = new System.Drawing.Size(127, 66);
             this.gbAdjPositions.TabIndex = 21;
             this.gbAdjPositions.TabStop = false;
             this.gbAdjPositions.Text = "Podešavanje poz";
@@ -178,7 +178,7 @@
             this.btnAdjPosOK.Enabled = false;
             this.btnAdjPosOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnAdjPosOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnAdjPosOK.Location = new System.Drawing.Point(98, 23);
+            this.btnAdjPosOK.Location = new System.Drawing.Point(97, 36);
             this.btnAdjPosOK.Name = "btnAdjPosOK";
             this.btnAdjPosOK.Size = new System.Drawing.Size(27, 24);
             this.btnAdjPosOK.TabIndex = 17;
@@ -189,20 +189,22 @@
             // txtAdjPosDY
             // 
             this.txtAdjPosDY.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtAdjPosDY.Location = new System.Drawing.Point(67, 24);
+            this.txtAdjPosDY.Location = new System.Drawing.Point(52, 37);
             this.txtAdjPosDY.Name = "txtAdjPosDY";
             this.txtAdjPosDY.ReadOnly = true;
-            this.txtAdjPosDY.Size = new System.Drawing.Size(27, 22);
+            this.txtAdjPosDY.Size = new System.Drawing.Size(42, 22);
             this.txtAdjPosDY.TabIndex = 16;
+            this.txtAdjPosDY.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtAdjPosDX
             // 
             this.txtAdjPosDX.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtAdjPosDX.Location = new System.Drawing.Point(19, 24);
+            this.txtAdjPosDX.Location = new System.Drawing.Point(4, 37);
             this.txtAdjPosDX.Name = "txtAdjPosDX";
             this.txtAdjPosDX.ReadOnly = true;
-            this.txtAdjPosDX.Size = new System.Drawing.Size(27, 22);
+            this.txtAdjPosDX.Size = new System.Drawing.Size(42, 22);
             this.txtAdjPosDX.TabIndex = 14;
+            this.txtAdjPosDX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtDataFolder
             // 
@@ -214,7 +216,7 @@
             // btnObrisiStavku
             // 
             this.btnObrisiStavku.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnObrisiStavku.Location = new System.Drawing.Point(11, 415);
+            this.btnObrisiStavku.Location = new System.Drawing.Point(11, 429);
             this.btnObrisiStavku.Name = "btnObrisiStavku";
             this.btnObrisiStavku.Size = new System.Drawing.Size(127, 34);
             this.btnObrisiStavku.TabIndex = 18;
@@ -225,7 +227,7 @@
             // btnPomeriStavkuNadole
             // 
             this.btnPomeriStavkuNadole.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnPomeriStavkuNadole.Location = new System.Drawing.Point(11, 371);
+            this.btnPomeriStavkuNadole.Location = new System.Drawing.Point(11, 385);
             this.btnPomeriStavkuNadole.Name = "btnPomeriStavkuNadole";
             this.btnPomeriStavkuNadole.Size = new System.Drawing.Size(127, 34);
             this.btnPomeriStavkuNadole.TabIndex = 17;
@@ -236,7 +238,7 @@
             // btnPomeriStavkuNagore
             // 
             this.btnPomeriStavkuNagore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnPomeriStavkuNagore.Location = new System.Drawing.Point(11, 337);
+            this.btnPomeriStavkuNagore.Location = new System.Drawing.Point(11, 351);
             this.btnPomeriStavkuNagore.Name = "btnPomeriStavkuNagore";
             this.btnPomeriStavkuNagore.Size = new System.Drawing.Size(127, 34);
             this.btnPomeriStavkuNagore.TabIndex = 16;
@@ -330,7 +332,7 @@
             // scMain.Panel2
             // 
             this.scMain.Panel2.Controls.Add(this.dgvActions);
-            this.scMain.Size = new System.Drawing.Size(392, 461);
+            this.scMain.Size = new System.Drawing.Size(392, 475);
             this.scMain.SplitterDistance = 168;
             this.scMain.TabIndex = 1;
             // 
@@ -390,7 +392,7 @@
             this.dgvActions.Name = "dgvActions";
             this.dgvActions.RowHeadersWidth = 30;
             this.dgvActions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvActions.Size = new System.Drawing.Size(392, 289);
+            this.dgvActions.Size = new System.Drawing.Size(392, 303);
             this.dgvActions.TabIndex = 1;
             this.dgvActions.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvActions_CellDoubleClick);
             this.dgvActions.SelectionChanged += new System.EventHandler(this.DgvActions_SelectionChanged);
@@ -449,7 +451,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(538, 461);
+            this.ClientSize = new System.Drawing.Size(538, 475);
             this.Controls.Add(this.scMain);
             this.Controls.Add(this.pnlLeft);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));

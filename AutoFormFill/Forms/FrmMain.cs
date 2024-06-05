@@ -176,8 +176,9 @@ namespace AutoFormFill
         {
             if (ptCurrentPosition.HasValue && testCurrentPosition)
             {
-                if (Cursor.Position != ptCurrentPosition.Value
-                    && ptLastPosition.HasValue && Cursor.Position == ptLastPosition)
+                var pos = Cursor.Position;
+                if (pos != ptCurrentPosition.Value
+                    && ptLastPosition.HasValue && pos == ptLastPosition)
                 {
                     testCurrentPosition = false;
                     timAdjustPositions.Stop();
@@ -185,10 +186,19 @@ namespace AutoFormFill
                 }
                 else
                 {
-                    txtAdjPosDX.Text = (ptCurrentPosition.Value.X - Cursor.Position.X).ToString();
-                    txtAdjPosDY.Text = (ptCurrentPosition.Value.Y - Cursor.Position.Y).ToString();
+                    if (Bounds.Contains(pos))
+                    {
+                        timAdjustPositions.Stop();
+                        btnAdjPosOK.Enabled = false;
+                        ResetAdjPositions();
+                    }
+                    else
+                    {
+                        txtAdjPosDX.Text = (ptCurrentPosition.Value.X - pos.X).ToString();
+                        txtAdjPosDY.Text = (ptCurrentPosition.Value.Y - pos.Y).ToString();
+                    }
                 }
-                ptLastPosition = Cursor.Position;
+                ptLastPosition = pos;
             }
         }
 
@@ -209,9 +219,8 @@ namespace AutoFormFill
                         continue;
                     var pt = StrToPoint(act.Content);
                     var ptOffset = StrToPoint(txtAdjPosDX.Text + ", " + txtAdjPosDY.Text);
-                    pt.Offset(ptOffset.X, ptOffset.Y);
+                    pt.Offset(-ptOffset.X, -ptOffset.Y);
                     act.Content = pt.X + ", " + pt.Y;
-                    // TEST!
                 }
                 ResetAdjPositions();
             }

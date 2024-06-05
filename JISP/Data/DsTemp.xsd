@@ -52,6 +52,26 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="RodjendaniZap" msprop:Generator_RowEvHandlerName="RodjendaniZapRowChangeEventHandler" msprop:Generator_RowDeletedName="RodjendaniZapRowDeleted" msprop:Generator_RowDeletingName="RodjendaniZapRowDeleting" msprop:Generator_RowEvArgName="RodjendaniZapRowChangeEvent" msprop:Generator_TablePropName="RodjendaniZap" msprop:Generator_RowChangedName="RodjendaniZapRowChanged" msprop:Generator_RowChangingName="RodjendaniZapRowChanging" msprop:Generator_TableClassName="RodjendaniZapDataTable" msprop:Generator_RowClassName="RodjendaniZapRow" msprop:Generator_TableVarName="tableRodjendaniZap" msprop:Generator_UserTableName="RodjendaniZap">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdZaposlenog" msprop:Generator_ColumnPropNameInRow="IdZaposlenog" msprop:Generator_ColumnPropNameInTable="IdZaposlenogColumn" msprop:Generator_ColumnVarNameInTable="columnIdZaposlenog" msprop:Generator_UserColumnName="IdZaposlenog" type="xs:int" />
+              <xs:element name="ImePrezime" msprop:Generator_ColumnPropNameInRow="ImePrezime" msprop:Generator_ColumnPropNameInTable="ImePrezimeColumn" msprop:Generator_ColumnVarNameInTable="columnImePrezime" msprop:Generator_UserColumnName="ImePrezime" type="xs:string" />
+              <xs:element name="Godine" msprop:Generator_ColumnPropNameInRow="Godine" msprop:Generator_ColumnPropNameInTable="GodineColumn" msprop:Generator_ColumnVarNameInTable="columnGodine" msprop:Generator_UserColumnName="Godine" type="xs:double" minOccurs="0" />
+              <xs:element name="DanaDoRodj" msprop:Generator_ColumnPropNameInRow="DanaDoRodj" msprop:Generator_ColumnPropNameInTable="DanaDoRodjColumn" msprop:Generator_ColumnVarNameInTable="columnDanaDoRodj" msprop:Generator_UserColumnName="DanaDoRodj" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RodjendaniUc" msprop:Generator_RowEvHandlerName="RodjendaniUcRowChangeEventHandler" msprop:Generator_RowDeletedName="RodjendaniUcRowDeleted" msprop:Generator_RowDeletingName="RodjendaniUcRowDeleting" msprop:Generator_RowEvArgName="RodjendaniUcRowChangeEvent" msprop:Generator_TablePropName="RodjendaniUc" msprop:Generator_RowChangedName="RodjendaniUcRowChanged" msprop:Generator_RowChangingName="RodjendaniUcRowChanging" msprop:Generator_TableClassName="RodjendaniUcDataTable" msprop:Generator_RowClassName="RodjendaniUcRow" msprop:Generator_TableVarName="tableRodjendaniUc" msprop:Generator_UserTableName="RodjendaniUc">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ImePrezime" msprop:Generator_ColumnPropNameInRow="ImePrezime" msprop:Generator_ColumnPropNameInTable="ImePrezimeColumn" msprop:Generator_ColumnVarNameInTable="columnImePrezime" msprop:Generator_UserColumnName="ImePrezime" type="xs:string" />
+              <xs:element name="SkolaOdeljenje" msprop:Generator_ColumnPropNameInRow="SkolaOdeljenje" msprop:Generator_ColumnPropNameInTable="SkolaOdeljenjeColumn" msprop:Generator_ColumnVarNameInTable="columnSkolaOdeljenje" msprop:Generator_UserColumnName="SkolaOdeljenje" type="xs:string" />
+              <xs:element name="Godine" msprop:Generator_ColumnPropNameInRow="Godine" msprop:Generator_ColumnPropNameInTable="GodineColumn" msprop:Generator_ColumnVarNameInTable="columnGodine" msprop:Generator_UserColumnName="Godine" type="xs:double" minOccurs="0" />
+              <xs:element name="DanaDoRodj" msprop:Generator_ColumnPropNameInRow="DanaDoRodj" msprop:Generator_ColumnPropNameInTable="DanaDoRodjColumn" msprop:Generator_ColumnVarNameInTable="columnDanaDoRodj" msprop:Generator_UserColumnName="DanaDoRodj" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -73,6 +93,10 @@
     <xs:unique name="StepenStrucneSpreme_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:StepenStrucneSpreme" />
       <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="RodjendaniZap_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:RodjendaniZap" />
+      <xs:field xpath="mstns:IdZaposlenog" />
     </xs:unique>
   </xs:element>
 </xs:schema>

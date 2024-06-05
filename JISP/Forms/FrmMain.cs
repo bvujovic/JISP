@@ -65,6 +65,8 @@ namespace JISP.Forms
                 BackupData.CreateBackupIfNeeded();
                 Text = "Naš JISP - " + Utils.GetVersionName();
                 Icon = Properties.Resources.grb_srb;
+
+                UcitajRodjendance();
             }
             catch (Exception ex)
             {
@@ -295,6 +297,27 @@ namespace JISP.Forms
                 IstaknutaKontrola(btnLat2Cir, LatinicaCirilica.AutoKonverzija == LatCirKonverzija.Lat2Cir);
                 IstaknutaKontrola(btnCir2Lat, LatinicaCirilica.AutoKonverzija == LatCirKonverzija.Cir2Lat);
             }
+        }
+
+        void UcitajRodjendance()
+        {
+            dsTemp.RodjendaniZap.Clear();
+            foreach (var zap in AppData.Ds.Zaposleni.Where
+                (it => it.DanaDoRodj <= numRodjPre.Value || it.DanaDoRodj >= 365 - numRodjPosle.Value))
+                dsTemp.RodjendaniZap.AddRodjendaniZapRow(zap.IdZaposlenog, zap.ZaposleniString, zap.Godine, zap.DanaDoRodj);
+            bsRodjZap.MoveFirst();
+
+            dsTemp.RodjendaniUc.Clear();
+            foreach (var uc in AppData.Ds.UcenikSkGod.Where
+                (it => it.SkGod == AppData.SkolskaGodina.Naziv 
+                && (it._DanaDoRodj <= numRodjPre.Value || it._DanaDoRodj >= 365 - numRodjPosle.Value)))
+                dsTemp.RodjendaniUc.AddRodjendaniUcRow(uc._UcenikString, uc.Odeljenje, uc._Godine, uc._DanaDoRodj);
+            rodjendaniUcBindingSource.MoveFirst();
+        }
+
+        private void NumRodj_ValueChanged(object sender, EventArgs e)
+        {
+            UcitajRodjendance();
         }
     }
 }
