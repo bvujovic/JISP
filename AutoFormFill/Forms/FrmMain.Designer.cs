@@ -33,7 +33,13 @@
             System.Windows.Forms.Label label2;
             System.Windows.Forms.Label label1;
             System.Windows.Forms.Label label4;
+            System.Windows.Forms.Label label5;
+            System.Windows.Forms.Label label6;
             this.pnlLeft = new System.Windows.Forms.Panel();
+            this.gbAdjPositions = new System.Windows.Forms.GroupBox();
+            this.btnAdjPosOK = new System.Windows.Forms.Button();
+            this.txtAdjPosDY = new System.Windows.Forms.TextBox();
+            this.txtAdjPosDX = new System.Windows.Forms.TextBox();
             this.txtDataFolder = new System.Windows.Forms.TextBox();
             this.btnObrisiStavku = new System.Windows.Forms.Button();
             this.btnPomeriStavkuNadole = new System.Windows.Forms.Button();
@@ -50,17 +56,21 @@
             this.bsRoutines = new System.Windows.Forms.BindingSource(this.components);
             this.ds = new AutoFormFill.Ds();
             this.dgvActions = new System.Windows.Forms.DataGridView();
-            this.bsActions = new System.Windows.Forms.BindingSource(this.components);
-            this.tim = new System.Windows.Forms.Timer(this.components);
             this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.contentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.commentDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcActEnabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.bsActions = new System.Windows.Forms.BindingSource(this.components);
+            this.tim = new System.Windows.Forms.Timer(this.components);
+            this.timAdjustPositions = new System.Windows.Forms.Timer(this.components);
             label3 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
+            label5 = new System.Windows.Forms.Label();
+            label6 = new System.Windows.Forms.Label();
             this.pnlLeft.SuspendLayout();
+            this.gbAdjPositions.SuspendLayout();
             this.gbPustanje.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numDelay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scMain)).BeginInit();
@@ -77,7 +87,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(76, 85);
+            label3.Location = new System.Drawing.Point(76, 78);
             label3.Name = "label3";
             label3.Size = new System.Drawing.Size(29, 18);
             label3.TabIndex = 11;
@@ -86,7 +96,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(1, 62);
+            label2.Location = new System.Drawing.Point(1, 55);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(102, 18);
             label2.TabIndex = 10;
@@ -95,7 +105,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(12, 70);
+            label1.Location = new System.Drawing.Point(12, 66);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(69, 18);
             label1.TabIndex = 13;
@@ -110,8 +120,29 @@
             label4.TabIndex = 19;
             label4.Text = "Folder sa podacima";
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            label5.Location = new System.Drawing.Point(0, 27);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(21, 16);
+            label5.TabIndex = 12;
+            label5.Text = "dx";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            label6.Location = new System.Drawing.Point(48, 27);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(22, 16);
+            label6.TabIndex = 15;
+            label6.Text = "dy";
+            // 
             // pnlLeft
             // 
+            this.pnlLeft.Controls.Add(this.gbAdjPositions);
             this.pnlLeft.Controls.Add(this.txtDataFolder);
             this.pnlLeft.Controls.Add(label4);
             this.pnlLeft.Controls.Add(this.btnObrisiStavku);
@@ -124,8 +155,54 @@
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlLeft.Location = new System.Drawing.Point(0, 0);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.Size = new System.Drawing.Size(146, 442);
+            this.pnlLeft.Size = new System.Drawing.Size(146, 461);
             this.pnlLeft.TabIndex = 0;
+            // 
+            // gbAdjPositions
+            // 
+            this.gbAdjPositions.Controls.Add(this.btnAdjPosOK);
+            this.gbAdjPositions.Controls.Add(this.txtAdjPosDY);
+            this.gbAdjPositions.Controls.Add(label6);
+            this.gbAdjPositions.Controls.Add(this.txtAdjPosDX);
+            this.gbAdjPositions.Controls.Add(label5);
+            this.gbAdjPositions.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.gbAdjPositions.Location = new System.Drawing.Point(7, 273);
+            this.gbAdjPositions.Name = "gbAdjPositions";
+            this.gbAdjPositions.Size = new System.Drawing.Size(127, 55);
+            this.gbAdjPositions.TabIndex = 21;
+            this.gbAdjPositions.TabStop = false;
+            this.gbAdjPositions.Text = "Podešavanje poz";
+            // 
+            // btnAdjPosOK
+            // 
+            this.btnAdjPosOK.Enabled = false;
+            this.btnAdjPosOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnAdjPosOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnAdjPosOK.Location = new System.Drawing.Point(98, 23);
+            this.btnAdjPosOK.Name = "btnAdjPosOK";
+            this.btnAdjPosOK.Size = new System.Drawing.Size(27, 24);
+            this.btnAdjPosOK.TabIndex = 17;
+            this.btnAdjPosOK.Text = "ok";
+            this.btnAdjPosOK.UseVisualStyleBackColor = true;
+            this.btnAdjPosOK.Click += new System.EventHandler(this.BtnAdjPosOK_Click);
+            // 
+            // txtAdjPosDY
+            // 
+            this.txtAdjPosDY.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtAdjPosDY.Location = new System.Drawing.Point(67, 24);
+            this.txtAdjPosDY.Name = "txtAdjPosDY";
+            this.txtAdjPosDY.ReadOnly = true;
+            this.txtAdjPosDY.Size = new System.Drawing.Size(27, 22);
+            this.txtAdjPosDY.TabIndex = 16;
+            // 
+            // txtAdjPosDX
+            // 
+            this.txtAdjPosDX.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtAdjPosDX.Location = new System.Drawing.Point(19, 24);
+            this.txtAdjPosDX.Name = "txtAdjPosDX";
+            this.txtAdjPosDX.ReadOnly = true;
+            this.txtAdjPosDX.Size = new System.Drawing.Size(27, 22);
+            this.txtAdjPosDX.TabIndex = 14;
             // 
             // txtDataFolder
             // 
@@ -137,7 +214,7 @@
             // btnObrisiStavku
             // 
             this.btnObrisiStavku.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnObrisiStavku.Location = new System.Drawing.Point(11, 396);
+            this.btnObrisiStavku.Location = new System.Drawing.Point(11, 415);
             this.btnObrisiStavku.Name = "btnObrisiStavku";
             this.btnObrisiStavku.Size = new System.Drawing.Size(127, 34);
             this.btnObrisiStavku.TabIndex = 18;
@@ -148,7 +225,7 @@
             // btnPomeriStavkuNadole
             // 
             this.btnPomeriStavkuNadole.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnPomeriStavkuNadole.Location = new System.Drawing.Point(11, 349);
+            this.btnPomeriStavkuNadole.Location = new System.Drawing.Point(11, 371);
             this.btnPomeriStavkuNadole.Name = "btnPomeriStavkuNadole";
             this.btnPomeriStavkuNadole.Size = new System.Drawing.Size(127, 34);
             this.btnPomeriStavkuNadole.TabIndex = 17;
@@ -159,7 +236,7 @@
             // btnPomeriStavkuNagore
             // 
             this.btnPomeriStavkuNagore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnPomeriStavkuNagore.Location = new System.Drawing.Point(11, 315);
+            this.btnPomeriStavkuNagore.Location = new System.Drawing.Point(11, 337);
             this.btnPomeriStavkuNagore.Name = "btnPomeriStavkuNagore";
             this.btnPomeriStavkuNagore.Size = new System.Drawing.Size(127, 34);
             this.btnPomeriStavkuNagore.TabIndex = 16;
@@ -169,7 +246,7 @@
             // 
             // btnSnimanjeStartStop
             // 
-            this.btnSnimanjeStartStop.Location = new System.Drawing.Point(7, 91);
+            this.btnSnimanjeStartStop.Location = new System.Drawing.Point(7, 85);
             this.btnSnimanjeStartStop.Name = "btnSnimanjeStartStop";
             this.btnSnimanjeStartStop.Size = new System.Drawing.Size(127, 34);
             this.btnSnimanjeStartStop.TabIndex = 12;
@@ -180,7 +257,7 @@
             // chkPrikaziKursor
             // 
             this.chkPrikaziKursor.AutoSize = true;
-            this.chkPrikaziKursor.Location = new System.Drawing.Point(7, 265);
+            this.chkPrikaziKursor.Location = new System.Drawing.Point(7, 245);
             this.chkPrikaziKursor.Name = "chkPrikaziKursor";
             this.chkPrikaziKursor.Size = new System.Drawing.Size(119, 22);
             this.chkPrikaziKursor.TabIndex = 15;
@@ -193,16 +270,16 @@
             this.gbPustanje.Controls.Add(label3);
             this.gbPustanje.Controls.Add(label2);
             this.gbPustanje.Controls.Add(this.numDelay);
-            this.gbPustanje.Location = new System.Drawing.Point(7, 143);
+            this.gbPustanje.Location = new System.Drawing.Point(7, 129);
             this.gbPustanje.Name = "gbPustanje";
-            this.gbPustanje.Size = new System.Drawing.Size(127, 116);
+            this.gbPustanje.Size = new System.Drawing.Size(127, 106);
             this.gbPustanje.TabIndex = 14;
             this.gbPustanje.TabStop = false;
             this.gbPustanje.Text = "Puštanje";
             // 
             // btnPustanjeStartStop
             // 
-            this.btnPustanjeStartStop.Location = new System.Drawing.Point(5, 24);
+            this.btnPustanjeStartStop.Location = new System.Drawing.Point(5, 20);
             this.btnPustanjeStartStop.Name = "btnPustanjeStartStop";
             this.btnPustanjeStartStop.Size = new System.Drawing.Size(117, 34);
             this.btnPustanjeStartStop.TabIndex = 12;
@@ -217,7 +294,7 @@
             0,
             0,
             0});
-            this.numDelay.Location = new System.Drawing.Point(4, 83);
+            this.numDelay.Location = new System.Drawing.Point(4, 76);
             this.numDelay.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -253,7 +330,7 @@
             // scMain.Panel2
             // 
             this.scMain.Panel2.Controls.Add(this.dgvActions);
-            this.scMain.Size = new System.Drawing.Size(392, 442);
+            this.scMain.Size = new System.Drawing.Size(392, 461);
             this.scMain.SplitterDistance = 168;
             this.scMain.TabIndex = 1;
             // 
@@ -313,20 +390,10 @@
             this.dgvActions.Name = "dgvActions";
             this.dgvActions.RowHeadersWidth = 30;
             this.dgvActions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvActions.Size = new System.Drawing.Size(392, 270);
+            this.dgvActions.Size = new System.Drawing.Size(392, 289);
             this.dgvActions.TabIndex = 1;
             this.dgvActions.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvActions_CellDoubleClick);
             this.dgvActions.SelectionChanged += new System.EventHandler(this.DgvActions_SelectionChanged);
-            // 
-            // bsActions
-            // 
-            this.bsActions.DataMember = "Routines_Actions";
-            this.bsActions.DataSource = this.bsRoutines;
-            // 
-            // tim
-            // 
-            this.tim.Interval = 1000;
-            this.tim.Tick += new System.EventHandler(this.Tim_Tick);
             // 
             // typeDataGridViewTextBoxColumn
             // 
@@ -363,11 +430,26 @@
             this.dgvcActEnabled.Name = "dgvcActEnabled";
             this.dgvcActEnabled.Width = 27;
             // 
+            // bsActions
+            // 
+            this.bsActions.DataMember = "Routines_Actions";
+            this.bsActions.DataSource = this.bsRoutines;
+            // 
+            // tim
+            // 
+            this.tim.Interval = 1000;
+            this.tim.Tick += new System.EventHandler(this.Tim_Tick);
+            // 
+            // timAdjustPositions
+            // 
+            this.timAdjustPositions.Interval = 1000;
+            this.timAdjustPositions.Tick += new System.EventHandler(this.TimAdjustPositions_Tick);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(538, 442);
+            this.ClientSize = new System.Drawing.Size(538, 461);
             this.Controls.Add(this.scMain);
             this.Controls.Add(this.pnlLeft);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -381,6 +463,8 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmMain_KeyDown);
             this.pnlLeft.ResumeLayout(false);
             this.pnlLeft.PerformLayout();
+            this.gbAdjPositions.ResumeLayout(false);
+            this.gbAdjPositions.PerformLayout();
             this.gbPustanje.ResumeLayout(false);
             this.gbPustanje.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numDelay)).EndInit();
@@ -422,6 +506,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn contentDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn commentDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgvcActEnabled;
+        private System.Windows.Forms.Timer timAdjustPositions;
+        private System.Windows.Forms.GroupBox gbAdjPositions;
+        private System.Windows.Forms.TextBox txtAdjPosDY;
+        private System.Windows.Forms.TextBox txtAdjPosDX;
+        private System.Windows.Forms.Button btnAdjPosOK;
     }
 }
 

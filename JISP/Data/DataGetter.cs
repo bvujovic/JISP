@@ -59,7 +59,8 @@ namespace JISP.Data
                 oz.Godina = obj.godinaBroj;
                 oz.MesecNaziv = obj.mesecSifarnikNaziv;
                 oz.MesecBroj = Classes.ObracunZarada.OzMesec.BrojMeseca(oz.MesecNaziv);
-                oz.OsnovniKoef = obj.osnovniKoeficijentZaposlenog;
+                if (obj.osnovniKoeficijentZaposlenog != null)
+                    oz.OsnovniKoef = obj.osnovniKoeficijentZaposlenog;
                 if (obj.dodatniKoeficijentZaposlenog != null)
                     oz.DodatniKoef = obj.dodatniKoeficijentZaposlenog;
                 if (obj.koeficijentZaStaresinstvo != null)

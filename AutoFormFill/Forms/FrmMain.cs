@@ -60,6 +60,10 @@ namespace AutoFormFill
         /// <summary>Da li je izvrsena prva stavka pri pustanju rutine.</summary>
         private bool izvrsenaPrvaStavka = false;
 
+        /// <summary>Da li je tip akcije klik ili dupli klik.</summary>
+        private static bool JeKlik(string tip)
+            => tip == AkcijaTip.Klik.ToString() || tip == AkcijaTip.DKlik.ToString();
+
         private enum AkcijaTip
         {
             Tekst,
@@ -84,23 +88,44 @@ namespace AutoFormFill
         }
         private Proces tekuciProces = Proces.Cekanje;
 
-        private void NamestiKursor(Ds.ActionsRow action, bool uradiKlik)
+        static Point StrToPoint(string content)
         {
-            if (!JeKlik(action.Type))
-                return;
-            var koordinate = action.Content.Split(new char[] { ',' });
+            var koordinate = content.Split(new char[] { ',' });
             if (koordinate.Length != 2)
                 throw new Exception("Tacka na ekranu na koju treba kliknuti mora da sadrži 2 koordinate.");
 
             if (int.TryParse(koordinate[0], out int x) && int.TryParse(koordinate[1], out int y))
-            {
-                Cursor.Position = new Point(x, y);
-                if (uradiKlik)
-                    DoMouseClick(action.Type);
-            }
+                return new Point(x, y);
             else
                 throw new Exception("Koordinate tačke na ekranu na koju treba kliknuti moraju biti zadate u formatu \"100, 200\".");
         }
+
+        private void NamestiKursor(Ds.ActionsRow action, bool uradiKlik)
+        {
+            if (!JeKlik(action.Type))
+                return;
+            ptPoslednja = Cursor.Position = StrToPoint(action.Content);
+            if (testCurrentPosition)
+                ptCurrentPosition = ptPoslednja;
+            if (uradiKlik)
+                DoMouseClick(action.Type);
+
+            //var koordinate = action.Content.Split(new char[] { ',' });
+            //if (koordinate.Length != 2)
+            //    throw new Exception("Tacka na ekranu na koju treba kliknuti mora da sadrži 2 koordinate.");
+            //if (int.TryParse(koordinate[0], out int x) && int.TryParse(koordinate[1], out int y))
+            //{
+            //    ptPoslednja = Cursor.Position = new Point(x, y);
+            //    if (testCurrentPosition)
+            //        ptCurrentPosition = ptPoslednja;
+            //    if (uradiKlik)
+            //        DoMouseClick(action.Type);
+            //}
+            //else
+            //    throw new Exception();
+        }
+
+        Point? ptPoslednja = null;
 
         /// <summary>Promena stanja snimanja: radi <-> ne radi.</summary>
         private void PromenaSnimanje()
@@ -129,6 +154,7 @@ namespace AutoFormFill
         private void BtnSnimanjeStartStop_Click(object sender, EventArgs e)
         {
             PromenaSnimanje();
+            ResetAdjPositions();
         }
 
         private void BtnPustanjeStartStop_Click(object sender, EventArgs e)
@@ -137,8 +163,59 @@ namespace AutoFormFill
             if (pustanje == ProcesKomanda.Stop ||
                 idx == 0 ||
                 MessageBox.Show($"Selektovana stavka je {idx + 1} po redu. Da li ste sigurni da želite da pokrenete rutinu od te stavke?"
-                    , "Pokretanje rutine (početna pozicija)") == DialogResult.Yes)
+                    , "Pokretanje rutine (početna pozicija)", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 PromenaPustanje();
+            ResetAdjPositions();
+        }
+
+        Point? ptCurrentPosition = null;
+        bool testCurrentPosition = false;
+        Point? ptLastPosition = null;
+
+        private void TimAdjustPositions_Tick(object sender, EventArgs e)
+        {
+            if (ptCurrentPosition.HasValue && testCurrentPosition)
+            {
+                if (Cursor.Position != ptCurrentPosition.Value
+                    && ptLastPosition.HasValue && Cursor.Position == ptLastPosition)
+                {
+                    testCurrentPosition = false;
+                    timAdjustPositions.Stop();
+                    btnAdjPosOK.Enabled = true;
+                }
+                else
+                {
+                    txtAdjPosDX.Text = (ptCurrentPosition.Value.X - Cursor.Position.X).ToString();
+                    txtAdjPosDY.Text = (ptCurrentPosition.Value.Y - Cursor.Position.Y).ToString();
+                }
+                ptLastPosition = Cursor.Position;
+            }
+        }
+
+        void ResetAdjPositions()
+        {
+            txtAdjPosDX.Text = txtAdjPosDY.Text = "";
+            btnAdjPosOK.Enabled = false;
+        }
+
+        private void BtnAdjPosOK_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dgvActions.SelectedRows)
+                {
+                    var act = (row?.DataBoundItem as DataRowView)?.Row as Ds.ActionsRow;
+                    if (act == null || !JeKlik(act.Type))
+                        continue;
+                    var pt = StrToPoint(act.Content);
+                    var ptOffset = StrToPoint(txtAdjPosDX.Text + ", " + txtAdjPosDY.Text);
+                    pt.Offset(ptOffset.X, ptOffset.Y);
+                    act.Content = pt.X + ", " + pt.Y;
+                    // TEST!
+                }
+                ResetAdjPositions();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Podešavanje pozicija tačaka za klikove"); }
         }
 
         private void DgvActions_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -146,11 +223,13 @@ namespace AutoFormFill
             if (e.RowIndex != -1 && !dgvActions.SelectedRows[0].IsNewRow)
                 try
                 {
-                    //var drv = dgvActions.CurrentRow.DataBoundItem as DataRowView;
-                    //var act = drv.Row as Ds.ActionsRow;
                     var act = CurrentAction;
                     if (JeKlik(act.Type))
+                    {
+                        testCurrentPosition = true;
                         NamestiKursor(act, false);
+                        timAdjustPositions.Start();
+                    }
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message, Text); }
         }
@@ -209,16 +288,10 @@ namespace AutoFormFill
         {
             if (tekuciProces != Proces.Cekanje || dgvActions.CurrentRow == null || !chkPrikaziKursor.Checked)
                 return;
-            //var drv = dgvActions.CurrentRow.DataBoundItem as DataRowView;
-            //var act = drv.Row as Ds.ActionsRow;
             var act = CurrentAction;
             if (JeKlik(act.Type))
                 NamestiKursor(act, false);
         }
-
-        /// <summary>Da li je tip akcije klik ili dupli klik.</summary>
-        private static bool JeKlik(string tip)
-            => tip == AkcijaTip.Klik.ToString() || tip == AkcijaTip.DKlik.ToString();
 
         private void NumDelay_ValueChanged(object sender, EventArgs e)
         {
@@ -233,6 +306,8 @@ namespace AutoFormFill
                 e.Handled = true;
             }
         }
+
+        const string msgKorPomerioKursor = "Korisnik je pomerio kursor.";
 
         private void Tim_Tick(object sender, EventArgs e)
         {
@@ -261,6 +336,18 @@ namespace AutoFormFill
                 }
                 if (tekuciProces == Proces.Pustanje)
                 {
+                    if (ptPoslednja.HasValue)
+                    {
+                        var dx = Math.Abs(ptPoslednja.Value.X - Cursor.Position.X);
+                        var dy = Math.Abs(ptPoslednja.Value.Y - Cursor.Position.Y);
+                        var d = Math.Sqrt(dx * dx + dy * dy);
+                        if (d > 15)
+                        {
+                            ptPoslednja = null;
+                            throw new Exception(msgKorPomerioKursor);
+                        }
+                    }
+
                     // izvrsavanje tekuce akcije
                     izvrsenaPrvaStavka = true;
 
@@ -284,9 +371,13 @@ namespace AutoFormFill
             }
             catch (Exception ex)
             {
-                if (tekuciProces == Proces.Pustanje) PromenaPustanje(); else PromenaSnimanje();
+                if (tekuciProces == Proces.Pustanje)
+                    PromenaPustanje();
+                else
+                    PromenaSnimanje();
                 tekuciProces = Proces.Cekanje;
-                MessageBox.Show(ex.Message, $"Proces {tekuciProces} je naišao na problem");
+                if (ex.Message != msgKorPomerioKursor)
+                    MessageBox.Show(ex.Message, $"Proces {tekuciProces} je naišao na problem");
             }
         }
 
@@ -300,5 +391,6 @@ namespace AutoFormFill
         }
 
         Ds.ActionsRow CurrentAction => (dgvActions.CurrentRow.DataBoundItem as DataRowView).Row as Ds.ActionsRow;
+
     }
 }
