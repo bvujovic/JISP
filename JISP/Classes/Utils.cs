@@ -204,7 +204,7 @@ namespace JISP.Classes
             frm.WindowState = FormWindowState.Normal;
         }
 
-        private static Version appVersion = null;
+        private static readonly Version appVersion = null;
 
         /// <summary>Popunjava se polje appVersion. Ima vrednost samo ako je instalirana aplikacija. null - app pokrenuta iz VS.</summary>
         public static void CalcVersion()

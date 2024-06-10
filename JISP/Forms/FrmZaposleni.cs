@@ -4,6 +4,7 @@ using JISP.Controls;
 using JISP.Data;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -29,6 +30,9 @@ namespace JISP.Forms
             dgvZaposlenja.LoadSettings();
             PodesiComboBoxove();
             txtFilter.BindingSource = bsZaposleni;
+            dtpNazDokDatum.CustomFormat = Utils.DatumFormat;
+            scNazDok.SplitterDistance = scNazDok.Width - chkNazDokEnable.Width;
+            scNazDok.FixedPanel = FixedPanel.Panel2;
             this.FormStandardSettings();
         }
 
@@ -641,6 +645,49 @@ namespace JISP.Forms
             var datumOd = new DateTime(2023, 10, 10);
             var datumDo = new DateTime(2024, 05, 15);
             return datumOd <= dt && dt <= datumDo;
+        }
+
+        private void ChkNazDokEnable_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkNazDokEnable.Checked) // prikazi NazDok komponente
+            {
+                chkNazDokEnable.Text = "";
+                scNazDok.SplitterDistance = scNazDok.Panel1MinSize;
+                scNazDok.FixedPanel = FixedPanel.Panel1;
+            }
+            else
+            {
+                chkNazDokEnable.Text = "Nazivi dokumenata";
+                scNazDok.SplitterDistance = scNazDok.Width - chkNazDokEnable.Width;
+                scNazDok.FixedPanel = FixedPanel.Panel2;
+            }
+        }
+
+        private void BsZaposleni_CurrentChanged(object sender, EventArgs e)
+            => NazivDokumenta();
+
+        private void CmbNazDokTip_SelectedIndexChanged(object sender, EventArgs e)
+            => NazivDokumenta();
+
+        private void DtpNazDokDatum_ValueChanged(object sender, EventArgs e)
+            => NazivDokumenta();
+
+        /// <summary>Kreiranje naziva dokumenta na osnovu imena, prezimena, tipa dok i datuma.</summary>
+        void NazivDokumenta()
+        {
+            try
+            {
+                if (!chkNazDokEnable.Checked || bsZaposleni.Current == null)
+                    return;
+                var zap = ((bsZaposleni.Current as DataRowView).Row as Ds.ZaposleniRow).ZaposleniString;
+                zap = LatinicaCirilica.UkloniKvacice(LatinicaCirilica.Cir2Lat(zap));
+                var datum = cmbNazDokTip.Text == "godisnji" ? dtpNazDokDatum.Value.Year.ToString()
+                    : dtpNazDokDatum.Value.ToString(Utils.DatumFormat);
+                lblNazDok.Text
+                    = $"{zap} - {cmbNazDokTip.Text} {datum}.pdf";
+                Clipboard.SetText(lblNazDok.Text);
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, chkNazDokEnable.Text); }
         }
     }
 }

@@ -53,10 +53,18 @@
             this.numHttpTimeoutLong = new System.Windows.Forms.NumericUpDown();
             this.bsRodjZap = new System.Windows.Forms.BindingSource(this.components);
             this.dsTemp = new JISP.Data.DsTemp();
+            this.tcRodjendanci = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.bsRodjUc = new System.Windows.Forms.BindingSource(this.components);
+            this.numRodjPre = new System.Windows.Forms.NumericUpDown();
+            this.numRodjPosle = new System.Windows.Forms.NumericUpDown();
             this.dgvRodjZap = new JISP.Controls.UcDGV();
             this.imePrezimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.godineDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.danaDoRodjDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcDanUNedelji = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ucDGV1 = new JISP.Controls.UcDGV();
             this.btnLat2Cir = new JISP.Controls.UcButton();
             this.btnCir2Lat = new JISP.Controls.UcButton();
             this.btnFormAutoInput = new JISP.Controls.UcButton();
@@ -65,17 +73,11 @@
             this.btnBackup = new JISP.Controls.UcButton();
             this.btnZaposleni = new JISP.Controls.UcButton();
             this.btnUcenici = new JISP.Controls.UcButton();
-            this.tcRodjendanci = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.ucDGV1 = new JISP.Controls.UcDGV();
             this.imePrezimeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.skolaOdeljenjeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.godineDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.danaDoRodjDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rodjendaniUcBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.numRodjPre = new System.Windows.Forms.NumericUpDown();
-            this.numRodjPosle = new System.Windows.Forms.NumericUpDown();
+            this.dgvcUcDanUNedelji = new System.Windows.Forms.DataGridViewTextBoxColumn();
             label2 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -88,14 +90,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.numHttpTimeoutLong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRodjZap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsTemp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRodjZap)).BeginInit();
             this.tcRodjendanci.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ucDGV1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rodjendaniUcBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRodjUc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRodjPre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRodjPosle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRodjZap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ucDGV1)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -284,6 +286,81 @@
             this.dsTemp.DataSetName = "DsTemp";
             this.dsTemp.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // tcRodjendanci
+            // 
+            this.tcRodjendanci.Controls.Add(this.tabPage1);
+            this.tcRodjendanci.Controls.Add(this.tabPage2);
+            this.tcRodjendanci.Location = new System.Drawing.Point(72, 356);
+            this.tcRodjendanci.Name = "tcRodjendanci";
+            this.tcRodjendanci.SelectedIndex = 0;
+            this.tcRodjendanci.Size = new System.Drawing.Size(476, 174);
+            this.tcRodjendanci.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.tcRodjendanci.TabIndex = 18;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.dgvRodjZap);
+            this.tabPage1.Location = new System.Drawing.Point(4, 26);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(468, 144);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Zaposleni";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.ucDGV1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 26);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(468, 144);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Učenici";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // bsRodjUc
+            // 
+            this.bsRodjUc.DataMember = "RodjendaniUc";
+            this.bsRodjUc.DataSource = this.dsTemp;
+            this.bsRodjUc.Sort = "DanaDoRodj";
+            // 
+            // numRodjPre
+            // 
+            this.numRodjPre.Location = new System.Drawing.Point(170, 530);
+            this.numRodjPre.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.numRodjPre.Name = "numRodjPre";
+            this.numRodjPre.Size = new System.Drawing.Size(41, 24);
+            this.numRodjPre.TabIndex = 19;
+            this.numRodjPre.Value = new decimal(new int[] {
+            7,
+            0,
+            0,
+            0});
+            this.numRodjPre.ValueChanged += new System.EventHandler(this.NumRodj_ValueChanged);
+            // 
+            // numRodjPosle
+            // 
+            this.numRodjPosle.Location = new System.Drawing.Point(332, 530);
+            this.numRodjPosle.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.numRodjPosle.Name = "numRodjPosle";
+            this.numRodjPosle.Size = new System.Drawing.Size(41, 24);
+            this.numRodjPosle.TabIndex = 20;
+            this.numRodjPosle.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.numRodjPosle.ValueChanged += new System.EventHandler(this.NumRodj_ValueChanged);
+            // 
             // dgvRodjZap
             // 
             this.dgvRodjZap.AllowUserToAddRows = false;
@@ -296,7 +373,8 @@
             this.dgvRodjZap.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.imePrezimeDataGridViewTextBoxColumn,
             this.godineDataGridViewTextBoxColumn,
-            this.danaDoRodjDataGridViewTextBoxColumn});
+            this.danaDoRodjDataGridViewTextBoxColumn,
+            this.dgvcDanUNedelji});
             this.dgvRodjZap.ColumnsForCopyOnClick = null;
             this.dgvRodjZap.CopyOnCellClick = false;
             this.dgvRodjZap.CtrlDisplayPositionRowCount = null;
@@ -339,6 +417,44 @@
             this.danaDoRodjDataGridViewTextBoxColumn.Name = "danaDoRodjDataGridViewTextBoxColumn";
             this.danaDoRodjDataGridViewTextBoxColumn.ReadOnly = true;
             this.danaDoRodjDataGridViewTextBoxColumn.Width = 89;
+            // 
+            // dgvcDanUNedelji
+            // 
+            this.dgvcDanUNedelji.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dgvcDanUNedelji.DataPropertyName = "DanUNedelji";
+            this.dgvcDanUNedelji.HeaderText = "Dan";
+            this.dgvcDanUNedelji.Name = "dgvcDanUNedelji";
+            this.dgvcDanUNedelji.ReadOnly = true;
+            this.dgvcDanUNedelji.Width = 60;
+            // 
+            // ucDGV1
+            // 
+            this.ucDGV1.AllowUserToAddRows = false;
+            this.ucDGV1.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ucDGV1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.ucDGV1.AutoGenerateColumns = false;
+            this.ucDGV1.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.ucDGV1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ucDGV1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.imePrezimeDataGridViewTextBoxColumn1,
+            this.skolaOdeljenjeDataGridViewTextBoxColumn,
+            this.godineDataGridViewTextBoxColumn1,
+            this.danaDoRodjDataGridViewTextBoxColumn1,
+            this.dgvcUcDanUNedelji});
+            this.ucDGV1.ColumnsForCopyOnClick = null;
+            this.ucDGV1.CopyOnCellClick = false;
+            this.ucDGV1.CtrlDisplayPositionRowCount = null;
+            this.ucDGV1.DataSource = this.bsRodjUc;
+            this.ucDGV1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucDGV1.Location = new System.Drawing.Point(3, 3);
+            this.ucDGV1.Name = "ucDGV1";
+            this.ucDGV1.ReadOnly = true;
+            this.ucDGV1.RowHeadersWidth = 4;
+            this.ucDGV1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.ucDGV1.Size = new System.Drawing.Size(462, 138);
+            this.ucDGV1.StandardSort = null;
+            this.ucDGV1.TabIndex = 0;
             // 
             // btnLat2Cir
             // 
@@ -433,67 +549,6 @@
             this.btnUcenici.UseVisualStyleBackColor = true;
             this.btnUcenici.Click += new System.EventHandler(this.BtnUcenici_Click);
             // 
-            // tcRodjendanci
-            // 
-            this.tcRodjendanci.Controls.Add(this.tabPage1);
-            this.tcRodjendanci.Controls.Add(this.tabPage2);
-            this.tcRodjendanci.Location = new System.Drawing.Point(72, 356);
-            this.tcRodjendanci.Name = "tcRodjendanci";
-            this.tcRodjendanci.SelectedIndex = 0;
-            this.tcRodjendanci.Size = new System.Drawing.Size(476, 174);
-            this.tcRodjendanci.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.tcRodjendanci.TabIndex = 18;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.dgvRodjZap);
-            this.tabPage1.Location = new System.Drawing.Point(4, 26);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(468, 144);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Zaposleni";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.ucDGV1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 26);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(468, 144);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Učenici";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // ucDGV1
-            // 
-            this.ucDGV1.AllowUserToAddRows = false;
-            this.ucDGV1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ucDGV1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.ucDGV1.AutoGenerateColumns = false;
-            this.ucDGV1.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.ucDGV1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ucDGV1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.imePrezimeDataGridViewTextBoxColumn1,
-            this.skolaOdeljenjeDataGridViewTextBoxColumn,
-            this.godineDataGridViewTextBoxColumn1,
-            this.danaDoRodjDataGridViewTextBoxColumn1});
-            this.ucDGV1.ColumnsForCopyOnClick = null;
-            this.ucDGV1.CopyOnCellClick = false;
-            this.ucDGV1.CtrlDisplayPositionRowCount = null;
-            this.ucDGV1.DataSource = this.rodjendaniUcBindingSource;
-            this.ucDGV1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucDGV1.Location = new System.Drawing.Point(3, 3);
-            this.ucDGV1.Name = "ucDGV1";
-            this.ucDGV1.ReadOnly = true;
-            this.ucDGV1.RowHeadersWidth = 4;
-            this.ucDGV1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ucDGV1.Size = new System.Drawing.Size(462, 138);
-            this.ucDGV1.StandardSort = null;
-            this.ucDGV1.TabIndex = 0;
-            // 
             // imePrezimeDataGridViewTextBoxColumn1
             // 
             this.imePrezimeDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -532,46 +587,14 @@
             this.danaDoRodjDataGridViewTextBoxColumn1.ReadOnly = true;
             this.danaDoRodjDataGridViewTextBoxColumn1.Width = 85;
             // 
-            // rodjendaniUcBindingSource
+            // dgvcUcDanUNedelji
             // 
-            this.rodjendaniUcBindingSource.DataMember = "RodjendaniUc";
-            this.rodjendaniUcBindingSource.DataSource = this.dsTemp;
-            // 
-            // numRodjPre
-            // 
-            this.numRodjPre.Location = new System.Drawing.Point(170, 530);
-            this.numRodjPre.Maximum = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.numRodjPre.Name = "numRodjPre";
-            this.numRodjPre.Size = new System.Drawing.Size(41, 24);
-            this.numRodjPre.TabIndex = 19;
-            this.numRodjPre.Value = new decimal(new int[] {
-            7,
-            0,
-            0,
-            0});
-            this.numRodjPre.ValueChanged += new System.EventHandler(this.NumRodj_ValueChanged);
-            // 
-            // numRodjPosle
-            // 
-            this.numRodjPosle.Location = new System.Drawing.Point(332, 530);
-            this.numRodjPosle.Maximum = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.numRodjPosle.Name = "numRodjPosle";
-            this.numRodjPosle.Size = new System.Drawing.Size(41, 24);
-            this.numRodjPosle.TabIndex = 20;
-            this.numRodjPosle.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.numRodjPosle.ValueChanged += new System.EventHandler(this.NumRodj_ValueChanged);
+            this.dgvcUcDanUNedelji.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dgvcUcDanUNedelji.DataPropertyName = "DanUNedelji";
+            this.dgvcUcDanUNedelji.HeaderText = "Dan";
+            this.dgvcUcDanUNedelji.Name = "dgvcUcDanUNedelji";
+            this.dgvcUcDanUNedelji.ReadOnly = true;
+            this.dgvcUcDanUNedelji.Width = 60;
             // 
             // FrmMain
             // 
@@ -617,14 +640,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.numHttpTimeoutLong)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRodjZap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsTemp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRodjZap)).EndInit();
             this.tcRodjendanci.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ucDGV1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rodjendaniUcBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRodjUc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRodjPre)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRodjPosle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRodjZap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ucDGV1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -653,20 +676,22 @@
         private Controls.UcDGV dgvRodjZap;
         private System.Windows.Forms.BindingSource bsRodjZap;
         private Data.DsTemp dsTemp;
-        private System.Windows.Forms.DataGridViewTextBoxColumn imePrezimeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn godineDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn danaDoRodjDataGridViewTextBoxColumn;
         private System.Windows.Forms.TabControl tcRodjendanci;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.NumericUpDown numRodjPre;
         private System.Windows.Forms.NumericUpDown numRodjPosle;
         private Controls.UcDGV ucDGV1;
+        private System.Windows.Forms.BindingSource bsRodjUc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn imePrezimeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn godineDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn danaDoRodjDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcDanUNedelji;
         private System.Windows.Forms.DataGridViewTextBoxColumn imePrezimeDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn skolaOdeljenjeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn godineDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn danaDoRodjDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.BindingSource rodjendaniUcBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcUcDanUNedelji;
     }
 }
 

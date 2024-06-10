@@ -69,6 +69,14 @@ namespace JISP.Classes
 
         /// <summary>Automatska konverzija: svako kopiranje u clipboard povlaci i konverziju u cir/lat.</summary>
         public static LatCirKonverzija AutoKonverzija { get; set; }
+
+        /// <summary>Uklanja kvacice za Lat tekst. Ć => C...</summary>
+        public static string UkloniKvacice(string s)
+        {
+            s = s.Replace('Ž', 'Z').Replace("Đ", "Dj").Replace('Š', 'S').Replace('Ć', 'C').Replace('Č', 'C')
+                .Replace('ž', 'z').Replace("đ", "dj").Replace('š', 's').Replace('ć', 'c').Replace('č', 'c');
+            return s;
+        }
     }
 
     public enum LatCirKonverzija

@@ -109,20 +109,6 @@ namespace AutoFormFill
                 ptCurrentPosition = ptPoslednja;
             if (uradiKlik)
                 DoMouseClick(action.Type);
-
-            //var koordinate = action.Content.Split(new char[] { ',' });
-            //if (koordinate.Length != 2)
-            //    throw new Exception("Tacka na ekranu na koju treba kliknuti mora da sadrži 2 koordinate.");
-            //if (int.TryParse(koordinate[0], out int x) && int.TryParse(koordinate[1], out int y))
-            //{
-            //    ptPoslednja = Cursor.Position = new Point(x, y);
-            //    if (testCurrentPosition)
-            //        ptCurrentPosition = ptPoslednja;
-            //    if (uradiKlik)
-            //        DoMouseClick(action.Type);
-            //}
-            //else
-            //    throw new Exception();
         }
 
         Point? ptPoslednja = null;
@@ -194,8 +180,8 @@ namespace AutoFormFill
                     }
                     else
                     {
-                        txtAdjPosDX.Text = (ptCurrentPosition.Value.X - pos.X).ToString();
-                        txtAdjPosDY.Text = (ptCurrentPosition.Value.Y - pos.Y).ToString();
+                        txtAdjPosDX.Text = (pos.X - ptCurrentPosition.Value.X).ToString();
+                        txtAdjPosDY.Text = (pos.Y - ptCurrentPosition.Value.Y).ToString();
                     }
                 }
                 ptLastPosition = pos;
@@ -219,7 +205,7 @@ namespace AutoFormFill
                         continue;
                     var pt = StrToPoint(act.Content);
                     var ptOffset = StrToPoint(txtAdjPosDX.Text + ", " + txtAdjPosDY.Text);
-                    pt.Offset(-ptOffset.X, -ptOffset.Y);
+                    pt.Offset(ptOffset.X, ptOffset.Y);
                     act.Content = pt.X + ", " + pt.Y;
                 }
                 ResetAdjPositions();
