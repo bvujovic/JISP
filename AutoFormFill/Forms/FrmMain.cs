@@ -48,7 +48,7 @@ namespace AutoFormFill
             uint x = (uint)Cursor.Position.X;
             uint y = (uint)Cursor.Position.Y;
             mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, x, y, 0, 0);
-            if (tip == AkcijaTip.DKlik.ToString())
+            if (tip == AkcijaTip.DvoKlik.ToString())
             {
                 Thread.Sleep(50);
                 mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, x, y, 0, 0);
@@ -62,14 +62,14 @@ namespace AutoFormFill
 
         /// <summary>Da li je tip akcije klik ili dupli klik.</summary>
         private static bool JeKlik(string tip)
-            => tip == AkcijaTip.Klik.ToString() || tip == AkcijaTip.DKlik.ToString();
+            => tip == AkcijaTip.Klik.ToString() || tip == AkcijaTip.DvoKlik.ToString();
 
         private enum AkcijaTip
         {
             Tekst,
             Klik,
-            DKlik,
-            Pauza
+            DvoKlik,
+            //Pauza
         }
 
         private enum ProcesKomanda
@@ -135,6 +135,7 @@ namespace AutoFormFill
             btnPustanjeStartStop.BackColor = pustanje == ProcesKomanda.Start ? SystemColors.Control : Color.Green;
             if (pustanje == ProcesKomanda.Start)
                 izvrsenaPrvaStavka = false;
+            ptPoslednja = null;
         }
 
         private void BtnSnimanjeStartStop_Click(object sender, EventArgs e)
@@ -321,7 +322,8 @@ namespace AutoFormFill
                         {
                             var routine = (dgvRoutines.CurrentRow?.DataBoundItem as DataRowView)?.Row as Ds.RoutinesRow
                                 ?? throw new Exception("Nije definisana rutina za koju se snimaju ove akcije.");
-                            ds.Actions.AddActionsRow(routine, AkcijaTip.Klik.ToString(), pos.X + ", " + pos.Y, "", true);
+                            var a = ds.Actions.AddActionsRow(routine, AkcijaTip.Klik.ToString(), pos.X + ", " + pos.Y, "", 0, true);
+                            a.SetDelayNull();
                             cntCursorSamePos = 0;
                         }
                     }
@@ -351,8 +353,7 @@ namespace AutoFormFill
                         SendKeys.Send(act.Content);
                     if (JeKlik(act.Type))
                         NamestiKursor(act, true);
-                    tim.Interval = (int)numDelay.Value
-                        + (act.Type == AkcijaTip.Pauza.ToString() ? int.Parse(act.Content) : 0);
+                    tim.Interval = act.IsDelayNull() ? (int)numDelay.Value : act.Delay;
 
                     // prelazak na sledecu ili prvu (na kraju)
                     if (bsActions.Position == bsActions.Count - 1)

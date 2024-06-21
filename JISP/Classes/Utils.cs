@@ -204,7 +204,7 @@ namespace JISP.Classes
             frm.WindowState = FormWindowState.Normal;
         }
 
-        private static readonly Version appVersion = null;
+        private static Version appVersion = null;
 
         /// <summary>Popunjava se polje appVersion. Ima vrednost samo ako je instalirana aplikacija. null - app pokrenuta iz VS.</summary>
         public static void CalcVersion()
@@ -277,6 +277,7 @@ namespace JISP.Classes
             var row = (dgv.CurrentRow.DataBoundItem as System.Data.DataRowView).Row;
             if (row == null || row.IsNull(docIdColName))
                 return;
+            var hasPrevChanges = row.HasVersion(System.Data.DataRowVersion.Proposed);
             var cell = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex];
             var originalText = (string)cell.Value;
             cell.Value = "...";
@@ -287,7 +288,10 @@ namespace JISP.Classes
                     , $"{{'documentId':'{row[docIdColName]}'}}", true);
             }
             catch (Exception ex) { ShowMbox(ex, "Preuzimanje dokumenta"); }
-            cell.Value = originalText;
+            if (hasPrevChanges)
+                cell.Value = originalText;
+            else
+                row.RejectChanges();
         }
 
         public static string RezimeZavrsetkaObrazovanja(string json)

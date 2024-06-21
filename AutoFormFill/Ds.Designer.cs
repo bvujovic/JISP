@@ -624,6 +624,8 @@ namespace AutoFormFill {
             
             private global::System.Data.DataColumn columnComment;
             
+            private global::System.Data.DataColumn columnDelay;
+            
             private global::System.Data.DataColumn columnEnabled;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -701,6 +703,14 @@ namespace AutoFormFill {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DelayColumn {
+                get {
+                    return this.columnDelay;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn EnabledColumn {
                 get {
                     return this.columnEnabled;
@@ -744,7 +754,7 @@ namespace AutoFormFill {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ActionsRow AddActionsRow(RoutinesRow parentRoutinesRowByRoutines_Actions, string Type, string Content, string Comment, bool Enabled) {
+            public ActionsRow AddActionsRow(RoutinesRow parentRoutinesRowByRoutines_Actions, string Type, string Content, string Comment, int Delay, bool Enabled) {
                 ActionsRow rowActionsRow = ((ActionsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -752,6 +762,7 @@ namespace AutoFormFill {
                         Type,
                         Content,
                         Comment,
+                        Delay,
                         Enabled};
                 if ((parentRoutinesRowByRoutines_Actions != null)) {
                     columnValuesArray[1] = parentRoutinesRowByRoutines_Actions[0];
@@ -790,6 +801,7 @@ namespace AutoFormFill {
                 this.columnType = base.Columns["Type"];
                 this.columnContent = base.Columns["Content"];
                 this.columnComment = base.Columns["Comment"];
+                this.columnDelay = base.Columns["Delay"];
                 this.columnEnabled = base.Columns["Enabled"];
             }
             
@@ -806,6 +818,8 @@ namespace AutoFormFill {
                 base.Columns.Add(this.columnContent);
                 this.columnComment = new global::System.Data.DataColumn("Comment", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnComment);
+                this.columnDelay = new global::System.Data.DataColumn("Delay", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDelay);
                 this.columnEnabled = new global::System.Data.DataColumn("Enabled", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEnabled);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
@@ -1102,6 +1116,22 @@ namespace AutoFormFill {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int Delay {
+                get {
+                    try {
+                        return ((int)(this[this.tableActions.DelayColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Delay\' in table \'Actions\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableActions.DelayColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool Enabled {
                 get {
                     return ((bool)(this[this.tableActions.EnabledColumn]));
@@ -1144,6 +1174,18 @@ namespace AutoFormFill {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetCommentNull() {
                 this[this.tableActions.CommentColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsDelayNull() {
+                return this.IsNull(this.tableActions.DelayColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetDelayNull() {
+                this[this.tableActions.DelayColumn] = global::System.Convert.DBNull;
             }
         }
         

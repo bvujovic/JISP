@@ -520,7 +520,14 @@ namespace JISP.Forms
                         var url = $"https://jisp.mpn.gov.rs/webapi/api/ucenik/DeteUPredskolskojZavrsetak?id=" + u.Id;
                         var json = await WebApi.GetJson(url);
                         dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(json);
-                        u.Ispisan = obj.datumZavrsetkaPPP != null;
+                        if (obj.datumZavrsetkaPPP != null)
+                        {
+                            // Prevodnica
+                            u.Ispisan = (int)obj.zavrsetakIzdataJavnaIsprava == 33948;
+                            // Uverenje o pohadjanju
+                            if (!u.Ispisan)
+                                u.OceneKrajBroj = (int)obj.zavrsetakIzdataJavnaIsprava == 14612 ? 1 : 0;
+                        }
                     }
                 });
 

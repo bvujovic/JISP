@@ -56,13 +56,14 @@
             this.bsRoutines = new System.Windows.Forms.BindingSource(this.components);
             this.ds = new AutoFormFill.Ds();
             this.dgvActions = new System.Windows.Forms.DataGridView();
-            this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.contentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.commentDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcActEnabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.bsActions = new System.Windows.Forms.BindingSource(this.components);
             this.tim = new System.Windows.Forms.Timer(this.components);
             this.timAdjustPositions = new System.Windows.Forms.Timer(this.components);
+            this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.contentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.commentDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcDelay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcActEnabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             label3 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
@@ -303,7 +304,7 @@
             0,
             0});
             this.numDelay.Minimum = new decimal(new int[] {
-            200,
+            50,
             0,
             0,
             0});
@@ -311,7 +312,7 @@
             this.numDelay.Size = new System.Drawing.Size(70, 24);
             this.numDelay.TabIndex = 2;
             this.numDelay.Value = new decimal(new int[] {
-            1000,
+            500,
             0,
             0,
             0});
@@ -332,8 +333,8 @@
             // scMain.Panel2
             // 
             this.scMain.Panel2.Controls.Add(this.dgvActions);
-            this.scMain.Size = new System.Drawing.Size(392, 475);
-            this.scMain.SplitterDistance = 168;
+            this.scMain.Size = new System.Drawing.Size(475, 475);
+            this.scMain.SplitterDistance = 157;
             this.scMain.TabIndex = 1;
             // 
             // dgvRoutines
@@ -349,7 +350,7 @@
             this.dgvRoutines.Name = "dgvRoutines";
             this.dgvRoutines.RowHeadersWidth = 30;
             this.dgvRoutines.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRoutines.Size = new System.Drawing.Size(392, 168);
+            this.dgvRoutines.Size = new System.Drawing.Size(475, 157);
             this.dgvRoutines.TabIndex = 0;
             // 
             // nameDataGridViewTextBoxColumn
@@ -385,6 +386,7 @@
             this.typeDataGridViewTextBoxColumn,
             this.contentDataGridViewTextBoxColumn,
             this.commentDataGridViewTextBoxColumn1,
+            this.dgvcDelay,
             this.dgvcActEnabled});
             this.dgvActions.DataSource = this.bsActions;
             this.dgvActions.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -392,10 +394,25 @@
             this.dgvActions.Name = "dgvActions";
             this.dgvActions.RowHeadersWidth = 30;
             this.dgvActions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvActions.Size = new System.Drawing.Size(392, 303);
+            this.dgvActions.Size = new System.Drawing.Size(475, 314);
             this.dgvActions.TabIndex = 1;
             this.dgvActions.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvActions_CellDoubleClick);
             this.dgvActions.SelectionChanged += new System.EventHandler(this.DgvActions_SelectionChanged);
+            // 
+            // bsActions
+            // 
+            this.bsActions.DataMember = "Routines_Actions";
+            this.bsActions.DataSource = this.bsRoutines;
+            // 
+            // tim
+            // 
+            this.tim.Interval = 1000;
+            this.tim.Tick += new System.EventHandler(this.Tim_Tick);
+            // 
+            // timAdjustPositions
+            // 
+            this.timAdjustPositions.Interval = 1000;
+            this.timAdjustPositions.Tick += new System.EventHandler(this.TimAdjustPositions_Tick);
             // 
             // typeDataGridViewTextBoxColumn
             // 
@@ -404,8 +421,7 @@
             this.typeDataGridViewTextBoxColumn.Items.AddRange(new object[] {
             "Tekst",
             "Klik",
-            "DKlik",
-            "Pauza"});
+            "DvoKlik"});
             this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
             this.typeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.typeDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
@@ -425,6 +441,15 @@
             this.commentDataGridViewTextBoxColumn1.HeaderText = "Komentar";
             this.commentDataGridViewTextBoxColumn1.Name = "commentDataGridViewTextBoxColumn1";
             // 
+            // dgvcDelay
+            // 
+            this.dgvcDelay.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dgvcDelay.DataPropertyName = "Delay";
+            this.dgvcDelay.HeaderText = "Delay";
+            this.dgvcDelay.Name = "dgvcDelay";
+            this.dgvcDelay.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dgvcDelay.Width = 51;
+            // 
             // dgvcActEnabled
             // 
             this.dgvcActEnabled.DataPropertyName = "Enabled";
@@ -432,26 +457,11 @@
             this.dgvcActEnabled.Name = "dgvcActEnabled";
             this.dgvcActEnabled.Width = 27;
             // 
-            // bsActions
-            // 
-            this.bsActions.DataMember = "Routines_Actions";
-            this.bsActions.DataSource = this.bsRoutines;
-            // 
-            // tim
-            // 
-            this.tim.Interval = 1000;
-            this.tim.Tick += new System.EventHandler(this.Tim_Tick);
-            // 
-            // timAdjustPositions
-            // 
-            this.timAdjustPositions.Interval = 1000;
-            this.timAdjustPositions.Tick += new System.EventHandler(this.TimAdjustPositions_Tick);
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(538, 475);
+            this.ClientSize = new System.Drawing.Size(621, 475);
             this.Controls.Add(this.scMain);
             this.Controls.Add(this.pnlLeft);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -504,15 +514,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn commentDataGridViewTextBoxColumn;
         private System.Windows.Forms.Timer tim;
         private System.Windows.Forms.TextBox txtDataFolder;
-        private System.Windows.Forms.DataGridViewComboBoxColumn typeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn contentDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn commentDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dgvcActEnabled;
         private System.Windows.Forms.Timer timAdjustPositions;
         private System.Windows.Forms.GroupBox gbAdjPositions;
         private System.Windows.Forms.TextBox txtAdjPosDY;
         private System.Windows.Forms.TextBox txtAdjPosDX;
         private System.Windows.Forms.Button btnAdjPosOK;
+        private System.Windows.Forms.DataGridViewComboBoxColumn typeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn contentDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn commentDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcDelay;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dgvcActEnabled;
     }
 }
 
