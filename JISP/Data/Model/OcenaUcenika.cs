@@ -9,7 +9,7 @@ namespace JISP.Data
     {
         public string Predmet { get; set; }
         public string PosebanPredmetNaziv { get; set; }
-        public int OcenaId { get; set; }
+        public int? OcenaId { get; set; }
         public string OcenaNaziv { get; set; }
         public bool Polugodiste { get; set; }
 

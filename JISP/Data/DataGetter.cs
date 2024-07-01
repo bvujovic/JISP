@@ -117,6 +117,8 @@ namespace JISP.Data
                     if (r != null)
                         z.RazlogPrestankaZaposlenja = r.NazivRazloga;
                 }
+                else if (!z.IsRazlogPrestankaZaposlenjaNull())
+                    z.SetRazlogPrestankaZaposlenjaNull();
                 if (z.NedostajeZamenjeni)
                     brojeviUgovoraZaNedostajuceZamenjene.Add(z.BrojUgovoraORadu);
                 if (obj.ugovorORaduDokumentId != null)

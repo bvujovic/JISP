@@ -153,7 +153,7 @@ namespace JISP.Forms
             // splitContainer.Panel2
             // 
             this.splitContainer.Panel2.Controls.Add(this.dgvZaposlenja);
-            this.splitContainer.Size = new System.Drawing.Size(994, 605);
+            this.splitContainer.Size = new System.Drawing.Size(994, 612);
             this.splitContainer.SplitterDistance = 514;
             this.splitContainer.TabIndex = 0;
             // 
@@ -186,7 +186,7 @@ namespace JISP.Forms
             // 
             this.scNazDok.Panel2.Controls.Add(this.tlpNazDok);
             this.scNazDok.Size = new System.Drawing.Size(411, 28);
-            this.scNazDok.SplitterDistance = 5;
+            this.scNazDok.SplitterDistance = 25;
             this.scNazDok.TabIndex = 9;
             // 
             // tlpNazDok
@@ -206,7 +206,7 @@ namespace JISP.Forms
             this.tlpNazDok.Name = "tlpNazDok";
             this.tlpNazDok.RowCount = 1;
             this.tlpNazDok.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpNazDok.Size = new System.Drawing.Size(402, 28);
+            this.tlpNazDok.Size = new System.Drawing.Size(382, 28);
             this.tlpNazDok.TabIndex = 0;
             // 
             // dtpNazDokDatum
@@ -252,7 +252,7 @@ namespace JISP.Forms
             this.lblNazDok.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblNazDok.Location = new System.Drawing.Point(375, 0);
             this.lblNazDok.Name = "lblNazDok";
-            this.lblNazDok.Size = new System.Drawing.Size(24, 28);
+            this.lblNazDok.Size = new System.Drawing.Size(4, 28);
             this.lblNazDok.TabIndex = 12;
             this.lblNazDok.Text = "/";
             this.lblNazDok.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -561,7 +561,7 @@ namespace JISP.Forms
             this.dgvZaposlenja.Name = "dgvZaposlenja";
             this.dgvZaposlenja.ReadOnly = true;
             this.dgvZaposlenja.RowHeadersWidth = 51;
-            this.dgvZaposlenja.Size = new System.Drawing.Size(994, 87);
+            this.dgvZaposlenja.Size = new System.Drawing.Size(994, 94);
             this.dgvZaposlenja.StandardSort = null;
             this.dgvZaposlenja.TabIndex = 0;
             // 
@@ -630,7 +630,7 @@ namespace JISP.Forms
             this.pnlLeft.Name = "pnlLeft";
             this.pnlLeft.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
             this.pnlLeft.RightWingWidth = 6;
-            this.pnlLeft.Size = new System.Drawing.Size(146, 605);
+            this.pnlLeft.Size = new System.Drawing.Size(146, 612);
             this.pnlLeft.TabIndex = 1;
             // 
             // btnObrazovanje
@@ -747,7 +747,7 @@ namespace JISP.Forms
             // 
             this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(5, 578);
+            this.lblStatus.Location = new System.Drawing.Point(5, 585);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(0, 18);
             this.lblStatus.TabIndex = 7;
@@ -790,7 +790,7 @@ namespace JISP.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1140, 605);
+            this.ClientSize = new System.Drawing.Size(1140, 612);
             this.Controls.Add(this.splitContainer);
             this.Controls.Add(this.pnlLeft);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
