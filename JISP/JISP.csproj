@@ -29,8 +29,8 @@
     <ProductName>Naš JISP</ProductName>
     <PublisherName>BV</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>0.7.6.1</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>0.7.7.0</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -160,6 +160,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DsTemp.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Data\Iskra\CsvLoader.cs" />
+    <Compile Include="Data\Iskra\Provere.cs" />
+    <Compile Include="Data\Iskra\Zaposleni.cs" />
+    <Compile Include="Data\Iskra\Zaposlenje.cs" />
     <Compile Include="Data\Model\DUOS.cs" />
     <Compile Include="Data\Model\DUOS_SS.cs" />
     <Compile Include="Data\Model\JobZahtev.cs" />

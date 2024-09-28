@@ -689,5 +689,20 @@ namespace JISP.Forms
             }
             catch (Exception ex) { Utils.ShowMbox(ex, chkNazDokEnable.Text); }
         }
+
+        private void BtnIskra_Click(object sender, EventArgs e)
+        {
+            ofdIskra.InitialDirectory = System.IO.Path.Combine(AppData.DataFolder, "ISKRA");
+            if (ofdIskra.ShowDialog() != DialogResult.OK)
+                return;
+            try
+            {
+                Data.Iskra.CsvLoader.LoadFromFile(ofdIskra.FileName);
+                Data.Iskra.Provere.IzvrsiSve();
+                Data.Iskra.Provere.SacuvajIzvestaj(ofdIskra.FileName);
+                System.Diagnostics.Process.Start(ofdIskra.InitialDirectory);
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, btnIskra.Text); }
+        }
     }
 }

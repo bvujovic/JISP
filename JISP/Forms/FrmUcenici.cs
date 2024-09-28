@@ -33,6 +33,7 @@ namespace JISP.Forms
             PodesiCmbPodaciZaDohvatanje();
             txtFilter.BindingSource = bsUcenikSkGod;
             formLoadStarted = DateTime.Now;
+            Text = $"Učenici ({AppData.SkolskaGodina})";
             this.FormStandardSettings();
         }
 

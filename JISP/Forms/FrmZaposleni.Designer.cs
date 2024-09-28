@@ -53,6 +53,7 @@ namespace JISP.Forms
             this.chkAktivniZap = new System.Windows.Forms.CheckBox();
             this.bsZaposlenja = new System.Windows.Forms.BindingSource(this.components);
             this.ofdZapSlika = new System.Windows.Forms.OpenFileDialog();
+            this.ofdIskra = new System.Windows.Forms.OpenFileDialog();
             this.dgvZaposleni = new JISP.Controls.UcDGV();
             this.dgvcImePrezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcIme = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -85,6 +86,7 @@ namespace JISP.Forms
             this.cmbIzracunajStatuse = new System.Windows.Forms.ComboBox();
             this.btnIzracunajStatuse = new JISP.Controls.UcButton();
             this.gbIzvestaji = new System.Windows.Forms.GroupBox();
+            this.btnIskra = new JISP.Controls.UcButton();
             this.btnSistematizacija = new JISP.Controls.UcButton();
             this.btnKvalifStruktura = new JISP.Controls.UcButton();
             this.BtnCsvZaposlenja = new JISP.Controls.UcButton();
@@ -280,6 +282,11 @@ namespace JISP.Forms
             // 
             this.ofdZapSlika.Filter = "Image files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
             this.ofdZapSlika.Title = "Odabir slike za zaposlenog";
+            // 
+            // ofdIskra
+            // 
+            this.ofdIskra.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
+            this.ofdIskra.Title = "Odabir podatkovnog fajla iz Iskre";
             // 
             // dgvZaposleni
             // 
@@ -667,15 +674,27 @@ namespace JISP.Forms
             // 
             // gbIzvestaji
             // 
+            this.gbIzvestaji.Controls.Add(this.btnIskra);
             this.gbIzvestaji.Controls.Add(this.btnSistematizacija);
             this.gbIzvestaji.Controls.Add(this.btnKvalifStruktura);
             this.gbIzvestaji.Controls.Add(this.BtnCsvZaposlenja);
             this.gbIzvestaji.Location = new System.Drawing.Point(3, 375);
             this.gbIzvestaji.Name = "gbIzvestaji";
-            this.gbIzvestaji.Size = new System.Drawing.Size(136, 150);
+            this.gbIzvestaji.Size = new System.Drawing.Size(136, 186);
             this.gbIzvestaji.TabIndex = 8;
             this.gbIzvestaji.TabStop = false;
             this.gbIzvestaji.Text = "Izveštaji";
+            // 
+            // btnIskra
+            // 
+            this.btnIskra.Location = new System.Drawing.Point(6, 143);
+            this.btnIskra.Name = "btnIskra";
+            this.btnIskra.Size = new System.Drawing.Size(128, 40);
+            this.btnIskra.TabIndex = 3;
+            this.btnIskra.Text = "ISKRA test";
+            this.btnIskra.ToolTipText = "Poređenje podataka JISP vs ISKRA";
+            this.btnIskra.UseVisualStyleBackColor = true;
+            this.btnIskra.Click += new System.EventHandler(this.BtnIskra_Click);
             // 
             // btnSistematizacija
             // 
@@ -880,5 +899,7 @@ namespace JISP.Forms
         private System.Windows.Forms.SplitContainer scNazDok;
         private System.Windows.Forms.TableLayoutPanel tlpNazDok;
         private System.Windows.Forms.Label lblNazDok;
+        private Controls.UcButton btnIskra;
+        private System.Windows.Forms.OpenFileDialog ofdIskra;
     }
 }
