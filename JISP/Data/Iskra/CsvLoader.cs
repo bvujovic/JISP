@@ -16,6 +16,9 @@ namespace JISP.Data.Iskra
         {
             using (var sr = new StreamReader(filePath))
             {
+                Zaps.Clear();
+                Columns.Clear();
+                Provere.PrijaveClear();
                 var headerLineParsed = false;
                 string line;
                 while ((line = sr.ReadLine()) != null)
@@ -63,7 +66,7 @@ namespace JISP.Data.Iskra
                 if (Columns.IndexOf(nameof(zap.JMBG)) == i)
                     zap.JMBG = p;
                 if (Columns.IndexOf("NOKS nivo") == i)
-                    zap.NOKS = p;
+                    zap.NOKS = string.IsNullOrEmpty(p) ? p : p.Insert(1, ".");
                 if (Columns.IndexOf("E-mail") == i)
                     zap.Email = p;
                 if (Columns.IndexOf("Min.rad G") == i)
@@ -101,6 +104,7 @@ namespace JISP.Data.Iskra
                         Provere.Prijavi(nameof(Provere.IdenticniOsnovniPodaci), z
                             , $"'{svojstvo}' ima različite vrednosti u zaposlenjima za istog zaposlenog");
                     z.Zaposlenja.Add(nje);
+                    z.NOKS = string.Compare(zap.NOKS, z.NOKS) == 1 ? zap.NOKS : z.NOKS;
                 }
             }
         }
