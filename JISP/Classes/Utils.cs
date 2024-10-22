@@ -25,7 +25,7 @@ namespace JISP.Classes
 
         public static string SkratiIzvorFin(string s)
         {
-            s = s.Replace("Буџет Републике Србије - МПНТР - ", KratakBudzet);
+            s = s.Replace("Буџет Републике Србије - МП - ", KratakBudzet);
             s = s.Replace("Основно и средње образовање", "ОиС образовање");
             s = s.Replace("Ученички и студентски стандард", "Уч. стандард");
             return s;

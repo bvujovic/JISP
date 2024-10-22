@@ -21,5 +21,14 @@ namespace JISP.Forms
         {
             this.FormStandardSettings();
         }
+
+        private void NumUkNormaPoSistem_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                DialogResult = DialogResult.OK;
+                e.SuppressKeyPress = true; // protiv "kling" zvuka
+            }
+        }
     }
 }

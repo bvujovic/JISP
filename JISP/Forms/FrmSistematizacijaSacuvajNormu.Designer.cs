@@ -70,6 +70,7 @@
             this.numUkNormaPoSistem.Name = "numUkNormaPoSistem";
             this.numUkNormaPoSistem.Size = new System.Drawing.Size(93, 23);
             this.numUkNormaPoSistem.TabIndex = 1;
+            this.numUkNormaPoSistem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumUkNormaPoSistem_KeyDown);
             // 
             // lblUkNormaPoRM
             // 
