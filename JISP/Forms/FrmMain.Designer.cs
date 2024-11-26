@@ -37,10 +37,10 @@
             System.Windows.Forms.Label label6;
             System.Windows.Forms.Label label7;
             System.Windows.Forms.Label label8;
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblApiTokenCaption = new System.Windows.Forms.Label();
             this.lblApiToken = new System.Windows.Forms.Label();
             this.ttApiToken = new System.Windows.Forms.ToolTip(this.components);
@@ -55,29 +55,28 @@
             this.dsTemp = new JISP.Data.DsTemp();
             this.tcRodjendanci = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.bsRodjUc = new System.Windows.Forms.BindingSource(this.components);
-            this.numRodjPre = new System.Windows.Forms.NumericUpDown();
-            this.numRodjPosle = new System.Windows.Forms.NumericUpDown();
             this.dgvRodjZap = new JISP.Controls.UcDGV();
             this.imePrezimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.godineDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.danaDoRodjDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcDanUNedelji = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.ucDGV1 = new JISP.Controls.UcDGV();
-            this.btnLat2Cir = new JISP.Controls.UcButton();
-            this.btnCir2Lat = new JISP.Controls.UcButton();
-            this.btnFormAutoInput = new JISP.Controls.UcButton();
-            this.btnTest = new JISP.Controls.UcButton();
-            this.btnProstorije = new JISP.Controls.UcButton();
-            this.btnBackup = new JISP.Controls.UcButton();
-            this.btnZaposleni = new JISP.Controls.UcButton();
-            this.btnUcenici = new JISP.Controls.UcButton();
             this.imePrezimeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.skolaOdeljenjeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.godineDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.danaDoRodjDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcUcDanUNedelji = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsRodjUc = new System.Windows.Forms.BindingSource(this.components);
+            this.numRodjPre = new System.Windows.Forms.NumericUpDown();
+            this.numRodjPosle = new System.Windows.Forms.NumericUpDown();
+            this.btnLat2Cir = new JISP.Controls.UcButton();
+            this.btnCir2Lat = new JISP.Controls.UcButton();
+            this.btnTest = new JISP.Controls.UcButton();
+            this.btnProstorije = new JISP.Controls.UcButton();
+            this.btnBackup = new JISP.Controls.UcButton();
+            this.btnZaposleni = new JISP.Controls.UcButton();
+            this.btnUcenici = new JISP.Controls.UcButton();
             label2 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -92,12 +91,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dsTemp)).BeginInit();
             this.tcRodjendanci.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRodjZap)).BeginInit();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ucDGV1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRodjUc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRodjPre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRodjPosle)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRodjZap)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ucDGV1)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -308,6 +307,72 @@
             this.tabPage1.Text = "Zaposleni";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // dgvRodjZap
+            // 
+            this.dgvRodjZap.AllowUserToAddRows = false;
+            this.dgvRodjZap.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvRodjZap.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvRodjZap.AutoGenerateColumns = false;
+            this.dgvRodjZap.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvRodjZap.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRodjZap.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.imePrezimeDataGridViewTextBoxColumn,
+            this.godineDataGridViewTextBoxColumn,
+            this.danaDoRodjDataGridViewTextBoxColumn,
+            this.dgvcDanUNedelji});
+            this.dgvRodjZap.ColumnsForCopyOnClick = null;
+            this.dgvRodjZap.CopyOnCellClick = false;
+            this.dgvRodjZap.CtrlDisplayPositionRowCount = null;
+            this.dgvRodjZap.DataSource = this.bsRodjZap;
+            this.dgvRodjZap.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvRodjZap.Location = new System.Drawing.Point(3, 3);
+            this.dgvRodjZap.Name = "dgvRodjZap";
+            this.dgvRodjZap.ReadOnly = true;
+            this.dgvRodjZap.RowHeadersWidth = 4;
+            this.dgvRodjZap.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvRodjZap.Size = new System.Drawing.Size(462, 138);
+            this.dgvRodjZap.StandardSort = null;
+            this.dgvRodjZap.TabIndex = 17;
+            // 
+            // imePrezimeDataGridViewTextBoxColumn
+            // 
+            this.imePrezimeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.imePrezimeDataGridViewTextBoxColumn.DataPropertyName = "ImePrezime";
+            this.imePrezimeDataGridViewTextBoxColumn.HeaderText = "Zaposleni";
+            this.imePrezimeDataGridViewTextBoxColumn.Name = "imePrezimeDataGridViewTextBoxColumn";
+            this.imePrezimeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // godineDataGridViewTextBoxColumn
+            // 
+            this.godineDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.godineDataGridViewTextBoxColumn.DataPropertyName = "Godine";
+            dataGridViewCellStyle8.Format = "N0";
+            dataGridViewCellStyle8.NullValue = null;
+            this.godineDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            this.godineDataGridViewTextBoxColumn.HeaderText = "God.";
+            this.godineDataGridViewTextBoxColumn.Name = "godineDataGridViewTextBoxColumn";
+            this.godineDataGridViewTextBoxColumn.ReadOnly = true;
+            this.godineDataGridViewTextBoxColumn.Width = 66;
+            // 
+            // danaDoRodjDataGridViewTextBoxColumn
+            // 
+            this.danaDoRodjDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.danaDoRodjDataGridViewTextBoxColumn.DataPropertyName = "DanaDoRodj";
+            this.danaDoRodjDataGridViewTextBoxColumn.HeaderText = "Do Rođ.";
+            this.danaDoRodjDataGridViewTextBoxColumn.Name = "danaDoRodjDataGridViewTextBoxColumn";
+            this.danaDoRodjDataGridViewTextBoxColumn.ReadOnly = true;
+            this.danaDoRodjDataGridViewTextBoxColumn.Width = 89;
+            // 
+            // dgvcDanUNedelji
+            // 
+            this.dgvcDanUNedelji.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dgvcDanUNedelji.DataPropertyName = "DanUNedelji";
+            this.dgvcDanUNedelji.HeaderText = "Dan";
+            this.dgvcDanUNedelji.Name = "dgvcDanUNedelji";
+            this.dgvcDanUNedelji.ReadOnly = true;
+            this.dgvcDanUNedelji.Width = 60;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.ucDGV1);
@@ -318,6 +383,82 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Učenici";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // ucDGV1
+            // 
+            this.ucDGV1.AllowUserToAddRows = false;
+            this.ucDGV1.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ucDGV1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.ucDGV1.AutoGenerateColumns = false;
+            this.ucDGV1.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.ucDGV1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ucDGV1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.imePrezimeDataGridViewTextBoxColumn1,
+            this.skolaOdeljenjeDataGridViewTextBoxColumn,
+            this.godineDataGridViewTextBoxColumn1,
+            this.danaDoRodjDataGridViewTextBoxColumn1,
+            this.dgvcUcDanUNedelji});
+            this.ucDGV1.ColumnsForCopyOnClick = null;
+            this.ucDGV1.CopyOnCellClick = false;
+            this.ucDGV1.CtrlDisplayPositionRowCount = null;
+            this.ucDGV1.DataSource = this.bsRodjUc;
+            this.ucDGV1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucDGV1.Location = new System.Drawing.Point(3, 3);
+            this.ucDGV1.Name = "ucDGV1";
+            this.ucDGV1.ReadOnly = true;
+            this.ucDGV1.RowHeadersWidth = 4;
+            this.ucDGV1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.ucDGV1.Size = new System.Drawing.Size(462, 138);
+            this.ucDGV1.StandardSort = null;
+            this.ucDGV1.TabIndex = 0;
+            // 
+            // imePrezimeDataGridViewTextBoxColumn1
+            // 
+            this.imePrezimeDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.imePrezimeDataGridViewTextBoxColumn1.DataPropertyName = "ImePrezime";
+            this.imePrezimeDataGridViewTextBoxColumn1.HeaderText = "Učenik";
+            this.imePrezimeDataGridViewTextBoxColumn1.Name = "imePrezimeDataGridViewTextBoxColumn1";
+            this.imePrezimeDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // skolaOdeljenjeDataGridViewTextBoxColumn
+            // 
+            this.skolaOdeljenjeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.skolaOdeljenjeDataGridViewTextBoxColumn.DataPropertyName = "SkolaOdeljenje";
+            this.skolaOdeljenjeDataGridViewTextBoxColumn.HeaderText = "Odeljenje";
+            this.skolaOdeljenjeDataGridViewTextBoxColumn.Name = "skolaOdeljenjeDataGridViewTextBoxColumn";
+            this.skolaOdeljenjeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.skolaOdeljenjeDataGridViewTextBoxColumn.Width = 94;
+            // 
+            // godineDataGridViewTextBoxColumn1
+            // 
+            this.godineDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.godineDataGridViewTextBoxColumn1.DataPropertyName = "Godine";
+            dataGridViewCellStyle9.Format = "N0";
+            dataGridViewCellStyle9.NullValue = null;
+            this.godineDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle9;
+            this.godineDataGridViewTextBoxColumn1.HeaderText = "God";
+            this.godineDataGridViewTextBoxColumn1.Name = "godineDataGridViewTextBoxColumn1";
+            this.godineDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.godineDataGridViewTextBoxColumn1.Width = 62;
+            // 
+            // danaDoRodjDataGridViewTextBoxColumn1
+            // 
+            this.danaDoRodjDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.danaDoRodjDataGridViewTextBoxColumn1.DataPropertyName = "DanaDoRodj";
+            this.danaDoRodjDataGridViewTextBoxColumn1.HeaderText = "Do Rođ";
+            this.danaDoRodjDataGridViewTextBoxColumn1.Name = "danaDoRodjDataGridViewTextBoxColumn1";
+            this.danaDoRodjDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.danaDoRodjDataGridViewTextBoxColumn1.Width = 85;
+            // 
+            // dgvcUcDanUNedelji
+            // 
+            this.dgvcUcDanUNedelji.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dgvcUcDanUNedelji.DataPropertyName = "DanUNedelji";
+            this.dgvcUcDanUNedelji.HeaderText = "Dan";
+            this.dgvcUcDanUNedelji.Name = "dgvcUcDanUNedelji";
+            this.dgvcUcDanUNedelji.ReadOnly = true;
+            this.dgvcUcDanUNedelji.Width = 60;
             // 
             // bsRodjUc
             // 
@@ -361,105 +502,10 @@
             0});
             this.numRodjPosle.ValueChanged += new System.EventHandler(this.NumRodj_ValueChanged);
             // 
-            // dgvRodjZap
-            // 
-            this.dgvRodjZap.AllowUserToAddRows = false;
-            this.dgvRodjZap.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvRodjZap.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvRodjZap.AutoGenerateColumns = false;
-            this.dgvRodjZap.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvRodjZap.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRodjZap.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.imePrezimeDataGridViewTextBoxColumn,
-            this.godineDataGridViewTextBoxColumn,
-            this.danaDoRodjDataGridViewTextBoxColumn,
-            this.dgvcDanUNedelji});
-            this.dgvRodjZap.ColumnsForCopyOnClick = null;
-            this.dgvRodjZap.CopyOnCellClick = false;
-            this.dgvRodjZap.CtrlDisplayPositionRowCount = null;
-            this.dgvRodjZap.DataSource = this.bsRodjZap;
-            this.dgvRodjZap.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvRodjZap.Location = new System.Drawing.Point(3, 3);
-            this.dgvRodjZap.Name = "dgvRodjZap";
-            this.dgvRodjZap.ReadOnly = true;
-            this.dgvRodjZap.RowHeadersWidth = 4;
-            this.dgvRodjZap.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRodjZap.Size = new System.Drawing.Size(462, 138);
-            this.dgvRodjZap.StandardSort = null;
-            this.dgvRodjZap.TabIndex = 17;
-            // 
-            // imePrezimeDataGridViewTextBoxColumn
-            // 
-            this.imePrezimeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.imePrezimeDataGridViewTextBoxColumn.DataPropertyName = "ImePrezime";
-            this.imePrezimeDataGridViewTextBoxColumn.HeaderText = "Zaposleni";
-            this.imePrezimeDataGridViewTextBoxColumn.Name = "imePrezimeDataGridViewTextBoxColumn";
-            this.imePrezimeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // godineDataGridViewTextBoxColumn
-            // 
-            this.godineDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.godineDataGridViewTextBoxColumn.DataPropertyName = "Godine";
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = null;
-            this.godineDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.godineDataGridViewTextBoxColumn.HeaderText = "God.";
-            this.godineDataGridViewTextBoxColumn.Name = "godineDataGridViewTextBoxColumn";
-            this.godineDataGridViewTextBoxColumn.ReadOnly = true;
-            this.godineDataGridViewTextBoxColumn.Width = 66;
-            // 
-            // danaDoRodjDataGridViewTextBoxColumn
-            // 
-            this.danaDoRodjDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.danaDoRodjDataGridViewTextBoxColumn.DataPropertyName = "DanaDoRodj";
-            this.danaDoRodjDataGridViewTextBoxColumn.HeaderText = "Do Rođ.";
-            this.danaDoRodjDataGridViewTextBoxColumn.Name = "danaDoRodjDataGridViewTextBoxColumn";
-            this.danaDoRodjDataGridViewTextBoxColumn.ReadOnly = true;
-            this.danaDoRodjDataGridViewTextBoxColumn.Width = 89;
-            // 
-            // dgvcDanUNedelji
-            // 
-            this.dgvcDanUNedelji.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dgvcDanUNedelji.DataPropertyName = "DanUNedelji";
-            this.dgvcDanUNedelji.HeaderText = "Dan";
-            this.dgvcDanUNedelji.Name = "dgvcDanUNedelji";
-            this.dgvcDanUNedelji.ReadOnly = true;
-            this.dgvcDanUNedelji.Width = 60;
-            // 
-            // ucDGV1
-            // 
-            this.ucDGV1.AllowUserToAddRows = false;
-            this.ucDGV1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ucDGV1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.ucDGV1.AutoGenerateColumns = false;
-            this.ucDGV1.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.ucDGV1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ucDGV1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.imePrezimeDataGridViewTextBoxColumn1,
-            this.skolaOdeljenjeDataGridViewTextBoxColumn,
-            this.godineDataGridViewTextBoxColumn1,
-            this.danaDoRodjDataGridViewTextBoxColumn1,
-            this.dgvcUcDanUNedelji});
-            this.ucDGV1.ColumnsForCopyOnClick = null;
-            this.ucDGV1.CopyOnCellClick = false;
-            this.ucDGV1.CtrlDisplayPositionRowCount = null;
-            this.ucDGV1.DataSource = this.bsRodjUc;
-            this.ucDGV1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucDGV1.Location = new System.Drawing.Point(3, 3);
-            this.ucDGV1.Name = "ucDGV1";
-            this.ucDGV1.ReadOnly = true;
-            this.ucDGV1.RowHeadersWidth = 4;
-            this.ucDGV1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ucDGV1.Size = new System.Drawing.Size(462, 138);
-            this.ucDGV1.StandardSort = null;
-            this.ucDGV1.TabIndex = 0;
-            // 
             // btnLat2Cir
             // 
             this.btnLat2Cir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLat2Cir.Location = new System.Drawing.Point(413, 113);
+            this.btnLat2Cir.Location = new System.Drawing.Point(241, 113);
             this.btnLat2Cir.Name = "btnLat2Cir";
             this.btnLat2Cir.Size = new System.Drawing.Size(135, 24);
             this.btnLat2Cir.TabIndex = 16;
@@ -472,7 +518,7 @@
             // btnCir2Lat
             // 
             this.btnCir2Lat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCir2Lat.Location = new System.Drawing.Point(413, 90);
+            this.btnCir2Lat.Location = new System.Drawing.Point(241, 90);
             this.btnCir2Lat.Name = "btnCir2Lat";
             this.btnCir2Lat.Size = new System.Drawing.Size(135, 24);
             this.btnCir2Lat.TabIndex = 15;
@@ -482,22 +528,11 @@
             this.btnCir2Lat.Click += new System.EventHandler(this.BtnCir2Lat_Click);
             this.btnCir2Lat.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnCir2Lat_MouseUp);
             // 
-            // btnFormAutoInput
-            // 
-            this.btnFormAutoInput.Location = new System.Drawing.Point(241, 90);
-            this.btnFormAutoInput.Name = "btnFormAutoInput";
-            this.btnFormAutoInput.Size = new System.Drawing.Size(135, 48);
-            this.btnFormAutoInput.TabIndex = 3;
-            this.btnFormAutoInput.Text = "&Form Auto Input";
-            this.btnFormAutoInput.ToolTipText = "Automatsko, šablonsko popunjavanje formi\r\n";
-            this.btnFormAutoInput.UseVisualStyleBackColor = true;
-            this.btnFormAutoInput.Click += new System.EventHandler(this.BtnFormAutoInput_Click);
-            // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(69, 144);
+            this.btnTest.Location = new System.Drawing.Point(413, 90);
             this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(135, 29);
+            this.btnTest.Size = new System.Drawing.Size(135, 47);
             this.btnTest.TabIndex = 5;
             this.btnTest.Text = "Test";
             this.btnTest.ToolTipText = "Čuvanje podataka iz DataSet-a u posebnom XML fajlu.";
@@ -549,53 +584,6 @@
             this.btnUcenici.UseVisualStyleBackColor = true;
             this.btnUcenici.Click += new System.EventHandler(this.BtnUcenici_Click);
             // 
-            // imePrezimeDataGridViewTextBoxColumn1
-            // 
-            this.imePrezimeDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.imePrezimeDataGridViewTextBoxColumn1.DataPropertyName = "ImePrezime";
-            this.imePrezimeDataGridViewTextBoxColumn1.HeaderText = "Učenik";
-            this.imePrezimeDataGridViewTextBoxColumn1.Name = "imePrezimeDataGridViewTextBoxColumn1";
-            this.imePrezimeDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // skolaOdeljenjeDataGridViewTextBoxColumn
-            // 
-            this.skolaOdeljenjeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.skolaOdeljenjeDataGridViewTextBoxColumn.DataPropertyName = "SkolaOdeljenje";
-            this.skolaOdeljenjeDataGridViewTextBoxColumn.HeaderText = "Odeljenje";
-            this.skolaOdeljenjeDataGridViewTextBoxColumn.Name = "skolaOdeljenjeDataGridViewTextBoxColumn";
-            this.skolaOdeljenjeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.skolaOdeljenjeDataGridViewTextBoxColumn.Width = 94;
-            // 
-            // godineDataGridViewTextBoxColumn1
-            // 
-            this.godineDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.godineDataGridViewTextBoxColumn1.DataPropertyName = "Godine";
-            dataGridViewCellStyle4.Format = "N0";
-            dataGridViewCellStyle4.NullValue = null;
-            this.godineDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle4;
-            this.godineDataGridViewTextBoxColumn1.HeaderText = "God";
-            this.godineDataGridViewTextBoxColumn1.Name = "godineDataGridViewTextBoxColumn1";
-            this.godineDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.godineDataGridViewTextBoxColumn1.Width = 62;
-            // 
-            // danaDoRodjDataGridViewTextBoxColumn1
-            // 
-            this.danaDoRodjDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.danaDoRodjDataGridViewTextBoxColumn1.DataPropertyName = "DanaDoRodj";
-            this.danaDoRodjDataGridViewTextBoxColumn1.HeaderText = "Do Rođ";
-            this.danaDoRodjDataGridViewTextBoxColumn1.Name = "danaDoRodjDataGridViewTextBoxColumn1";
-            this.danaDoRodjDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.danaDoRodjDataGridViewTextBoxColumn1.Width = 85;
-            // 
-            // dgvcUcDanUNedelji
-            // 
-            this.dgvcUcDanUNedelji.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dgvcUcDanUNedelji.DataPropertyName = "DanUNedelji";
-            this.dgvcUcDanUNedelji.HeaderText = "Dan";
-            this.dgvcUcDanUNedelji.Name = "dgvcUcDanUNedelji";
-            this.dgvcUcDanUNedelji.ReadOnly = true;
-            this.dgvcUcDanUNedelji.Width = 60;
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -612,7 +600,6 @@
             this.Controls.Add(label6);
             this.Controls.Add(this.numHttpTimeoutShort);
             this.Controls.Add(label5);
-            this.Controls.Add(this.btnFormAutoInput);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.btnPrikaziPoruke);
             this.Controls.Add(this.btnProstorije);
@@ -642,12 +629,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dsTemp)).EndInit();
             this.tcRodjendanci.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRodjZap)).EndInit();
             this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ucDGV1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRodjUc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRodjPre)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRodjPosle)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRodjZap)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ucDGV1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -668,7 +655,6 @@
         private Controls.UcButton btnProstorije;
         private System.Windows.Forms.Button btnPrikaziPoruke;
         private Controls.UcButton btnTest;
-        private Controls.UcButton btnFormAutoInput;
         private System.Windows.Forms.NumericUpDown numHttpTimeoutShort;
         private System.Windows.Forms.NumericUpDown numHttpTimeoutLong;
         private Controls.UcButton btnCir2Lat;

@@ -461,7 +461,7 @@ namespace JISP.Forms
                         var url = "https://jisp.mpn.gov.rs/webapi/api/ucenik/VratiUpisSrednjeObrazovanjeById/";
                         var json = await WebApi.GetJson(url + u.Id);
                         dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(json);
-                        var str = (string)obj.smerObrazovniProfilNaziv;
+                        var str = (string)obj.smerObrazovniProfilSlobodanUnos;
                         u.Smer = str.Contains('(') ? str.Substring(0, str.IndexOf('(')).Trim() : str;
                     }
                 });

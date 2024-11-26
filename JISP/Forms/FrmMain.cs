@@ -127,11 +127,6 @@ namespace JISP.Forms
             BackupData.CreateBackup();
         }
 
-        private void BtnFormAutoInput_Click(object sender, EventArgs e)
-        {
-            new FrmFormAutoInput().Show();
-        }
-
         public void FrmChild_FormClosed(object sender, FormClosedEventArgs e)
         {
             var floatingForms = new[] { nameof(FrmSistematizacija), nameof(FrmRacunari) };
