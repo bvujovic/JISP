@@ -66,10 +66,6 @@ namespace JISP.Data {
         
         private ObrazovanjaDataTable tableObrazovanja;
         
-        private FormAutoFillsDataTable tableFormAutoFills;
-        
-        private FAF_ItemsDataTable tableFAF_Items;
-        
         private SumZaposlenjaDataTable tableSumZaposlenja;
         
         private SumZapDetaljiDataTable tableSumZapDetalji;
@@ -88,9 +84,9 @@ namespace JISP.Data {
         
         private global::System.Data.DataRelation relationSumZaposlenja_SumZapDetalji;
         
-        private global::System.Data.DataRelation relationOd_OdRaz;
-        
         private global::System.Data.DataRelation relationRaz_OdRaz;
+        
+        private global::System.Data.DataRelation relationOd_OdRaz;
         
         private global::System.Data.DataRelation relationZaposlenja_Angazovanja;
         
@@ -103,8 +99,6 @@ namespace JISP.Data {
         private global::System.Data.DataRelation relationZaposleni_Obrazovanja;
         
         private global::System.Data.DataRelation relationZamenjeni_Zaposleni;
-        
-        private global::System.Data.DataRelation relationFormAutoFills_FAF_Items;
         
         private global::System.Data.DataRelation relationLokacije_Objekti;
         
@@ -214,12 +208,6 @@ namespace JISP.Data {
                 }
                 if ((ds.Tables["Obrazovanja"] != null)) {
                     base.Tables.Add(new ObrazovanjaDataTable(ds.Tables["Obrazovanja"]));
-                }
-                if ((ds.Tables["FormAutoFills"] != null)) {
-                    base.Tables.Add(new FormAutoFillsDataTable(ds.Tables["FormAutoFills"]));
-                }
-                if ((ds.Tables["FAF_Items"] != null)) {
-                    base.Tables.Add(new FAF_ItemsDataTable(ds.Tables["FAF_Items"]));
                 }
                 if ((ds.Tables["SumZaposlenja"] != null)) {
                     base.Tables.Add(new SumZaposlenjaDataTable(ds.Tables["SumZaposlenja"]));
@@ -472,26 +460,6 @@ namespace JISP.Data {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public FormAutoFillsDataTable FormAutoFills {
-            get {
-                return this.tableFormAutoFills;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public FAF_ItemsDataTable FAF_Items {
-            get {
-                return this.tableFAF_Items;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
         public SumZaposlenjaDataTable SumZaposlenja {
             get {
                 return this.tableSumZaposlenja;
@@ -679,12 +647,6 @@ namespace JISP.Data {
                 if ((ds.Tables["Obrazovanja"] != null)) {
                     base.Tables.Add(new ObrazovanjaDataTable(ds.Tables["Obrazovanja"]));
                 }
-                if ((ds.Tables["FormAutoFills"] != null)) {
-                    base.Tables.Add(new FormAutoFillsDataTable(ds.Tables["FormAutoFills"]));
-                }
-                if ((ds.Tables["FAF_Items"] != null)) {
-                    base.Tables.Add(new FAF_ItemsDataTable(ds.Tables["FAF_Items"]));
-                }
                 if ((ds.Tables["SumZaposlenja"] != null)) {
                     base.Tables.Add(new SumZaposlenjaDataTable(ds.Tables["SumZaposlenja"]));
                 }
@@ -862,18 +824,6 @@ namespace JISP.Data {
                     this.tableObrazovanja.InitVars();
                 }
             }
-            this.tableFormAutoFills = ((FormAutoFillsDataTable)(base.Tables["FormAutoFills"]));
-            if ((initTable == true)) {
-                if ((this.tableFormAutoFills != null)) {
-                    this.tableFormAutoFills.InitVars();
-                }
-            }
-            this.tableFAF_Items = ((FAF_ItemsDataTable)(base.Tables["FAF_Items"]));
-            if ((initTable == true)) {
-                if ((this.tableFAF_Items != null)) {
-                    this.tableFAF_Items.InitVars();
-                }
-            }
             this.tableSumZaposlenja = ((SumZaposlenjaDataTable)(base.Tables["SumZaposlenja"]));
             if ((initTable == true)) {
                 if ((this.tableSumZaposlenja != null)) {
@@ -913,15 +863,14 @@ namespace JISP.Data {
             this.relationFK_Zaposleni_Zaposlenja = this.Relations["FK_Zaposleni_Zaposlenja"];
             this.relationZaposleni_ObracunZarada = this.Relations["Zaposleni_ObracunZarada"];
             this.relationSumZaposlenja_SumZapDetalji = this.Relations["SumZaposlenja_SumZapDetalji"];
-            this.relationOd_OdRaz = this.Relations["Od_OdRaz"];
             this.relationRaz_OdRaz = this.Relations["Raz_OdRaz"];
+            this.relationOd_OdRaz = this.Relations["Od_OdRaz"];
             this.relationZaposlenja_Angazovanja = this.Relations["Zaposlenja_Angazovanja"];
             this.relationZaposlenja_Resenja = this.Relations["Zaposlenja_Resenja"];
             this.relationFK_Sistematizacija_SistematizacijaDetalji = this.Relations["FK_Sistematizacija_SistematizacijaDetalji"];
             this.relationUc_UcSkGod = this.Relations["Uc_UcSkGod"];
             this.relationZaposleni_Obrazovanja = this.Relations["Zaposleni_Obrazovanja"];
             this.relationZamenjeni_Zaposleni = this.Relations["Zamenjeni_Zaposleni"];
-            this.relationFormAutoFills_FAF_Items = this.Relations["FormAutoFills_FAF_Items"];
             this.relationLokacije_Objekti = this.Relations["Lokacije_Objekti"];
             this.relationObjekti_Prostorije = this.Relations["Objekti_Prostorije"];
             this.relationProstorije_Racunari = this.Relations["Prostorije_Racunari"];
@@ -981,10 +930,6 @@ namespace JISP.Data {
             base.Tables.Add(this.tableSifRazloziPrestankaZap);
             this.tableObrazovanja = new ObrazovanjaDataTable(false);
             base.Tables.Add(this.tableObrazovanja);
-            this.tableFormAutoFills = new FormAutoFillsDataTable();
-            base.Tables.Add(this.tableFormAutoFills);
-            this.tableFAF_Items = new FAF_ItemsDataTable();
-            base.Tables.Add(this.tableFAF_Items);
             this.tableSumZaposlenja = new SumZaposlenjaDataTable();
             base.Tables.Add(this.tableSumZaposlenja);
             this.tableSumZapDetalji = new SumZapDetaljiDataTable();
@@ -1019,16 +964,16 @@ namespace JISP.Data {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.None;
-            fkc = new global::System.Data.ForeignKeyConstraint("Od_OdRaz", new global::System.Data.DataColumn[] {
-                        this.tableOdeljenja.IdOdeljenjaColumn}, new global::System.Data.DataColumn[] {
-                        this.tableOdRaz.IdOdeljenjaColumn});
+            fkc = new global::System.Data.ForeignKeyConstraint("Raz_OdRaz", new global::System.Data.DataColumn[] {
+                        this.tableRazredi.IdRazredaColumn}, new global::System.Data.DataColumn[] {
+                        this.tableOdRaz.IdRazredaColumn});
             this.tableOdRaz.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            fkc = new global::System.Data.ForeignKeyConstraint("Raz_OdRaz", new global::System.Data.DataColumn[] {
-                        this.tableRazredi.IdRazredaColumn}, new global::System.Data.DataColumn[] {
-                        this.tableOdRaz.IdRazredaColumn});
+            fkc = new global::System.Data.ForeignKeyConstraint("Od_OdRaz", new global::System.Data.DataColumn[] {
+                        this.tableOdeljenja.IdOdeljenjaColumn}, new global::System.Data.DataColumn[] {
+                        this.tableOdRaz.IdOdeljenjaColumn});
             this.tableOdRaz.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
@@ -1045,14 +990,14 @@ namespace JISP.Data {
                         this.tableSumZaposlenja.IdSumZaposlenjaColumn}, new global::System.Data.DataColumn[] {
                         this.tableSumZapDetalji.IdSumZaposlenjaColumn}, false);
             this.Relations.Add(this.relationSumZaposlenja_SumZapDetalji);
-            this.relationOd_OdRaz = new global::System.Data.DataRelation("Od_OdRaz", new global::System.Data.DataColumn[] {
-                        this.tableOdeljenja.IdOdeljenjaColumn}, new global::System.Data.DataColumn[] {
-                        this.tableOdRaz.IdOdeljenjaColumn}, false);
-            this.Relations.Add(this.relationOd_OdRaz);
             this.relationRaz_OdRaz = new global::System.Data.DataRelation("Raz_OdRaz", new global::System.Data.DataColumn[] {
                         this.tableRazredi.IdRazredaColumn}, new global::System.Data.DataColumn[] {
                         this.tableOdRaz.IdRazredaColumn}, false);
             this.Relations.Add(this.relationRaz_OdRaz);
+            this.relationOd_OdRaz = new global::System.Data.DataRelation("Od_OdRaz", new global::System.Data.DataColumn[] {
+                        this.tableOdeljenja.IdOdeljenjaColumn}, new global::System.Data.DataColumn[] {
+                        this.tableOdRaz.IdOdeljenjaColumn}, false);
+            this.Relations.Add(this.relationOd_OdRaz);
             this.relationZaposlenja_Angazovanja = new global::System.Data.DataRelation("Zaposlenja_Angazovanja", new global::System.Data.DataColumn[] {
                         this.tableZaposlenja.IdZaposlenjaColumn}, new global::System.Data.DataColumn[] {
                         this.tableAngazovanja.IdZaposlenjaColumn}, false);
@@ -1077,10 +1022,6 @@ namespace JISP.Data {
                         this.tableZaposleni.IdZaposlenogColumn}, new global::System.Data.DataColumn[] {
                         this.tableZaposlenja.IdZamenjenogZaposlenogColumn}, false);
             this.Relations.Add(this.relationZamenjeni_Zaposleni);
-            this.relationFormAutoFills_FAF_Items = new global::System.Data.DataRelation("FormAutoFills_FAF_Items", new global::System.Data.DataColumn[] {
-                        this.tableFormAutoFills.IdFormAutoFillColumn}, new global::System.Data.DataColumn[] {
-                        this.tableFAF_Items.IdFormAutoFillColumn}, false);
-            this.Relations.Add(this.relationFormAutoFills_FAF_Items);
             this.relationLokacije_Objekti = new global::System.Data.DataRelation("Lokacije_Objekti", new global::System.Data.DataColumn[] {
                         this.tableLokacije.IdLokacijeColumn}, new global::System.Data.DataColumn[] {
                         this.tableObjekti.IdLokacijeColumn}, false);
@@ -1234,18 +1175,6 @@ namespace JISP.Data {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private bool ShouldSerializeObrazovanja() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializeFormAutoFills() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializeFAF_Items() {
             return false;
         }
         
@@ -1432,12 +1361,6 @@ namespace JISP.Data {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void ObrazovanjaRowChangeEventHandler(object sender, ObrazovanjaRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void FormAutoFillsRowChangeEventHandler(object sender, FormAutoFillsRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void FAF_ItemsRowChangeEventHandler(object sender, FAF_ItemsRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void SumZaposlenjaRowChangeEventHandler(object sender, SumZaposlenjaRowChangeEvent e);
@@ -10047,6 +9970,10 @@ namespace JISP.Data {
             
             private global::System.Data.DataColumn columnDokumentNaziv;
             
+            private global::System.Data.DataColumn columnZavrsenaSkolaNaziv;
+            
+            private global::System.Data.DataColumn columnZvanjePoPravilniku;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ObrazovanjaDataTable() : 
@@ -10211,6 +10138,22 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ZavrsenaSkolaNazivColumn {
+                get {
+                    return this.columnZavrsenaSkolaNaziv;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ZvanjePoPravilnikuColumn {
+                get {
+                    return this.columnZvanjePoPravilniku;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -10246,7 +10189,24 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ObrazovanjaRow AddObrazovanjaRow(int IdObrazovanja, ZaposleniRow parentZaposleniRowByZaposleni_Obrazovanja, string _Zaposleni, string NoksNivo, string Klasnoks, string Stepen, string NazivSteceneKvalifikacije, string StrucniAkademskiNazivIzDiplome, System.DateTime DatumSticanjaDiplome, string DrzavaZavrseneSkole, string MestoZavrseneSkoleNaziv, string NazivSkole, string JezikNaKomJeStecenoObrazovanje, string DokumentId, string DokumentNaziv) {
+            public ObrazovanjaRow AddObrazovanjaRow(
+                        int IdObrazovanja, 
+                        ZaposleniRow parentZaposleniRowByZaposleni_Obrazovanja, 
+                        string _Zaposleni, 
+                        string NoksNivo, 
+                        string Klasnoks, 
+                        string Stepen, 
+                        string NazivSteceneKvalifikacije, 
+                        string StrucniAkademskiNazivIzDiplome, 
+                        System.DateTime DatumSticanjaDiplome, 
+                        string DrzavaZavrseneSkole, 
+                        string MestoZavrseneSkoleNaziv, 
+                        string NazivSkole, 
+                        string JezikNaKomJeStecenoObrazovanje, 
+                        string DokumentId, 
+                        string DokumentNaziv, 
+                        string ZavrsenaSkolaNaziv, 
+                        string ZvanjePoPravilniku) {
                 ObrazovanjaRow rowObrazovanjaRow = ((ObrazovanjaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IdObrazovanja,
@@ -10263,7 +10223,9 @@ namespace JISP.Data {
                         NazivSkole,
                         JezikNaKomJeStecenoObrazovanje,
                         DokumentId,
-                        DokumentNaziv};
+                        DokumentNaziv,
+                        ZavrsenaSkolaNaziv,
+                        ZvanjePoPravilniku};
                 if ((parentZaposleniRowByZaposleni_Obrazovanja != null)) {
                     columnValuesArray[1] = parentZaposleniRowByZaposleni_Obrazovanja[0];
                 }
@@ -10274,7 +10236,23 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ObrazovanjaRow AddObrazovanjaRow(int IdObrazovanja, ZaposleniRow parentZaposleniRowByZaposleni_Obrazovanja, string NoksNivo, string Klasnoks, string Stepen, string NazivSteceneKvalifikacije, string StrucniAkademskiNazivIzDiplome, System.DateTime DatumSticanjaDiplome, string DrzavaZavrseneSkole, string MestoZavrseneSkoleNaziv, string NazivSkole, string JezikNaKomJeStecenoObrazovanje, string DokumentId, string DokumentNaziv) {
+            public ObrazovanjaRow AddObrazovanjaRow(
+                        int IdObrazovanja, 
+                        ZaposleniRow parentZaposleniRowByZaposleni_Obrazovanja, 
+                        string NoksNivo, 
+                        string Klasnoks, 
+                        string Stepen, 
+                        string NazivSteceneKvalifikacije, 
+                        string StrucniAkademskiNazivIzDiplome, 
+                        System.DateTime DatumSticanjaDiplome, 
+                        string DrzavaZavrseneSkole, 
+                        string MestoZavrseneSkoleNaziv, 
+                        string NazivSkole, 
+                        string JezikNaKomJeStecenoObrazovanje, 
+                        string DokumentId, 
+                        string DokumentNaziv, 
+                        string ZavrsenaSkolaNaziv, 
+                        string ZvanjePoPravilniku) {
                 ObrazovanjaRow rowObrazovanjaRow = ((ObrazovanjaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IdObrazovanja,
@@ -10291,7 +10269,9 @@ namespace JISP.Data {
                         NazivSkole,
                         JezikNaKomJeStecenoObrazovanje,
                         DokumentId,
-                        DokumentNaziv};
+                        DokumentNaziv,
+                        ZavrsenaSkolaNaziv,
+                        ZvanjePoPravilniku};
                 if ((parentZaposleniRowByZaposleni_Obrazovanja != null)) {
                     columnValuesArray[1] = parentZaposleniRowByZaposleni_Obrazovanja[0];
                 }
@@ -10339,6 +10319,8 @@ namespace JISP.Data {
                 this.columnJezikNaKomJeStecenoObrazovanje = base.Columns["JezikNaKomJeStecenoObrazovanje"];
                 this.columnDokumentId = base.Columns["DokumentId"];
                 this.columnDokumentNaziv = base.Columns["DokumentNaziv"];
+                this.columnZavrsenaSkolaNaziv = base.Columns["ZavrsenaSkolaNaziv"];
+                this.columnZvanjePoPravilniku = base.Columns["ZvanjePoPravilniku"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10374,6 +10356,10 @@ namespace JISP.Data {
                 base.Columns.Add(this.columnDokumentId);
                 this.columnDokumentNaziv = new global::System.Data.DataColumn("DokumentNaziv", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDokumentNaziv);
+                this.columnZavrsenaSkolaNaziv = new global::System.Data.DataColumn("ZavrsenaSkolaNaziv", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnZavrsenaSkolaNaziv);
+                this.columnZvanjePoPravilniku = new global::System.Data.DataColumn("ZvanjePoPravilniku", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnZvanjePoPravilniku);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIdObrazovanja}, true));
                 this.columnIdObrazovanja.AllowDBNull = false;
@@ -10471,621 +10457,6 @@ namespace JISP.Data {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "ObrazovanjaDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class FormAutoFillsDataTable : global::System.Data.TypedTableBase<FormAutoFillsRow> {
-            
-            private global::System.Data.DataColumn columnIdFormAutoFill;
-            
-            private global::System.Data.DataColumn columnName;
-            
-            private global::System.Data.DataColumn columnComment;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public FormAutoFillsDataTable() {
-                this.TableName = "FormAutoFills";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal FormAutoFillsDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected FormAutoFillsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn IdFormAutoFillColumn {
-                get {
-                    return this.columnIdFormAutoFill;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn NameColumn {
-                get {
-                    return this.columnName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn CommentColumn {
-                get {
-                    return this.columnComment;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public FormAutoFillsRow this[int index] {
-                get {
-                    return ((FormAutoFillsRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event FormAutoFillsRowChangeEventHandler FormAutoFillsRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event FormAutoFillsRowChangeEventHandler FormAutoFillsRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event FormAutoFillsRowChangeEventHandler FormAutoFillsRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event FormAutoFillsRowChangeEventHandler FormAutoFillsRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void AddFormAutoFillsRow(FormAutoFillsRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public FormAutoFillsRow AddFormAutoFillsRow(string Name, string Comment) {
-                FormAutoFillsRow rowFormAutoFillsRow = ((FormAutoFillsRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        Name,
-                        Comment};
-                rowFormAutoFillsRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowFormAutoFillsRow);
-                return rowFormAutoFillsRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public FormAutoFillsRow FindByIdFormAutoFill(int IdFormAutoFill) {
-                return ((FormAutoFillsRow)(this.Rows.Find(new object[] {
-                            IdFormAutoFill})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                FormAutoFillsDataTable cln = ((FormAutoFillsDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new FormAutoFillsDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal void InitVars() {
-                this.columnIdFormAutoFill = base.Columns["IdFormAutoFill"];
-                this.columnName = base.Columns["Name"];
-                this.columnComment = base.Columns["Comment"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            private void InitClass() {
-                this.columnIdFormAutoFill = new global::System.Data.DataColumn("IdFormAutoFill", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIdFormAutoFill);
-                this.columnName = new global::System.Data.DataColumn("Name", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnName);
-                this.columnComment = new global::System.Data.DataColumn("Comment", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnComment);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnIdFormAutoFill}, true));
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint2", new global::System.Data.DataColumn[] {
-                                this.columnName}, false));
-                this.columnIdFormAutoFill.AutoIncrement = true;
-                this.columnIdFormAutoFill.AutoIncrementSeed = -1;
-                this.columnIdFormAutoFill.AutoIncrementStep = -1;
-                this.columnIdFormAutoFill.AllowDBNull = false;
-                this.columnIdFormAutoFill.Unique = true;
-                this.columnName.AllowDBNull = false;
-                this.columnName.Unique = true;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public FormAutoFillsRow NewFormAutoFillsRow() {
-                return ((FormAutoFillsRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new FormAutoFillsRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(FormAutoFillsRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.FormAutoFillsRowChanged != null)) {
-                    this.FormAutoFillsRowChanged(this, new FormAutoFillsRowChangeEvent(((FormAutoFillsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.FormAutoFillsRowChanging != null)) {
-                    this.FormAutoFillsRowChanging(this, new FormAutoFillsRowChangeEvent(((FormAutoFillsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.FormAutoFillsRowDeleted != null)) {
-                    this.FormAutoFillsRowDeleted(this, new FormAutoFillsRowChangeEvent(((FormAutoFillsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.FormAutoFillsRowDeleting != null)) {
-                    this.FormAutoFillsRowDeleting(this, new FormAutoFillsRowChangeEvent(((FormAutoFillsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void RemoveFormAutoFillsRow(FormAutoFillsRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                Ds ds = new Ds();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "FormAutoFillsDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class FAF_ItemsDataTable : global::System.Data.TypedTableBase<FAF_ItemsRow> {
-            
-            private global::System.Data.DataColumn columnIdItem;
-            
-            private global::System.Data.DataColumn columnItemType;
-            
-            private global::System.Data.DataColumn columnContent;
-            
-            private global::System.Data.DataColumn columnComment;
-            
-            private global::System.Data.DataColumn columnIdFormAutoFill;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public FAF_ItemsDataTable() {
-                this.TableName = "FAF_Items";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal FAF_ItemsDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected FAF_ItemsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn IdItemColumn {
-                get {
-                    return this.columnIdItem;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn ItemTypeColumn {
-                get {
-                    return this.columnItemType;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn ContentColumn {
-                get {
-                    return this.columnContent;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn CommentColumn {
-                get {
-                    return this.columnComment;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn IdFormAutoFillColumn {
-                get {
-                    return this.columnIdFormAutoFill;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public FAF_ItemsRow this[int index] {
-                get {
-                    return ((FAF_ItemsRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event FAF_ItemsRowChangeEventHandler FAF_ItemsRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event FAF_ItemsRowChangeEventHandler FAF_ItemsRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event FAF_ItemsRowChangeEventHandler FAF_ItemsRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event FAF_ItemsRowChangeEventHandler FAF_ItemsRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void AddFAF_ItemsRow(FAF_ItemsRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public FAF_ItemsRow AddFAF_ItemsRow(string ItemType, string Content, string Comment, FormAutoFillsRow parentFormAutoFillsRowByFormAutoFills_FAF_Items) {
-                FAF_ItemsRow rowFAF_ItemsRow = ((FAF_ItemsRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        ItemType,
-                        Content,
-                        Comment,
-                        null};
-                if ((parentFormAutoFillsRowByFormAutoFills_FAF_Items != null)) {
-                    columnValuesArray[4] = parentFormAutoFillsRowByFormAutoFills_FAF_Items[0];
-                }
-                rowFAF_ItemsRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowFAF_ItemsRow);
-                return rowFAF_ItemsRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public FAF_ItemsRow FindByIdItem(int IdItem) {
-                return ((FAF_ItemsRow)(this.Rows.Find(new object[] {
-                            IdItem})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                FAF_ItemsDataTable cln = ((FAF_ItemsDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new FAF_ItemsDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal void InitVars() {
-                this.columnIdItem = base.Columns["IdItem"];
-                this.columnItemType = base.Columns["ItemType"];
-                this.columnContent = base.Columns["Content"];
-                this.columnComment = base.Columns["Comment"];
-                this.columnIdFormAutoFill = base.Columns["IdFormAutoFill"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            private void InitClass() {
-                this.columnIdItem = new global::System.Data.DataColumn("IdItem", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIdItem);
-                this.columnItemType = new global::System.Data.DataColumn("ItemType", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnItemType);
-                this.columnContent = new global::System.Data.DataColumn("Content", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnContent);
-                this.columnComment = new global::System.Data.DataColumn("Comment", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnComment);
-                this.columnIdFormAutoFill = new global::System.Data.DataColumn("IdFormAutoFill", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIdFormAutoFill);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnIdItem}, true));
-                this.columnIdItem.AutoIncrement = true;
-                this.columnIdItem.AutoIncrementSeed = -1;
-                this.columnIdItem.AutoIncrementStep = -1;
-                this.columnIdItem.AllowDBNull = false;
-                this.columnIdItem.Unique = true;
-                this.columnItemType.AllowDBNull = false;
-                this.columnContent.AllowDBNull = false;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public FAF_ItemsRow NewFAF_ItemsRow() {
-                return ((FAF_ItemsRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new FAF_ItemsRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(FAF_ItemsRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.FAF_ItemsRowChanged != null)) {
-                    this.FAF_ItemsRowChanged(this, new FAF_ItemsRowChangeEvent(((FAF_ItemsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.FAF_ItemsRowChanging != null)) {
-                    this.FAF_ItemsRowChanging(this, new FAF_ItemsRowChangeEvent(((FAF_ItemsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.FAF_ItemsRowDeleted != null)) {
-                    this.FAF_ItemsRowDeleted(this, new FAF_ItemsRowChangeEvent(((FAF_ItemsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.FAF_ItemsRowDeleting != null)) {
-                    this.FAF_ItemsRowDeleting(this, new FAF_ItemsRowChangeEvent(((FAF_ItemsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void RemoveFAF_ItemsRow(FAF_ItemsRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                Ds ds = new Ds();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "FAF_ItemsDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -18991,6 +18362,38 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string ZavrsenaSkolaNaziv {
+                get {
+                    try {
+                        return ((string)(this[this.tableObrazovanja.ZavrsenaSkolaNazivColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ZavrsenaSkolaNaziv\' in table \'Obrazovanja\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableObrazovanja.ZavrsenaSkolaNazivColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string ZvanjePoPravilniku {
+                get {
+                    try {
+                        return ((string)(this[this.tableObrazovanja.ZvanjePoPravilnikuColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ZvanjePoPravilniku\' in table \'Obrazovanja\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableObrazovanja.ZvanjePoPravilnikuColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ZaposleniRow ZaposleniRow {
                 get {
                     return ((ZaposleniRow)(this.GetParentRow(this.Table.ParentRelations["Zaposleni_Obrazovanja"])));
@@ -19167,196 +18570,29 @@ namespace JISP.Data {
             public void SetDokumentNazivNull() {
                 this[this.tableObrazovanja.DokumentNazivColumn] = global::System.Convert.DBNull;
             }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class FormAutoFillsRow : global::System.Data.DataRow {
-            
-            private FormAutoFillsDataTable tableFormAutoFills;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal FormAutoFillsRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableFormAutoFills = ((FormAutoFillsDataTable)(this.Table));
+            public bool IsZavrsenaSkolaNazivNull() {
+                return this.IsNull(this.tableObrazovanja.ZavrsenaSkolaNazivColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int IdFormAutoFill {
-                get {
-                    return ((int)(this[this.tableFormAutoFills.IdFormAutoFillColumn]));
-                }
-                set {
-                    this[this.tableFormAutoFills.IdFormAutoFillColumn] = value;
-                }
+            public void SetZavrsenaSkolaNazivNull() {
+                this[this.tableObrazovanja.ZavrsenaSkolaNazivColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Name {
-                get {
-                    return ((string)(this[this.tableFormAutoFills.NameColumn]));
-                }
-                set {
-                    this[this.tableFormAutoFills.NameColumn] = value;
-                }
+            public bool IsZvanjePoPravilnikuNull() {
+                return this.IsNull(this.tableObrazovanja.ZvanjePoPravilnikuColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Comment {
-                get {
-                    try {
-                        return ((string)(this[this.tableFormAutoFills.CommentColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Comment\' in table \'FormAutoFills\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableFormAutoFills.CommentColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsCommentNull() {
-                return this.IsNull(this.tableFormAutoFills.CommentColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetCommentNull() {
-                this[this.tableFormAutoFills.CommentColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public FAF_ItemsRow[] GetFAF_ItemsRows() {
-                if ((this.Table.ChildRelations["FormAutoFills_FAF_Items"] == null)) {
-                    return new FAF_ItemsRow[0];
-                }
-                else {
-                    return ((FAF_ItemsRow[])(base.GetChildRows(this.Table.ChildRelations["FormAutoFills_FAF_Items"])));
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class FAF_ItemsRow : global::System.Data.DataRow {
-            
-            private FAF_ItemsDataTable tableFAF_Items;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal FAF_ItemsRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableFAF_Items = ((FAF_ItemsDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int IdItem {
-                get {
-                    return ((int)(this[this.tableFAF_Items.IdItemColumn]));
-                }
-                set {
-                    this[this.tableFAF_Items.IdItemColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string ItemType {
-                get {
-                    return ((string)(this[this.tableFAF_Items.ItemTypeColumn]));
-                }
-                set {
-                    this[this.tableFAF_Items.ItemTypeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Content {
-                get {
-                    return ((string)(this[this.tableFAF_Items.ContentColumn]));
-                }
-                set {
-                    this[this.tableFAF_Items.ContentColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Comment {
-                get {
-                    try {
-                        return ((string)(this[this.tableFAF_Items.CommentColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Comment\' in table \'FAF_Items\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableFAF_Items.CommentColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int IdFormAutoFill {
-                get {
-                    try {
-                        return ((int)(this[this.tableFAF_Items.IdFormAutoFillColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'IdFormAutoFill\' in table \'FAF_Items\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableFAF_Items.IdFormAutoFillColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public FormAutoFillsRow FormAutoFillsRow {
-                get {
-                    return ((FormAutoFillsRow)(this.GetParentRow(this.Table.ParentRelations["FormAutoFills_FAF_Items"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FormAutoFills_FAF_Items"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsCommentNull() {
-                return this.IsNull(this.tableFAF_Items.CommentColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetCommentNull() {
-                this[this.tableFAF_Items.CommentColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsIdFormAutoFillNull() {
-                return this.IsNull(this.tableFAF_Items.IdFormAutoFillColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetIdFormAutoFillNull() {
-                this[this.tableFAF_Items.IdFormAutoFillColumn] = global::System.Convert.DBNull;
+            public void SetZvanjePoPravilnikuNull() {
+                this[this.tableObrazovanja.ZvanjePoPravilnikuColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -20156,23 +19392,23 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public OdeljenjaRow OdeljenjaRow {
-                get {
-                    return ((OdeljenjaRow)(this.GetParentRow(this.Table.ParentRelations["Od_OdRaz"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["Od_OdRaz"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public RazrediRow RazrediRow {
                 get {
                     return ((RazrediRow)(this.GetParentRow(this.Table.ParentRelations["Raz_OdRaz"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["Raz_OdRaz"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public OdeljenjaRow OdeljenjaRow {
+                get {
+                    return ((OdeljenjaRow)(this.GetParentRow(this.Table.ParentRelations["Od_OdRaz"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Od_OdRaz"]);
                 }
             }
             
@@ -20889,74 +20125,6 @@ namespace JISP.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ObrazovanjaRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class FormAutoFillsRowChangeEvent : global::System.EventArgs {
-            
-            private FormAutoFillsRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public FormAutoFillsRowChangeEvent(FormAutoFillsRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public FormAutoFillsRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class FAF_ItemsRowChangeEvent : global::System.EventArgs {
-            
-            private FAF_ItemsRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public FAF_ItemsRowChangeEvent(FAF_ItemsRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public FAF_ItemsRow Row {
                 get {
                     return this.eventRow;
                 }

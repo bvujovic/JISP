@@ -500,7 +500,7 @@ namespace JISP.Forms
                         if (obj.ispraveZavrsetak != null && obj.ispraveZavrsetak.Count > 0)
                         {
                             var ispravaNaziv = obj.ispraveZavrsetak[0].ispravaNaziv;
-                            u.Ispisan = ispravaNaziv == "исписница";
+                            u.Ispisan = ispravaNaziv == "исписница" || ispravaNaziv == "преводница";
                         }
                         else
                             u.Ispisan = false;

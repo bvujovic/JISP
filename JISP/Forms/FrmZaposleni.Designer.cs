@@ -43,17 +43,6 @@ namespace JISP.Forms
             this.lblRowCount = new System.Windows.Forms.Label();
             this.bsZaposleni = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer = new System.Windows.Forms.SplitContainer();
-            this.pnlZaposleniTop = new System.Windows.Forms.Panel();
-            this.scNazDok = new System.Windows.Forms.SplitContainer();
-            this.tlpNazDok = new System.Windows.Forms.TableLayoutPanel();
-            this.dtpNazDokDatum = new System.Windows.Forms.DateTimePicker();
-            this.chkNazDokEnable = new System.Windows.Forms.CheckBox();
-            this.cmbNazDokTip = new System.Windows.Forms.ComboBox();
-            this.lblNazDok = new System.Windows.Forms.Label();
-            this.chkAktivniZap = new System.Windows.Forms.CheckBox();
-            this.bsZaposlenja = new System.Windows.Forms.BindingSource(this.components);
-            this.ofdZapSlika = new System.Windows.Forms.OpenFileDialog();
-            this.ofdIskra = new System.Windows.Forms.OpenFileDialog();
             this.dgvZaposleni = new JISP.Controls.UcDGV();
             this.dgvcImePrezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcIme = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,6 +63,14 @@ namespace JISP.Forms
             this.dgvcStazGodine = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcStazMeseci = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcNapomene = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pnlZaposleniTop = new System.Windows.Forms.Panel();
+            this.scNazDok = new System.Windows.Forms.SplitContainer();
+            this.tlpNazDok = new System.Windows.Forms.TableLayoutPanel();
+            this.dtpNazDokDatum = new System.Windows.Forms.DateTimePicker();
+            this.chkNazDokEnable = new System.Windows.Forms.CheckBox();
+            this.cmbNazDokTip = new System.Windows.Forms.ComboBox();
+            this.lblNazDok = new System.Windows.Forms.Label();
+            this.chkAktivniZap = new System.Windows.Forms.CheckBox();
             this.txtFilter = new JISP.Controls.UcFilterTextBox();
             this.dgvZaposlenja = new JISP.Controls.UcDGV();
             this.dgvcNjaProcenat = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -81,6 +78,9 @@ namespace JISP.Forms
             this.dgvcNjaRMNaziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcNjaNoksNivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcNjaVrstaAng = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsZaposlenja = new System.Windows.Forms.BindingSource(this.components);
+            this.ofdZapSlika = new System.Windows.Forms.OpenFileDialog();
+            this.ofdIskra = new System.Windows.Forms.OpenFileDialog();
             this.pnlLeft = new JISP.Controls.UcLeftPanel();
             this.btnObrazovanje = new JISP.Controls.UcButton();
             this.cmbIzracunajStatuse = new System.Windows.Forms.ComboBox();
@@ -103,14 +103,14 @@ namespace JISP.Forms
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvZaposleni)).BeginInit();
             this.pnlZaposleniTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scNazDok)).BeginInit();
             this.scNazDok.Panel2.SuspendLayout();
             this.scNazDok.SuspendLayout();
             this.tlpNazDok.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsZaposlenja)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvZaposleni)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvZaposlenja)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsZaposlenja)).BeginInit();
             this.pnlLeft.SuspendLayout();
             this.gbIzvestaji.SuspendLayout();
             this.SuspendLayout();
@@ -158,135 +158,6 @@ namespace JISP.Forms
             this.splitContainer.Size = new System.Drawing.Size(994, 612);
             this.splitContainer.SplitterDistance = 514;
             this.splitContainer.TabIndex = 0;
-            // 
-            // pnlZaposleniTop
-            // 
-            this.pnlZaposleniTop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlZaposleniTop.Controls.Add(this.scNazDok);
-            this.pnlZaposleniTop.Controls.Add(lblFilterCaption);
-            this.pnlZaposleniTop.Controls.Add(this.chkAktivniZap);
-            this.pnlZaposleniTop.Controls.Add(this.txtFilter);
-            this.pnlZaposleniTop.Controls.Add(this.lblRowCount);
-            this.pnlZaposleniTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlZaposleniTop.Location = new System.Drawing.Point(0, 0);
-            this.pnlZaposleniTop.Name = "pnlZaposleniTop";
-            this.pnlZaposleniTop.Size = new System.Drawing.Size(994, 30);
-            this.pnlZaposleniTop.TabIndex = 0;
-            // 
-            // scNazDok
-            // 
-            this.scNazDok.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.scNazDok.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.scNazDok.Location = new System.Drawing.Point(581, 1);
-            this.scNazDok.Margin = new System.Windows.Forms.Padding(0);
-            this.scNazDok.Name = "scNazDok";
-            this.scNazDok.Panel1MinSize = 5;
-            // 
-            // scNazDok.Panel2
-            // 
-            this.scNazDok.Panel2.Controls.Add(this.tlpNazDok);
-            this.scNazDok.Size = new System.Drawing.Size(411, 28);
-            this.scNazDok.SplitterDistance = 25;
-            this.scNazDok.TabIndex = 9;
-            // 
-            // tlpNazDok
-            // 
-            this.tlpNazDok.ColumnCount = 4;
-            this.tlpNazDok.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpNazDok.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpNazDok.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpNazDok.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpNazDok.Controls.Add(this.dtpNazDokDatum, 2, 0);
-            this.tlpNazDok.Controls.Add(this.chkNazDokEnable, 0, 0);
-            this.tlpNazDok.Controls.Add(this.cmbNazDokTip, 1, 0);
-            this.tlpNazDok.Controls.Add(this.lblNazDok, 3, 0);
-            this.tlpNazDok.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpNazDok.Location = new System.Drawing.Point(0, 0);
-            this.tlpNazDok.Margin = new System.Windows.Forms.Padding(0);
-            this.tlpNazDok.Name = "tlpNazDok";
-            this.tlpNazDok.RowCount = 1;
-            this.tlpNazDok.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpNazDok.Size = new System.Drawing.Size(382, 28);
-            this.tlpNazDok.TabIndex = 0;
-            // 
-            // dtpNazDokDatum
-            // 
-            this.dtpNazDokDatum.CustomFormat = "";
-            this.dtpNazDokDatum.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpNazDokDatum.Location = new System.Drawing.Point(272, 0);
-            this.dtpNazDokDatum.Margin = new System.Windows.Forms.Padding(0);
-            this.dtpNazDokDatum.Name = "dtpNazDokDatum";
-            this.dtpNazDokDatum.Size = new System.Drawing.Size(100, 24);
-            this.dtpNazDokDatum.TabIndex = 11;
-            this.dtpNazDokDatum.ValueChanged += new System.EventHandler(this.DtpNazDokDatum_ValueChanged);
-            // 
-            // chkNazDokEnable
-            // 
-            this.chkNazDokEnable.AutoSize = true;
-            this.chkNazDokEnable.Location = new System.Drawing.Point(2, 2);
-            this.chkNazDokEnable.Margin = new System.Windows.Forms.Padding(2);
-            this.chkNazDokEnable.Name = "chkNazDokEnable";
-            this.chkNazDokEnable.Size = new System.Drawing.Size(153, 22);
-            this.chkNazDokEnable.TabIndex = 9;
-            this.chkNazDokEnable.Text = "Nazivi dokumenata";
-            this.chkNazDokEnable.UseVisualStyleBackColor = true;
-            this.chkNazDokEnable.CheckedChanged += new System.EventHandler(this.ChkNazDokEnable_CheckedChanged);
-            // 
-            // cmbNazDokTip
-            // 
-            this.cmbNazDokTip.FormattingEnabled = true;
-            this.cmbNazDokTip.Items.AddRange(new object[] {
-            "ugovor",
-            "40cas nedelja",
-            "godisnji"});
-            this.cmbNazDokTip.Location = new System.Drawing.Point(157, 0);
-            this.cmbNazDokTip.Margin = new System.Windows.Forms.Padding(0);
-            this.cmbNazDokTip.Name = "cmbNazDokTip";
-            this.cmbNazDokTip.Size = new System.Drawing.Size(115, 26);
-            this.cmbNazDokTip.TabIndex = 10;
-            this.cmbNazDokTip.SelectedIndexChanged += new System.EventHandler(this.CmbNazDokTip_SelectedIndexChanged);
-            // 
-            // lblNazDok
-            // 
-            this.lblNazDok.AutoSize = true;
-            this.lblNazDok.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNazDok.Location = new System.Drawing.Point(375, 0);
-            this.lblNazDok.Name = "lblNazDok";
-            this.lblNazDok.Size = new System.Drawing.Size(4, 28);
-            this.lblNazDok.TabIndex = 12;
-            this.lblNazDok.Text = "/";
-            this.lblNazDok.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // chkAktivniZap
-            // 
-            this.chkAktivniZap.AutoSize = true;
-            this.chkAktivniZap.Checked = true;
-            this.chkAktivniZap.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.chkAktivniZap.Location = new System.Drawing.Point(509, 4);
-            this.chkAktivniZap.Name = "chkAktivniZap";
-            this.chkAktivniZap.Size = new System.Drawing.Size(69, 22);
-            this.chkAktivniZap.TabIndex = 1;
-            this.chkAktivniZap.Text = "Aktivni";
-            this.chkAktivniZap.ThreeState = true;
-            this.chkAktivniZap.UseVisualStyleBackColor = true;
-            this.chkAktivniZap.CheckStateChanged += new System.EventHandler(this.FilterChanged);
-            // 
-            // bsZaposlenja
-            // 
-            this.bsZaposlenja.DataSource = this.bsZaposleni;
-            this.bsZaposlenja.Sort = "";
-            // 
-            // ofdZapSlika
-            // 
-            this.ofdZapSlika.Filter = "Image files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
-            this.ofdZapSlika.Title = "Odabir slike za zaposlenog";
-            // 
-            // ofdIskra
-            // 
-            this.ofdIskra.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
-            this.ofdIskra.Title = "Odabir podatkovnog fajla iz Iskre";
             // 
             // dgvZaposleni
             // 
@@ -524,6 +395,122 @@ namespace JISP.Forms
             this.dgvcNapomene.MinimumWidth = 88;
             this.dgvcNapomene.Name = "dgvcNapomene";
             // 
+            // pnlZaposleniTop
+            // 
+            this.pnlZaposleniTop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlZaposleniTop.Controls.Add(this.scNazDok);
+            this.pnlZaposleniTop.Controls.Add(lblFilterCaption);
+            this.pnlZaposleniTop.Controls.Add(this.chkAktivniZap);
+            this.pnlZaposleniTop.Controls.Add(this.txtFilter);
+            this.pnlZaposleniTop.Controls.Add(this.lblRowCount);
+            this.pnlZaposleniTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlZaposleniTop.Location = new System.Drawing.Point(0, 0);
+            this.pnlZaposleniTop.Name = "pnlZaposleniTop";
+            this.pnlZaposleniTop.Size = new System.Drawing.Size(994, 30);
+            this.pnlZaposleniTop.TabIndex = 0;
+            // 
+            // scNazDok
+            // 
+            this.scNazDok.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.scNazDok.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.scNazDok.Location = new System.Drawing.Point(581, 1);
+            this.scNazDok.Margin = new System.Windows.Forms.Padding(0);
+            this.scNazDok.Name = "scNazDok";
+            this.scNazDok.Panel1MinSize = 5;
+            // 
+            // scNazDok.Panel2
+            // 
+            this.scNazDok.Panel2.Controls.Add(this.tlpNazDok);
+            this.scNazDok.Size = new System.Drawing.Size(411, 28);
+            this.scNazDok.SplitterDistance = 25;
+            this.scNazDok.TabIndex = 9;
+            // 
+            // tlpNazDok
+            // 
+            this.tlpNazDok.ColumnCount = 4;
+            this.tlpNazDok.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpNazDok.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpNazDok.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpNazDok.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpNazDok.Controls.Add(this.dtpNazDokDatum, 2, 0);
+            this.tlpNazDok.Controls.Add(this.chkNazDokEnable, 0, 0);
+            this.tlpNazDok.Controls.Add(this.cmbNazDokTip, 1, 0);
+            this.tlpNazDok.Controls.Add(this.lblNazDok, 3, 0);
+            this.tlpNazDok.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpNazDok.Location = new System.Drawing.Point(0, 0);
+            this.tlpNazDok.Margin = new System.Windows.Forms.Padding(0);
+            this.tlpNazDok.Name = "tlpNazDok";
+            this.tlpNazDok.RowCount = 1;
+            this.tlpNazDok.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpNazDok.Size = new System.Drawing.Size(382, 28);
+            this.tlpNazDok.TabIndex = 0;
+            // 
+            // dtpNazDokDatum
+            // 
+            this.dtpNazDokDatum.CustomFormat = "";
+            this.dtpNazDokDatum.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpNazDokDatum.Location = new System.Drawing.Point(272, 0);
+            this.dtpNazDokDatum.Margin = new System.Windows.Forms.Padding(0);
+            this.dtpNazDokDatum.Name = "dtpNazDokDatum";
+            this.dtpNazDokDatum.Size = new System.Drawing.Size(100, 24);
+            this.dtpNazDokDatum.TabIndex = 11;
+            this.dtpNazDokDatum.ValueChanged += new System.EventHandler(this.DtpNazDokDatum_ValueChanged);
+            // 
+            // chkNazDokEnable
+            // 
+            this.chkNazDokEnable.AutoSize = true;
+            this.chkNazDokEnable.Location = new System.Drawing.Point(2, 2);
+            this.chkNazDokEnable.Margin = new System.Windows.Forms.Padding(2);
+            this.chkNazDokEnable.Name = "chkNazDokEnable";
+            this.chkNazDokEnable.Size = new System.Drawing.Size(153, 22);
+            this.chkNazDokEnable.TabIndex = 9;
+            this.chkNazDokEnable.Text = "Nazivi dokumenata";
+            this.chkNazDokEnable.UseVisualStyleBackColor = true;
+            this.chkNazDokEnable.CheckedChanged += new System.EventHandler(this.ChkNazDokEnable_CheckedChanged);
+            // 
+            // cmbNazDokTip
+            // 
+            this.cmbNazDokTip.FormattingEnabled = true;
+            this.cmbNazDokTip.Items.AddRange(new object[] {
+            "ugovor",
+            "aneks",
+            "40cas nedelja",
+            "godisnji",
+            "diploma"});
+            this.cmbNazDokTip.Location = new System.Drawing.Point(157, 0);
+            this.cmbNazDokTip.Margin = new System.Windows.Forms.Padding(0);
+            this.cmbNazDokTip.Name = "cmbNazDokTip";
+            this.cmbNazDokTip.Size = new System.Drawing.Size(115, 26);
+            this.cmbNazDokTip.TabIndex = 10;
+            this.cmbNazDokTip.SelectedIndexChanged += new System.EventHandler(this.CmbNazDokTip_SelectedIndexChanged);
+            // 
+            // lblNazDok
+            // 
+            this.lblNazDok.AutoSize = true;
+            this.lblNazDok.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblNazDok.Location = new System.Drawing.Point(375, 0);
+            this.lblNazDok.Name = "lblNazDok";
+            this.lblNazDok.Size = new System.Drawing.Size(4, 28);
+            this.lblNazDok.TabIndex = 12;
+            this.lblNazDok.Text = "/";
+            this.lblNazDok.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // chkAktivniZap
+            // 
+            this.chkAktivniZap.AutoSize = true;
+            this.chkAktivniZap.Checked = true;
+            this.chkAktivniZap.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+            this.chkAktivniZap.Location = new System.Drawing.Point(509, 4);
+            this.chkAktivniZap.Name = "chkAktivniZap";
+            this.chkAktivniZap.Size = new System.Drawing.Size(69, 22);
+            this.chkAktivniZap.TabIndex = 1;
+            this.chkAktivniZap.Text = "Aktivni";
+            this.chkAktivniZap.ThreeState = true;
+            this.chkAktivniZap.UseVisualStyleBackColor = true;
+            this.chkAktivniZap.CheckStateChanged += new System.EventHandler(this.FilterChanged);
+            // 
             // txtFilter
             // 
             this.txtFilter.BindingSource = null;
@@ -618,6 +605,21 @@ namespace JISP.Forms
             this.dgvcNjaVrstaAng.MinimumWidth = 6;
             this.dgvcNjaVrstaAng.Name = "dgvcNjaVrstaAng";
             this.dgvcNjaVrstaAng.ReadOnly = true;
+            // 
+            // bsZaposlenja
+            // 
+            this.bsZaposlenja.DataSource = this.bsZaposleni;
+            this.bsZaposlenja.Sort = "";
+            // 
+            // ofdZapSlika
+            // 
+            this.ofdZapSlika.Filter = "Image files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
+            this.ofdZapSlika.Title = "Odabir slike za zaposlenog";
+            // 
+            // ofdIskra
+            // 
+            this.ofdIskra.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
+            this.ofdIskra.Title = "Odabir podatkovnog fajla iz Iskre";
             // 
             // pnlLeft
             // 
@@ -825,6 +827,7 @@ namespace JISP.Forms
             this.splitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvZaposleni)).EndInit();
             this.pnlZaposleniTop.ResumeLayout(false);
             this.pnlZaposleniTop.PerformLayout();
             this.scNazDok.Panel2.ResumeLayout(false);
@@ -832,9 +835,8 @@ namespace JISP.Forms
             this.scNazDok.ResumeLayout(false);
             this.tlpNazDok.ResumeLayout(false);
             this.tlpNazDok.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsZaposlenja)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvZaposleni)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvZaposlenja)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsZaposlenja)).EndInit();
             this.pnlLeft.ResumeLayout(false);
             this.pnlLeft.PerformLayout();
             this.gbIzvestaji.ResumeLayout(false);

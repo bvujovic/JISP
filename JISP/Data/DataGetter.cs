@@ -218,7 +218,8 @@ namespace JISP.Data
         public static async Task GetObrazovanjaTempAsync()
         {
             var ds = AppData.DsTemp;
-            var tabele = new[] { "Drzava", "Jezici", "KLASNOKS", "NoksNivoi", "StepenStrucneSpreme" };
+            var tabele = new[] { "Drzava", "Jezici", "KLASNOKS", "NoksNivoi", "StepenStrucneSpreme"
+                , "ZvanjaPoPravilniku" };
             foreach (var tbl in tabele)
             {
                 if (ds.Tables[tbl].Rows.Count == 0)
@@ -265,10 +266,13 @@ namespace JISP.Data
                 o.DatumSticanjaDiplome = obj.datumSticanjaDiplome;
                 PostaviVrednostZaSifru(obj, o, "DrzavaZavrseneSkole", "Drzava");
                 o.MestoZavrseneSkoleNaziv = obj.mestoZavrseneSkoleSlobodanUnos;
-                o.NazivSkole = obj.nazivSkole;
+                // o.NazivSkole = obj.nazivSkole; // Škola (staro): ranije uneti podaci - pre padajuće liste sa školama/fakultetima
                 PostaviVrednostZaSifru(obj, o, "JezikNaKomJeStecenoObrazovanje", "Jezici");
                 o.DokumentId = obj.dokumentId;
                 o.DokumentNaziv = obj.dokumentNaziv;
+                if (obj.zavrsenaSkolaNaziv != null)
+                    o.ZavrsenaSkolaNaziv = obj.zavrsenaSkolaNaziv;
+                PostaviVrednostZaSifru(obj, o, "ZvanjePoPravilnikuId", "ZvanjaPoPravilniku");
                 if (novo)
                     AppData.Ds.Obrazovanja.AddObrazovanjaRow(o);
             }
@@ -281,8 +285,10 @@ namespace JISP.Data
         /// <summary>Tabela u DsTemp se pretražuje po ID-u da bi se dohvatio naziv za taj entitet i dati ID.</summary>
         private static void PostaviVrednostZaSifru(dynamic obj, System.Data.DataRow o, string kolona, string tabela)
         {
-            // Ime kolone u DsTemp je npr Naziv a u JSONu je naziv. Zato se ovde prvo slovo naziv akolone smanjuje.
+            // Ime kolone u DsTemp je npr Naziv a u JSONu je naziv. Zato se ovde prvo slovo naziva kolone smanjuje.
             var objCol = char.ToLower(kolona[0]) + kolona.Substring(1);
+            if (kolona == "ZvanjePoPravilnikuId")
+                kolona = "ZvanjePoPravilniku";
             if (obj[objCol] != null)
             {
                 var row = AppData.DsTemp.Tables[tabela].Rows.Find((int)obj[objCol]);

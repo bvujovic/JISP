@@ -52,10 +52,12 @@
             this.stepenDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NazivSteceneKvalifikacije = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StrucniAkademskiNazivIzDiplome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcZvanjePoPravilniku = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcDatumSticanjaDiplome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DrzavaZavrseneSkole = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MestoZavrseneSkoleNaziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NazivSkole = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcZavrsenaSkolaNaziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.JezikNaKomJeStecenoObrazovanje = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcDokument = new System.Windows.Forms.DataGridViewButtonColumn();
             lblFilterZaposleni = new System.Windows.Forms.Label();
@@ -213,10 +215,12 @@
             this.stepenDataGridViewCheckBoxColumn,
             this.NazivSteceneKvalifikacije,
             this.StrucniAkademskiNazivIzDiplome,
+            this.dgvcZvanjePoPravilniku,
             this.dgvcDatumSticanjaDiplome,
             this.DrzavaZavrseneSkole,
             this.MestoZavrseneSkoleNaziv,
             this.NazivSkole,
+            this.dgvcZavrsenaSkolaNaziv,
             this.JezikNaKomJeStecenoObrazovanje,
             this.dgvcDokument});
             this.dgvObrazovanja.ColumnsForCopyOnClick = null;
@@ -299,6 +303,15 @@
             this.StrucniAkademskiNazivIzDiplome.Name = "StrucniAkademskiNazivIzDiplome";
             this.StrucniAkademskiNazivIzDiplome.ReadOnly = true;
             // 
+            // dgvcZvanjePoPravilniku
+            // 
+            this.dgvcZvanjePoPravilniku.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvcZvanjePoPravilniku.DataPropertyName = "ZvanjePoPravilniku";
+            this.dgvcZvanjePoPravilniku.HeaderText = "Zvanje";
+            this.dgvcZvanjePoPravilniku.MinimumWidth = 100;
+            this.dgvcZvanjePoPravilniku.Name = "dgvcZvanjePoPravilniku";
+            this.dgvcZvanjePoPravilniku.ReadOnly = true;
+            // 
             // dgvcDatumSticanjaDiplome
             // 
             this.dgvcDatumSticanjaDiplome.DataPropertyName = "DatumSticanjaDiplome";
@@ -326,10 +339,19 @@
             // 
             this.NazivSkole.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.NazivSkole.DataPropertyName = "NazivSkole";
-            this.NazivSkole.HeaderText = "Škola";
+            this.NazivSkole.HeaderText = "Škola (staro)";
             this.NazivSkole.MinimumWidth = 100;
             this.NazivSkole.Name = "NazivSkole";
             this.NazivSkole.ReadOnly = true;
+            // 
+            // dgvcZavrsenaSkolaNaziv
+            // 
+            this.dgvcZavrsenaSkolaNaziv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvcZavrsenaSkolaNaziv.DataPropertyName = "ZavrsenaSkolaNaziv";
+            this.dgvcZavrsenaSkolaNaziv.HeaderText = "Škola";
+            this.dgvcZavrsenaSkolaNaziv.MinimumWidth = 100;
+            this.dgvcZavrsenaSkolaNaziv.Name = "dgvcZavrsenaSkolaNaziv";
+            this.dgvcZavrsenaSkolaNaziv.ReadOnly = true;
             // 
             // JezikNaKomJeStecenoObrazovanje
             // 
@@ -400,10 +422,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn stepenDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn NazivSteceneKvalifikacije;
         private System.Windows.Forms.DataGridViewTextBoxColumn StrucniAkademskiNazivIzDiplome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcZvanjePoPravilniku;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcDatumSticanjaDiplome;
         private System.Windows.Forms.DataGridViewTextBoxColumn DrzavaZavrseneSkole;
         private System.Windows.Forms.DataGridViewTextBoxColumn MestoZavrseneSkoleNaziv;
         private System.Windows.Forms.DataGridViewTextBoxColumn NazivSkole;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcZavrsenaSkolaNaziv;
         private System.Windows.Forms.DataGridViewTextBoxColumn JezikNaKomJeStecenoObrazovanje;
         private System.Windows.Forms.DataGridViewButtonColumn dgvcDokument;
     }
