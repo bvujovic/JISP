@@ -97,6 +97,7 @@ namespace JISP.Forms
             this.chkCopyOnClick = new System.Windows.Forms.CheckBox();
             this.btnSaveData = new JISP.Controls.UcButton();
             this.btnExit = new JISP.Controls.UcExitAppButton();
+            this.btnZamene = new JISP.Controls.UcButton();
             lblFilterCaption = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bsZaposleni)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
@@ -623,6 +624,8 @@ namespace JISP.Forms
             // 
             // pnlLeft
             // 
+            this.pnlLeft.Controls.Add(this.btnZamene);
+            this.pnlLeft.Controls.Add(this.btnSistematizacija);
             this.pnlLeft.Controls.Add(this.btnObrazovanje);
             this.pnlLeft.Controls.Add(this.cmbIzracunajStatuse);
             this.pnlLeft.Controls.Add(this.btnIzracunajStatuse);
@@ -644,9 +647,9 @@ namespace JISP.Forms
             // 
             // btnObrazovanje
             // 
-            this.btnObrazovanje.Location = new System.Drawing.Point(8, 324);
+            this.btnObrazovanje.Location = new System.Drawing.Point(8, 318);
             this.btnObrazovanje.Name = "btnObrazovanje";
-            this.btnObrazovanje.Size = new System.Drawing.Size(128, 40);
+            this.btnObrazovanje.Size = new System.Drawing.Size(128, 34);
             this.btnObrazovanje.TabIndex = 9;
             this.btnObrazovanje.Text = "Obrazovanje";
             this.btnObrazovanje.ToolTipText = "Obrazovanje zaposlenih";
@@ -658,16 +661,16 @@ namespace JISP.Forms
             this.cmbIzracunajStatuse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbIzracunajStatuse.DropDownWidth = 300;
             this.cmbIzracunajStatuse.FormattingEnabled = true;
-            this.cmbIzracunajStatuse.Location = new System.Drawing.Point(9, 211);
+            this.cmbIzracunajStatuse.Location = new System.Drawing.Point(8, 211);
             this.cmbIzracunajStatuse.Name = "cmbIzracunajStatuse";
             this.cmbIzracunajStatuse.Size = new System.Drawing.Size(126, 26);
             this.cmbIzracunajStatuse.TabIndex = 5;
             // 
             // btnIzracunajStatuse
             // 
-            this.btnIzracunajStatuse.Location = new System.Drawing.Point(8, 238);
+            this.btnIzracunajStatuse.Location = new System.Drawing.Point(8, 235);
             this.btnIzracunajStatuse.Name = "btnIzracunajStatuse";
-            this.btnIzracunajStatuse.Size = new System.Drawing.Size(128, 40);
+            this.btnIzracunajStatuse.Size = new System.Drawing.Size(128, 34);
             this.btnIzracunajStatuse.TabIndex = 6;
             this.btnIzracunajStatuse.Text = "Izračunaj statuse";
             this.btnIzracunajStatuse.ToolTipText = null;
@@ -677,21 +680,20 @@ namespace JISP.Forms
             // gbIzvestaji
             // 
             this.gbIzvestaji.Controls.Add(this.btnIskra);
-            this.gbIzvestaji.Controls.Add(this.btnSistematizacija);
             this.gbIzvestaji.Controls.Add(this.btnKvalifStruktura);
             this.gbIzvestaji.Controls.Add(this.BtnCsvZaposlenja);
-            this.gbIzvestaji.Location = new System.Drawing.Point(3, 375);
+            this.gbIzvestaji.Location = new System.Drawing.Point(4, 433);
             this.gbIzvestaji.Name = "gbIzvestaji";
-            this.gbIzvestaji.Size = new System.Drawing.Size(136, 186);
+            this.gbIzvestaji.Size = new System.Drawing.Size(136, 133);
             this.gbIzvestaji.TabIndex = 8;
             this.gbIzvestaji.TabStop = false;
             this.gbIzvestaji.Text = "Izveštaji";
             // 
             // btnIskra
             // 
-            this.btnIskra.Location = new System.Drawing.Point(6, 143);
+            this.btnIskra.Location = new System.Drawing.Point(6, 91);
             this.btnIskra.Name = "btnIskra";
-            this.btnIskra.Size = new System.Drawing.Size(128, 40);
+            this.btnIskra.Size = new System.Drawing.Size(128, 34);
             this.btnIskra.TabIndex = 3;
             this.btnIskra.Text = "ISKRA test";
             this.btnIskra.ToolTipText = "Poređenje podataka JISP vs ISKRA";
@@ -700,9 +702,9 @@ namespace JISP.Forms
             // 
             // btnSistematizacija
             // 
-            this.btnSistematizacija.Location = new System.Drawing.Point(6, 23);
+            this.btnSistematizacija.Location = new System.Drawing.Point(8, 284);
             this.btnSistematizacija.Name = "btnSistematizacija";
-            this.btnSistematizacija.Size = new System.Drawing.Size(127, 40);
+            this.btnSistematizacija.Size = new System.Drawing.Size(128, 34);
             this.btnSistematizacija.TabIndex = 0;
             this.btnSistematizacija.Text = "Sistemat. RM";
             this.btnSistematizacija.ToolTipText = "Sistematizacija radnih mesta";
@@ -711,9 +713,9 @@ namespace JISP.Forms
             // 
             // btnKvalifStruktura
             // 
-            this.btnKvalifStruktura.Location = new System.Drawing.Point(6, 63);
+            this.btnKvalifStruktura.Location = new System.Drawing.Point(6, 23);
             this.btnKvalifStruktura.Name = "btnKvalifStruktura";
-            this.btnKvalifStruktura.Size = new System.Drawing.Size(128, 40);
+            this.btnKvalifStruktura.Size = new System.Drawing.Size(128, 34);
             this.btnKvalifStruktura.TabIndex = 1;
             this.btnKvalifStruktura.Text = "Kvalif. struktura";
             this.btnKvalifStruktura.ToolTipText = "Kreiranje izveštaja Kvalifikaciona Struktura";
@@ -722,9 +724,9 @@ namespace JISP.Forms
             // 
             // BtnCsvZaposlenja
             // 
-            this.BtnCsvZaposlenja.Location = new System.Drawing.Point(6, 103);
+            this.BtnCsvZaposlenja.Location = new System.Drawing.Point(6, 57);
             this.BtnCsvZaposlenja.Name = "BtnCsvZaposlenja";
-            this.BtnCsvZaposlenja.Size = new System.Drawing.Size(128, 40);
+            this.BtnCsvZaposlenja.Size = new System.Drawing.Size(128, 34);
             this.BtnCsvZaposlenja.TabIndex = 2;
             this.BtnCsvZaposlenja.Text = "CSV zaposlenja";
             this.BtnCsvZaposlenja.ToolTipText = "Stavljanje u klipbord podatаkа u CSV formatu o svim zaposlenima radi provere Kval" +
@@ -737,16 +739,16 @@ namespace JISP.Forms
             this.cmbPodaciZaDohvatanje.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPodaciZaDohvatanje.DropDownWidth = 300;
             this.cmbPodaciZaDohvatanje.FormattingEnabled = true;
-            this.cmbPodaciZaDohvatanje.Location = new System.Drawing.Point(9, 138);
+            this.cmbPodaciZaDohvatanje.Location = new System.Drawing.Point(8, 138);
             this.cmbPodaciZaDohvatanje.Name = "cmbPodaciZaDohvatanje";
             this.cmbPodaciZaDohvatanje.Size = new System.Drawing.Size(126, 26);
             this.cmbPodaciZaDohvatanje.TabIndex = 3;
             // 
             // btnDohvatiPodatke
             // 
-            this.btnDohvatiPodatke.Location = new System.Drawing.Point(8, 165);
+            this.btnDohvatiPodatke.Location = new System.Drawing.Point(8, 162);
             this.btnDohvatiPodatke.Name = "btnDohvatiPodatke";
-            this.btnDohvatiPodatke.Size = new System.Drawing.Size(128, 40);
+            this.btnDohvatiPodatke.Size = new System.Drawing.Size(128, 34);
             this.btnDohvatiPodatke.TabIndex = 4;
             this.btnDohvatiPodatke.Text = "Dohvati podatke";
             this.btnDohvatiPodatke.ToolTipText = null;
@@ -755,9 +757,9 @@ namespace JISP.Forms
             // 
             // btnResenja
             // 
-            this.btnResenja.Location = new System.Drawing.Point(8, 284);
+            this.btnResenja.Location = new System.Drawing.Point(8, 352);
             this.btnResenja.Name = "btnResenja";
-            this.btnResenja.Size = new System.Drawing.Size(128, 40);
+            this.btnResenja.Size = new System.Drawing.Size(128, 34);
             this.btnResenja.TabIndex = 7;
             this.btnResenja.Text = "Rešenja";
             this.btnResenja.ToolTipText = "Rešenja svih zaposlenih";
@@ -806,6 +808,17 @@ namespace JISP.Forms
             this.btnExit.Text = "Izlaz";
             this.btnExit.ToolTipText = "Izlaz iz aplikacije";
             this.btnExit.UseVisualStyleBackColor = false;
+            // 
+            // btnZamene
+            // 
+            this.btnZamene.Location = new System.Drawing.Point(8, 386);
+            this.btnZamene.Name = "btnZamene";
+            this.btnZamene.Size = new System.Drawing.Size(128, 34);
+            this.btnZamene.TabIndex = 10;
+            this.btnZamene.Text = "Zamene";
+            this.btnZamene.ToolTipText = "Zamene zaposlenih";
+            this.btnZamene.UseVisualStyleBackColor = true;
+            this.btnZamene.Click += new System.EventHandler(this.BtnZamene_Click);
             // 
             // FrmZaposleni
             // 
@@ -903,5 +916,6 @@ namespace JISP.Forms
         private System.Windows.Forms.Label lblNazDok;
         private Controls.UcButton btnIskra;
         private System.Windows.Forms.OpenFileDialog ofdIskra;
+        private Controls.UcButton btnZamene;
     }
 }

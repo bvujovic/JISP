@@ -2,6 +2,7 @@
 using JISP.Classes.ObracunZarada;
 using JISP.Controls;
 using JISP.Data;
+using JISP.Forms.Zaposlenii;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -310,9 +311,9 @@ namespace JISP.Forms
             catch (Exception ex) { Utils.ShowMbox(ex, BtnCsvZaposlenja.Text + " - " + tekuciZaposleni); }
         }
 
-        private void BtnResenja_Click(object sender, EventArgs e)
+        private void BtnSistematizacija_Click(object sender, EventArgs e)
         {
-            new FrmResenja().ShowDialog();
+            new FrmSistematizacija().Show();
         }
 
         private void BtnObrazovanje_Click(object sender, EventArgs e)
@@ -320,9 +321,14 @@ namespace JISP.Forms
             new FrmObrazovanje().ShowDialog();
         }
 
-        private void BtnSistematizacija_Click(object sender, EventArgs e)
+        private void BtnResenja_Click(object sender, EventArgs e)
         {
-            new FrmSistematizacija().Show();
+            new FrmResenja().ShowDialog();
+        }
+
+        private void BtnZamene_Click(object sender, EventArgs e)
+        {
+            new FrmZamene().Show();
         }
 
         private void BtnSumaAngazovanja_Click(object sender, EventArgs e)
