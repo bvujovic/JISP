@@ -30,6 +30,10 @@ namespace JISP.Forms.Zaposlenii
         {
             try
             {
+                //foreach (var it in AppData.Ds.Zaposlenja.Where(it => !it.IsIdZamenjenogZaposlenogNull() &&
+                //    !it.VrstaAngazovanja.Contains("замен")).ToList())
+                //    it.SetIdZamenjenogZaposlenogNull();
+
                 var strZamenjen = LatinicaCirilica.Lat2Cir(txtZamenjen.Text.Trim().ToLower());
                 var zamenjeniIDs = AppData.Ds.Zaposleni.Where(z => z.ZaposleniString.ToLower().Contains(strZamenjen)).Select(z => z.IdZaposlenog);
                 var strZamena = LatinicaCirilica.Lat2Cir(txtZamena.Text.Trim().ToLower());
@@ -38,8 +42,8 @@ namespace JISP.Forms.Zaposlenii
                 var njaIDs =
                 AppData.Ds.Zaposlenja.Where(it =>
                     !it.IsIdZamenjenogZaposlenogNull() &&
-                    it.DatumZaposlenOd >= new DateTime(skGod.Start, 9, 1) &&
-                    (jeTekucaSkGod && it.IsDatumZaposlenDoNull() || it.DatumZaposlenDo <= new DateTime(skGod.Kraj, 8, 31)) &&
+                    (it.DatumZaposlenOd >= new DateTime(skGod.Start, 9, 1) && it.DatumZaposlenOd <= new DateTime(skGod.Kraj, 8, 31) ||
+                    it.IsDatumZaposlenDoNull() && it.DatumZaposlenOd <= new DateTime(skGod.Kraj, 8, 31)) &&
                     (!chkAktivno.Checked || chkAktivno.Checked && it.IsDatumZaposlenDoNull()) &&
                     (strZamenjen == "" || !zamenjeniIDs.Any() || zamenjeniIDs.Contains(it.IdZamenjenogZaposlenog)) &&
                     (strZamena == "" || !zameneIDs.Any() || zameneIDs.Contains(it.IdZaposlenog))
