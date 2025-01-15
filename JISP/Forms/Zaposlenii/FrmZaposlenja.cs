@@ -1,5 +1,4 @@
 ﻿using JISP.Classes;
-using JISP.Classes.ObracunZarada;
 using JISP.Controls;
 using JISP.Data;
 using System;
@@ -24,8 +23,7 @@ namespace JISP.Forms
 
                 chkBezTehnGresaka.Checked = CheckedBezTehnGresaka;
                 chkCopyOnClick.Checked = CheckedCopyOnClick;
-                if (CheckStateAktivno.HasValue)
-                    chkAktivno.CheckState = CheckStateAktivno.Value;
+                chkAktivno.Checked = CheckedAktivno;
                 tcBottom.SelectedIndex = TcBottomSelectedIndex;
                 if (LastLocation != Point.Empty)
                 {
@@ -78,14 +76,14 @@ namespace JISP.Forms
         private void SetBsZaposlenjaFilter()
         {
             var s = $"IdZaposlenog = {zaposleni.IdZaposlenog}";
-            if (chkAktivno.CheckState != CheckState.Indeterminate)
-                s += $" AND Aktivan = {chkAktivno.Checked}";
+            if (chkAktivno.Checked)
+                s += $" AND Aktivan ";
             if (chkBezTehnGresaka.Checked)
                 s += " AND (RazlogPrestankaZaposlenja IS NULL OR RazlogPrestankaZaposlenja NOT LIKE '%Техничка грешка%')";
             bsZaposlenja.Filter = s;
         }
 
-        private void ChkAktivno_CheckStateChanged(object sender, EventArgs e)
+        private void ChkAktivno_CheckedChanged(object sender, EventArgs e)
             => SetBsZaposlenjaFilter();
 
         private void ChkBezTehnGresaka_CheckedChanged(object sender, EventArgs e)
@@ -123,7 +121,7 @@ namespace JISP.Forms
 
         private static bool CheckedBezTehnGresaka = true;
         private static bool CheckedCopyOnClick = false;
-        private static CheckState? CheckStateAktivno = null;
+        private static bool CheckedAktivno = true;
         private static int TcBottomSelectedIndex = 0;
         private static Point LastLocation = Point.Empty;
         private static Size LastSize = Size.Empty;
@@ -133,7 +131,7 @@ namespace JISP.Forms
             stazDatumDo = dtpStazDatumDo.Value;
             CheckedBezTehnGresaka = chkBezTehnGresaka.Checked;
             CheckedCopyOnClick = chkCopyOnClick.Checked;
-            CheckStateAktivno = chkAktivno.CheckState;
+            CheckedAktivno = chkAktivno.Checked;
             TcBottomSelectedIndex = tcBottom.SelectedIndex;
             if (this.WindowState == FormWindowState.Normal)
             {

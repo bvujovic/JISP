@@ -20,8 +20,8 @@ namespace JISP.Forms
         private void FrmObrazovanje_Load(object sender, EventArgs e)
         {
             cmbPodaciZaDohvatanje.Items.AddRange(new[] {
+                CmbDohvatiZapSaOveForme,
                 CmbDohvatiZapSaGlavne,
-                CmbDohvatiZapSaOveForme
             });
             cmbPodaciZaDohvatanje.SelectedIndex = 0;
             cmbPodaciZaDohvatanje.AdjustWidth();

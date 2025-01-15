@@ -56,7 +56,7 @@
             this.vrstaAngazovanjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.razlogPrestankaZaposlenjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.brojUgovoraORaduDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dokumentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dgvcDokument = new System.Windows.Forms.DataGridViewButtonColumn();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             this.pnlBottomLeftRes.SuspendLayout();
@@ -202,7 +202,7 @@
             this.vrstaAngazovanjaDataGridViewTextBoxColumn,
             this.razlogPrestankaZaposlenjaDataGridViewTextBoxColumn,
             this.brojUgovoraORaduDataGridViewTextBoxColumn,
-            this.dokumentDataGridViewTextBoxColumn});
+            this.dgvcDokument});
             this.dgvZamene.ColumnsForCopyOnClick = null;
             this.dgvZamene.CopyOnCellClick = false;
             this.dgvZamene.CtrlDisplayPositionRowCount = this.lblBrojRedova;
@@ -216,6 +216,7 @@
             this.dgvZamene.Size = new System.Drawing.Size(1215, 453);
             this.dgvZamene.StandardSort = null;
             this.dgvZamene.TabIndex = 0;
+            this.dgvZamene.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvZamene_CellClick);
             // 
             // bsZaposlenja
             // 
@@ -313,18 +314,18 @@
             this.brojUgovoraORaduDataGridViewTextBoxColumn.Name = "brojUgovoraORaduDataGridViewTextBoxColumn";
             this.brojUgovoraORaduDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // dokumentDataGridViewTextBoxColumn
+            // dgvcDokument
             // 
-            this.dokumentDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dokumentDataGridViewTextBoxColumn.DataPropertyName = "Dokument";
+            this.dgvcDokument.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dgvcDokument.DataPropertyName = "Dokument";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.dokumentDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dokumentDataGridViewTextBoxColumn.HeaderText = "Dokument";
-            this.dokumentDataGridViewTextBoxColumn.Name = "dokumentDataGridViewTextBoxColumn";
-            this.dokumentDataGridViewTextBoxColumn.ReadOnly = true;
-            this.dokumentDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dokumentDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dokumentDataGridViewTextBoxColumn.Width = 102;
+            this.dgvcDokument.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvcDokument.HeaderText = "Dokument";
+            this.dgvcDokument.Name = "dgvcDokument";
+            this.dgvcDokument.ReadOnly = true;
+            this.dgvcDokument.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvcDokument.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dgvcDokument.Width = 102;
             // 
             // FrmZamene
             // 
@@ -376,6 +377,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn vrstaAngazovanjaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn razlogPrestankaZaposlenjaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn brojUgovoraORaduDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewButtonColumn dokumentDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn dgvcDokument;
     }
 }

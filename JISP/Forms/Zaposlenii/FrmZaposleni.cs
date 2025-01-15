@@ -182,7 +182,7 @@ namespace JISP.Forms
         private void DgvZaposleni_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex != -1)
-                new FrmZaposlenja(dgvZaposleni.CurrDataRow<Ds.ZaposleniRow>()).ShowDialog();
+                new FrmZaposlenja(dgvZaposleni.CurrDataRow<Ds.ZaposleniRow>()).Show();
         }
 
         private void DgvZaposleni_KeyDown(object sender, KeyEventArgs e)
@@ -318,7 +318,7 @@ namespace JISP.Forms
 
         private void BtnObrazovanje_Click(object sender, EventArgs e)
         {
-            new FrmObrazovanje().ShowDialog();
+            new FrmObrazovanje().Show();
         }
 
         private void BtnResenja_Click(object sender, EventArgs e)
@@ -419,6 +419,7 @@ namespace JISP.Forms
                         dynamic obj = Newtonsoft.Json.Linq.JObject.Parse(json);
                         zap.Pol = Utils.Pol((int)obj.pol);
                         zap.Prebivaliste = $"{obj.mestoPrebivalistaNaziv}, {obj.adresaPrebivalistaNaziv}, {obj.adresniKodPrebivalista}";
+                        zap.MestoRodjenja = $"{obj.drzavaRodjenjaNaziv}, {obj.mestoRodjenja}";
                         if (obj.elektronskaPosta != null)
                         {
                             var list = new List<string>();

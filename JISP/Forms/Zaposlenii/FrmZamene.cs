@@ -30,15 +30,18 @@ namespace JISP.Forms.Zaposlenii
         {
             try
             {
-                //foreach (var it in AppData.Ds.Zaposlenja.Where(it => !it.IsIdZamenjenogZaposlenogNull() &&
-                //    !it.VrstaAngazovanja.Contains("замен")).ToList())
-                //    it.SetIdZamenjenogZaposlenogNull();
+                var pogresneZamene = AppData.Ds.Zaposlenja.Where(it => !it.IsIdZamenjenogZaposlenogNull() &&
+                    !it.VrstaAngazovanja.Contains("замен")).ToList();
+                if (pogresneZamene.Any() && Utils.ShowMboxYesNo("Ovo su zaposlenja za koje tip ugovora nije \"zamena...\", a imaju unete zaposlene na zameni:" + Environment.NewLine
+                    + string.Join(Environment.NewLine, pogresneZamene.Select(it => it._ZamenjeniZaposleni + " zamenjen sa " + it._Zaposleni + ", od " + it.DatumZaposlenOd.ToString(Utils.DatumFormat)))
+                    + "Da li želite da poništite unete zamene (ID-evi zaposlenih na zameni) za ova zaposlenja?"
+                    , "Greške u zamenama") == DialogResult.Yes)
+                    pogresneZamene.ForEach(it => it.SetIdZamenjenogZaposlenogNull());
 
                 var strZamenjen = LatinicaCirilica.Lat2Cir(txtZamenjen.Text.Trim().ToLower());
                 var zamenjeniIDs = AppData.Ds.Zaposleni.Where(z => z.ZaposleniString.ToLower().Contains(strZamenjen)).Select(z => z.IdZaposlenog);
                 var strZamena = LatinicaCirilica.Lat2Cir(txtZamena.Text.Trim().ToLower());
                 var zameneIDs = AppData.Ds.Zaposleni.Where(z => z.ZaposleniString.ToLower().Contains(strZamena)).Select(z => z.IdZaposlenog);
-                var jeTekucaSkGod = skGod.PripadaDatum(DateTime.Today);
                 var njaIDs =
                 AppData.Ds.Zaposlenja.Where(it =>
                     !it.IsIdZamenjenogZaposlenogNull() &&
@@ -66,6 +69,16 @@ namespace JISP.Forms.Zaposlenii
         private void FrmZamene_FormClosed(object sender, FormClosedEventArgs e)
         {
             dgvZamene.SaveSettings();
+        }
+
+        private async void DgvZamene_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0 && e.ColumnIndex == dgvcDokument.Index)
+                    await Utils.PreuzmiDokument(dgvZamene, e);
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, Text); }
         }
     }
 }

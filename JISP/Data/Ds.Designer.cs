@@ -84,9 +84,9 @@ namespace JISP.Data {
         
         private global::System.Data.DataRelation relationSumZaposlenja_SumZapDetalji;
         
-        private global::System.Data.DataRelation relationRaz_OdRaz;
-        
         private global::System.Data.DataRelation relationOd_OdRaz;
+        
+        private global::System.Data.DataRelation relationRaz_OdRaz;
         
         private global::System.Data.DataRelation relationZaposlenja_Angazovanja;
         
@@ -863,8 +863,8 @@ namespace JISP.Data {
             this.relationFK_Zaposleni_Zaposlenja = this.Relations["FK_Zaposleni_Zaposlenja"];
             this.relationZaposleni_ObracunZarada = this.Relations["Zaposleni_ObracunZarada"];
             this.relationSumZaposlenja_SumZapDetalji = this.Relations["SumZaposlenja_SumZapDetalji"];
-            this.relationRaz_OdRaz = this.Relations["Raz_OdRaz"];
             this.relationOd_OdRaz = this.Relations["Od_OdRaz"];
+            this.relationRaz_OdRaz = this.Relations["Raz_OdRaz"];
             this.relationZaposlenja_Angazovanja = this.Relations["Zaposlenja_Angazovanja"];
             this.relationZaposlenja_Resenja = this.Relations["Zaposlenja_Resenja"];
             this.relationFK_Sistematizacija_SistematizacijaDetalji = this.Relations["FK_Sistematizacija_SistematizacijaDetalji"];
@@ -964,16 +964,16 @@ namespace JISP.Data {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.None;
-            fkc = new global::System.Data.ForeignKeyConstraint("Raz_OdRaz", new global::System.Data.DataColumn[] {
-                        this.tableRazredi.IdRazredaColumn}, new global::System.Data.DataColumn[] {
-                        this.tableOdRaz.IdRazredaColumn});
+            fkc = new global::System.Data.ForeignKeyConstraint("Od_OdRaz", new global::System.Data.DataColumn[] {
+                        this.tableOdeljenja.IdOdeljenjaColumn}, new global::System.Data.DataColumn[] {
+                        this.tableOdRaz.IdOdeljenjaColumn});
             this.tableOdRaz.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            fkc = new global::System.Data.ForeignKeyConstraint("Od_OdRaz", new global::System.Data.DataColumn[] {
-                        this.tableOdeljenja.IdOdeljenjaColumn}, new global::System.Data.DataColumn[] {
-                        this.tableOdRaz.IdOdeljenjaColumn});
+            fkc = new global::System.Data.ForeignKeyConstraint("Raz_OdRaz", new global::System.Data.DataColumn[] {
+                        this.tableRazredi.IdRazredaColumn}, new global::System.Data.DataColumn[] {
+                        this.tableOdRaz.IdRazredaColumn});
             this.tableOdRaz.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
@@ -990,14 +990,14 @@ namespace JISP.Data {
                         this.tableSumZaposlenja.IdSumZaposlenjaColumn}, new global::System.Data.DataColumn[] {
                         this.tableSumZapDetalji.IdSumZaposlenjaColumn}, false);
             this.Relations.Add(this.relationSumZaposlenja_SumZapDetalji);
-            this.relationRaz_OdRaz = new global::System.Data.DataRelation("Raz_OdRaz", new global::System.Data.DataColumn[] {
-                        this.tableRazredi.IdRazredaColumn}, new global::System.Data.DataColumn[] {
-                        this.tableOdRaz.IdRazredaColumn}, false);
-            this.Relations.Add(this.relationRaz_OdRaz);
             this.relationOd_OdRaz = new global::System.Data.DataRelation("Od_OdRaz", new global::System.Data.DataColumn[] {
                         this.tableOdeljenja.IdOdeljenjaColumn}, new global::System.Data.DataColumn[] {
                         this.tableOdRaz.IdOdeljenjaColumn}, false);
             this.Relations.Add(this.relationOd_OdRaz);
+            this.relationRaz_OdRaz = new global::System.Data.DataRelation("Raz_OdRaz", new global::System.Data.DataColumn[] {
+                        this.tableRazredi.IdRazredaColumn}, new global::System.Data.DataColumn[] {
+                        this.tableOdRaz.IdRazredaColumn}, false);
+            this.Relations.Add(this.relationRaz_OdRaz);
             this.relationZaposlenja_Angazovanja = new global::System.Data.DataRelation("Zaposlenja_Angazovanja", new global::System.Data.DataColumn[] {
                         this.tableZaposlenja.IdZaposlenjaColumn}, new global::System.Data.DataColumn[] {
                         this.tableAngazovanja.IdZaposlenjaColumn}, false);
@@ -2125,6 +2125,8 @@ namespace JISP.Data {
             
             private global::System.Data.DataColumn columnPrebivaliste;
             
+            private global::System.Data.DataColumn columnMestoRodjenja;
+            
             private global::System.Data.DataColumn columnNapomene;
             
             private global::System.Data.DataColumn columnImaSliku;
@@ -2281,6 +2283,14 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn MestoRodjenjaColumn {
+                get {
+                    return this.columnMestoRodjenja;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn NapomeneColumn {
                 get {
                     return this.columnNapomene;
@@ -2393,6 +2403,7 @@ namespace JISP.Data {
                         string Email, 
                         string Telefon, 
                         string Prebivaliste, 
+                        string MestoRodjenja, 
                         string Napomene, 
                         bool ImaSliku, 
                         string StatusAktivnosti1, 
@@ -2415,6 +2426,7 @@ namespace JISP.Data {
                         Email,
                         Telefon,
                         Prebivaliste,
+                        MestoRodjenja,
                         Napomene,
                         ImaSliku,
                         StatusAktivnosti1,
@@ -2443,6 +2455,7 @@ namespace JISP.Data {
                         string Email, 
                         string Telefon, 
                         string Prebivaliste, 
+                        string MestoRodjenja, 
                         string Napomene, 
                         bool ImaSliku, 
                         string StatusAktivnosti1, 
@@ -2464,6 +2477,7 @@ namespace JISP.Data {
                         Email,
                         Telefon,
                         Prebivaliste,
+                        MestoRodjenja,
                         Napomene,
                         ImaSliku,
                         StatusAktivnosti1,
@@ -2513,6 +2527,7 @@ namespace JISP.Data {
                 this.columnEmail = base.Columns["Email"];
                 this.columnTelefon = base.Columns["Telefon"];
                 this.columnPrebivaliste = base.Columns["Prebivaliste"];
+                this.columnMestoRodjenja = base.Columns["MestoRodjenja"];
                 this.columnNapomene = base.Columns["Napomene"];
                 this.columnImaSliku = base.Columns["ImaSliku"];
                 this.columnStatusAktivnosti1 = base.Columns["StatusAktivnosti1"];
@@ -2550,6 +2565,8 @@ namespace JISP.Data {
                 base.Columns.Add(this.columnTelefon);
                 this.columnPrebivaliste = new global::System.Data.DataColumn("Prebivaliste", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPrebivaliste);
+                this.columnMestoRodjenja = new global::System.Data.DataColumn("MestoRodjenja", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMestoRodjenja);
                 this.columnNapomene = new global::System.Data.DataColumn("Napomene", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNapomene);
                 this.columnImaSliku = new global::System.Data.DataColumn("ImaSliku", typeof(bool), null, global::System.Data.MappingType.Element);
@@ -13457,6 +13474,22 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string MestoRodjenja {
+                get {
+                    try {
+                        return ((string)(this[this.tableZaposleni.MestoRodjenjaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MestoRodjenja\' in table \'Zaposleni\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableZaposleni.MestoRodjenjaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string Napomene {
                 get {
                     try {
@@ -13696,6 +13729,18 @@ namespace JISP.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetPrebivalisteNull() {
                 this[this.tableZaposleni.PrebivalisteColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsMestoRodjenjaNull() {
+                return this.IsNull(this.tableZaposleni.MestoRodjenjaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetMestoRodjenjaNull() {
+                this[this.tableZaposleni.MestoRodjenjaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -19392,23 +19437,23 @@ namespace JISP.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public RazrediRow RazrediRow {
-                get {
-                    return ((RazrediRow)(this.GetParentRow(this.Table.ParentRelations["Raz_OdRaz"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["Raz_OdRaz"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public OdeljenjaRow OdeljenjaRow {
                 get {
                     return ((OdeljenjaRow)(this.GetParentRow(this.Table.ParentRelations["Od_OdRaz"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["Od_OdRaz"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public RazrediRow RazrediRow {
+                get {
+                    return ((RazrediRow)(this.GetParentRow(this.Table.ParentRelations["Raz_OdRaz"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Raz_OdRaz"]);
                 }
             }
             
