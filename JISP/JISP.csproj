@@ -30,7 +30,7 @@
     <PublisherName>BV</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.7.8.0</ApplicationVersion>
+    <ApplicationVersion>0.7.9.0</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -197,16 +197,16 @@
     <Compile Include="Forms\FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Zaposlenii\FrmNovoEksternoZaposlenje.cs">
+    <Compile Include="Forms\ZapsForms\FrmNovoEksternoZaposlenje.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Zaposlenii\FrmNovoEksternoZaposlenje.Designer.cs">
+    <Compile Include="Forms\ZapsForms\FrmNovoEksternoZaposlenje.Designer.cs">
       <DependentUpon>FrmNovoEksternoZaposlenje.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Zaposlenii\FrmObrazovanje.cs">
+    <Compile Include="Forms\ZapsForms\FrmObrazovanje.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Zaposlenii\FrmObrazovanje.Designer.cs">
+    <Compile Include="Forms\ZapsForms\FrmObrazovanje.Designer.cs">
       <DependentUpon>FrmObrazovanje.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmPoruke.cs">
@@ -233,34 +233,34 @@
     <Compile Include="Forms\FrmRazrediOdeljenja.Designer.cs">
       <DependentUpon>FrmRazrediOdeljenja.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Zaposlenii\FrmResenja.cs">
+    <Compile Include="Forms\ZapsForms\FrmResenja.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Zaposlenii\FrmResenja.Designer.cs">
+    <Compile Include="Forms\ZapsForms\FrmResenja.Designer.cs">
       <DependentUpon>FrmResenja.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Zaposlenii\FrmSistematizacija.cs">
+    <Compile Include="Forms\ZapsForms\FrmSistematizacija.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Zaposlenii\FrmSistematizacija.Designer.cs">
+    <Compile Include="Forms\ZapsForms\FrmSistematizacija.Designer.cs">
       <DependentUpon>FrmSistematizacija.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Zaposlenii\FrmSistematizacijaSacuvajNormu.cs">
+    <Compile Include="Forms\ZapsForms\FrmSistematizacijaSacuvajNormu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Zaposlenii\FrmSistematizacijaSacuvajNormu.Designer.cs">
+    <Compile Include="Forms\ZapsForms\FrmSistematizacijaSacuvajNormu.Designer.cs">
       <DependentUpon>FrmSistematizacijaSacuvajNormu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Zaposlenii\FrmSlikaZap.cs">
+    <Compile Include="Forms\ZapsForms\FrmSlikaZap.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Zaposlenii\FrmSlikaZap.Designer.cs">
+    <Compile Include="Forms\ZapsForms\FrmSlikaZap.Designer.cs">
       <DependentUpon>FrmSlikaZap.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Zaposlenii\FrmStaz.cs">
+    <Compile Include="Forms\ZapsForms\FrmStaz.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Zaposlenii\FrmStaz.Designer.cs">
+    <Compile Include="Forms\ZapsForms\FrmStaz.Designer.cs">
       <DependentUpon>FrmStaz.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmUcenici.cs">
@@ -275,22 +275,22 @@
     <Compile Include="Forms\FrmUcenikImeJOB.Designer.cs">
       <DependentUpon>FrmUcenikImeJOB.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Zaposlenii\FrmZamene.cs">
+    <Compile Include="Forms\ZapsForms\FrmZamene.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Zaposlenii\FrmZamene.Designer.cs">
+    <Compile Include="Forms\ZapsForms\FrmZamene.Designer.cs">
       <DependentUpon>FrmZamene.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Zaposlenii\FrmZaposleni.cs">
+    <Compile Include="Forms\ZapsForms\FrmZaposleni.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Zaposlenii\FrmZaposleni.Designer.cs">
+    <Compile Include="Forms\ZapsForms\FrmZaposleni.Designer.cs">
       <DependentUpon>FrmZaposleni.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Zaposlenii\FrmZaposlenja.cs">
+    <Compile Include="Forms\ZapsForms\FrmZaposlenja.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Zaposlenii\FrmZaposlenja.Designer.cs">
+    <Compile Include="Forms\ZapsForms\FrmZaposlenja.Designer.cs">
       <DependentUpon>FrmZaposlenja.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -311,10 +311,10 @@
     <EmbeddedResource Include="Forms\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Zaposlenii\FrmNovoEksternoZaposlenje.resx">
+    <EmbeddedResource Include="Forms\ZapsForms\FrmNovoEksternoZaposlenje.resx">
       <DependentUpon>FrmNovoEksternoZaposlenje.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Zaposlenii\FrmObrazovanje.resx">
+    <EmbeddedResource Include="Forms\ZapsForms\FrmObrazovanje.resx">
       <DependentUpon>FrmObrazovanje.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmPoruke.resx">
@@ -329,19 +329,19 @@
     <EmbeddedResource Include="Forms\FrmRazrediOdeljenja.resx">
       <DependentUpon>FrmRazrediOdeljenja.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Zaposlenii\FrmResenja.resx">
+    <EmbeddedResource Include="Forms\ZapsForms\FrmResenja.resx">
       <DependentUpon>FrmResenja.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Zaposlenii\FrmSistematizacija.resx">
+    <EmbeddedResource Include="Forms\ZapsForms\FrmSistematizacija.resx">
       <DependentUpon>FrmSistematizacija.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Zaposlenii\FrmSistematizacijaSacuvajNormu.resx">
+    <EmbeddedResource Include="Forms\ZapsForms\FrmSistematizacijaSacuvajNormu.resx">
       <DependentUpon>FrmSistematizacijaSacuvajNormu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Zaposlenii\FrmSlikaZap.resx">
+    <EmbeddedResource Include="Forms\ZapsForms\FrmSlikaZap.resx">
       <DependentUpon>FrmSlikaZap.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Zaposlenii\FrmStaz.resx">
+    <EmbeddedResource Include="Forms\ZapsForms\FrmStaz.resx">
       <DependentUpon>FrmStaz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmUcenici.resx">
@@ -350,13 +350,13 @@
     <EmbeddedResource Include="Forms\FrmUcenikImeJOB.resx">
       <DependentUpon>FrmUcenikImeJOB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Zaposlenii\FrmZamene.resx">
+    <EmbeddedResource Include="Forms\ZapsForms\FrmZamene.resx">
       <DependentUpon>FrmZamene.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Zaposlenii\FrmZaposleni.resx">
+    <EmbeddedResource Include="Forms\ZapsForms\FrmZaposleni.resx">
       <DependentUpon>FrmZaposleni.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Zaposlenii\FrmZaposlenja.resx">
+    <EmbeddedResource Include="Forms\ZapsForms\FrmZaposlenja.resx">
       <DependentUpon>FrmZaposlenja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

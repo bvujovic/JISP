@@ -7,7 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace JISP.Forms
+namespace JISP.Forms.ZapsForms
 {
     public partial class FrmZaposlenja : Form
     {
@@ -305,7 +305,8 @@ namespace JISP.Forms
             try
             {
                 var sz = dgvSvaZaposlenja.CurrDataRow<Ds.SumZaposlenjaRow>();
-                chkAktivno.CheckState = CheckState.Indeterminate;
+                //B chkAktivno.CheckState = CheckState.Indeterminate;
+                chkAktivno.Checked = false;
                 tcZaposlenja.SelectedTab = tpZaposSvetiSava;
                 var zapIDs = sz.GetSumZapDetaljiRows().Select(it => it.IdZaposlenja);
                 foreach (DataGridViewRow row in dgvZaposlenjaSvSava.Rows)

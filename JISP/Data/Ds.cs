@@ -37,8 +37,9 @@ namespace JISP.Data
                 ObrisiZaSosoSvetiSava();
                 var ds = this.DataSet as Ds;
                 // odredjivanje opsega datuma svih validnih zaposlenja
-                var nja = zap.GetZaposlenjaRows().Where(it => it.DatumZaposlenOd < datumDo &&
-                    (it.IsRazlogPrestankaZaposlenjaNull() || !it.RazlogPrestankaZaposlenja.Contains("Техничка грешка")))
+                var nja = zap.GetZaposlenjaRows().Where(it => it.DatumZaposlenOd < datumDo && it.Valid_NijeTehGreska
+                    //B (it.IsRazlogPrestankaZaposlenjaNull() || !it.RazlogPrestankaZaposlenja.Contains("Техничка грешка"))
+                    )
                     .ToList();
                 var datumOd = nja.Where(it => !it.IsDatumZaposlenOdNull()).Min(it => it.DatumZaposlenOd);
                 if (!nja.Any(it => it.Aktivan))
@@ -288,6 +289,9 @@ namespace JISP.Data
 
             public override string ToString()
                 => ZaposleniString;
+
+            public string ToStringLat()
+                => LatinicaCirilica.Cir2Lat(ZaposleniString);
         }
 
         partial class ZaposlenjaRow
@@ -297,6 +301,16 @@ namespace JISP.Data
             public bool NedostajeZamenjeni
                 => AppData.SkolskaGodina.PripadaDatum(DatumZaposlenOd) &&
                     VrstaAngazovanja.Contains("замена") && IsIdZamenjenogZaposlenogNull();
+
+            public bool Valid_NijeTehGreska
+                => IsRazlogPrestankaZaposlenjaNull() || !RazlogPrestankaZaposlenja.Contains("Техничка грешка");
+
+            /// <summary>Zaposlenje ne sme biti neaktivno bez upisanog datuma kraja zaposlenja.</summary>
+            public bool Valid_NijeNeaktBezDatumDo
+                => Aktivan || !IsDatumZaposlenDoNull();
+
+            public override string ToString()
+                => $"{ZaposleniRow}, od: {DatumZaposlenOd.ToShortDateString()}, {ProcenatRadnogVremena}%";
         }
 
         //partial class ZaposlenjaDataTable

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Linq;
 
@@ -24,8 +23,8 @@ namespace JISP.Controls
         {
             base.OnClick(e);
             
-            Application.OpenForms.OfType<Forms.FrmSlikaZap>().FirstOrDefault()?.Close();
-            Application.OpenForms.OfType<Forms.FrmZaposleni>().FirstOrDefault()?.Close();
+            Application.OpenForms.OfType<Forms.ZapsForms.FrmSlikaZap>().FirstOrDefault()?.Close();
+            Application.OpenForms.OfType<Forms.ZapsForms.FrmZaposleni>().FirstOrDefault()?.Close();
             Application.OpenForms.OfType<Forms.FrmUcenici>().FirstOrDefault()?.Close();
 
             var frmMain = Forms.FrmMain.Instance;

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace JISP.Forms
+namespace JISP.Forms.ZapsForms
 {
     public partial class FrmSlikaZap : Form
     {

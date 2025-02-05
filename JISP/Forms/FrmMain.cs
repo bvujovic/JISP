@@ -114,7 +114,7 @@ namespace JISP.Forms
 
         private void BtnZaposleni_Click(object sender, EventArgs e)
         {
-            Utils.ShowForm(typeof(FrmZaposleni));
+            Utils.ShowForm(typeof(ZapsForms.FrmZaposleni));
         }
 
         private void BtnProstorije_Click(object sender, EventArgs e)
@@ -129,7 +129,7 @@ namespace JISP.Forms
 
         public void FrmChild_FormClosed(object sender, FormClosedEventArgs e)
         {
-            var floatingForms = new[] { nameof(FrmSistematizacija), nameof(FrmRacunari) };
+            var floatingForms = new[] { nameof(ZapsForms.FrmSistematizacija), nameof(FrmRacunari) };
             if (Application.OpenForms.Cast<Form>().Where(it => !floatingForms.Contains(it.Name))
                 .Count() == 0)
             {

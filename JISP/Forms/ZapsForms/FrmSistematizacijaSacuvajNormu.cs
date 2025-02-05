@@ -2,7 +2,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace JISP.Forms
+namespace JISP.Forms.ZapsForms
 {
     public partial class FrmSistematizacijaSacuvajNormu : Form
     {

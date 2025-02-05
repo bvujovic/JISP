@@ -2,14 +2,13 @@
 using JISP.Classes.ObracunZarada;
 using JISP.Controls;
 using JISP.Data;
-using JISP.Forms.Zaposlenii;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace JISP.Forms
+namespace JISP.Forms.ZapsForms
 {
     public partial class FrmZaposleni : Form
     {
@@ -376,7 +375,7 @@ namespace JISP.Forms
             if (selItem == CmbDohvatiOpste)
                 await (sender as UcButton).RunAsync(async () =>
                 {
-                    var zaps = await WebApi.GetList<Zaposleni>(WebApi.ReqEnum.Zap_Opste);
+                    var zaps = await WebApi.GetList<Data.Zaposleni>(WebApi.ReqEnum.Zap_Opste);
                     foreach (var zap in zaps)
                         try
                         {

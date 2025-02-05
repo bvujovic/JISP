@@ -7,7 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace JISP.Forms
+namespace JISP.Forms.ZapsForms
 {
     public partial class FrmResenja : Form
     {

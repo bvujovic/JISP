@@ -187,8 +187,8 @@ namespace JISP.Classes
             var frmMain = FrmMain.Instance;
             if (frm == null || frm.IsDisposed)
             {
-                if (typForm == typeof(FrmZaposleni))
-                    frm = new FrmZaposleni();
+                if (typForm == typeof(Forms.ZapsForms.FrmZaposleni))
+                    frm = new Forms.ZapsForms.FrmZaposleni();
                 if (typForm == typeof(FrmUcenici))
                     frm = new FrmUcenici();
                 if (typForm == typeof(FrmProstorije))

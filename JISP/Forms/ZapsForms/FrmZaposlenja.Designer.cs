@@ -1,4 +1,4 @@
-﻿namespace JISP.Forms
+﻿namespace JISP.Forms.ZapsForms
 {
     partial class FrmZaposlenja
     {

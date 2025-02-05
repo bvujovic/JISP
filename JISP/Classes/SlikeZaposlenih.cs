@@ -69,7 +69,7 @@ namespace JISP.Classes
             catch (Exception ex) { Utils.ShowMbox(ex, "Čuvanje slike zaposlenog"); }
         }
 
-        private static Forms.FrmSlikaZap frmSlikaZap = null;
+        private static Forms.ZapsForms.FrmSlikaZap frmSlikaZap = null;
 
         /// <summary>Prikaz slike zaposlenog u prozoru.</summary>
         public static void PrikaziSliku(Ds.ZaposleniRow zap)
@@ -77,7 +77,7 @@ namespace JISP.Classes
             try
             {
                 if (frmSlikaZap == null || frmSlikaZap.Disposing || frmSlikaZap.IsDisposed)
-                    frmSlikaZap = new Forms.FrmSlikaZap();
+                    frmSlikaZap = new Forms.ZapsForms.FrmSlikaZap();
                 frmSlikaZap.Text = zap.ToString();
                 frmSlikaZap.Slika = SlikeZaposlenogIzFoldera(zap.IdZaposlenog).First();
                 frmSlikaZap.Show();

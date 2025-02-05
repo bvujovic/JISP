@@ -1,4 +1,4 @@
-﻿namespace JISP.Forms
+﻿namespace JISP.Forms.ZapsForms
 {
     partial class FrmResenja
     {
@@ -102,6 +102,7 @@
             // 
             this.dgvResenjaSva.AllowUserToAddRows = false;
             this.dgvResenjaSva.AllowUserToDeleteRows = false;
+            this.dgvResenjaSva.AllowUserToOrderColumns = true;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.dgvResenjaSva.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvResenjaSva.AutoGenerateColumns = false;

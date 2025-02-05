@@ -1,11 +1,12 @@
 ﻿using JISP.Classes;
 using JISP.Data;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace JISP.Forms.Zaposlenii
+namespace JISP.Forms.ZapsForms
 {
     public partial class FrmZamene : Form
     {
@@ -79,6 +80,71 @@ namespace JISP.Forms.Zaposlenii
                     await Utils.PreuzmiDokument(dgvZamene, e);
             }
             catch (Exception ex) { Utils.ShowMbox(ex, Text); }
+        }
+
+        private void BtnBrojZaposlenihKrozVreme_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //* Ukupan broj zaposlenih sa zamenama po danima
+                //var datumOd = new DateTime(2024, 12, 1);
+                //var datumDo = new DateTime(2024, 12, 31);
+                //for (var dt = datumOd; dt <= datumDo; dt = dt.AddDays(1))
+                //{
+                //    Console.Write(dt.ToShortDateString() + "\t");
+                //    var sumProc = 0.0;
+                //    var count = 0;
+                //    var zaps = new HashSet<int>();
+                //    foreach (var nja in AppData.Ds.Zaposlenja)
+                //    {
+                //        if (nja.DatumZaposlenOd <= dt && (nja.IsDatumZaposlenDoNull() && nja.Aktivan || dt <= nja.DatumZaposlenDo))
+                //        {
+                //            //Console.WriteLine(nja);
+                //            count++;
+                //            zaps.Add(nja.ZaposleniRow.IdZaposlenog);
+                //            sumProc += nja.ProcenatRadnogVremena;
+                //        }
+                //    }
+                //    Console.WriteLine($"\t{zaps.Count}\t{sumProc:0.00}");
+                //}
+
+                //* Ukupan broj zaposlenih sa zamenama po mesecima
+                var datumOd = new DateTime(2024, 1, 1);
+                var datumDo = new DateTime(2025, 1, 30);
+                for (var m = datumOd; m <= datumDo; m = m.AddMonths(1))
+                {
+                    var count = 0;
+                    var zaps = new HashSet<int>();
+                    for (var dt = m; dt < m.AddMonths(1); dt = dt.AddDays(1))
+                    {
+                        //Console.WriteLine(dt.ToShortDateString() + "\t" + m.ToShortDateString());
+                        foreach (var nja in AppData.Ds.Zaposlenja)
+                        {
+                            if (nja.DatumZaposlenOd <= dt &&
+                                (nja.IsDatumZaposlenDoNull() || dt <= nja.DatumZaposlenDo) &&
+                                nja.Valid_NijeNeaktBezDatumDo && nja.Valid_NijeTehGreska)
+                            {
+                                //Console.WriteLine(nja);
+                                count++;
+                                zaps.Add(nja.ZaposleniRow.IdZaposlenog);
+                            }
+                        }
+                    }
+                    Console.WriteLine(m.Year + "-" + m.Month.ToString("00") + "\t" + zaps.Count);
+                    //if (m.Month == 5 && m.Year == 2024)
+                    //{
+                    //    foreach (var zap in AppData.Ds.Zaposleni.Where(it => zaps.Contains(it.IdZaposlenog)))
+                    //        Console.WriteLine(zap.ToStringLat());
+                    //}
+                }
+
+                //* Greške u zaposlenjima: ne bi smelo za je zaposlenje neaktivno a bez krajnjeg datuma
+                //var dt = DateTime.Today;
+                //foreach (var nja in AppData.Ds.Zaposlenja)
+                //    if (nja.DatumZaposlenOd <= dt && nja.IsDatumZaposlenDoNull() && !nja.Aktivan)
+                //        Console.WriteLine(nja);
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
     }
 }

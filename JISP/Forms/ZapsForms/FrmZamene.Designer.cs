@@ -1,4 +1,4 @@
-﻿namespace JISP.Forms.Zaposlenii
+﻿namespace JISP.Forms.ZapsForms
 {
     partial class FrmZamene
     {
@@ -35,6 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlBottomLeftRes = new JISP.Controls.UcLeftPanel();
+            this.btnBrojZaposlenihKrozVreme = new JISP.Controls.UcButton();
             this.btnExit = new JISP.Controls.UcExitAppButton();
             this.lblBrojRedova = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -43,8 +44,6 @@
             this.txtZamenjen = new JISP.Controls.UcFilterTextBox();
             this.chkAktivno = new System.Windows.Forms.CheckBox();
             this.dgvZamene = new JISP.Controls.UcDGV();
-            this.bsZaposlenja = new System.Windows.Forms.BindingSource(this.components);
-            this.ds = new JISP.Data.Ds();
             this.zamenjeniZaposleniDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.zaposleniDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.procenatRadnogVremenaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,6 +56,8 @@
             this.razlogPrestankaZaposlenjaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.brojUgovoraORaduDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcDokument = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.bsZaposlenja = new System.Windows.Forms.BindingSource(this.components);
+            this.ds = new JISP.Data.Ds();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             this.pnlBottomLeftRes.SuspendLayout();
@@ -86,6 +87,7 @@
             // 
             // pnlBottomLeftRes
             // 
+            this.pnlBottomLeftRes.Controls.Add(this.btnBrojZaposlenihKrozVreme);
             this.pnlBottomLeftRes.Controls.Add(this.btnExit);
             this.pnlBottomLeftRes.Controls.Add(this.lblBrojRedova);
             this.pnlBottomLeftRes.Controls.Add(this.lblStatus);
@@ -97,6 +99,17 @@
             this.pnlBottomLeftRes.RightWingWidth = 6;
             this.pnlBottomLeftRes.Size = new System.Drawing.Size(146, 453);
             this.pnlBottomLeftRes.TabIndex = 2;
+            // 
+            // btnBrojZaposlenihKrozVreme
+            // 
+            this.btnBrojZaposlenihKrozVreme.Location = new System.Drawing.Point(8, 274);
+            this.btnBrojZaposlenihKrozVreme.Name = "btnBrojZaposlenihKrozVreme";
+            this.btnBrojZaposlenihKrozVreme.Size = new System.Drawing.Size(123, 60);
+            this.btnBrojZaposlenihKrozVreme.TabIndex = 13;
+            this.btnBrojZaposlenihKrozVreme.Text = "Broj zaposlenih kroz vreme";
+            this.btnBrojZaposlenihKrozVreme.ToolTipText = null;
+            this.btnBrojZaposlenihKrozVreme.UseVisualStyleBackColor = true;
+            this.btnBrojZaposlenihKrozVreme.Click += new System.EventHandler(this.BtnBrojZaposlenihKrozVreme_Click);
             // 
             // btnExit
             // 
@@ -177,6 +190,7 @@
             // 
             this.dgvZamene.AllowUserToAddRows = false;
             this.dgvZamene.AllowUserToDeleteRows = false;
+            this.dgvZamene.AllowUserToOrderColumns = true;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.dgvZamene.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvZamene.AutoGenerateColumns = false;
@@ -217,17 +231,6 @@
             this.dgvZamene.StandardSort = null;
             this.dgvZamene.TabIndex = 0;
             this.dgvZamene.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvZamene_CellClick);
-            // 
-            // bsZaposlenja
-            // 
-            this.bsZaposlenja.DataMember = "Zaposlenja";
-            this.bsZaposlenja.DataSource = this.ds;
-            this.bsZaposlenja.Sort = "DatumZaposlenOd DESC";
-            // 
-            // ds
-            // 
-            this.ds.DataSetName = "Ds";
-            this.ds.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // zamenjeniZaposleniDataGridViewTextBoxColumn
             // 
@@ -327,6 +330,17 @@
             this.dgvcDokument.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dgvcDokument.Width = 102;
             // 
+            // bsZaposlenja
+            // 
+            this.bsZaposlenja.DataMember = "Zaposlenja";
+            this.bsZaposlenja.DataSource = this.ds;
+            this.bsZaposlenja.Sort = "DatumZaposlenOd DESC";
+            // 
+            // ds
+            // 
+            this.ds.DataSetName = "Ds";
+            this.ds.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // FrmZamene
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -378,5 +392,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn razlogPrestankaZaposlenjaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn brojUgovoraORaduDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn dgvcDokument;
+        private Controls.UcButton btnBrojZaposlenihKrozVreme;
     }
 }

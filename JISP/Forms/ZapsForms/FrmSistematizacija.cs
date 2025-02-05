@@ -1,12 +1,11 @@
 ﻿using JISP.Classes;
 using JISP.Data;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace JISP.Forms
+namespace JISP.Forms.ZapsForms
 {
     public partial class FrmSistematizacija : Form
     {
