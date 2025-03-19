@@ -302,6 +302,9 @@ namespace JISP.Data
                 => AppData.SkolskaGodina.PripadaDatum(DatumZaposlenOd) &&
                     VrstaAngazovanja.Contains("замена") && IsIdZamenjenogZaposlenogNull();
 
+            public bool Valid_NemaGreske
+                => Valid_NijeTehGreska && Valid_NijeNeaktBezDatumDo;
+
             public bool Valid_NijeTehGreska
                 => IsRazlogPrestankaZaposlenjaNull() || !RazlogPrestankaZaposlenja.Contains("Техничка грешка");
 

@@ -81,6 +81,20 @@ namespace JISP.Data.Iskra
 
                 if (Columns.IndexOf("DK Direktor") == i)
                     nje.DkDir = double.Parse(p, ci);
+                if (Columns.IndexOf("DK Pomoćnik direktora") == i)
+                    nje.DkPomDir = double.Parse(p, ci);
+                if (Columns.IndexOf("DK Komb. odeljenje 2 razreda") == i)
+                    nje.DkKomb2 = double.Parse(p, ci);
+                if (Columns.IndexOf("DK Org.praktične nastave") == i)
+                    nje.DkOrganizator = double.Parse(p, ci);
+                if (Columns.IndexOf("DK Zvanje jednog.specijalizaci") == i)
+                    nje.Dk1godSpec = double.Parse(p, ci);
+                if (Columns.IndexOf("DK Zvanje magistra") == i)
+                    nje.DkMagistar = double.Parse(p, ci);
+                if (Columns.IndexOf("Osnovni koeficijent") == i)
+                    nje.KoefOsnovni = double.Parse(p, ci);
+                if (Columns.IndexOf("Ukupni koeficijent") == i)
+                    nje.KoefUkupni = double.Parse(p, ci);
                 if (Columns.IndexOf("Status zaposlenja") == i)
                     nje.StatusZaposlenja = p;
                 if (Columns.IndexOf("Vrsta zaposlenja") == i)

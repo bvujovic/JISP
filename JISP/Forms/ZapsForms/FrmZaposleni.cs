@@ -706,6 +706,7 @@ namespace JISP.Forms.ZapsForms
                 Data.Iskra.CsvLoader.LoadFromFile(ofdIskra.FileName);
                 Data.Iskra.Provere.IzvrsiSve();
                 Data.Iskra.Provere.SacuvajIzvestaj(ofdIskra.FileName);
+                Data.Iskra.Provere.SacuvajOstalo();
                 System.Diagnostics.Process.Start(ofdIskra.InitialDirectory);
             }
             catch (Exception ex) { Utils.ShowMbox(ex, btnIskra.Text); }
