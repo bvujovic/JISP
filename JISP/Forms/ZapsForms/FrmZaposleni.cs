@@ -87,10 +87,26 @@ namespace JISP.Forms.ZapsForms
             s = s.ToLower();
             var ids = new HashSet<int>();
             foreach (var zap in AppData.Ds.Zaposlenja.Where
-                (it => (!aktivnoZap || (aktivnoZap && it.Aktivan)) && it.RadnoMestoNaziv.ToLower().Contains(s)
-                || (it.Aktivan && it.VrstaAngazovanja.ToLower().Contains(s))))
+                //(it => (!aktivnoZap || (aktivnoZap && it.Aktivan)) && it.RadnoMestoNaziv.ToLower().Contains(s)
+                //|| (it.Aktivan && it.VrstaAngazovanja.ToLower().Contains(s))))
+
+                //(it => (it.Aktivan || !aktivnoZap) && (it.RadnoMestoNaziv.ToLower().Contains(s)
+                //|| it.VrstaAngazovanja.ToLower().Contains(s))))
+
+                (it => (it.Aktivan || !aktivnoZap) && (it.RadnoMestoNaziv.ContainsLow(s)
+                || it.VrstaAngazovanja.ContainsLow(s) || AngazovanjaContain(it, s, aktivnoZap))))
+
                 ids.Add(zap.IdZaposlenog);
             return ids;
+        }
+
+        private static bool AngazovanjaContain(Ds.ZaposlenjaRow nja, string s, bool aktivnoZap)
+        {
+            foreach (var ang in nja.GetAngazovanjaRows())
+                if (!ang.IsPredmetNull() && ang.Predmet.ContainsLow(s)
+                    && (!ang.IsSkolskaGodinaNull() && ang.SkolskaGodina == AppData.SkolskaGodina.ToString() || !aktivnoZap))
+                    return true;
+            return false;
         }
 
         private static IEnumerable<int> FilterZamenjeni(string s, bool aktivnoZap)

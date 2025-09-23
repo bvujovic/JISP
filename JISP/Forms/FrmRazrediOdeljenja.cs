@@ -56,15 +56,18 @@ namespace JISP.Forms
 
         private async void BtnGetOdeljenja_Click(object sender, EventArgs e)
         {
-            if (lstSkGod.SelectedIndex > 0)
-                await DataGetter.GetVaspitneGrupe(lstSkGod.SelectedItem.ToString());
+            await (sender as UcButton).RunAsync(async () =>
+            {
+                if (lstSkGod.SelectedIndex > 0)
+                    await DataGetter.GetVaspitneGrupe(lstSkGod.SelectedItem.ToString());
 
-            foreach (var r in dgvRazredi.SelectedDataRows<Ds.RazrediRow>())
-                await (sender as UcButton).RunAsync(async () =>
-                {
-                    if (r.NazivRazreda != AppData.NazivPppRazreda)
-                        await DataGetter.GetOdeljenja(r.IdRazreda);
-                });
+                foreach (var r in dgvRazredi.SelectedDataRows<Ds.RazrediRow>())
+                    await (sender as UcButton).RunAsync(async () =>
+                    {
+                        if (r.NazivRazreda != AppData.NazivPppRazreda)
+                            await DataGetter.GetOdeljenja(r.IdRazreda);
+                    });
+            });
         }
 
         private void LstSkGod_SelectedIndexChanged(object sender, EventArgs e)

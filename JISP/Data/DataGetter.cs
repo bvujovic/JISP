@@ -526,6 +526,10 @@ namespace JISP.Data
         /// </remarks>
         public static async Task GetVaspitneGrupe(string skGod)
         {
+            //var pppg = AppData.Ds.Razredi.FirstOrDefault(it => it.IdRazreda == -1);
+            //if (pppg != null)
+            //    AppData.Ds.Razredi.RemoveRazrediRow(pppg);
+
             var PPP = AppData.NazivPppRazreda;
             var json = await WebApi.PostForJson(WebApi.UrlBase + "Ustanova/VratiVaspitneGrupe",
                 "{\"radnaGodinaId\":\"\",\"regUstObjekatId\":\"\",\"regUstUstanovaId\":" + WebApi.SV_SAVA_ID
@@ -557,6 +561,8 @@ namespace JISP.Data
                 var id = (int)it.id;
                 ids.Add(id);
                 var od = tblOd.FindByIdOdeljenja(id);
+                //tblOd.RemoveOdeljenjaRow(od);
+                //return;
                 string vaspitacica = (obj.vaspitaci != null && obj.vaspitaci.Count > 0) ?
                     obj.vaspitaci[0].ime + " " + obj.vaspitaci[0].prezime : "/";
                 if (od == null) // dodavanje nove PPP grupe kao odeljenja
@@ -571,6 +577,12 @@ namespace JISP.Data
                 }
                 else // izmena podataka: naziv grupe (odeljenja, vaspitacica (od. staresina)
                 {
+                    var x = AppData.Ds.OdRaz.FindByIdRazredaIdOdeljenja(pppRazred.IdRazreda, od.IdOdeljenja);
+                    if (od.IsRazredNull())
+                    {
+                        //od.Razred = pppRazred.NazivRazreda;
+
+                    }
                     if (obj.nazivGrupe != null && od.NazivOdeljenja != (string)obj.nazivGrupe)
                         od.NazivOdeljenja = it.nazivOdeljenja;
                     if (od.Staresina != vaspitacica)

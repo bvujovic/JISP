@@ -207,6 +207,8 @@ namespace JISP.Data
         {
             public void CalcDatRodjBasedData()
             {
+                if (IsDatumRodjenjaNull() && !IsJMBGNull())
+                    DatumRodjenja = Classes.JMBG.GetBirthDate(JMBG);
                 if (!IsDatumRodjenjaNull())
                 {
                     DanaDoRodj = Classes.JMBG.DaysToBDay(DatumRodjenja);

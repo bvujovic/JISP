@@ -47,6 +47,37 @@ namespace JISP.Data.Iskra
                 Columns.Add(p);
         }
 
+        /*
+                  public static void ParseDataLine(string s)
+        {
+            // ci (CultureInfo) se koristi samo za parsiranje brojeva - decimalna tacka vs decimalni zarez
+            //var ci = new CultureInfo("sr-Cyrl-CS");
+            var ci = CultureInfo.CurrentCulture;
+            // "IRENA\tRUDAN\t0305986715210\t71\tIRENARUDAN86@GMAIL.COM\t      0,00\t                0,00\t                       0,00\t                  1,73\t                   0,00\t                         0,00\t             0,00\t            0,00\t           0,00\t 11,0000\t  0,0000\t 17,0000\t            11,0000\t             0,0000\t01.11.2022\t31.12.9999\tRASPOREĐIVANJE (MIGRACIJA)\tRASPOREĐIVANJE (MIGRACIJA)\tAKTIVNO\tNEODREĐENO\tDEFEKTOLOG - VASPITAČ\t             17,32\t            19,05\t  100,00\tDRAGOSLAVA SREJOVIĆA"
+            var parts = s.Split('\t');
+            //if (parts.Length == Columns.Count)
+            //    ;
+            var zap = new Zaposleni();
+            var nje = new Zaposlenje();
+            for (int i = 0; i < parts.Length; i++)
+            {
+                var p = parts[i].Trim();
+                if (Columns.IndexOf(nameof(zap.Ime)) == i)
+                    zap.Ime = p;
+                if (Columns.IndexOf(nameof(zap.Prezime)) == i)
+                    zap.Prezime = p;
+                if (Columns.IndexOf(nameof(zap.JMBG)) == i)
+                    zap.JMBG = p;
+                if (Columns.IndexOf("NOKS nivo") == i)
+                {
+                    Console.WriteLine(zap);
+                    // za 71 -> 7.1
+                    //zap.NOKS = string.IsNullOrEmpty(p) ? p : p.Insert(1, ".");
+                    // za 71.3 -> 7.1
+                    zap.NOKS = string.IsNullOrEmpty(p) || p.Length != 4 ? p : p.Substring(0, 2).Insert(1, ".");
+                }
+         */
+
         public static void ParseDataLine(string s)
         {
             var ci = new CultureInfo("sr-Cyrl-CS");

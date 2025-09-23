@@ -286,30 +286,33 @@ namespace JISP.Forms
 
         void UcitajRodjendance()
         {
-            var ci = new CultureInfo("sr-Latn-CS");
-
-            dsTemp.RodjendaniZap.Clear();
-            foreach (var zap in AppData.Ds.Zaposleni.Where
-                (it => it.DanaDoRodj <= numRodjPre.Value || it.DanaDoRodj >= 365 - numRodjPosle.Value))
+            try
             {
-                var dan = ci.DateTimeFormat.GetDayName(DateTime.Now.AddDays
-                    (zap.DanaDoRodj - (zap.DanaDoRodj <= numRodjPre.Value ? 0 : 365)).DayOfWeek).Substring(0, 3);
-                dsTemp.RodjendaniZap.AddRodjendaniZapRow(zap.IdZaposlenog, zap.ZaposleniString
-                    , zap.Godine, zap.DanaDoRodj, dan);
-            }
-            bsRodjZap.MoveFirst();
+                var ci = new CultureInfo("sr-Latn-CS");
+                dsTemp.RodjendaniZap.Clear();
+                foreach (var zap in AppData.Ds.Zaposleni.Where
+                    (it => it.DanaDoRodj <= numRodjPre.Value || it.DanaDoRodj >= 365 - numRodjPosle.Value))
+                {
+                    var dan = ci.DateTimeFormat.GetDayName(DateTime.Now.AddDays
+                        (zap.DanaDoRodj - (zap.DanaDoRodj <= numRodjPre.Value ? 0 : 365)).DayOfWeek).Substring(0, 3);
+                    dsTemp.RodjendaniZap.AddRodjendaniZapRow(zap.IdZaposlenog, zap.ZaposleniString
+                        , zap.Godine, zap.DanaDoRodj, dan);
+                }
+                bsRodjZap.MoveFirst();
 
-            dsTemp.RodjendaniUc.Clear();
-            foreach (var uc in AppData.Ds.UcenikSkGod.Where
-                (it => it.SkGod == AppData.SkolskaGodina.Naziv
-                && (it._DanaDoRodj <= numRodjPre.Value || it._DanaDoRodj >= 365 - numRodjPosle.Value)))
-            {
-                var dan = ci.DateTimeFormat.GetDayName(DateTime.Now.AddDays
-                    (uc._DanaDoRodj - (uc._DanaDoRodj <= numRodjPre.Value ? 0 : 365)).DayOfWeek).Substring(0, 3);
-                dsTemp.RodjendaniUc.AddRodjendaniUcRow(uc._UcenikString, uc.Odeljenje
-                    , uc._Godine, uc._DanaDoRodj, dan);
+                dsTemp.RodjendaniUc.Clear();
+                foreach (var uc in AppData.Ds.UcenikSkGod.Where
+                    (it => it.SkGod == AppData.SkolskaGodina.Naziv && !it.Is_DanaDoRodjNull()
+                    && (it._DanaDoRodj <= numRodjPre.Value || it._DanaDoRodj >= 365 - numRodjPosle.Value)))
+                {
+                    var dan = ci.DateTimeFormat.GetDayName(DateTime.Now.AddDays
+                        (uc._DanaDoRodj - (uc._DanaDoRodj <= numRodjPre.Value ? 0 : 365)).DayOfWeek).Substring(0, 3);
+                    dsTemp.RodjendaniUc.AddRodjendaniUcRow(uc._UcenikString, uc.Odeljenje
+                        , uc._Godine, uc._DanaDoRodj, dan);
+                }
+                bsRodjUc.MoveFirst();
             }
-            bsRodjUc.MoveFirst();
+            catch { }
         }
 
         private void NumRodj_ValueChanged(object sender, EventArgs e)

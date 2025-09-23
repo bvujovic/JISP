@@ -234,6 +234,11 @@ namespace JISP.Classes
                 return v.ToString();
         }
 
+        public static bool ContainsLow(this string haystack, string needle)
+        {
+            return haystack.ToLower().Contains(needle);
+        }
+
         /// <summary>Metod vraca slovo/karakter pola (М - Ж - /) na osnovu koda za pol.</summary>
         //TODO resiti problem sa slicnim kodom u UcenikOpste - ovo ovde je verovatno bolje resenje
         public static char Pol(int polKod)
