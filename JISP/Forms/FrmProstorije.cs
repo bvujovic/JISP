@@ -1,6 +1,7 @@
 ﻿using JISP.Classes;
 using JISP.Controls;
 using JISP.Data;
+using JISP.Forms.ZapsForms;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -107,13 +108,13 @@ namespace JISP.Forms
         {
             frmRacunari = new FrmRacunari(this);
             dgvProstorije.CurrentCellChanged += frmRacunari.ProstorijeCurrentRowChanged;
-            frmRacunari.Show();
-            if (Screen.PrimaryScreen.WorkingArea.Height - Top - Height > FrmRacunari.INIT_HEIGHT)
-            {
-                frmRacunari.StartPosition = FormStartPosition.Manual;
-                frmRacunari.Top = Top + Height + 5;
-                frmRacunari.Left = Left + 5;
-            }
+            frmRacunari.Show(this);
+        }
+
+        private void DgvProstorije_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+                btnRacunari.PerformClick();
         }
 
         private FrmRacunari frmRacunari;

@@ -224,6 +224,7 @@
             this.dgvProstorije.StandardSort = null;
             this.dgvProstorije.TabIndex = 2;
             this.dgvProstorije.NumbersSelectionChanged += new System.EventHandler<string>(this.DgvProstorije_NumbersSelectionChanged);
+            this.dgvProstorije.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProstorije_CellDoubleClick);
             this.dgvProstorije.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.DgvProstorije_DataError);
             // 
             // nazivProstorijeDataGridViewTextBoxColumn

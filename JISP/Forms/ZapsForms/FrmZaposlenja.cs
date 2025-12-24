@@ -53,7 +53,8 @@ namespace JISP.Forms.ZapsForms
 
                 bsObracunZarada.DataSource = AppData.Ds;
                 dgvObracunZarada.LoadSettings();
-                bsObracunZarada.Filter = $"IdZaposlenog = {zaposleni.IdZaposlenog}";
+                //bsObracunZarada.Filter = $"IdZaposlenog = {zaposleni.IdZaposlenog}";
+                SetBottomBsFilter();
             }
             catch (Exception ex) { Utils.ShowMbox(ex, Text); }
         }
@@ -313,6 +314,40 @@ namespace JISP.Forms.ZapsForms
                     row.Selected = zapIDs.Contains(dgvZaposlenjaSvSava.DataRow<Ds.ZaposlenjaRow>(row.Index).IdZaposlenja);
             }
             catch (Exception ex) { Utils.ShowMbox(ex, "Sumarno zaposlenje"); }
+        }
+
+        private void ChkSamoTekucaSkGod_CheckedChanged(object sender, EventArgs e)
+        {
+            SetBottomBsFilter();
+            //try
+            //{
+            //    var skGod = AppData.SkolskaGodina;
+            //    bsResenja.Filter = chkSamoTekucaSkGod.Checked
+            //        ? $"SkolskaGodina = '{skGod.Naziv}'"
+            //        : string.Empty;
+            //    bsAngazovanja.Filter = chkSamoTekucaSkGod.Checked
+            //        ? $"SkolskaGodina = '{skGod.Naziv}'"
+            //        : string.Empty;
+            //    bsObracunZarada.Filter = chkSamoTekucaSkGod.Checked
+            //        ? $"Godina = '{skGod.Start}' AND MesecBroj >= 9 OR Godina = '{skGod.Kraj}' AND MesecBroj <= 8"
+            //        : string.Empty;
+            //}
+            //catch (Exception ex) { Utils.ShowMbox(ex, chkSamoTekucaSkGod.Text); }
+        }
+
+        private void SetBottomBsFilter()
+        {
+            try
+            {
+                var skGod = AppData.SkolskaGodina;
+                var filter = chkSamoTekucaSkGod.Checked ? $"SkolskaGodina = '{skGod.Naziv}'" : string.Empty;
+                bsAngazovanja.Filter = filter;
+                bsResenja.Filter = filter;
+                bsObracunZarada.Filter = $"IdZaposlenog = {zaposleni.IdZaposlenog}"
+                    + (!chkSamoTekucaSkGod.Checked ? string.Empty :
+                    $" AND (Godina = '{skGod.Start}' AND MesecBroj >= 9 OR Godina = '{skGod.Kraj}' AND MesecBroj <= 8)");
+            }
+            catch (Exception ex) { Utils.ShowMbox(ex, "Postavljanje filtera"); }
         }
     }
 }

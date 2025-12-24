@@ -140,30 +140,34 @@ namespace JISP.Forms
 
         private async void LblApiToken_Click(object sender, EventArgs e)
         {
-            var clipboard = Clipboard.GetText();
-            if (clipboard.Contains(Environment.NewLine))
-                WebApi.TakeApiToken(clipboard);
-            else
-                WebApi.Token = clipboard;
-            lblApiToken.Text = WebApi.TokenDisplay;
-            if (WebApi.IsTokenValid())
+            try
             {
-                AppData.SaveSett(WebApi.TOKEN_CAPTION, WebApi.Token);
-                try
+                var clipboard = Clipboard.GetText();
+                if (clipboard.Contains(Environment.NewLine))
+                    WebApi.TakeApiToken(clipboard);
+                else
+                    WebApi.Token = clipboard;
+                lblApiToken.Text = WebApi.TokenDisplay;
+                if (WebApi.IsTokenValid())
                 {
-                    await DataGetter.GetSistematizacijaAsync();
-                    var novaPorukaSist = await DataGetter.GetPorukaAsync(TipPoruke.Sistematizacija);
-                    await DataGetter.GetCenusAsync();
-                    var novaPorukaCenus = await DataGetter.GetPorukaAsync(TipPoruke.CENUS);
-                    btnPrikaziPoruke.BackColor = System.Drawing.Color.Orange;
-                    if (!novaPorukaSist && !novaPorukaCenus)
+                    AppData.SaveSett(WebApi.TOKEN_CAPTION, WebApi.Token);
+                    try
                     {
-                        await System.Threading.Tasks.Task.Delay(500);
-                        btnPrikaziPoruke.BackColor = System.Drawing.SystemColors.Control;
+                        await DataGetter.GetSistematizacijaAsync();
+                        var novaPorukaSist = await DataGetter.GetPorukaAsync(TipPoruke.Sistematizacija);
+                        await DataGetter.GetCenusAsync();
+                        var novaPorukaCenus = await DataGetter.GetPorukaAsync(TipPoruke.CENUS);
+                        btnPrikaziPoruke.BackColor = Color.Orange;
+                        if (!novaPorukaSist && !novaPorukaCenus)
+                        {
+                            await System.Threading.Tasks.Task.Delay(500);
+                            btnPrikaziPoruke.BackColor = SystemColors.Control;
+                        }
                     }
+                    catch (Exception ex) { Utils.ShowMbox(ex, lblApiToken.Text); }
                 }
-                catch (Exception ex) { Utils.ShowMbox(ex, lblApiToken.Text); }
             }
+            catch (Exception ex) { Utils.ShowMbox(ex, lblApiToken.Text); }
         }
 
         private void LblDataFolder_Click(object sender, EventArgs e)

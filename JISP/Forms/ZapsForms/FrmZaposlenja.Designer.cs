@@ -90,6 +90,7 @@
             this.dtpStazDatumDo = new System.Windows.Forms.DateTimePicker();
             this.lblStazDatumDo = new System.Windows.Forms.Label();
             this.lblUkupanStaz = new System.Windows.Forms.Label();
+            this.chkSamoTekucaSkGod = new System.Windows.Forms.CheckBox();
             this.tcBottom = new System.Windows.Forms.TabControl();
             this.tpObracunZarada = new System.Windows.Forms.TabPage();
             this.dgvObracunZarada = new JISP.Controls.UcDGV();
@@ -493,6 +494,7 @@
             // 
             // scMain.Panel2
             // 
+            this.scMain.Panel2.Controls.Add(this.chkSamoTekucaSkGod);
             this.scMain.Panel2.Controls.Add(this.tcBottom);
             this.scMain.Size = new System.Drawing.Size(1149, 652);
             this.scMain.SplitterDistance = 324;
@@ -527,10 +529,10 @@
             this.tpZaposSva.BackColor = System.Drawing.SystemColors.Control;
             this.tpZaposSva.Controls.Add(this.dgvSvaZaposlenja);
             this.tpZaposSva.Controls.Add(this.pnlZaposSvaTop);
-            this.tpZaposSva.Location = new System.Drawing.Point(4, 22);
+            this.tpZaposSva.Location = new System.Drawing.Point(4, 25);
             this.tpZaposSva.Name = "tpZaposSva";
             this.tpZaposSva.Padding = new System.Windows.Forms.Padding(3);
-            this.tpZaposSva.Size = new System.Drawing.Size(1141, 298);
+            this.tpZaposSva.Size = new System.Drawing.Size(1141, 295);
             this.tpZaposSva.TabIndex = 1;
             this.tpZaposSva.Text = "Sumarna Zaposlenja";
             // 
@@ -568,7 +570,7 @@
             this.dgvSvaZaposlenja.Name = "dgvSvaZaposlenja";
             this.dgvSvaZaposlenja.RowHeadersWidth = 30;
             this.dgvSvaZaposlenja.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSvaZaposlenja.Size = new System.Drawing.Size(1135, 262);
+            this.dgvSvaZaposlenja.Size = new System.Drawing.Size(1135, 259);
             this.dgvSvaZaposlenja.StandardSort = null;
             this.dgvSvaZaposlenja.TabIndex = 1;
             this.dgvSvaZaposlenja.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvSvaZaposlenja_CellDoubleClick);
@@ -705,6 +707,19 @@
             this.lblUkupanStaz.Size = new System.Drawing.Size(91, 18);
             this.lblUkupanStaz.TabIndex = 8;
             this.lblUkupanStaz.Text = "Ukupan staž";
+            // 
+            // chkSamoTekucaSkGod
+            // 
+            this.chkSamoTekucaSkGod.AutoSize = true;
+            this.chkSamoTekucaSkGod.Checked = true;
+            this.chkSamoTekucaSkGod.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkSamoTekucaSkGod.Location = new System.Drawing.Point(302, 4);
+            this.chkSamoTekucaSkGod.Name = "chkSamoTekucaSkGod";
+            this.chkSamoTekucaSkGod.Size = new System.Drawing.Size(239, 22);
+            this.chkSamoTekucaSkGod.TabIndex = 2;
+            this.chkSamoTekucaSkGod.Text = "Samo za tekuću školsku godinu";
+            this.chkSamoTekucaSkGod.UseVisualStyleBackColor = true;
+            this.chkSamoTekucaSkGod.CheckedChanged += new System.EventHandler(this.ChkSamoTekucaSkGod_CheckedChanged);
             // 
             // tcBottom
             // 
@@ -910,10 +925,10 @@
             this.tpAngazovanja.BackColor = System.Drawing.SystemColors.Control;
             this.tpAngazovanja.Controls.Add(this.dgvAngazovanja);
             this.tpAngazovanja.Controls.Add(this.pnlBottomLeftAng);
-            this.tpAngazovanja.Location = new System.Drawing.Point(4, 22);
+            this.tpAngazovanja.Location = new System.Drawing.Point(4, 27);
             this.tpAngazovanja.Name = "tpAngazovanja";
             this.tpAngazovanja.Padding = new System.Windows.Forms.Padding(3);
-            this.tpAngazovanja.Size = new System.Drawing.Size(1141, 298);
+            this.tpAngazovanja.Size = new System.Drawing.Size(1141, 293);
             this.tpAngazovanja.TabIndex = 1;
             this.tpAngazovanja.Text = "Angažovanja";
             // 
@@ -950,7 +965,7 @@
             this.dgvAngazovanja.Name = "dgvAngazovanja";
             this.dgvAngazovanja.ReadOnly = true;
             this.dgvAngazovanja.RowHeadersWidth = 30;
-            this.dgvAngazovanja.Size = new System.Drawing.Size(989, 292);
+            this.dgvAngazovanja.Size = new System.Drawing.Size(989, 287);
             this.dgvAngazovanja.StandardSort = null;
             this.dgvAngazovanja.TabIndex = 0;
             // 
@@ -1010,7 +1025,7 @@
             this.pnlBottomLeftAng.Name = "pnlBottomLeftAng";
             this.pnlBottomLeftAng.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
             this.pnlBottomLeftAng.RightWingWidth = 6;
-            this.pnlBottomLeftAng.Size = new System.Drawing.Size(146, 292);
+            this.pnlBottomLeftAng.Size = new System.Drawing.Size(146, 287);
             this.pnlBottomLeftAng.TabIndex = 1;
             // 
             // tpResenja
@@ -1018,10 +1033,10 @@
             this.tpResenja.BackColor = System.Drawing.SystemColors.Control;
             this.tpResenja.Controls.Add(this.dgvResenja);
             this.tpResenja.Controls.Add(this.pnlBottomLeftRes);
-            this.tpResenja.Location = new System.Drawing.Point(4, 22);
+            this.tpResenja.Location = new System.Drawing.Point(4, 25);
             this.tpResenja.Name = "tpResenja";
             this.tpResenja.Padding = new System.Windows.Forms.Padding(3);
-            this.tpResenja.Size = new System.Drawing.Size(1141, 298);
+            this.tpResenja.Size = new System.Drawing.Size(1141, 295);
             this.tpResenja.TabIndex = 2;
             this.tpResenja.Text = "Rešenja";
             // 
@@ -1059,7 +1074,7 @@
             this.dgvResenja.Name = "dgvResenja";
             this.dgvResenja.ReadOnly = true;
             this.dgvResenja.RowHeadersWidth = 30;
-            this.dgvResenja.Size = new System.Drawing.Size(989, 292);
+            this.dgvResenja.Size = new System.Drawing.Size(989, 289);
             this.dgvResenja.StandardSort = null;
             this.dgvResenja.TabIndex = 1;
             this.dgvResenja.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvResenja_CellClick);
@@ -1134,7 +1149,7 @@
             this.pnlBottomLeftRes.Name = "pnlBottomLeftRes";
             this.pnlBottomLeftRes.PanelWidthState = JISP.Controls.PanelWidthState.Expanded;
             this.pnlBottomLeftRes.RightWingWidth = 6;
-            this.pnlBottomLeftRes.Size = new System.Drawing.Size(146, 292);
+            this.pnlBottomLeftRes.Size = new System.Drawing.Size(146, 289);
             this.pnlBottomLeftRes.TabIndex = 0;
             // 
             // btnUcitajResenja
@@ -1179,6 +1194,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bsZaposlenja)).EndInit();
             this.scMain.Panel1.ResumeLayout(false);
             this.scMain.Panel2.ResumeLayout(false);
+            this.scMain.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scMain)).EndInit();
             this.scMain.ResumeLayout(false);
             this.tcZaposlenja.ResumeLayout(false);
@@ -1298,5 +1314,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn vrstaAngazovanjaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcZapZamenjeni;
         private System.Windows.Forms.DataGridViewButtonColumn dgvcZapDokument;
+        private System.Windows.Forms.CheckBox chkSamoTekucaSkGod;
     }
 }

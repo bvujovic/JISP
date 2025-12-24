@@ -3,8 +3,6 @@ using JISP.Controls;
 using JISP.Data;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace JISP.Forms
@@ -31,6 +29,7 @@ namespace JISP.Forms
             chkFloatingForma.Checked = FormaJeTopMost;
             dgvRacunari.StandardSort = bsRacunari.Sort;
             this.FormStandardSettings();
+            CenterToParent();
         }
 
         private void FilterData()

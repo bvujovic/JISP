@@ -46,9 +46,31 @@ namespace JISP.Data
             var start = "Authorization: Bearer ";
             var idxStart = clipboard.IndexOf(start);
             if (idxStart == -1)
+            {
+                start = "\"authorization\": \"Bearer ";
+                idxStart = clipboard.IndexOf(start);
+            }
+            if (idxStart == -1)
+            {
+                start = "'Authorization: Bearer ";
+                idxStart = clipboard.IndexOf(start);
+            }
+            if (idxStart == -1)
+            {
+                start = "\"Authorization\"=\"Bearer ";
+                idxStart = clipboard.IndexOf(start);
+            }
+            if (idxStart == -1)
                 throw new FormatException($"API token ({start}...) nije pronađen u clipboard-u.");
             idxStart += start.Length;
-            var idxEnd = clipboard.IndexOf(Environment.NewLine, idxStart);
+            //var idxEnd = clipboard.IndexOf(Environment.NewLine, idxStart);
+            var idxEnd = clipboard.IndexOf("^\" ^", idxStart);
+            if (idxEnd == -1)
+                idxEnd = clipboard.IndexOf("' \\", idxStart);
+            if (idxEnd == -1)
+                idxEnd = clipboard.IndexOf("\",", idxStart);
+            if (idxEnd == -1)
+                idxEnd = clipboard.IndexOf(Environment.NewLine, idxStart);
             Token = clipboard.Substring(idxStart, idxEnd - idxStart);
             if (!IsTokenFormatOk(Token))
                 throw new FormatException("Token nije u formatu \"xxxxx.yyyyy.zzzzz\"");

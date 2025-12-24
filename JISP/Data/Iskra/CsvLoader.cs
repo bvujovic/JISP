@@ -80,8 +80,9 @@ namespace JISP.Data.Iskra
 
         public static void ParseDataLine(string s)
         {
-            var ci = new CultureInfo("sr-Cyrl-CS");
             // "IRENA\tRUDAN\t0305986715210\t71\tIRENARUDAN86@GMAIL.COM\t      0,00\t                0,00\t                       0,00\t                  1,73\t                   0,00\t                         0,00\t             0,00\t            0,00\t           0,00\t 11,0000\t  0,0000\t 17,0000\t            11,0000\t             0,0000\t01.11.2022\t31.12.9999\tRASPOREĐIVANJE (MIGRACIJA)\tRASPOREĐIVANJE (MIGRACIJA)\tAKTIVNO\tNEODREĐENO\tDEFEKTOLOG - VASPITAČ\t             17,32\t            19,05\t  100,00\tDRAGOSLAVA SREJOVIĆA"
+            //var ci = new CultureInfo("sr-Cyrl-CS");
+            var ci = CultureInfo.CurrentCulture;
             var parts = s.Split('\t');
             //if (parts.Length == Columns.Count)
             //    ;
